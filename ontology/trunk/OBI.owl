@@ -18,10 +18,10 @@
     >0.1</owl:versionInfo>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Ryan R. Brinkman, Helen C. Causton, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Tanya Gray, Mervi Heiskanen, Tina Hernandez-Boussard, Norman Morrison, Helen Parkinson, Philippe Rocca-Serra, Susanna-Assunta Sansone, Daniel Schober, Barry Smith, Robert Stevens, Chris Stoeckert, Chris Taylor, Trish Whetzel, Joe White, Andrew Wood</dc:creator>
-    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >en</protege:defaultLanguage>
     <dc:subject rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ontology for the annotation of functional genomics experiments.</dc:subject>
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
     <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >2006-03-09</dc:date>
     <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -74,14 +74,6 @@
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">hypothesis</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="FUGO_72">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="FUGO_61"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >e.g. turning the centrifuge to 4 degrees</rdfs:comment>
-    <rdfs:label xml:lang="en">set_parameter_value</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="FUGO_31">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plan of the timeline</rdfs:comment>
@@ -90,19 +82,19 @@
       <owl:Class rdf:about="#FUGO_14"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Class_1">
+  <owl:Class rdf:ID="FUGO_72">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="FUGO_59"/>
+      <owl:Class rdf:ID="FUGO_61"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >test</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >e.g. turning the centrifuge to 4 degrees</rdfs:comment>
+    <rdfs:label xml:lang="en">setting_parameter_value</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_84">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FUGO_78"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >number_designation</rdfs:label>
+    <rdfs:label>number_designation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_33">
     <rdfs:subClassOf>
@@ -120,15 +112,6 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >characteristic or pre-set on instrument</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="Class_6">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Software that assigns meaning to the 'peaks' seen in mass spectrometry data sets ('peak lists'); for example, assigning peptides of a given mass from a database to peaks, or producing 'de novo' amino acid sequence by interrelating peptide fragment ions</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Class_5"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mass_spectrometry_data_analysis_software</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="FUGO_45">
     <rdfs:label xml:lang="en">protocol_document</rdfs:label>
     <rdfs:subClassOf>
@@ -145,15 +128,6 @@
       <owl:Class rdf:ID="FUGO_5"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Class_3">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Software involved in processing the primary output of a mass spectrometer; this could involve such processes as charge deconvolution, deisotoping, centroiding and so on</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mass_spectrometry_data_processing_software</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Class_5"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="FUGO_56">
     <rdfs:label xml:lang="en">study_population</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -163,11 +137,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_77">
+    <rdfs:label>cardinal_part_of_qualitative_value</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FUGO_17"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cardinal_part_of_qualitative_value</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_70">
     <rdfs:subClassOf>
@@ -194,7 +167,7 @@
     >starting of timeline, part of study</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_82">
-    <rdfs:label xml:lang="en">chromatography_software</rdfs:label>
+    <rdfs:label xml:lang="en">LC_software</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_10"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_25">
@@ -202,28 +175,6 @@
       <owl:Class rdf:about="#FUGO_18"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">measured_value</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="#FUGO_69">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FUGO_61"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >part of study</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >this is an actual part of the experiment. It includes the protocol that the experimenter intends to carry out, deviations from this and unintended variables, such as the earthquake that occurred while the experiment was taking place.</rdfs:comment>
-    <rdfs:label xml:lang="en">protocol_application</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="part_of_process"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#FUGO_73"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >has an input entity and an output entity</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_54">
     <rdfs:subClassOf>
@@ -233,12 +184,33 @@
     >actual participant in a study</rdfs:comment>
     <rdfs:label xml:lang="en">study_object</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:about="#FUGO_69">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FUGO_61"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this is an actual part of the experiment. It includes the protocol that the experimenter intends to carry out, deviations from this and unintended variables, such as the earthquake that occurred while the experiment was taking place.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >part of study</rdfs:comment>
+    <rdfs:label xml:lang="en">protocol_application</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has an input entity and an output entity</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#FUGO_73"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="part_of_process"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="FUGO_83">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_78"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >confidence_interval</rdfs:label>
+    <rdfs:label>confidence_interval</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_57">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -250,18 +222,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FUGO_36"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">cardinal_part_of_chromatography_instrument</rdfs:label>
+    <rdfs:label xml:lang="en">cardinal_part_of_LC_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_41">
     <rdfs:label xml:lang="en">pump_valve_switch</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_37"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Class_2">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mass_spectrometer_control_software</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Class_5"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_19">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -270,8 +235,7 @@
     <rdfs:subClassOf rdf:resource="#FUGO_11"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_85">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >unit</rdfs:label>
+    <rdfs:label>unit</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_78"/>
     </rdfs:subClassOf>
@@ -284,8 +248,7 @@
   </owl:Class>
   <owl:Class rdf:ID="FUGO_80">
     <rdfs:subClassOf rdf:resource="#FUGO_77"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >intensity</rdfs:label>
+    <rdfs:label>intensity</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_74">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -312,23 +275,21 @@ a study in which time is a variable</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a series of planned actions which is recorded/ a set of instructions that can be followed. It does not include unintended events e.g. earthquakes that occur while the experiment and is distinct from the protocol document which is an object that gets written down.  A protocol may be used in multiple experimental designs.</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="FUGO_59">
+    <rdfs:label xml:lang="en">unfolding_through_time</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a thing that occurs during time. occurrent</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FUGO_1">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a thing which endures through time. continuant</rdfs:comment>
+    <rdfs:label xml:lang="en">enduring_entity</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:ID="FUGO_63">
     <rdfs:label xml:lang="en">time_interval</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >e.g. lunar cycle, Time intervals are labeled.  Includes all time (non-relativistic).</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FUGO_59"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="FUGO_1">
-    <rdfs:label xml:lang="en">continuant</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a thing which endures through time. continuant</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#FUGO_59">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a thing that occurs during time. occurrent</rdfs:comment>
-    <rdfs:label xml:lang="en">occurrent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FUGO_59"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_52">
     <rdfs:label xml:lang="en">microarray_platform</rdfs:label>
@@ -354,12 +315,6 @@ a study in which time is a variable</rdfs:comment>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">spatial_region</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="FUGO_43">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FUGO_35"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">data_set</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="#FUGO_6">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_5"/>
@@ -367,6 +322,12 @@ a study in which time is a variable</rdfs:comment>
     <rdfs:label xml:lang="en">cardinal_part_of_design</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a part of design that is relevant within the context of the whole design</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FUGO_43">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FUGO_35"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">data_set</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_21">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -389,24 +350,26 @@ a study in which time is a variable</rdfs:comment>
     <rdfs:label xml:lang="en">cardinal_part_of_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_87">
+    <rdfs:label xml:lang="en">final_transformation_of_study_data</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_16"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">final_transformation_of_study_data</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_48">
-    <rdfs:subClassOf rdf:resource="#FUGO_50"/>
-    <rdfs:label xml:lang="en">chromatography_platform</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FUGO_47"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">LC_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_20">
     <rdfs:subClassOf rdf:resource="#FUGO_11"/>
-    <rdfs:label xml:lang="en">parameter</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Chris T means dose and rpm; cardinal part of protocol; Barry:  not clear why we have this; do not need measurement
 a term that describes a protocol but which doesn’t exist in the absence of the protocol.  Some parameters are set e.g. settings on an instrument, sex of an organism. Hue, saturation and brightness don’t exist without colour.</rdfs:comment>
+    <rdfs:label xml:lang="en">parameter</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_42">
-    <rdfs:label xml:lang="en">consumable</rdfs:label>
+    <rdfs:label xml:lang="en">consumables</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_35"/>
     </rdfs:subClassOf>
@@ -429,15 +392,15 @@ a term that describes a protocol but which doesn’t exist in the absence of the
       <owl:Class rdf:about="#FUGO_61"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#FUGO_18">
-    <rdfs:label xml:lang="en">datum</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#FUGO_11"/>
-  </owl:Class>
   <owl:Class rdf:ID="FUGO_13">
     <rdfs:subClassOf rdf:resource="#FUGO_6"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >motivation/reason for doing experiment.</rdfs:comment>
     <rdfs:label xml:lang="en">objective</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#FUGO_18">
+    <rdfs:label xml:lang="en">datum</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FUGO_11"/>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_5">
     <rdfs:subClassOf>
@@ -447,25 +410,25 @@ a term that describes a protocol but which doesn’t exist in the absence of the
     >a dependent enduring entity which is realizable through  a process; example:  a Study executes a Study Design.
 (a thing  that can be executed or run)
 e candidate name = executable; doesn't work for all</rdfs:comment>
-    <rdfs:label xml:lang="en">realizeable_continuant</rdfs:label>
+    <rdfs:label xml:lang="en">realizable_enduring_entity</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_8">
-    <rdfs:subClassOf rdf:resource="#FUGO_5"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >an inherent purpose of the entity</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FUGO_5"/>
     <rdfs:label xml:lang="en">function</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_34">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >an enduring entity which exists on it's own, e.g. an organism</rdfs:comment>
+    <rdfs:label xml:lang="en">independent_enduring_entity</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_1"/>
-    <rdfs:label xml:lang="en">independent_continuant</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_39">
     <rdfs:label xml:lang="en">column_chromatography_matrix</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#FUGO_37"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >stationary_phase</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FUGO_37"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_67">
     <rdfs:label xml:lang="en">measuring</rdfs:label>
@@ -476,27 +439,19 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_78">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cardinal_part_of_quantitative_value</rdfs:label>
+    <rdfs:label>cardinal_part_of_quantitative_value</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_17"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_23">
-    <rdfs:subClassOf rdf:resource="#FUGO_9"/>
     <rdfs:label xml:lang="en">output_role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FUGO_9"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >role of data or material played by an entity at the end of a process</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#FUGO_7">
-    <rdfs:label xml:lang="en">design</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >the plan that can be realized in a process</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#FUGO_5"/>
-  </owl:Class>
   <owl:Class rdf:ID="FUGO_81">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >quality</rdfs:label>
+    <rdfs:label>quality</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_77"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_46">
@@ -506,6 +461,12 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_44"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#FUGO_7">
+    <rdfs:label xml:lang="en">design</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >the plan that can be realized in a process</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FUGO_5"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_55">
     <rdfs:subClassOf rdf:resource="#FUGO_54"/>
@@ -522,7 +483,7 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     <rdfs:label xml:lang="en">study_report</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_88">
-    <rdfs:label xml:lang="en">chromatography_software_control_mode</rdfs:label>
+    <rdfs:label xml:lang="en">LC_software_control_mode</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_82"/>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_35">
@@ -544,21 +505,13 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#FUGO_59"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_3">
+    <rdfs:label xml:lang="en">characteristic</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_2"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">characteristic</rdfs:label>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >measurable_entity</rdfs:label>
+    <rdfs:label>measurable_entity</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a dependant enduring entity which can be measured;  syn:  measurable entity</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Class_5">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Software related to the runnning of, or processing/analysis of data from a mass spectrometer</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mass_spectrometry_software</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#FUGO_10"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_76">
     <rdfs:label xml:lang="en">unscheduled_process</rdfs:label>
@@ -568,7 +521,7 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >part of study; relevant to study outcome; to study participants; during study timeline</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="FUGO_47">
+  <owl:Class rdf:about="#FUGO_47">
     <rdfs:label xml:lang="en">instrument</rdfs:label>
     <rdfs:subClassOf rdf:resource="#FUGO_35"/>
   </owl:Class>
@@ -577,16 +530,10 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#FUGO_59"/>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_2">
+    <rdfs:label xml:lang="en">dependent_enduring_entity</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >an enduring entity whose manifestation requires another entity, e.g. temperature of an organism</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#FUGO_1"/>
-    <rdfs:label xml:lang="en">dependent_continuant</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="FUGO_49">
-    <rdfs:label xml:lang="en">mass_spectrometer</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#FUGO_47"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A complex instrument, featuring many sub-parts, built to ionize molecular species and then analyze those ionized species by a range of methods. In principle, mass-to-charge ratio is measured for each species, in each change state. Parts and methods vary significantly between machines and techniques. Species may not ionize, or may not be detected; also various filtering methods may mean that only certain species are detected.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_22">
     <rdfs:subClassOf rdf:resource="#FUGO_9"/>
@@ -594,9 +541,9 @@ e candidate name = executable; doesn't work for all</rdfs:comment>
     >role of data or material played by an entity at the start of a process</rdfs:comment>
     <rdfs:label xml:lang="en">input_role</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="#FUGO_44">
-    <rdfs:label xml:lang="en">document</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#FUGO_35"/>
+  <owl:Class rdf:ID="FUGO_49">
+    <rdfs:label xml:lang="en">MS_instrument</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FUGO_47"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_79">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -606,30 +553,33 @@ values are subtypes of attributes
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FUGO_17"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >dimension</rdfs:label>
+    <rdfs:label>dimension</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#FUGO_44">
+    <rdfs:label xml:lang="en">document</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#FUGO_35"/>
   </owl:Class>
   <owl:Class rdf:ID="FUGO_27">
     <rdfs:subClassOf rdf:resource="#FUGO_18"/>
     <rdfs:label xml:lang="en">set_parmameter_value</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="FUGO_38">
+    <rdfs:subClassOf rdf:resource="#FUGO_37"/>
+    <rdfs:label xml:lang="en">chromatography_column</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_73">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >executes the study design</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="#part_of_process"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="FUGO_66"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#part_of_process"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="#FUGO_61"/>
     <rdfs:label xml:lang="en">study</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="FUGO_38">
-    <rdfs:subClassOf rdf:resource="#FUGO_37"/>
-    <rdfs:label xml:lang="en">chromatography_column</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_17">
     <rdfs:label xml:lang="en">cardinal_part_of_value</rdfs:label>
@@ -637,11 +587,10 @@ values are subtypes of attributes
   </owl:Class>
   <owl:Class rdf:ID="FUGO_51">
     <rdfs:subClassOf rdf:resource="#FUGO_50"/>
-    <rdfs:label xml:lang="en">liquid_chromatography_mass_spectrometry_platform</rdfs:label>
+    <rdfs:label xml:lang="en">lcms_platform</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#FUGO_15">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >study_factor</rdfs:label>
+    <rdfs:label>study_factor</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >one of the variables under examination in the study</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#FUGO_6"/>
@@ -669,4 +618,4 @@ values are subtypes of attributes
   <owl:ObjectProperty rdf:ID="documents"/>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 2.2 beta, Build 291)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 1.3, Build 225.4)  http://protege.stanford.edu -->
