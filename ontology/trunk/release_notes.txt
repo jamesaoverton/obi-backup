@@ -1,12 +1,62 @@
-OBI.owl Release Notes - this version of the release notes file relates to the
-file in the OBI SVN with Revision 12.
+OBI.owl Release Notes - this file relates to changes to the ontology file,
+owl:versionInfo 0.4, OBI SVN Revision 14.
 
-Step 2: Import of BFO.owl
+Step 3:
+Binning of obi top level classes into bfo classes and refactoring:
+Subclasses of exact homolog classes were 'drag and dropped' from the OBI top level classes into the homologous BFO classes. None of the original (now empty) FuGO/OBI top level classes were deleted, so their definitions are still accessible. So they now still reside at the top level, but can be deleted later. 
 
-The bfo.owl file was webimported into the OBI_060918.owl file 
-from http://www.ifomis.org/bfo/1.0
 
-Both ontologies were not altered otherwise in this file. No classes were moved 
-or deleted.
+Redundant classes with same name and meaning but different namespaces:
 
+continuant		obsolete, subclasses transferred
+dependent_continuant	obsolete, subclasses transferred
+function		obsolete
+independent_continuant	obsolete, subclasses transferred
+occurrent		obsolete, subclasses transferred
+process			obsolete, subclasses transferred
+role			obsolete, subclasses transferred
+site			obsolete
+spatial_region		obsolete
+
+
+Redundant classes with same name and eventually diverging meaning:
+The following classes are present twice (under both namespaces) and we have to decide wheather they really mean the same (and the OBI class can be made obsolete) or if they mean differrent things and should be kept and renamed:
+OBI:cardinal_part_of_qualitative_value:quality	bfo:dependent_continuant:quality
+
+
+I found a redundant bfo-namespace class "fiat_object_part". One has the rdf:ID "snap:FiatObjectPart" and the folowing definition:"An independent continuant that is part of an object but is not demarcated by any physical discontinuities"
+and the other has the rdf:ID "snap:SubstancePortion" and the definition:"An aggregate of objects that is continuous and strongly homogeneous").
+Both are siblings under bfo:independent_continuant. I assume one will be deleted or renamed ?
+... (I send this to Holger and Barry).
+
+Redundant classes with differrent names, but supposedly equal meaning (possible synonyms) in both namespaces:
+
+OBI:state  				-->bfo:quality			?
+OBI:characteristic 			-->bfo:quality			?
+OBI:realizable_continuant  		-->bfo:realizable_entity	obsolete, subclasses transferred
+OBI:dependant_continuant:time_interval 	-->bfo:occurrent:temporal:region:?
+OBI:dependant_continuant:time_point	-->bfo:occurrent:temporal:region:?
+OBI:collection_of_physical_entities	-->bfo:object_aggregate		?
+OBI:physical_entity			-->bfo:object			?
+OBI:boundary				-->bfo:object_boundary		?
+
+"?" means we have to find an agreement here.
+
+
+I think for the sake of proper modularization  the following OBI 
+top level classes do actually not belong into OBI. I guess they have to 
+change the namespace to BFO (or PATO). They may have synonymous BFO classes anyway and them could be obsolete anyway....:
+
+OBI:time_interval
+OBI:time_point
+OBI:state
+OBI:characteristic
+OBI:value
+OBI:cardinal_part_of_value
+OBI:physical_entity
+OBI:immaterial_entity
+OBI:material_entity
+OBI:boundary
+OBI:material_entity
+OBI:collection_of_physical_entities
 
