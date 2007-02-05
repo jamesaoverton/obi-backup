@@ -55,7 +55,7 @@ menu(community);
   Richard Bruskiewich
   <li><a href="http://www.mged.org/Workgroups/rsbi/rsbi.html" target="_blank">Environmental Genomics</a>, 
   Coordinator: Dawn Field
-  <li><a href="http://www.flowcyt.org" target="_blank">Flow Cytometry</a>, Coordinator: Ryan Brinkman
+  <li><a href="http://flowcyt.sourceforge.net" target="_blank">Flow Cytometry</a>, Coordinator: Ryan Brinkman
   <li><a href="http://www.genomics.ceh.ac.uk/genomecatalogue" target="_blank">Genomics</a>, Coordinators: 
   Dawn Field, Tanya Gray
   <li><a href="https://www.immport.org" target="_blank">ImmPort</a>, Coordinator: Richard Scheuermann 
