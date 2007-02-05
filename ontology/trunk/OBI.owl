@@ -627,8 +627,8 @@ rem1: required to cover things like a file format, a TIFF image format ? is it a
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_54"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#OBI_43"/>
     <rdfs:label xml:lang="en">document</rdfs:label>
+    <owl:disjointWith rdf:resource="#OBI_43"/>
     <owl:disjointWith rdf:resource="#OBI_47"/>
     <owl:disjointWith rdf:resource="#OBI_42"/>
     <owl:disjointWith>
@@ -673,6 +673,7 @@ defprov:helen causton</rdfs:comment>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#OBI_59">
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: a thing that occurs through time. occurrent
 defprov:OBI</rdfs:comment>
@@ -978,6 +979,7 @@ defprov: OBI</rdfs:comment>
     <rdfs:label xml:lang="en">value</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_1">
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def:a thing which endures through time. continuant
 defprov: OBI</rdfs:comment>
@@ -1093,8 +1095,8 @@ defprov: Helen Causton</rdfs:comment>
     <rdfs:label xml:lang="en">cardinal_part_of_protocol</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_56">
-    <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:label xml:lang="en">study_population</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >e.g. yeast culture, group of Icelandic fishermen.</rdfs:comment>
   </owl:Class>
@@ -1265,17 +1267,17 @@ tempdef:An item of equipment used to separate or analyse components, using a one
 defprov: helen causton</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#OBI_69">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def: A protocol application is a process carried out to bring about the effect defined in the protocol applied.
+defprov:OBI
+rem1:This is an actual part of the experiment. It includes the protocol that the experimenter intends to carry out, deviations from this and unintended variables, such as the earthquake that occurred while the experiment was taking place.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#OBI_73"/>
         <owl:onProperty rdf:resource="#part_of_process"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def: A protocol application is a process carried out to bring about the effect defined in the protocol applied.
-defprov:OBI
-rem1:This is an actual part of the experiment. It includes the protocol that the experimenter intends to carry out, deviations from this and unintended variables, such as the earthquake that occurred while the experiment was taking place.</rdfs:comment>
     <rdfs:label xml:lang="en">protocol_application</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#OBI_173">
@@ -1337,14 +1339,6 @@ rem4: produce a list of software</rdfs:comment>
         <owl:someValuesFrom rdf:resource="#OBI_254"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="#has_role"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#OBI_54"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: A living (or once living) entity that has (or can develop) the ability to act or function independently 
 defprov: www.websters-online-dictionary.org/
@@ -1352,6 +1346,14 @@ examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses
 rem1: OBI should link to an external resource (e.g. NCBI Taxonomy)
 Altdef: an organism is a biomaterial entity which is self-contained</rdfs:comment>
     <rdfs:label xml:lang="en">organism</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#OBI_54"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#has_role"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#OBI_54">
     <owl:disjointWith rdf:resource="#OBI_43"/>
