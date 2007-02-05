@@ -11,23 +11,31 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/"
   xml:base="http://obi.sourceforge.net/ontology/OBI.owl">
   <owl:Ontology rdf:about="">
-    <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The Ontology for Biomedical Investigation (OBI) is build in a collaborative, international effort and will serve as a resource for annotating biomedical investigations, including the study design, protocols and instrumentation used, the data generated and the types of analysis performed on the data. This ontology arose from the Functional Genomics Investigation Ontology (FuGO) and will contain both terms that are common to all biomedical investigations, including functional genomics investigations and those that are more domain specific.</dc:description>
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Advisors for this project come from the IFOMIS group, Saarbruecken and from the Co-ODE group in Manchester</dc:contributor>
     <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
-    <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Ontology for Biomedical Investigation</dc:title>
+    <dc:subject rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An ontology for the annotation of biomedical and functional genomics experiments.</dc:subject>
     <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >en</protege:defaultLanguage>
-    <dc:subject rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ontology for the annotation of functional genomics experiments.</dc:subject>
+    <dc:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >free, no license required.</dc:rights>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >discussion version</rdfs:comment>
+    <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Ontology for Biomedical Investigation (OBI) is build in a collaborative, international effort and will serve as a resource for annotating biomedical investigations, including the study design, protocols and instrumentation used, the data generated and the types of analysis performed on the data. This ontology arose from the Functional Genomics Investigation Ontology (FuGO) and will contain both terms that are common to all biomedical investigations, including functional genomics investigations and those that are more domain specific.</dc:description>
+    <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology for Biomedical Investigation</dc:title>
+    <dc:format rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OWL-DL</dc:format>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2006-10-18</dc:date>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >0.4</owl:versionInfo>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Ryan R. Brinkman, Helen C. Causton, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Tanya Gray, Mervi Heiskanen, Tina Hernandez-Boussard, Norman Morrison, Helen Parkinson, Philippe Rocca-Serra, Susanna-Assunta Sansone, Daniel Schober, Barry Smith, Robert Stevens, Chris Stoeckert, Chris Taylor, Trish Whetzel, Joe White, Andrew Wood</dc:creator>
-    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2006-10-05</dc:date>
     <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
-    <owl:imports rdf:resource="http://purl.org/dc/elements/1.1/"/>
   </owl:Ontology>
   <owl:Class rdf:ID="OBI_181">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -35,7 +43,19 @@
     characteristics, e.g.  the individual fish of a species in a lake, the people that live in Utah
 rem1: collection somehow always involve a selection process</rdfs:comment>
     <rdfs:label xml:lang="en">population</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate">
+        <owl:disjointWith>
+          <owl:Class rdf:ID="OBI_44"/>
+        </owl:disjointWith>
+        <owl:disjointWith>
+          <owl:Class rdf:ID="OBI_43"/>
+        </owl:disjointWith>
+        <owl:disjointWith>
+          <owl:Class rdf:ID="OBI_258"/>
+        </owl:disjointWith>
+      </rdf:Description>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OBI_170">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
@@ -61,6 +81,14 @@ defprov: helen causton</rdfs:comment>
       <owl:Class rdf:ID="OBI_70"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_177">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
+    <rdfs:label xml:lang="en">role_assignment</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OBI_69"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_259">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
@@ -71,20 +99,12 @@ defprov: helen causton</rdfs:comment>
       <owl:Class rdf:ID="OBI_137"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_139"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
       <owl:Class rdf:ID="OBI_130"/>
     </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="OBI_139"/>
+    </owl:disjointWith>
     <rdfs:label xml:lang="en">ex-vivo_state</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_177">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
-    <rdfs:label xml:lang="en">role_assignment</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="OBI_69"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OBI_13">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -107,15 +127,6 @@ algorithms (e.g. data processing software).</rdfs:comment>
     >Note: being a primary cell of a cell line is a role
 Note2: should it be primary Cell ?</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_82">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OBI_250"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem: we have argued "!
-rem: need to separate context and use</rdfs:comment>
-    <rdfs:label xml:lang="en">LC_software</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="OBI_147">
     <rdfs:label xml:lang="en">quantitative_value</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -124,6 +135,15 @@ defprov:wordnet</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="OBI_18"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_82">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_250"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem: we have argued "!
+rem: need to separate context and use</rdfs:comment>
+    <rdfs:label xml:lang="en">LC_software</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_148">
     <rdfs:subClassOf>
@@ -138,24 +158,36 @@ rem: component to be described in an external resource, typically PATO</rdfs:com
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: a biomaterial entity is a material entity of biological origin
 defprov:OBI</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.0/snap#Object">
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_43"/>
+        </owl:disjointWith>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_44"/>
+        </owl:disjointWith>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_258"/>
+        </owl:disjointWith>
+      </rdf:Description>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">biomaterial_entity</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_121">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_125"/>
-    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="OBI_251"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
+      <owl:Class rdf:ID="OBI_125"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
       <owl:Class rdf:ID="OBI_124"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_122"/>
+      <owl:Class rdf:ID="OBI_123"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_123"/>
+      <owl:Class rdf:ID="OBI_122"/>
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
@@ -168,12 +200,12 @@ defprov:OBI</rdfs:comment>
     >defneed:</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_21">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="OBI_7"/>
-    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: the plan for the execution of the study
 defprov:OBI</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OBI_7"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">study_design_specification</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_84">
@@ -185,75 +217,42 @@ defprov:OBI</rdfs:comment>
     <rdfs:label xml:lang="en">magnitude</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_68">
+    <rdfs:label xml:lang="en">observing</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Defneed</rdfs:comment>
-    <rdfs:label xml:lang="en">observing</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_250"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OBI_53">
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_43"/>
+      <owl:Class rdf:about="#OBI_43"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_54"/>
+      <owl:Class rdf:ID="OBI_42"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="OBI_50"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_42"/>
+      <owl:Class rdf:ID="OBI_54"/>
     </owl:disjointWith>
     <rdfs:label xml:lang="en">site</rdfs:label>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_44"/>
+      <owl:Class rdf:about="#OBI_44"/>
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def:a location that is shaped by the space around it (a site is not made of matter).
 defprov:OBI</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="OBI_36"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="OBI_34"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="OBI_36"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
       <owl:Class rdf:ID="OBI_47"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_258">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
-    <rdfs:label xml:lang="en">?physical_entity</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#IndependentContinuant"/>
-  </owl:Class>
-  <owl:Class rdf:about="#OBI_43">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_36"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_47"/>
-    </owl:disjointWith>
-    <rdfs:label xml:lang="en">data_set</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:
-tempdef: A collection of numerical information that has something in common and is considered to form a unit, e.g., measurements of the seas temperature at a particular location over a two year period, the gene expression levels of liver-specific genes over a time course. 
-defprov: helen causton</rdfs:comment>
-    <owl:disjointWith rdf:resource="#OBI_53"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_54"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_42"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_44"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_50"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#IndependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_150">
     <rdfs:label xml:lang="en">P_value</rdfs:label>
@@ -263,6 +262,80 @@ defprov: helen causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 rem: A measure of probability that a difference between groups during an experiment happened by chance</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_43">
+    <owl:disjointWith>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.0/snap#Site">
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_44"/>
+        </owl:disjointWith>
+        <owl:disjointWith rdf:resource="#OBI_43"/>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_258"/>
+        </owl:disjointWith>
+      </rdf:Description>
+    </owl:disjointWith>
+    <rdfs:label xml:lang="en">data_set</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:
+tempdef: A collection of numerical information that has something in common and is considered to form a unit, e.g., measurements of the seas temperature at a particular location over a two year period, the gene expression levels of liver-specific genes over a time course. 
+defprov: helen causton</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_54"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_50"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#IndependentContinuant"/>
+    <owl:disjointWith>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.0/snap#FiatObjectPart">
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_44"/>
+        </owl:disjointWith>
+        <owl:disjointWith rdf:resource="#OBI_43"/>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_258"/>
+        </owl:disjointWith>
+      </rdf:Description>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+    <owl:disjointWith>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.0/snap#ObjectBoundary">
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_44"/>
+        </owl:disjointWith>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#OBI_258"/>
+        </owl:disjointWith>
+        <owl:disjointWith rdf:resource="#OBI_43"/>
+      </rdf:Description>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_258"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#OBI_53"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_42"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_44"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_258">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_44"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
+    <rdfs:label xml:lang="en">?physical_entity</rdfs:label>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#FiatObjectPart"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
+    <owl:disjointWith rdf:resource="#OBI_43"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Site"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectBoundary"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#IndependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_58">
     <rdfs:label xml:lang="en">spatial_region</rdfs:label>
@@ -279,6 +352,12 @@ defprov: helen causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rem: this is an administrative 'helper-class', as indicated by the "_"-prefix. It was created to collect deleted classes, analog to the GO 'obsolete'. Using this we are able to reuse information once created, such as definitions and the reasons for deletion....</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_171">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
+    <rdfs:label xml:lang="en">control_role</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_85">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_78"/>
@@ -286,12 +365,6 @@ defprov: helen causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
     <rdfs:label xml:lang="en">unit</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_171">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
-    <rdfs:label xml:lang="en">control_role</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_38">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -341,10 +414,10 @@ defprov:OBI</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_256">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
-    <rdfs:label xml:lang="en">environmental_sample</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed: rem: example ' a scoop of water containing an array of different organisms'
 rem1: this has replaced 'collection of organism' previously used</rdfs:comment>
+    <rdfs:label xml:lang="en">environmental_sample</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_55">
     <rdfs:label xml:lang="en">study_organism</rdfs:label>
@@ -356,11 +429,11 @@ rem1: this has replaced 'collection of organism' previously used</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_6"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">hypothesis</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: a proposal intended to explain certain facts or observations which can be tested
 defprov: OBI
 altdef: An experimental hypothesis is a statement about cause-effect relations between known and unknown (target) variables of the domain of the experiment "that shall be in accordance with known facts*" to be verified at the experiment. Reference: The Oxford English Dictionary. Oxford University Press, 2 Ed., 1989 (taken from EXPO, Larissa Soldatova)</rdfs:comment>
-    <rdfs:label xml:lang="en">hypothesis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_41">
     <rdfs:subClassOf>
@@ -419,35 +492,14 @@ rem1: the 'relates to a set of biological materials' covers environmental sample
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="part_of_process"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="OBI_66"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="part_of_process"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#OBI_42">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_36"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_47"/>
-    </owl:disjointWith>
-    <rdfs:label xml:lang="en">consumables</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_250"/>
-    <owl:disjointWith rdf:resource="#OBI_43"/>
-    <owl:disjointWith rdf:resource="#OBI_53"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_54"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_44"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_50"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="OBI_64">
     <rdfs:label xml:lang="en">time_point</rdfs:label>
@@ -462,6 +514,24 @@ example: a start point
 rem1: handling of time is out of the our scope
 clsdel: mapped to bfo:temporal_instant</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:about="#OBI_42">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_36"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_47"/>
+    </owl:disjointWith>
+    <rdfs:label xml:lang="en">consumables</rdfs:label>
+    <owl:disjointWith rdf:resource="#OBI_43"/>
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
+    <owl:disjointWith rdf:resource="#OBI_53"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_54"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_50"/>
+    </owl:disjointWith>
+  </owl:Class>
   <owl:Class rdf:about="#OBI_6">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#RealizableEntity"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -470,6 +540,7 @@ defprov:OBI</rdfs:comment>
     <rdfs:label xml:lang="en">cardinal_part_of_design_specification</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_261">
+    <rdfs:label xml:lang="en">multicellular_entity_of_organismal_origin</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -478,14 +549,13 @@ defprov:OBI</rdfs:comment>
         <owl:someValuesFrom rdf:resource="#OBI_259"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">multicellular_entity_of_organismal_origin</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_133"/>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: multicellular_entity_of_organismal_origin is a heterogeneous biomaterial entity which is either part of an organism or which is obtained from an organism by *material_transformation process* e.g. 'extraction'
 defprov:OBI
 rem1: OBI should link to an external resource (e.g. Common Anatomy Reference Ontology CARO)</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OBI_133"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OBI_25">
     <rdfs:label xml:lang="en">measured_value_role</rdfs:label>
@@ -499,32 +569,28 @@ rem1: OBI should link to an external resource (e.g. Common Anatomy Reference Ont
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_36"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_44"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#OBI_42"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_50"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#OBI_42"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#OBI_54"/>
+    </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 tempdef: a device, or set of devices, connected as part of a single object, that are used for a common purpose such as separating components in a mixture, spinning and/or measuring, e.g., a centrifuge, a liquid chromatography mass spectrometer.  .  
 rem1: At the meeting in Philly I wrote that BS said that it should be a count term, such as a set of instruments. By allowing connected devices we avoid the problem of things like LCMS being considered separate items, since we have a number of discrete functions like separation, making things fly, monitoring the charge and mass of what flies etc that are all part of a single machine.
 defprov: helen causton</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_54"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#OBI_43"/>
     <owl:disjointWith rdf:resource="#OBI_53"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_175">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_69"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">?sample-population_formation_process</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 rem1: for describing recruitment process, cohort formation,but also statistical models</rdfs:comment>
-    <rdfs:label xml:lang="en">?sample-population_formation_process</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#OBI_125">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -537,10 +603,10 @@ rem1: for describing recruitment process, cohort formation,but also statistical 
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_124"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#OBI_122"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_123"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#OBI_122"/>
   </owl:Class>
   <owl:Class rdf:about="#OBI_123">
     <owl:disjointWith rdf:resource="#OBI_125"/>
@@ -612,40 +678,27 @@ rem1: required to cover things like a file format, a TIFF image format ? is it a
     >defneed:</rdfs:comment>
     <rdfs:label xml:lang="en">dependent_variable</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_29">
-    <rdfs:label xml:lang="en">assay_protocol</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#OBI_14"/>
-  </owl:Class>
   <owl:Class rdf:about="#OBI_44">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_50"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#OBI_258"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#IndependentContinuant"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_54"/>
-    </owl:disjointWith>
-    <rdfs:label xml:lang="en">document</rdfs:label>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#FiatObjectPart"/>
     <owl:disjointWith rdf:resource="#OBI_43"/>
-    <owl:disjointWith rdf:resource="#OBI_42"/>
-    <owl:disjointWith rdf:resource="#OBI_47"/>
+    <rdfs:label xml:lang="en">document</rdfs:label>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectBoundary"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Site"/>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
     <owl:disjointWith rdf:resource="#OBI_53"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#OBI_36"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed
 tempdef: An object containing information, record of information
 defprov: helen causton</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_151">
+  <owl:Class rdf:ID="OBI_29">
+    <rdfs:label xml:lang="en">assay_protocol</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
-    <rdfs:label xml:lang="en">standard_error</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OBI_83"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#OBI_14"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_184">
     <rdfs:subClassOf>
@@ -655,6 +708,14 @@ defprov: helen causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_151">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
+    <rdfs:label xml:lang="en">standard_error</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_83"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_31">
     <rdfs:subClassOf rdf:resource="#OBI_14"/>
     <rdfs:label xml:lang="en">timeline_protocol</rdfs:label>
@@ -662,6 +723,13 @@ defprov: helen causton</rdfs:comment>
     >defneed: plan of the timeline
 tempdef:A plan of the timeline.  A set of instructions describing a number of sequential planned actions that are recorded and can be followed, e.g., the timeline_protocol described a way to assess the effects of cold medication on patients over a 12 hour period.
 defprov:helen causton</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_59">
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def: a thing that occurs through time. occurrent
+defprov:OBI</rdfs:comment>
+    <rdfs:label xml:lang="en">occurrent</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_257">
     <rdfs:label xml:lang="en">DNA_extraction</rdfs:label>
@@ -671,13 +739,6 @@ defprov:helen causton</rdfs:comment>
       <owl:Class rdf:ID="OBI_94"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#OBI_59">
-    <rdfs:subClassOf rdf:resource="#OBI_250"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def: a thing that occurs through time. occurrent
-defprov:OBI</rdfs:comment>
-    <rdfs:label xml:lang="en">occurrent</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="OBI_172">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
@@ -685,13 +746,6 @@ defprov:OBI</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#OBI_171"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_254">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:
-rem: not necessarily played by biomaterial entities, also include material entity</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OBI_54"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">specimen_role</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#OBI_263"/>
@@ -700,6 +754,13 @@ rem: not necessarily played by biomaterial entities, also include material entit
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:
+rem: not necessarily played by biomaterial entities, also include material entity</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_54"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">specimen_role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_142">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -744,24 +805,15 @@ defprov: Helen Causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_253">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OBI_70"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">nucleic_acid_hybridization_assay</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="#OBI_50">
     <owl:disjointWith rdf:resource="#OBI_53"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
-    <owl:disjointWith rdf:resource="#OBI_44"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_36"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#OBI_43"/>
-    <rdfs:label xml:lang="en">platform</rdfs:label>
     <owl:disjointWith rdf:resource="#OBI_42"/>
+    <rdfs:label xml:lang="en">platform</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed: standalone equipment &amp; consumables that performs protocol 'x'
 tempdef:a set of non-consumable items needed for a study or investigation, used to execute a protocol, or protocols.  A platform typically includes instruments, software and reagents, e.g., a microarray platform, such as that produced by Affymetrix, or Agilent.  
@@ -772,6 +824,14 @@ defprov: helen causton</rdfs:comment>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#OBI_47"/>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_253">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_70"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">nucleic_acid_hybridization_assay</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="#OBI_36">
     <owl:disjointWith rdf:resource="#OBI_50"/>
     <owl:disjointWith rdf:resource="#OBI_53"/>
@@ -780,9 +840,7 @@ defprov: helen causton</rdfs:comment>
       <owl:Class rdf:about="#OBI_54"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
-    <owl:disjointWith rdf:resource="#OBI_43"/>
     <owl:disjointWith rdf:resource="#OBI_47"/>
-    <owl:disjointWith rdf:resource="#OBI_44"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >tempdef:A part of the piece of equipment or apparatus that only exists in relation to the whole, e.g., a beam of light is a cardinal part of a scanner.
 defprov: Helen Causton</rdfs:comment>
@@ -808,11 +866,11 @@ defprov:OBI</rdfs:comment>
 defprov: Helen Causton</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_28">
+    <rdfs:label xml:lang="en">analysis_protocol</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 tempdef:A series of planned actions that are recorded, or a specification for assessing or examining something in detail, e.g., the analysis_protocol described a method for assessing the chemical composition of the compound
 defprov: helen causton</rdfs:comment>
-    <rdfs:label xml:lang="en">analysis_protocol</rdfs:label>
     <rdfs:subClassOf rdf:resource="#OBI_14"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_51">
@@ -844,6 +902,13 @@ defprov: helen causton
 role of data or material played by an entity at the end of a process</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_4">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def:a dependent enduring entity which is the set of ranges of conditions surrounding an independent entity.
+defprov:OBI</rdfs:comment>
+    <rdfs:label xml:lang="en">environment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#DependentContinuant"/>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_176">
     <rdfs:label xml:lang="en">group_membership_role</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -851,13 +916,6 @@ role of data or material played by an entity at the end of a process</rdfs:comme
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_54"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_4">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def:a dependent enduring entity which is the set of ranges of conditions surrounding an independent entity.
-defprov:OBI</rdfs:comment>
-    <rdfs:label xml:lang="en">environment</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#DependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:about="#OBI_83">
     <rdfs:subClassOf rdf:resource="#OBI_147"/>
@@ -879,19 +937,19 @@ rem1: BS does not view disease as a process (more explanation needed)</rdfs:comm
     <rdfs:subClassOf rdf:resource="#OBI_50"/>
     <rdfs:label xml:lang="en">microarray_platform</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_30">
+    <rdfs:subClassOf rdf:resource="#OBI_14"/>
+    <rdfs:label xml:lang="en">modification_of_design</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:
+tempdef: The adapted version of a specification for assessing or examining something in detail.  The modification is usually to make it more suitable for a particular purpose, e.g., the RNA preparation was modified to include an additional acid phenol extraction. 
+defprov:helen causton</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_255">
     <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
     <rdfs:label xml:lang="en">material_entity</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_30">
-    <rdfs:label xml:lang="en">modification_of_design</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_14"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:
-tempdef: The adapted version of a specification for assessing or examining something in detail.  The modification is usually to make it more suitable for a particular purpose, e.g., the RNA preparation was modified to include an additional acid phenol extraction. 
-defprov:helen causton</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_89">
     <rdfs:label xml:lang="en">software_testing_objective</rdfs:label>
@@ -941,12 +999,6 @@ defprov: helen causton</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:label xml:lang="en">perturbation_role</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_57">
-    <rdfs:subClassOf rdf:resource="#OBI_250"/>
-    <rdfs:label xml:lang="en">study_sample</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >e.g. liver from a person (in this case the details of the individual are characteristics of the study sample) , water taken from a pond.</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:ID="OBI_126">
     <rdfs:label xml:lang="en">biological_macromolecule</rdfs:label>
     <rdfs:subClassOf rdf:resource="#OBI_263"/>
@@ -954,6 +1006,12 @@ defprov: helen causton</rdfs:comment>
     >def: Anatomical structure which consists of an ordered aggregates of any of the following molecules: nucleotides, amino acids, fatty acids and sugars.
 defprov: FMA 
 example: collagen, DNA, neurotransmitter, troponin. refer to FMA definition (check for ID)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_57">
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
+    <rdfs:label xml:lang="en">study_sample</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >e.g. liver from a person (in this case the details of the individual are characteristics of the study sample) , water taken from a pond.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#OBI_133">
     <rdfs:subClassOf rdf:resource="#OBI_263"/>
@@ -966,8 +1024,8 @@ defprov:OBI</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: a value is a dependent continuant which consists of a scale plus a magnitude
 defprov: OBI</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#DependentContinuant"/>
     <rdfs:label xml:lang="en">value</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#DependentContinuant"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_1">
     <rdfs:subClassOf rdf:resource="#OBI_250"/>
@@ -1001,24 +1059,24 @@ rem2: CT: Design is strategic, protocol is more tactical</rdfs:comment>
     specimens, e.g.  mixing the DNA collected from the individual fish</rdfs:comment>
     <rdfs:label xml:lang="en">pool_of_specimens</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="#OBI_2">
-    <rdfs:label xml:lang="en">dependent_continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_1"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def:a continuant whose manifestation requires another entity, e.g. temperature of an organism
-defprov: OBI</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:about="#OBI_124">
-    <owl:disjointWith rdf:resource="#OBI_125"/>
     <rdfs:label xml:lang="en">viroid</rdfs:label>
-    <owl:disjointWith rdf:resource="#OBI_121"/>
+    <owl:disjointWith rdf:resource="#OBI_125"/>
     <owl:disjointWith rdf:resource="#OBI_123"/>
+    <owl:disjointWith rdf:resource="#OBI_121"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_251"/>
     </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
     <owl:disjointWith rdf:resource="#OBI_122"/>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_2">
+    <rdfs:label xml:lang="en">dependent_continuant</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_1"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def:a continuant whose manifestation requires another entity, e.g. temperature of an organism
+defprov: OBI</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#OBI_66">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1054,21 +1112,14 @@ Altdef: A set of studies that are designed to address a related question.  It ma
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_139"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#OBI_259"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:</rdfs:comment>
-    <owl:disjointWith rdf:resource="#OBI_259"/>
     <rdfs:label xml:lang="en">in-vivo_state</rdfs:label>
     <rdfs:subClassOf rdf:resource="#OBI_137"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_130"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#OBI_34">
-    <rdfs:label xml:lang="en">independent_continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_1"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def:a continuant which exists on it's own, e.g. an organism
-defprov: OBI</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_128">
     <rdfs:subClassOf rdf:resource="#OBI_133"/>
@@ -1076,6 +1127,13 @@ defprov: OBI</rdfs:comment>
     >def: Cell part which has a definable shape, bounded predominantly by bonafide boundaries.
 defprov: FMA</rdfs:comment>
     <rdfs:label xml:lang="en">cell_component</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_34">
+    <rdfs:label xml:lang="en">independent_continuant</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_1"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def:a continuant which exists on it's own, e.g. an organism
+defprov: OBI</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#OBI_11">
     <rdfs:subClassOf rdf:resource="#OBI_6"/>
@@ -1092,14 +1150,14 @@ defprov: Helen Causton</rdfs:comment>
     >e.g. yeast culture, group of Icelandic fishermen.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#OBI_78">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OBI_17"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">cardinal_part_of_quantitative_value</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 tempdef: A number, or group of numbers, that only exists in relation to what it describes, e.g., a confidence interval, numerical designation, unit.
 defprov: helen causton</rdfs:comment>
-    <rdfs:label xml:lang="en">cardinal_part_of_quantitative_value</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="OBI_17"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OBI_48">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1116,6 +1174,16 @@ defprov:helen causton</rdfs:comment>
     >defneed:
 clsdel: Mapped to bfo:object_boundary and process_boundary...</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_79">
+    <rdfs:subClassOf rdf:resource="#OBI_250"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >measurable scale; very restrictive
+values are subtypes of attributes
+</rdfs:comment>
+    <rdfs:label xml:lang="en">dimension</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem: understood as research dimensions eg length, temperature which will be described in PATO</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:ID="OBI_80">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="OBI_77"/>
@@ -1127,16 +1195,6 @@ tempdef: The strength, power, magnitude of a qualitative value, e.g., brightness
 defprov: helen causton
 rem1: May want to reconsider having intensity defined as qualitative, as opposed to quantitative.
 rem2: not just intensity but degree eg 'severity', 'hue', 'saturation'</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_79">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >measurable scale; very restrictive
-values are subtypes of attributes
-</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#OBI_250"/>
-    <rdfs:label xml:lang="en">dimension</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem: understood as research dimensions eg length, temperature which will be described in PATO</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_169">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1184,13 +1242,6 @@ example: the role of a blender  used as a door stopper (see function)</rdfs:comm
     <rdfs:label xml:lang="en">role</rdfs:label>
     <rdfs:subClassOf rdf:resource="#OBI_5"/>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_76">
-    <rdfs:label xml:lang="en">?extraneous_process</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def: an extraneous process is a process which is  external of origin to the investigation that has an impact on the outcome.
-defprov: adapted from OED 2nd edition 1989</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:ID="OBI_46">
     <rdfs:subClassOf rdf:resource="#OBI_44"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1199,6 +1250,13 @@ tempdef: An account of proceedings, body of information that describes how a stu
 defprov: helen causton
 rem1:tells you how the experiment really proceeded. Might not be the method the protocol described.</rdfs:comment>
     <rdfs:label xml:lang="en">record</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_76">
+    <rdfs:label xml:lang="en">?extraneous_process</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def: an extraneous process is a process which is  external of origin to the investigation that has an impact on the outcome.
+defprov: adapted from OED 2nd edition 1989</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_260">
     <rdfs:subClassOf>
@@ -1213,8 +1271,8 @@ rem1:tells you how the experiment really proceeded. Might not be the method the 
     >defneed:
 rem: this means only fiat collection of physical entities
 clsdel: Mapped to bfo:object_aggregate</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#OBI_34"/>
     <rdfs:label xml:lang="en">collection_of_physical_entities</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_34"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_8">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1250,20 +1308,20 @@ rem: role of data or material entity played at the start of a process</rdfs:comm
   </owl:Class>
   <owl:Class rdf:ID="OBI_49">
     <rdfs:subClassOf rdf:resource="#OBI_47"/>
+    <rdfs:label xml:lang="en">mass_spectrometry_instrument</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 tempdef:An item of equipment used to separate or analyse components, using a one dimensional separation method.  The apparatus typically includes a tube in which components of the mixture are separated based on their charge and mass, e.g., EXAMPLE ?.  
 defprov: helen causton</rdfs:comment>
-    <rdfs:label xml:lang="en">mass_spectrometry_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#OBI_69">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="#part_of_process"/>
         <owl:someValuesFrom rdf:resource="#OBI_73"/>
+        <owl:onProperty rdf:resource="#part_of_process"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/span#Process"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: A protocol application is a process carried out to bring about the effect defined in the protocol applied.
 defprov:OBI
@@ -1294,12 +1352,12 @@ Wordnet: something that happens at a given place and time</rdfs:comment>
     <rdfs:label xml:lang="en">event</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_157">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:
-tempdef: a clinical chemistry assay is an assay which aims at determining levels of analyte in a material entity</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#OBI_70"/>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:
+tempdef: a clinical chemistry assay is an assay which aims at determining levels of analyte in a material entity</rdfs:comment>
     <rdfs:label xml:lang="en">clinical_chemistry_assay</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="OBI_10">
@@ -1329,13 +1387,6 @@ rem4: produce a list of software</rdfs:comment>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >def: A living (or once living) entity that has (or can develop) the ability to act or function independently 
-defprov: www.websters-online-dictionary.org/
-examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses
-rem1: OBI should link to an external resource (e.g. NCBI Taxonomy)
-Altdef: an organism is a biomaterial entity which is self-contained</rdfs:comment>
-    <rdfs:label xml:lang="en">organism</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -1344,14 +1395,20 @@ Altdef: an organism is a biomaterial entity which is self-contained</rdfs:commen
         <owl:someValuesFrom rdf:resource="#OBI_254"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >def: A living (or once living) entity that has (or can develop) the ability to act or function independently 
+defprov: www.websters-online-dictionary.org/
+examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses
+rem1: OBI should link to an external resource (e.g. NCBI Taxonomy)
+Altdef: an organism is a biomaterial entity which is self-contained</rdfs:comment>
+    <rdfs:label xml:lang="en">organism</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#OBI_54">
     <owl:disjointWith rdf:resource="#OBI_43"/>
     <owl:disjointWith rdf:resource="#OBI_53"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Role"/>
-    <owl:disjointWith rdf:resource="#OBI_42"/>
     <owl:disjointWith rdf:resource="#OBI_50"/>
-    <owl:disjointWith rdf:resource="#OBI_44"/>
+    <owl:disjointWith rdf:resource="#OBI_42"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >defneed:
 example: actual participant in a study</rdfs:comment>
@@ -1396,10 +1453,10 @@ rem1: Imaging is covered by this definition.
 rem2: material:  used in the context of studying some biological problem
 example: hybridization</rdfs:comment>
     <owl:disjointWith rdf:resource="#OBI_94"/>
-    <rdfs:subClassOf rdf:resource="#OBI_69"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#OBI_95"/>
     </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#OBI_69"/>
   </owl:Class>
   <owl:Class rdf:ID="OBI_40">
     <rdfs:subClassOf rdf:resource="#OBI_37"/>
@@ -1410,12 +1467,6 @@ defprov: Helen Causton</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >syn: mobile_phase</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="OBI_159">
-    <rdfs:label xml:lang="en">diagnostic_role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_168"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >defneed:</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:ID="OBI_65">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >def: A part of a series of planned actions, or a set of instructions, plus information on what actually occurred, that only exists within the context of what it describes.
@@ -1423,6 +1474,12 @@ defprov: Helen Causton</rdfs:comment>
 deleted: (JF) at the moment no need for it.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#OBI_250"/>
     <rdfs:label xml:lang="en">cardinal_part_of_protocol_application</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_159">
+    <rdfs:label xml:lang="en">diagnostic_role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_168"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >defneed:</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_127">
     <rdfs:label xml:lang="en">cell_of_organismal_origin</rdfs:label>
@@ -1432,6 +1489,12 @@ deleted: (JF) at the moment no need for it.</rdfs:comment>
 defprov:OBI
 rem1:link to Cell Type Ontology (CO)</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="OBI_33">
+    <rdfs:label xml:lang="en">sex_effect</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#OBI_15"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A variable in an experiment that is designed to look at differences between organisms of different genders, mating types etc.</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:about="#OBI_139">
     <rdfs:label xml:lang="en">frozen_state</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1440,12 +1503,6 @@ rem1:link to Cell Type Ontology (CO)</rdfs:comment>
     <owl:disjointWith rdf:resource="#OBI_138"/>
     <rdfs:subClassOf rdf:resource="#OBI_137"/>
     <owl:disjointWith rdf:resource="#OBI_130"/>
-  </owl:Class>
-  <owl:Class rdf:ID="OBI_33">
-    <rdfs:label xml:lang="en">sex_effect</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#OBI_15"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A variable in an experiment that is designed to look at differences between organisms of different genders, mating types etc.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="OBI_45">
     <rdfs:label xml:lang="en">protocol_document</rdfs:label>
@@ -1486,8 +1543,8 @@ defprov:OBI</rdfs:comment>
   <owl:ObjectProperty rdf:about="#is_role_that_can_only_be_played_by_biomaterial_entity">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is_role_that_can only_be_played_by_biomaterial_entity</rdfs:label>
-    <rdfs:domain rdf:resource="#OBI_169"/>
     <rdfs:range rdf:resource="#OBI_263"/>
+    <rdfs:domain rdf:resource="#OBI_169"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#has_role_which_can_only_be_played_by_biomaterial_entity">
     <rdfs:domain rdf:resource="#OBI_263"/>
