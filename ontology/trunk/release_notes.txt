@@ -1,32 +1,10 @@
-OBI.owl release notes - this file relates to changes to the ontology file,
-owl:versionInfo	0.4, OBI SVN Revision 19.
+OBI.owl release notes - this file contains notes for changes to the ontology file ,  owl:versionInfo 0.5, OBI SVN Revision 21.
 
-This OBI.owl file is the latest draft version. It was derived from the one in the step_3 folder and is refined to map redundant classes in obi to bfo classes and remove the redundant ones.
+-Added definitions to terms in preparation for the San Diego workshop. A description of this action item is at:
+https://www.cbil.upenn.edu/obiwiki/index.php/SanDiego2007PrepAddDefinitions
 
-Here what was done to the file:
-The file was renamed so it does not include the date in the filename.
-The redundant obi:toplevel classes 'occurrent' and 'continuant' were put under the administrative '_deleted_classes'-container, retaining their structure.
-When a class is mapped, the obi class is put under the administrative '_deleted_classes'-container and the 'clsdel' meta annotation is added.
-When a class gets a new parent, I updated the defs accordingly to be still arestotelian.
+All workshop action items are listed at:
+https://www.cbil.upenn.edu/obiwiki/index.php/SanDiego2007WorkshopPrepActionItems
 
-obi:state is_a bfo:quality
-obi:characteristic is_a bfo:quality
-obi:time_point	maps	bfo:temporal_instant
-obi:time_intervall	maps	bfo:temporal_interval
-obi:boundary	maps	bfo:object_boundary (and bfo:process_boundary)
-obi:spatial_region	maps	bfo:site
-obi:collection_of_physical_entities	maps	bfo:object_aggregate
-obi:population	is_a	bfo:object_aggregate
-obi:sample_population	is_a	bfo:object_aggregate
+-The remaining information in the rdfs:comment field that was not part of the definition was moved as the value of an annotation property called "editor_note".
 
-obi:cardinal_part_of_qualitative_value
-	obi:quality --> deleted, since redundant as bfo:quality? Or should we re-name?
-
-Questions and Remarks:
-Is obi:time_interval a bfo:continuant since according to the bfo def an continuant can not have temporal parts ?
-obi:data_set	is_a	bfo:object_aggregate subclass ?
-
-obi:physical_entity	--> stay were they are (decision to map to bfo:object should be discussed)
-obi:immaterial_entity	--> stay were they are (decision to map to ? or the be deleted should be discussed)
-
-The whole representation of temporal classes should be postponed or sourced out.
