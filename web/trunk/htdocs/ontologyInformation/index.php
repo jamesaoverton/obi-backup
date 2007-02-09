@@ -66,9 +66,8 @@ menu(ontology);
 	
   <b>Ontology Draft</b>
   <br>
-  The draft ontology files (.owl, .pprj) are available from the 
-  <a href="http://svn.sourceforge.net/viewvc/fugo/trunk/ontology">FuGO SVN Repository.</a>  This 
-  is a temporary location until the OBI SVN is set-up.
+  The ontology file (.owl) are available from the 
+  <a href="http://obi.svn.sourceforge.net/viewvc/obi/ontology/trunk/OBI.owl?view=log">OBI SVN Repository.</a>  
   <br>
   <b>NOTE: This is a DRAFT VERSION and is subject to many more edits before being able to be used  
   in a production system or as as stable release suitable for extension for other domains without 
