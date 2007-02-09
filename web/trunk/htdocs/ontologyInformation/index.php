@@ -104,7 +104,7 @@ menu(ontology);
   <br>
   The OBI developers will generate a document based on the proposed Ontology Best Practice   
   information containing the design principles, naming conventions and ontology metadata that 
-  will be used for the development of OBI. 
+  will be used for the development of OBI. An agreed upon minimal list of annotation <a href="http://obi.sourceforge.net/ontologyInformation/MinimalMetadata.html">metadata</a> for representational units has been created.
   
   <hr class=lightgray>
   <br>
