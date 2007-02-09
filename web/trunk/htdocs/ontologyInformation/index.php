@@ -79,8 +79,7 @@ menu(ontology);
   focus of this workshop was to refine the scope of OBI/FuGO in light of other OBO Foundry ontologies,
   review the current structure of OBI/FuGO and add definitions for terms. It was at this workshop that 
   the name Ontology for Biomedical Investigations (OBI) was proposed in order to better reflect the 
-  scope of the project. The presentations and workshop report are available for download from the 
-  OBI File Release System in the Package titled
+  scope of the project. The presentations and workshop report are available for download from the OBI File Release System in the Package titled
   <a href="http://sourceforge.net/project/showfiles.php?group_id=177891">Workshops</a>.  
   <br><br>
   Following the first workshop (Feb, 2006), a draft of the ontology was constructed. The focus 
