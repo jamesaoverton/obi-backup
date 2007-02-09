@@ -85,8 +85,7 @@ menu(home);
         representing different biological and technological domains involved in Biomedical
         Investigations
     <li>Make OBI compatible with other bio-ontologies 
-    <li>Develop OBI using an open source approach
-    <li>Open source 
+    <li>Develop OBI using an open source approach 
     <li>Create a valuable resource for the biomedical communities to provide a source of terms 
         for consistent annotation of investigations
    </ul>
