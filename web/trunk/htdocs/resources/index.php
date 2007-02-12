@@ -74,6 +74,7 @@ title();
   <ul>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458979">1st Workshop (February 2006; Philadelphia, PA)</a>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458978">2nd Workshop (July 2006; Hinxton, UK)</a>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=485800">3rd Workshop (February 2007; San Diego, CA)</a> 
   </ul>
   <br>
   <hr class=lightgray>
