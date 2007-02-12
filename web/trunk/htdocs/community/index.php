@@ -53,10 +53,10 @@ menu(community);
   <li><a href="http://www.dkfz.de/smp-cell/cell.org/groups.asp?siteID=71" target="_blank">Cellular Assays</a>, Coordinator: Stefan Wiemann
   <li><a href="http://www.generationcp.org" target="_blank">Crop Sciences</a>, Coordinator: 
   Richard Bruskiewich
-  <li><a href="http://www.mged.org/Workgroups/rsbi/rsbi.html" target="_blank">Environmental Genomics</a>, 
-  Coordinator: Dawn Field
+  <li><a href="http://www.mged.org/Workgroups/rsbi/rsbi.html" target="_blank">Environmental Biology</a>, 
+  Coordinator: Norman Morrison
   <li><a href="http://flowcyt.sourceforge.net" target="_blank">Flow Cytometry</a>, Coordinator: Ryan Brinkman
-  <li><a href="http://www.genomics.ceh.ac.uk/genomecatalogue" target="_blank">Genomics</a>, Coordinators: 
+  <li><a href="http://www.genomics.ceh.ac.uk/genomecatalogue" target="_blank">Genomics/Metagenomics</a>, Coordinators: 
   Dawn Field, Tanya Gray
   <li><a href="https://www.immport.org" target="_blank">ImmPort</a>, Coordinator: Richard Scheuermann 
   <li><a href="http://www.immuneepitope.org" target="_blank">Immune Epitope Database and Analysis Resource</a>, Coordinator: Bjoern Peters
