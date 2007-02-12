@@ -50,9 +50,11 @@ menu(community);
 
   Communities/User Groups Involved in the Development of OBI:<br>
   <ul>
+  <li><a href="http://www.rsna.org" target="_blank">Bio-imaging</a>, Coordinators: Jeff Grethe, Daniel Rubin
   <li><a href="http://www.dkfz.de/smp-cell/cell.org/groups.asp?siteID=71" target="_blank">Cellular Assays</a>, Coordinator: Stefan Wiemann
   <li><a href="http://www.generationcp.org" target="_blank">Crop Sciences</a>, Coordinator: 
   Richard Bruskiewich
+  <li><a href="http://www.bioontology.org/wiki/index.php/Workshop_on_Clinical_Trial_Ontology" target="_blank">Clinical Trials</a>, Coordinator: Barry Smith
   <li><a href="http://www.mged.org/Workgroups/rsbi/rsbi.html" target="_blank">Environmental Biology</a>, 
   Coordinator: Norman Morrison
   <li><a href="http://flowcyt.sourceforge.net" target="_blank">Flow Cytometry</a>, Coordinator: Ryan Brinkman
