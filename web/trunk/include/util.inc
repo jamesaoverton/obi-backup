@@ -5,7 +5,7 @@ printf ("<br><br>");
 }
 
 function title() {
-  print ("<td align=center><font face=arial size=5><b>Ontology for Biomedical Investigations</b></font></td>");
+  print ("<td class='logo-header' align=center><font face=arial size=5><b>Ontology for Biomedical Investigations</b></font></td>");
 }
 
 
