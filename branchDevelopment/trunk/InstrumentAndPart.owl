@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+    xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:bfo="http://www.ifomis.org/bfo/1.0#"
+    xmlns:span="http://www.ifomis.org/bfo/1.0/span#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:snap="http://www.ifomis.org/bfo/1.0/snap#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xml:base="http://obi.sourceforge.net/ontology/OBI.owl">
+  <owl:Ontology rdf:about="">
+    <dc:contributor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Advisors for this project come from the IFOMIS group, Saarbruecken and from the Co-ODE group in Manchester</dc:contributor>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >0.6.4</owl:versionInfo>
+    <dc:subject rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An ontology for the annotation of biomedical and functional genomics experiments.</dc:subject>
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
+    <dc:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >free, no license required.</dc:rights>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >April 2, 2007</dc:date>
+    <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology for Biomedical Investigation</dc:title>
+    <dc:format rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OWL-DL</dc:format>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >draft version</rdfs:comment>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ryan R. Brinkman, Helen C. Causton, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Tanya Gray, Mervi Heiskanen, Tina Hernandez-Boussard, Norman Morrison, Helen Parkinson, Philippe Rocca-Serra, Susanna-Assunta Sansone, Daniel Schober, Barry Smith, Robert Stevens, Chris Stoeckert, Chris Taylor, Trish Whetzel, Joe White, Andrew Wood</dc:creator>
+    <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.0"/>
+    <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Ontology for Biomedical Investigations (OBI) is build in a collaborative, international effort and will serve as a resource for annotating biomedical investigations, including the study design, protocols and instrumentation used, the data generated and the types of analysis performed on the data. This ontology arose from the Functional Genomics Investigation Ontology (FuGO) and will contain both terms that are common to all biomedical investigations, including functional genomics investigations and those that are more domain specific.</dc:description>
+  </owl:Ontology>
+  <owl:Class rdf:ID="OBI_49">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A mass spectrometry instrument is an instrument used to separate or analyse molecules of a sample. definition_source: OBI.</definition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OBI_47"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">mass_spectrometry_instrument</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_47">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An instrument is an object that is used to collect data. defintion_source:OBI</definition>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem1: At the meeting in Philly I wrote that BS said that it should be a count term, such as a set of instruments. By allowing connected devices we avoid the problem of things like LCMS being considered separate items, since we have a number of discrete functions like separation, making things fly, monitoring the charge and mass of what flies etc that are all part of a single machine.</editor_note>
+    <rdfs:label xml:lang="en">instrument</rdfs:label>
+    <branch rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Instrument</branch>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_41">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OBI_37"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">pump_valve_switch</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A pump valve switch is a cardinal part of a liquid chromatography instrument that controls the flow. definition_source: OBI.</definition>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_36">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A cardinal part of instrument is an object that is a principal part of the instrument. definition_source: OBI.</definition>
+    <branch rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Instrument</branch>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unclarity if this needs to be cardinal_part_of or just part_of</editor_note>
+    <rdfs:label xml:lang="en">cardinal_part_of_instrument</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_40">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_37"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">column_chromatography_solvent</rdfs:label>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >syn: mobile_phase</editor_note>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A column chromatography solvent is a cardinal part of a liquid chromatography instrument that is a liquid that is used to dissolve the components to be separated in the column chromatography matrix. definition_source: OBI.</definition>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_38">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A chromatography column is a cardinal part of a liquid chromatography instrument that is a glass tube that contains the separation matrix substance. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">chromatography_column</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_37"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_48">
+    <rdfs:subClassOf rdf:resource="#OBI_47"/>
+    <rdfs:label xml:lang="en">liquid_chromatography_instrument</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A liquid chromatography instrument is an instrument that collects data from the separation of colecules in liquid. definition_source: OBI.</definition>
+  </owl:Class>
+  <owl:Class rdf:ID="OBI_39">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A column chromatography matrix is a cardinal part of a liquid chromatography instrument that is the stationary phase in the chromatography column that is able to selectively bind materials. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">column_chromatography_matrix</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OBI_37"/>
+    </rdfs:subClassOf>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >syn:stationary_phase</editor_note>
+  </owl:Class>
+  <owl:Class rdf:about="#OBI_37">
+    <rdfs:subClassOf rdf:resource="#OBI_36"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A cardinal part of a liquid chromatography instrument is a principal part of an instrument that is used to selectively separate substances dissolved in a liquid. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">cardinal_part_of_liquid_chromatography_instrument</rdfs:label>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="editor_note">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An administrative note intended for its editor. It will not be included in the publication version of the ontology, so it should contain nothing necessary for end users to understand the ontology.</definition>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="alternative_term_tag">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >tag to indicate sets of alternative terms Example: toxicogenomics_community, abbreviation</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="alternative_term">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An alternative name for a class or property which means the same thing as the preferred_term (semantically equivalent)</definition>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="definition_editor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Name of editor entering the definition</definition>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="branch">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="definition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The official OBI definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="example_of_usage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An actual usage of the term.</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </owl:FunctionalProperty>
+  <owl:AnnotationProperty rdf:ID="curation_status">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The curation status of the term. The allowed values come from an enumerated list of predefined terms. Examples: raw import, definition incomplete, graph position temporary, uncurated, pending final vetting, curation complete. The value raw import indicates that the term is derived directly via import of an entity from an existing knowledge resource. The value definition incomplete indicates that the curators recognize the definition of the class remains incomplete in someway. The value graph position temporary indicates that the class may not be in its final preferred location within the ontology graph.  The value uncurated indicates that the class has been created by curators but has received minimal review.  The value pending final vetting indicates that indicates the term is likely ready for promotion to "curation complete" status, and only requires a final review by  the curators responsible.  The value curation complete indicates that the class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >raw import</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >definition incomplete</rdf:first>
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:rest rdf:parseType="Resource">
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >uncurated</rdf:first>
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:rest rdf:parseType="Resource">
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >curation complete</rdf:first>
+                  </rdf:rest>
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >pending final vetting</rdf:first>
+                </rdf:rest>
+              </rdf:rest>
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >graph position temporary</rdf:first>
+            </rdf:rest>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="alternative_term_citation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ormal citation of the source of the alternative_definition, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="preferred_term">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The concise, meaningful, and human-friendly name for a class or property preferred by the ontology developers. (US-English)</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:ID="definition_citation">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >formal citation, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:AnnotationProperty>
+</rdf:RDF>
