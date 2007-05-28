@@ -1,0 +1,68 @@
+OBIBatchTermLoader
+
+Usage: java LoadOBITerms <ontologyFile> <termInputFile> <outputFile> <OBIIdentifierValue> <propertiesFile>
+
+NOTE: The code will fail if information in either the termInputFile or propertiesFile is not specified for a mandatory annotation property. See the information below regarding the format and content for the termInputFile and propertiesFile.
+NOTE: All arguments are mandatory.
+
+
+System Requirements:
+-Protege Installation (Protege 3.3, build 371). Other later versions may work, however this is what the code was tested against.
+-Java 1.5
+
+Additional Set-up:
+-Set classpath to point to the Protege jars
+For Mac OS X or Unix (tcsh specifically):
+--set-up this shell script
+setenv PROTEGE_HOME  /Applications/Protege_3.2.1                                      
+setenv CLASSPATH .:${PROTEGE_HOME}/protege.jar                                        
+foreach f (${PROTEGE_HOME}/plugins/edu.stanford.smi.protegex.owl/*.jar)               
+   setenv CLASSPATH ${CLASSPATH}:$f                                                   
+end 
+
+Otherwise, see information on the Protege site:
+http://protege.stanford.edu/doc/faq.html#02.03
+or information in the thread: http://tinyurl.com/2zjwfm
+
+Explanation of Command-line Arguments:
+<ontologyFile>
+-Type: full path and filename of OWL file to load new terms into
+-Example: /Users/jsmith/tmp/ProtocolApplication.owl
+
+<termInputFile>
+-Type: full path and filename of the file containing the terms to load into the OWL file
+-Example: /Users/jsmith/ObiBranches/ProtocolBranch/protocolTerms.txt
+
+<outputFile> 
+-Type: full path of the OWL file to save newly loaded terms. It is suggested that you use a different name than that of the ontologyFileLocation
+-Example: /Users/jsmith/tmp/ProtocolApplication-withNewTerms.owl
+
+<OBIIdentifierValue> 
+-Type: integer, the last available identifier to use for terms in this branch
+-Example: 4000, NOTE: See the wiki page https://www.cbil.upenn.edu/obiwiki/index.php/ProtegeGoodies for number ranges for each branch.
+
+<propertiesFile>
+-Type: full path to text file that contains the mapping of the OBI annotation properties to the column names in the input term file
+Exmaple: /Users/jsmith/tmp/properties.txt
+
+
+Additional information:
+<termInputFile>
+-File format: This is a tab-delimited file that contains columns with information listed on the OBI wiki, MinimalMetadata (http://tinyurl.com/yo6yqz), plus a column to indicate the parent term. Add in the word 'none' for rows/columns where there is no value. For metadata types that exist in more than one column, e.g. curation_status, name the column in the input file with the same column name for each column of that type. There should be no blank lines in this file other than the last line. There can be additional columns in this file other than those that contain information to be loaded into the OWL file: these will be ignored by the loader.
+
+<propertiesFile>
+-File format: This file contains the mapping of the names of the OBI metadata property names to the column header names in the input file. The mapping of the column name that contains the parent term name to the "parent_term" should also be included. Include in this file mappings that exist, i.e fill-in a value for each side of the "=" sign or remove this line from the file.
+
+example file format:
+preferred_name=
+parent_term=
+definition=
+definition_editor=
+definition_source=
+definition_editor=
+curation_status=
+example_of_usage=
+editor_note=
+external_class=
+
+
