@@ -2,42 +2,6 @@ These instructions explain how to use a version of the branch files
 (and other imported ontologies) that are completely in the local file
 system, checked out with subversion.
 
-File organization:
-
-branchDevelopment/trunk
- * The individual branch files. Contain only information specific to a single branch
-  Biomaterial.owl
-  InstrumentAndPart.owl
-  Role.owl
-  DataTransformation.owl
-  Plan.owl
-  DigitalEntityPlus.owl
-  ProtocolApplication.owl
-
-  TheRest.owl - Top level terms not included in a branch file, classes
-    not in any of the branches, ontology properties, annotation
-    properties and relations.
-
-  /bfo 
-
-     bfo.owl - in its own directory because it is copied in by a
-       svn:externals property from code.google.com. "svn propget
-       svn:externals ." to see the specific version.
-
-  /external - snapshots of ontologies we use that don't use subversion
-              (or I don't know where they are)
-     protege-dc.owl - owl dl dublin core
-     protege.owl - used by protege internals
-     ro.owl  - relation ontology
-     ro_bfo_bridge.owl - relation ontology to bfo bridge
-
-  obi.owl.template - imports all the above ontologies (template - see below)
-  obi.pprj.template - protege project (template - see below)
-
-  obi.repository.template - see instructions below
-  obi.repository.template2 - see instructions below
-  instructions-svn-local.txt - this file
-
 To use these:
 
 1) Use the latest protege 3.3 beta
@@ -127,9 +91,52 @@ Protege, your file will get written. If you know that you haven't made any
 changes and you want to pull the latest version from the repository, execute
 svn update.
 
+Making a class obsolete:
+ 1) Ensure that Obsolete.owl is not read only, by editing the repository file, if necessary.
+ 2) lock Obsolete.owl following the above instructions, since you will be editing it
+ 3) select the class to be made obsolete.
+ 4) Right click and select "Delete Class"
+ 5) Switch the active ontology to Obsolete.owl
+ 6) Choose "Undo" from the edit menu. Move the class to be a child of ObsoleteClass.
+ 7) Switch the active ontology back to the original ontology
+ 8) When checking in your changes, follow the instructions to check in 
+     Obsolete.owl in addition to your branch file
 
+File organization:
 
+branchDevelopment/trunk
+ * The individual branch files. Contain only information specific to a single branch
+  Biomaterial.owl
+  InstrumentAndPart.owl
+  Role.owl
+  DataTransformation.owl
+  Plan.owl
+  DigitalEntityPlus.owl
+  ProtocolApplication.owl
 
+ * Where obsolete classes and properties go
+  Obsolete.owl
 
+  TheRest.owl - Top level terms not included in a branch file, classes
+    not in any of the branches, ontology properties, annotation
+    properties and relations.
 
+  /bfo 
 
+     bfo.owl - in its own directory because it is copied in by a
+       svn:externals property from code.google.com. "svn propget
+       svn:externals ." to see the specific version.
+
+  /external - snapshots of ontologies we use that don't use subversion
+              (or I don't know where they are)
+     protege-dc.owl - owl dl dublin core
+     protege.owl - used by protege internals
+     ro.owl  - relation ontology
+     ro_bfo_bridge.owl - relation ontology to bfo bridge
+
+  obi.owl.template - imports all the above ontologies (template - see below)
+  obi.pprj.template - protege project (template - see below)
+
+  obi.repository.template - see instructions 
+  obi.repository.template2 - see instructions
+  instructions-svn-local.txt - this file
