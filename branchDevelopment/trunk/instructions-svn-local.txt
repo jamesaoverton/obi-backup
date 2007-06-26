@@ -4,29 +4,24 @@ system, checked out with subversion.
 
 To use these:
 
-1) Use the latest protege 3.3 beta
+1) Use the latest protege 3.3 beta (411 or later)
 
 2) Copy obi.owl.template to obi.owl and copy obi.pprj.template
    obi.pprj This is done to avoid having to deal with consequences, in
    svn, of the uninteresting changes that protege makes to these
    files.
 
-3) Copy obi.repository.template or obi.repository.template2 to
-   obi.repository and adjust the pathnames to where your checkout
-   directory is. Change "forceReadOnly=true" to "forceReadOnly=false"
-   for your branch and any other ontologies that you want to be able
-   to edit.  obi.repository.template2 is a briefer version that
-   defaults everything but one ontology to read only. Add lines to the top
-   for those ontologies that you want to be able to edit.
-
 4) Open obi.pprj. You should not get prompted asking for the location
    of any ontology, nor should any network access take place. You should be able to 
    edit in the absense of any network connection.
 
+3) Choose "Ontology Repositories" from the OWL menu, and uncheck those
+   ontologies that you wish to edit. This enables them to be written
+   and hence chosen as the active ontology.
+
 5) You should see all the imports in the metadata tab and be able to
     select a branch as the active ontology by selecting that ontology and clicking 
     on the pencil icon. Ontologies that are read-only will be in gray.
-
 
 Caveats and instructions for working with svn.
 
@@ -43,15 +38,6 @@ and compensate for. When they are fixed some things will be easier.
 
 3) Annotations on AnnotationProperties are not displayed or editable
    in the user interface.
-
-4) Following the pattern in obi.repository.template2 we would like to be able to
-   write 
-   ./ProtocolApplication.owl?forceReadOnly=true
-   instead of 
-   file:/Users/alanr/repos/obi/branchDevelopment/trunk/ProtocolApplication.owl?forceReadOnly=true
-
-   This does not currently work, so you need to adjust the full path
-   names for each person's machine
 
 Compensations:
 
@@ -113,6 +99,7 @@ branchDevelopment/trunk
   Plan.owl
   DigitalEntityPlus.owl
   ProtocolApplication.owl
+  Relations.owl
 
  * Where obsolete classes and properties go
   Obsolete.owl
@@ -138,5 +125,4 @@ branchDevelopment/trunk
   obi.pprj.template - protege project (template - see below)
 
   obi.repository.template - see instructions 
-  obi.repository.template2 - see instructions
   instructions-svn-local.txt - this file
