@@ -1,13 +1,17 @@
 OBIBatchTermLoader
 
-Usage: java LoadOBITerms <ontologyFile> <termInputFile> <outputFile> <OBIIdentifierValue> <propertiesFile>
+Usage: java LoadOBITerms <ontologyFile> <termInputFile> <outputFile> <OBIIdentifierValue> 
+<propertiesFile> <ontologyFile-TheRest.owl>
 
-NOTE: The code will fail if information in either the termInputFile or propertiesFile is not specified for a mandatory annotation property. See the information below regarding the format and content for the termInputFile and propertiesFile.
+NOTE: The code will fail if information in either the termInputFile or propertiesFile is 
+not specified for a mandatory annotation property. See the information below regarding 
+the format and content for the termInputFile and propertiesFile.
 NOTE: All arguments are mandatory.
 
 
 System Requirements:
--Protege Installation (Protege 3.3, build 371). Other later versions may work, however this is what the code was tested against.
+-Protege Installation (Protege 3.3, build 414). Other later versions may work, however 
+this is what the code was tested against.
 -Java 1.5
 
 Additional Set-up:
@@ -34,7 +38,8 @@ Explanation of Command-line Arguments:
 -Example: /Users/jsmith/ObiBranches/ProtocolBranch/protocolTerms.txt
 
 <outputFile> 
--Type: full path of the OWL file to save newly loaded terms. It is suggested that you use a different name than that of the ontologyFileLocation
+-Type: full path of the OWL file to save newly loaded terms. It is suggested that you use 
+a different name than that of the ontologyFileLocation
 -Example: /Users/jsmith/tmp/ProtocolApplication-withNewTerms.owl
 
 <OBIIdentifierValue> 
@@ -45,21 +50,36 @@ Explanation of Command-line Arguments:
 -Type: full path to text file that contains the mapping of the OBI annotation properties to the column names in the input term file
 Exmaple: /Users/jsmith/tmp/properties.txt
 
+<ontologyFile-TheRest.owl>
+-Type:  full path and filename of OWL file TheRest.owl
+-Example: /Users/jsmith/tmp/TheRest.owl
+
 
 Additional information:
 <termInputFile>
--File format: This is a tab-delimited file that contains columns with information listed on the OBI wiki, MinimalMetadata (http://tinyurl.com/yo6yqz), plus a column to indicate the parent term. Add in the word 'none' for rows/columns where there is no value. For metadata types that exist in more than one column, e.g. curation_status, name the column in the input file with the same column name for each column of that type. There should be no blank lines in this file other than the last line. There can be additional columns in this file other than those that contain information to be loaded into the OWL file: these will be ignored by the loader.
+-File format: This is a tab-delimited file that contains columns with information listed 
+on the OBI wiki, MinimalMetadata (http://tinyurl.com/yo6yqz), plus a column to indicate 
+the parent term. Add in the word 'none' for rows/columns where there is no value. For 
+metadata types that exist in more than one column, e.g. curation_status, name the column 
+in the input file with the same column name for each column of that type. There should be 
+no blank lines in this file other than the last line. There can be additional columns in 
+this file other than those that contain information to be loaded into the OWL file: these 
+will be ignored by the loader.
 
 <propertiesFile>
--File format: This file contains the mapping of the names of the OBI metadata property names to the column header names in the input file. The mapping of the column name that contains the parent term name to the "parent_term" should also be included. Include in this file mappings that exist, i.e fill-in a value for each side of the "=" sign or remove this line from the file.
+-File format: This file contains the mapping of the names of the OBI metadata property names 
+to the column header names in the input file. The mapping of the column name that contains 
+the parent term name to the "parent_term" should also be included. Include in this file 
+mappings that exist, i.e fill-in a value for the right-hand side of the "=" sign to be that 
+of the column header in the term file that maps to the given metadata or remove this line from 
+the file.
 
 example file format:
 preferred_name=
 parent_name=
 definition=
 definition_editor=
-definition_source=
-definition_editor=
+definition_citation=
 curation_status=
 example_of_usage=
 editor_note=
