@@ -13,12 +13,14 @@ public class LoadOBITerms{
 	 * First arg=ontology file location
 	 * Second arg=term file name
 	 * Third arg=outputFileName
-	 * Fourth arg=code function 
+	 * Fourth arg=OBI identifier value
+	 * Fifth arg= location of properties file
+	 * Sixth arg=location of TheRest.owl
 	 */
 
 	public static void main(String[] args) {
 		
-		if(null == args || args.length != 5) {
+		if(null == args || args.length != 6) {
 			System.out.println("Not all args found");
 			System.exit(1);
 		}
@@ -28,16 +30,21 @@ public class LoadOBITerms{
 				"\nSECOND-ARG: Term file name/location: "+args[1]+
 				"\nTHIRD-ARG: Output file name/location: "+args[2]+
 				"\nFOURTH-ARG: OBI Identifier value: "+args[3]+
-				"\nFIFTH ARG: Properties file location: "+args[4]);
+				"\nFIFTH ARG: Properties file location: "+args[4]+
+				"\nSIXTH ARG: Properties file location: "+args[5]);
 		
-		//File uri = new File(args[0]);
-		File uri = new File("/Users/whetzel/eclipseWorkspace/OBIBatchTermLoader/OBI_v0.6.4-TEST.owl");
+		
+		File theRest = new File(args[5]);
+		JenaOWLModel theRestModel = openOWLFileRest(theRest);
+		
+
+		File uri = new File(args[0]);
 		JenaOWLModel model = openOWLFile(uri);
 		
 		String inputFile = args[1];
 		BufferedReader reader = openReader(inputFile);
 		
-		String propsFileLocation = args[4];  //"/Users/whetzel/eclipseWorkspace/BatchTermLoader/filename.properties";
+		String propsFileLocation = args[4];
 		Properties props = getProps(propsFileLocation);
 		
 		Collection allClassTermsInModel = getAllTerms(model);
@@ -46,12 +53,13 @@ public class LoadOBITerms{
 		
 		String obiIntValue = args[3];
 		
-//		FROM CreateTree CODE, replaces in part 'processTextFile'
-//		May need 'map' to get parentIdentifier to create Term object with this value		
-		HashMap allClassTermsInFile = readTextFile(reader, obiIntValue, props); //read and store contents of inputFile as Term objects
+		/*
+		 * Read and store contents of inputFile as Term objects
+		 */
+		HashMap allClassTermsInFile = readTextFile(reader, obiIntValue, props); 
 		
 		buildTreeAllTerms(allClassTermsInFile);
-		loadAllTerms(allClassTermsInFile, map, model);
+		loadAllTerms(allClassTermsInFile, map, model, theRestModel);
 		
 		LoadOBITerms lt = new LoadOBITerms();
 		String outputFileName = args[2];
@@ -59,6 +67,53 @@ public class LoadOBITerms{
 		System.out.println("\n=-=-=-= End of program =-=-=-=");
 	
 	} //End of main
+	
+	
+	/**
+	 * Open OWL file and create JenaOWLModel object
+	 * from the OWL file 'TheRest.owl' which is where 
+	 * the Annotation Properties are 'declared'
+	 * @param theRestModel
+	 * @return
+	 */
+	public static JenaOWLModel openOWLFileRest(File theRest) {
+		JenaOWLModel owlModel = ProtegeOWL.createJenaOWLModel();
+		try {
+			owlModel = ProtegeOWL.createJenaOWLModelFromInputStream(new FileInputStream(theRest));
+//			String editorAnnProp = "editor_note";
+//			OWLDatatypeProperty prefTermAnnPropObj = owlModel.getOWLDatatypeProperty(editorAnnProp);
+//			System.out.println("DEBUG-EditorNoteProperty: "+prefTermAnnPropObj); 
+//			
+//			//DEBUGGING
+//			OWLNamedClass term=owlModel.getOWLNamedClass("OBI_76");
+//			term.addPropertyValue(prefTermAnnPropObj, "TEST");
+//			//Check that property was added
+//			for (Iterator it = term.getRDFProperties().iterator(); it.hasNext();) {
+//				RDFProperty restr = (RDFProperty) it.next();
+//				//System.out.println("DEBUG-Property: "+restr);
+//				String ED = "editor_note";
+//				if (restr.equals(ED)) {
+//					System.out.println("RESTR: "+restr+"ED: "+restr.getBrowserText());
+//				}
+//				for (Iterator i = term.getPropertyValues(restr).iterator(); i.hasNext();) {
+//					Object classTerm = (Object) i.next(); 
+//					System.out.println("DEBUG-Property: "+restr+"Value: "+classTerm+"\n");
+//				}
+//			}
+			//System.out.println("=-=-= End of openOWLFileTheRest =-=-=");
+			return owlModel;
+	      }
+	      catch (Exception ex) {
+	    	  ex.printStackTrace();
+	    	  System.exit(1);
+	      }
+	      return  null;
+	}
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -117,8 +172,9 @@ public class LoadOBITerms{
 		}
 		try {
 			defaultProps.load(in);
-			String value = defaultProps.getProperty("curation_status");  //DEBUG statement
-			System.out.println("PropValue: "+value);
+//			DEBUG statement
+			String value = defaultProps.getProperty("curation_status");  
+			System.out.println("DEBUG: PropValue: "+value);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -139,11 +195,15 @@ public class LoadOBITerms{
 	 * @param m
 	 * @return
 	 */
+	//TODO: Use owl:Thing as the root, note if thre will be any problems downstream
 	public static Collection getAllTerms(JenaOWLModel m)  {
 		try {
-			String rootName = "bfo:Entity";
-			OWLNamedClass rootObj = m.getOWLNamedClass(rootName);
-			System.out.println("Root: "+rootObj);
+			System.out.println("Looking for Root term...");
+			//String rootName = "bfo:Entity"; //NOTE: Might need to change this based on Branching strategy
+			String rootName = "owl:Thing";  
+			//OWLNamedClass rootObj = m.getOWLNamedClass(rootName);
+			RDFSNamedClass rootObj =  m.getRDFSNamedClass(rootName);
+				System.out.println("DEBUG-Root: "+rootObj);
 			Collection allClassTermsInModel = rootObj.getSubclasses(true);
 			int termSize = allClassTermsInModel.size();
 			System.out.println("Number of Terms: "+termSize);
@@ -184,8 +244,8 @@ public class LoadOBITerms{
 					map.put(label, termString);
 					
 					//Debug comments
-					//Object value = map.get(label);
-					//System.out.println("Value: "+value);
+					Object value = map.get(label);
+					System.out.println("Value: "+value);
 					//Collection mappedTerms = map.values();
 					//System.out.println("MappedTerms: "+mappedTerms);
 				}
@@ -363,8 +423,8 @@ public class LoadOBITerms{
 					}
 					else {
 						System.out.println("ERROR: Column for parent_name is either not in the " +
-								"inputFile or not specified in the properties file. This error needs to be" +
-								"before loading the file");
+								"inputFile or not specified in the properties file. This error needs to be " +
+								"fixed before loading the file");
 						System.out.println("=-=-=-= ENDING PROGRAM =-=-=-=-=");
 						System.exit(1);
 					}
@@ -455,7 +515,7 @@ public class LoadOBITerms{
 					}
 					else {
 						System.out.println("ERROR: Column for curation_status is either not in the " +
-								"inputFile or not specified in the properties file. This error needs to be" +
+								"inputFile or not specified in the properties file. This error needs to be fixed " +
 								"before loading the file");
 						System.out.println("=-=-=-= ENDING PROGRAM =-=-=-=-=");
 						System.exit(1);
@@ -543,13 +603,13 @@ public class LoadOBITerms{
 	 * @param allTerms
 	 */
 	@SuppressWarnings("unchecked")
-	private static void loadAllTerms(HashMap allTerms, HashMap<String,String> map, JenaOWLModel model) {
+	private static void loadAllTerms(HashMap allTerms, HashMap<String,String> map, JenaOWLModel model, JenaOWLModel theRestModel) {
 		Collection<Term> allTermsValues = allTerms.values();
 		for(Iterator itr = allTermsValues.iterator( ); itr.hasNext( );) {
 			Term t = (Term) itr.next();
 			if(t.hasParent==false)  {
 				System.out.println("Term with parent in JenOWLModel: "+t.termName);
-				addToFile(t,map,model);
+				addToFile(t,map,model, theRestModel);
 			}
 			else {
 				System.out.println("\tThis is a child term: "+t.termName+" skip...");
@@ -562,7 +622,7 @@ public class LoadOBITerms{
 	 * Load terms into JenaOWLModel
 	 * @param t
 	 */
-	private static void addToFile (Term t, HashMap<String,String> map,JenaOWLModel m) {
+	private static void addToFile (Term t, HashMap<String,String> map,JenaOWLModel m, JenaOWLModel theRestModel) {
 		/*
 		 * Declare annotation property variables. Theese are the actual annotation 
 		 * property names that are in the ontology file and therefore the JenaOWLModel.
@@ -579,12 +639,17 @@ public class LoadOBITerms{
 		/*
 		 * Get annotation property object from JenaOWLModel
 		 */
-		OWLDatatypeProperty prefTermAnnPropObj = m.getOWLDatatypeProperty(prefTermAnnProp);
-		OWLDatatypeProperty defAnnPropObj = m.getOWLDatatypeProperty(defAnnProp);
-			//System.out.println("Property: "+defProp); //Debugging comment
-		OWLDatatypeProperty defSourceAnnPropObj = m.getOWLDatatypeProperty(defSourceAnnProp);
-		OWLDatatypeProperty exampleAnnPropObj = m.getOWLDatatypeProperty(exampleAnnProp);
-		OWLDatatypeProperty defEditorAnnPropObj = m.getOWLDatatypeProperty(defEditorAnnProp);
+		//TODO: Need to change this to get annotation property objects from theRestModel
+		//BUT add them to the model for the branch file represented by 'm' --> DONE
+		
+		//TODO: need to use a different method to get this since it has changed to only annotation property --> DONE
+		OWLProperty prefTermAnnPropObj = theRestModel.getOWLProperty(prefTermAnnProp);
+			System.out.println("DEBUG-PrefTermProperty: "+prefTermAnnPropObj); //Debugging comment
+		OWLProperty defAnnPropObj = theRestModel.getOWLProperty(defAnnProp);
+			System.out.println("DEBUG-DefProperty: "+defAnnPropObj); //Debugging comment
+		OWLProperty defSourceAnnPropObj = theRestModel.getOWLProperty(defSourceAnnProp);
+		OWLProperty exampleAnnPropObj = theRestModel.getOWLProperty(exampleAnnProp);
+		OWLProperty defEditorAnnPropObj = theRestModel.getOWLProperty(defEditorAnnProp);
 		//OWLDatatypeProperty externalClassAnnPropObj = m.getOWLDatatypeProperty(externalClassAnnProp);
 		//OWLDatatypeProperty curationStatusAnnPropObj = m.getOWLDatatypeProperty(curationStatusAnnProp);
 		//OWLDatatypeProperty editorNoteAnnPropObj = m.getOWLDatatypeProperty(editorNoteAnnProp);
@@ -600,6 +665,7 @@ public class LoadOBITerms{
 		System.out.println("OBI ParentIdentifier: "+parentIdentifier+" is in the HashMap");
 		OWLNamedClass parentClass = m.getOWLNamedClass(parentIdentifier); //need larger scope
 			System.out.println("\tParentClass: "+parentClass);
+		//TODO: Add in full URI concatenated to the term identifier and use rdf:about versus rdf:ID, is there such a method?
 		OWLNamedClass childClass = m.createOWLNamedSubclass(t.obiIdentifier, parentClass);
 		
 		//Add annotation properties
@@ -614,7 +680,7 @@ public class LoadOBITerms{
 		System.out.println("\tAll CS values: "+t.curationStatus);
 		if (t.curationStatus.size() >=0) {
 			for (int x=0; x<t.curationStatus.size(); x++) {
-				OWLDatatypeProperty curationStatusAnnPropObj = m.getOWLDatatypeProperty(curationStatusAnnProp);
+				OWLDatatypeProperty curationStatusAnnPropObj = theRestModel.getOWLDatatypeProperty(curationStatusAnnProp);
 				String curationStatusSingleValue = t.curationStatus.get(x).trim();
 				System.out.println("\tCS: "+curationStatusSingleValue);
 				if (!curationStatusSingleValue.equals(none)) {  //this case should not occur
@@ -642,7 +708,7 @@ public class LoadOBITerms{
 		System.out.println("\tAll ED values: "+t.editorNote);
 		if (t.editorNote.size() >=0) { 
 			for (int x=0; x<t.editorNote.size(); x++) {
-				OWLDatatypeProperty editorNoteAnnPropObj = m.getOWLDatatypeProperty(editorNoteAnnProp);
+				OWLDatatypeProperty editorNoteAnnPropObj = theRestModel.getOWLDatatypeProperty(editorNoteAnnProp);
 				String editorNoteSingleValue = t.editorNote.get(x).trim(); 
 				System.out.println("\tED: "+editorNoteSingleValue);
 				if (!editorNoteSingleValue.equals(none))  {
@@ -671,7 +737,7 @@ public class LoadOBITerms{
 			for (int i=0; i < kidTerms.size(); i++) {
 				Term kid = kidTerms.elementAt(i);
 				System.out.println("Child Term: "+kid.termName);
-				addToFile(kid, map, m); //this needs to be recursive to do depth first pass, only pass Term Object
+				addToFile(kid, map, m, theRestModel); //this needs to be recursive to do depth first pass, only pass Term Object
 			}
 		}
 		else {
