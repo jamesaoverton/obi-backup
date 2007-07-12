@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:p1="http://purl.org/obo/owl/PATO#"
+    xmlns="http://www.owl-ontologies.com/Ontology1184167907.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xml:base="https://obi.svn.sourceforge.net/svnroot/obi/branchDevelopment/reasoner-example-workshop-2007-July.owl"
+  <owl:Ontology rdf:about="">
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Placebo_Study">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Defined_Class"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="utilizes"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:ID="Portion_of_Chemical"/>
+              <owl:Restriction>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:ID="has_role"/>
+                </owl:onProperty>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:ID="PlaceboRole"/>
+                </owl:someValuesFrom>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Aspirin_Placebo_Study">
+    <rdfs:subClassOf rdf:resource="#Defined_Class"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="Portion_of_Aspirin"/>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="#has_role"/>
+                    <owl:someValuesFrom>
+                      <owl:Class rdf:ID="DrugRole"/>
+                    </owl:someValuesFrom>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#utilizes"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="Portion_of_Chalk"/>
+                  <owl:Restriction>
+                    <owl:someValuesFrom>
+                      <owl:Class rdf:about="#PlaceboRole"/>
+                    </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="#has_role"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#utilizes"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Population_of_Person"/>
+  <owl:Class rdf:ID="Case_control_Study">
+    <rdfs:subClassOf rdf:resource="#Defined_Class"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:about="#Portion_of_Chemical"/>
+                  <owl:Restriction>
+                    <owl:someValuesFrom>
+                      <owl:Class rdf:about="#PlaceboRole"/>
+                    </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="#has_role"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#utilizes"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:about="#Portion_of_Chemical"/>
+                  <owl:Restriction>
+                    <owl:someValuesFrom>
+                      <owl:Class rdf:about="#DrugRole"/>
+                    </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="#has_role"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#utilizes"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="ControlRole">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Treatment_Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Treatment_Role">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.org/obo/owl/PATO#PATO_0000004">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Quality"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">mobility</rdfs:label>
+    <rdfs:comment xml:lang="en">A quality of moving freely.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Person"/>
+  <owl:Class rdf:ID="SubjectRole">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Longitudinal_Study">
+    <rdfs:subClassOf rdf:resource="#Defined_Class"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Aspirin_study">
+    <rdfs:subClassOf rdf:resource="#Defined_Class"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Portion_of_Aspirin"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#utilizes"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Portion_of_Chalk">
+    <rdfs:subClassOf rdf:resource="#Portion_of_Chemical"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DrugRole">
+    <rdfs:subClassOf rdf:resource="#Treatment_Role"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PlaceboRole">
+    <rdfs:subClassOf rdf:resource="#Treatment_Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Study">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#utilizes"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Portion_of_Chemical"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_role"/>
+                <owl:someValuesFrom rdf:resource="#Treatment_Role"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Portion_of_Aspirin">
+    <rdfs:subClassOf rdf:resource="#Portion_of_Chemical"/>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3, Build 414)  http://protege.stanford.edu -->
