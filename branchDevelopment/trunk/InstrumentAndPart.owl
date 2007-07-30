@@ -101,25 +101,25 @@
     >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_50">
-    <rdfs:label xml:lang="en">platform</rdfs:label>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rem1: We decided at the Philly workshop that consumables do not include reagents.</editor_note>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A platform is an object_aggregate that is the set of instruments and software needed to perform a process. definition_source: OBI.</definition>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#ObjectAggregate"/>
+    <rdfs:label xml:lang="en">platform</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400061">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"http://www.flocyte.com/FRTP/Resources/flow_cytometry_glossary.htm, 2007-05-11"</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A flow cell in which the cells are pinched off as droplets and allowed to drop through the air. The laser intersects with the cell in mid-air. A jet in air flow chamber allows the laser to intersect with the cells without any intermitent media other than air.</definition>
-    <rdfs:label xml:lang="en">?jet_in_air_flow_chamber</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jet-in-air flow chamber in DakoCytomation MoFlo high-speed cell sorter</example_of_usage>
+    <rdfs:label xml:lang="en">?jet_in_air_flow_chamber</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400043"/>
     </rdfs:subClassOf>
@@ -153,20 +153,20 @@
     >"A fluidics system is an insturment that deals with the use of a flowing liquid or gas in various devices, esp. controls, to perform functions usually performed by an electric current in electronic devices. In a flow cytometer a fluidics subsystem transports particles in a fluid stream to the light source for interrogation."</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_47">
+    <rdfs:label xml:lang="en">artefact_object</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An artefact_object is an object that is produced or shaped by human craft, especially a tool, weapon, or ornament of archaeological or historical interest.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://www.answers.com/artefact</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Examples include the siblings of device and other objects such as gel matrices; used in gel electrophoresis, filter paper, parafilm and buffer solutions.</example_of_usage>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >artefact_object</preferred_term>
-    <rdfs:label xml:lang="en">artefact_object</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An artefact_object is an object that is produced or shaped by human craft, especially a tool, weapon, or ornament of archaeological or historical interest.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.0/snap#Object"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400064">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -304,6 +304,13 @@
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400133">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >InstrumentAndPart_temporary</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >InstrumentAndPart_temporary</preferred_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_47"/>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400005">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"A10 analyzer at TFL, BCCRC, Vancouver"</example_of_usage>
@@ -425,23 +432,41 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_49">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A mass spectrometry instrument is an instrument used to separate or analyse molecules of a sample. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">mass_spectrometry_instrument</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">mass_spectrometry_instrument</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank says: this should be a mass_spectrometer and not have the suffix instrument</rdfs:comment>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A mass spectrometry instrument is an instrument used to separate or analyse molecules of a sample. definition_source: OBI.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400084">
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >R9647 by manufactured by Hamamatsu</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400082"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >John Quinn</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"http://cyto.mednet.ucla.edu/Protocols/flow.htm, 2007-05-11"</definition_citation>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"A photodetector, normally in the form of a tube, that uses a photocathode to convert photons into photoelectrons which are then amplified. PMTs are typically used to detect SSC and flourescent parameters. Cytometers have a PMT for each color they can collect."</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >photomultiplier_tube</preferred_term>
+    <rdfs:label xml:lang="en">photomultiplier_tube</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_48">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A liquid chromatography instrument is an instrument that collects data from the separation of colecules in liquid. definition_source: OBI.</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DS: Put under liquid_handler if justified.</editor_note>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
     </rdfs:subClassOf>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DS: Put under liquid_handler if justified.</editor_note>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A liquid chromatography instrument is an instrument that collects data from the separation of colecules in liquid. definition_source: OBI.</definition>
     <rdfs:label xml:lang="en">?liquid_chromatography_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400020">
@@ -464,24 +489,6 @@ part_of fluidic_subsystem</editor_note>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >collection_tube</preferred_term>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400046"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400084">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >R9647 by manufactured by Hamamatsu</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400082"/>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >John Quinn</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >"http://cyto.mednet.ucla.edu/Protocols/flow.htm, 2007-05-11"</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >"A photodetector, normally in the form of a tube, that uses a photocathode to convert photons into photoelectrons which are then amplified. PMTs are typically used to detect SSC and flourescent parameters. Cytometers have a PMT for each color they can collect."</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >photomultiplier_tube</preferred_term>
-    <rdfs:label xml:lang="en">photomultiplier_tube</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400110">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -640,12 +647,12 @@ part_of fluidic_subsystem</editor_note>
     >"Guava PCA at TFL, BCCRC, Vancouver"</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_38">
-    <rdfs:label xml:lang="en">chromatography_column</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A chromatography column is a cardinal part of a liquid chromatography instrument that is a glass tube that contains the separation matrix substance. definition_source: OBI.</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
     </rdfs:subClassOf>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A chromatography column is a cardinal part of a liquid chromatography instrument that is a glass tube that contains the separation matrix substance. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">chromatography_column</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400121">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -692,14 +699,14 @@ part_of fluidic_subsystem</editor_note>
     >John Quinn</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_36">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_47"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A cardinal part of instrument is an object that is a principal part of the instrument. definition_source: OBI.</definition>
     <rdfs:label xml:lang="en">cardinal_part_of_instrument</rdfs:label>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Unclarity if this needs to be cardinal_part_of or just part_of, also look into x_subsystems (which also imply part_ofs)</editor_note>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_47"/>
     <branch rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Instrument</branch>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unclarity if this needs to be cardinal_part_of or just part_of, also look into x_subsystems (which also imply part_ofs)</editor_note>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A cardinal part of instrument is an object that is a principal part of the instrument. definition_source: OBI.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400054">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -726,10 +733,10 @@ part_of fluidic_subsystem</editor_note>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400132"/>
     </rdfs:subClassOf>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A specification of instrument component parameter controls.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"http://en.wikipedia.org/wiki/Adjustment, 2007-05-11"</definition_citation>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A specification of instrument component parameter controls.</definition>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -973,26 +980,6 @@ FG: Or as function.</editor_note>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >John Quinn</definition_editor>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400120">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Trish Whetzel</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >waterbath</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >raw import</curation_status>
-    <rdfs:label xml:lang="en">waterbath</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >MO</definition_citation>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
-    </rdfs:subClassOf>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An instrument that has a water-filled container that can be set and maintained at a defined temperature.</definition>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >VWR Signature Deep-Chamber Heated Water Bath</example_of_usage>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400039">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400008"/>
@@ -1013,11 +1000,31 @@ FG: Or as function.</editor_note>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >FACS_Scan</preferred_term>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400120">
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Trish Whetzel</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >waterbath</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >raw import</curation_status>
+    <rdfs:label xml:lang="en">waterbath</rdfs:label>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MO</definition_citation>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
+    </rdfs:subClassOf>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An instrument that has a water-filled container that can be set and maintained at a defined temperature.</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >VWR Signature Deep-Chamber Heated Water Bath</example_of_usage>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_36"/>
+    <rdfs:label xml:lang="en">cardinal_part_of_liquid_chromatography_instrument</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A cardinal part of a liquid chromatography instrument is a principal part of an instrument that is used to selectively separate substances dissolved in a liquid. definition_source: OBI.</definition>
-    <rdfs:label xml:lang="en">cardinal_part_of_liquid_chromatography_instrument</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000003">
     <rdfs:subClassOf>
@@ -1455,8 +1462,7 @@ FG: Or as function.</editor_note>
     >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400095">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >John Quinn</definition_editor>
+    <rdfs:label xml:lang="en">short_pass_filter</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Optical filter that passes low wavelengths of light but attenuates (or reduces) wavelengths higher than the cutoff frequency. A short pass filter with a cutoff of 500 nm would pass all wavelengths less than 500 nm.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1472,7 +1478,8 @@ FG: Or as function.</editor_note>
     </rdfs:subClassOf>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >short_pass_filter</preferred_term>
-    <rdfs:label xml:lang="en">short_pass_filter</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >John Quinn</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400017">
     <rdfs:subClassOf>
@@ -1662,8 +1669,8 @@ FG: Or as function.</editor_note>
     >Interrogation point in BD FACS Calibur</example_of_usage>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >interrogation_point</preferred_term>
-    <rdfs:label xml:lang="en">?interrogation_point</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400046"/>
+    <rdfs:label xml:lang="en">?interrogation_point</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"http://www.flocyte.com/FRTP/Resources/flow_cytometry_glossary.htm, 2007-05-11"</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1678,11 +1685,11 @@ FG: Or as function.</editor_note>
     ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000002">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >gamma_counter</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400003"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >gamma_counter</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400012">
     <rdfs:subClassOf>
@@ -1707,8 +1714,8 @@ FG: Or as function.</editor_note>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_51">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A liquid chromatography mass spectrometry platform is a platform that is the collection of instrument, software and reagents needed to perform a liquid chromatography mass spectrometry protocol. definition_source: OBI.</definition>
-    <rdfs:label xml:lang="en">liquid_chromatography_mass_spectrometry_platform</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_50"/>
+    <rdfs:label xml:lang="en">liquid_chromatography_mass_spectrometry_platform</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400104">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1963,12 +1970,12 @@ FG: Or as function.</editor_note>
     >DS: Is a fluid an instrument? Or even part of an instrument ?</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_39">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A column chromatography matrix is a cardinal part of a liquid chromatography instrument that is the stationary phase in the chromatography column that is able to selectively bind materials. definition_source: OBI.</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
     <rdfs:label xml:lang="en">column_chromatography_matrix</rdfs:label>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >syn:stationary_phase</editor_note>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A column chromatography matrix is a cardinal part of a liquid chromatography instrument that is the stationary phase in the chromatography column that is able to selectively bind materials. definition_source: OBI.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400109">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2007,16 +2014,16 @@ FG: Or as function.</editor_note>
     >MO</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_40">
-    <rdfs:label xml:lang="en">?column_chromatography_solvent</rdfs:label>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >syn: mobile_phase</editor_note>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >DS: is this solvent part of the instrument itself ?</editor_note>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A column chromatography solvent is a cardinal part of a liquid chromatography instrument that is a liquid that is used to dissolve the components to be separated in the column chromatography matrix. definition_source: OBI.</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >syn: mobile_phase</editor_note>
+    <rdfs:label xml:lang="en">?column_chromatography_solvent</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A column chromatography solvent is a cardinal part of a liquid chromatography instrument that is a liquid that is used to dissolve the components to be separated in the column chromatography matrix. definition_source: OBI.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400080">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2117,10 +2124,10 @@ FG: Or as function.</editor_note>
     >"http://en.wikipedia.org/wiki/Laser#Gas_lasers, 2007-04-30"</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000004">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >polystyrene_tubes</rdfs:label>
     <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >scintillation_tubes</alternative_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >polystyrene_tubes</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400049">
@@ -2206,10 +2213,10 @@ FG: Or as function.</editor_note>
     >graph_position_temporary</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"Practical Flow Cytometry 4th Edition, Howard Shapiro, ISBN-10: 0471411256, ISBN-13: 978-0471411253"</definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >John Quinn</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"Part of the fluidic subsystem. The sheath propellent is a gas, usually air or nitrogen, used to push the sheath fluid into the flow chamber at a constant rate. Sheath propellent is used to push the sheath fluid into the flow chamber."</definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2276,10 +2283,10 @@ FG: Or as function.</editor_note>
     >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_41">
-    <rdfs:label xml:lang="en">pump_valve_switch</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A pump valve switch is a cardinal part of a liquid chromatography instrument that controls the flow. definition_source: OBI.</definition>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_37"/>
+    <rdfs:label xml:lang="en">pump_valve_switch</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400007">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2340,7 +2347,7 @@ FG: Or as function.</editor_note>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400132">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This is a helper class / bin to collect things that will be modeled as relations...</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_47"/>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400133"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >_collected_relations</rdfs:label>
   </owl:Class>
@@ -2365,9 +2372,9 @@ FG: Or as function.</editor_note>
     >"Gold vapor laser, Helium-cadmium metal-vapor laser"</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000008">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >supernatant_collection_system_harvesting_frames</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400099">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2410,9 +2417,9 @@ FG: Or as function.</editor_note>
     >"The Guava Personal Cell Analysis-96 (PCA-96) Systems is an analyser that includes a single 532 nm laser, and filters and PMTs to collect up to 2 flourescent parameters. It includes a photodiode forward scatter collector.Guava cytometers use aspiration instead of fluid systems to transport cells within the machine. The PCA96 uses either tubes or 96 well plates to introduce specimen. The Guava PCA -96 cytometer is a small portable cytometer particularly useful for field measurement."</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000001">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >microtitre_plate</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400079">
     <rdfs:label xml:lang="en">optical_filter</rdfs:label>
@@ -2509,16 +2516,16 @@ FG: Or as function.</editor_note>
     <rdfs:label xml:lang="en">Cyan</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000007">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >filtration_instrument</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400004"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400008">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400044"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"FACS Calibur, Luminex 100"</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400044"/>
     <rdfs:label xml:lang="en">flow_cytometer_analyzer</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
