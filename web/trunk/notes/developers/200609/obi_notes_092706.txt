@@ -1,0 +1,160 @@
+OBI Developers Conference Call - 09/27/06
+
+Agenda: 
+1) Review import of BFO. See SF SVN for files, esp. step 3.
+
+2) Agree to metadata terms to include in OBI
+
+Participants: Bill Bug (BB), Daniel Schober (DS), Tanya Gray (TG), Ryan Brinkman (RB), Joe White (JW), Trish Whetzel (TW), Bjoern Peters (BP), Allyson Lister (AL), Barry Smith (BS), Liju Fan LF), Daniel Rubin (DR)
+
+Item 1
+Review the step 3 file - to gain agreement on the first phase of the import of bfo
+-classes changed - 
+
+
+JW - difference between entity and continuant?
+
+BS - in umls, items are divided into 2 grand categories, entities and events;
+unfortunate that umls used the term entity, but need this to talk about the lower levels. there are entities that do not cont to exist over time.
+
+LF - is entity the union of continuant and occurrent. is owl:Thing the 
+
+BS - the appropriate top level is owl:Thing if in OWL
+
+DR - would it make sense to put doc on entity so that this is known to be diff from umls
+
+BB - is it true that all umls entities are continuants and occurrents
+
+BS - not to be reviewed for now
+
+AR - owl:Thing and bfo-entity are not equivalent for the semantic web issues 
+
+LF - if entity is not equivalent to owl:Thing then is it equivalent to rdfs:Class
+
+BS - not proper to discuss here, each ontology will have it's own ontology language representation. 
+
+BB - i agree, but the assumption is that FOL, Protege-Frames, etc. are equivalent in representation
+
+LF - comment on integration, when moving classes around can obi be said to be equivalent to bfo:continuant 
+
+JW - i think this is what TW was asking?
+
+TW - not quite, just check definitions
+
+BB - for equivalent, there isn't a reason to maintain separate classes?
+
+LF - if there is entity, continuant, etc. hard to know where the term came from.
+
+BB - this is the use of the annotation properties. any collection of obi terms can be put in a separate owl file and used. 
+
+RB - i think that the limbo terms are at the bottom of the file and we are trying to solve that now
+
+BB - anyone that has used obi would want to know what has happened to them
+
+AL - thought that one of the benefits was that we are in development and anyone uses the obi file as is
+
+HS - choice of union not disjoints. followed process laid out from BS paper. be able to model everything under the existing terms. others have thought similar to the obi developers, but can model some terms further down the tree.
+
+BS - while what works for the top-level is what Holger described will need to be kept open as our knowledge grows.
+
+LF - agree with BS. ok for top-level node, but it is for the lower levels where this is a problem
+
+HS - might be a slight discrepancy in what is called top level, lower level etc. we consider this on top of everything else. bfo classes are truely for an upper level ontology to be 'on top' of all else.
+
+clinical trials project uses bfo and then with more thought became clear to put the classes of their interest under bfo.
+
+LF - to tree a class with subclasses, might go up to a higher node and might not be allowed (maybe not likely?).
+
+BB - not allowed?
+
+LF - because of use of disjoint?
+
+BS - all the work that is being done is empirical and those responsible need to correct the work to accommodate the work. keep in mind that bfo has been tested for 4 years in diff environments and stable for 2 years.
+
+HS - use the union of to disallow others from adding without contacting bfo folks.
+
+LF - spatial region in bfo, during FuGO workshop this was a independent continuant. where does this fit in?
+
+BS - spatial region in bfo is not useful for obi. it is meant for Newtonian physics, not relevant to biology, what is important is the part of a cell within. simply ignore spatial region in future discussions.
+
+AR - not allowed to have a sibling class when there is a disjoint or union of. this is not correct. the appropriate challenge is to say here is an instance of something that doesn't seem to be in the disjoint union. the challenge is an instance.
+
+TW - does the discussion fit so far?
+
+LF - still question about spatial region
+
+BB - spatial region as exists in obi is an independent continuant then we would still have to keep them in obi.
+
+BB - we have bfo here and the work from others for the biological layer- ontology of biomedical reality.
+
+LF - the biological layer and things like continent
+
+BS - children is site and can contain the things that Liju mentioned. there are some spatial regions that exist whether or not there is any material support (e.g. regions of deep space)
+
+site only exists when there is some material support, site is island where animals might live and is where the continuant independent continuant might be
+
+every space that is reviewed in biology is a site
+an island is a site and is a spatial region relative to concerns of humans. we are not doing physics. ignore bfo spatial region and populate site with items mentioned for biology. distinct from object since not filled with mass.
+
+strategy - for obi, insist that obi is self-contained. should be linked tightly to ontologies in other domains. create a copy of bfo and include in obi.
+
+each model organism is going to create a model org anatomy compatible with CARO. don't create obi under bfo since this will lead to multiple inheritance in obi.
+
+BB - practice based on a given practice of developers
+
+BS - example, mouse anatomy would include CARO within the mouse ontology itself
+
+links to terms like independent continuant in obi
+
+AR - this is not going to be understood in the time left in this meeting. this requires a separate time frame. 
+
+BB - can send this example out to the list on this.
+
+BS - OBO Foundry is to work with others. therefore contact others. 
+
+
+Action Items:
+All - If people do not agree that the terms listed below (list 1) are redundant, send an email to the list to state why. Please do ASAP.
+
+All - Review the additional terms that need to 'find a home' between bfo and obi (list 2). Are the classes 'equivalent'/synonymous?
+
+Barry - send mail as to how to use BFO for the purposes of OBI with respect to owl:Imports and the issue with multiple inheritance
+
+Daniel - follow-up on item mentioned in step3.txt file
+redundant bfo-namespace class "fiat_object_part". One has the rdf:ID "snap:FiatObjectPart" and the following definition:"An independent continuant that is part of an object but is not demarcated by any physical discontinuities"
+and the other has the rdf:ID "snap:SubstancePortion" and the definition:"An aggregate of objects that is continuous and strongly homogeneous").
+Both are siblings under bfo:independent_continuant. I assume one will be deleted or renamed ? (I send this to Holger and Barry).
+
+
+=-=-=-=-=-=
+
+Agenda for Next Week:
+-If needed, discuss any remaining 'list 1' terms so that we can remove the duplicates in whatever mechanism is appropriate based on information from Barry on usage of BFO.
+
+-Agree where to locate the terms in list 2
+=-=-=-=-=
+
+LIST 1
+continuant		obsolete, subclasses transferred
+dependent_continuant	obsolete, subclasses transferred
+function		obsolete
+independent_continuant	obsolete, subclasses transferred
+occurrent		obsolete, subclasses transferred
+process			obsolete, subclasses transferred
+role			obsolete, subclasses transferred
+site			obsolete
+spatial_region		obsolete
+
+
+LIST 2
+OBI:cardinal_part_of_qualitative_value:quality	bfo:dependent_continuant:quality
+OBI:state  				-->bfo:quality			?
+OBI:characteristic 			-->bfo:quality			?
+OBI:realizable_continuant  		-->bfo:realizable_entity	obsolete, subclasses transferred
+OBI:dependant_continuant:time_interval 	-->bfo:occurrent:temporal:region:?
+OBI:dependant_continuant:time_point	-->bfo:occurrent:temporal:region:?
+OBI:collection_of_physical_entities	-->bfo:object_aggregate		?
+OBI:physical_entity			-->bfo:object			?
+OBI:boundary				-->bfo:object_boundary		?
+"?" means we have to find an agreement here.
+

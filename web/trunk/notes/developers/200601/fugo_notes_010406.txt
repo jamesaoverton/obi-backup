@@ -1,0 +1,190 @@
+FuGO Call 4 Jan 2006
+--------------------
+
+Note: next week coord call
+
+Participants: Chris S, Jenn, HC HP, Ryan, Susanna, Philippe, Mervi, Chris t, Tina B, Barry Smith, Liju Fan
+
+Agenda:
+1. recap last call decisions
+
+2. review proposed top level classes
+
+TW review decisions
+
+Top level hierarchies - sep and linked between them a la GO
+Idea from BS - FuGO will be an ontology of descriptors for functional genomics experiments. 
+
+CT:workflow is the job of a data model and not the ontology, agree
+Comments on Chris's list to add
+
+TW:check with the RSBI people, are there more concerns about capturing methodology? On board with this structure?
+
+SS:how much will impact on the design of the mo rather than classify like and experiment is performed? What will be the pros and cons?
+
+TW:will not lose power for descriptors by taking this route
+
+Other groups want biologists view - personally think the app should present these terms
+
+CT:can’t address question from here, we can look at atomic or terms as phrases, could still go different ways, hard to say? Is open at the moment?
+
+TW:not being prescriptive
+
+CT:phrases that are needed should be in there and these can be reassembled
+
+CS:yes and this is what Barry suggested that we suggest the top terms we want and the top level containers are anchor points for this discussion
+
+tw:top level classes from chris's email
+
+
+BS:should be an is-a core - if you put a descriptor term in root then all subsequent terms will also need to be language. 
+
+
+ct:do we want descriptor - instrument part is not a descriptor - not an is-a
+if you choose descriptor will have it everywhere, suggest that use the world and not descriptor
+
+ct:how resolve part then?
+
+bs:need is-a  and part of as well - 
+
+cs:adding descriptor was a way to get at this fundamental question - so we could reduce the structure and less likely to get to incompatible with OMs that want to use it.
+
+bs:going down the wrong track, you want to build and ontology that will help other biologists, they want to know what info that is gathered via expts - they want to know what the words can be used to say - about eg devices etc
+
+ct: if centrifuge - is an instrument descriptor -  don't need to add descriptor to it
+
+bs:you can stop using the word descriptor at the top - keep it in mind if it helps
+
+lf:instrument vs instrumentation
+conceptual actual physical objects,
+
+BS:use instrument not instrumentation
+
+CT:technology descriptor - suggest domain and not technolgy - a better descriptor, assume thus sub tree is where we get the flags from
+
+rw:yes, this is where we get a view into the ontology
+
+hc:is this not technology type vs tech descriptor - 
+
+ct:these should be bio domains not technology
+
+tw:omics are  a conflated group
+
+tw:do we care more re technology, e.g mass spec?
+
+cs:the intent of this container is to flag by domain or by technology
+
+ct:would like to flag mass spec e.g and the technologies
+
+tw: what does proteomics mean? do we want each or domain or both
+
+ct:technology does collapse into instrument
+
+tw:ok, follows one of the early rules, if term is useful to multiple groups is common - what kind of terms see that will be tagged for proteomics ? 2d gel, mass spec etc?
+
+ct:anything related to the study of proteins and peptides and their properties
+not defined, these are flags add to terms, and reflects the colloquial usage
+
+tw:would mass spec be a prot term - could you give me something more specific that would be tagged as proteomics two 2d gel analysis of plasma
+
+tw:can you give me a discrete term?
+
+ct:not clear what I am aiming at tech are not exclusive to proteomics
+
+tw:I am trying to define the difference between proteomics and technology
+
+lf: tech and seq are 2 different things - dna sequencing is a technique, a sequencer is an instrument
+
+tw:I think we need these high level terms, proteomics and metabolomics don't mean anything
+
+lf:we are not just putting concepts in trees - can also have part of and other relationship types, 
+
+tw:i don't have problems with domain - we have used in our documents 
+
+ss:still uneasy with having toxico genomics etc with proteomics  - if proteomics is a domain - there are relations between these concepts
+
+lf:two sets of is-a bio domain and technology, we can use two trees
+
+ct:where we say mass spec we can define this, is we say that something is an assay we can define that, but defining systems biology and has a proteomics technology
+
+
+cs:ontolgy question - with containers - if we take away descriptors  - address things, data, processes, and disciplines, at least 4 parts we are addressing, bs is this  a problem, ?
+
+bs:good way to do this, if you need to keep terms per discipline like proteomics maybe flat lists not necessary of equal standing as other trees.
+data may be a problem, will get into cs when want to know what is relevant for your experiments  
+
+cs:data types and not data itself, data is not instantiated in the ontology
+
+bs:not all descriptors are of data, can use the term descriptors lower down in the mo - should be using when the term us a leaf term, not high up.
+
+hp:agree with chris but not much mileage in starting here
+
+ct:to be agnostic about the domains take the approach of the alien in a lab, to attack it at the what is there level, agrees with hp
+
+
+AA:we agree that terms for domains are probably needed and therefore we should concentrate on the tangible and deal with this later.
+
+CT:re classes, do they need sub dividing at the same level, should they have parts ? are these enough classes?
+
+bs:if you do an anat ontology d2 1. organ - and various organs, heart lung, hear is a organ and get a tree and then get organ is an anatomical structure, organs have parts lobe is part of lung, a lobe is not an organ, gets a new parent organ part, neat way of doing this, get fma - part of and is a at the same time, 
+
+could so the same with instruments, also need instrument parts, has all the kinds of instrument parts, with experiment will have many parts, and will need to list them.
+
+ct:what did the fma do with parts?
+
+lf:does anyone have fma?
+
+hp:freely available version at u w.
+
+tw:chris mentioned things processes etc, do you want to fit the 
+
+materials instruments are things
+protocols and investigation are processes
+discipline would capture technology descriptions
+datatype - include data and resources
+
+ct:looking at the fma, spatial relations, is and part of - need to look at the is a part of
+
+lf:what about the multiple parentage e.g. lung lobe vs liver lobe  - term is lobe of lung - these are precise
+ct:can query what’s lobular - e.g lobular organ?
+
+ss:spatial relationship, what about temporal relationship?
+
+bs:temp relations can cause problems - get different type at different time, with experiments are temporally simple, not a life cycle or a cell differentiation.
+
+accounting for time and relativity a has changed over period - not sure if there are concepts where things change over time
+
+bs:if you have time need temporal relation - may need earlier than?
+
+jf: i agree
+
+ss:for tox need to know relative timeline of the study
+
+ct:can do with a notion of time and events - data model - 
+
+BS - GO lot of time, but no temporal relations, build what you are confident of and add other
+relations later
+
+CT - are there more things more complex than timepoints or time stamps that the ontology needs to capture?
+
+HC - check with the Metabolomics community
+
+CT - should FuGO have these concepts/model the concept of time, this sounds like concepts that would be captured by an object model
+
+CS - we are talking about relations
+
+CT - request to have RSBI think about time concept and whether this is needed, keep in mid that the data model will allow us to time stamp when things happen
+
+CS - review the concepts that we the various communities have listed so far and see what relations are needed? is there a need for something more than is_a and part_of?
+
+CT - check FMA, are three top level classes enough
+
+TW - it is fine to start with only 3 top-level classes for now, if more are needed then that will become apparent as we progress through the ontology development
+
+SS - there is a Metabolomics meeting next week, is it ok to present the discussions so far regarding this top-level structure?
+
+TW - sure, the top-level structure of the ontology is still under development, but this is the work to date.
+
+Assignment for the next developers call:
+Begin to put the concepts (top50 list) into the existing trees that have been identified and review as to what kind of relations are necessary for these concepts
+
