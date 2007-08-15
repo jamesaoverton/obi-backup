@@ -1,0 +1,181 @@
+Liju (LF), Ryan (RB), Mervi (MH), Gilberto (GF), Chris S (CS), Helen C (HC), Helen P (HP), Joe White (JW), Trish (TW)
+
+=-=-=-=-=
+Discussion of large_scale
+Ryan - term was intended to know how much of the genome was examined
+subjects - from Barry and this is not in our current Use Cases
+
+Tina - amount of coverage of the genome examined
+
+LF - use of property will fix the problem and allow the user to allow to choose if this is genome_wide or not, use Datatype property with a filler of boolean
+
+CS - what becomes a type versus a property? e.g. 'strain or line' design vs genome wide
+
+LF - def can be in property or in the value, when search engine looks at this then this can be searched
+
+HP - this can't be implemented in current AE, neeeded now so if not agreement by all then need another solution. assumes that I have a local implementation of this search engine, which I don't - and no resources to build one either. So lets be pragmatic here
+
+CS - policy and implemetation in apps, with MO we don't use properties to qualify the terms, but as some additional terms within the ontology
+genome_wide seems like a type and keep property to qualify the type of the term
+Chris suggest that application type stuff, - term annotation - rather than semantic content
+
+LF - SPARQL can be used for this and is free
+AA: Send out URL for SPARQL query engine
+
+TW: with properties - if adds an adjective to the term, SNP/large scale - this is not an is-a then this could become a property
+
+
+LF: "large" does follow is_a for a term like large_scale_SNP_design, it is not that it is an adjective that it is a problem
+
+HP - large is subjective and will cause problems later, keep this simple
+
+HC - genome_wide is complicated, can be ORF or the introns
+
+CS - the scale is understood to be genome wide 
+TB - we can specify in the def what this accounts for - ORFS or introns etc.
+
+RB - currently genome_wide is the synomyn
+ALL - prefer this as the term name
+
+CS:genome wide scale is a scale
+
+HP:do we mean genome wide - genomic - transcriptomic
+
+LF - do we need to care about scale? scale is magnitude of something. scale of something is not dependent, need to be defined in relation to something that is independent
+
+HC - define in proportion to the genome
+LF - use to desc experiments?
+JF - no, that is biology not technology
+HP - this concept is used locally as an exp that examines either a pathway or genome_wide therefore this is biology
+JF - genome_wide goes to what one is measuring and is part of experiment, 
+
+TB - genome_wide is one particluar assay measures across the genome
+
+TW - where would this term fit?
+JF - assay
+ALL - agree that assay is the parent
+
+RB:will this be in design?
+LF - prob need a diff relationship for this since it is not a is_a, 
+
+TW:assay is under protocol application, under process
+
+HC - it is an object
+TW - assay is a process term
+CS - all the type terms are nouns, terms need to be singular nouns
+
+LF - genome_wide assay would be ok as a process
+CS - a genome_wide assay is a subtype of assay unless there are other subtypes of things that are genome_wide then put it back under design...
+
+LF - good point, think that we have assays across experiments - meta analysis of several studies, could be applied to studies. In that case the analysis would still be a process, and as such an assay.
+JF - distinguish type of study
+
+LF - leave as subclass of assay
+
+DEFINE THE TERM
+genome_wide_assay - see below
+
+HP - can we put intent into an assay
+RB - sounds like a purpose or objective
+
+CS - a genome_wide_assay is one in which measurements are made across the genome
+
+JF - others are enzymatic assay or microscopic assay - returns a number or an image
+CS - can still do a genome_wide_assay using either
+
+HP - nervous about terms defined on their output
+HC - intent in definition? we have tried to deal with the idea of whats planned and what isn't protocolappl does include intended and unintended events 
+
+LF - genome_wide is usually a fishing expedition? generate a hypothesis
+HC - disagree with this
+we had a discussion wih BS on 11 May - decided to avoided hypothesis
+
+RB - genome_wide can be hypothesis generating or not, from our experience this seemed useful
+
+HC - hypothesis generating - seems like this was too fuzzy
+CS - I'd like to see hypothesis captured in the design and not label whether something is hypothesis generating or not
+
+AA HC:I think we agreed, and I will post that to the tracker after
+
+REMOVE FROM THE PROPOSAL
+--scale                                                                          
+---scale_involving_large_numbers_of_subjects                                     
+---scale_involving_small_numbers_of_subjects 
+
+--purpose -> add this as a synonym to objective
+
+=-=-=-=-=-=-=-=
+JF and Tox Terms
+the revised terms doesn't follow the data model and is split out by subject matter
+
+things being discussed under design seem like they are factors
+
+HP:these are subjective, so I suggest that these are hypotheses or purposes
+
+TW:I was replacing stressor with factor. It is not the stressor and factor are the same thing, but the point is to identify those things that we know have been used as factors in a study and are terms that we want to include. The notion of the factor being a stressor or not can be discussed later if this is still needed.
+
+HC- anything can be a factor so does this need to be explicitly stated?
+
+
+JF - helpful to not list everything under design, rather see these factors
+
+
+HP - if notion of stressor is built in the ontology then this is a problem, 
+HC - what is a stressor in one organism is not in another 
+CS - can these be viewed as subtype of a factor
+JF - yes
+JF - some of these are known to not cause stress
+
+LF - view as a synonym?
+CS - no, this is not true in all cases, e.g. tissue survey - these are not stressors
+
+LF - can be an applied factor?
+HP - things that I do or are inherent props of the organism
+LF - is the factor the thing that is being looked at in the experiment? 
+CS - use cases, i need to know if cells are treated with some cytokine does transcription increase, therefore want to pull back these experiments
+
+HP - if it is a factor then it is a factor under study
+JF - frequently there are a large number of variables in the exp and not all are important
+
+HP - in CS example 
+properties of the organism and things that are applied to the organism
+
+JF - fish from different ponds
+LF - group as environmental factor?
+
+HC - if there is a chemical found naturally in the body and then applied, this is an application/treatment it would still be a 
+
+RB - if the fish are in diff ponds then they are inherently being treated differently
+LF - use exposure to something?
+TB - diff is a naturally occuring thing versus actively doing something
+
+LF - there are different env in a lab
+
+HP - did we decide on subclasses of study_factor
+--intrinsic
+--environmental 
+--treatment
+
+TW - I prefer to list out all the factors of interest first and see what groups they form rather than identify the groups first. 
+
+GF - some of these can be just params of the experiment and some can be factors, use properties to bring together
+
+CS - is this necessary? create terms that are needed to capture something
+
+GF - in one case you want to record param and in antoher it is the factor, link by a property to indicate the role
+
+LF - cancer study - selenium supplement inhibits the growth, although can not use the ontology to put everything there
+
+HC - factor is an intended variable
+HP - GF is proposing a modeling decision and this is ok
+
+HP:dose_effect/dose_factor - could be renamed - 
+AA:TW to put this in the tracker
+
+=-=-=-=-=
+WORK FOR NEXT WEEK
+-JF - send out a the factor terms as re-named and re-dinfed to fit with FuGO style
+-HP, HC, TW - define and re-name the factor terms from the list sent by HP
+-TW - post to tracker to re-name study_factor children
+
+
