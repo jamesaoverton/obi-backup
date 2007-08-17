@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <rdf:RDF
+    xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
     xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
     xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:p1="http://obi.sourceforge.net/ontology/OBI/Plan.owl#"
-    xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
-    xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -18,6 +18,8 @@
     >$Revision$</owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_349">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is a plan to carry out a process or an event if the trigger condition is fulfilled</definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >instruction_trigger</rdfs:label>
     <rdfs:subClassOf>
@@ -25,8 +27,6 @@
     </rdfs:subClassOf>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></editor_note>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is a plan to carry out a process or an event if the trigger condition is fulfilled</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#concretized_information_entity">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#RealizableEntity"/>
@@ -134,17 +134,17 @@
     <rdfs:label xml:lang="en">n-to-1_design</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is a set of instructions or rules that specifying how an entity should be realized</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Part of range for an object property "is_potentially_realizable_as" in obi before split (LF 040907)</editor_note>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >information_entity</rdfs:label>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is a set of instructions or rules that specifying how an entity should be realized</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant"/>
     </rdfs:subClassOf>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Part of range for an object property "is_potentially_realizable_as" in obi before split (LF 040907)</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_270">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
@@ -253,10 +253,10 @@
     >"PMID: 17411393-Dye-specific bias effects, commonly observed in the two-color microarray platform, are normally corrected using the dye swap design. This design, however, is relatively expensive and labor-intensive. We propose a self-self hybridization design as an alternative to the dye swap design. In this design, the treated and control samples are labeled with Cy5 and Cy3 (or Cy3 and Cy5), respectively, without dye swap, along with a set of self-self hybridizations on the control sample. We compare this design with the dye swap design through investigation of mouse primary hepatocytes treated with three peroxisome proliferator-activated receptor-alpha (PPARalpha) agonists at three dose levels. Using Agilent's Whole Mouse Genome microarray, differentially expressed genes (DEG) were determined for both the self-self hybridization and dye swap designs. The DEG concordance between the two designs was over 80% across each dose treatment and chemical. Furthermore, 90% of DEG-associated biological pathways were in common between the designs, indicating that biological interpretations would be consistent. The reduced labor and expense for the self-self hybridization design make it an efficient substitute for the dye swap design. For example, in larger toxicogenomic studies, only about half the chips are required for the self-self hybridization design compared to that needed in the dye swap design."</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_187">
-    <rdfs:label xml:lang="en">data_format_specification</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data format specification is a plan which organizes information. Example: The ISO document specifying what encompasses an XML document; The instructions in a XSD file</definition>
+    <rdfs:label xml:lang="en">data_format_specification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500014">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -270,11 +270,11 @@
     >PRS</definition_editor>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"PMID: 17582121-Our objective was to examine the effects of dietary cation-anion difference (DCAD) with different concentrations of dietary crude protein (CP) on performance and acid-base status in early lactation cows. Six lactating Holstein cows averaging 44 d in milk were used in a 6 x 6 Latin square design with a 2 x 3 factorial arrangement of treatments: DCAD of -3, 22, or 47 milliequivalents (Na + K - Cl - S)/100 g of dry matter (DM), and 16 or 19% CP on a DM basis. Linear increases with DCAD occurred in DM intake, milk fat percentage, 4% fat-corrected milk production, milk true protein, milk lactose, and milk solids-not-fat. Milk production itself was unaffected by DCAD. Jugular venous blood pH, base excess and HCO3(-) concentration, and urine pH increased, but jugular venous blood Cl- concentration, urine titratable acidity, and net acid excretion decreased linearly with increasing DCAD. An elevated ratio of coccygeal venous plasma essential AA to nonessential AA with increasing DCAD indicated that N metabolism in the rumen was affected, probably resulting in more microbial protein flowing to the small intestine. Cows fed 16% CP had lower urea N in milk than cows fed 19% CP; the same was true for urea N in coccygeal venous plasma and urine. Dry matter intake, milk production, milk composition, and acid-base status did not differ between the 16 and 19% CP treatments. It was concluded that DCAD affected DM intake and performance of dairy cows in early lactation. Feeding 16% dietary CP to cows in early lactation, compared with 19% CP, maintained lactation performance while reducing urea N excretion in milk and urine."</example_of_usage>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >factorial_design</preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500000"/>
     </rdfs:subClassOf>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >factorial_design</preferred_term>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MSI</editor_note>
   </owl:Class>
@@ -395,10 +395,10 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500016">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500014"/>
+    <rdfs:label xml:lang="en">fractional_factorial_design</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example to be added</example_of_usage>
-    <rdfs:label xml:lang="en">fractional_factorial_design</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500014"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >fractional_factorial_design</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -416,9 +416,9 @@
     >time_trigger</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_310">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_349"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >adverse_event_trigger</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_349"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500025">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -439,12 +439,12 @@
     <rdfs:label xml:lang="en">ethical_standard_compliance_rule</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_335">
+    <rdfs:label xml:lang="en">investigation_design</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
-    <rdfs:label xml:lang="en">investigation_design</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Investigation_design is a plan for an investigation. definition_source: OBI.</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500023">
     <rdfs:label xml:lang="en">compliance_rule</rdfs:label>
@@ -508,9 +508,9 @@
     >MSI</editor_note>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS</definition_editor>
+    <rdfs:label xml:lang="en">latin_square_design</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"PMID: 17582121-Our objective was to examine the effects of dietary cation-anion difference (DCAD) with different concentrations of dietary crude protein (CP) on performance and acid-base status in early lactation cows. Six lactating Holstein cows averaging 44 d in milk were used in a 6 x 6 Latin square design with a 2 x 3 factorial arrangement of treatments: DCAD of -3, 22, or 47 milliequivalents (Na + K - Cl - S)/100 g of dry matter (DM), and 16 or 19% CP on a DM basis. Linear increases with DCAD occurred in DM intake, milk fat percentage, 4% fat-corrected milk production, milk true protein, milk lactose, and milk solids-not-fat. Milk production itself was unaffected by DCAD. Jugular venous blood pH, base excess and HCO3(-) concentration, and urine pH increased, but jugular venous blood Cl- concentration, urine titratable acidity, and net acid excretion decreased linearly with increasing DCAD. An elevated ratio of coccygeal venous plasma essential AA to nonessential AA with increasing DCAD indicated that N metabolism in the rumen was affected, probably resulting in more microbial protein flowing to the small intestine. Cows fed 16% CP had lower urea N in milk than cows fed 19% CP; the same was true for urea N in coccygeal venous plasma and urine. Dry matter intake, milk production, milk composition, and acid-base status did not differ between the 16 and 19% CP treatments. It was concluded that DCAD affected DM intake and performance of dairy cows in early lactation. Feeding 16% dietary CP to cows in early lactation, compared with 19% CP, maintained lactation performance while reducing urea N excretion in milk and urine."</example_of_usage>
-    <rdfs:label xml:lang="en">latin_square_design</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Latin square design is_a study design which allows in its simpler form controlling 2 levels of nuisance variables (also known as blocking variables).he 2 nuisance factors are divided into a tabular grid with the property that each row and each column receive each treatment exactly once.</definition>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500007"/>
@@ -593,6 +593,12 @@
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"PMID: 17561240-The present experiment evaluates the effects of intermittent exposure to a social stimulus on ethanol and water drinking in rats. Four groups of rats were arranged in a 2x2 factorial design with 2 levels of Social procedure (Intermittent Social vs Continuous Social) and 2 levels of sipper Liquid (Ethanol vs Water). Intermittent Social groups received 35 trials per session. Each trial consisted of the insertion of the sipper tube for 10 s followed by lifting of the guillotine door for 15 s. The guillotine door separated the experimental rat from the conspecific rat in the wire mesh cage during the 60 s inter-trial interval. The Continuous Social groups received similar procedures except that the guillotine door was raised during the entire duration of the session. For the Ethanol groups, the concentrations of ethanol in the sipper [3, 4, 6, 8, 10, 12, 14, and 16% (vol/vol)] increased across sessions, while the Water groups received 0% ethanol (water) in the sipper throughout the experiment. Both Social procedures induced more intake of ethanol than water. The Intermittent Social procedure induced more ethanol intake at the two highest ethanol concentration blocks (10-12% and 14-16%) than the Continuous Social procedure, but this effect was not observed with water. Effects of social stimulation on ethanol drinking are discussed."</example_of_usage>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_272">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition: Protocol is a plan outlining a set of instructions which can be realized as a protocol application. Example: The SOP describing the execution of a clinical trial. Affymetrix Mass 5 analysis. The dose and route of administration of myosin into a mouse.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
+    <rdfs:label xml:lang="en">protocol</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500018">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
@@ -610,12 +616,6 @@
     >MO</editor_note>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example to be added</example_of_usage>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_272">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Definition: Protocol is a plan outlining a set of instructions which can be realized as a protocol application. Example: The SOP describing the execution of a clinical trial. Affymetrix Mass 5 analysis. The dose and route of administration of myosin into a mouse.</definition>
-    <rdfs:label xml:lang="en">protocol</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500012">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -639,9 +639,11 @@
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500006">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_500000"/>
-    <rdfs:label xml:lang="en">parallel group_design (syn:Independent measures design)</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://www.holah.karoo.net/experimentaldesigns.htm</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >parallel_group_design</preferred_term>
+    <rdfs:label xml:lang="en">parallel_group_design</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"An independent measure design is a study design which uses unique experimental unit each experimental group, in other word no two individuals are shared between experimental groups, hence also known as parallel group design"</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -650,8 +652,8 @@
     >"PMID: 17408389-Purpose: Proliferative vitreoretinopathy (PVR) is the most important reason for blindness following retinal detachment. Presently, vitreous tamponades such as gas or silicone oil cannot contact the lower part of the retina. A heavier-than-water tamponade displaces the inflammatory and PVR-stimulating environment from the inferior area of the retina. The Heavy Silicone Oil versus Standard Silicone Oil Study (HSO Study) is designed to answer the question of whether a heavier-than-water tamponade improves the prognosis of eyes with PVR of the lower retina. Methods: The HSO Study is a multicentre, randomized, prospective controlled clinical trial comparing two endotamponades within a two-arm parallel group design. Patients with inferiorly and posteriorly located PVR are randomized to either heavy silicone oil or standard silicone oil as a tamponading agent. Three hundred and fifty consecutive patients are recruited per group. After intraoperative re-attachment, patients are randomized to either standard silicone oil (1000 cSt or 5000 cSt) or Densiron((R)) as a tamponading agent. The main endpoint criteria are complete retinal attachment at 12 months and change of visual acuity (VA) 12 months postoperatively compared with the preoperative VA. Secondary endpoints include complete retinal attachment before endotamponade removal, quality of life analysis and the number of retina affecting re-operation within 1 year of follow-up. Results: The design and early recruitment phase of the study are described. Conclusions: The results of this study will uncover whether or not heavy silicone oil improves the prognosis of eyes with PVR."</example_of_usage>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MSI</editor_note>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >parallel group_design (syn:Independent measures design)</preferred_term>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >independent_measure_design</alternative_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS</definition_editor>
   </owl:Class>
@@ -675,4 +677,4 @@
   </owl:Class>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.3, Build 414)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.3, Build 411)  http://protege.stanford.edu -->
