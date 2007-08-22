@@ -9,12 +9,16 @@
   <owl:Ontology rdf:about=""/>
   <owl:Class rdf:ID="cell_culture">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="assemblage"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="petri_dish"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="formed_from"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <owl:Class rdf:ID="growth_medium"/>
+            </owl:allValuesFrom>
+          </owl:Restriction>
         </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="assembled_from"/>
@@ -23,14 +27,8 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#assembled_from"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="formed_from"/>
-            </owl:onProperty>
             <owl:allValuesFrom>
               <owl:Restriction>
                 <owl:onProperty>
@@ -41,20 +39,9 @@
                 </owl:allValuesFrom>
               </owl:Restriction>
             </owl:allValuesFrom>
-          </owl:Restriction>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Restriction>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#formed_from"/>
             </owl:onProperty>
-            <owl:allValuesFrom>
-              <owl:Class rdf:ID="growth_medium"/>
-            </owl:allValuesFrom>
           </owl:Restriction>
         </owl:someValuesFrom>
         <owl:onProperty>
@@ -62,22 +49,28 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="polyacrylamide_gel">
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="pure_water"/>
+          <owl:Class rdf:ID="petri_dish"/>
         </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="has_constituent"/>
+          <owl:ObjectProperty rdf:about="#assembled_from"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
+      <owl:Class rdf:ID="assemblage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="polyacrylamide_gel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="gel"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#has_constituent"/>
+          <owl:ObjectProperty rdf:ID="has_constituent"/>
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
@@ -97,7 +90,14 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="gel"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_constituent"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="pure_water"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Cy5">
@@ -111,27 +111,21 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="plastic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#collective"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="glass"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="salt_solution"/>
+      <owl:Class rdf:about="#gel"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#pure_water"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#gel"/>
+      <owl:Class rdf:ID="salt_solution"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="hetergenous_portion"/>
+      <owl:Class rdf:ID="glass"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="homogenous_portion"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#collective"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#cell">
     <rdfs:subClassOf>
@@ -144,6 +138,19 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#pure_water">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#gel"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#plastic"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#salt_solution"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#glass"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#collective"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -154,64 +161,64 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#collective"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#glass"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#salt_solution"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#plastic"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#gel"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#hetergenous_portion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#homogenous_portion"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="object_aggregate">
     <owl:disjointWith>
       <owl:Class rdf:ID="object"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#object">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A independent continuant that is spatially extended, maximally self-connected and self-contained (the parts of a substance are not separated from each other by spatial gaps) and possesses an internal unity. The identity of substantial objects is independent of that of other entities and can be maintained through time and through loss and gain of parts and qualities.</rdfs:comment>
-    <owl:disjointWith rdf:resource="#object_aggregate"/>
-  </owl:Class>
   <owl:Class rdf:ID="atom">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#assemblage"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#molecule"/>
+    </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="IPG_strip_7cm"/>
     </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#object">
+    <owl:disjointWith rdf:resource="#object_aggregate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A independent continuant that is spatially extended, maximally self-connected and self-contained (the parts of a substance are not separated from each other by spatial gaps) and possesses an internal unity. The identity of substantial objects is independent of that of other entities and can be maintained through time and through loss and gain of parts and qualities.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#polyacrlymide">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#molecule"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#H2O"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="NaCl"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#IPG_strip_7cm">
+    <owl:disjointWith rdf:resource="#atom"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#molecule"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#assemblage"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#polyacrlymide">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="NaCl"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#H2O"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#molecule"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#IPG_strip_7cm">
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="#plastic"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#formed_from"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#assembled_from"/>
         </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Restriction>
             <owl:allValuesFrom rdf:resource="#polyacrylamide_gel"/>
@@ -220,30 +227,11 @@
             </owl:onProperty>
           </owl:Restriction>
         </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#formed_from"/>
-            </owl:onProperty>
-            <owl:allValuesFrom rdf:resource="#plastic"/>
-          </owl:Restriction>
-        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#assembled_from"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#assemblage"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#molecule"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#atom"/>
   </owl:Class>
   <owl:Class rdf:ID="GenePix_Professional_4200A">
     <rdfs:subClassOf>
@@ -252,7 +240,12 @@
   </owl:Class>
   <owl:Class rdf:about="#growth_medium">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#collective"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_constituent"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#pure_water"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -261,57 +254,77 @@
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Restriction>
-            <owl:allValuesFrom>
-              <owl:Class rdf:ID="amino_acid"/>
-            </owl:allValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#has_grain"/>
             </owl:onProperty>
+            <owl:allValuesFrom>
+              <owl:Class rdf:ID="amino_acid"/>
+            </owl:allValuesFrom>
           </owl:Restriction>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#pure_water"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#has_constituent"/>
-        </owl:onProperty>
-      </owl:Restriction>
+      <owl:Class rdf:about="#collective"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#H2O">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#molecule"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#polyacrlymide"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#NaCl"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#polyacrlymide"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#molecule"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#NaCl">
-    <owl:disjointWith rdf:resource="#H2O"/>
-    <owl:disjointWith rdf:resource="#polyacrlymide"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#molecule"/>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#polyacrlymide"/>
+    <owl:disjointWith rdf:resource="#H2O"/>
   </owl:Class>
   <owl:Class rdf:about="#collective">
     <owl:disjointWith>
       <owl:Class rdf:ID="countable"/>
     </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >citation from PMID: 16515892</rdfs:comment>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#has_grain"/>
+          <owl:ObjectProperty rdf:about="#has_constituent"/>
         </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#collective"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#object_aggregate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#collective"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_subportion_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >citation (1a) “Collectives” are made up of “grains” all of which play the same role in the collective.
+
+(1b) “Collectives” are not mathematical sets—their identity is not determined by their membership. (The issue of the identity of collectives is discussed in Section 4.4.1).
+
+(1c) Being a “collective” (“collectivity”) is independent of the number of grains in the collective.
+
+(1d) There are emergent effects and characteristics of collectives as a whole not determinable from the individual characteristics of their grains.</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#countable"/>
         </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_grain"/>
+        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >citation from PMID: 16515892</rdfs:comment>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#collective"/>
@@ -324,92 +337,53 @@
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#collective"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="is_subportion_of"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#object_aggregate"/>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#collective"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#has_constituent"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#collective"/>
-        <owl:onProperty>
           <owl:ObjectProperty rdf:ID="has_subportion"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >citation (1a) “Collectives” are made up of “grains” all of which play the same role in the collective.
-
-(1b) “Collectives” are not mathematical sets—their identity is not determined by their membership. (The issue of the identity of collectives is discussed in Section 4.4.1).
-
-(1c) Being a “collective” (“collectivity”) is independent of the number of grains in the collective.
-
-(1d) There are emergent effects and characteristics of collectives as a whole not determinable from the individual characteristics of their grains.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#glass">
-    <owl:disjointWith rdf:resource="#pure_water"/>
-    <owl:disjointWith rdf:resource="#plastic"/>
+    <rdfs:subClassOf rdf:resource="#collective"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#gel"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#hetergenous_portion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#homogenous_portion"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#collective"/>
+    <owl:disjointWith rdf:resource="#plastic"/>
+    <owl:disjointWith rdf:resource="#pure_water"/>
   </owl:Class>
   <owl:Class rdf:about="#salt_solution">
-    <owl:disjointWith rdf:resource="#pure_water"/>
-    <owl:disjointWith rdf:resource="#plastic"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#gel"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#hetergenous_portion"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#homogenous_portion"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#collective"/>
+    <owl:disjointWith rdf:resource="#plastic"/>
+    <owl:disjointWith rdf:resource="#pure_water"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_constituent"/>
+            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Restriction>
-                <owl:allValuesFrom rdf:resource="#NaCl"/>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:about="#has_grain"/>
                 </owl:onProperty>
+                <owl:allValuesFrom rdf:resource="#NaCl"/>
               </owl:Restriction>
             </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#has_constituent"/>
-            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#pure_water"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#has_constituent"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#pure_water"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#collective"/>
   </owl:Class>
   <owl:Class rdf:ID="formed_from_collective">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A composed from portion is a countable object that all parts are from a portion. For example a glass testube; all parts are from the portion of glass.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#countable"/>
     </rdfs:subClassOf>
@@ -417,17 +391,17 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="#collective"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#formed_from"/>
             </owl:onProperty>
+            <owl:allValuesFrom rdf:resource="#collective"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+            >1</owl:cardinality>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#formed_from"/>
             </owl:onProperty>
-            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-            >1</owl:cardinality>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -435,9 +409,10 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#assemblage"/>
     </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A composed from portion is a countable object that all parts are from a portion. For example a glass testube; all parts are from the portion of glass.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="glass_object">
-    <rdfs:subClassOf rdf:resource="#formed_from_collective"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#glass"/>
@@ -446,23 +421,24 @@
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#formed_from_collective"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="plastic_object"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#organ">
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#assemblage"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="organism"/>
-        </owl:allValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="is_assemblage_of"/>
         </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="organism"/>
+        </owl:allValuesFrom>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#assemblage"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#organism">
@@ -476,8 +452,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#molecule">
-    <owl:disjointWith rdf:resource="#IPG_strip_7cm"/>
     <owl:disjointWith rdf:resource="#atom"/>
+    <owl:disjointWith rdf:resource="#IPG_strip_7cm"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#assemblage"/>
     </rdfs:subClassOf>
@@ -487,42 +463,18 @@
     <rdfs:subClassOf rdf:resource="#formed_from_collective"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#plastic"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#formed_from"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#plastic"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
-  <owl:Class rdf:about="#hetergenous_portion">
-    <rdfs:subClassOf rdf:resource="#collective"/>
-    <owl:disjointWith rdf:resource="#glass"/>
-    <owl:disjointWith rdf:resource="#salt_solution"/>
-    <owl:disjointWith rdf:resource="#pure_water"/>
-    <owl:disjointWith rdf:resource="#plastic"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#gel"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#homogenous_portion"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:about="#countable">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A countable is an object that when split in two the parts are not of the same class as the original object. It is possible that this means the same as object, although this will have to be confirmed with BFO.</rdfs:comment>
     <owl:disjointWith rdf:resource="#collective"/>
     <rdfs:subClassOf rdf:resource="#object"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A countable is an object that when split in two the parts are not of the same class as the original object.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#homogenous_portion">
-    <owl:disjointWith rdf:resource="#glass"/>
-    <owl:disjointWith rdf:resource="#salt_solution"/>
-    <owl:disjointWith rdf:resource="#pure_water"/>
-    <owl:disjointWith rdf:resource="#plastic"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#gel"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#hetergenous_portion"/>
-    <rdfs:subClassOf rdf:resource="#collective"/>
   </owl:Class>
   <owl:Class rdf:ID="Mus_musculus">
     <rdfs:subClassOf rdf:resource="#organism"/>
@@ -536,17 +488,16 @@
     <rdfs:subClassOf rdf:resource="#plastic_object"/>
   </owl:Class>
   <owl:Class rdf:about="#gel">
-    <owl:disjointWith rdf:resource="#glass"/>
-    <owl:disjointWith rdf:resource="#salt_solution"/>
-    <owl:disjointWith rdf:resource="#pure_water"/>
-    <owl:disjointWith rdf:resource="#plastic"/>
-    <owl:disjointWith rdf:resource="#hetergenous_portion"/>
-    <owl:disjointWith rdf:resource="#homogenous_portion"/>
     <rdfs:subClassOf rdf:resource="#collective"/>
+    <owl:disjointWith rdf:resource="#plastic"/>
+    <owl:disjointWith rdf:resource="#pure_water"/>
+    <owl:disjointWith rdf:resource="#salt_solution"/>
+    <owl:disjointWith rdf:resource="#glass"/>
   </owl:Class>
   <owl:Class rdf:about="#assemblage">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An assemblage is a countable which is only composed from countable objects</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#countable"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#countable"/>
@@ -555,17 +506,16 @@
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#countable"/>
     <owl:disjointWith rdf:resource="#formed_from_collective"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="is_grain_of">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The “is grain of” relation is irreflexive, antisymmetric, and non-transitive, i.e., that (i) nothing can be a grain of itself; (ii) a collective cannot be a grain of one of its own grains; and (iii) that grains of grains of a collective are not grains of that collective.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >citation PMID: 16515892</rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#has_grain"/>
     </owl:inverseOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >citation PMID: 16515892</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The “is grain of” relation is irreflexive, antisymmetric, and non-transitive, i.e., that (i) nothing can be a grain of itself; (ii) a collective cannot be a grain of one of its own grains; and (iii) that grains of grains of a collective are not grains of that collective.</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="forms">
     <owl:inverseOf>
@@ -590,15 +540,15 @@
     <owl:inverseOf rdf:resource="#has_subportion"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#formed_from">
-    <owl:inverseOf rdf:resource="#forms"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The "formed from" relation holds between a countable "composed from portion object" and a "collective" . It states that the countable is made up of that kind of matter. For example a glass test-tube is formed from a portion of glass. A bronze statue is formed from a portion of bronze.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#forms"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#has_constituent">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The "has constituent" relationship holds between collectives when one portion has the other as a part. A salt solution is a portion that is a combination of water and salt. The water collective is in some sense a part of the salt solution portion. Hence, the salt solution has constituent water.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >These relations are very similar to "is_ingredient_of" and "has_ingredient" In Rector, Rogers and Bittner 2006, PMID: 16515892</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The "has constituent" relationship holds between collectives when one portion has the other as a part. A salt solution is a portion that is a combination of water and salt. The water collective is in some sense a part of the salt solution portion. Hence, the salt solution has constituent water.</rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#is_constituent_of"/>
     </owl:inverseOf>
@@ -611,16 +561,16 @@
   <owl:ObjectProperty rdf:about="#has_grain">
     <owl:inverseOf rdf:resource="#is_grain_of"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >citation PMID: 16515892</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The “has_ grain” relation is irreflexive, antisymmetric, and non-transitive, i.e., that (i) nothing can be a grain of itself; (ii) a collective cannot be a grain of one of its own grains; and (iii) that grains of grains of a collective are not grains of that collective.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >citation PMID: 16515892</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#assembled_from">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >These relations are similar to has_determinant_part and is_determinate_part_of in  In Rector, Rogers and Bittner 2006, PMID: 16515892</rdfs:comment>
+    <owl:inverseOf rdf:resource="#is_assemblage_of"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The "assembled from" relation holds between a countable object and its countable parts. The countable parts have identity distinct from the whole. For example, a water molecule H20 is assembled from two hydrogen molecules (H2) and one oxygen molecule (O). A computer keyboard is assembled from many components, including the keys.</rdfs:comment>
-    <owl:inverseOf rdf:resource="#is_assemblage_of"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >These relations are similar to has_determinant_part and is_determinate_part_of in  In Rector, Rogers and Bittner 2006, PMID: 16515892</rdfs:comment>
   </owl:ObjectProperty>
 </rdf:RDF>
 
