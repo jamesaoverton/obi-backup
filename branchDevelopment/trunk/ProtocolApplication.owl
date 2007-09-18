@@ -1,4 +1,11 @@
 <?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY OBI "http://obi.sourceforge.net/ontology/OBI.owl#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
 <rdf:RDF
     xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
     xmlns:dcterms="http://purl.org/dc/terms/"
@@ -542,642 +549,402 @@ Percent specific was determined with the following equation: (experimental 51Cr 
     >protocol_application</branch>
   </rdf:Description>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600017">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the detection of the amount of a label which is a proxy for the detection of the labeled biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Bjoern Peters</definition_editor>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">related to plan. Make sure that multiple inheritence doesn't result. Might be defined class</editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Determination of the amount of phycoerytherin label present in a cell population stained with anti-CD8-PE in order to determine the percentage of CD8+ T cells present</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">detection_of_label</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
+<!-- Classes from sheet -->
+
+  <owl:Class rdf:about="&OBI;OBI_600017">
+    <definition rdf:datatype="&xsd;string">the detection of the amount of a label which is a proxy for the detection of the labeled biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Bjoern Peters</definition_editor>
+    <editor_note rdf:datatype="&xsd;string">related to plan. Make sure that multiple inheritence doesn't result. Might be defined class</editor_note>
+    <example_of_usage rdf:datatype="&xsd;string">Determination of the amount of phycoerytherin label present in a cell population stained with anti-CD8-PE in order to determine the percentage of CD8+ T cells present</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">detection_of_label</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600018">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a labeling in which the labeling reagent used  has a specificity to bind only certain components of the input material</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Bjoern Peters</definition_editor>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">question if we need two different processes. if they depend on materials</editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The addition of anti-CD8 antibody for an ICCS assay in order to selectively stain the CD8+ cells</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">specific_labeling</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600001"/>
+  <owl:Class rdf:about="&OBI;OBI_600018">
+    <definition rdf:datatype="&xsd;string">a labeling in which the labeling reagent used  has a specificity to bind only certain components of the input material</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Bjoern Peters</definition_editor>
+    <editor_note rdf:datatype="&xsd;string">question if we need two different processes. if they depend on materials</editor_note>
+    <example_of_usage rdf:datatype="&xsd;string">The addition of anti-CD8 antibody for an ICCS assay in order to selectively stain the CD8+ cells</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">specific_labeling</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600001"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600019">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The addition of a reagent labeling the entire input biomaterial enabling future detection of the output biomaterial</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">not sure about the example
+  <owl:Class rdf:about="&OBI;OBI_600019">
+    <definition rdf:datatype="&xsd;string">The addition of a reagent labeling the entire input biomaterial enabling future detection of the output biomaterial</definition>
+    <editor_note rdf:datatype="&xsd;string">not sure about the example
 ---
 Not sure on the definition of material combination. Although what is happening here is that you 'create' a compound or molecule
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the addition of biotin to the 5' end of a population of DNA molecules; labeling of APCs with chromium 51</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">non-specific_labeling</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600001"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">the addition of biotin to the 5' end of a population of DNA molecules; labeling of APCs with chromium 51</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">non-specific_labeling</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600001"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600020">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the visual examination of cells or tissue (or images of them) with an assessment regarding a quality of the cells or tissue. Parts are: staining, imaging, judgement</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Compiled by Helen Parkinson for Transcriptomics thanks to Adam Witney</definition_editor>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">need to incorporate parts
+  <owl:Class rdf:about="&OBI;OBI_600020">
+    <definition rdf:datatype="&xsd;string">the visual examination of cells or tissue (or images of them) with an assessment regarding a quality of the cells or tissue. Parts are: staining, imaging, judgement</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Compiled by Helen Parkinson for Transcriptomics thanks to Adam Witney</definition_editor>
+    <editor_note rdf:datatype="&xsd;string">need to incorporate parts
 ---
 This is a very vague term, it should be in the same place as transcriptomics, proteomics metaboloimcs. It is the 'study' of tissues, not the process of studying tissues
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the counting of the number of cells with fluorescent label at their surface to determine the percentage of the population which was activated</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">histology</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
+    <example_of_usage rdf:datatype="&xsd;string">the counting of the number of cells with fluorescent label at their surface to determine the percentage of the population which was activated</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">histology</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600021">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any protocol which preserves cells or tissues (sample) for study by maintaining the sample in an intact and stable, but dead state.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Bjoern Peters</definition_editor>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition needs work</editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the treatment of CD8+ cells with methanol at -20oC</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell_fixation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
+  <owl:Class rdf:about="&OBI;OBI_600021">
+    <definition rdf:datatype="&xsd;string">Any protocol which preserves cells or tissues (sample) for study by maintaining the sample in an intact and stable, but dead state.</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Bjoern Peters</definition_editor>
+    <editor_note rdf:datatype="&xsd;string">definition needs work</editor_note>
+    <example_of_usage rdf:datatype="&xsd;string">the treatment of CD8+ cells with methanol at -20oC</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">cell_fixation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600022">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use physical means to remove a portion of a substance from the rest</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cutting out the portion of a gel which contains a DNA fragment</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">excision</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600022">
+    <definition rdf:datatype="&xsd;string">the use physical means to remove a portion of a substance from the rest</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">Cutting out the portion of a gel which contains a DNA fragment</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">excision</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600023">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to digest a substance</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of agarase to digest an agar gel</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">enzymatic_digestion</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600023">
+    <definition rdf:datatype="&xsd;string">the use of enzymes to digest a substance</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of agarase to digest an agar gel</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">enzymatic_digestion</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600024">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a protocol application in which cells are kept alive in a defined environment outside of an organism. part of cell_culturing</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">confused about placement: combination vs. exposure
+  <owl:Class rdf:about="&OBI;OBI_600024">
+    <definition rdf:datatype="&xsd;string">a protocol application in which cells are kept alive in a defined environment outside of an organism. part of cell_culturing</definition>
+    <editor_note rdf:datatype="&xsd;string">confused about placement: combination vs. exposure
 ---
 This describes what happens in the process of cell culture, it is not a separate term
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The act of incubating T cells in RPMI with 10% FCS and IL-2 at 37C for 1 week in order to keep them alive.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell_culture_maintanence</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The act of incubating T cells in RPMI with 10% FCS and IL-2 at 37C for 1 week in order to keep them alive.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">cell_culture_maintanence</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600025">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any protocol which results in the detection of a specified substance</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the detection of phycoerytherin by means of flow cytometry</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">substance_detection</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600025">
+    <definition rdf:datatype="&xsd;string">any protocol which results in the detection of a specified substance</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the detection of phycoerytherin by means of flow cytometry</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">substance_detection</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600026">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an assay in which the weight of an organism is measured over time</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alan says something is funny
+  <owl:Class rdf:about="&OBI;OBI_600026">
+    <definition rdf:datatype="&xsd;string">an assay in which the weight of an organism is measured over time</definition>
+    <editor_note rdf:datatype="&xsd;string">Alan says something is funny
 ---
 This is a description of what you did as opposed to the description of the assay. This should be more generic. something like 'mass_assay'
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The comparison of the weight of vaccinated and non-vaccinated mice after infection with influenza A over 6 weeks post-infection</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">weight_assessment</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The comparison of the weight of vaccinated and non-vaccinated mice after infection with influenza A over 6 weeks post-infection</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">weight_assessment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600027">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a material transformation in which the membranes of cells are destroyed and their content released</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600027">
+    <definition rdf:datatype="&xsd;string">a material transformation in which the membranes of cells are destroyed and their content released</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 We do not need the pre-fix 'cell' lysis refers to the death of a cell by breaking of the cellular membrane, often by viral or osmotic mechanisms that compromise its integrity.[citation needed] A solution containing the contents of lysed cells is called a 'lysate'.
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The destruction of cell membranes with detergent.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">membrane_lysis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The destruction of cell membranes with detergent.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">membrane_lysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600028">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a protocol in which single-stranded RNA is reverse transcribed into complementary DNA (cDNA)</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of M-MLV reverse transcriptase from the Moloney murine leukemia virus to transcribe an RNA sample into cDNA</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">reverse_transcription</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600028">
+    <definition rdf:datatype="&xsd;string">a protocol in which single-stranded RNA is reverse transcribed into complementary DNA (cDNA)</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of M-MLV reverse transcriptase from the Moloney murine leukemia virus to transcribe an RNA sample into cDNA</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">reverse_transcription</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600029">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a protocol which results in the separation of the supernatant from a cell culture</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600029">
+    <definition rdf:datatype="&xsd;string">a protocol which results in the separation of the supernatant from a cell culture</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 This is incorrect definition. You are not separating supernatant. You remove the supernatant from the cells.
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The centrifugation of a T cell culture followed by aspiration of the supernatant while the cellular pellet remains in the centrifuge tube.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">isolation_of_cell_culture_supernatant</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The centrifugation of a T cell culture followed by aspiration of the supernatant while the cellular pellet remains in the centrifuge tube.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">isolation_of_cell_culture_supernatant</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600030">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an administration assumed to be responsible for the induction a specific disease</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600030">
+    <definition rdf:datatype="&xsd;string">an administration assumed to be responsible for the induction a specific disease</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 This is not a process. It is what has been done after the process. For example the process could be injection
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the injection of mice with LCM virus iv to establish an LCMV infection</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">experimental_disease_induction</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600007"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">the injection of mice with LCM virus iv to establish an LCMV infection</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">experimental_disease_induction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600007"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600031">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an assay in which the number of cells producing a biomaterial in a larger cell population are stained and counted</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600031">
+    <definition rdf:datatype="&xsd;string">an assay in which the number of cells producing a biomaterial in a larger cell population are stained and counted</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 This term conflates several things. Everytime you stain a population of cells and count them this is NOT an ELISPOT assay. We need assay terms to describe the staining of things that are cells, and a counting of things that are cells. We need to work out what make an ELISPOT assay different from staining and counting cells
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Determination of the frequency of cells producing IFN-gamma in response to viral peptides</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ELISPOT</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">Determination of the frequency of cells producing IFN-gamma in response to viral peptides</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">ELISPOT</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600032">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any protocol that results in repair of damaged DNA molecules</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600032">
+    <definition rdf:datatype="&xsd;string">any protocol that results in repair of damaged DNA molecules</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 is this really a protocol?
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of DNA repair enzymes uracil DNA glycosylase and 3-methyladenine DNA glycosylase to repair DNA strands</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DNA_repair</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">the use of DNA repair enzymes uracil DNA glycosylase and 3-methyladenine DNA glycosylase to repair DNA strands</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">DNA_repair</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600033">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any protocol that results in the permeabilization of cell membranes, allowing molecules to more easily pass through the membrane than was possible prior to the protocol</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Bjoern Peters</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electroporation of HeLa cells to allow transfection with pUC19.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell_permeabalization</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600033">
+    <definition rdf:datatype="&xsd;string">Any protocol that results in the permeabilization of cell membranes, allowing molecules to more easily pass through the membrane than was possible prior to the protocol</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Bjoern Peters</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">Electroporation of HeLa cells to allow transfection with pUC19.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">cell_permeabalization</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600034">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any protocol which results in a biomaterial precipitating (becoming a solid) from out of a solution</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of ethanol to precipitate DNA molecules from a solution containing DNA</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">precipitation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600034">
+    <definition rdf:datatype="&xsd;string">any protocol which results in a biomaterial precipitating (becoming a solid) from out of a solution</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of ethanol to precipitate DNA molecules from a solution containing DNA</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">precipitation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600035">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any protocol which results in additional copies of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of a culture of recombinant E. coli to generate copies of a protein they have been engineered to express</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amplification</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600035">
+    <definition rdf:datatype="&xsd;string">any protocol which results in additional copies of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of a culture of recombinant E. coli to generate copies of a protein they have been engineered to express</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">amplification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600036">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">creating an in vitro environment in which cells are sustained from input material containing cells. input: cell-containing material, output cell culture, part of cell culturing</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600036">
+    <definition rdf:datatype="&xsd;string">creating an in vitro environment in which cells are sustained from input material containing cells. input: cell-containing material, output cell culture, part of cell culturing</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 This is incorrect You collect cells from an organism, you dont create cell culture. Where has this term come from? This should probably be more sensibly named 'cell acquisition'
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The harvesting of blood from a human, isolation of the T cells, and then limited dilution cloning of the T cells. The taking a tumor sample and growing it in vitro</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell_culture_creation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600001"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The harvesting of blood from a human, isolation of the T cells, and then limited dilution cloning of the T cells. The taking a tumor sample and growing it in vitro</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">cell_culture_creation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600001"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600037">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The act of taking part of a homogeneous cell culture and creating one or more additional separate cultures of similar qualities. input: cell_culture, output cell_culture min cardinality 2. part of cell culturing</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600037">
+    <definition rdf:datatype="&xsd;string">The act of taking part of a homogeneous cell culture and creating one or more additional separate cultures of similar qualities. input: cell_culture, output cell_culture min cardinality 2. part of cell culturing</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 Who submitted this term? It is not cell culture splitting. It is the splitting of the population of cells which are used in cell culture. You dont split the petri dish
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The act of taking a cell culture of high density, counting the cells, removing part of the cells, and re-seeding a select number of the cells into new flasks with fresh tissue culture media.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell_culture_splitting</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">The act of taking a cell culture of high density, counting the cells, removing part of the cells, and re-seeding a select number of the cells into new flasks with fresh tissue culture media.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">cell_culture_splitting</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600038">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the addition of a detectable substance to a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The addition of phycoerytherin label to an anti-CD8 antibody. The addition of anti-CD8-PE to a population of cells.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">labeling</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600038">
+    <definition rdf:datatype="&xsd;string">the addition of a detectable substance to a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The addition of phycoerytherin label to an anti-CD8 antibody. The addition of anti-CD8-PE to a population of cells.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">labeling</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600039">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the addition of methyl groups to molecules</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to add methyl groups to DNA molecules</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">methylation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600039">
+    <definition rdf:datatype="&xsd;string">the addition of methyl groups to molecules</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of enzymes to add methyl groups to DNA molecules</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">methylation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600040">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the construction of a biomaterial from simpler biomaterials</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">making cDNA from nucleotides using RNA as a template</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synthesize</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600001"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600040">
+    <definition rdf:datatype="&xsd;string">the construction of a biomaterial from simpler biomaterials</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">making cDNA from nucleotides using RNA as a template</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">synthesize</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600001"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600041">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To increase the concentration of a biomaterial by decreasing the volume it occupies</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evaporation of the solution containing DNA to increase the concentration of the DNA molecules</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">concentrate</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600041">
+    <definition rdf:datatype="&xsd;string">To increase the concentration of a biomaterial by decreasing the volume it occupies</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">Evaporation of the solution containing DNA to increase the concentration of the DNA molecules</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">concentrate</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600042">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the insertion of a particular gene into a plasmid in order to make copies of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The DNA fragment encoding the p35 gene from Mycobacterium avium complex was inserted into pcDNAII and expressed in E coli in order to study p35.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">recombinant_cloning</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600042">
+    <definition rdf:datatype="&xsd;string">the insertion of a particular gene into a plasmid in order to make copies of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The DNA fragment encoding the p35 gene from Mycobacterium avium complex was inserted into pcDNAII and expressed in E coli in order to study p35.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">recombinant_cloning</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600043">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the introduction and integration of genetic material into a cell or organism in order to alter its genetic make-up</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The transduction of E. coli through the introduction of a plasmid encoding for M. avium p35</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">genetic_transformation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600043">
+    <definition rdf:datatype="&xsd;string">the introduction and integration of genetic material into a cell or organism in order to alter its genetic make-up</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The transduction of E. coli through the introduction of a plasmid encoding for M. avium p35</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">genetic_transformation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600044">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the introduction of a fluid into an anatomic space for the purpose of collecting the cells and or cellular secretions present in that space</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600044">
+    <definition rdf:datatype="&xsd;string">the introduction of a fluid into an anatomic space for the purpose of collecting the cells and or cellular secretions present in that space</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 What is washing? This dictionary definition states that it is injection of water
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the collection of bronchoalveolar lavage fluid (BAL) from the lungs of mice in order to study the cytokines present</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lavage</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">the collection of bronchoalveolar lavage fluid (BAL) from the lungs of mice in order to study the cytokines present</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">lavage</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600045">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any protocol resulting in information on the 3-dimensional qualities of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of NMR Spectroscopy to determine the 3D-Structure of the binding of an epitope to an MHC molecule</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">structural_analysis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600045">
+    <definition rdf:datatype="&xsd;string">any protocol resulting in information on the 3-dimensional qualities of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of NMR Spectroscopy to determine the 3D-Structure of the binding of an epitope to an MHC molecule</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">structural_analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600046">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a biomaterial's preferential affinity for either the mobile phase or the stationary phase to separate it from other materials of differing affinity</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of gas chromatography in order to identify the presence of pesticides in a sample of eggs</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chromatography</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600046">
+    <definition rdf:datatype="&xsd;string">the use of a biomaterial's preferential affinity for either the mobile phase or the stationary phase to separate it from other materials of differing affinity</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of gas chromatography in order to identify the presence of pesticides in a sample of eggs</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">chromatography</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600047">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a chemical or biochemical means to infer the sequence of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of the Sanger method of DNA sequencing to determine the order of the nucleotides in a DNA template</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sequencing_analysis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_70"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600047">
+    <definition rdf:datatype="&xsd;string">the use of a chemical or biochemical means to infer the sequence of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of the Sanger method of DNA sequencing to determine the order of the nucleotides in a DNA template</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">sequencing_analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_70"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600048">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a clonal cell line to produce a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E coli expressing the gene for M avium p35 were cultured in order to produce p35.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amplification_of_a_clone</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600048">
+    <definition rdf:datatype="&xsd;string">the use of a clonal cell line to produce a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">E coli expressing the gene for M avium p35 were cultured in order to produce p35.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">amplification_of_a_clone</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600049">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a DNA polymerase to make copies of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of taq polymerase to amplify a DNA fragment during a PCR.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DNA_polymerase_amplification</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600058"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600049">
+    <definition rdf:datatype="&xsd;string">the use of a DNA polymerase to make copies of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of taq polymerase to amplify a DNA fragment during a PCR.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">DNA_polymerase_amplification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600058"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600050">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of an enzyme to degrade a substance</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of a protease to digest a protein into peptides</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">enzymatic_material_degradation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600050">
+    <definition rdf:datatype="&xsd;string">the use of an enzyme to degrade a substance</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of a protease to digest a protein into peptides</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">enzymatic_material_degradation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600051">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of different concentrations of biomaterials to create a gradient in order to facilitate the separation of biomaterials of select density</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a sucrose gradient to isolate mitochondria</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gradient_separation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600051">
+    <definition rdf:datatype="&xsd;string">the use of different concentrations of biomaterials to create a gradient in order to facilitate the separation of biomaterials of select density</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of a sucrose gradient to isolate mitochondria</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">gradient_separation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600052">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of diffusion to remove substances from biomaterials via a semi permeable membrane</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a dialysis bag of select pore size to remove salt from collagen isolated from mouse cartilage</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dialysis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600052">
+    <definition rdf:datatype="&xsd;string">the use of diffusion to remove substances from biomaterials via a semi permeable membrane</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of a dialysis bag of select pore size to remove salt from collagen isolated from mouse cartilage</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">dialysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600053">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of electrical charge to separate molecules based upon their size and charge through a defined matrix</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loading a mixture of proteins into a polyacrylamide gel and the application of an electrical current to the gel to separate the proteins by size and change.</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">electrophoresis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600014"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600053">
+    <definition rdf:datatype="&xsd;string">the use of electrical charge to separate molecules based upon their size and charge through a defined matrix</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">Loading a mixture of proteins into a polyacrylamide gel and the application of an electrical current to the gel to separate the proteins by size and change.</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">electrophoresis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600014"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600054">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of environmental conditions to select for the organism or cells that have a certain trait</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The insertion of a gene for antibiotic resistance into a cell population and subsequent growth in the presence of the antibiotic to select for those cells which were successfully transfected</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">selection_by_survival</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600054">
+    <definition rdf:datatype="&xsd;string">the use of environmental conditions to select for the organism or cells that have a certain trait</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The insertion of a gene for antibiotic resistance into a cell population and subsequent growth in the presence of the antibiotic to select for those cells which were successfully transfected</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">selection_by_survival</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600055">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to cut DNA molecules, the study of DNA through cleavage, mapping, and analysis of the fragments</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of the restriction enzymes SalPI and PstI to cleave DNA into fragments, assay made up of components</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DNA_cleavage, restriction_analysis</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600050"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600055">
+    <definition rdf:datatype="&xsd;string">the use of enzymes to cut DNA molecules, the study of DNA through cleavage, mapping, and analysis of the fragments</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of the restriction enzymes SalPI and PstI to cleave DNA into fragments, assay made up of components</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">DNA_cleavage, restriction_analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600050"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600056">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to cut proteins</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  <owl:Class rdf:about="&OBI;OBI_600056">
+    <definition rdf:datatype="&xsd;string">the use of enzymes to cut proteins</definition>
+    <editor_note rdf:datatype="&xsd;string">
 ---
 enzymatic digestion
 </editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of trypsin to cleave pepsin into peptide fragments</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">protease_cleavage</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600050"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="&xsd;string">the use of trypsin to cleave pepsin into peptide fragments</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">protease_cleavage</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_600050"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600057">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to duplicate DNA moleculeany process used to make additional copies of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to duplicate DNA molecules</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">replication</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600057">
+    <definition rdf:datatype="&xsd;string">the use of enzymes to duplicate DNA moleculeany process used to make additional copies of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of enzymes to duplicate DNA molecules</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">replication</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600058">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of enzymes to increase the number of molecules of a biomaterial</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of a polymerase chain reaction to amplify a fragment of DNA</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">enzymatic_amplification</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_69"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600058">
+    <definition rdf:datatype="&xsd;string">the use of enzymes to increase the number of molecules of a biomaterial</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">the use of a polymerase chain reaction to amplify a fragment of DNA</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">enzymatic_amplification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_69"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600059">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of lysogenic infection to transfer DNA sequences from one bacterium to another</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The transfer of a recombinant bacterial plasmid into E.coli to facilitate amplification of a specific protein</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">transduce</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600059">
+    <definition rdf:datatype="&xsd;string">the use of lysogenic infection to transfer DNA sequences from one bacterium to another</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The transfer of a recombinant bacterial plasmid into E.coli to facilitate amplification of a specific protein</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">transduce</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
 
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_600060">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the use of physical, electrical and chemical phenomena to introduce a biomaterial into a cell</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Kevin Clancy</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use of electroporation to permeabilize a cell membrane in order to introduce a plasmid encoding for a labeled protein of interest</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">transfection</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_94"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
+  <owl:Class rdf:about="&OBI;OBI_600060">
+    <definition rdf:datatype="&xsd;string">the use of physical, electrical and chemical phenomena to introduce a biomaterial into a cell</definition>
+    <definition_editor rdf:datatype="&xsd;string">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage rdf:datatype="&xsd;string">The use of electroporation to permeabilize a cell membrane in order to introduce a plasmid encoding for a labeled protein of interest</example_of_usage>
+    <rdfs:label rdf:datatype="&xsd;string">transfection</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&OBI;OBI_94"/>
   </owl:Class>
-
-
 
 </rdf:RDF>
 
