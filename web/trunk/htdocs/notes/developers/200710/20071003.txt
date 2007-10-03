@@ -1,0 +1,67 @@
+OBI Developer Minutes, 3 October 2007
+
+Present: Bjoern, Chris, Daniel, Liju, Allyson, Kevin, Melanie, Ryan, Gilberto, Alan, Philippe,
+
+Agenda:
+Centra VOIP - how does it work?
+Object hierarchy. Alan will summarize where the discussions stand on this issue.
+Branch reports. Last week we heard about the Relations Branch. Any volunteers? Bjoern may give a summary on the Protocol Application Branch
+
+Minutes:
+
+TOPIC: CENTRA
+CS: Centra VOIP - how does it work? Tried to get everyone to speak up. 
+BP: The text chat is nice
+AL: But you can't see it, even if people are talking, unless you click on the "Text Chat" button.
+CS: Make sure you hold the button down continuously to speak
+CS: Only one person can talk at once. You can monopolize the conversation via the lock button, to prevent people from interrupting you.
+
+TOPIC: HIERARCHY
+AR: Referenced the following information: https://wiki.cbil.upenn.edu/obiwiki/index.php/BioMaterialUseCases, https://obi.svn.sourceforge.net/svnroot/obi/branchDevelopment/trunk/development-examples. Started out with a desire to represent inference: for example, both what it's made of and other characteristics of it. This brought us to Frank & Matt's proposal. This proposal boiled down to, for example, two objects in a statue: lump of clay, and statue. Which is the primary, and which is the inferred? Which is more important? The clay-ness or the statue-ness?
+AR: He suggested as an alternative (use petridish as example): call it "plastic", and give it a shape ("petri-dish shape"). This bothered Matt & Frank for a number of reasons (look through the mails if interested), so got Pierre Grenon involved in the discussion, and compared M&F's suggestion to a paper by Alan Rector. 
+AR: So, where are we now? BFO can handle one or two levels of granularity (== 1 cup of water is an object aggregate, and a water molecule). In OBI, we span many, many levels of granularity. We *need* more than BFO can currently provide. To advance our effort, Alan has been trying to get a set of use-cases, to be able to agree on what questions we need to answer and from that, figure out which representation fits the requirements.
+AR: References the biomaterial use-case mentioned in the URL above and reproduced here:
+"1. From Matthew Pocock
+You can estimate the amount of cell stuff in suspension (as a concentration) by looking at how opaque growth medium is. Cells stick to plastic depending on both the chemical properties of and the roughness of the plastic. So, to frame a hypothesis that for a particular cell line, cells stick preferentially to rough plastics than smooth ones, you could grow cells for a pre-defined length of time in media in culture dishes made from rough and smooth plastics, and then measure how opaque the growth medium is. 
+You could then do the same with a plastic that has 'adhesion friendly' molecular groups bonded to it, to show that this increases cell adhesion. You could then do the same but adding an antibody that binds to what you think are the 'adhesion friendly' binding proteins on the cell surface. 
+The macro-scale observation (cloudyness) and manipulations (pipetting in volumes of antibody in suspension etc.) is being used to investigate the nano-scale hypothesis. 
+Status: Followup questions sent to Matthew"
+Retrieved from "https://wiki.cbil.upenn.edu/obiwiki/index.php/BioMaterialUseCases
+AR: Eventually, will need to make some OWL and some SPARQL to see which approach works. Bjeorn had an idea using OWL 1.1, but couldn't currently be tested as it crashed the reasoner.
+BP: The problems were mainly due to mismatches with BFO. When spoke about it 2 weeks ago, he said we were afraid we are getting bogged down in this. He still feels this way - doesn't expect agreement any time soon. We should table these granularity issues.
+AL: This may be problematic for those in things like biomaterial branch, as they need these answers soon.
+BP: Perhaps there is a temporary fix?
+AL: Just worried we'll end up keeping the temp fixes for a long time, and end up with a "temp" controlled vocab rather than an ontology
+CS: Perhaps we can use temporary placeholder classes 
+AR: Don't worry about the top-level hierarchy for now. Just worry about getting the terms defined with a good english definition (well-described). 
+LF: I agree with Allyson
+BP: In response to LF and AL, I worry that we'll end up with nothing at all. Shouldn't think about it in too much detail now.
+AR: the problems don't arise if all the definitions are in english for now
+CS: Hybrid proposal: collect terms and organize them under temporary classes for each level of granularity. This matches AR's suggestion of term gathering, and AL and LF's request to get some sort of hierarchy. This would mean that complex relationships between them couldn't be modelled yet.
+AR: Ok, but shouldn't use aristotelian definitions that incorporate the temporary class. It's safer to give free-standing good definitions that we can use.
+AR: We haven't decided on the levels of granularity, so we can't really use the placeholder classes exactly as CS suggested.
+CS: Robert Stevens mentioned that we shouldn't have ontology paralysis. We shouldn't be afraid to just do things. 
+AR: Good, just don't use strict aristotelean, but just good definitions.
+AL: Agreed.
+CS: Yes, we seem to be reaching consensus. We need branches to move ahead with putting the different components in place. Any ideas how that should happen?
+LF: Formal definition is restrictive. Just give a regular definition. (Agree with AR.) Could put things directly under object (?).
+AR: Just doing definitions will keep us busy for a while. Also, we could stand to understand better which terms are blocking which branches, and how. This way we can prioritize what gets thoroughly dealt with first.
+DS: our branch (instrument) is not currently stopped by any terms in other branches.
+AR: Are there any cases where a branch is blocked?
+BP: Biomaterial branch will have cases, e.g. reagents etc.
+KC: Chris I think we need to have some worked examples of various hypothesis driven experiments. So show how we use the ontology from hypothesis to conclusion. This can be driven by what James and Daniel are leading. I see a need for overall approach as well as concentrating on branch specific modelling.
+CS: Agreed. Larger-scope use-cases are important.
+CS: There could be consistency problems, where one branch is using a certain set of granularities, and another branch is using a different set.
+DS: Shared his desktop and is showing a bit of the object->instrument hierarchy. For example, the computer class has an inherited relation "is reagent in", which isn't appropriate.
+LF: Use the relations list for each of these classes to determine if the current placement of a given class is the best one.
+CS: Don't forget that we shouldn't lose sight of the larger problem.
+
+CS: Given the time, we will pass on the branch report this week.
+
+TOPIC: SUMMARY OF NAMING CONVENTIONS
+DS: OBO Foundry wiki, linked to developer's list. Suggest that branch leaders have a look at the conventions and let the devel list know about agreement/disagreement.
+
+TOPIC: NEXT WORKSHOP
+RB: Hotel room booking information now on the OBI Wiki, but you have to book yourself.
+LF: Should we have a deadline of how many people could attend the meeting?
+CS: From past experience there will be about 20, maximum.
