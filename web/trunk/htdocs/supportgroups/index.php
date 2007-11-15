@@ -58,7 +58,9 @@ OBI has been well supported both by an active Advisors Group and by a number of 
 <table bgcolor=#99CCFF border=0 style="border-right: 1px lightgrey; border-bottom: 1 px solid lightgrey;" cellpadding=3>
 <tr><td>
 <div class=small>
+<a name="advisors">
   <b>OBI Advisors Group</b>
+  </a>
 <table bgcolor=#FFFFFF border=0 style="border-right: 1px lightgrey; border-bottom: 1 px solid lightgrey;" cellpadding=3>
 <tr><td>
 <div class=small>
@@ -82,7 +84,9 @@ OBI has been well supported both by an active Advisors Group and by a number of 
 <table bgcolor=#99CCFF border=0 style="border-right: 1px lightgrey; border-bottom: 1 px solid lightgrey;" cellpadding=3>
 <tr><td>
 <div class=small>
+<a name="supporters">
   <b>OBI Supporting Groups and Organizations</b>
+  </a>
 <table bgcolor=#FFFFFF border=0 style="border-right: 1px lightgrey; border-bottom: 1 px solid lightgrey;" cellpadding=3>
 <tr><td>
 <div class=small>
