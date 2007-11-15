@@ -24,23 +24,35 @@ function menu($location)  {
 if ($location=="home") {
   print ("*Home &nbsp;|&nbsp;
   <a href=ontologyInformation/index.php class=menuNew>Ontology</a>&nbsp;|&nbsp;
-  <a href=community/index.php class=menuNew>Community</a>&nbsp;|&nbsp;
-  <a href=resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp; 
+  <a href=consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
+  <a href=supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
+  <a href=resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
 ");
 }
 elseif ($location=="ontology") {
   print ("
   <a href=../index.php class=menuNew>Home</a>&nbsp;|&nbsp;
   *Ontology &nbsp;|&nbsp;
-  <a href=../community/index.php class=menuNew>Community</a>&nbsp;|&nbsp;
+  <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
+  <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
   <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
 ");
 }
-elseif ($location=="community"){
+elseif ($location=="consortium"){
   print ("
   <a href=../index.php class=menuNew>Home</a>&nbsp;|&nbsp;
   <a href=../ontologyInformation/index.php class=menuNew>Ontology</a>&nbsp;|&nbsp;
-  *Community &nbsp;|&nbsp;
+  *Consortium &nbsp;|&nbsp;
+  <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
+  <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
+");
+}
+elseif ($location=="supportgroups"){
+  print ("
+  <a href=../index.php class=menuNew>Home</a>&nbsp;|&nbsp;
+  <a href=../ontologyInformation/index.php class=menuNew>Ontology</a>&nbsp;|&nbsp;
+  <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
+  *Supporting Groups&nbsp;|&nbsp;
   <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
 ");
 }
@@ -48,7 +60,8 @@ else {
   print ("
   <a href=../index.php class=menuNew>Home</a>&nbsp;|&nbsp;
   <a href=../ontologyInformation/index.php class=menuNew>Ontology</a>&nbsp;|&nbsp;
-  <a href=../community/index.php class=menuNew>Community</a>&nbsp;|&nbsp;
+  <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
+  <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
   *Resources &nbsp;&nbsp;
 ");
 }
@@ -64,7 +77,7 @@ print "<table border=\"1\" bordercolor=\"#0000CC\" width=\"100%\" cellpadding=\"
 <a href=\"/ontologyInfo/ontology.php\" style=\"text-decoration:none\"><font color=\"white\">ONTOLOGY</a> :: &nbsp; 
 <a href=\"/lists/list.php\" style=\"text-decoration:none\"><font color=\"white\">MAILING LIST</a> &nbsp; :: &nbsp; 
 <a href=\"/presentations/presentation.php\" style=\"text-decoration:none\"><font color=\"white\">PRESENTATIONS</a> &nbsp; :: &nbsp; 
-<a href=\"/community/community.php\" style=\"text-decoration:none\"><font color=\"white\">COMMUNITY INVOLVEMENT</a> &nbsp; :: &nbsp;
+<a href=\"/consortium/consortium.php\" style=\"text-decoration:none\"><font color=\"white\">COMMUNITY INVOLVEMENT</a> &nbsp; :: &nbsp;
 <a href=\"/news/index.php\" style=\"text-decoration:none\"><font color=\"white\">NEWS</a>
 </font></td>
 </tr>

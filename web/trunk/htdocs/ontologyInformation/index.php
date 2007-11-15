@@ -80,7 +80,7 @@ The main area of focus at the Third OBI workshop (Feb, 2007) was to review the O
 was drafted and approved by the OBI Coordinators. The policy, <a href="https://www.cbil.upenn.edu/obiwiki/index.php/ObiBranches">ObiBranches</a>, lists the various branch groups and the responsibilities of those working to
  curate terms and develop, these branches. During this process, additional terms were identified to propose for inclusion in BFO, 
 such as generically_dependent_continuant (currently represented as a sibling to the BFO continuant subclasses).<br>
-A first set of information to capture using annotation properties, as listed on the <a href="http://obi.sourceforge.net/ontologyInformation/MinimalMetadata.html">metadata</a> page was also agreed upon.<br>
+A first set of information to capture using annotation properties, as listed on the <a href="MinimalMetadata.html">metadata</a> page was also agreed upon.<br>
   <br>
   A new version of the ontology was generated following the second workshop (July, 2006). The 
   focus of this workshop was to refine the scope of OBI/FuGO in light of other OBO Foundry ontologies,
@@ -111,7 +111,7 @@ A first set of information to capture using annotation properties, as listed on 
   <br>
   The OBI developers will generate a document based on the proposed Ontology Best Practice   
   information containing the design principles, <a href="https://www.cbil.upenn.edu/obiwiki/index.php/NamingConventions">naming conventions</a> and ontology metadata that 
-  will be used for the development of OBI. An agreed upon minimal list of annotation <a href="http://obi.sourceforge.net/ontologyInformation/MinimalMetadata.html">metadata</a> for representational units has been created.
+  will be used for the development of OBI. An agreed upon minimal list of annotation <a href="MinimalMetadata.html">metadata</a> for representational units has been created.
   
   <hr class=lightgray>
   <br>
@@ -125,7 +125,7 @@ A first set of information to capture using annotation properties, as listed on 
   of OBI and the addition of the the terms in the community Term Lists into the ontology. Generally 
   speaking, the work within the individual communities is proceeding in a bottom-up fashion while 
   the work within the larger OBI Developers Working Group is proceeding in a top-down fashion. The 
-  within Community, bottom-up approach consists of the Use Cases, the generation of the Term Lists. 
+  within-community, bottom-up approach consists of Use Case submission and Term List generation.
   The top-down approach consists of extending a known upper level ontology to the level where 
   communities can then add terms from the Term Lists. More details on each of these processes 
   can be found below. 

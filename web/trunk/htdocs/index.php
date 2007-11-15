@@ -99,32 +99,52 @@ menu(home);
 
   <a name=organization><b>Project Organization</b></a>
   <br> 
-  The project consists of the Coordination Committe, the Developers Working Group and Advisors Group. The 
-  Coordination Committee consists of the Community Representatives, those representing the communities 
-  participating in the development of OBI, and the Core Developers. View the 
-  <a href="../community/index.php">Community</a> page to see a listing of the participating communities. 
-  If you represent a Community that would like to collaborate in the development of OBI, contact the 
-  <a href="mailto:obi-coord@lists.sourceforge.net">Coordinators</a>.
-  <br><br>
-  The Developers Working Group consists of all developers within the communities collaborating 
+  The <a href="consortium/index.php">OBI Consortium</a> contains:
+  <ul>
+  <li><a href="consortium/index.php#coordination">Coordination Committe</a>, consisting of:<br>
+  <ul>
+  <li><a href="consortium/index.php#community">Community Representatives</a>, those representing the communities
+  participating in the development of OBI, and</li>
+  <li><a href="consortium/index.php#coredevelopers">Core Developers</a>, those who are considered key to the
+  evolution of the ontology, but who are not members of any single community.</li>
+  </ul>
+  </li>
+  <li><a href="consortium/index.php#developers">Developers Working Group</a><br>
+  The Developers Working Group consists of all developers within the communities collaborating
   in the development of OBI. To participate in the development of OBI, subscribe to the
-  <a href="https://lists.sourceforge.net/lists/listinfo/obi-devel">OBI Developers</a> mailing list 
+  <a href="https://lists.sourceforge.net/lists/listinfo/obi-devel">OBI Developers</a> mailing list
   and join in the <a href="#call">conference calls</a>.
+  </li>
+   </ul>
+
+The development of OBI is <a href="supportgroups/index.php">advised and supported</a> by:
+<ul>
+  <li>The OBI <a href="supportgroups/index.php#advisors">Advisors Group</a><br>
+    The Advisors Group consists of individuals invited by the Coordination Committee to provide expert advice in areas
+    such as ontology best practices and technical implementation issues.</li>
+  <li><a href="supportgroups/index.php#supporters">Supporting Groups and Organizations</a><br>
+  Various Supporting Groups and Organizations have encouraged their members to offer their time towards
+  the development of OBI, often without recourse to supplementary funding.</li>
+  </ul>
+   
+  If you represent a Community that would like to collaborate in the development of OBI, contact the 
+  <a href="mailto:obi-coord@lists.sourceforge.net">Coordination Committee</a>.
+
   <br><br>
-  The Advisors Group consists of individuals invited by the Coordination Committee to provide
-  expert advice in areas such as ontology best practices and technical implementation issues. A
-  listing of the OBI Advisors is available on the <a href="../community/index.php">Community</a>
-  page.   
+  Additionally, to keep up with the pace of development in OBI, an
+  <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php?title=HomePage" target="_blank">OBI Wiki</a> has been set up to
+  promote the quick release of new information to the public.
   <br><br>
+
   The full documentation on the scope and organization of the OBI project is available for 
-  <a href="http://sourceforge.net/project/showfiles.php?group_id=177891">download</a>. 
+  <a href="http://sourceforge.net/project/showfiles.php?group_id=177891">download</a>.
 
   <br><br> 
 
   <hr class=lightgray>
 
   <b>Conference Calls</b><br>
-  Weekly developers conference calls are held on Wednesdays from 11-12AM EST, 4-5PM GMT, with the exception 
+  Weekly Developer Working Group conference calls are held on Wednesdays from 11-12AM EST, 4-5PM GMT, with the exception
   of the second Wednesday of each month.  For more information on these calls, check the 
   <a href="https://www.cbil.upenn.edu/obiwiki/index.php/ConferenceCallAgenda" target="_blank">OBI Wiki</a>.  
  

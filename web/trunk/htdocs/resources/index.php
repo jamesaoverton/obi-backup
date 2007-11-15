@@ -55,16 +55,48 @@ title();
 
 
   <a name=development><b>Get involved with OBI!</b></a>
-  <br>
-  <ul>
-  <li>The OBI project contains a developers group that is open for all to participate.  To get involved, 
-  subscribe to the 
-  <a href="https://lists.sourceforge.net/lists/listinfo/obi-devel">OBI Developers</a> mailing list.   
-  The list will cover the announcement of conference calls, the agenda and minutes in case you miss a 
-  call, and general topics of interest for all communites involved in the project.  
   <br><br>
-  Check out the <a href="http://obi.sourceforge.net/community/index.php">Community page</a> to 
-  see what communities are involved with this project.
+  The OBI project has a number of mailing lists that you may subscribe or post to. Please see the list below to determine
+  which is best forum for your query or suggestion.
+  <ul>
+  <li>OBI Developers. <a href="https://lists.sourceforge.net/lists/listinfo/obi-devel">Subscribe</a> | Post to obi-devel
+   at lists.sourceforge.net. This list covers announcements of conference calls, the agenda and minutes in case you miss
+   a call, and general topics of interest for all communites involved in the project.</li>
+    <li>OBI Relations Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-relations">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/ListOfRelationships">View Wiki</a> | Post
+    to obi-relations at lists.sourceforge.net. This list covers the properties and relationships used within OBI.</li>
+    <li>OBI DENRIE Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-denrie-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/DigitalEntityTerms">View Wiki</a> | Post
+     to obi-denrie-branch at lists.sourceforge.net. It is an OBI Branch concerned with identifying entities and relations
+      to describe information entities that can be interpreted by a computer or documented and communicated.</li>
+    <li>OBI Function Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-function-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/FunctionTerms">View Wiki</a> | Post to obi-function-branch
+    at lists.sourceforge.net. The list covers functions, which are end-directed activities manifested by specific continuants. 
+    Functions typically provide a description of how a variety of continuants inter-relate in a particular context.</li>
+    <li>OBI Role Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-role-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/RoleTerms">View Wiki</a> | Post to obi-role-branch at
+    lists.sourceforge.net. The list covers terms for role / reagent / reporter / variable identified by different
+    communities.</li>
+    <li>OBI Data Transformation Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-datatrfm-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/DataTransformation">View Wiki</a> | Post to obi-datatrfm-branch
+    at lists.sourceforge.net. The branch is concerned with identifying entities and relations to describe methods which
+    perform some processing, manipulation or transformation upon input data to produce a transformed view(s) of 
+    biomedical data.</li>
+    <li>OBI Protocol Application Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-protocol-application-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/ProtocolApplicationBranch">View Wiki</a> | Post to
+    obi-protocol-application-branch at lists.sourceforge.net. The list covers topics related to the specifica application
+    of experimental protocols.</li>
+    <li>OBI Plan Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-plan-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/PlanBranch">View Wiki</a> | Post to obi-plan-branch at
+    lists.sourceforge.net. The scope of the branch is to identify essential entities to describe the intent and
+    organizing steps of realizable entities such as an investigation (study/experiment), protocol or algorithm</li>
+    <li>OBI Instrument Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-instrument-branch">Subscribe</a> |
+    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/InstrumentTerms">View Wiki</a> | Post to
+    obi-instrument-branch at lists.sourceforge.net. The list covers all instruments that fall within the scope of
+    OBI.</li>
+    <li>OBI Web Support. <a href="https://lists.sourceforge.net/lists/listinfo/obi-web-support">Subscribe</a> | Post to
+    obi-web-support at lists.sourceforge.net. The list covers any questions that users may have about either the
+    static web pages hosted on SourceForge, or the wiki pages.</li>
   </ul>
   <br>
   <hr class=lightgray>
