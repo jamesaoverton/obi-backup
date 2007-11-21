@@ -109,14 +109,20 @@ detailed below.
   <td>&nbsp;</td></tr>
 
 
-  <!-- Clinical Trials -->
-  <tr><td class=gray>Clinical Trials</td>
+  <!-- Clinical Investigations -->
+  <tr><td class=gray rowspan="2">Clinical Investigations</td>
   <td><a href="http://www.niehs.nih.gov/cebs-df/fostel.cfm">Jennifer Fostel</a></td>
   <td><a href="http://www.bioontology.org/wiki/index.php/Workshop_on_Clinical_Trial_Ontology">Clinical Trial Ontology</a></td>
   <td><a href="http://www.niehs.nih.gov/cebs-df/twg.cfm">NIEHS, National Institute for Environmental Health Sciences</a></td>
   <td>Spring 2004</td>
   <td>&nbsp;</td></tr>
 
+
+  <td><a href="http://www.pharmgkb.org/home/team.jsp">Tina Hernandez-Boussard</a></td>
+  <td>&nbsp; <!-- Unknown --></td>
+  <td><a href="http://stanford.edu">Department of Genetics</a>, Stanford Medical School</td>
+  <td>Fall 2007</td>
+  <td>&nbsp;</td></tr>
 
   <!-- Crop Sciences -->
   <tr><td class=gray>Crop Sciences</td>
@@ -381,7 +387,7 @@ detailed below.
     <a href="http://symba.sf.net">SyMBA</a>,
     <a href="http://fuge.sf.net">FuGE</a></td>
     <td><a href="http://www.cisban.ac.uk">CISBAN</a></td>
-    <td>Summer 2007 (Spring 2006 with OBI)</td>
+    <td>Summer 2007<!-- (Spring 2006 with OBI)--></td>
     <td>&nbsp;</td></tr>
 
     <tr><td><a href="http://sciencecommons.org/about/whoweare/ruttenberg/">Alan Ruttenberg</a></td>
@@ -397,7 +403,7 @@ detailed below.
     <td>&nbsp;</td></tr>
 
     <tr><td><a href="http://www.ebi.ac.uk/Information/Staff/person_maintx.php?s_person_id=863">James Malone</a></td>
-    <td>&nbsp;</td>
+    <td><a href="http://www.microarray-quality.org/">EMERALD</a></td>
     <td><a href="http://www.ebi.ac.uk">EBI</a></td>
     <td>Fall 2007</td>
     <td>&nbsp;</td></tr>

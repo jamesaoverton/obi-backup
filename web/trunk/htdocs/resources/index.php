@@ -40,6 +40,7 @@ title();
   <td>
   <div class=small align=right>On this page:<br>
   <a href="#development" class=menu>Get Involved</a>,
+  <a href="#pubs" class=menu>Publications</a>,
   <a href="#workshop" class=menu>Workshop Docs</a>,
   <a href="#presentations" class=menu>OBI Presentations</a>,
   <a href="#links" class=menu>Links</a>
@@ -102,7 +103,19 @@ title();
   <hr class=lightgray>
   <br>
 
-  <a name=workshop><b>OBI (formerly FuGO) Workshop Documents</b></a> 
+  <a name="pubs"><b>OBI Consortium Publications</b></a>
+    <ul>
+    <li><a href="http://www.nature.com/nbt/journal/v25/n11/full/nbt1346.html"> Nat Biotechnol. 2007 Nov;25(11):1251-1255.</a>
+    "The OBO Foundry: coordinated evolution of ontologies to support biomedical data integration", Smith B, Ashburner
+    M, Rosse C, Bard J, Bug W, Ceusters W, Goldberg LJ, Eilbeck K, Ireland A, Mungall CJ, The OBI Consortium,
+    Leontis N, Rocca-Serra P, Ruttenberg A, Sansone SA, Scheuermann RH, Shah N, Whetzel PL, Lewis S.</li>
+    </ul>
+  
+  <br>
+  <hr class=lightgray>
+  <br>
+
+  <a name=workshop><b>OBI (formerly FuGO) Workshop Documents</b></a>
   <ul>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458979">1st Workshop (February 2006; Philadelphia, PA)</a>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458978">2nd Workshop (July 2006; Hinxton, UK)</a>

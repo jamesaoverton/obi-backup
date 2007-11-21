@@ -51,6 +51,7 @@ menu(home);
    <td>
   <div class=small align=right>On this page:<br>
   <a href="#statement" class menu>Mission Statement</a>,
+  <a href="#news" class menu>News</a>,
   <a href="#organization" class menu>Project Organization</a>,
   <a href="#call">Conference Calls</a>
   </div>
@@ -64,7 +65,7 @@ menu(home);
 
   <div class=small>
 
-  <a name=statement><b>MISSION STATEMENT</b></a>
+  <a name="statement"><b>MISSION STATEMENT</b></a>
   <br><br>
 
   <!--<div class=small align=justify>-->
@@ -97,7 +98,22 @@ menu(home);
 
   <br>
 
-  <a name=organization><b>Project Organization</b></a>
+  <a name="news"><b>OBI News</b></a>
+  <br>
+
+  <ul>
+  <li>16 November 2007: <em><a href="http://www.nature.com/nbt/journal/v25/n11/full/nbt1346.html">OBO Foundry Paper
+  Published in Nature Biotechnology</a></em><br>
+  "The OBO Foundry: coordinated evolution of ontologies to support biomedical data integration" by Smith et al. and
+  co-authored by the OBI Consortium is now available as an open access paper from Nature Biotechnology.</li>
+  </ul>
+
+  <br>
+  <hr class=lightgray>
+
+  <br>
+
+  <a name="organization"><b>Project Organization</b></a>
   <br> 
   The <a href="consortium/index.php">OBI Consortium</a> contains:
   <ul>
@@ -106,7 +122,7 @@ menu(home);
   <li><a href="consortium/index.php#community">Community Representatives</a>, those representing the communities
   participating in the development of OBI, and</li>
   <li><a href="consortium/index.php#coredevelopers">Core Developers</a>, those who are considered key to the
-  evolution of the ontology, but who are not members of any single community.</li>
+  evolution of the ontology.</li>
   </ul>
   </li>
   <li><a href="consortium/index.php#developers">Developers Working Group</a><br>
