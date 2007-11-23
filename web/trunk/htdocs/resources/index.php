@@ -139,7 +139,7 @@ title();
   <a href="http://psidev.sourceforge.net/meetings/2006-04">HUPO PSI Spring Workshop</a>
   <br>  
   <ul type=circle>
-  <li>Presentation: <a href="./presentations/PSI-Spring-2006_FuGO.ppt">FuGO Overview and Community Work Towards FuGO</a>
+  <li>Presentation: <a href="presentations/PSI-Spring-2006_FuGO.ppt">FuGO Overview and Community Work Towards FuGO</a>
   <br> 
   This set of slides were presented at the PSI Spring Workshop as an introduction to FuGO and to show 
   how various communities are helping to develop FuGO.<br>
@@ -152,7 +152,7 @@ title();
   <a href="http://www.w3.org/2001/sw/hcls">W3C HCLS Meeting</a>
   <br>
   <ul type=circle>
-  <li>Presentation: <a href="./FuGO-HCLS_Jan-2006.ppt">FuGO overview</a><br>
+  <li>Presentation: <a href="presentations/FuGO-HCLS_Jan-2006.ppt">FuGO overview</a><br>
   </ul>
   
   <br>
@@ -161,7 +161,7 @@ title();
   <br>
   <a href="http://www.mpdg.org/Metabomeeting2.htm">MetaboMeeting2</a>
   <ul type=circle> 
-  <li>Presentation: <a href="./Sansone-MetabMeeting2-FuGO.ppt">FuGO and Metabolomics Society Ontology WG Overview</a><br>
+  <li>Presentation: <a href="presentations/Sansone-MetabMeeting2-FuGO.ppt">FuGO and Metabolomics Society Ontology WG Overview</a><br>
   </ul>
   </ul>
   
@@ -175,8 +175,8 @@ title();
   <br>
   <a href="http://www.cbu.uib.no/mged8/">MGED 8 meeting</a>
   <ul type=circle>
-  <li>Presentation: <a href="./FuGO-MGED_2005.ppt">FuGO Workshop</a> (MGED Ontology Workshop - MO/FuGO Overview)
-  <li><a href="./RSBI-FuGO-workshopv2.ppt">RSBI</a> (MGED Ontology Workshop - RSBI Overview)
+  <li>Presentation: <a href="presentations/FuGO-MGED_2005.ppt">FuGO Workshop</a> (MGED Ontology Workshop - MO/FuGO Overview)
+  <li><a href="presentations/RSBI-FuGO-workshopv2.ppt">RSBI</a> (MGED Ontology Workshop - RSBI Overview)
   </ul>
 
   <br>
@@ -186,8 +186,8 @@ title();
   <br>
   <a href="http://bio-ontologies.man.ac.uk/">BioOntologies, 2005</a>
   <ul type=circle>
-  <li><a href="./BioOntologies-2005.doc">Abstract</a> (BioOntologies FuGO Abstract)
-  <li><a href="./BioOntologiesPoster-2005.ppt">Poster</a> (BioOntologies Poster)
+  <li><a href="presentations/BioOntologies-2005.doc">Abstract</a> (BioOntologies FuGO Abstract)
+  <li><a href="presentations/BioOntologiesPoster-2005.ppt">Poster</a> (BioOntologies Poster)
   </ul>
   </div>
 
