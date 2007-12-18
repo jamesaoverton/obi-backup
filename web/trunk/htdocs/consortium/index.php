@@ -110,9 +110,9 @@ detailed below.
 
 
   <!-- Clinical Investigations -->
-  <tr><td class=gray rowspan="2">Clinical Investigations</td>
+  <tr><td class=gray rowspan="3">Clinical Investigations</td>
   <td><a href="http://www.niehs.nih.gov/cebs-df/fostel.cfm">Jennifer Fostel</a></td>
-  <td><a href="http://www.bioontology.org/wiki/index.php/Workshop_on_Clinical_Trial_Ontology">Clinical Trial Ontology</a></td>
+  <td><a href="http://www.bioontology.org/wiki/index.php/CTO:Main_Page">Ontology for Clinical Investigations</a></td>
   <td><a href="http://www.niehs.nih.gov/cebs-df/twg.cfm">NIEHS, National Institute for Environmental Health Sciences</a></td>
   <td>Spring 2004</td>
   <td>&nbsp;</td></tr>
@@ -122,6 +122,13 @@ detailed below.
   <td>&nbsp; <!-- Unknown --></td>
   <td><a href="http://stanford.edu">Department of Genetics</a>, Stanford Medical School</td>
   <td>Fall 2007</td>
+  <td>&nbsp;</td></tr>
+
+  <td><a href="http://www8.utsouthwestern.edu/findfac/personal/0,2358,16416,00.html">Richard Scheuermann</a></td>
+  <td><a href="http://www.bioontology.org/wiki/index.php/CTO:Main_Page">Ontology for Clinical Investigations</a></td>
+  <td><a href="http://www.utsouthwestern.edu">University of Texas Southwestern Medical Center</a>, in
+  in Department of Pathology and <a href="http://www.utsouthwestern.edu/utsw/cda/dept174769/files/327041.html">Division of Biomedical Informatics</a></td>
+  <td>Winter 2007</td>
   <td>&nbsp;</td></tr>
 
   <!-- Crop Sciences -->

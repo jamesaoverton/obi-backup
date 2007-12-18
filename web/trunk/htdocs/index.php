@@ -117,7 +117,7 @@ menu(home);
   <br> 
   The <a href="consortium/index.php">OBI Consortium</a> contains:
   <ul>
-  <li><a href="consortium/index.php#coordination">Coordination Committe</a>, consisting of:<br>
+  <li><a href="consortium/index.php#coordination">Coordination Committee</a>, consisting of:<br>
   <ul>
   <li><a href="consortium/index.php#community">Community Representatives</a>, those representing the communities
   participating in the development of OBI, and</li>

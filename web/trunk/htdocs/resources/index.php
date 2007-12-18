@@ -39,6 +39,7 @@ title();
   <tr>
   <td>
   <div class=small align=right>On this page:<br>
+  <a href="#faq" class=menu>FAQ</a>,
   <a href="#development" class=menu>Get Involved</a>,
   <a href="#pubs" class=menu>Publications</a>,
   <a href="#workshop" class=menu>Workshop Docs</a>,
@@ -55,6 +56,12 @@ title();
   <div class=small>
 
 
+  <a name=faq><b>OBI FAQ</b></a>
+  <br><br>
+  OBI maintains a <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/FAQ">Frequently Asked Questions</a> section on
+  our Wiki Pages. 
+
+  <br><br>
   <a name=development><b>Get involved with OBI!</b></a>
   <br><br>
   The OBI project has a number of mailing lists that you may subscribe or post to. Please see the list below to determine
