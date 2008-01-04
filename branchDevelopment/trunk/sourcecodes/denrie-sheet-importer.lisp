@@ -111,7 +111,7 @@
 					(defined-and-unambiguous-parent parent new))))
 		 (when (gethash term *label2obi*)
 		   (format t "Redefining ~a~%" term))
-		 (apply 'class (gethash term new)
+		 (apply 'class (string-downcase (gethash term new))
 		    :partial  parent-class
 		    (label term)
 		    (obi-definition (field :definition fields))
@@ -130,7 +130,7 @@
     ))
 
 (defun role-branch ()
-  (define-ontology role () 
+  (define-ontology role (:base "http://obi.sourceforge.net/ontology/OBI/Role.owl") 
     (let ((*default-kb* *obi*))
       (do-import "~/repos/obi/branchDevelopment/trunk/spreadsheets-imported/role-branch-2007-11-28.txt" :should-import
 		 (lambda(fields) 
