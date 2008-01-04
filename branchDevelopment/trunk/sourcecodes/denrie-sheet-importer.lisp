@@ -132,7 +132,7 @@
 (defun role-branch ()
   (define-ontology role () 
     (let ((*default-kb* *obi*))
-      (do-import "/Users/alanr/lsw/obi/RoleBranch-Nov28.txt" :should-import
+      (do-import "~/repos/obi/branchDevelopment/trunk/spreadsheets-imported/role-branch-2007-11-28.txt" :should-import
 		 (lambda(fields) 
 		   (not (equal (car fields) "")))))
     ))
