@@ -80,7 +80,7 @@
 	     (let ((term (field :term fields)))
 	       (unless (gethash term new )
 		 (setf (gethash term new)
-		       (make-uri (format nil "http://obi.sourceforge.net/ontology/OBI.owl#~a" (substitute #\_ #\space term)))
+		       (make-uri (format nil "http://obi.sourceforge.net/ontology/OBI.owl#~a" (string-downcase (substitute #\_ #\space term))))
 		       (gethash (substitute #\space #\_ term) new )
 		       (gethash term new )
 		       )))))
@@ -111,7 +111,7 @@
 					(defined-and-unambiguous-parent parent new))))
 		 (when (gethash term *label2obi*)
 		   (format t "Redefining ~a~%" term))
-		 (apply 'class (string-downcase (gethash term new))
+		 (apply 'class (gethash term new)
 		    :partial  parent-class
 		    (label term)
 		    (obi-definition (field :definition fields))
