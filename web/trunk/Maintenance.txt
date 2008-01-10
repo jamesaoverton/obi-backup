@@ -1,34 +1,9 @@
 This is a document that should NOT go onto the shell.sourceforge.net server. Its job is to tell OBI Administrators
 how they must upload changes to the server for the static pages.
 
-Unfortunately, Sourceforge do not allow direct subversion access to shell.sourceforge.net. Therefore, in order to get
-your changes from this SVN directory onto the shell.sourceforge.net server, please follow the following steps:
+UPDATE: SOURCEFORGE NOW ALLOWS DIRECT SUBVERSION ACCESS TO SHELL.SOURCEFORGE.NET. 
 
-1. Test ALL of your changes on your local system. If you need help setting up php on your system, Allyson Lister has
-had some experience with it on the ubuntu Linux OS, so you can contact her. However, she doesn't know much about
-other OS's so you may need to look it up. There should NEVER be broken code committed to this branch. It all must
-work properly prior to commit, as a person other than you might need to regenerate the files on shell.sourceforge.net
-from the SVN directory at any time.
+This means that /home/groups/o/ob/obi/htdocs and /home/groups/o/ob/obi/include are now subversion directories, and
+once you've made and committed a change to your local checkout, you should just be able to update the subversion directory
+directly on shell.sourceforge.net. Please let me know if you have any problems.
 
-2. Commit your code to SVN. Please use an appropriately descriptive commit message.
-
-3. Copy the appropriate files/directories into /home/groups/o/ob/obi on shell.sourceforge.net. There are a few ways to
-do this, two of which are presented here.
-    3a. Use your favorite copy mechanism (such as scp) to copy only those files and/or directories that you have
-        modified.
-    3b. If there are a lot of changes, you can copy htdocs/ and the include/ directories en-masse. scp or rsync
-        works well for this. Further instructions for rsync follow.
-
-        + Check that the command you're using is correct, and is performing exactly how you would expect with the
-        changes you have just made to the checkout using the following "dry-run" command:
-
-        rsync -e ssh --verbose --dry-run --recursive --exclude='.svn' --delete htdocs username@shell.sourceforge.net:/home/groups/o/ob/obi/
-        rsync -e ssh --verbose --dry-run --recursive --exclude='.svn' --delete include username@shell.sourceforge.net:/home/groups/o/ob/obi/
-
-        + *Carefully* study the output, and if it looks like it's doing the right thing, please continue to the *real*
-        run command, that will actually modify things on shell.sourceforge.net:
-
-        rsync -e ssh --verbose --recursive --exclude='.svn' --delete htdocs username@shell.sourceforge.net:/home/groups/o/ob/obi/
-        rsync -e ssh --verbose --recursive --exclude='.svn' --delete include username@shell.sourceforge.net:/home/groups/o/ob/obi/
-
-See http://sourceforge.net/docs/E07#shell for more information.
