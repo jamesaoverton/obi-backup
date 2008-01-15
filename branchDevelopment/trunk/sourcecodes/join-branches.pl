@@ -34,6 +34,7 @@ sub writeMerged
       if ($line =~ /xml:base=/) {
 	$line =~ s/OBI\/TheRest.owl/OBI.owl/;
 	print OUT '    xmlns:obi="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
+	print OUT '    xmlns:OBI="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
 	print OUT '    xmlns:j.0="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
       }
       print OUT $line;
@@ -64,12 +65,14 @@ sub writeMerged
       my $path = "$part".".owl";
       open PART, "<$path" or die("Trouble loading $path");
       my $copy;
+      print OUT "<!-- start branch: ",$part," -->\n";
       while (<PART>) {
 	if (/<\/owl:Ontology>/) { $copy = 1; next } # don't start copying until after the <ontology> section
 	if (/<\/rdf:RDF>/) { $copy = 0 } # but don't copy the closing tag
 	if ($copy) { print OUT $_ }
       }
       close PART;
+      print OUT "<!-- end branch: ",$part," -->\n";
     }
     print OUT "\n</rdf:RDF>\n"; # now close it all up
     close OUT;
