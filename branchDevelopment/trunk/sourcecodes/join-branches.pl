@@ -47,8 +47,8 @@ sub writeMerged
     # because their ontology name isn't the same as the URL. Doing so prevents pellet from complaining OWL-FULL
     foreach my $import (@otherImports) {
       if ($import =~ /\/ro/)
-	{ $import =~ s/\/ro_bfo_bridge/\/OBO_REL_BFO_BRIDGE/;
-	  $import =~ s/\/ro/\/OBO_REL/; 
+	{ # $import =~ s/\/ro_bfo_bridge/\/OBO_REL_BFO_BRIDGE/;
+	  $import =~ s/\/ro"/\/OBO_REL"/; 
 	  $import =~ s/<owl:imports rdf:resource(.*)/<owl:imports> <owl:Ontology rdf:about$1<\/owl:imports>/;
 	}
       print OUT $import 
