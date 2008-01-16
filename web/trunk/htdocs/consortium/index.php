@@ -292,7 +292,7 @@ detailed below.
   <!-- Structural Biology / Structural Bioinformatics -->
   <tr><td class=gray>Structural Biology / Structural Bioinformatics</td>
   <td><a href="mailto:jwest@rcsb.rutgers.edu">John Westbrook</a></td>
-  <td><a href="http://www.wwpdb.org">Worldwide Protein data Bank (wwPDB)</a></td>
+  <td><a href="http://www.wwpdb.org">Worldwide Protein Data Bank (wwPDB)</a></td>
   <td>Department of Chemistry and Chemical Biology, <a href="http://www.rutgers.edu">Rutgers University</a></td>
   <td>Winter 2007/8</td>
   <td>&nbsp;</td></tr>
