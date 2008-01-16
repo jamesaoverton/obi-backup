@@ -289,8 +289,17 @@ detailed below.
   <td>&nbsp;</td></tr>
 
 
+  <!-- Structural Biology / Structural Bioinformatics -->
+  <tr><td class=gray>Structural Biology / Structural Bioinformatics</td>
+  <td><a href="mailto:jwest@rcsb.rutgers.edu">John Westbrook</a></td>
+  <td><a href="http://www.wwpdb.org">Worldwide Protein data Bank (wwPDB)</a></td>
+  <td>Department of Chemistry and Chemical Biology, <a href="http://www.rutgers.edu">Rutgers University</a></td>
+  <td>Winter 2007/8</td>
+  <td>&nbsp;</td></tr>
+
   <!-- Toxicogenomics -->
-  <tr><td class=gray rowspan="2">Toxicogenomics</td><td><a href="http://www.niehs.nih.gov/cebs-df/fostel.cfm">Jennifer Fostel</a></td>
+  <tr><td class=gray rowspan="2">Toxicogenomics</td>
+  <td><a href="http://www.niehs.nih.gov/cebs-df/fostel.cfm">Jennifer Fostel</a></td>
   <td><a href="http://www.mged.org/Workgroups/rsbi/rsbi.html">Toxicogenomics</a></td>
   <td><a href="http://www.niehs.nih.gov/cebs-df/twg.cfm">NIEHS, National Institute for Environmental Health Sciences</a></td>
   <td>Spring 2004</td>
