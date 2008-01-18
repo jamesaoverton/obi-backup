@@ -50,8 +50,9 @@ sub writeMerged
       if ($import =~ /\/ro/)
 	{ # $import =~ s/\/ro_bfo_bridge/\/OBO_REL_BFO_BRIDGE/;
 	    $import =~ s/purl.org\/obo\/owl\/ro_bfo1-1_bridge/obofoundry.org\/ro\/ro_bfo1-1_bridge.owl/;
-	  $import =~ s/\/ro"/\/OBO_REL"/; 
-	  $import =~ s/<owl:imports rdf:resource(.*)/<owl:imports> <owl:Ontology rdf:about$1<\/owl:imports>/;
+	   $import =~ s/\/ro"/\/OBO_REL"/; 
+         #comment the following line to fix a bug in protege 3 that avoid display of the ontology annotations if imports use this syntax
+         #$import =~ s/<owl:imports rdf:resource(.*)/<owl:imports> <owl:Ontology rdf:about$1<\/owl:imports>/;
 	}
       print OUT $import 
     }
