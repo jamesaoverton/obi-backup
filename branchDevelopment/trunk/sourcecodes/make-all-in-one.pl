@@ -84,6 +84,7 @@ sub writeMerged
       if ($line =~ /xml:base=/) {
 	$line =~ s/OBI\/TheRest.owl/OBI.owl/;
 	print OUT '    xmlns:obi="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
+	print OUT '    xmlns:OBI="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
 	print OUT '    xmlns:j.0="http://obi.sourceforge.net/ontology/OBI.owl#"',"\n";
       }
       print OUT $line;
