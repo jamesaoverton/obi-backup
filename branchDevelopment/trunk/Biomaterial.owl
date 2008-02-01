@@ -12,6 +12,8 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
     xmlns:j.0="http://obi.sourceforge.net/ontology/OBI.owl#"
+    xmlns:OBI="http://obi.sourceforge.net/ontology/OBI.owl#"
+    xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
   xml:base="http://obi.sourceforge.net/ontology/OBI/Biomaterial.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1946,6 +1948,16 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     >Multiple Antigenic Peptide (MAP) construct containing T and B cell epitopes from p. falciparum congugated to a central glycin</j.0:example_of_usage>
     <rdfs:label xml:lang="en">peptide construct</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#material">
+    <OBI:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Material is any of bfo:Object, bfo:ObjectAggregate, or bfo:FiatObjectPart.</OBI:definition>
+    <OBI:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Alan Ruttenberg</OBI:definition_editor>
+    <OBI:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Because OBI spans many levels of granularity, we can't effectively use the BFO three level granularity model. Thus we erase the difference using this strategy of saying it is any of the material like entities in BFO</OBI:editor_note>
+    <owl:unionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#FiatObjectPart"/>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#Object"/>
+      <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#ObjectAggregate"/>
+    </owl:unionOf>
   </owl:Class>
 </rdf:RDF>
 
