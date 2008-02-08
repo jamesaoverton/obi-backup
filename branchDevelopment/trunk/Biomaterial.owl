@@ -17,47 +17,30 @@
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >$Revision$</owl:versionInfo>
   </owl:Ontology>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Boussard</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></curation_status>
-    <branch rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >biomaterial(deprecated)</branch>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Domain of an object property "has_role_which_can_only_be_played_by_biomaterial_entity"  in obi before split, Range: ?role_which_can_only_be_played_by_biomaterial_entity (LF 040907).</editor_note>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Bjoern Peters</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Helen Parkinson</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Susanna Sansone</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >biomaterial(deprecated)</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A biomaterial entity is an object of biological origin. definition_source: OBI.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Melanie Courtot</definition_editor>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >call Jan11 2008: Proposal to keep Biomaterial as name of the branch, but with the following definition: object and has_role (sample role or reagent role).. While Device would be an object and ((has_role some instrument_role) or (has_part some (has_role some instrument_role)))</editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</example_of_usage>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100000">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_defined_material"/>
     </rdfs:subClassOf>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Daniel Schober</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Alan Ruttenberg</definition_editor>
-    <rdfs:label xml:lang="en">biomaterial(deprecated)</rdfs:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >biomaterial</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#has_role"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_254"/>
+                  <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100039">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -244,13 +227,15 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     >IEDB</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100058">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Living cells, tissues or organs that have been transplanted  from one species to another.</definition>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MC: xenotransplantation should be submited to material_transformation</editor_note>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Xenograft</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -299,20 +284,24 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     >Melanie Courtot</definition_editor>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >viral vector</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >vector</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >vector</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100012">
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A. thaliana Ecotype Ler</example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A. thaliana Ecotype Ler</example_of_usage>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ecotype</preferred_term>
     <rdfs:subClassOf>
@@ -417,9 +406,9 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100002"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">diplotype</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >diplotype</preferred_term>
-    <rdfs:label xml:lang="en">diplotype</rdfs:label>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Helen Parkinson</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -485,23 +474,23 @@ HAS MADE_UP_OF RELATION WITH POLYPEPTIDE CONCEPT.  JAMES</editor_note>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100010">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Epstein Barr virus transformed B cell</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100009"/>
-    </rdfs:subClassOf>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Epstein Barr virus transformed B cell</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Epstein Barr virus transformed B cell</preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Epstein Barr virus transformed B cell</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100009"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100029">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -547,22 +536,22 @@ HMMM.. THE CONCEPT HERE IS CELL, ITS ORIGIN IS A DIFFERENT CONCEPT LINKED BY A R
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100021">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >strain</preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081"/>
     </rdfs:subClassOf>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Canton S is a strain of Drosophila</example_of_usage>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Boussard</definition_editor>
-    <rdfs:label xml:lang="en">strain</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A strain is the collective descendants of a common ancestor; synonyms: race, stock, line, or breed.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MO</definition_citation>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Boussard</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >strain</preferred_term>
+    <rdfs:label xml:lang="en">strain</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100083">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -627,20 +616,22 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     >An organ_section is a portion of an organ removed from the context of the organ</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100042">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ArrayExpress</definition_citation>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Prostate epithelial transit amplifying cells</example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <rdfs:label xml:lang="en">differentiation state</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The differentiation state is a descriptor of a cell's properties at some defined point in the differentiation process recognisable by some observable characteristic such as morphology.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Helen Parkinson</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >differentiation state</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Helen Parkinson</definition_editor>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prostate epithelial transit amplifying cells</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100073">
     <rdfs:label xml:lang="en">RNA virus</rdfs:label>
@@ -687,19 +678,21 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >All classes yet to be suitably placed in a hierarchy</definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_move to aggregate object?</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</example_of_usage>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >this class should eventually be removed</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_move to aggregate object?</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this class should eventually be removed</rdfs:comment>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100048">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -726,7 +719,9 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     >this class should eventually be removed</rdfs:comment>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -769,49 +764,49 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     >James Malone</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100055">
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell line</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</definition_citation>
-    <rdfs:label xml:lang="en">cell line</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell line</preferred_term>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A cell line is an entity of organismal origin that represents generations of a primary culture.</definition>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A cell line is an entity of organismal origin that represents generations of a primary culture.</definition>
+    <rdfs:label xml:lang="en">cell line</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100009"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_181">
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem1: collection somehow always involve a selection process</editor_note>
-    <rdfs:label xml:lang="en">population</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A population is an object aggregate in which the entities have common qualities. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">population</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem1: collection somehow always involve a selection process</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100054">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cellular compartment</preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cellular compartment</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >part of a cell enlosed by a membrane.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cytosol</example_of_usage>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cellular compartment</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >part of a cell enlosed by a membrane.</definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cellular compartment</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100053"/>
     </rdfs:subClassOf>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100049">
     <rdfs:label xml:lang="en">suspension</rdfs:label>
@@ -883,7 +878,9 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     >A biomolecule is a molecule that naturally occurs in living organisms and biological systems.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Biomolecule</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >biomolecule</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -904,7 +901,9 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     >definition_incomplete</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000029">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -924,6 +923,46 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >group of biomaterials in which a mixture of genes or gene fragments is expressed and can be individually selected and amplified.</definition>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated">
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Helen Parkinson</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Alan Ruttenberg</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >biomaterial(deprecated)</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Melanie Courtot</definition_editor>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Domain of an object property "has_role_which_can_only_be_played_by_biomaterial_entity"  in obi before split, Range: ?role_which_can_only_be_played_by_biomaterial_entity (LF 040907).</editor_note>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Susanna Sansone</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bjoern Peters</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Boussard</definition_editor>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</example_of_usage>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</definition_editor>
+    <rdfs:label xml:lang="en">biomaterial(deprecated)</rdfs:label>
+    <branch rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >biomaterial(deprecated)</branch>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A biomaterial entity is an object of biological origin. definition_source: OBI.</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >call Jan11 2008: Proposal to keep Biomaterial as name of the branch, but with the following definition: object and has_role (sample role or reagent role).. While Device would be an object and ((has_role some instrument_role) or (has_part some (has_role some instrument_role)))</editor_note>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Daniel Schober</definition_editor>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100044">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >molecular mixture</preferred_term>
@@ -939,6 +978,24 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100047">
+    <rdfs:label xml:lang="en">emulsion</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MC: should be a state</editor_note>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A mixture of immiscible (unblendable) substances, that are finely dispersed and not separate through the action of gravity alone</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100044"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Susanna</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >emulsion</preferred_term>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >lipid emulsion, oil in water emulsion, perfluoro-chemical emulsion, photographic emulsion</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PSI</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100052">
     <rdfs:subClassOf>
@@ -1000,33 +1057,15 @@ HAS MADE_UP_OF RELATION WITH AMINO ACID CONCEPT.  JAMES</editor_note>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100047">
-    <rdfs:label xml:lang="en">emulsion</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >MC: should be a state</editor_note>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A mixture of immiscible (unblendable) substances, that are finely dispersed and not separate through the action of gravity alone</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100044"/>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Susanna</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >emulsion</preferred_term>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >lipid emulsion, oil in water emulsion, perfluoro-chemical emulsion, photographic emulsion</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PSI</definition_citation>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_256">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
-    <rdfs:label xml:lang="en">site_sample</rdfs:label>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rem1: this has replaced 'collection of organism' previously used</editor_note>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A dirt sample containing different populations of bacteria. A sample of martian water. A sample of gut flora.</example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An environmental sample is an object that contains an array of objects that may or may not contain a biomaterial. definition_source: OBI.</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A dirt sample containing different populations of bacteria. A sample of martian water. A sample of gut flora.</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+    <rdfs:label xml:lang="en">site_sample</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100065">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1132,24 +1171,6 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</editor_note>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000048">
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >HLA-A*0201 transgenic mice, Vaccinia virus expressing the LCMV gp protein</example_of_usage>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is an organism which has been modified to express a gene not normally part of it</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Bjoern Peters</definition_editor>
-    <rdfs:label xml:lang="en">transgenic organism</rdfs:label>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >transgenic organism</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >IEDB</definition_citation>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100076">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
@@ -1170,6 +1191,24 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</editor_note>
     >James Malone</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://www.answers.com/animal?cat=health</definition_citation>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000048">
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >transgenic organism</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >IEDB</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bjoern Peters</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is an organism which has been modified to express a gene not normally part of it</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HLA-A*0201 transgenic mice, Vaccinia virus expressing the LCMV gp protein</example_of_usage>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">transgenic organism</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000207">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1195,37 +1234,37 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</editor_note>
   <owl:Class rdf:ID="OBI_1000024">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cell pellet</preferred_term>
-    <rdfs:label xml:lang="en">cell pellet</rdfs:label>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A cell pellet is an aggegration of cells produced by the application of centrifugal force</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The product of a centriguation process on a cell culture</example_of_usage>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Helen Parkinson</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CEBS</definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
     </rdfs:subClassOf>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A cell pellet is an aggegration of cells produced by the application of centrifugal force</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The product of a centriguation process on a cell culture</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >CEBS</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Helen Parkinson</definition_editor>
+    <rdfs:label xml:lang="en">cell pellet</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100063">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >clonal cell culture</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell culture in which all cells can be assumed to be identical, tracking back to a single ancestor cell.</definition>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell cut</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100060"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >clonal cell culture</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >clonal cell culture</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >clonal cell culture</preferred_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100060"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell culture in which all cells can be assumed to be identical, tracking back to a single ancestor cell.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell cut</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100036">
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1250,53 +1289,53 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</editor_note>
     >supernatant</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100051">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An entity of organismal origin is a biomaterial entity which is obtained from an organism.</definition>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI</definition_citation>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
     <rdfs:label xml:lang="en">entity of organismal origin</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An entity of organismal origin is a biomaterial entity which is obtained from an organism.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >entity of organismal origin</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100015">
+    <rdfs:label xml:lang="en">cardinal part of organism</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cardinal part of organism</preferred_term>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tissue, organ, system, sperm, blood or body location (arm).</example_of_usage>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Boussard</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MO</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_unclassified"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An organism_part is a part of organism's anatomy or substance arising from an organism from which the biomaterial was derived, excludes cells. E.g. tissue, organ, system, sperm, blood or body location (arm).</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tissue, organ, system, sperm, blood or body location (arm).</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_unclassified"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:label xml:lang="en">cardinal part of organism</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Boussard</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100082">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >All classes yet to be suitably placed in a hierarchy</definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_move to relations?</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</definition_citation>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this class should eventually be removed</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_move to relations?</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >this class should eventually be removed</rdfs:comment>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100033">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1322,6 +1361,7 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100043">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The genetic modification introduced into the organism from which the biomaterial was derived. Examples of genetic modification include specification of a transgene or the gene knocked-out or details of transient transfection.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1335,40 +1375,39 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     >MO_122</definition_citation>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >"GENETIC MODIFICATION" TO ME SOUNDS LIKE AN ACTION - NOT SURE HOW WE DEAL WITH THIS ONE.</editor_note>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000021">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PSI</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mixed population of cDNAs (complementaryDNA) made from mRNA from a defined source, usually a specific cell type. This term should be associated only to nucleic acid interactors not to their proteins product. For instance in 2h screening use living cells (MI:0349) as sample process.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >collection of cDNA derived from mouse splenocytes. PMID:6110205</example_of_usage>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cDNA library</preferred_term>
     <rdfs:label xml:lang="en">cDNA library</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Luisa Montecchi</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mixed population of cDNAs (complementaryDNA) made from mRNA from a defined source, usually a specific cell type. This term should be associated only to nucleic acid interactors not to their proteins product. For instance in 2h screening use living cells (MI:0349) as sample process.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100061">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >primary cell culture</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >primary cell culture</preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >primary cell culture</rdfs:label>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >spleen cells put directly into culture</example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cells put directly into culture from a tissue source.</definition>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >spleen cells put directly into culture</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100060"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100060"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100040">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1392,15 +1431,15 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100017">
     <rdfs:label xml:lang="en">blood serum</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >blood serum</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://en.wikipedia.org/wiki/Blood_plasma</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Blood serum is blood plasma without fibrinogen or the other clotting factors.</definition>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://en.wikipedia.org/wiki/Blood_plasma</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Fetal Bovine Serum</example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1413,20 +1452,20 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     >Immunobiology by Janeway &amp; Travers 1997</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100053">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell component</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >FMA</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100051"/>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell component</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A cell component is an entity of organismal origin which has a definable shape, bounded predominantly by bonafide boundaries.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <rdfs:label xml:lang="en">cell component</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100051"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100068">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1447,6 +1486,7 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     <rdfs:label xml:lang="en">monomer</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100009">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1460,7 +1500,6 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >North Carolina Biotechnology Center</definition_citation>
     <rdfs:label xml:lang="en">cell</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Compiled by Helen Parkinson for Transcriptomics thanks to Adam Witney</definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1495,13 +1534,13 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     >Melanie Courtot</definition_editor>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This is in FMA</editor_note>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Fresh frozen plasma (FFP)</example_of_usage>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >blood plasma</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Blood_plasma</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1537,7 +1576,6 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     <rdfs:label xml:lang="en">serotype</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A serotype is a subdivision of a species of microorganism, eg, a bacteria, based upon its particular antigens.</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MO_159</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1548,6 +1586,7 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     >definition_incomplete</curation_status>
     <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >allograft</alternative_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Streptococcus pyogenes M3 serotype</example_of_usage>
   </owl:Class>
@@ -1571,21 +1610,21 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</editor_note>
     ></definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100079">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this class should eventually be removed</rdfs:comment>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >All classes yet to be suitably placed in a hierarchy</definition>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >_move to role?</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >this class should eventually be removed</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100003">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1617,10 +1656,10 @@ MC: virus and viroid are not organisms</editor_note>
     >micro-organism</example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >plant</example_of_usage>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >plant</example_of_usage>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Organism</definition_citation>
@@ -1637,20 +1676,20 @@ MC: virus and viroid are not organisms</editor_note>
     >animal</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100056">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >immortalized cell line</preferred_term>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100055"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <rdfs:label xml:lang="en">immortalized cell line</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An immortalized cell line is a cell line that is able to replicate indefinitely</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >immortalized cell line</preferred_term>
+    <rdfs:label xml:lang="en">immortalized cell line</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100055"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100074">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1673,9 +1712,9 @@ MC: virus and viroid are not organisms</editor_note>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100027">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Virus</definition_citation>
     <rdfs:label xml:lang="en">virus</rdfs:label>
@@ -1696,53 +1735,53 @@ MC: A virus is not an orgnism</editor_note>
     >Immunobiology by Janeway &amp; Travers 1997</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100062">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100060"/>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >HeLa cells</example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell line culture</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >long term culture of cells that are replicating continuosly. The cell population is homogenous but not clonal</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cell line culture</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell line culture</rdfs:label>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HeLa cells</example_of_usage>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100019">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Helen Parkinson</definition_editor>
+    <rdfs:label xml:lang="en">cohort</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081"/>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Boussard/PharmGBK</definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A group of individuals with the same disease</example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A cohort is a group of individuals, identified by a common characteristic, who are studied over a period of time as part of an epidemiological investigation.</definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cohort</preferred_term>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100081"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Boussard/PharmGBK</definition_citation>
-    <rdfs:label xml:lang="en">cohort</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100031">
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >viroid</preferred_term>
+    <rdfs:label xml:lang="en">viroid</rdfs:label>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rice yellow mottle sobemovirus (RYMV)</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://en.wikipedia.org/wiki/Viroid</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Viroids are plant pathogens that consist of a short stretch (a few hundred nucleobases) of highly complementary, circular, single-stranded RNA without the protein coat that is typical for viruses.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >viroid</preferred_term>
-    <rdfs:label xml:lang="en">viroid</rdfs:label>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rice yellow mottle sobemovirus (RYMV)</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://en.wikipedia.org/wiki/Viroid</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100014">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1764,12 +1803,12 @@ MC: A virus is not an orgnism</editor_note>
     >example_of_usage to be added</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100006">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <rdfs:label xml:lang="en">genotype</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The total sum of the genetic information of an organism that is known and relevant to the experiment being performed, including chromosomal, plasmid, viral or other genetic material which has been introduced into the organism either prior to or during the experiment.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >p53 codon 72 genotype</example_of_usage>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1800,39 +1839,22 @@ MC: A virus is not an orgnism</editor_note>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Acridine orange is a nucleic acid selective dye.</example_of_usage>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_defined_biomaterial"/>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000006">
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Triton_X-100</preferred_term>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Triton_X-100</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</definition_editor>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_336"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition pending</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000023">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >IEDB</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_unclassified"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Bjoern Peters</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >solution containing RPMI, fetal calf sera, antibiotics, and monoclonal antibody UCHT1.</example_of_usage>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Supernatant of a cell culture.  Contains media, supplements, and secreted products of the cells.</definition>
-    <rdfs:label xml:lang="en">cell culture supernatant</rdfs:label>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cell culture supernatant</preferred_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_336"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059">
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1853,38 +1875,31 @@ MC: A virus is not an orgnism</editor_note>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</example_of_usage>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000023">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_unclassified"/>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cell culture supernatant</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bjoern Peters</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Supernatant of a cell culture.  Contains media, supplements, and secreted products of the cells.</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >solution containing RPMI, fetal calf sera, antibiotics, and monoclonal antibody UCHT1.</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >IEDB</definition_citation>
+    <rdfs:label xml:lang="en">cell culture supernatant</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#organization">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A group of people who work together</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_10000011">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >radioactive</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100000">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >biomaterial</rdfs:label>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_254"/>
-                  <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
-                </owl:unionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#has_role"/>
-          </owl:Restriction>
-          <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_defined_biomaterial"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100041">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1896,11 +1911,11 @@ MC: A virus is not an orgnism</editor_note>
     <rdfs:label xml:lang="en">cultivar</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Cultivar</definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Solanum tuberosum has a virus resistant cultivar Alcmaria</example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MO_124</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#_biomaterial_deprecated"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1947,19 +1962,19 @@ MC: A virus is not an orgnism</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100028">
     <rdfs:label xml:lang="en">archaea</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://en.wikipedia.org/wiki/Archaea</definition_citation>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Halobacterium</example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An archaea  is an organism that is a single-celled prokaryote. In this they are similar to bacteria but these two groups evolved differently, and are classified as different domains in the three-domain system.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://en.wikipedia.org/wiki/Archaea</definition_citation>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100071"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >archaea</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An archaea  is an organism that is a single-celled prokaryote. In this they are similar to bacteria but these two groups evolved differently, and are classified as different domains in the three-domain system.</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Halobacterium</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000049">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1971,29 +1986,29 @@ MC: A virus is not an orgnism</editor_note>
     >whole mount preparation</preferred_term>
     <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >whole mount</alternative_term>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A whole_mount is a histological preparation where the whole specimen is mounted or spread on the glass slide</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Helen Parkinson</definition_editor>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_1000036">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A mixture (collection) of cell components created by rupturing of the cell wall</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Susanna</definition_editor>
     <rdfs:label xml:lang="en">lysate</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >lysate</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Susanna</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PSI</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cell-free lysate, whole lysate, nuclear lysate</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100059"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A mixture (collection) of cell components created by rupturing of the cell wall</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100008">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2004,10 +2019,10 @@ MC: A virus is not an orgnism</editor_note>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_100080"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >none</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bjoern Peters (added term)</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >none</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >E Coli</example_of_usage>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
