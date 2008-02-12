@@ -2,10 +2,14 @@
 
 # Author: Jason Greenbaum (jgbaum@gmail.com)
 # Date: February 5, 2008
+# Version: 0.1
 
+# Descritpion
+#
 # This program will take the name of a csv file with terms and an OWL file
 # in which to place them.  It will generate the OWL and insert it into the OWL
-# file.  It will save a backup of the OWL file before it makes any modifications.
+# file.  It will save a backup of the OWL file before it makes any
+# modifications.  It will also perform the opposite conversion, OWL to CSV.
 
 # TODO:
 # 1. read in other OWL files to identify OBI terms & enforce auto_ID
