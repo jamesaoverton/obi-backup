@@ -24,6 +24,10 @@ use File::Copy;
 use XML::Simple qw(:strict);
 use Encode;
 
+# We must set this environment variable to XML::Parser, so that the .xtra files are 
+# parsed without an error ("undedeclared prefix").
+$XML::Simple::PREFERRED_PARSER = "XML::Parser";
+
 my ($csvin_file,$csvout_file,$owlin_file,$owlout_file,$help);
 my $delim = "\t";
 my $action = "1";
@@ -210,6 +214,7 @@ sub get_xml {
 
 }
 
+
 # this will add/change an attribute record to/of a particular class
 sub add_attribute_to_xml {
 
@@ -299,6 +304,9 @@ sub insert_terms_from_csv {
 	push @new_terms, $term;
     }
     $xml->{"owl:Class"} = \@new_terms;
+
+    # here, we retrieve it an put it into the xml structure
+    $xml = check_extra($xml,$csvin_file);
 
     # now we copy to backup file before writing output
     my $backup_file = $owlout_file . ".bak";
@@ -466,8 +474,9 @@ sub array2csv {
     if ($inferred_classes) {
 
 	open (XTRA, ">$outfile.xtra");
-	my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
-	
+	#my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
+	my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>0);
+
 	$xout = encode("utf8",$xout);
 
 	print XTRA $xout, "\n";
