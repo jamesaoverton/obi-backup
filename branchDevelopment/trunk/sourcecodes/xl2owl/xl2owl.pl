@@ -438,9 +438,19 @@ sub array2csv {
 	    $class = $classholder;
 	}
 	my $label = "";
-	if ($h_ref->{"rdfs:label"}) {
-	    $label = $h_ref->{"rdfs:label"}->[0]->{content};
+	if (ref($h_ref->{"rdfs:label"}) eq "ARRAY") {
+	    if (!ref($h_ref->{"rdfs:label"}->[0])) {
+		$label = $h_ref->{"rdfs:label"}->[0];
+	    } else {
+		$label = $h_ref->{"rdfs:label"}->[0]->{content};
+	    }
 	}
+	# Here we deal with empty label fields...we set them to the empty string
+	# instead of undef
+	unless ($label) {
+	    $label = "";
+	}
+
 	my $parent_uri = "";
 	my $parent_class = "";
 	if ($parent_class_uri) {
@@ -452,20 +462,27 @@ sub array2csv {
 	};
 	push @line, ($class,$label,$uri,$parent_class,"",$parent_uri);
 
+	#print Dumper $h_ref;
+
 	# here we take care of the dynamic portion of the csv
 	foreach my $f (@unique_fields[6..$#unique_fields]) {
 	    for (my $i=0; $i<$fields{$f}; $i++) {
-		if ($h_ref->{$f}->[$i]->{content}) {
-		    my $value = $h_ref->{$f}->[$i]->{content};
-		    #replacing newlines
-		    $value =~ s/[\n\r]+/\\n/g;
-		    push @line, $value;		    
-		} else {
-		    push @line, "";
+		my $value = "";
+		if ($h_ref->{$f}->[$i]) {
+		    if (ref($h_ref->{$f}->[$i]) ne "HASH") {
+			$value = $h_ref->{$f}->[$i];		    
+		    } elsif ($h_ref->{$f}->[$i]->{content}) {
+			$value = $h_ref->{$f}->[$i]->{content};
+		    }
 		}
+		$value =~ s/[\n\r]+/\\n/g;
+		push @line, $value;
+		
 	    }
 	}
 
+	#print "----------------\n";
+	#print Dumper @line;
 	my $line = join "\t", @line;
 	print OUTF $line, "\n";
     }
