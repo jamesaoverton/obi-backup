@@ -56,10 +56,10 @@
     <rdfs:label xml:lang="en">logistic-log curve fitting</rdfs:label>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >logistic-log curve fitting</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >logistic-log curve fitting</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Plikaytis B.D. et al. (1991), J. Clin. Microbiol. 29(7): 1439-1448</definition_citation>
   </owl:Class>
@@ -85,32 +85,24 @@
     >Elisabetta Manduchi</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >_unclassified</preferred_term>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this class should be removed</rdfs:comment>
+    <rdfs:label xml:lang="en">_unclassified</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >All classes yet to be suitably placed in a hierarchy</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >this class should be removed</rdfs:comment>
-    <rdfs:label xml:lang="en">_unclassified</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    </rdfs:subClassOf>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_unclassified</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200121">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The square root of the variance.  Also thought of as the average distance of each value to the mean.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >standard deviation calculation</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >standard deviation calculation</rdfs:label>
     <rdfs:subClassOf>
@@ -120,6 +112,14 @@
     >definition_incomplete</curation_status>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The square root of the variance.  Also thought of as the average distance of each value to the mean.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >standard deviation calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200072">
     <rdfs:subClassOf>
@@ -143,38 +143,42 @@
     >curation_complete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200116">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mathematical details of loess fits are given in Cleveland, William (1993) Visualizing Data. Hobart Press, Summit, New Jersey, pp. 94-101.</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess fitting</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The term loess is short for localized regression.  It refers to fitting a polynomial (straight line, quadratic, cubic, etc) to data values within a window covering a fraction of the total number of observations.  As the window slides along the axis, a new polynomial is fit to the observations falling within the window.  This continues until all points are fit with a local polynomial.  The results are then smoothed together to form a curve.  The smoothness of loess fits is controlled by a smoothing parameter (often denoted as alpha, usually between ¼ and 1) and the degree of the polynomial that is fitted by the method (usually denoted by lambda).</definition>
-    <rdfs:label xml:lang="en">loess fitting</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200072"/>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mathematical details of loess fits are given in Cleveland, William (1993) Visualizing Data. Hobart Press, Summit, New Jersey, pp. 94-101.</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Monnie McGee</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess fitting</preferred_term>
+    <rdfs:label xml:lang="en">loess fitting</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200072"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The term loess is short for localized regression.  It refers to fitting a polynomial (straight line, quadratic, cubic, etc) to data values within a window covering a fraction of the total number of observations.  As the window slides along the axis, a new polynomial is fit to the observations falling within the window.  This continues until all points are fit with a local polynomial.  The results are then smoothed together to form a curve.  The smoothness of loess fits is controlled by a smoothing parameter (often denoted as alpha, usually between ¼ and 1) and the degree of the polynomial that is fitted by the method (usually denoted by lambda).</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200052">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >probabilistic algorithm</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A probabilistic algorithm is one which involves an element of probability or randomness in the transformation of the data.</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">probabilistic algorithm</rdfs:label>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >probabilistic algorithm</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A probabilistic algorithm is one which involves an element of probability or randomness in the transformation of the data.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200122">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >interquartile-range calculation</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The interquartile range is the difference between the 0.75 quantile and the 0.25 quantile for a set of data.</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -184,12 +188,8 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
     </rdfs:subClassOf>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The interquartile range is the difference between the 0.75 quantile and the 0.25 quantile for a set of data.</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >interquartile-range calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200027">
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -212,87 +212,87 @@
     >curation_complete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200032">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >K-fold cross validation method</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >K-fold cross validation method</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >K-fold cross validation method</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >K-fold cross validation method</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200136">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >edge betweenness calculation</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >edge betweenness calculation</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An edge quality calculation in which the input is a data sets of shortest paths between all pairs of node in the network and the output is the sum of all shortest paths that traverse the specific edge.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >edge betweenness calculation</preferred_term>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An edge quality calculation in which the input is a data sets of shortest paths between all pairs of node in the network and the output is the sum of all shortest paths that traverse the specific edge.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200135"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >edge betweenness calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200066">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Holm false discovery rate correction method</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Holm false discovery rate correction method</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Holm false discovery rate correction method</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >regression analysis method</preferred_term>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >regression analysis method</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Book:&lt;Richard A. Berk, Regression Analysis: A Constructive Critique, Sage Publications (2004) 978-0761929048&gt;</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >regression analysis method</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >regression analysis method</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
+    >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Regression analysis is a descriptive statistics technique that examines the relation of a dependent variable (response variable) to specified independent variables (explanatory variables). Regression analysis can be used as a descriptive method of data analysis (such as curve fitting) without relying on any assumptions about underlying processes generating the data.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200013">
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loess global normalization applied to data from two one-channel expression microarray assays, where the curve is obtained using all reporters. The goal is to remove intensity-dependent biases.</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor's adjustment based on MGED Ontology term</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess global transformation one-channel</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A loess global transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from two related one-channel assays.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >loess global transformation one-channel</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200023"/>
     </rdfs:subClassOf>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Loess global normalization applied to data from two one-channel expression microarray assays, where the curve is obtained using all reporters. The goal is to remove intensity-dependent biases.</example_of_usage>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A loess global transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from two related one-channel assays.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess global transformation one-channel</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor's adjustment based on MGED Ontology term</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200034">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -310,40 +310,40 @@
     >jackknifing method</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200094">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://en.wikipedia.org/wiki/Logarithm</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >logarithmic transformation</preferred_term>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Application of the logarithm function with a given base a (where a&gt;0 and a is not equal to 1) to a (one dimensional) positive real number input. The logarithm function with base a can be defined as the inverse of the exponential function with the same base. See e.g. http://en.wikipedia.org/wiki/Logarithm.</definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >logarithmic transformation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     </rdfs:subClassOf>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Application of the logarithm function with a given base a (where a&gt;0 and a is not equal to 1) to a (one dimensional) positive real number input. The logarithm function with base a can be defined as the inverse of the exponential function with the same base. See e.g. http://en.wikipedia.org/wiki/Logarithm.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://en.wikipedia.org/wiki/Logarithm</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >logarithmic transformation</preferred_term>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200073">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >family wise error rate correction method</preferred_term>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >family wise error rate correction method</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >family wise error rate correction method</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >FWER_correction</alternative_term>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FWER_correction</alternative_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200117">
     <rdfs:subClassOf>
@@ -351,129 +351,129 @@
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >mode calculation</rdfs:label>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >mode calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >From Monnie's file comments - need to add center_calculation role but it doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The mode is the most common value in a data set.  It is most often used as a measure of center for discrete data.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200028">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A data transformation that takes as input a collection of datasets, where each can be thought as an n-dimensional (real) vector, and which transforms each dataset so that the resulting output datasets have equal quantiles.</definition>
+    <rdfs:label xml:lang="en">quantile transformation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     </rdfs:subClassOf>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This can be used for expression microarray assay normalization and it is referred to as "quantile normalization", according to the procedure described e.g. in PMID 12538238.</example_of_usage>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >quantile transformation</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
-    <rdfs:label xml:lang="en">quantile transformation</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A data transformation that takes as input a collection of datasets, where each can be thought as an n-dimensional (real) vector, and which transforms each dataset so that the resulting output datasets have equal quantiles.</definition>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >quantile transformation</preferred_term>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This can be used for expression microarray assay normalization and it is referred to as "quantile normalization", according to the procedure described e.g. in PMID 12538238.</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200123">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >skewness calculation</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A parameter that describes how much a distribution (or a data set) varies from a bell-shaped curve.  See http://www.riskglossary.com/link/skewness.htm for details.  It is also known as the third central moment</definition>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >skewness calculation</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Monnie McGee</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A parameter that describes how much a distribution (or a data set) varies from a bell-shaped curve.  See http://www.riskglossary.com/link/skewness.htm for details.  It is also known as the third central moment</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://www.riskglossary.com/link/skewness.htm</definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
     </rdfs:subClassOf>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.riskglossary.com/link/skewness.htm</definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >skewness calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200053">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >EM is a probabilistic algorithm used to estimate the maximum likelihood of parameters from existing data where the model involves unobserved latent variables. The input to this method is the data model for which the estimation is performed over and the output is an approximateed probability function.</definition>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >expectation maximization</preferred_term>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200052"/>
     <rdfs:label xml:lang="en">expectation maximization</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >expectation maximization</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >EM is a probabilistic algorithm used to estimate the maximum likelihood of parameters from existing data where the model involves unobserved latent variables. The input to this method is the data model for which the estimation is performed over and the output is an approximateed probability function.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200009">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></example_of_usage>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >background correction</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >background correction</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >background correction</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200033">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >leave one out cross validation method</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >leave one out cross validation method</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >background correction</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200033">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >leave one out cross validation method</preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >leave one out cross validation method</rdfs:label>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200103">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >multiple linear regression analysis</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >web:&lt;http://en.wikipedia.org/wiki/Linear_regression&gt;</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple linear regression analysis</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >web:&lt;http://en.wikipedia.org/wiki/Linear_regression&gt;</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >multiple linear regression analysis</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple linear regression is a regression method that models the relationship between a dependent variable Y, independent variables Xi, i = 1, ..., p, and a random term ε. The model can be written as
     Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots +\beta_p X_p + \varepsilon
 where β0 is the intercept ("constant" term), the βis are the respective parameters of independent variables, and p is the number of parameters to be estimated in the linear regression.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >network subgraph quality calculation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
     </rdfs:subClassOf>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of a subgraph partition of the network.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -536,29 +536,28 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
     >Ryan Brinkman</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200147">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >network graph quality calculation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
     </rdfs:subClassOf>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >network graph quality calculation</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >network graph quality calculation</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of the network as a whole.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >network graph quality calculation</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200093">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a*x+b, with a non-zero, is a polynomial of degree one in one variable;  a*x^2+b*x+c, with a nonzero, is a polynomial of degree 2 in 1
-variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variables (x and y); a_1*x_1+...+a_n*x_n+b, with at least one of the a_i's non-zero, is a polynomial of degree one in n variables</example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >polynomial transformation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -567,23 +566,24 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >http://mathworld.wolfram.com/Polynomial.html</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data_transformation that is obtained through a polynomial, where a polynomial is a mathematical expression involving a sum of powers in one or more variables multiplied by coefficients (e.g. see http://mathworld.wolfram.com/Polynomial.html). The number of variables and the degree are properties of a polynomial. The degree of a polynomial is the highest power of its terms, where the terms of a polynomial are the individual summands with the coefficients omitted.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a*x+b, with a non-zero, is a polynomial of degree one in one variable;  a*x^2+b*x+c, with a nonzero, is a polynomial of degree 2 in 1
+variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variables (x and y); a_1*x_1+...+a_n*x_n+b, with at least one of the a_i's non-zero, is a polynomial of degree one in n variables</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200084">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >time series analysis</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >time series analysis</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >time series analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200035">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -592,13 +592,13 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >Bootstrapping is a statistical method for estimating the sampling distribution of a statistic by sampling with replacement from the original data, most often with the purpose of deriving robust estimates of standard errors and confidence intervals of a population parameter like a mean, median, proportion, odds ratio, correlation coefficient or regression coefficient</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >boostrapping</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >boostrapping</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >boostrapping</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200004">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -625,11 +625,11 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200074">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >submatrix extraction</preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >submatrix extraction</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200046"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >submatrix extraction</rdfs:label>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -652,64 +652,64 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200045">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:label xml:lang="en">simple linkage</rdfs:label>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200042"/>
     </rdfs:subClassOf>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Simple linkage is a hierarchical clustering method in which the distance is calculated as the shortest distance from any member of one cluster to any member of the other cluster. The output of this method is a hierarchical mapping of data points to clusters with an associated distance metric.</definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >simple linkage</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
+    <rdfs:label xml:lang="en">simple linkage</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Simple linkage is a hierarchical clustering method in which the distance is calculated as the shortest distance from any member of one cluster to any member of the other cluster. The output of this method is a hierarchical mapping of data points to clusters with an associated distance metric.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200124">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A parameter that measures how large or small the tails of a distribution are relative to the mean.  For details, see http://davidmlane.com/hyperstat/A53638.html</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://davidmlane.com/hyperstat/A53638.html</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >kurtosis calculation</preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >kurtosis calculation</rdfs:label>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A parameter that measures how large or small the tails of a distribution are relative to the mean.  For details, see http://davidmlane.com/hyperstat/A53638.html</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >kurtosis calculation</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://davidmlane.com/hyperstat/A53638.html</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200044">
     <rdfs:label xml:lang="en">complete linkage</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200042"/>
     </rdfs:subClassOf>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Complete linkage is a hierarchical clustering method in which the distance is calculated as the longest distance from any member of one cluster to any member of the other cluster. The output of this method is a hierarchical mapping of data points to clusters with an associated distance metric.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >complete linkage</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >complete linkage</preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200054">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200147"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >global modularity calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >global modularity calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200147"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -735,59 +735,59 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200114">
     <rdfs:label xml:lang="en">euclidean distance calculation</rdfs:label>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A similarity calculation that attaches to each pair of real number vectors of the same dimension n the square root of the sum of the square differences between corresponding components. The smaller this number, the more similar the two vectors are considered.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200113"/>
     </rdfs:subClassOf>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >euclidean distance calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Person:Elisabetta Manduchi</definition_citation>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200015">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A loess global transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from the two channels of a two-channel assay.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor's adjustment based on MGED Ontology term</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >euclidean distance calculation</preferred_term>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A similarity calculation that attaches to each pair of real number vectors of the same dimension n the square root of the sum of the square differences between corresponding components. The smaller this number, the more similar the two vectors are considered.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200015">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor's adjustment based on MGED Ontology term</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >loess global transformation two-channel</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Loess global normalization applied to data from a two-channel expression microarray assay, where the curve is obtained using all reporters. The goal is to remove intensity-dependent biases.</example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A loess global transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from the two channels of a two-channel assay.</definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess global transformation two-channel</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200023"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess global transformation two-channel</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200104">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >principal component regression</rdfs:label>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Hernandez-Boussard</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >web:&lt;http://www.thermo.com/com/cda/resources/resources_detail/1,2166,13414,00.html&gt;</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >principal component regression</preferred_term>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The Principal Component Regression method is a regression analysis method that combines the Principal Component Analysis (PCA)spectral decomposition with an Inverse Least Squares (ILS) regression method to create a quantitative model for complex samples. Unlike quantitation methods based directly on Beer's Law which attempt to calculate the absorbtivity coefficients for the constituents of interest from a direct regression of the constituent concentrations onto the spectroscopic responses, the PCR method regresses the concentrations on the PCA scores.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Hernandez-Boussard</definition_editor>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Principal Component Regression method is a regression analysis method that combines the Principal Component Analysis (PCA)spectral decomposition with an Inverse Least Squares (ILS) regression method to create a quantitative model for complex samples. Unlike quantitation methods based directly on Beer's Law which attempt to calculate the absorbtivity coefficients for the constituents of interest from a direct regression of the constituent concentrations onto the spectroscopic responses, the PCR method regresses the concentrations on the PCA scores.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200064">
+    <rdfs:label xml:lang="en">centroid mass spectrun</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200085"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">centroid mass spectrun</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example to be added</example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -802,83 +802,83 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >graph_position_temporary</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200134">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A node quality calculation in which a path describing the shortest path needed to transverse through connected nodes and edges to arive at a specific target node in the network.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A node quality calculation in which a path describing the shortest path needed to transverse through connected nodes and edges to arive at a specific target node in the network.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >node shortest path identification</preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >node shortest path identification</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >node shortest path identification</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200092">
-    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Westfall_and_Young_FWER_correction</alternative_term>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Westfall and Young family wise error rate correction</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Westfall and Young family wise error rate correction</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200036">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Benjamini and Hochberg false discovery rate correction method</rdfs:label>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Westfall and Young family wise error rate correction</preferred_term>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Westfall_and_Young_FWER_correction</alternative_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200036">
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Benjamini and Hochberg false discovery rate correction method</rdfs:label>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Benjamini and Hochberg false discovery rate correction method</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200146">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >subgraph modularity calculation</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network subgraph quality calculation in which an input data set of subgraph indegree and outdegree qualities is used to calculate the ratio of indegree to outdegree as a measure of modularity.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >subgraph modularity calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subgraph modularity calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200085">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mass spectrometry analysis</rdfs:label>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >mass spectrometry analysis</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mass spectrometry analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200003">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -967,22 +967,22 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >The moving average is often used to handle data from tiling arrays.</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200055">
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200057"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">dye swap merge</rdfs:label>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A data transformation which takes as input data from paired two-channel microarray assays where the sample labeled with one dye in the first assay is labeled with the other dye in the second assay and viceversa. The output  for each reporter is obtained by combining its (raw or possibly pre-processed) M values in the two assays, where the M value in an assay is defined as the difference of the log intensities in the two channels. This can be used as a normalization step, when appropriate assumptions are met.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >dye swap merge</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >dye swap merge</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A data transformation which takes as input data from paired two-channel microarray assays where the sample labeled with one dye in the first assay is labeled with the other dye in the second assay and viceversa. The output  for each reporter is obtained by combining its (raw or possibly pre-processed) M values in the two assays, where the M value in an assay is defined as the difference of the log intensities in the two channels. This can be used as a normalization step, when appropriate assumptions are met.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200125">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -991,28 +991,28 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >editor</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data transformation in which individual input data elements and values are merged together into a output set of data elements and values.</definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:label xml:lang="en">data pooling</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200115">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pearson correlation coefficient calculation</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Person:Elisabetta Manduchi and web:&lt;http://en.wikipedia.org/wiki/Correlation&gt;</definition_citation>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200113"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">pearson correlation coefficient calculation</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A similarity calculation which attaches to each pair of random variables X and Y the ratio of their covariance by the product of their standard deviations. Given a series of n measurements of X  and Y  written as x_i  and y_i  where i = 1, 2, ..., n, then their Pearson correlation coefficient refers to the "sample correlation coefficient" and is written as the sum over i of the ratios (x_i-xbar)*(y_i-ybar)/((n-1)*s_x*s_y) where xbar and ybar are the sample means of X  and Y , s_x  and s_y  are the sample standard deviations of X  and Y. The closer the pearson correlation coefficient is to 1, the more similar the inputs are considered.</definition>
-    <rdfs:label xml:lang="en">pearson correlation coefficient calculation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200113"/>
-    </rdfs:subClassOf>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pearson correlation coefficient calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Person:Elisabetta Manduchi and web:&lt;http://en.wikipedia.org/wiki/Correlation&gt;</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200026">
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1039,87 +1039,87 @@ variable; a*x*y+b*y+c, with a non-zero, is a polynomial of degree 2 in 2 variabl
     >This can be used as a simple normalization method for expression microarray assays. For example, each intensity from a one-channel microarray assay is multiplied by a constant so that the output mean intensity over the microarray equals a desired target T (the multiplicative constant in this case is the T/(mean intensity)).</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200016">
-    <rdfs:label xml:lang="en">sine transformation</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sine(0)=0, sine(pi/2)=1, sine(pi)=0, sine(3*pi/2)=-1, sine(pi/6)=1/2, sine(x+2*k*pi)=sine(x) where k is any integer, etc.</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sine transformation</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://mathworld.wolfram.com/Sine.html</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Sine transformation is a data transformation which is an application of the sine function to a (one dimensional) real number input. The sine function is one of the basic trigonometric functions and a definition is provided, e.g.,  at http://mathworld.wolfram.com/Sine.html</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >sine transformation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://mathworld.wolfram.com/Sine.html</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <rdfs:label xml:lang="en">sine transformation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200135">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of one of the edge relationships in the network.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >edge quality calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >edge quality calculation</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of one of the edge relationships in the network.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
     </rdfs:subClassOf>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200105">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >partial least square regression analysis</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >de Jong, S. (1993). SIMPLS: An alternative approach to partial least squares regression. Chemometrics and Intelligent Laboratory Systems, 18: 251-263.</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >partial least square regression analysis</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
-    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PLS-RA</alternative_term>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >partial least square regression analysis</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >de Jong, S. (1993). SIMPLS: An alternative approach to partial least squares regression. Chemometrics and Intelligent Laboratory Systems, 18: 251-263.</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Partial least squares regression is an extension of the multiple linear regression model (see, e.g., Multiple Regression or General Stepwise Regression). In its simplest form, a linear model specifies the (linear) relationship between a dependent (response) variable Y, and a set of predictor variables, the X's, so that
 Y = b0 + b1X1 + b2X2 + ... + bpXp
 In this equation b0 is the regression coefficient for the intercept and the bi values are the regression coefficients (for variables 1 through p) computed from the data.</definition>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PLS-RA</alternative_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >partial least square regression analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200102"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200017">
-    <rdfs:label xml:lang="en">cosine transformation</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://mathworld.wolfram.com/Cosine.html</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cosine transformation</preferred_term>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cosine(0)=1, cosine(pi/2)=0, cosine(pi)=-1, cosine(3*pi/2)=0, cosine(pi/3)=1/2, cosine(x+2*k*pi)=cosine(x) where k is any integer, etc.</example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Application of the cosine function to a (one dimensional) real number input. The cosine function is one of the basic trigonometric functions and a definition is provided, e.g.,  at http://mathworld.wolfram.com/Cosine.html</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
+    <rdfs:label xml:lang="en">cosine transformation</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cosine transformation</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >http://mathworld.wolfram.com/Cosine.html</definition_citation>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cosine(0)=1, cosine(pi/2)=0, cosine(pi)=-1, cosine(3*pi/2)=0, cosine(pi/3)=1/2, cosine(x+2*k*pi)=cosine(x) where k is any integer, etc.</example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200091">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >inter-rater agreement</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >inter-rater agreement</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >inter-rater agreement</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200022">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1136,10 +1136,10 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >This can be used for expression microarray assay normalization and it is referred to as "variance stabilizing normalization", according to the procedure described e.g. in PMID 12169536.</example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data transformation as described in PMID 12169536. The input is a matrix [y_ik] and the output is a matrix obtained by applying formula (6) in this paper. One of the goals is to obtain an output matrix whose rows have equal variances. The method relies on various assumptions described in the paper.</definition>
-    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >variance stabilising transformation</alternative_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >variance stabilising transformation</alternative_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID 12169536</definition_citation>
   </owl:Class>
@@ -1150,10 +1150,10 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >James Malone</definition_editor>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >When presented with the data from an expression microarray experiment in the form of a matrix, whose rows correspond to genes and whose columns correspond to samples, if one filters some of the samples out, the resulting dataset corresponds to a column submatrix of the original set.</example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >column submatrix extraction</rdfs:label>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >When presented with the data from an expression microarray experiment in the form of a matrix, whose rows correspond to genes and whose columns correspond to samples, if one filters some of the samples out, the resulting dataset corresponds to a column submatrix of the original set.</example_of_usage>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200074"/>
@@ -1165,72 +1165,72 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >A submatrix extraction where all the rows of the input matrix are retained and selection only occurs on columns</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200126">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
     </rdfs:subClassOf>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >network graph construction</preferred_term>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network analysis in which an input data set describing objects and relationships between objects is transformed into an output representation of these objects as nodes and the relationships as edges of a network graph.</definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >network graph construction</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >network graph construction</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network analysis in which an input data set describing objects and relationships between objects is transformed into an output representation of these objects as nodes and the relationships as edges of a network graph.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200043">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >editor</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Average Linkage is a hierarchical clustering method in which the distance between clusters is calculated as the average distance from the members of one cluster to the members of another cluster. The output of this method is a hierarchical mapping of data points to clusters with an associated distance metric.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >average linkage</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <rdfs:label xml:lang="en">average linkage</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200042"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">average linkage</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200112">
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >MA plots are typically used in microarray data analyses to visualize intensity-dependent ratio of raw data. In this context the g_i and r_i represent the reporter intensities in the two channels of a 2-channel assay or the reporter intensities in two related one-channel assays. Typically the base used for the logarithm is 2.</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editors</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MA plotting</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A visualization whose input is a collection of data points (g_1, r_1), (g_2, r_2), …, (g_n, r_n) with the r_i and g_i positive real numbers, and whose output is a scatterplot of M (y-axis) versus A (x-axis)  where, for each i, A_i=(log(g_i)+log(r_i))/2 and M=log(r_i)-log(g_i). Here log denotes a logarithmic transformation.</definition>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editors</definition_citation>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MA plots are typically used in microarray data analyses to visualize intensity-dependent ratio of raw data. In this context the g_i and r_i represent the reporter intensities in the two channels of a 2-channel assay or the reporter intensities in two related one-channel assays. Typically the base used for the logarithm is 2.</example_of_usage>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A visualization whose input is a collection of data points (g_1, r_1), (g_2, r_2), …, (g_n, r_n) with the r_i and g_i positive real numbers, and whose output is a scatterplot of M (y-axis) versus A (x-axis)  where, for each i, A_i=(log(g_i)+log(r_i))/2 and M=log(r_i)-log(g_i). Here log denotes a logarithmic transformation.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
     <rdfs:label xml:lang="en">MA plotting</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200111"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200131">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >quantitative node degree calculation</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A node quality calculation in which an input data set describing object nodes and quantitative relationship edges between object nodes is used to sum all of the quantitative relationships of an individual object node.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >quantitative node degree calculation</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A node quality calculation in which an input data set describing object nodes and quantitative relationship edges between object nodes is used to sum all of the quantitative relationships of an individual object node.</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >quantitative node degree calculation</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >quantitative node degree calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200037">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1251,83 +1251,81 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >PMID:16762068</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200145">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >intra subgraph connectivity calculation</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >intra subgraph connectivity calculation</preferred_term>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network subgraph quality calculation in which an input data set describing internal nodes, edges and node degrees is used to determine the average node degree within the subgraph.</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intra subgraph connectivity calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >intra subgraph connectivity calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >discriminant analysis</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >web:&lt;http://www.statsoft.com/textbook/stdiscan.html&gt;</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >discriminant analysis</preferred_term>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Discriminant function analysis is used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Hernandez-Boussard</definition_editor>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200062">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A continuum mass spectrum is a data transformation that contains the full profile of the detected signals for a given ion.</definition>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example to be added</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >continuum mass spectrum</preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >discriminant analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200085"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discriminant function analysis is used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >discriminant analysis</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >web:&lt;http://www.statsoft.com/textbook/stdiscan.html&gt;</definition_citation>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200062">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Hernandez-Boussard</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >continuum mass spectrum</preferred_term>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example to be added</example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <rdfs:label xml:lang="en">continuum mass spectrum</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200085"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A continuum mass spectrum is a data transformation that contains the full profile of the detected signals for a given ion.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200058">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200081"/>
+    </rdfs:subClassOf>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A B cell epitope prediction takes as input an antigen sequence, and through an analysis of this sequence, produces as output a prediction of the likelihood the biomaterial is a B Cell Epitope.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >editor</definition_citation>
+    <rdfs:label xml:lang="en">b cell epitope prediction</rdfs:label>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Helen Parkinson</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >b cell epitope prediction</preferred_term>
-    <rdfs:label xml:lang="en">b cell epitope prediction</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200081"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200099">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discriminant function analysis is a form of discriminant analysis used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Hernandez-Boussard</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >discriminant function analysis</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >web:&lt;http://www.statsoft.com/textbook/stdiscan.html&gt;</definition_citation>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >discriminant function analysis</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >web:&lt;http://www.statsoft.com/textbook/stdiscan.html&gt;</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >discriminant function analysis</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Hernandez-Boussard</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Discriminant function analysis is a form of discriminant analysis used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200023">
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1366,57 +1364,57 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >curation_complete</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >biexponential transformation</preferred_term>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     <rdfs:label xml:lang="en">biexponential transformation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200082">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >longitudinal data analysis</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >longitudinal data analysis</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200018">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess group transformation one-channel</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor's adjustment based on MGED Ontology term</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200024"/>
     </rdfs:subClassOf>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor's adjustment based on MGED Ontology term</definition_citation>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loess group normalization applied to data from two one-channel expression microarray assays, where the reporters on the array are divided into groups (e.g. by print-tip) and a curve is obtained for each group. The goal is to remove intensity-dependent and group-specific biases.</example_of_usage>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess group transformation one-channel</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A loess group transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from two related one-channel assays.</definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >loess group transformation one-channel</rdfs:label>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Loess group normalization applied to data from two one-channel expression microarray assays, where the reporters on the array are divided into groups (e.g. by print-tip) and a curve is obtained for each group. The goal is to remove intensity-dependent and group-specific biases.</example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200090">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >multiple comparison adjustments</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >multiple comparison adjustments</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple comparison adjustments</rdfs:label>
   </owl:Class>
@@ -1440,88 +1438,85 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >Melanie Courtot</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200042">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >hierarchical clustering</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Hierarchical clustering is a method which can be used to cluster an input data set by either gradually merging data points (agglomerative of bottom-up) or by dividing superclusters (divisive or top-down).The output of this method is a hierarchical mapping of data points to clusters.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hierarchical clustering</preferred_term>
+    <rdfs:label xml:lang="en">hierarchical clustering</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200039"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">hierarchical clustering</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200127">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network graph construction in which an input data set describing objects and quantitative relationships between objects is transformed into and output representation of these objects as nodes and the quantitative relationships as weighted edges of a network graph.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200126"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200126"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network graph construction in which an input data set describing objects and quantitative relationships between objects is transformed into and output representation of these objects as nodes and the quantitative relationships as weighted edges of a network graph.</definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >weighted network graph construction</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >weighted network graph construction</preferred_term>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200113">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A data transformation that attaches to each pair of objects in the input a number that is meant to reflect how 'close' or 'similar' those objects are.</definition>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Person:Elisabetta Manduchi</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >similarity calculation</preferred_term>
-    <rdfs:label xml:lang="en">similarity calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200144">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200113">
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A data transformation that attaches to each pair of objects in the input a number that is meant to reflect how 'close' or 'similar' those objects are.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <rdfs:label xml:lang="en">similarity calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >similarity calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Person:Elisabetta Manduchi</definition_citation>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200144">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subgraph outdegree calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network subgraph quality calculation in which an input data set describing subgraphs and relationship edges between subgraphs and other network objects is used to enumerate the number of unique relationships pointing out of an individual subgraph.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >subgraph outdegree calculation</preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >subgraph outdegree calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network subgraph quality calculation in which an input data set describing subgraphs and relationship edges between subgraphs and other network objects is used to enumerate the number of unique relationships pointing out of an individual subgraph.</definition>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200132">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A node quality calculation in which an input data set describing object nodes and directional relationship edges between object nodes is used to enumerate the number of unique relationships pointing into an individual object node.</definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >node indegree calculation</rdfs:label>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor</definition_citation>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200132">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A node quality calculation in which an input data set describing object nodes and directional relationship edges between object nodes is used to enumerate the number of unique relationships pointing into an individual object node.</definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >node indegree calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</definition_citation>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >node indegree calculation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
     </rdfs:subClassOf>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200107">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >partial least square discriminant analysis</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1530,56 +1525,59 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     ></definition>
     <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PLS-DA</alternative_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >partial least square discriminant analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200133">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A node quality calculation in which an input data set describing object nodes and directional relationship edges between object nodes is used to enumerate the number of unique relationships pointing out of an individual object node.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >node outdegree calculation</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >node outdegree calculation</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200143">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network subgraph quality calculation in which an input data set describing subgraphs and directional relationship edges between subgraphs and other network objects is used to enumerate the number of unique relationships pointing into an individual subgraph.</definition>
+    >A node quality calculation in which an input data set describing object nodes and directional relationship edges between object nodes is used to enumerate the number of unique relationships pointing out of an individual object node.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200143">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subgraph indegree calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >subgraph indegree calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >subgraph indegree calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network subgraph quality calculation in which an input data set describing subgraphs and directional relationship edges between subgraphs and other network objects is used to enumerate the number of unique relationships pointing into an individual subgraph.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200063">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200085"/>
     <rdfs:label xml:lang="en">characteristic path length calculation</rdfs:label>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example to be added</example_of_usage>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Quantifying subgraph navigability based on shortest-path length averaged over all pairs of subgraph vertices</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >characteristic path length calculation</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Quantifying subgraph navigability based on shortest-path length averaged over all pairs of subgraph vertices</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200057">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1620,21 +1618,19 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >A loess transformation where the input is partitioned into groups and for each group a loess fitting is performed, utilizing a subset of (or possibly all of) the data points in that group. Thus, a collection of loess curves y=f_i(x) is generated, one per group. Each (x, y) in the input is transformed into (x, y-f_i(x)), where f_i(x) is the curve corresponding to the group to which that data point belongs.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200098">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >soft independent modeling of class analogy analysis</rdfs:label>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >web:&lt;http://en.wikipedia.org/wiki/Soft_independent_modelling_of_class_analogies&gt;</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >SIMCA</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >web:&lt;http://en.wikipedia.org/wiki/Soft_independent_modelling_of_class_analogies&gt;</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Soft independent modelling by class analogy (SIMCA) is a descriptive statistics method for supervised classification of data. The method requires a training data set consisting of samples (or objects) with a set of attributes and their class membership. The term soft refers to the fact the classifier can identify samples as belonging to multiple classes and not necessarily producing a classification of samples into non-overlapping classes.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
-    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >soft independent modeling of class analogy analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
@@ -1650,115 +1646,113 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     >Elisabetta Manduchi</definition_editor>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Monnie McGee</definition_editor>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editors</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Hernandez-Boussard</definition_editor>
+    >Richard Scheuermann</definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >descriptive statistics calculation</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Hernandez-Boussard</definition_editor>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</definition_editor>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200083">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >survival analysis</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >survival analysis</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200082"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >survival analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200005">
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MGED Ontology: Feature_Extraction</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >feature extraction</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >James Malone</definition_editor>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></example_of_usage>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The process of obtaining quantifiable values from the scanned image. Exact synonyms: image analysis, image quantification</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >James Malone</definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >feature extraction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200138">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >subgraph degree calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >subgraph degree calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subgraph degree calculation</preferred_term>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network subgraph quality calculation in which an input data set describing subgraphs and relationship edges between subgraphs and other network objects is used to enumerate the number of unique relationships of an individual subgraph.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >subgraph degree calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200031">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    <rdfs:label xml:lang="en">differential expression analysis</rdfs:label>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >differential expression analysis</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Analyses implemented by the SAM (http://www-stat.stanford.edu/~tibs/SAM), PaGE (www.cbil.upenn.edu/PaGE) or GSEA (www.broad.mit.edu/gsea/) algorithms and software</example_of_usage>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data transformation whose input consists of expression levels of entities (such as transcripts or proteins), or of sets of such expression levels, under two or more conditions and whose output reflects which of these are likely to have different expression across such conditions</definition>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Analyses implemented by the SAM (http://www-stat.stanford.edu/~tibs/SAM), PaGE (www.cbil.upenn.edu/PaGE) or GSEA (www.broad.mit.edu/gsea/) algorithms and software</example_of_usage>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >differential expression analysis</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <rdfs:label xml:lang="en">differential expression analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200100">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >canonical variate analysis is a form of discriminant analysis that takes several continuous predictor variables and uses the entire set to predict several criterion variables, each of which is also continuous. CVA simultaneously calculates a linear composite of all x variables and  a linear composite of all y variables. Unlike other multivariate techniques, these weighted composites are derived in pairs. Each linear combination is called a canonical variate and takes the general linear form.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >canonical variate analysis</rdfs:label>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >canonical variate analysis</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >canonical variate analysis is a form of discriminant analysis that takes several continuous predictor variables and uses the entire set to predict several criterion variables, each of which is also continuous. CVA simultaneously calculates a linear composite of all x variables and  a linear composite of all y variables. Unlike other multivariate techniques, these weighted composites are derived in pairs. Each linear combination is called a canonical variate and takes the general linear form.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >web:&lt;http://en.wikipedia.org/wiki/Canonical_analysis&gt;</definition_citation>
-    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >CVA</alternative_term>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >canonical variate analysis</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
+    <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CVA</alternative_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200049">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Benjamini and Yekutieli false discovery rate correction method</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Benjamini and Yekutieli false discovery rate correction method</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Benjamini and Yekutieli false discovery rate correction method</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200020">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A polynomial_transformation all of whose terms have the same degree.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1772,23 +1766,25 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >homogeneous polynomial transformation</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200093"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200019">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200019">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200024"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess group transformation two-channel</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A loess group transformation in the special case where the input consists of pairs (A, M) where A represents the mean log intensity and M represents the difference of log intensities from the two channels of a two-channel assay.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loess group normalization applied to data from a two-channel expression microarray assay, where the reporters on the array are divided into groups (e.g. by print-tip) and a curve is obtained for each group. The goal is to remove intensity-dependent and group-specific biases.</example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor's adjustment based on MGED Ontology term</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >loess group transformation two-channel</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Loess group normalization applied to data from a two-channel expression microarray assay, where the reporters on the array are divided into groups (e.g. by print-tip) and a curve is obtained for each group. The goal is to remove intensity-dependent and group-specific biases.</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200024"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess group transformation two-channel</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200029">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
@@ -1814,67 +1810,67 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200025"/>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Loess scale group normalization applied to data from two one-channel expression microarray assays.</example_of_usage>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor's adjustment based on MGED Ontology term</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >loess scale group transformation one-channel</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Editor's adjustment based on MGED Ontology term</definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Application of a scale adjustment following a loess group transformation one-channel, to render the M group variances similar.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200041">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200039"/>
+    </rdfs:subClassOf>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >K-Means clustering is a method for partitioning data into K specified clusters.  The input is unclustered data with a value for k and the output is a cluster label assigned to each data point, often with a metric value, such as distance to cluster centroid.</definition>
     <rdfs:label xml:lang="en">k-means clustering</rdfs:label>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >k-means clustering</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >K-Means clustering is a method for partitioning data into K specified clusters.  The input is unclustered data with a value for k and the output is a cluster label assigned to each data point, often with a metric value, such as distance to cluster centroid.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200039"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200128">
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >directed network graph construction</preferred_term>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A network graph construction in which an input data set describing objects and directional relationships between objects is transformed into and output representation of these objects as nodes and the directional relationships as directed edges of a network graph.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200126"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >directed network graph construction</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200126"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200039">
-    <rdfs:label xml:lang="en">clustering method</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Clustering is the partitioning of a data set into related subsets (clusters), the input is a single cluster of data and the output is partitioned data or information on cluster labels</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >clustering method</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clustering is the partitioning of a data set into related subsets (clusters), the input is a single cluster of data and the output is partitioned data or information on cluster labels</definition>
+    <rdfs:label xml:lang="en">clustering method</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200088">
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Kaplan Meier</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Kaplan Meier</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1886,67 +1882,67 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200082"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200060">
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >t cell epitope prediction</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Helen Parkinson</definition_editor>
+    <rdfs:label xml:lang="en">t cell epitope prediction</rdfs:label>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A T cell epitope prediction takes as input an antigen sequence, and through an analysis of this sequence, produces as output a prediction of the likelihood the biomaterial is a T cell epitope.</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200081"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">t cell epitope prediction</rdfs:label>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Helen Parkinson</definition_editor>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >t cell epitope prediction</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A T cell epitope prediction takes as input an antigen sequence, and through an analysis of this sequence, produces as output a prediction of the likelihood the biomaterial is a T cell epitope.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200089">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple testing correction</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple testing correction</preferred_term>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_citation>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080">
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data transformation that takes as input data that describes biological networks in terms of the node (a.k.a. vertex) and edge graph elements and their characteristics and generates as output properties of the constituent nodes and edges, the sub-graphs, and the entire network.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >network analysis</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >network analysis</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200070">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >graph_position_temporary</curation_status>
+    <rdfs:label xml:lang="en">edge weighting</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >was classified under algorithm class which is not acceptable super-class
 TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Edge weighting is the substitution or transformation of edge length using numerical data.  Data input include a symmetric adjacency matrix for a network and a second data set, for example a list of interactor pairs and a confidence score associated with the experimental detection of each pair's interaction.  Each element in the adjacency matrix is transformed or replaced with the corresponding number in the second data set.  Output data are a modified adjacency matrix reflecting the transformed state of the network.  </definition>
-    <rdfs:label xml:lang="en">edge weighting</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >edge weighting</preferred_term>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >graph_position_temporary</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >edge weighting</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200108">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1970,19 +1966,19 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >http://flowcyt.sourceforge.net/gating/latest.pdf</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200118">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The kth quantile is the data value for which an approximate k fraction of the data is less than or equal to that value.  See http://www.stat.wvu.edu/SRS/Modules/Quantiles/quantiles.html for details.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >quantile calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://www.stat.wvu.edu/SRS/Modules/Quantiles/quantiles.html</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The kth quantile is the data value for which an approximate k fraction of the data is less than or equal to that value.  See http://www.stat.wvu.edu/SRS/Modules/Quantiles/quantiles.html for details.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pending_final_vetting</curation_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >quantile calculation</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pending_final_vetting</curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200008">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2007,30 +2003,30 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >Hyperlog transformation ia a transformation that, for each (one dimensional) real number input x, outputs an approximation (found, e.g. with the Newton's method) to a solution y of the equation EH(y)-x=0, where EH denotes the eh transformation.</definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200079">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The mean is the sum of all of the observations in a data set divided by the total number of observations.  It gives a measure of the “center of gravity” for the data set.  It is also known as the first moment.</definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mean calculation</rdfs:label>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >From Monnie's file comments - need to add moment_calculation and center_calculation roles but they don't exist yet - (editor note added by James Jan 2008)</editor_note>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The mean is the sum of all of the observations in a data set divided by the total number of observations.  It gives a measure of the “center of gravity” for the data set.  It is also known as the first moment.</definition>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >mean calculation</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mean calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200097">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >non-negative matrix factorization</rdfs:label>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2075,17 +2071,17 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >Elisabetta Manduchi</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200139">
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network subgraph quality calculation in which an input data set describing subgraphs and quantitative relationship edges between subgraphs and other network objects is used to sum the quantitative relationships of an individual subgraph.</definition>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >quantitative subgraph degree calculation</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network subgraph quality calculation in which an input data set describing subgraphs and quantitative relationship edges between subgraphs and other network objects is used to sum the quantitative relationships of an individual subgraph.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >quantitative subgraph degree calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200137"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
   </owl:Class>
@@ -2094,27 +2090,27 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >Editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >linear discriminant functional analysis</preferred_term>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tina Hernandez-Boussard</definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >linear discriminant functional analysis</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Linear discriminant functional analysis (LDFA) is a multivariate technique used in special applications where there are several intact groups (random assignment may be impossible) and they have been measured on several independent measures. Thus, you will want to describe how these groups differ on the basis of these measures. In this case, classification and prediction is the main objective.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Tina Hernandez-Boussard</definition_editor>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200106"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >linear discriminant functional analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200021">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    <rdfs:label xml:lang="en">linlog transformation</rdfs:label>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This can be used for microarray normalization, e.g. to normalize the data from a two-channel expression microarray assay, as described in PMID 16646782.</example_of_usage>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PMID 16646782</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >linlog transformation</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PMID 16646782</definition_citation>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This can be used for microarray normalization, e.g. to normalize the data from a two-channel expression microarray assay, as described in PMID 16646782.</example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <rdfs:label xml:lang="en">linlog transformation</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2123,65 +2119,65 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200120">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >variance calculation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The average squared distance of each observation in the data set to the mean of the data set.  It is also known as the second central moment.</definition>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >From Monnie's file comments - need to add spread_calculation and moment_calculation roles but they don't exist yet - (editor note added by James Jan 2008)</editor_note>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</curation_status>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Monnie McGee</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >variance calculation</preferred_term>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >From Monnie's file comments - need to add spread_calculation and moment_calculation roles but they don't exist yet - (editor note added by James Jan 2008)</editor_note>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The average squared distance of each observation in the data set to the mean of the data set.  It is also known as the second central moment.</definition>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200130">
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >node degree calculation</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A node quality calculation in which an input data set describing object nodes and relationship edges between object nodes is used to enumerate the number of unique relationships of an individual object node.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >node degree calculation</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Richard Scheuermann</definition_editor>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >node degree calculation</rdfs:label>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >node degree calculation</preferred_term>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200040">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
-    <rdfs:label xml:lang="en">modular decomposition</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Molecular decompostion is the partition of a network into distinct subgraphs for the purpose of identifying functional clusters.  The network data is run through any of several existing algorithms designed to partition a network into distinct subgraphs for the purpose of isolating groups of functionally linked biological elements such as proteins.</definition>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tina Hernandez-Boussard</definition_editor>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >modular decomposition</preferred_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
+    <rdfs:label xml:lang="en">modular decomposition</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200129">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of one of the node objects in the network.</definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >node quality calculation</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pending_final_vetting</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A network analysis in which an input data set describing node objects and edge relationships between node objects is used to determine the output quality of one of the node objects in the network.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Richard Scheuermann</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >node quality calculation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Richard Scheuermann</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200080"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >node quality calculation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200111">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2228,51 +2224,51 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     <rdfs:label xml:lang="en">logicle transformation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200059">
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >editor</definition_citation>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >mhc binding prediction</preferred_term>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Helen Parkinson</definition_editor>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An MHC binding prediction takes an input of a biomaterial sequence and through an analysis of this sequence, produces as output a prediction of the likelihood that the biomaterial will bind to an MHC molecule.</definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >graph_position_temporary</curation_status>
-    <rdfs:label xml:lang="en">mhc binding prediction</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An MHC binding prediction takes an input of a biomaterial sequence and through an analysis of this sequence, produces as output a prediction of the likelihood that the biomaterial will bind to an MHC molecule.</definition>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >mhc binding prediction</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >editor</definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200081"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">mhc binding prediction</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200012">
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess scale group transformation two-channel</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200025"/>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Application of a scale adjustment following a loess group transformation two-channel, to render the M group variances similar.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >loess scale group transformation two-channel</preferred_term>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Elisabetta Manduchi</definition_editor>
-    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Adjusted from MGED Ontology</definition_citation>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Loess scale group normalization applied to data from a two-channel expression microarray assay.</example_of_usage>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Application of a scale adjustment following a loess group transformation two-channel, to render the M group variances similar.</definition>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elisabetta Manduchi</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess scale group transformation two-channel</preferred_term>
+    <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Adjusted from MGED Ontology</definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200025"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loess scale group transformation two-channel</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200061">
     <rdfs:label xml:lang="en">data imputation</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Imputation is a means of filling in missing data values from a predictive distribution of the missing values.  The predictive distribution can be created either based on a formal statistical model (i,e, a multivariate normal distribution) or an algorithm.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Monnie McGee</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >data imputation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Little, RJA and Rubin, DB (2002).  Statistical Analysis with Missing Data, Second Edition.  John Wiley: Hoboken New Jersey, pp. 59-60.</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Monnie McGee</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200110">
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2315,19 +2311,19 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >Editor's generalization based on MGED Ontology term</definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200119">
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >From Monnie's file comments - need to add center_calculation role but it doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The median is the midpoint of the data set (the 0.5 quantile).  First, the observations are sorted in increasing order.  For an odd number of observations, the median is the middle value of the sorted data.  For an even number of observations, the median is the average of the two middle values.</definition>
-    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >median calculation</preferred_term>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >From Monnie's file comments - need to add center_calculation role but it doesn't exist yet - (editor note added by James Jan 2008)</editor_note>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Monnie McGee</definition_editor>
+    <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >median calculation</preferred_term>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >median calculation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200078"/>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Editor</definition_citation>
   </owl:Class>
@@ -2351,18 +2347,18 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     ></definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200007">
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ryan Brinkman</definition_editor>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Box-cox transformation is a data transformation according to the methods of Box and Cox as described in the article Box, G. E. P. and Cox, D.R. (1964) An analysis of transformations. Journal of Royal Statistical Society, Series B, vol. 26, pp. 211-246.</definition>
+    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >curation_complete</curation_status>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >box-cox transformation</preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Box, G. E. P. and Cox, D.R. (1964), "An analysis of transformations", Journal of Royal Statistical Society, Series B, vol. 26, pp. 211-246.</definition_citation>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Ryan Brinkman</definition_editor>
-    <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >curation_complete</curation_status>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Box-cox transformation is a data transformation according to the methods of Box and Cox as described in the article Box, G. E. P. and Cox, D.R. (1964) An analysis of transformations. Journal of Royal Statistical Society, Series B, vol. 26, pp. 211-246.</definition>
-    <rdfs:label xml:lang="en">box-cox transformation</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200000"/>
+    <rdfs:label xml:lang="en">box-cox transformation</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200109">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2406,19 +2402,19 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</editor_note>
     >Elisabetta Manduchi</definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200096">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >spectral integration with user-controlled baseline correction</rdfs:label>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
-    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_200067"/>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></preferred_term>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></definition_citation>
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >spectral integration with user-controlled baseline correction</rdfs:label>
+    <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></definition_editor>
   </owl:Class>
 </rdf:RDF>
 
