@@ -15,6 +15,7 @@
 # 1. read in other OWL files to identify OBI terms & enforce auto_ID
 # 2. write documentation
 # 3. implement gui
+# 4. Include option to specify the minimal metadata to be included in each class
 
 use strict;
 use Data::Dumper;
@@ -28,7 +29,7 @@ use Encode;
 # parsed without an error ("undedeclared prefix").
 $XML::Simple::PREFERRED_PARSER = "XML::Parser";
 
-my ($csvin_file,$csvout_file,$owlin_file,$owlout_file,$help);
+my ($csvin_file,$csvout_file,$owlin_file,$owlout_file,$help,$del_empty);
 my $delim = "\t";
 my $action = "1";
 GetOptions ("tabin|ti=s" => \$csvin_file,
@@ -37,6 +38,7 @@ GetOptions ("tabin|ti=s" => \$csvin_file,
 	    "owlout|oo=s" => \$owlout_file,
 	    "delimiter|d=s" => \$delim,
 	    "action|a=i" => \$action,
+	    "del_empty|r" => \$del_empty,
 	    "help|h" => \$help,
     );
 
@@ -64,6 +66,8 @@ OPTIONS
     --owlout|-oo    OWL output: Name of the OWL file to create or add terms to
 
     --delimiter|-d  Delimiter used in the tab-delimited file [defalut = TAB]
+
+    --del_empty|-r  Do not include annotation properties that are empty in the owl output file
 
     --help|-h       Print this help screen
 
@@ -303,6 +307,13 @@ sub insert_terms_from_csv {
 	next if ($in_new{$term->{"rdf:about"}});
 	push @new_terms, $term;
     }
+
+    #Here we go through each term and remove any annotation properties that are
+    # empty
+    if ($del_empty) {
+	delete_empty(\@new_terms);
+    }
+
     $xml->{"owl:Class"} = \@new_terms;
 
     # here, we retrieve it an put it into the xml structure
@@ -323,6 +334,50 @@ sub insert_terms_from_csv {
 
     return 0;
 }
+
+# this will go through each term and delete any annotation properties that are empty
+sub delete_empty {
+
+    my ($classes_ref) = @_;
+
+    # iterating through each of the terms
+    foreach my $term (@$classes_ref) {
+
+	# iterating over the annotation properties
+	foreach my $key (keys %$term) {
+
+	    #print Dumper $term->{$key};
+	    #delete $term->{$key} unless $term->{$key};
+
+	    next if (ref($term->{$key}) ne "ARRAY");
+	    # iterating through each element of the annotation property array
+	    for (my $i=0; $i<@{$term->{$key}}; $i++) {
+		# first we get the keys of the hash
+		my @keys = keys %{$term->{$key}->[$i]};
+		my %keys;
+		# next we index them
+		foreach my $k (@keys) {
+		    $keys{$k} = 1;
+		}
+		# finally, we skip over the element if it does not contain a "content" field
+		next unless $keys{content};
+		# deleting the annotation property if the content is empty
+		delete $term->{$key}->[$i] unless $term->{$key}->[$i]->{content};
+	    }
+	    
+	    # completely deleting the annotation property if the array is empty
+	    delete $term->{$key} unless @{$term->{$key}};
+	}
+
+	#print Dumper $term;
+
+
+    }
+
+
+
+}
+
 
 # this will extract all of the terms from an OWL file and put them into csv format
 sub create_csv_from_owl {
@@ -515,6 +570,12 @@ sub create_owl_from_csv {
     my $xml=get_xml($owl_file);
 
     my @new_terms = csv2xml($csv_file,$delim);
+
+    #Here we go through each term and remove any annotation properties that are
+    # empty
+    if ($del_empty) {
+	delete_empty(\@new_terms);
+    }
 
     # replacing whatever was in $xml->{owl:class} with the new terms
     $xml->{"owl:Class"} = \@new_terms;
