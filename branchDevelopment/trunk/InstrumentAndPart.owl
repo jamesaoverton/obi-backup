@@ -81,9 +81,12 @@
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_50">
     <rdfs:label xml:lang="en">platform</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400002"/>
+    </rdfs:subClassOf>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem1: We decided at the Philly workshop that consumables do not include reagents.</editor_note>
+    >rem1: We decided at the Philly workshop that consumables do not include reagents.
+FG: we could actully add a relation to platform which would be "has_part some instrument"</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A platform is an object_aggregate that is the set of instruments and software needed to perform a process. definition_source: OBI.</definition>
   </owl:Class>
@@ -99,12 +102,10 @@
     >Jet-in-air flow chamber in DakoCytomation MoFlo high-speed cell sorter</example_of_usage>
     <definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://www.flocyte.com/FRTP/Resources/flow_cytometry_glossary.htm</definition_citation>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400043"/>
-    </rdfs:subClassOf>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >DS: a chamber is not an instrument, its a spatial entity...
 AI: Ryan goes back to John Quinn and saks for usage example of this term.</editor_note>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#ThreeDimensionalRegion"/>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >John Quinn</definition_editor>
     <preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1463,6 +1464,8 @@ FG: Or as function.</editor_note>
     <rdfs:label xml:lang="en">device</rdfs:label>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >curation_complete</curation_status>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></editor_note>
     <alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >hardware</alternative_term>
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1625,7 +1628,7 @@ This laser is less expensive than most others used in flow cytometry. A helium n
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >DS: Spatial entity?
 AI: Ryan goes back to John Quinn and saks for usage example of this term.</editor_note>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_400002"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#ThreeDimensionalRegion"/>
     <curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</curation_status>
     <definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
