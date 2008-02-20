@@ -1,0 +1,29 @@
+    * Discuss the use of the curation_status annotation property
+
+We need to decide if we want to release all the terms, including their curation_status, and oducment it as suggested by Bill: "...expectation to be set would be that anything other than those with "review complete" should be considered likely to change place in hierarchy or have definition refined, or be obsoleted in the next release".
+The other option is to release only terms with curation_status "complete" (name to be defined following vote), and not their annotation property curation_status. One issue is that ant term deemd "complete" which is an IS_A term curation "incomplete" will not be released. As described by Alan: "For instance, if a class has 'curation_status' 'review_complete', but one of its IS_A asserted graph ancestors is NOT 'review_complete', we'll not be able release that term, since we won't be able to construct its ancestor graph. This would also cause problems for classes using ObjectProperty relations. If one of the classes referred to in a class restriction are not 'review_complete', this would at least keep us from releasing that class with its restrictions. We'd need to simply leave the restrictions out. This might lead to a released, merged OBI that's considerably smaller than we all might expect"
+
+see discussion thread at http://groups.google.com/group/obi-developer/browse_thread/thread/d8a0890c191661fb?hl=en
+
+DECISION: we agreed that for the moment we will release all the terms and their annotation properties. This might be modified in the future with progress made on OBI. Release notes will clearly state that the status of this release is "not to be used in production - things may (and probably will) change"
+
+    * Organizations
+
+How to deal with them. Who will take care of that branch? Should be independent?
+
+DECISION: We will keep person and organization (in the sense of aggregate of person) under material. Organization is to be replaced by population. The role branch will create the necessary organization_roles for these to bear. The classes under material represent the physical part of the concept, and they bear roles representing the social status associated to these.
+Side note: We had a discussion about how to represent for example "sigma". It has been decided that this would be an instance of reagent_supplier_role (or chemical_supplier) for example. Again, the role branch will create the appropriate classes.
+
+    * Spatial regions
+
+Instrument branch identified several terms that are spatial regions. These have been moved under spatial regions at the moment. What is the bfo status of this branch?
+
+DECISION: discussion postponed until Alan/Bill on the call.
+
+    * SVN tidyup, to have single folder for ontology. Suggested structure and assignment of task. 
+
+DECISION: Daniel volunteered to clean up SVN. He will circulate a proposal of action for this before modifying the current structure.
+
+    * Sourceforge tracker review 
+
+AI for everybody: review the terms and assign them. By default, terms related to branch will be assigned to branch leaders. E.g., cohort_role will be assigned to Jennifer as leader of the role branch. Comments are to be posted on the tracker items when action is taken towards resolution. 
