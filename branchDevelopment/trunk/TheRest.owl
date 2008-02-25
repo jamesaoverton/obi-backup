@@ -10,12 +10,13 @@
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
   xml:base="http://obi.sourceforge.net/ontology/OBI/TheRest.owl">
   <owl:Ontology rdf:about="">
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Frank Gibson</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Robert Stevens</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -74,10 +75,10 @@
     >An ontology for the annotation of biomedical and functional genomics experiments.</dc:subject>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</dc:creator>
-    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >en</protege:defaultLanguage>
     <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The Ontology for Biomedical Investigations (OBI) is build in a collaborative, international effort and will serve as a resource for annotating biomedical investigations, including the study design, protocols and instrumentation used, the data generated and the types of analysis performed on the data. This ontology arose from the Functional Genomics Investigation Ontology (FuGO) and will contain both terms that are common to all biomedical investigations, including functional genomics investigations and those that are more domain specific.</dc:description>
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Alan Ruttenberg</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -101,8 +102,6 @@
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Frank Gibson</dc:creator>
-    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bjoern Peters</dc:creator>
@@ -116,66 +115,66 @@
     >draft version</rdfs:comment>
   </owl:Ontology>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_138">
-    <rdfs:label xml:lang="en">in-vivo_state</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An in-vivo state is a state in which the entity remains part of the living organism. definition_source: OBI.</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">in-vivo_state</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_259">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ex-vivo state is a state in which the entity is in an artificial environment outside the living organism. definition_source: http://wordnet.princeton.edu/perl/webwn?s=in%20vitro, Jan 3, 2007.</definition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">ex-vivo_state</rdfs:label>
     <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rem0: (AL) One of in-vitro state/ex-vivo state should be deleted, and made a synonym of the remaining term.</editor_note>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_354">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >disease_course</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is a process through which a disease manifests itself</definition>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >disease_course</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_139">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_302"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">frozen_state</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A frozen state is a state in which the entity is kept below its freezing point. definition_source: OBI.</definition>
-    <rdfs:label xml:lang="en">frozen_state</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_302"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_190">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A solid state is a state in which the entity has no tendency to flow under moderate stress; resists forces (such as compression) which tend to deform it; and retains a definite size and shape. definition_source: http://wordnet.princeton.edu/perl/webwn?s=solid%20state, Jan 3, 2007.</definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_302"/>
     </rdfs:subClassOf>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A solid state is a state in which the entity has no tendency to flow under moderate stress; resists forces (such as compression) which tend to deform it; and retains a definite size and shape. definition_source: http://wordnet.princeton.edu/perl/webwn?s=solid%20state, Jan 3, 2007.</definition>
     <rdfs:label xml:lang="en">solid_state</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_76">
+    <rdfs:label xml:lang="en">unplanned_process_part</rdfs:label>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Earthquake that destroys the lab, an outside investigator discovering an adverse effect of the reagants used</example_of_usage>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#FiatProcessPart"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An extraneous process is a process which is external in origin to the investigation that has an impact on the outcome. definition_source: OBI.</definition>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Earthquake that destroys the lab, an outside investigator discovering an adverse effect of the reagants used</example_of_usage>
-    <rdfs:label xml:lang="en">unplanned_process_part</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_130">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137"/>
-    </rdfs:subClassOf>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An in-vitro state is a state in which the entity is in an artificial environment outside the living organism. definition_source: http://wordnet.princeton.edu/perl/webwn?s=in%20vitro, Jan 3, 2007.</definition>
     <rdfs:label xml:lang="en">in-vitro_state</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_191">
+    <rdfs:label xml:lang="en">gaseous_state</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A gaseous state is a state in which the entity is distinguished from the solid and liquid states by: relatively low density and viscosity; relatively great expansion and contraction with changes in pressure and temperature; the ability to diffuse readily; and the spontaneous tendency to become distributed uniformly throughout any container. definition_source: http://wordnet.princeton.edu/perl/webwn?s=gaseous%20state, Jan 3, 2007.</definition>
-    <rdfs:label xml:lang="en">gaseous_state</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_302"/>
     </rdfs:subClassOf>
@@ -183,55 +182,58 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_137">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a state is a quality indicating the condition in which an entity exists, e.g. immortalized, frozen, cellular_state (in-vivo, in-vitro), macromolecular state, 'ectopic in-vivo', 'denatured or native for protein'. definition_source: OBI.</definition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_334"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">state</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_33">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A variable in an experiment that is designed to look at differences between organisms of different genders, mating types etc.</rdfs:comment>
+    <rdfs:label xml:lang="en">sex_effect</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_334"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_33">
-    <rdfs:label xml:lang="en">sex_effect</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A variable in an experiment that is designed to look at differences between organisms of different genders, mating types etc.</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_155">
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem0: BS did not view disease as a process, and indeed it is now a child of dependent continuant.</editor_note>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rem1: BP - placed into quality. needs to be discussed</editor_note>
+    <rdfs:label xml:lang="en">disease</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Place_holder for disease ontology</definition>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Disposition"/>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem1: BP - placed into quality. needs to be discussed</editor_note>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rem0: BS did not view disease as a process, and indeed it is now a child of dependent continuant.</editor_note>
-    <rdfs:label xml:lang="en">disease</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_282">
+    <rdfs:label xml:lang="en">_GO_molecular_function</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
-    <rdfs:label xml:lang="en">GO_molecular_function</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_278">
     <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Stage II breast cancer, The timepoint of recovery from a disease</example_of_usage>
+    <rdfs:label xml:lang="en">disease_stage</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#FiatProcessPart"/>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is a fiat_process_part which is part_of a disease_process which is associated with position in the normal progression of the disease</definition>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#FiatProcessPart"/>
-    <rdfs:label xml:lang="en">disease_stage</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_44">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
-    <rdfs:label xml:lang="en">physical_document</rdfs:label>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >BP: moved and renamed for BFO</editor_note>
-    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >information_content_entity "is_encoded_in" some physical_document in obi before split (040907).</editor_note>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A physical document is an object serving as a record of information by means of symbolic marks. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">physical_document</rdfs:label>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >information_content_entity "is_encoded_in" some physical_document in obi before split (040907).</editor_note>
+    <editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >BP: moved and renamed for BFO</editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_189">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A liquid state is a state in which the entity has no fixed shape but a fixed volume, generally at a temperature between its freezing and boiling points. definition_source: OBI.</definition>
-    <rdfs:label xml:lang="en">liquid_state</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_302"/>
     </rdfs:subClassOf>
+    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A liquid state is a state in which the entity has no fixed shape but a fixed volume, generally at a temperature between its freezing and boiling points. definition_source: OBI.</definition>
+    <rdfs:label xml:lang="en">liquid_state</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_334">
     <rdfs:label xml:lang="en">_to_be_fixed</rdfs:label>
@@ -244,19 +246,19 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_72">
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A parameter value application is part of a protocol application in which the values of the parameter are set. definition_source: OBI.</definition>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#FiatProcessPart"/>
+    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Setting the centrifuge to 1200 RPM.</example_of_usage>
     <rdfs:label xml:lang="en">parameter_value_application</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
-    <example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Setting the centrifuge to 1200 RPM.</example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#FiatProcessPart"/>
   </owl:Class>
   <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_264">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
-    <rdfs:label xml:lang="en">sample_population</rdfs:label>
     <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A sample population is an object aggregate that is selected from the population, e.g. the fish in the net that were sampled from the lake, the people that responded to the call for volunteers. definition_source: OBI.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#material"/>
+    <rdfs:label xml:lang="en">sample_population</rdfs:label>
   </rdf:Description>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 125)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.3, Build 411)  http://protege.stanford.edu -->
