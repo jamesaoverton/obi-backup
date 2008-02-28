@@ -1,64 +1,104 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
-    xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
-    xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
+  
     xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+    
+    xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
+    xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
+    xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
+  
+    xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
   xml:base="http://obi.sourceforge.net/ontology/OBI/AnnotationProperty.owl">
+  
   <owl:Ontology rdf:about="">
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >$Revision: 94 $</owl:versionInfo>
+    <owl:versionInfo>$Revision: 94 $</owl:versionInfo>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
   </owl:Ontology>
+  
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#EnumerationClass">
+    <dc:date>2008-02-27 (createdDate)</dc:date>
+    <dc:date>2008-02-27 (modifedDate)</dc:date>
+    <definition>A parent class for all enumerations used for class annotation.</definition>
+  </owl:Class>
+  
+  
+  <!--  CurationStatus Enumerated Class Instances used for Class Annotation -->
+  
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#CurationStatus">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#EnumerationClass"/>
+    <definition xml:lang="en">The curation status of the term. The allowed values come from an enumerated list of predefined terms.</definition>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:oneOf rdf:parseType="Collection">
+          <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#uncurated">
+            <definition xml:lang="en">Nothing done yet beyond assigning a unique class ID and proposing a preferred term.</definition>
+          </CurationStatus>
+          <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#metadata_incomplete">
+            <definition xml:lang="en">Class is being worked on; however, the metadata (including definition) are not complete or sufficiently clear to the branch editors.</definition>
+          </CurationStatus>
+          <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#metadata_complete">
+            <definition xml:lang="en">Class has all its metadata, but is either not guaranteed to be in its final location in the asserted IS_A hierarchy or refers to another class that is not complete.</definition>
+          </CurationStatus>
+          <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#pending_final_vetting">
+            <definition xml:lang="en">All definitions, placement in the asserted IS_A hierarchy and required minimal metadata are complete. The class is awaiting a final review by someone other than the definition editor.</definition>
+          </CurationStatus>
+          <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#ready_for_release">
+            <definition xml:lang="en">Class has undergone final review, is ready for use, and will be included in the next OBI release. Any class lacking "ready_for_release" should be considered likely to change place in hierarchy, have its definition refined, or be obsoleted in the next release.  Those classes deemed "ready_for_release" will also derived from a chain of ancestor classes that are also "ready_for_release."</definition>
+          </CurationStatus>
+        </owl:oneOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#uncurated"/>
+      <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#metadata_incomplete"/>
+      <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#metadata_complete"/>
+      <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#pending_final_vetting"/>
+      <CurationStatus rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#ready_for_release"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#alternative_term_citation">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >formal citation of the source of the alternative_definition, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
+    <definition>formal citation of the source of the alternative_definition, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#editor_note">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An administrative note intended for its editor. It will not be included in the publication version of the ontology, so it should contain nothing necessary for end users to understand the ontology.</definition>
+    <definition>An administrative note intended for its editor. It will not be included in the publication version of the ontology, so it should contain nothing necessary for end users to understand the ontology.</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#curation_status">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The curation status of the term. The allowed values come from an enumerated list of predefined terms. Examples: raw import, definition incomplete, graph position temporary, uncurated, pending final vetting, curation complete. The value raw import indicates that the term is derived directly via import of an entity from an existing knowledge resource. The value definition incomplete indicates that the curators recognize the definition of the class remains incomplete in someway. The value graph position temporary indicates that the class may not be in its final preferred location within the ontology graph.  The value uncurated indicates that the class has been created by curators but has received minimal review.  The value pending final vetting indicates that indicates the term is likely ready for promotion to "curation complete" status, and only requires a final review by  the curators responsible.  The value curation complete indicates that the class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</definition>
+    <definition>The curation status of the term. The allowed values come from an enumerated list of predefined terms. Examples: raw import, definition incomplete, graph position temporary, uncurated, pending final vetting, curation complete. The value raw import indicates that the term is derived directly via import of an entity from an existing knowledge resource. The value definition incomplete indicates that the curators recognize the definition of the class remains incomplete in someway. The value graph position temporary indicates that the class may not be in its final preferred location within the ontology graph.  The value uncurated indicates that the class has been created by curators but has received minimal review.  The value pending final vetting indicates that indicates the term is likely ready for promotion to "curation complete" status, and only requires a final review by  the curators responsible.  The value curation complete indicates that the class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#definition_editor">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Name of editor entering the definition</definition>
+    <definition>Name of editor entering the definition</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#example_of_usage">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An actual usage of the term.</definition>
+    <definition>An actual usage of the term.</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#branch"/>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#alternative_term">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An alternative name for a class or property which means the same thing as the preferred_term (semantically equivalent)</definition>
+    <definition>An alternative name for a class or property which means the same thing as the preferred_term (semantically equivalent)</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#alternative_term_tag">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >tag to indicate sets of alternative terms Example: toxicogenomics_community, abbreviation</definition>
+    <definition>tag to indicate sets of alternative terms Example: toxicogenomics_community, abbreviation</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#definition_citation">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >formal citation, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
+    <definition>formal citation, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#preferred_term">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The concise, meaningful, and human-friendly name for a class or property preferred by the ontology developers. (US-English)</definition>
+    <definition>The concise, meaningful, and human-friendly name for a class or property preferred by the ontology developers. (US-English)</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#definition">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The official OBI definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</definition>
+    <definition>The official OBI definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</definition>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#importedFrom">
-    <definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For external terms/classes, the ontology from which the term was imported</definition>
+    <definition>For external terms/classes, the ontology from which the term was imported</definition>
   </owl:AnnotationProperty>
 </rdf:RDF>
