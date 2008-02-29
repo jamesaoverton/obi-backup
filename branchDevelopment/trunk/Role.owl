@@ -44,6 +44,8 @@
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <j.0:alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></j.0:alternative_term>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -102,7 +104,7 @@
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Saline treated rat; one of three identically-treated subjects</j.0:example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reference participant</rdfs:label>
+    >Reference_participant_role</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
   </owl:Class>
@@ -125,12 +127,6 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Data pre-processing is a data transformation role which results in a data analysis element ready for higher-level analysis</j.0:definition>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_332">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_under_discussion"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">funder</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#trial_site">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >AR: to move under processual context? + relation located, as it is the physical location</j.0:editor_note>
@@ -139,6 +135,8 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#investigation_site"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Trial_site_role</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -149,8 +147,6 @@
     >A hospital</j.0:example_of_usage>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CDISC definition:  trial site. The location(s) where trial related activities are actually conducted.</j.0:editor_note>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Trial site</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Trial site</j.0:preferred_term>
   </owl:Class>
@@ -179,6 +175,27 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Control value is a reference value produced by a measurement or observation of a study participant in a designated control treatment group</j.0:definition>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_population">
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Study population is a study subject role which is defined by exclusion or inclusion criteria as specified in the study protocol</j.0:definition>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >study population. Defined by protocol inclusion/exclusion criteria. </j.0:editor_note>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_subject"/>
+    </rdfs:subClassOf>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Study population</j.0:preferred_term>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Study_population_role</rdfs:label>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#sub-investigator">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Sub-investigator</rdfs:label>
@@ -199,27 +216,6 @@
     >Sub-investigator is a worker authorized to make study-related decisions and carry out tasks related to the study; this role occurs during the study timeline</j.0:definition>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CDISC definition:  Sub-investigator. Any member of the clinical trial team designated and supervised by the investigator at a trial site to perform critical trial-related procedures and/or to make important trial-related decisions (e.g., associates, residents, research fellows) [ICH] See associates, residents, research fellows</j.0:editor_note>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_population">
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study population is a study subject role which is defined by exclusion or inclusion criteria as specified in the study protocol</j.0:definition>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >study population. Defined by protocol inclusion/exclusion criteria. </j.0:editor_note>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_subject"/>
-    </rdfs:subClassOf>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study population</j.0:preferred_term>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study population</rdfs:label>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#nutritional_supplement">
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -270,7 +266,7 @@
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Vital dye</rdfs:label>
+    >Vital_dye_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vital dye</j.0:preferred_term>
   </owl:Class>
@@ -299,7 +295,7 @@
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Healthy volunteer</rdfs:label>
+    >Role_of_being_healthy_volunteer</rdfs:label>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >volunteer. A person volunteering to participate as a subject in a clinical trial, often a healthy person agreeing to participate in a Phase 1 trial. See</j.0:editor_note>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -314,81 +310,86 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Healthy volunteer is a potential study participant role played by a person who is healthy in all aspects relevant to the trial</j.0:definition>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Supernatant_role">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Biological_specimen_role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#calibration_substance">
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Calibration substance</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ice water (calibrates a thermometer)</j.0:example_of_usage>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_substance"/>
+    </rdfs:subClassOf>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Calibration substance</j.0:preferred_term>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Calibration substance is a reference substance used in a calibration protocol to ensure an instrument is accurate</j.0:definition>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_substance"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#high-level_analysis">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >High-level analysis</rdfs:label>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Examples: (a) Clustering of microarray data for class discovery; (b) Identification of differentially expressed genes.</j.0:example_of_usage>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >High-level analysis</j.0:preferred_term>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >High-level analysis is a data transformation role which results in conclusions drawn from a data analysis element</j.0:definition>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Examples: (a) Clustering of microarray data for class discovery; (b) Identification of differentially expressed genes.</j.0:example_of_usage>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#data_transformation_role"/>
     </rdfs:subClassOf>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >High-level analysis</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#eligible_population">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Eligible population</rdfs:label>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Group of people passing the inclusion criteria for the investigation</j.0:example_of_usage>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eligible population is a study population role characterized by meeting the inclusion / exclusion criteria</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_member_of_eligible_population</rdfs:label>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Eligible population</j.0:preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#potential_study_participant"/>
     </rdfs:subClassOf>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Eligible population is a study population role characterized by meeting the inclusion / exclusion criteria</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#psychological_intervention">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Psychological intervention</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Psychological intervention is an intervention variable in which the varying parameter is a psychological therapy</j.0:definition>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Test of new psychological therapy</j.0:example_of_usage>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Psychological intervention</j.0:preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#intervention_variable"/>
     </rdfs:subClassOf>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Psychological intervention</rdfs:label>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Psychological intervention</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#diagnosis">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -412,23 +413,23 @@
     >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#organism_feature_identification_objective">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >organism_feature_identification_objective</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_feature_identification_objective"/>
     </rdfs:subClassOf>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >organism_feature_identification_objective</j.0:preferred_term>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Organism_feature_identification_objective is a biological_feature_identification_objective role describing a study designed to examine or characterize a biological feature monitored at the level of the organism, e.g. height, weight, stage of development, stage of life cycle.</j.0:definition>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organism_feature_identification_objective is a biological_feature_identification_objective role describing a study designed to examine or characterize a biological feature monitored at the level of the organism, e.g. height, weight, stage of development, stage of life cycle.</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >organism_feature_identification_objective</rdfs:label>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_value">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -469,42 +470,42 @@
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#animal_care_technician">
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
+    </rdfs:subClassOf>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Animal care technician is a worker role involved in day-to-day care of lab animals; this role occurs before and during the study</j.0:definition>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Animal care technician</rdfs:label>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Animal care technician</j.0:preferred_term>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#protocol_optimization">
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >protocol_optimization</j.0:preferred_term>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Animal care technician</j.0:preferred_term>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >protocol_optimization</rdfs:label>
+    >Animal care technician</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#protocol_optimization">
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Protocol_optimization is a protocol_testing_objective role describing a study designed to identify the best protocol.  This may be carried out by comparing different protocols or by modifying the parameters used within a single protocol.</j.0:definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#protocol_testing_objective"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >protocol_optimization</rdfs:label>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >protocol_optimization</j.0:preferred_term>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Protocol_optimization is a protocol_testing_objective role describing a study designed to identify the best protocol.  This may be carried out by comparing different protocols or by modifying the parameters used within a single protocol.</j.0:definition>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#blinded_medication">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -526,6 +527,11 @@
     >Blinded medication is a placebo designed to be visually indistinguishable from an investigational product</j.0:definition>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Blinded medication</j.0:preferred_term>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Pellet_role">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Biological_specimen_role"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_9999997">
     <rdfs:subClassOf>
@@ -556,21 +562,21 @@
     >definition_incomplete</j.0:curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#mock_surgery">
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Liver sparing sham hepatectomy</j.0:example_of_usage>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mock surgery is a sham treatment designed to imitate the harmless portion of a surgical intervention</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mock surgery</rdfs:label>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#sham_treatment"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mock surgery</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mock surgery is a sham treatment designed to imitate the harmless portion of a surgical intervention</j.0:definition>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Liver sparing sham hepatectomy</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Mock surgery</j.0:preferred_term>
   </owl:Class>
@@ -583,12 +589,12 @@
     >source pending</j.0:definition_citation>
     <rdfs:subClassOf>
       <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#Role">
-        <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >example_of_usage to be added</j.0:example_of_usage>
         <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >Jennifer Fostel</j.0:definition_editor>
         <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >source pending</j.0:definition_citation>
+        <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >example_of_usage to be added</j.0:example_of_usage>
         <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >definition pending</j.0:definition>
         <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -658,7 +664,7 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Reporter is a reagent role played by a chemical characterized by a property such as color, fluorescence or radioactivity which is used to measure uptake, local conditions or to indicate location.</j.0:definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reporter</rdfs:label>
+    >Reporter_role</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
     </rdfs:subClassOf>
@@ -682,35 +688,27 @@
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Reagent is a role in which the role-bearing continuant is used during an assay or study protocol</j.0:definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#protocol_application_role"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_participant"/>
+    </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reagent</rdfs:label>
+    >Reagent_role</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >microarray, buffer</j.0:example_of_usage>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#radiolabel">
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Biological_specimen_role">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_under_discussion"/>
+    </rdfs:subClassOf>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Radiolabel is a reporter role which uses radiological decay as the signal </j.0:definition>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Radiolabel</j.0:preferred_term>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reporter"/>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >3H</j.0:example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Radiolabel</rdfs:label>
+    >A biological specimen is a study participant consisting of a section of tissue, sample of fluid, or other material removed from a subject during a study.</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_254">
     <rdfs:label xml:lang="en">specimen_role</rdfs:label>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >organism "has_role_which_can_only_be_played_by_biomaterial_entity" some specimen_role in obi before split (LF 040907).</j.0:editor_note>
-    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rem: not necessarily played by biomaterial entities, also include material entity</j.0:editor_note>
+    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >organism "has_role_which_can_only_be_played_by_biomaterial_entity" some specimen_role in obi before split (LF 040907).</j.0:editor_note>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#protocol_application_role"/>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A specimen role is an investigation object role where the object is a piece of a material. definition_source: OBI.</j.0:definition>
@@ -740,7 +738,9 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_9999996">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >chromium_release_assay_target_role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_under_discussion"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#sponsor">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -780,6 +780,8 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_participant"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Study_subject_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Study subject</j.0:preferred_term>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -794,8 +796,6 @@
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Study subject is a Study participant role that is played by the objects of the study during the study timeline.  In most cases, a study subject is considered to be a population representative</j.0:definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study subject</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#culture_medium">
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -919,7 +919,15 @@
     >CDISC definition:  surrogate variable. A variable that provides an indirect measurement of effect in situations where direct measurement of clinical effect is not feasible or practical.</j.0:editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Vector_role">
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >vector is a role played by an agent which indicates the ability or potential to carry and deliver material and information entities into another entity.</j.0:definition>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Vector</j.0:preferred_term>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1983 Sci. Amer. Jan. 58/2 Plasmids are routinely used as vectors for introducing foreign DNA into bacteria.</j.0:example_of_usage>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PRS</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reagent_supplier">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#supplier"/>
@@ -972,7 +980,7 @@
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Screened population</rdfs:label>
+    >Role_of_being_member_of_screened_population</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Screened population</j.0:preferred_term>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1019,8 +1027,6 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#excluded_study_participant">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CDISC definition:  screen failure. Potential subject who did not meet one or more criteria required for participation in a trial. See also screening of subjects. screen/screening (of substances). Screening is the process by which substances are evaluated in a</j.0:editor_note>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Excluded study participant</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1033,25 +1039,27 @@
     >Person too old for trial inclusion</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Excluded study participant</j.0:preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_excluded_study_participant</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#potential_study_participant"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_substance">
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Calibration standard, positive control substance, vehicle</j.0:example_of_usage>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reference substance is a reference role in which the characteristics or responses elicited by the reference substance are used for comparison or reference. </j.0:definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Reference substance</rdfs:label>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Calibration standard, positive control substance, vehicle</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Reference substance</j.0:preferred_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reference substance is a reference role in which the characteristics or responses elicited by the reference substance are used for comparison or reference. </j.0:definition>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference"/>
     </rdfs:subClassOf>
@@ -1101,7 +1109,7 @@
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Technical replicate</rdfs:label>
+    >Technical_replicate_role</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1175,7 +1183,7 @@
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Antibody</rdfs:label>
+    >Antibody_role</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1200,26 +1208,26 @@
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Enrolled population</rdfs:label>
+    >Role_of_being_member_of_enrolled_population</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#protocol_testing_objective">
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#methodology_testing_objective"/>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >protocol_testing_objective</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >protocol_testing_objective</rdfs:label>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >protocol_testing_objective</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#methodology_testing_objective"/>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Protocol_testing_objective is a methodology_testing_objective role describing a study designed to examine the effects of using different protocols.</j.0:definition>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#internal_review_board">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1266,12 +1274,12 @@
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Recruited population</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Group of people who have agreed to participate, before they are completely enrolled</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Recruited population</j.0:preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_member_of_recruited_population</rdfs:label>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CDISC definition: The group of eligible participants that agreed to participate in the trial and signed the informed consent.</j.0:editor_note>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1296,25 +1304,6 @@
     >Impartial witness</j.0:preferred_term>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >impartial witness. A person, who is independent of the trial, who cannot be unfairly influenced by people involved with the trial, who attends the informed consent process if the subject or the subject's legally acceptable representative cannot read, and who</j.0:editor_note>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#ph_indicator_dye">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#dye_reporter"/>
-    </rdfs:subClassOf>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A pH indicator dye is a dye which changes color in environments with different levels of protons</j.0:definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pH indicator dye</rdfs:label>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pH indicator dye</j.0:preferred_term>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >phenol red in RPMI; pH=4 indicator dye (also carries reference role)</j.0:example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#technology_provider">
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1415,7 +1404,7 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Dropout is a study subject role characterized by leaving the study earlier than the protocol specified; the bearer was a study participant prior to being a dropout.</j.0:definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Dropout</rdfs:label>
+    >Dropout_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Dropout</j.0:preferred_term>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1450,33 +1439,33 @@
     >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#sham_treatment">
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Sham treatment</rdfs:label>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_treatment"/>
     </rdfs:subClassOf>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Shave animals but do not apply treatment to skin</j.0:example_of_usage>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Sham treatment is a reference treatment designed to mimic the harmless portion of an intervention; e.g. treatment with vehicle alone, placebo or sham surgery.</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sham treatment</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sham treatment is a reference treatment designed to mimic the harmless portion of an intervention; e.g. treatment with vehicle alone, placebo or sham surgery.</j.0:definition>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shave animals but do not apply treatment to skin</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Sham treatment</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#first_subject_screened">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >First subject screened is a potential study participant role played by a single individual first to have the inclusion / exclusion criteria applied</j.0:definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >First subject screened</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >First subject screened</j.0:preferred_term>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_first_subject_screened</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >First person interviewed about study enrollment criteria</j.0:example_of_usage>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1546,7 +1535,7 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Acclimating potential subject is a potential subject kept in controlled physical conditions prior to the study</j.0:definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Acclimating subject</rdfs:label>
+    >Role_of_acclimating subject</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#sequence_feature_identification_objective">
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1604,36 +1593,36 @@
     >A regulator of consumables and medical devices is a regulator involved with making and enforcing legislation and governmental orders relevant to the development, testing, manufacture and use of food, drugs and medical devices</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#software_testing_objective">
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >software_testing_objective</j.0:preferred_term>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#methodology_testing_objective"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >software_testing_objective</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >software_testing_objective</j.0:preferred_term>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Software_testing_objective is a hardware_optimization role describing a study designed to examine the effects of using different software or software parameters, e.g. data processing software.</j.0:definition>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >software_testing_objective</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_357">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >author_role</rdfs:label>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An author_role is a role attributed to someone creating an information_object</j.0:definition>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >BP</j.0:definition_editor>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_personnel"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >author_role</rdfs:label>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >BP</j.0:definition_editor>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An author_role is a role attributed to someone creating an information_object</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#dye_reporter">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >dye reporter</rdfs:label>
+    >Dye_reporter_role</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1667,6 +1656,31 @@
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Answers the question, why did you do this experiment?</j.0:editor_note>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#funder">
+    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
+    <rdfs:label xml:lang="en">funder</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#clinical_laboratory">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
+    </rdfs:subClassOf>
+    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CDISC definition:  laboratory (clinical). A laboratory providing analyses of samples collected in clinical care or research.</j.0:editor_note>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinical laboratory is a worker role involved in carrying out assay protocols on specimens derived from a study; this activity occurs outside the study timeline</j.0:definition>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinical laboratory</j.0:preferred_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinical laboratory</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#worker">
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
@@ -1686,25 +1700,6 @@
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Worker is a personnel role played by a party who executes a component of the study plan; this can occur before, during, after or outside the study timeline</j.0:definition>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#clinical_laboratory">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
-    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >CDISC definition:  laboratory (clinical). A laboratory providing analyses of samples collected in clinical care or research.</j.0:editor_note>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Clinical laboratory is a worker role involved in carrying out assay protocols on specimens derived from a study; this activity occurs outside the study timeline</j.0:definition>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Clinical laboratory</j.0:preferred_term>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Clinical laboratory</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_personnel">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1722,7 +1717,7 @@
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#potential_study_participant">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Potential study participant</rdfs:label>
+    >Role_of_potential_study_participant</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_participant"/>
     </rdfs:subClassOf>
@@ -1737,7 +1732,7 @@
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Potential study participant</j.0:preferred_term>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
+    >When a potential study participant understands the risks, alternatives, and responsibilities, he or she formalizes the decision to participate by communicating with the study investigator or representative and by documenting the agreement in writing.  http://www.nichd.nih.gov/health/clinicalresearch/steps/protectparticipants.cfm, Feb 29, 2008</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#certified_irb_professional">
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1770,58 +1765,58 @@
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#crossover_population">
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_participant"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Crossover population</rdfs:label>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Crossover population is a reference participant assigned to a cross-over arm of a trial whereby it serves as a control for itself</j.0:definition>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
+    >Crossover_population_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Crossover population</j.0:preferred_term>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_replicate">
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Biological replicate</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Biological_replicate_role</rdfs:label>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Crossover population is a reference participant assigned to a cross-over arm of a trial whereby it serves as a control for itself</j.0:definition>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_participant"/>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_replicate">
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Biological replicate is a reference participant that is one of a group of participants treated in a manner considered to be biologically identical / from the same environment / with the same characteristics.</j.0:definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_participant"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biological_replicate_role</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A member of a dose-time group; a patient in a given arm of a trial</j.0:example_of_usage>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biological replicate is a reference participant that is one of a group of participants treated in a manner considered to be biologically identical / from the same environment / with the same characteristics.</j.0:definition>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</j.0:definition_citation>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biological replicate</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#treated_role">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#protocol_application_role"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#historic_value">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Historic value</rdfs:label>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Lab average values for ALT assay done in Sprague Dawley rats</j.0:example_of_usage>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Historic control value is a reference value consisting of measurements or observations of unperturbed or baseline subjects averaged over a period of time by the lab making the measures for the study</j.0:definition>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_value"/>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Historic value</rdfs:label>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Historic control value is a reference value consisting of measurements or observations of unperturbed or baseline subjects averaged over a period of time by the lab making the measures for the study</j.0:definition>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Historic value</j.0:preferred_term>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_value"/>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lab average values for ALT assay done in Sprague Dawley rats</j.0:example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#clinical_research_coordinator">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
@@ -1859,6 +1854,9 @@
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Administrative unit</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Precipitate_role">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#Biological_specimen_role"/>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#surrogate_marker">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Surrogate marker is an indirect experimental factor role assigned to a variable shown to be a substitute for an adverse reaction</j.0:definition>
@@ -1883,19 +1881,19 @@
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#software_optimization">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Software_optimization is a software_testing_objective role describing a study designed to identify the best software or parameters of the software.</j.0:definition>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#software_testing_objective"/>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >software_optimization</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#software_testing_objective"/>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >software_optimization</j.0:preferred_term>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >software_optimization</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#regulation-assigned_role">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1930,19 +1928,19 @@
     >Experimental factor</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#epitope">
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Epitope</j.0:preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Epitope_role</rdfs:label>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#antigen"/>
     </rdfs:subClassOf>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Epitope</rdfs:label>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Epitope</j.0:preferred_term>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >amino acids XX to XX on biotin</j.0:example_of_usage>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1966,44 +1964,46 @@
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reporting_party">
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reporting party</j.0:preferred_term>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reporting party role is a study personnel role played by a party who reports the outcome of a study component</j.0:definition>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reporting party</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#study_personnel"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_289">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >this role was added as a sibling of reporter, which is not sensible.  we will keep one term for reporter, and use the one with a definition provided.  The original term contained a child "dye-role" which is equivalent to label role</rdfs:comment>
+    <rdfs:label xml:lang="en">reporter_role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#feed">
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Purina rat chow</j.0:example_of_usage>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reporting party role is a study personnel role played by a party who reports the outcome of a study component</j.0:definition>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#study_personnel"/>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reporting party</rdfs:label>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reporting party</j.0:preferred_term>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_289">
-    <rdfs:label xml:lang="en">reporter_role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#feed">
+    >Feed is a nutrient provided to laboratory animals</j.0:definition>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#complete_nutrient"/>
     </rdfs:subClassOf>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Feed</j.0:preferred_term>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Purina rat chow</j.0:example_of_usage>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Feed is a nutrient provided to laboratory animals</j.0:definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Feed</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feed</rdfs:label>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feed</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#subject_provider">
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2029,41 +2029,61 @@
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_under_discussion"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#cellular_feature_identification_objective">
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Cohort_role">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#biological_replicate"/>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Cellular_feature_identification_objective is a biological_feature_identification_objective role describing a study designed to examine or characterize a biological feature monitored at the cellular level, e.g. stage of cell cycle, stage of differentiation.</j.0:definition>
+    >a cohort role is a biological replicate role played by a group of study participants who share a common charactreristic of interest to the study.</j.0:definition>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ># a group of individuals in a study who share a demographic, clinical, or other statistical characteristic (eg, age, study site).
+www.thebody.org/content/treat/art2612.html
+
+# a group of individuals having a statistical factor (as age or class membership) in common in a demographic study, such as a cohort of students.
+www.sceoc.com/glossaryofterms/
+
+# A cohort is a group of people with a common characteristic that is studied over a period of time as part of a scientific or medical investigation.
+www.uhhospitals.org/tabid/591/Default.aspx</j.0:definition_citation>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >In statistics and demography, a cohort is a group of subjects — most often humans from a given population — defined by experiencing an event (typically birth) in a particular time span.  Wikipedia "cohort", Feb 29 2008</j.0:example_of_usage>
+    <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></j.0:editor_note>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >cellular_feature_identification_objective</j.0:preferred_term>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#cellular_feature_identification_objective">
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cellular_feature_identification_objective</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_feature_identification_objective"/>
     </rdfs:subClassOf>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#laboratory">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Laboratory</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#administrative_unit"/>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Laboratory</j.0:preferred_term>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cellular_feature_identification_objective</j.0:preferred_term>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cellular_feature_identification_objective is a biological_feature_identification_objective role describing a study designed to examine or characterize a biological feature monitored at the cellular level, e.g. stage of cell cycle, stage of differentiation.</j.0:definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#laboratory">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Laboratory is an administrative unit role played by an organization and its members who perform clinical assays or non-clinical trials  </j.0:definition>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Laboratory</j.0:preferred_term>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Laboratory</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#administrative_unit"/>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_participant">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
@@ -2076,11 +2096,11 @@
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Lab rats treated with a chemical of interest; fish collected as part of an environmental study; human subjects in a trial, patients excluded from a trial</j.0:example_of_usage>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study participant</rdfs:label>
+    >Study_participant_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Study participant</j.0:preferred_term>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study participant is a role of actual or potential objects of a study; NB:  this does not include the study personnel who perform the study</j.0:definition>
+    >Study participant is a role of actual or potential objects of, used in or produced by a study; NB:  this does not include the study personnel who perform the study</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#indirect_experimental_factor">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#experimental_factor"/>
@@ -2136,61 +2156,61 @@
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#subject_characteristic_variable">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Subject characteristic variable</rdfs:label>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Subject characteristic variable is a direct experimental factor in which the component which varies results from the selection of subjects with non-uniform characteristics</j.0:definition>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Selection of subjects of different sexes for testing</j.0:example_of_usage>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor"/>
     </rdfs:subClassOf>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Subject characteristic variable</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Subject characteristic variable</rdfs:label>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Selection of subjects of different sexes for testing</j.0:example_of_usage>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#molecular_feature_identification_objective">
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >molecular_feature_identification_objective</rdfs:label>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Molecular_feature_identification_objective is a biological_feature_identification_objective role describing a study designed to examine or characterize molecular features of a biological system, e.g. expression profiling, copy number of molecular components, epigenetic modifications.</j.0:definition>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >molecular_feature_identification_objective</j.0:preferred_term>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_feature_identification_objective"/>
     </rdfs:subClassOf>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-  </owl:Class>
-  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#environmental_characteristic_variable">
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor"/>
-    </rdfs:subClassOf>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Environmental characteristic variable is a direct experimental factor (role) in which the component which varies is a part of the environment or the environmental history of study participants</j.0:definition>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >molecular_feature_identification_objective</j.0:preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >molecular_feature_identification_objective</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#environmental_characteristic_variable">
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Environmental characteristic variable</rdfs:label>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Environmental characteristic variable</j.0:preferred_term>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Environmental characteristic variable is a direct experimental factor (role) in which the component which varies is a part of the environment or the environmental history of study participants</j.0:definition>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Varying the collection location for environmental samples in study of chromium levels and effects</j.0:example_of_usage>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Environmental characteristic variable</j.0:preferred_term>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor"/>
+    </rdfs:subClassOf>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#reference_treatment">
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2214,6 +2234,8 @@
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_first_subject_treated</rdfs:label>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >first subject treated. First subject who receives the test article or placebo in a clinical trial.</j.0:editor_note>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2223,27 +2245,25 @@
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >First subject treated</j.0:preferred_term>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#study_subject"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >First subject treated</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#vehicle_control_treatment">
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Deliver saline solution via gavage</j.0:example_of_usage>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#sham_treatment"/>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Deliver saline solution via gavage</j.0:example_of_usage>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Vehicle treatment is a sham treatment in which the solvent is delivered without the active test compound</j.0:definition>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vehicle control treatment</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Vehicle treatment is a sham treatment in which the solvent is delivered without the active test compound</j.0:definition>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vehicle control treatment</j.0:preferred_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#hypothesis">
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2284,6 +2304,25 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CDISC definition:  Person employed by the sponsor or CRO who is responsible for determining that a trial is being conducted in accordance with the protocol and GCP guidance. NOTE: A monitor's duties may include, but are not limited to, helping to plan and initiate a trial, assessing the conduct of trials, and assisting in data analysis, interpretation and extrapolation. Clinical Research Associate:  Primary representative of the sponsor; monitors progress of investigator sites participating in a clinical study.</j.0:editor_note>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Radiolabel_role">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reporter"/>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >3H</j.0:example_of_usage>
+    <j.0:alternative_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Label_role</j.0:alternative_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Radiolabel</j.0:preferred_term>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Radiolabel_role</rdfs:label>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Radiolabel is a reporter role which uses radiological decay as the signal </j.0:definition>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor">
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Dosage; sex; disease state; collection location</j.0:example_of_usage>
@@ -2301,11 +2340,30 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#pH_indicator_dye_role">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#dye_reporter"/>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A pH indicator dye is a dye which changes color in environments with different levels of protons</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pH_indicator_dye_role</rdfs:label>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pH indicator dye</j.0:preferred_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >phenol red in RPMI; pH=4 indicator dye (also carries reference role)</j.0:example_of_usage>
+  </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#special_population">
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Geriatric subset of eligible population</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_member_of_special_population</rdfs:label>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#eligible_population"/>
@@ -2317,8 +2375,6 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >Special population is an eligible population role played by a population with characteristics that make it especially important to target for enrollment</j.0:definition>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Special population</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Special population</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#principal_investigator">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2366,31 +2422,31 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Person who believes the trial medication will cure them of cancer</j.0:example_of_usage>
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#potential_study_participant"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role_of_being_vulnerable_subject</rdfs:label>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vulnerable subject is a potential study participant role characterized by being unduly influenced by the expectation that participation in the trial will provide direct benefit</j.0:definition>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >vulnerable subjects. Individuals whose willingness to volunteer in a clinical trial may be unduly influenced by the expectation, whether justified</j.0:editor_note>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Vulnerable subject</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#biological_feature_identification_objective">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#objective"/>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Biological_feature_identification_objective is an objective role carried out by the proposition defining the aim of a study designed to examine or characterize a particular biological feature.</j.0:definition>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >example_of_usage to be added</j.0:example_of_usage>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >biological_feature_identification_objective</j.0:preferred_term>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >biological_feature_identification_objective</rdfs:label>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >biological_feature_identification_objective</j.0:preferred_term>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#objective"/>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Biological_feature_identification_objective is an objective role carried out by the proposition defining the aim of a study designed to examine or characterize a particular biological feature.</j.0:definition>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#data_transformation_role">
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2427,21 +2483,21 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >Negative reference substance</j.0:preferred_term>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#time_interval_variable">
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A time course study design</j.0:example_of_usage>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Time interval variable is a direct experimental factor in which the varying parameter is a time interval describing the time of exposure of study participants to a treatment, intervention or other perturbational protocol.</j.0:definition>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Time interval variable</j.0:preferred_term>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor"/>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A time course study design</j.0:example_of_usage>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Time interval variable</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#direct_experimental_factor"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#study_group_population">
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2451,24 +2507,24 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#study_population"/>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Study group population is a study population defined by undergoing the same interventional treatment, or presenting the same characteristics or history</j.0:definition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Study group population</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Study group population</j.0:preferred_term>
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The group of randomized participants that are assigned to a treatment arm of the trial</j.0:editor_note>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Study_group_role</rdfs:label>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_22">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >role of data or material entity played at the start of a process</j.0:editor_note>
-    <rdfs:label xml:lang="en">input_role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#protocol_application_role"/>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An input role is a role which is played by an entity such as data or material at the beginning of a process. definition_source: OBI.</j.0:definition>
+    <rdfs:label xml:lang="en">input_role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#protocol_application_role"/>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#investigation_site">
     <j.0:editor_note rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2494,21 +2550,21 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >A field, a laboratory, a medical institute, a pharmaceutical company</j.0:example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#cytological_stain">
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DAPI</j.0:example_of_usage>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Cytological stain</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Cytological stain</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#dye_reporter"/>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#dye_reporter"/>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Cytological stain is a dye used to mark organelles in a cytological preparation</j.0:definition>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cytological_stain_role</rdfs:label>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cytological stain</j.0:preferred_term>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DAPI</j.0:example_of_usage>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#medical_monitor">
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2530,21 +2586,21 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >CDISC definition:  medical monitor. A sponsor representative who has medical authority for the evaluation of the safety aspects of a clinical trial</j.0:editor_note>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#pathology_review_board">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
-    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Pathology review board</j.0:preferred_term>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Pathology review board is a worker role comprised of providing a confirmed and consensus diagnosis for histopathology results obtained during the investigation</j.0:definition>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >example_of_usage to be added</j.0:example_of_usage>
+    <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pathology review board</j.0:preferred_term>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Pathology review board</rdfs:label>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#worker"/>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pathology review board is a worker role comprised of providing a confirmed and consensus diagnosis for histopathology results obtained during the investigation</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#regulator_of_chemical_manufacture">
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2598,21 +2654,21 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >source pending</j.0:definition_citation>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#positive_reference_substance">
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_substance"/>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Positive reference substance</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Positive reference substance</rdfs:label>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reference_substance"/>
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Positive reference substance is a reference substance with the property that it is expected to produce the highest level of response in the system being measured</j.0:definition>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >MMS mutagen</j.0:example_of_usage>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</j.0:definition_editor>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MMS mutagen</j.0:example_of_usage>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Positive reference substance</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#legally_acceptable_representative">
     <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2649,38 +2705,38 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#antigen">
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
     <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >source pending</j.0:definition_citation>
+    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >definition_incomplete</j.0:curation_status>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Antigen_role</rdfs:label>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Antigen</j.0:preferred_term>
-    <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >definition_incomplete</j.0:curation_status>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Antigen is a reagent played by material which when introduced into an immune-competent organism causes an immune response</j.0:definition>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Antigen</rdfs:label>
     <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >biotin</j.0:example_of_usage>
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#reagent"/>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Antigen is a reagent played by material which when introduced into an immune-competent organism causes an immune response</j.0:definition>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#inactive_isomer">
-    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#negative_reference_substance"/>
-    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</j.0:definition_editor>
-    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >source pending</j.0:definition_citation>
-    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >1,4-dichlorobenzene</j.0:example_of_usage>
     <j.0:preferred_term rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Inactive isomer</j.0:preferred_term>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Inactive isomer</rdfs:label>
-    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Inactive isomer is a negative reference substance consisting of an isomer of an active or toxic chemical which lacks comparable activity </j.0:definition>
     <j.0:curation_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >definition_incomplete</j.0:curation_status>
+    <j.0:example_of_usage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >1,4-dichlorobenzene</j.0:example_of_usage>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#negative_reference_substance"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inactive isomer</rdfs:label>
+    <j.0:definition_citation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source pending</j.0:definition_citation>
+    <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inactive isomer is a negative reference substance consisting of an isomer of an active or toxic chemical which lacks comparable activity </j.0:definition>
+    <j.0:definition_editor rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jennifer Fostel</j.0:definition_editor>
   </owl:Class>
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#_under_discussion">
     <j.0:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
