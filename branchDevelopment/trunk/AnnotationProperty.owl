@@ -19,7 +19,7 @@
   
   <owl:Ontology rdf:about="">
     <owl:versionInfo>$Revision: 94 $</owl:versionInfo>
-    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+    <!-- <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>  -->
   </owl:Ontology>
   
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#EnumerationClass">
@@ -29,11 +29,21 @@
   </owl:Class>
   
   
+  <!--  AnnotationProperty types recommended by Alan Ruttenberg (2007-05-20) for representing fixed enumeration class instances for 
+    ontology class annotation  -->
+  
+    <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#annotationPropertyDomain"/>
+    <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#annotationPropertyRange"/>
+    <owl:AnnotationProperty rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#hasValidationMethod"/>
+  
   <!--  CurationStatus Enumerated Class Instances used for Class Annotation -->
   
   <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#CurationStatus">
     <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#EnumerationClass"/>
     <definition xml:lang="en">The curation status of the term. The allowed values come from an enumerated list of predefined terms.</definition>
+    <annotationPropertyDomain>http://www.w3.org/2002/07/owl#Class</annotationPropertyDomain>
+    <annotationPropertyRange>http://obi.sourceforge.net/ontology/OBI.owl#EnumerationClass</annotationPropertyRange>
+    <hasValidationMethod>sparql_verify_annotation_domain_and_range (NOTE: this is currently just a dummy specification and would be filled with a pointer to a real method, once one has been created)</hasValidationMethod>
     <owl:equivalentClass>
       <owl:Class>
         <owl:oneOf rdf:parseType="Collection">
