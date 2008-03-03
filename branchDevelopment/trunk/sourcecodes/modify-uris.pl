@@ -65,8 +65,9 @@ sub maybeRewriteURI
   {if ($uri =~ /http:\/\/obi\.sourceforge\.net\/ontology\/OBI.owl#(.*)/)
    { my $localname = $1;
      if ( $localname =~ /OBI_(\d+)/)
-     { my $newnum = sprintf("%07d",$1);
-       if ($used{$newnum}) # collision, reallocate id
+     { if (length($localname)>7) { return 0 } # too long - allocate new id
+       my $newnum = sprintf("%07d",$1);
+       if ($used{$newnum}) # collision, allocate new id
        { return 0 }
        else
        { $used{$newnum} = 1;
