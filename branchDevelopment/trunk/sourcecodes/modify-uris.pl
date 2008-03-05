@@ -4,10 +4,10 @@ use strict;
 
 # Policy here. TBD.
 
-my $idNamespace = "http://purl.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
-my $namedclassNamespace = "http://purl.org/obo/";
-my $propertyNamespace = "http://purl.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
-my $individualNamespace = "http://purl.org/obo/";
+my $idNamespace = "http://thing.obofoundry.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
+my $namedclassNamespace = "http://thing.obofoundry.org/obo/";
+my $propertyNamespace = "http://thing.obofoundry.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
+my $individualNamespace = "http://thing.obofoundry.org/obo/";
 
 my $debug = 0;
 
@@ -130,6 +130,8 @@ sub replacenames
       while (<PART>) {
 	  s/\s*xmlns=.*/   xmlns="$propertyNamespace"/;
 	  s/\s*xmlns:obi=.*/   xmlns:obi="$idNamespace"/;
+	  s/\s*xml(ns){0,1}:(.+?)="http:\/\/obi.source.*\/(.*)/   xml$1:$2="$idNamespace\obi\/$3/;
+#	  s/\s*xml:base=.*\/(.*)/   xml:base="$idNamespace\obi\/$1"/;
 	  s/rdf:(about|id|resource)="(.*?)"/"rdf:".$1."=\"".($uriReplacements{$2}||$2)."\""/ge;
 	  s/(<\/{0,1})([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/ge; 
 	  # UGLY HACK UGLY HACK. We have a few instances currently, and the logic above doesn't handle them so clobber!
