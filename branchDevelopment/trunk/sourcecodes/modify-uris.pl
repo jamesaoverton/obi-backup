@@ -5,9 +5,9 @@ use strict;
 # Policy here. TBD.
 
 my $idNamespace = "http://purl.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
-my $namedclassNamespace = "http://purl.org/obo/OBI/";
-my $propertyNamespace = "http://purl.org/obo/OBI/"; # can't stay at top level, since no OBI differentiation with OBI_
-my $individualNamespace = "http://purl.org/obo/OBI/";
+my $namedclassNamespace = "http://purl.org/obo/";
+my $propertyNamespace = "http://purl.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
+my $individualNamespace = "http://purl.org/obo/";
 
 my $debug = 0;
 
@@ -24,8 +24,9 @@ my %used; # to record used numeric ids
 my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/obi.sourceforge.net\/ontology\/OBI\/(.*)\.owl"/;$1} @lines;
 my @obiParts = map { s/.*\/([A-Za-z.-]*)\.owl.*/$1/;chomp $_ ; $_} @obiParts;
 
-my @replacements;
-my %replacements;
+
+my %uriReplacements;
+my %tagReplacements;
 
 # Compute all rewrites Logic:
 #  Read the uri report created by lisp, as that is the only safe way to determine which URIs are for properties,classes, etc.
@@ -41,14 +42,19 @@ sub computeReplacements
     my $rewrite = maybeRewriteURI($type,$uri);
     if (defined $rewrite)
     { if ($rewrite)
-      { $replacements{$uri}=$rewrite; }
+      { $uriReplacements{$uri}=$rewrite; }
       else { push @todo,$uri };
     }
     else {$debug && print "don't bother ",$uri,"\n"}
   }
   close URILIST;
   foreach (@todo)
-  {$replacements{$_} = $idNamespace."OBI_".allocateNewId(); $debug && print $_,"=>",$replacements{$_},"\n";}
+  { my $newid = allocateNewId();
+    $uriReplacements{$_} = $idNamespace."OBI_".$newid;
+    s/.*[\/#]//;
+    $tagReplacements{$_}="OBI_".$newid;
+    $debug && print $_,"=>",$uriReplacements{$_},"\n";
+  }
 }
 
 # Rewrite one URI Logic:
@@ -61,7 +67,7 @@ sub computeReplacements
 sub maybeRewriteURI
 { my ($type,$uri) = @_;
   $debug && print "in: $type $uri\n";
-  if ($type =~ /Class/)
+  if ($type =~ /Class|Property|Individual/)
   {if ($uri =~ /http:\/\/obi\.sourceforge\.net\/ontology\/OBI.owl#(.*)/)
    { my $localname = $1;
      if ( $localname =~ /OBI_(\d+)/)
@@ -74,8 +80,8 @@ sub maybeRewriteURI
 	 return($idNamespace."OBI_".$newnum)
        }
      }
-     elsif ($localname =~ /CurationStatus|EnumerationClass/)
-     { return $namedclassNamespace.$localname }
+#     elsif ($localname =~ /CurationStatus|EnumerationClass/)
+#     { return $namedclassNamespace.$localname }
      else
      { return(0) }
    }
@@ -124,11 +130,14 @@ sub replacenames
       while (<PART>) {
 	  s/\s*xmlns=.*/   xmlns="$propertyNamespace"/;
 	  s/\s*xmlns:obi=.*/   xmlns:obi="$idNamespace"/;
-	  s/rdf:(about|id|resource)="(.*?)"/"rdf:".$1."=\"".($replacements{$2}||$2)."\""/ge; 
+	  s/rdf:(about|id|resource)="(.*?)"/"rdf:".$1."=\"".($uriReplacements{$2}||$2)."\""/ge;
+	  s/(<\/{0,1})([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/ge; 
 	  # UGLY HACK UGLY HACK. We have a few instances currently, and the logic above doesn't handle them so clobber!
-	  s/<(\/{0,1})OBI_187/<$1\obi:OBI_0000187/g;
+	  s/(<\/{0,1})OBI_187/$1\obi:OBI_0000187/g;
 	  # And don't forget that bit in externalderived.owl - Uncle: I admit that RDF/XML is an abomination 
 	  s/xmlns:ns0pred="http:\/\/obi.sourceforge.net\/ontology\/OBI.owl#"/xmlns:ns0pred="$propertyNamespace"/;
+	  s/(\/{0,1}ns0pred:)([A-Za-z0-9_]*)\s*xmlns:ns0pred="$propertyNamespace/$1.($tagReplacements{$2}||$2)." xmlns:ns0pred=\"$propertyNamespace"/sge;
+	  s/(\/ns0pred:)([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/sge;
 	  # UGLY HACK UGLY HACK.
 	  print PARTCOPY $_; 
       }
@@ -142,4 +151,4 @@ replacenames();
 
 $DB::single=1;1;
 
-$debug && print join("\n",keys %replacements);
+$debug && print join("\n",keys %uriReplacements);
