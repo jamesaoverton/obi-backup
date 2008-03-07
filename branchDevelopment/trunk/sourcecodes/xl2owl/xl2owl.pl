@@ -29,7 +29,7 @@ use Encode;
 # parsed without an error ("undedeclared prefix").
 $XML::Simple::PREFERRED_PARSER = "XML::Parser";
 
-my ($csvin_file,$csvout_file,$owlin_file,$owlout_file,$help,$del_empty);
+my ($csvin_file,$csvout_file,$owlin_file,$owlout_file,$help,$replace,$del_empty);
 my $delim = "\t";
 my $action = "1";
 GetOptions ("tabin|ti=s" => \$csvin_file,
@@ -39,6 +39,7 @@ GetOptions ("tabin|ti=s" => \$csvin_file,
 	    "delimiter|d=s" => \$delim,
 	    "action|a=i" => \$action,
 	    "del_empty|r" => \$del_empty,
+	    "replace" => \$replace,
 	    "help|h" => \$help,
     );
 
@@ -69,6 +70,8 @@ OPTIONS
 
     --del_empty|-r  Do not include annotation properties that are empty in the owl output file
 
+    --replace       Replace all classes in OWL file with those from tab-delimited file
+
     --help|-h       Print this help screen
 
 
@@ -88,7 +91,7 @@ die $USAGE if ($help);
 
 
 switch ($action) {
-    case 1 { insert_terms_from_csv($csvin_file,$owlin_file,$owlout_file,$delim) }
+    case 1 { insert_terms_from_csv($csvin_file,$owlin_file,$owlout_file,$delim,$replace) }
     case 2 { create_csv_from_owl($owlin_file,$csvout_file) }
     else   { die " \
  Unknown action: $action \
@@ -283,7 +286,7 @@ sub mk_attribute {
 # this will insert terms from a csv file into an owl file
 sub insert_terms_from_csv {
 
-    my ($csvin_file,$owlin_file,$owlout_file,$delim) = @_;
+    my ($csvin_file,$owlin_file,$owlout_file,$delim,$replace) = @_;
 
     # first we retrieve the terms from the csv file
     my @new_terms = csv2xml($csvin_file,$delim);
@@ -294,18 +297,23 @@ sub insert_terms_from_csv {
 	$in_new{$term->{"rdf:about"}} = 1;
     }
 
-    # next we read in the terms from the owl file
-    my @owl_classes;
+    # next we read in the owl file
     my $xml=get_xml($owlin_file);
-    foreach my $class (@{$xml->{"owl:Class"}}) {
-	push @owl_classes, $class;
-    }
 
-    # now iterate through existing terms and push them onto the new terms array,
-    # unless there is a corresponding term in the array
-    foreach my $term(@owl_classes) {
-	next if ($in_new{$term->{"rdf:about"}});
-	push @new_terms, $term;
+    # unless we are supposed to replace all of the classes, we will read in the
+    # terms from the owl file
+    unless ($replace) {
+	my @owl_classes;
+	foreach my $class (@{$xml->{"owl:Class"}}) {
+	    push @owl_classes, $class;
+	}
+
+	# now iterate through existing terms and push them onto the new terms array,
+	# unless there is a corresponding term in the array
+	foreach my $term(@owl_classes) {
+	    next if ($in_new{$term->{"rdf:about"}});
+	    push @new_terms, $term;
+	}
     }
 
     #Here we go through each term and remove any annotation properties that are
