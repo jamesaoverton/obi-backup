@@ -4,10 +4,10 @@ use strict;
 
 # Policy here. TBD.
 
-my $idNamespace = "http://thing.obofoundry.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
-my $namedclassNamespace = "http://thing.obofoundry.org/obo/";
-my $propertyNamespace = "http://thing.obofoundry.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
-my $individualNamespace = "http://thing.obofoundry.org/obo/";
+my $idNamespace = "http://purl.obofoundry.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
+my $namedclassNamespace = "http://purl.obofoundry.org/obo/";
+my $propertyNamespace = "http://purl.obofoundry.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
+my $individualNamespace = "http://purl.obofoundry.org/obo/";
 
 my $debug = 0;
 
@@ -131,6 +131,13 @@ sub replacenames
 	  s/\s*xmlns=.*/   xmlns="$propertyNamespace"/;
 	  s/\s*xmlns:obi=.*/   xmlns:obi="$idNamespace"/;
 	  s/\s*xml(ns){0,1}:(.+?)="http:\/\/obi.source.*\/(.*)/   xml$1:$2="$idNamespace\obi\/$3/;
+	  my $pre = "curation_status><CurationStatus rdf:about=\"http://obi.sourceforge.net/ontology/OBI.owl";
+	  s/curation_status\s*xml:lang="en"\s*>ready_for_release</$pre#ready_for_release\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>metadata_incomplete</$pre#metadata_incomplete\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>metadata_complete</$pre#metadata_complete\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>uncurated</$pre#uncurated\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>pending_final_vetting</$pre#pending_final_vetting\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>definition_incomplete.*?</$pre#metadata_incomplete\"\/></;
 #	  s/\s*xml:base=.*\/(.*)/   xml:base="$idNamespace\obi\/$1"/;
 	  s/rdf:(about|id|resource)="(.*?)"/"rdf:".$1."=\"".($uriReplacements{$2}||$2)."\""/ge;
 	  s/(<\/{0,1})([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/ge; 
