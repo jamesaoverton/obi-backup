@@ -1,0 +1,491 @@
+<?xml version="1.0"?>
+<rdf:RDF
+   xmlns:obi_rest="http://obi.sourceforge.net/ontology/OBI/TheRest.owl#"
+   xmlns:obi_obsolete="http://obi.sourceforge.net/ontology/OBI/Obsolete.owl#"
+   xmlns:obi_func="http://obi.sourceforge.net/ontology/OBI/OBI-Function.owl#"
+   xmlns:obi_biomat="http://obi.sourceforge.net/ontology/OBI/Biomaterial.owl#"
+   xmlns:obi_denrie="http://obi.sourceforge.net/ontology/OBI/DigitalEntityPlus.owl#"
+   xmlns:obi_rel="http://obi.sourceforge.net/ontology/OBI/Relations.owl#"
+   xmlns:obi_plan="http://obi.sourceforge.net/ontology/OBI/PlanAndPlannedProcess.owl#"
+   xmlns:obi_annot="http://obi.sourceforge.net/ontology/OBI/AnnotationProperty.owl#"
+   xmlns:obi_data_trans="http://obi.sourceforge.net/ontology/OBI/DataTransformation.owl#"
+   xmlns:obi_quality="http://obi.sourceforge.net/ontology/OBI/Quality.owl#"
+   xmlns:obi_role="http://obi.sourceforge.net/ontology/OBI/Role.owl#"
+   xmlns:obi_instr="http://obi.sourceforge.net/ontology/OBI/InstrumentAndPart.owl#"
+   xmlns:obi_ext="http://obi.sourceforge.net/ontology/OBI/external.owl#"
+   xmlns:obi_extd="http://obi.sourceforge.net/ontology/OBI/externalDerived.owl#"
+   xmlns:obi_owlfull="http://obi.sourceforge.net/ontology/OBI/obi-owl-full.owl#"
+   xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+   xmlns:rotoo="http://purl.org/obo/owl/ro#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+   xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
+   xmlns:robfo="http://purl.org/obo/owl/ro_bfo1-1_bridge#"
+   xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
+   xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+   xmlns:pato="http://purl.org/obo/owl/PATO#"
+   xmlns:cell="http://purl.org/obo/owl/CL#"
+   xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+   xmlns:go="http://www.geneontology.org/formats/oboInOwl#"
+   xmlns:obi="http://obi.sourceforge.net/ontology/OBI.owl#"
+   xmlns="http://obi.sourceforge.net/ontology/OBI.owl#"
+  xml:base="http://obi.sourceforge.net/ontology/OBI/DigitalEntityPlus.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#dot_plot">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_graph"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">dot plot</rdfs:label>
+    <editor_note xml:lang="en">generically_dependent_continuants</editor_note>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+    <example_of_usage xml:lang="en">Dot plot of SSC-H and FSC-H.</example_of_usage>
+    <definition xml:lang="en">A dot plot is a report graph which is a graphical representation of data where each data point is represented by a single dot placed on coordinates corresponding to data point values in particular dimensions.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_document">
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">digital document</rdfs:label>
+    <definition xml:lang="en">A digital document is a digital entity consisting of an electronic file which can be rendered into human-readable form by one or more computational applications.  The digital document does not refer to the information content of the document but to an instance of the file.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#patent_content">
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <editor_note xml:lang="en">need to distinguish the patent submission (which I think the term refers to) and the patent itself, which is what confers the rights. (Alan) Renamed from patent to patent submission. [Isn't the submission like a recipe, i.e. a realizable information entity, in that it tells you how to do something? no] Cristian: what is the difference b/w some document that has been patented, and the same document that has not been patented? The (informational) content is the same. It is just that the former has been encapsulated within some social mechanism, hence it has acquired some role. Hence 'patent' is a role.</editor_note>
+    <definition xml:lang="en">A patent content is a report for the purpose of obtaining a license from a government conferring for a set period the sole right to make, use, or sell some process or invention</definition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#narrative_object"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">patent content</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305">
+    <definition xml:lang="en">A datum is an information content entity that is a recording of the output of a measurement such as produced by an instrument.</definition>
+    <editor_note xml:lang="en">was measurement. (alan) Is this the old quantitative value? If so need to change cardinal part of stuff. I think the value and units should be on special relations and that the value should not be a BFO entity.</editor_note>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <example_of_usage xml:lang="en">Examples of data are the recoding of the weight of a mouse, the recording of an observation of the behavior of the mouse, the recording of the expression level of a gene as measured through the process of microarray experiment. Instance level information is information describing a specific instance of an entity</example_of_usage>
+    <rdfs:label xml:lang="en">datum</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#programming_language">
+    <example_of_usage xml:lang="en">R, Perl, Java</example_of_usage>
+    <definition xml:lang="en">A language in which source code is written, intended to executed/run by a software interpreter. Programming languages are ways to write instructions that specify what to do, and sometimes, how to do it. </definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <rdfs:label xml:lang="en">programming language</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_344"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#non-realizable_information_entity"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">information content entity</rdfs:label>
+    <definition xml:lang="en">An information content entity is a non-realizable information entity that 'is encoded in' some digital or physical entity.</definition>
+    <editor_note xml:lang="en">information_content_entity 'is_encoded_in' some digital_entity in obi before split (040907). information_content_entity 'is_encoded_in' some physical_document in obi before split (040907).</editor_note>
+    <example_of_usage xml:lang="en">Examples of information content entites include journal articles, data, graphical layouts, and graphs.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_display_element">
+    <definition_editor xml:lang="en">PERSON:Allyson Lister</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <editor_note xml:lang="en">There will be some issue here about whether these are defined classes. As intended these are meant to denote the parts of the report that are not textual but are typically boxed and set within the text, labelled with some identifier, and referred to in the text</editor_note>
+    <definition xml:lang="en">A report display element is a narrative object that is part of a report. Report display elements are set off from the textual parts of a report and are typically given a label(e.g. Figure 2) which is used to refer to the element from the text. Typically the 2d layout is part of the identity of such elements.</definition>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#narrative_object"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">report display element</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#measured_expression_level">
+    <example_of_usage xml:lang="en">Examples are quantified data from an expression microarray experiment, PCR measurements, etc.</example_of_usage>
+    <definition xml:lang="en">A measured expression level is a datum that is the outcome of the quantification of an assay for the activity of a gene, or the number of RNA trancsripts.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+    <rdfs:label xml:lang="en">measured expression level</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#electronic_case_report_form">
+    <definition xml:lang="en">An electronic case report form is a digital document used to record all of the protocol required information to be reported for each trial subject. An eCRF has the property that it can be audited and compliant with requirements of 21 CFR Part 11.</definition>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#digital_document"/>
+    <rdfs:label xml:lang="en">electronic case report form</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#eSource_document">
+    <definition xml:lang="en">an eSource document is a digital document consisting of a logical collection of Source data and other eSource documents that can be presented in an ordered way and capture the time of completion, change, and any signatures</definition>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <rdfs:label xml:lang="en">eSource document</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#digital_document"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_figure">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#report_display_element"/>
+    <rdfs:label xml:lang="en">report figure</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Allyson Lister</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <editor_note xml:lang="en">I prepended the 'report ' to make it clear that we mean parts of reports here. We may want a more generic version of 'figure', in which case this would become a defined class - figure and part_of some report</editor_note>
+    <definition xml:lang="en">A report figure is a report display element that has some aspect of illustration, but may be a composite of figures, images, and other elements</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#non-realizable_information_entity">
+    <editor_note xml:lang="en">top level</editor_note>
+    <definition xml:lang="en">A non-realizable information entity is a generically dependent continuant which conveys meaning that can be communicated but whose meaning does necessarily imply that some process might follow from that meaning.</definition>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <example_of_usage xml:lang="en">An essay on the history of the euro. Contrast: A recipe to bake a bread</example_of_usage>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Class_10">
+        <definition xml:lang="en"    >information entity is a generically dependent continuant which is created by cognitive subjects orwhich can be communicated between cognitive subjects</definition>
+        <definition_editor xml:lang="en"    >OBI january 2008</definition_editor>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">non-realizable information entity</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#p-value">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#quantitative_confidence_value"/>
+    </rdfs:subClassOf>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <rdfs:label xml:lang="en">p-value</rdfs:label>
+    <definition xml:lang="en">A p-value is a quantitative confidence value which represents the probability of obtaining a result at least as extreme as that actually obtained, assuming that the actual value was the result of chance alone.</definition>
+    <editor_note xml:lang="en">ask data transformation. Are they thinking about this too? What is this, in reality. Quality of the measurement? Quality of a population of measurements? Issue: How to avoid having numbers being an easy way to miss connections with reality</editor_note>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#image">
+    <definition xml:lang="en">An image is an information content entity which provides a visual representation of for the result of a measurement.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <rdfs:label xml:lang="en">image</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#narrative_object">
+    <example_of_usage xml:lang="en">Examples of narrative objects are reports, journal  articles, and patents submission.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <editor_note xml:lang="en">agree - DENRIE. Issue(alan) do we only mean text? What about a story told by mime. Does music count? (no) what about an oral report. Regarding definition, saying it is a set of propositions means we loose the idea that wording matters. Maybe adjust saying a narrative object has some relationshop to a set of propositions</editor_note>
+    <rdfs:label xml:lang="en">narrative object</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <definition xml:lang="en">A narrative object is an information content entity that is a set of propositions.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#density_plot">
+    <editor_note xml:lang="en">generically_dependent_continuants</editor_note>
+    <definition xml:lang="en">A density plot is a report graph which is a graphical representation of data where the tint of a particular pixel corresponds to some kind of function corresponding the the amount of data points relativelly with their distance from the the pixel.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+    <example_of_usage xml:lang="en">Density plot of SSC-H and FSC-H.</example_of_usage>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_graph"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">density plot</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#journal_article_content">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_of_results"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">journal article content</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <example_of_usage xml:lang="en">Examples of encodings of journal article content are articles published in the journals, Nature and Science. The content can often be cited by reference to a paper based encoding, e.g.  Authors, Title of article, Journal name, date or year of publication, volume and page number.</example_of_usage>
+    <definition xml:lang="en">Journal article content is a narrative object that is the information content encoded in a article published in a serious, scholarly publication, most often peer-reviewed.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#list-mode_data_file">
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition xml:lang="en">A list-mode data file is a digital entity where events are stored sequentially, parameter by parameter.</definition>
+    <editor_note xml:lang="en">One example of usage is in the context of flow cytometry, however is not restricted to this community and is more widely used, e.g. by imaging people. </editor_note>
+    <rdfs:label xml:lang="en">list-mode data file</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity"/>
+    </rdfs:subClassOf>
+    <example_of_usage xml:lang="en">An example of a list-mode data file is a file following list-mode Flow Cytometry Standard (FCS) format. Since FCS files can be in histogram mode or  list-mode we have to specify which data format specifically. List-mode format in the overwhelming (even universal) option used.</example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#binary_digital_entity">
+    <rdfs:label xml:lang="en">binary digital entity</rdfs:label>
+    <editor_note xml:lang="en">digital_entity</editor_note>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity"/>
+    </rdfs:subClassOf>
+    <example_of_usage xml:lang="en">MS Word document, ZIP file, DICOM file, JPEG file</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition xml:lang="en">A binary digital entity is a digital entity that is encoded in a way that is not easily human readable and that contains other than text characters.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#number_of_particles_in_subset">
+    <definition xml:lang="en">A number of particles in subset is a datum measuring the the number of subjects in a defined subset in a flow cytometer instrument. The datum has a qualitative role</definition>
+    <editor_note xml:lang="en">quantity</editor_note>
+    <definition_editor xml:lang="en">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage xml:lang="en">500, 200, 0</example_of_usage>
+    <rdfs:label xml:lang="en">number of particles in subset</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#software_interpreter">
+    <editor_note xml:lang="en">Do we care? Jennifer: Yes, there was a particular version of R that had a bug and it was fixed later. That would imply that we mean specific version of an interpreter. So an instance of this would be a particular version of the interpreter</editor_note>
+    <definition xml:lang="en">A  software interpreter is a generically dependent realizable entity that takes, as input, some digital entity, and takes action driven by the information content of that digital entity</definition>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OBI_270">
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">software interpreter</rdfs:label>
+    <example_of_usage xml:lang="en">R program, Perl interpreter, Java virtual machine</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#measurement_unit">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <rdfs:label xml:lang="en">measurement unit</rdfs:label>
+    <example_of_usage xml:lang="en">Examples of measurement unit are liters, inches, weight per volume.</example_of_usage>
+    <definition xml:lang="en">A measurement unit is an information content entity associated with a physical magnitude that has been conventionally assigned a number.</definition>
+    <editor_note xml:lang="en">agree</editor_note>
+    <definition_editor xml:lang="en">PERSON:Cristian Cocos</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#text_based_digital_entity">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#digital_document"/>
+    <rdfs:label xml:lang="en">text based digital entity</rdfs:label>
+    <editor_note xml:lang="en">digital_entity</editor_note>
+    <definition xml:lang="en">A text based digital entity is a digital entity that is encoded so that it only contains text characters.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <example_of_usage xml:lang="en">XML file, C++ source code file</example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#binary_executable">
+    <definition xml:lang="en">Binary executable is a digital entity consisting of the binary representation of machine instructions of a specific processor or they may be binary pseudocode for a virtual machine. A non-source executable file is also called an object program. It is assumed that the binary executable file contains properly-formatted computer instructions.  (derived from Wikipedia, Nov 1, 2007)</definition>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <rdfs:label xml:lang="en">binary executable</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#quantitative_confidence_value">
+    <rdfs:label xml:lang="en">quantitative confidence value</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition xml:lang="en">A quantitative confidence value is a information content entity which is used to indicate the degree of uncertainty about a measurement. </definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#analytical_cytology_data_file">
+    <example_of_usage xml:lang="en">FCS file, ACS file, foo.fcs, foo.asc</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">analytical cytology data file</rdfs:label>
+    <editor_note xml:lang="en">binary_digital_entity</editor_note>
+    <definition xml:lang="en">A digital entity intended to capture data in analytical cytology domain.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#data_set">
+    <rdfs:label xml:lang="en">data set</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <definition xml:lang="en">A data set is an information content entity that is an aggregate of other information_content_entities that have something in common and are considered to form a unit.</definition>
+    <definition_citation>OBI</definition_citation>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#eMedical_record">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#digital_document"/>
+    <rdfs:label xml:lang="en">eMedical record</rdfs:label>
+    <definition xml:lang="en">An eMedical record is a digital document derived from a computer system used primarily for patient care in a clinical setting.  Not required to be compliant with requirements of 21 CFR Part 11.</definition>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#fluorescent_reporter_intensity">
+    <definition xml:lang="en">The fluorescent reproter intensity is a datum that represents the output of a scanner measuring the intensity value for each fluorescent reporter.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <editor_note xml:lang="en">From the DT branch: This term and definition were originally submitted by the community to our branch, but we thought they best fit DENRIE. However we see several issues with this. First of all the name 'probe' might not be used in OBI. Instead we have a 'reporter' role. Also, albeit the term 'probe intensity' is often used in communities such as the microarray one, the name 'probe' is ambiguous (some use it to refer to what's on the array, some use it to refer to what's hybed to the array). Furthermore, this concept could possibly be encompassed by combining different OBI terms, such as the roles of analyte, detector and reporter (you need something hybed to a probe on the array to get an intensity) and maybe a more general term for 'measuring intensities'. We need to find the right balance between what is consistent with OBI and combinations of its terms and what is user-friendly. Finally, note that 'intensity' is already in the OBI .owl file and is also in PATO. Why didn't OBI import it from PATO? This might be a problem.</editor_note>
+    <rdfs:label xml:lang="en">fluorescent reporter intensity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#electronic_case_report_tabulation">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#digital_document"/>
+    <rdfs:label xml:lang="en">electronic case report tabulation</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <definition xml:lang="en">An electronic case report tabulation is a digital document containing tabular data about multiple trial participants which is part of a clinical regulatory submission.  An eCRT has the property that it can be audited and compliant with requirements of 21 CFR Part 11  and has format suited to review by regulators.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_table">
+    <rdfs:label xml:lang="en">report table</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#report_display_element"/>
+    <definition_editor xml:lang="en">PERSON:Allyson Lister</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <definition xml:lang="en">A report table is a report display element consisting of a matrix of cells layed out in a grid, some set of which are filled with some information content</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#fluorescence_compensation_matrix">
+    <rdfs:label xml:lang="en">fluorescence compensation matrix</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <example_of_usage xml:lang="en">((1.053096, -0.22476), (-0.24877, 1.053096))</example_of_usage>
+    <definition xml:lang="en">A fluorescence compensation matrix is a square matrix which is used as the left multiplier of the vector of fluorescence values while performing digital fluorescence compensation. Also, fluorescence compensation matrix is the inverse of the fluorescence spillover matrix.</definition>
+    <editor_note xml:lang="en">generically_dependent_continuants</editor_note>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#cluster">
+    <example_of_usage xml:lang="en">Cluster of the lymphocytes population.</example_of_usage>
+    <definition xml:lang="en">A data cluster is a data set which is a subset of data that are a similar to each other in some way.</definition>
+    <editor_note xml:lang="en">generically_dependent_continuants</editor_note>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+    <rdfs:label xml:lang="en">cluster</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#data_set"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#standard_error">
+    <definition xml:lang="en">Standard error is a quantitative confidence value which is the standard deviations of the sample in a frequency distribution, obtained by dividing the standard deviation by the total number of cases in the frequency distribution.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#quantitative_confidence_value"/>
+    <editor_note xml:lang="en">see P-Value</editor_note>
+    <rdfs:label xml:lang="en">standard error</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_of_results">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#narrative_object"/>
+    <rdfs:label xml:lang="en">report of results</rdfs:label>
+    <editor_note xml:lang="en">disagreement about where reports go. alan: only some gene lists are reports. Is a report all the content of some document? The example of usage suggests that a report may be part of  some article. Term needs clarification</editor_note>
+    <definition xml:lang="en">A report is a narrative object that is a formal statement of the results of an investigation, or of any matter on which definite information is required, made by some person or body instructed or required to do so.</definition>
+    <example_of_usage xml:lang="en">Examples of reports are gene lists and investigation reports. These are not published (journal) articles but may be included in a journal article.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#contour_plot">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_graph"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">contour plot</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Allyson</definition_editor>
+    <example_of_usage xml:lang="en">Contour plot of SSC-H, FSC-H, and FL1-H.</example_of_usage>
+    <definition xml:lang="en">A contour plot is a report graph which is a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format. That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.</definition>
+    <editor_note xml:lang="en">generically_dependent_continuants</editor_note>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#digital_entity">
+    <rdfs:label xml:lang="en">digital entity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#non-realizable_information_entity"/>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition xml:lang="en">A digital entity is an information entity which is a collection of bits that can be interpreted by a computer. Two digital entities are the same if they are bitwise identical.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#report_graph">
+    <definition xml:lang="en">A report graph is a report figure that presents one or more tuples of information my mapping those tuples in to a two dimensional space in a non arbitrary way.</definition>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#report_figure"/>
+    <rdfs:label xml:lang="en">report graph</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Allyson Lister</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#investigation_results_report">
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#report_of_results"/>
+    <rdfs:label xml:lang="en">investigation results report</rdfs:label>
+    <editor_note xml:lang="en">There's probably a role that it plays. Would this be considered an outcome? (alan)</editor_note>
+    <definition xml:lang="en">An investigation report is a report on the results of an investigation.</definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#number_of_lost_events_computer">
+    <rdfs:label xml:lang="en">number of lost events computer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+    <definition xml:lang="en">A number of lost events is a datum recording the the number of measurement events lost due to overloading of the analysis chip in a flow cytometer insturment. The datum has a qualitative role</definition>
+    <editor_note xml:lang="en">quantity</editor_note>
+    <definition_editor xml:lang="en">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage xml:lang="en">0, 125, 787 events lost due to computer busy.</example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#gene_list">
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#data_set"/>
+    <rdfs:label xml:lang="en">gene list</rdfs:label>
+    <editor_note xml:lang="en">kind of report. (alan) need to be careful to distinguish from output of a data transformation or calculation. A gene list is a report when it is published as such? Relates to question of whether report is a whole, or whether it can be a part of some other narrative object.</editor_note>
+    <definition xml:lang="en">A gene list is a report of the names or identifiers of genes that are the outcome of an analysis or have been put together for the purpose of an analysis.</definition>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <example_of_usage xml:lang="en">Gene lists may arise from analysis to determine differentially expressed genes, may be collected from the literature for involvement in a particular process or pathway (e.g., inflammation), or may be the input for gene set enrichment analysis.</example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#source_code_module">
+    <example_of_usage xml:lang="en">The written source code that implements part of an algorithm. Test - if you know that it was written in a specific language, then it can be source code module. We mean here, roughly, the wording of a document such as a perl script.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Alan Ruttenberg</definition_editor>
+    <definition xml:lang="en">A source code module is an information content entity that specifies, using a programming language, some algorithm. </definition>
+    <rdfs:label xml:lang="en">source code module</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#information_content_entity"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#number_of_lost_events_electronic">
+    <editor_note xml:lang="en">quantity</editor_note>
+    <definition xml:lang="en">A number of lost events electronic is a datum measuring the the number of analysis events lost due to errors in data acquisition electronic coincidence in a flow cytometer insturment. The datum has a qualitative role.</definition>
+    <definition_editor xml:lang="en">PERSON:Kevin Clancy</definition_editor>
+    <rdfs:label xml:lang="en">number of lost events electronic</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+    <example_of_usage xml:lang="en">74, 0, 14 events lost due to data acquisition electronic coincidence.</example_of_usage>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#ratio_of_collected_to_emitted_light_">
+    <example_of_usage xml:lang="en">10%</example_of_usage>
+    <rdfs:label xml:lang="en">ratio of collected to emitted light </rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+    <editor_note xml:lang="en">quantity</editor_note>
+    <definition xml:lang="en">A ratio of collected to emitted light is a datum measuring the amount of light collected s compared to the total amount of emitted light in the detector component of a flow cytometer instrument. The datum has a qualitative role</definition>
+    <definition_editor xml:lang="en">PERSON:Kevin Clancy</definition_editor>
+    <definition_editor xml:lang="en">PERSON:Chris Stoeckert</definition_editor>
+  </owl:Class>
+  <owl:Class rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#parameter_threshold">
+    <rdfs:label xml:lang="en">parameter threshold</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://obi.sourceforge.net/ontology/OBI.owl#OBI_305"/>
+    <definition_editor xml:lang="en">PERSON:Kevin Clancy</definition_editor>
+    <example_of_usage xml:lang="en">0.01, 0.03</example_of_usage>
+    <editor_note xml:lang="en">quantity</editor_note>
+    <definition xml:lang="en">A parameter threshold is a datum measuring the minimal signal that must be detected to generate an electrical event, as comparewd to the maximal detected signal in a flow cytometer insturment. The datum has a qualitative role</definition>
+  </owl:Class>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#zip">
+    <rdfs:label xml:lang="en">zip</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <example_of_usage xml:lang="en">MagicDraw MDZIP archive, Java JAR file.</example_of_usage>
+    <editor_note xml:lang="en">binary_digital_entity</editor_note>
+    <definition xml:lang="en">zip is a format standard of a digital entity that is conformant with the PKWARE .ZIP file format specification  (http://www.pkware.com/index.php?option=com_content&amp;task=view&amp;id=59&amp;Itemid=103/)</definition>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#RDF">
+    <definition xml:lang="en">RDF is a format standard of a digital entity that is conformant with the W3C Resource Description Framework RDF/XML Syntax specification.(http://www.w3.org/RDF/)</definition>
+    <editor_note xml:lang="en">XML_file</editor_note>
+    <rdfs:label xml:lang="en">RDF</rdfs:label>
+    <example_of_usage xml:lang="en">A FOAF file, a SKOS file, an OWL file.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#FCS">
+    <rdfs:label xml:lang="en">FCS</rdfs:label>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <example_of_usage xml:lang="en">d01.fcs, FCS3 data file of well D06 of plate 2 of part 1 of a GvHD experiment.</example_of_usage>
+    <definition xml:lang="en">FCS is a format standard of a digital entity that is conformant with the Flow Cytometry Data File Standard.(http://www.fcspress.com/)</definition>
+    <editor_note xml:lang="en">analytical_cytology_data_file</editor_note>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#tar">
+    <definition xml:lang="en">tar is a format standard of a digital entity that is conformant with the tape archive file format as standardized by POSIX.1-1998, POSIX.1-2001, or any other tar format compliant with the GNU tar specification. (http://www.gnu.org/software/tar/manual/)</definition>
+    <example_of_usage xml:lang="en">Example.tar file.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <rdfs:label xml:lang="en">tar</rdfs:label>
+    <editor_note xml:lang="en">binary_digital_entity</editor_note>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Gating-ML">
+    <example_of_usage xml:lang="en">foogate.xml, Gating-ML file describing gates used in a GvHD experiment.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <editor_note xml:lang="en">XML_file</editor_note>
+    <definition xml:lang="en">Gating-ML is a format standard of a digital entity that is conformant with the Gating-ML standard. (http://www.flowcyt.org/gating/)</definition>
+    <rdfs:label xml:lang="en">Gating-ML</rdfs:label>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Compensation-ML">
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <definition xml:lang="en">Compensation-ML is a format standard of a digital entity that is conformant with the Compensation-ML standard. (http://wiki.ficcs.org/ficcs/Compensation-ML?action=AttachFile&amp;do=get&amp;target=Compensation-ML_v1.0.24.pdf)</definition>
+    <editor_note xml:lang="en">XML_file</editor_note>
+    <example_of_usage xml:lang="en">compfoo.xml, Compensation-ML file describing compensation used in a GvHD experiment</example_of_usage>
+    <rdfs:label xml:lang="en">Compensation-ML</rdfs:label>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#Transformation-ML">
+    <example_of_usage xml:lang="en">Transformation-ML file describing parameter transformations used in a GvHD experiment.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <editor_note xml:lang="en">XML_file</editor_note>
+    <definition xml:lang="en">Transformation-ML is a format standard of a digital entity that is conformant with the Transformation-ML standard.(http://wiki.ficcs.org/ficcs/Transformation-ML?action=AttachFile&amp;do=get&amp;target=Transformation-ML_v1.0.26.pdf)</definition>
+    <rdfs:label xml:lang="en">Transformation-ML</rdfs:label>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#OWL">
+    <rdfs:label xml:lang="en">OWL</rdfs:label>
+    <example_of_usage xml:lang="en">OBI ontology file, Basic Formal Ontology file, BIRNLex file, BioPAX file.</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <definition xml:lang="en">OWL is a format standard of a digital entity that is conformant with the W3C Web Ontology Language specification.(http://www.w3.org/2004/OWL/)</definition>
+    <editor_note xml:lang="en">XML_file</editor_note>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#ACS">
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+    <editor_note xml:lang="en">analytical_cytology_data_file</editor_note>
+    <definition xml:lang="en">ACS is a format standard of a digital entity that is conformant with the Analytical Cytometry Standard. (http://www.isac-net.org/content/view/607/150/)</definition>
+    <example_of_usage xml:lang="en">d06.acs, ACS1.0 data file of well D06 of plate 2 of part 1 of a GvHD experiment.</example_of_usage>
+    <rdfs:label xml:lang="en">ACS</rdfs:label>
+  </OBI_187>
+  <OBI_187 rdf:about="http://obi.sourceforge.net/ontology/OBI.owl#XML">
+    <rdfs:label xml:lang="en">XML</rdfs:label>
+    <definition xml:lang="en">XML is a format standard of a digital entity that is conformant with the W3C Extensible Markup Language Recommendation.(http://www.w3.org/XML/)</definition>
+    <editor_note xml:lang="en">text_based_digital_entity</editor_note>
+    <example_of_usage xml:lang="en">RDF/XML file, OWL file, Compensation-ML file, WSDL document, SVG document</example_of_usage>
+    <definition_editor xml:lang="en">PERSON:Jennifer Fostel</definition_editor>
+  </OBI_187>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->
