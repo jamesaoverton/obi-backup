@@ -1,4 +1,4 @@
-(defun list-obi-uris (&optional (dest "uri-report.txt") (kb (load-kb-jena :obi)))
+(defun list-obi-uris (&optional (dest "obi:uri-report.txt") (kb (load-kb-jena :obi)))
   (let ((seen (make-hash-table)))
     (with-open-file (f dest :direction :output :if-does-not-exist :create :if-exists :supersede)
       (loop for class in
