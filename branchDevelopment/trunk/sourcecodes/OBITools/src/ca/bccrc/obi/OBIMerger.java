@@ -60,14 +60,16 @@ public class OBIMerger {
 	//declaration of the variables
 	//TODO externalize those (properties file)
 	//the OBI namespace
-	private static String OBINs = "http://obi.sourceforge.net/ontology/OBI.owl#";
+	//private static String OBINs = "http://obi.sourceforge.net/ontology/OBI.owl#";
+	private static String OBINs = "http://purl.obofoundry.org/obo/";
 	//the OBI xmlbase element
-	private static String xmlbase = "http://obi.sourceforge.net/ontology/OBI.owl";
+	//private static String xmlbase = "http://obi.sourceforge.net/ontology/OBI.owl";
+	private static String xmlbase = "http://purl.obofoundry.org/obo/";
 	//the name of the file containing the declaration of all the imports
 	private static String obi = "obi.owl";
-	//the obiPath
-	private static String obiPath = "http://obi.sourceforge.net/ontology/OBI/";
-
+	//the obiPath - this is the path for the branches files
+	//private static String obiPath = "http://obi.sourceforge.net/ontology/OBI/";
+	private static String obiPath = "http://purl.obofoundry.org/obo/obi/";
 
 
 
@@ -81,26 +83,45 @@ public class OBIMerger {
 		List<String> branchesNames = new ArrayList<String>();
 		try{
 			// Open the file 
-			FileInputStream fstream = new FileInputStream(physicalURI+obi);
+			/*FileInputStream fstream = new FileInputStream(physicalURI+obi);
 			// Get the object of DataInputStream
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String str;
 			//Read File Line By Line
 			while ((str = br.readLine()) != null)   {			    	
-				Pattern p = Pattern.compile("<owl:imports rdf:resource=\"http://obi.sourceforge.net/ontology/OBI/(.*).owl\"/>");
+				Pattern p = Pattern.compile("<owl:imports rdf:resource=\"(.*).owl\"/>");
 				Matcher m = p.matcher(str);
 				if (m.find()){
 					// we replace occurrences
-					String s = str.replace("<owl:imports rdf:resource=\"http://obi.sourceforge.net/ontology/OBI/",""); 
+					String s = str.replace("<owl:imports rdf:resource=\"",""); 
 					String s2 = s.replace(".owl\"/>", "");
-					//System.out.println("string: "+s);
+					System.out.println("string: "+s2);
 					branchesNames.add(s2.trim());
 				}
 
 			}
 			//Close the input stream
-			in.close();
+			in.close();*/
+			//branchesNames.add(s2.trim());
+			branchesNames.add("externalDerived");
+			branchesNames.add("external");
+			branchesNames.add("Role");
+			branchesNames.add("InstrumentAndPart");
+			branchesNames.add("TheRest");
+			branchesNames.add("Relations");
+			branchesNames.add("PlanAndPlannedProcess");
+			branchesNames.add("AnnotationProperty");
+
+			branchesNames.add("OBI-Function");
+			branchesNames.add("DataTransformation");
+			branchesNames.add("Biomaterial");
+			branchesNames.add("Quality");
+			branchesNames.add("Obsolete");
+
+			branchesNames.add("DigitalEntityPlus");
+			branchesNames.add("disjoints");
+			
 		}catch (Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
@@ -119,7 +140,7 @@ public class OBIMerger {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		//we create the model with Pellet spec
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 
@@ -135,7 +156,7 @@ public class OBIMerger {
 			System.out.println("report: "+it.next().toString());
 			toCommit = false;
 		}
-		
+
 		//we check the OWL level
 		//if different from DL we don't commit
 		OWLReasoner reasoner = new OWLReasoner();
@@ -146,12 +167,12 @@ public class OBIMerger {
 			toCommit = false;
 			System.out.println("level"+level);
 		}
-		
+
 		/*OWLSpecies species  = reasoner.getSpecies();
 		OWLSpeciesReport report2 = species.getReport();
 		report2.print();
-		*/
-		
+		 */
+
 		//return false if there has been any problem, or true if everything is fine
 		return toCommit;
 	}
@@ -187,29 +208,29 @@ public class OBIMerger {
 
 	}
 
-public static void addImports(Ontology ont, OntModel owlModel)	{
-	//we add the external imports
-	//we add those as Ontology Resource, to get the proper syntax for the imports, otherwise Pellet complains OWL full
-	//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
-	ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
-	ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
-	ont.addImport(owlModel.createOntology("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
-	ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
-	
-
-	
-}
+	public static void addImports(Ontology ont, OntModel owlModel)	{
+		//we add the external imports
+		//we add those as Ontology Resource, to get the proper syntax for the imports, otherwise Pellet complains OWL full
+		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
+		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
+		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
+		ont.addImport(owlModel.createOntology("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
+		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 
 
-public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
-	//we add the external imports
-	//we add those as Resource, to get the proper syntax for the imports, and proper display in protege
-	//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
-	ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
-	ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
-	ont.addImport(owlModel.createResource("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
-	ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
-}
+
+	}
+
+
+	public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
+		//we add the external imports
+		//we add those as Resource, to get the proper syntax for the imports, and proper display in protege
+		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
+		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
+		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
+		ont.addImport(owlModel.createResource("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
+		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
+	}
 
 	/**
 	 * The method merging the files
@@ -232,6 +253,7 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		//get the list of branches, based on the obi.owl file
 		//we read all the branches into the owlModel to merge them
 		//TODO check if better way to handle this
+		//TODO we might need to remove owl-full if Alan adds it to the template
 		List<String> branchesnames = getBranchesNames(obi,physicalURI);
 		StatementImpl stmt;
 		for(String s : branchesnames) {
@@ -255,14 +277,14 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		}
 
 
-		Ontology ont = owlModel.createOntology("http://obi.sourceforge.net/ontology/OBI.owl");
+		Ontology ont = owlModel.createOntology(xmlbase);
 		if(ProtegeFriendly) addProtegeFriendlyImports(ont, owlModel);
 		else addImports(ont, owlModel);
 
 
 		//we also add the AnnotationProperty for the defaultLanguage of Protege, otherwise Pellet complains OWL full
 		owlModel.createAnnotationProperty("http://protege.stanford.edu/plugins/owl/protege#defaultLanguage");
-		
+
 		//we add the information regarding creators etc that is in the file TheRest.owl
 		String theRestPath = physicalURI+"TheRest.owl";
 		OntModel owlModel2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
@@ -308,10 +330,11 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("span", "http://www.ifomis.org/bfo/1.1/span#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("ro", "http://www.obofoundry.org/ro/ro.owl#");
 
+		//specific case: the empty string means default namespace
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
 
-	 
 		//we remove the branch specific namespaces declaration
-    	owlModel.removeNsPrefix("obi_func");   	
+		owlModel.removeNsPrefix("obi_func");   	
 		owlModel.removeNsPrefix("obi_biomat");
 		owlModel.removeNsPrefix("obi_denrie");
 		owlModel.removeNsPrefix("obi_obsolete");
@@ -326,15 +349,8 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		owlModel.removeNsPrefix("obi_ext");
 		owlModel.removeNsPrefix("obi_extd");
 		owlModel.removeNsPrefix("obi_owlfull");
-	
 
-				   
-				   
-		
-		
-		//specific case: the empty string means default namespace
-		owlModel.getGraph().getPrefixMapping().setNsPrefix("","http://obi.sourceforge.net/ontology/OBI.owl#");
-		
+
 		//writes the file
 		try {
 			writeFile(newFile,owlModel);
@@ -351,8 +367,8 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 
 
 
- //For testing purposes
-	/*public final static void main(String[] args) throws Exception  {
+	//For testing purposes
+	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/melanie/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
 		String physicalURI = "/Users/melanie/Desktop/OBI/SVN/obi/";
@@ -360,15 +376,15 @@ public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		mergeFiles(newFilePath,physicalURI,false);
 		//check consistency
 		boolean valid = checkConsistency(newFilePath);
-		
+		System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 		String newFilePathProtegeFriendly = "/Users/melanie/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
 		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
-		//System.out.println("to be committed: ");
-	
-		//System.out.println("to be committed: "+ valid);
+		System.out.println("to be committed: ");
 
-	}*/
+
+
+	}
 
 
 
