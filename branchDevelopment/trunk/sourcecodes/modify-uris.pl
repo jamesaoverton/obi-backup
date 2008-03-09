@@ -21,7 +21,7 @@ my $copydir = "newids/"; # write the rewritten files here
 my %used; # to record used numeric ids
 
 # extract the names of the branches
-my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/obi.sourceforge.net\/ontology\/OBI\/(.*)\.owl"/;$1} @lines;
+my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/purl.obofoundry.org\/obo\/obi\/(.*)\.owl"/;$1} @lines;
 my @obiParts = map { s/.*\/([A-Za-z.-]*)\.owl.*/$1/;chomp $_ ; $_} @obiParts;
 
 
