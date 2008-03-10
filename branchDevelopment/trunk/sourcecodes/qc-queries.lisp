@@ -81,12 +81,7 @@
 			    (+ 4 (search "OBI_" (uri-full uri))))))
 		 (sparql
 		  '(:select (?si) (:distinct t)
-		    (:union
-		     ((?si !rdf:type !owl:AnnotationProperty))
-		     ((?si !rdf:type !owl:ObjectProperty))
-		     ((?si !rdf:type !owl:DatatypeProperty))
-		     ((?si !rdf:type !owl:Class))
-		     )
+		    (?si !rdf:type ?type)
 		    (:filter (regex (str ?si) "OBI_\\d+")))
 		  :kb kb :use-reasoner :jena :flatten t))))
     (loop for candidate from 1 
@@ -96,3 +91,22 @@
        do
 	 (when (> count howmany)
 	   (return-from next-unused-id nexts)))))
+
+(defun missing-label (kb)
+  (sparql
+   '(:select (?si) (:distinct t)
+     (:union
+      ((?si !rdf:type !owl:AnnotationProperty))
+      ((?si !rdf:type !owl:ObjectProperty))
+      ((?si !rdf:type !owl:DatatypeProperty))
+      ((?si !rdf:type !owl:Class))
+      )
+     (:optional (?si !rdfs:label ?label))
+     (?si :a ?type)
+     (:filter (and (regex (str ?si) "obi|OBI")
+	       (not (equal ?type !rdf:Property))
+	       (not (equal ?type !owl:Thing))
+	       (not (equal ?type !rdfs:Class))
+	       (not (bound ?label))))
+     )
+   :kb kb :use-reasoner :jena :trace t :values nil))
