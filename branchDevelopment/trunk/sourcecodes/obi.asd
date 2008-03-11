@@ -18,6 +18,7 @@
     ((:file "qc-queries")
      (:file "uri-report")
      (:file "add-disjoints")
+     (:file "new-purls")
      )
     :depends-on (owl))
 
