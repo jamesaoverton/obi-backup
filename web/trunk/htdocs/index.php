@@ -72,7 +72,8 @@ menu(home);
   <div class=small>
   <!--<div class=sma>-->
   <font color=maroon>
-   The Ontology for Biomedical Investigations (OBI) project is developing an integrated 
+  <p>
+   The Ontology for Biomedical Investigations (OBI) project is developing an integrated
    ontology for the description of biological and medical experiments and investigations. This includes
    a set of 'universal' terms, that are applicable across various biological and technological domains, 
    and domain-specific terms relevant only to a given domain.  This ontology will support the 
@@ -80,7 +81,11 @@ menu(home);
    The ontology will model the design of an investigation, the protocols and instrumentation 
    used, the material used, the data generated and the type analysis performed on it. This 
    project was formerly called the Functional Genomics Investigation Ontology (FuGO) project.
-
+  </p>
+  <p>
+   The latest complete version of ontology (.owl) file will always be available from
+   <a href="http://purl.obofoundry.org/obo/obi.owl">http://purl.obofoundry.org/obo/obi.owl</a>.
+  </p>
    <ul>
     <li>Develop an Ontology for Biomedical Investigations in collaboration with groups 
         representing different biological and technological domains involved in Biomedical
