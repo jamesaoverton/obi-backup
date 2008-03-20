@@ -66,10 +66,12 @@ menu(ontology);
 	
   <b>Ontology Draft</b>
   <br>
-  The ontology file (.owl) are available from the 
-  <a href="http://obi.svn.sourceforge.net/viewvc/obi/ontology/trunk/OBI.owl?view=log">OBI SVN Repository.</a>  
+  The latest complete version of ontology (.owl) file will always be available from
+  <a href="http://purl.obofoundry.org/obo/obi.owl">http://purl.obofoundry.org/obo/obi.owl</a>.
+  However, development continues in the
+  <a href="http://obi.svn.sourceforge.net/viewvc/obi">OBI Subversion repository</a>.
   <br>
-  <b>NOTE: This is a DRAFT VERSION and is subject to many more edits before being able to be used  
+  <b>NOTE: This is a DRAFT VERSION and is subject to many more edits before being able to be used
   in a production system or as as stable release suitable for extension for other domains without 
   needing further updates.</b><br> 
   <br>
