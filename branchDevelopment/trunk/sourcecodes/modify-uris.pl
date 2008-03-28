@@ -34,13 +34,18 @@ my %tagReplacements;
 #  Finally, allocate new ids for alphanumeric names that need an id.
 
 sub computeReplacements
-{ open URILIST, "<uri-report.txt";
+{ open URILIST, "<uri-report.txt" or die("can't open uri list");
+  
   my @todo;
   while (<URILIST>)
   { /(\S+)\s+(\S+)/;
+   
     my ($type,$uri) = ($1,$2);
+ 
     my $rewrite = maybeRewriteURI($type,$uri);
-    if (defined $rewrite)
+   
+
+if (defined $rewrite)
     { if ($rewrite)
       { $uriReplacements{$uri}=$rewrite; }
       else { push @todo,$uri };
@@ -49,11 +54,14 @@ sub computeReplacements
   }
   close URILIST;
   foreach (@todo)
-  { my $newid = allocateNewId();
+  {
+ my $newid = allocateNewId();
     $uriReplacements{$_} = $idNamespace."OBI_".$newid;
     s/.*[\/#]//;
     $tagReplacements{$_}="OBI_".$newid;
     $debug && print $_,"=>",$uriReplacements{$_},"\n";
+print $_,"=>",$uriReplacements{$_},"\n";
+
   }
 }
 
@@ -68,7 +76,7 @@ sub maybeRewriteURI
 { my ($type,$uri) = @_;
   $debug && print "in: $type $uri\n";
   if ($type =~ /Class|Property|Individual/)
-  {if ($uri =~ /http:\/\/obi\.sourceforge\.net\/ontology\/OBI.owl#(.*)/)
+  {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
    { my $localname = $1;
      if ( $localname =~ /OBI_(\d+)/)
      { if (length($1)>7) { return 0 } # too long - allocate new id
@@ -88,7 +96,7 @@ sub maybeRewriteURI
    else {return undef}
   }
   elsif ($type =~ /Property/)
-  { if ($uri =~ /http:\/\/obi\.sourceforge\.net\/ontology\/OBI.owl#(.*)/)
+    {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
     { if ($1 =~ /OBI_\d+/)
       { $uri = $idNamespace.$1; }
       else
@@ -98,7 +106,7 @@ sub maybeRewriteURI
     { return (undef) }
   }
   elsif ($type =~ /Individual/)
-  { if ($uri =~ /http:\/\/obi\.sourceforge\.net\/ontology\/OBI.owl#(.*)/)
+    {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
     { if ($1 =~ /OBI_\d+/)
       { $uri = $idNamespace.$1; }
       else
