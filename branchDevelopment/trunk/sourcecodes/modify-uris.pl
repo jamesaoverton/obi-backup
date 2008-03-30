@@ -139,23 +139,17 @@ sub replacenames
 	  s/\s*xmlns=.*/   xmlns="$propertyNamespace"/;
 	  s/\s*xmlns:obi=.*/   xmlns:obi="$idNamespace"/;
 	  s/\s*xml(ns){0,1}:(.+?)="http:\/\/obi.source.*\/(.*)/   xml$1:$2="$idNamespace\obi\/$3/;
-	  my $pre = "curation_status><CurationStatus rdf:about=\"http://obi.sourceforge.net/ontology/OBI.owl";
-	  s/curation_status\s*xml:lang="en"\s*>ready_for_release</$pre#ready_for_release\"\/></;
-	  s/curation_status\s*xml:lang="en"\s*>metadata_incomplete</$pre#metadata_incomplete\"\/></;
-	  s/curation_status\s*xml:lang="en"\s*>metadata_complete</$pre#metadata_complete\"\/></;
-	  s/curation_status\s*xml:lang="en"\s*>uncurated</$pre#uncurated\"\/></;
-	  s/curation_status\s*xml:lang="en"\s*>pending_final_vetting</$pre#pending_final_vetting\"\/></;
-	  s/curation_status\s*xml:lang="en"\s*>definition_incomplete.*?</$pre#metadata_incomplete\"\/></;
-#	  s/\s*xml:base=.*\/(.*)/   xml:base="$idNamespace\obi\/$1"/;
+# Fix any text curation status
+	  my $pre = "curation_status><CurationStatus rdf:about=\"$propertyNamespace";
+	  s/curation_status\s*xml:lang="en"\s*>ready_for_release</$pre\OBI_0000318\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>metadata_incomplete</$pre\OBI_0000320\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>metadata_complete</$pre\OBI_0000319\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>uncurated</$pre\OBI_0000328\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>pending_final_vetting</$pre\OBI_0000323\"\/></;
+	  s/curation_status\s*xml:lang="en"\s*>definition_incomplete.*?</$pre\OBI_0000291\"\/></;
+#
 	  s/rdf:(about|id|resource)="(.*?)"/"rdf:".$1."=\"".($uriReplacements{$2}||$2)."\""/ge;
 	  s/(<\/{0,1})([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/ge; 
-	  # UGLY HACK UGLY HACK. We have a few instances currently, and the logic above doesn't handle them so clobber!
-	  s/(<\/{0,1})OBI_187/$1\obi:OBI_0000187/g;
-	  # And don't forget that bit in externalderived.owl - Uncle: I admit that RDF/XML is an abomination 
-	  s/xmlns:ns0pred="http:\/\/obi.sourceforge.net\/ontology\/OBI.owl#"/xmlns:ns0pred="$propertyNamespace"/;
-	  s/(\/{0,1}ns0pred:)([A-Za-z0-9_]*)\s*xmlns:ns0pred="$propertyNamespace/$1.($tagReplacements{$2}||$2)." xmlns:ns0pred=\"$propertyNamespace"/sge;
-	  s/(\/ns0pred:)([A-Za-z0-9_]*)/$1.($tagReplacements{$2}||$2)/sge;
-	  # UGLY HACK UGLY HACK.
 	  print PARTCOPY $_; 
       }
       close PART;
