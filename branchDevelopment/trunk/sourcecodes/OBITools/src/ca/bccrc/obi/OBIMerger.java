@@ -21,13 +21,10 @@ package ca.bccrc.obi;
 
 
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
@@ -35,13 +32,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import org.mindswap.pellet.jena.OWLReasoner;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 
+import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.Ontology;
@@ -104,6 +101,7 @@ public class OBIMerger {
 			//Close the input stream
 			in.close();*/
 			//branchesNames.add(s2.trim());
+			branchesNames.add("Biomaterial");
 			branchesNames.add("externalDerived");
 			branchesNames.add("external");
 			branchesNames.add("Role");
@@ -115,7 +113,7 @@ public class OBIMerger {
 
 			branchesNames.add("OBI-Function");
 			branchesNames.add("DataTransformation");
-			branchesNames.add("Biomaterial");
+			
 			branchesNames.add("Quality");
 			branchesNames.add("Obsolete");
 
@@ -214,7 +212,7 @@ public class OBIMerger {
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
-		ont.addImport(owlModel.createOntology("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
+		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 
 
@@ -228,7 +226,7 @@ public class OBIMerger {
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
-		ont.addImport(owlModel.createResource("http://obofoundry.org/ro/ro_bfo1-1_bridge.owl"));
+		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 	}
 
@@ -260,7 +258,18 @@ public class OBIMerger {
 
 			try {
 				String branchPath = physicalURI +s+".owl";
-				Ontology ont = owlModel.createOntology(obiPath+s+".owl");
+				System.out.println("branch names: "+ branchPath);
+				String ontoURI = obiPath+s+".owl";
+				Ontology ont = owlModel.createOntology(ontoURI);
+				
+				//we define alternative entry for the ontologies
+				//this allows us to map for example purl.obofoundry.org/obo/obi/Biomaterial.owl to its physical location
+				//needed in the case where for example Relations.owl imports Biomaterial.owl.
+				//Interestingly, if I do that, the prefix are not removed anymore on the final version...
+				//AND if I get the java exception I guess Jena skips the import and I'm not getting the namespace problem with Protege
+				//OntDocumentManager OntDocumentManager = owlModel.getDocumentManager();
+				//OntDocumentManager.addAltEntry(ontoURI, branchPath);
+				
 
 				//we read each branch into the model to merge them
 				owlModel.read(new FileInputStream(branchPath), obiPath+s+".owl");
