@@ -74,7 +74,7 @@ menu(home);
   <font color=maroon>
   <p>
    The Ontology for Biomedical Investigations (OBI) project is developing an integrated
-   ontology for the description of biological and medical experiments and investigations. This includes
+   ontology for the description of biological and clinical investigations. This includes
    a set of 'universal' terms, that are applicable across various biological and technological domains, 
    and domain-specific terms relevant only to a given domain.  This ontology will support the 
    consistent annotation of biomedical investigations, regardless of the particular field of study. 
