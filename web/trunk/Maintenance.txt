@@ -4,6 +4,10 @@ how they must upload changes to the server for the static pages.
 UPDATE: SOURCEFORGE NOW ALLOWS DIRECT SUBVERSION ACCESS TO SHELL.SOURCEFORGE.NET. 
 
 This means that /home/groups/o/ob/obi/htdocs and /home/groups/o/ob/obi/include are now subversion directories, and
-once you've made and committed a change to your local checkout, you should just be able to update the subversion directory
-directly on shell.sourceforge.net. Please let me know if you have any problems.
+once you've made and committed a change to your local checkout, you should just be able to update the subversion
+directory directly on shell.sourceforge.net. Please let me know if you have any problems.
+
+Remember that after running "svn update" on the htdocs or the include directories on shell.sf.net you MUST run a
+chmod on any new or updated files, to ensure that others in the OBI group can perform "svn update" commands after
+you. One example of a suitable chmod command is "chmod -R ug+w *"
 
