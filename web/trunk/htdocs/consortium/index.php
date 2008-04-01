@@ -190,7 +190,7 @@ detailed below.
   <td>Spring 2006</td>
   <td>&nbsp;</td></tr>
 
-  <tr><td>Bjoern Peters</td>
+  <tr><td><a href="http://www.liai.org/pages/faculty-peters">Bjoern Peters</a></td>
   <td><a href="http://www.immuneepitope.org/">Immune Epitope Database and Analysis Resource</a></td>
   <td><a href="http://www.liai.org">La Jolla Institute for Allergy and Immunology</a></td>
   <td>Spring 2006</td>
