@@ -25,5 +25,5 @@
     (loop for new in (set-difference kb-purls kbprev-purls)
        for purl = (#"replaceFirst" (uri-full new) ".*/obo/" "/obo/")
        for id = (#"replaceFirst" purl ".*/" "")
-       do (format t "<rec><purl>~a</purl><url>http://sw.neurocommons.org/obiterm/~a</url><id>CMUNGALL</id><type>User_Batch_Add</type></rec>~%" purl id ))
+       do (format t "<rec><purl>~a</purl><url>http://sw.neurocommons.org/obiterm/~a</url><id>CMUNGALL</id><id>MELANIE</id><type>User_Batch_Add</type></rec>~%" purl id ))
     (format t "</recs>~%")))
