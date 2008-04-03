@@ -258,7 +258,7 @@ public class OBIMerger {
 
 			try {
 				String branchPath = physicalURI +s+".owl";
-				System.out.println("branch names: "+ branchPath);
+				//System.out.println("branch names: "+ branchPath);
 				String ontoURI = obiPath+s+".owl";
 				Ontology ont = owlModel.createOntology(ontoURI);
 				
@@ -377,6 +377,7 @@ public class OBIMerger {
 
 
 	//For testing purposes
+	/*
 	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/melanie/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
@@ -393,7 +394,7 @@ public class OBIMerger {
 
 
 
-	}
+	}*/
 
 
 
