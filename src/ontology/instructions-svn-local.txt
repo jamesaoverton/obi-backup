@@ -1,0 +1,142 @@
+These instructions explain how to use a version of the branch files
+(and other imported ontologies) that are completely in the local file
+system, checked out with subversion.
+
+To use these:
+
+1) Use the latest protege 3.3 beta (411 or later)
+
+2) Copy obi.owl.template to obi.owl and copy obi.pprj.template
+   obi.pprj This is done to avoid having to deal with consequences, in
+   svn, of the uninteresting changes that protege makes to these
+   files.
+
+3) If you are working on a mac, or under linux, copy
+   obi.repository.template to obi.repository. Otherwise, if you are
+   working on a PC, copy obi.repository.template.pc to obi.repository. On
+   the PC, edit the file: urls in obi.repository to match the location in
+   your file system where you checked out the branch files.
+
+4) Open obi.pprj. You should not get prompted asking for the location
+   of any ontology, nor should any network access take place. You should be able to 
+   edit in the absense of any network connection.
+
+5) Choose "Ontology Repositories" from the OWL menu, and uncheck those
+   ontologies that you wish to edit. This enables them to be written
+   and hence chosen as the active ontology.
+
+6) You should see all the imports in the metadata tab and be able to
+    select a branch as the active ontology by selecting that ontology and clicking 
+    on the pencil icon. Ontologies that are read-only will be in gray.
+
+Caveats and instructions for working with svn.
+
+There are number of protege bugs that are in the process of being
+reviewed by the protege development team that we need to be aware of
+and compensate for. When they are fixed some things will be easier.
+
+1) Protege will write every ontology that is not read-only when saving
+   any changes.
+
+2) The switch which sets protege to write the ontologies in a stable
+   order, alphabetically, causes the imports mechanism to break, thus
+   every time an ontology is written the order is scrambled.
+
+3) Annotations on AnnotationProperties are not displayed or editable
+   in the user interface.
+
+Compensations:
+
+Make read-only any ontologies that we know we won't work with.  
+
+If you want to pull down a new version of some other branches ontology
+then you should first "svn revert xxx" where xxx is any branch file
+that is not read only. Otherwise the scrambled order of the file will
+confuse svn.
+
+You can check which files you have modified with the command "svn status".
+Any file that has changed since you last checked out will have the letter
+"M" in this listing.
+
+This also means that merges will not work on your branch file well. Either coordinate so
+one person is editing at a given time, or use the following sequence when you edit your
+branch file.
+
+1) svn update <branch.owl>
+2) svn status <branch.owl>. If the first letter is "K" then the file
+   is locked and you shouldn't edit it. Stop now, or be sure to svn
+   revert <branch.owl> before commencing step 1 again.
+3) svn lock <branch.owl> -m <a message>
+4) Edit away. No one else will be able to commit while you do so.
+either:
+5a) svn ci <branch.owl> -m <message>
+6a) svn unlock <branch.owl> 
+or:
+5b) svn revert <branch.owl> 
+6a) svn unlock <branch.owl>
+
+The "a" choice commits you changes and unlocks the file. The "b"
+choice discards your changes and unlocks file.
+
+Remember that even if you don't change the file, but choose "save" in
+Protege, your file will get written. If you know that you haven't made any
+changes and you want to pull the latest version from the repository, execute
+svn update.
+
+Making a class obsolete:
+ 1) Ensure that Obsolete.owl is not read only, by editing the repository file, if necessary.
+ 2) lock Obsolete.owl following the above instructions, since you will be editing it
+ 3) select the class to be made obsolete.
+ 4) Right click and select "Delete Class"
+ 5) Switch the active ontology to Obsolete.owl
+ 6) Choose "Undo" from the edit menu. Move the class to be a child of ObsoleteClass.
+ 7) Switch the active ontology back to the original ontology
+ 8) When checking in your changes, follow the instructions to check in 
+     Obsolete.owl in addition to your branch file
+
+File organization:
+
+branchDevelopment/trunk
+ * The individual branch files. Contain only information specific to a single branch
+  Biomaterial.owl
+  InstrumentAndPart.owl
+  Role.owl
+  DataTransformation.owl
+  Plan.owl
+  DigitalEntityPlus.owl
+  ProtocolApplication.owl
+  Relations.owl
+  Quality.owl
+  OBI-Function.owl
+
+ * Where obsolete classes and properties go:
+  Obsolete.owl
+
+ * Where owl full statements, such as ranges for annotation properties for the Protege 3 UI:
+  obi-owl-full.owl
+
+ * Where annotation properties defined in our minimal metadata set go:
+  AnnotationProperty.owl
+
+
+ * Where top level terms go, that are not included in any branch file, also ontology properties (relations). 
+   TheRest.owl
+
+  /bfo 
+
+     bfo.owl - in its own directory because it is copied in by a
+       svn:externals property from code.google.com. "svn propget
+       svn:externals ." to see the specific version.
+
+  /external - snapshots of ontologies we use that don't use subversion
+              (or I don't know where they are)
+     protege-dc.owl - owl dl dublin core
+     protege.owl - used by protege internals
+     ro.owl  - relation ontology
+     ro_bfo_bridge.owl - relation ontology to bfo bridge
+
+  obi.owl.template - imports all the above ontologies (template - see below)
+  obi.pprj.template - protege project (template - see below)
+
+  obi.repository.template - see instructions 
+  instructions-svn-local.txt - this file
