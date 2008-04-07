@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/">
+  <!ENTITY example "http://example.com/#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="http://example.com/"
+         xmlns:dc="&dc;"
+         xmlns:example="&example;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;">
+
+<!-- Ontology Information -->
+  <owl:Ontology rdf:about=""
+                dc:creator="Alan Ruttenberg"/>
+
+<!-- Classes -->
+  <owl:Class rdf:about="#hydrocarbon_molecule">
+    <rdfs:comment rdf:datatype="&xsd;string">CHEBI:24632</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#object"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#object">
+    <rdfs:comment rdf:datatype="&xsd;string">snap:object</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#petri-dish">
+    <rdfs:comment rdf:datatype="&xsd;string">A plastic petri dish. In order to avoid multiple asserted inheritence, this is a defined class= those portions of plastic that have the right shape</rdfs:comment>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="#portion-of-plastic"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#has_quality"/>
+        <owl:someValuesFrom rdf:resource="#petri-dish-shape"/>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#petri-dish-shape">
+    <rdfs:comment rdf:datatype="&xsd;string">We factor a petri dish made of plastic, as a piece of plastic that has a certain shape. This represents the shape.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#portion-of-plastic">
+    <rdfs:comment rdf:datatype="&xsd;string">Anything which is made (solely) of plastic is a portion of plastic. For illustrative purposes  make the idealization that plastic only contains hydrocarbon molecules, which might be wrong. Determinate parts of a portion of plastic are portions of plastic themselves</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="#object"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#has_grain"/>
+            <owl:someValuesFrom rdf:resource="#hydrocarbon_molecule"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="#portion-of-plastic"/>
+            <owl:onProperty rdf:resource="#has_determinate_part"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="#hydrocarbon_molecule"/>
+            <owl:onProperty rdf:resource="#has_grain"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#quality">
+    <rdfs:comment rdf:datatype="&xsd;string">snap:quality</rdfs:comment>
+  </owl:Class>
+
+<!-- Annotation Properties -->
+  <owl:AnnotationProperty rdf:about="&dc;creator"/>
+  <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+
+<!-- Object Properties -->
+  <owl:ObjectProperty rdf:about="#has_determinate_part">
+    <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Determinate parthood e.g., the relation of the finger to the hand, in which a determinate number of parts (at any given time) are directly part of the whole, and in which removing one determinate part necessarily damages or diminishes the whole. (Rector, et al. PMID:16515892)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#has_part"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#has_grain">
+    <rdfs:comment rdf:datatype="&xsd;string">Granular parthood e.g., the relation of the cells in the finger of the skin to the finger, in which an indeterminate number of grains are parts of the whole by virtue of being grains in a collective that is part of the whole, and in which removing one granular part does not necessarily damage or diminish the whole. (Rector, et al. PMID:16515892)</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#has_part">
+    <rdfs:comment rdf:datatype="&xsd;string">ro:part_of</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#has_quality">
+    <rdfs:comment rdf:datatype="&xsd;string">subproperty of bears</rdfs:comment>
+  </owl:ObjectProperty>
+
+<!-- Instances -->
+  <example:petri-dish rdf:about="#petri_dish_1">
+    <example:has_determinate_part rdf:resource="#piece_of_petri_dish_1"/>
+    <rdfs:comment rdf:datatype="&xsd;string">For testing purposes we create an instance of petri dish, and assert that it has a determinate part. We expect that the part will be classified as a portion of plastic if our definitions worked</rdfs:comment>
+  </example:petri-dish>
+
+  <owl:Thing rdf:about="#piece_of_petri_dish_1"/>
+</rdf:RDF>
