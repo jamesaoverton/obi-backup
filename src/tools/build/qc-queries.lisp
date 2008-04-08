@@ -36,6 +36,23 @@
      )
    :kb kb :use-reasoner :jena :trace "Terms missing curation status" :values nil :trace-show-query nil))
 
+(defun extra-curation-status-instances (kb)
+  (sparql
+   '(:select (?ci ?label) (:distinct t)
+     (?c !rdfs:label |\"curation status\"@en|)
+     (?c :a !owl:Class)
+     (?ci :a ?c)
+     (:optional (?ci !rdfs:label ?label))
+     (:filter (and 
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000318>))
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000319>))
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000320>))
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000323>))
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000328>))
+	       )))
+   :kb kb :use-reasoner :jena :trace "Extra curation status instances" :values nil :trace-show-query nil))
+  
+
 ;; (defun string-curation-status (kb)
 ;;   (sparql
 ;;    '(:select (?si ?s ?type) (:distinct t)
@@ -146,3 +163,4 @@
 	       (not (bound ?label))))
      )
    :kb kb :use-reasoner :jena :trace "Missing labels" :values nil :trace-show-query nil))
+
