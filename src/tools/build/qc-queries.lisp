@@ -164,3 +164,20 @@
      )
    :kb kb :use-reasoner :jena :trace "Missing labels" :values nil :trace-show-query nil))
 
+(defun asserted-subclass-of-defined-class (kb)
+  (sparql
+   '(:select (?sublabel ?superlabel) (:distinct t)
+     (?sub !rdf:type !owl:Class)
+     (?super !rdf:type !owl:Class)
+     (?sub !rdfs:subClassOf ?super)
+     (?super !owl:equivalentClass ?other)
+     (:optional 
+      (?sub !rdfs:label ?sublabel))
+     (:optional
+      (?super !rdfs:label ?superlabel))
+     (:filter (and
+	       (not (equal ?super !<http://purl.obofoundry.org/obo/OBI_0000141>))
+	       (regex (str ?sub) "obi|OBI")
+	       (regex (str ?super) "obi|OBI")))
+     )
+   :kb kb :use-reasoner :none :trace "asserted subclass of defined-class" :values nil :trace-show-query nil))
