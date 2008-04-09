@@ -393,7 +393,7 @@ detailed below.
     <tr><td>Melanie Courtot</td>
     <td><a href="http://flowcyt.sourceforge.net">Flow Cytometry</a>, <a href="http://www.ebi.ac.uk/sbo/">SBO</a>,
     <a href="http://www.ebi.ac.uk/biomodels/">BioModels</a></td>
-    <td><a href="http://bccrc.ca">British Columbia Cancer Research Center</a> and <a href="http://www.ubc.ca">University of British Columbia</a> in the Department of Medical Genetics , Vancouver, BC, Canada</td>
+    <td><a href="http://bccrc.ca">British Columbia Cancer Research Center</a> and <a href="http://www.ubc.ca">University of British Columbia</a> in the Department of Medical Genetics, Vancouver, BC, Canada</td>
     <td>Fall 2007</td>
     <td>&nbsp;</td></tr>
 
@@ -447,10 +447,11 @@ detailed below.
   <li>Kevin Clancy</li>
   <li>Christian Cocos</li>
   <li>Jay Greenbaum</li>
+  <li>Pierre Grenon</li>
+  <li>Elisabetta Manduchi (University of Pennsylvania)</li>
   <li>Chris Mungall</li>
   <li>Matthew Pocock</li>
   <li>Holger Stenzhorn</li>
-  <li>Pierre Grenon</li>
   </ul>
 </div>
 </td></tr>
