@@ -4,25 +4,24 @@
 
 The current version of OBI.owl provided at the site is still a draft.
 In fact, it is a pre-release version that is meant for review and could change substantially after review.
-The current version however represents the efforts from the different OBI branch development as provided at <a href="http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/2008-04-08/">http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/2008-04-08/</a> on April 8, 2008.
+The current version however represents the efforts from the different OBI branch development as provided at <a href="http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/">http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/</a> at the date of release.
 
 The release consists in several files:
 
 <ul>
 <li><a href="http://purl.obofoundry.org/obo/2008-04-08/obi.owl">OBI.owl</a><br>The merged file representing the current status of the project, created by merging the branches together.
 This file is OWL-DL and consistent. (checked with Pellet 1.5)
-
-<li> <a href="http://obi.svn.sourceforge.net/viewvc/*checkout*/obi/tags/releases/2008-04-08/merged/OBI-ProtegeFriendly.owl">OBI-ProtegeFriendly.owl</a> <br>
+<br>
+<li><u>OBI-ProtegeFriendly.owl</u><br>
 Due to a bug in Protege 3.x, the namespaces are not properly handled in the OWL-DL version.
 We therefore produce as a temporary fix a Protege friendly version, wich is consistent but OWL-Full.
 This will allow the display via label instead of IDs in Protege 3.x
 See instructions on <a href="http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&amp;hl=en">Using Protege with OBI</a>
 
-<li> <a href="http://obi.svn.sourceforge.net/viewvc/*checkout*/obi/tags/releases/2008-04-08/merged/OBI-ProtegeFriendly.pprj">OBI-ProtegeFriendly.pprj</a><br>
+<li><u>OBI-ProtegeFriendly.pprj</u><br>
 As a convenience, we also provide a Protege project file (OBI-ProtegeFriendly.pprj) which will activate the label display in Protege.
 To use it, download OBI-ProtegeFriendly.pprj AND OBI-ProtegeFriendly.owl in the same directory. In Protege, choose File, Open, and open the OBI-ProtegeFriendly.pprj project file.
-
-<li> <a href="http://obi.svn.sourceforge.net/viewvc/*checkout*/obi/tags/releases/2008-04-08/merged/md5.txt">md5.txt</a><br>
+<li><u>md5.txt</u><br>
 This file contains an md5 checksum computed from OBI.owl. It is intended as an integrity check of your download, and is the first step towards a versioning control system.
 It will most probably be modified in its structure in the following releases.
 
@@ -34,8 +33,14 @@ It will most probably be modified in its structure in the following releases.
 
 <ul>
 <li> <a href="http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&amp;hl=en">Using Protege with OBI</a> 
+<br>
+Some information on how to load OBI into Protege, how to activate label dipslay...
 <li> <a href="http://docs.google.com/Doc?docid=dzprnmw_8fnr5nmd4&amp;hl=en">OBI ID policy</a> 
+<br>
+This document explains our ID policy, and you will also find there some information about the proper way of referencing OBI Terms.
 <li> <a href="http://purl.obofoundry.org/obo/obi/report.html">Ontology report</a> 
+<br>
+This is an HTML report representing OBI as a single HTML file that can be opened directly by any web browser.
 </ul>
 
 <h2>Known Issues</h2>
@@ -55,6 +60,22 @@ It will most probably be modified in its structure in the following releases.
 
 <h2>Changelog</h2>
 
+<h3>2008-04-08</h3>
+<pre>
+- versioning information
+We decided to adopt a simple versioning system for the moment. We add in the release script the current version ID from SVN, to get something of the form:
+<owl:versionInfo xml:lang="en">1.0.530</owl:versionInfo>
+
+- some checks are performed
+We are currently checking that all classes have a label, getting a list of classes which are missing a curation status and the list of classes which are asserted under defined classes. More to come.
+
+- PURLs for our terms
+We produce a list of purls that have to be created (and correspond to the classes that have been added in OBI since the previous release).
+Work is in progress on producing one HTML page per term (prototype http://purl.obofoundry.org/obo/OBO_0000225), which is OWL underneath (view source), but presents as HTML)
+
+
+
+</pre>
 <h3>2008-03-10</h3>
 <pre>
 - modified namespaces
