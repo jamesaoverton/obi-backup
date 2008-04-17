@@ -15,8 +15,15 @@ NEWFILEPATH="UncheckedMerge.owl"
 #the file where to write the merge protege-friendly
 NEWFILEPATHPROTEGE="UncheckedMergePROTEGE.owl"
 #the path to your install of lsw
-LSW_PATH=~/Desktop/lsw
+HERE=`pwd`
+LSW_PATH=$HERE/svn-lsw/lsw
 
+#get lsw
+svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
+#get OBITools.jar
+svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+export CLASSPATH=$CLASSPATH:./OBITools/OBITools.jar
+4. javac OBIReleaseClient.java
 #######################################################################################################################################
 
 ############################################################## BASIC SETUP ########################################################
@@ -32,8 +39,13 @@ cd $CUR_DATE
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches .
 # we need the sourcecodes as well - these have been moved during SVN re organization
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./sourcecodes
+
+#javac the client
+javac ./sourcecodes/OBIReleaseClient.java
 # we need the external files as well - these have been moved during SVN re organization
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external ./external
+
+
 #we need to copy obi.owl.template to obi.owl
 #needed by modify-uris.pl
 cp ./obi.owl.template ./obi.owl
