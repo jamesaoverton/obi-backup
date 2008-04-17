@@ -16,14 +16,15 @@ NEWFILEPATH="UncheckedMerge.owl"
 NEWFILEPATHPROTEGE="UncheckedMergePROTEGE.owl"
 #the path to your install of lsw
 HERE=`pwd`
-LSW_PATH=$HERE/svn-lsw/lsw
+LSW_PATH=$HERE/svn-lsw/
 
 #get lsw
 svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
 #get OBITools.jar
 svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
-export CLASSPATH=$CLASSPATH:./OBITools/OBITools.jar
-4. javac OBIReleaseClient.java
+export CLASSPATH=$HERE:$HERE/OBITools/OBITools.jar
+echo $CLASSPATH
+
 #######################################################################################################################################
 
 ############################################################## BASIC SETUP ########################################################
@@ -197,6 +198,10 @@ perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_DIR
 
 # we go back to the parent directory
 cd ..
+
+HERE2=`pwd`
+echo $HERE2
+ cp $HERE2/$CUR_DATE/sourcecodes/OBIReleaseClient.class .
 
 
 #launch the merger itself
