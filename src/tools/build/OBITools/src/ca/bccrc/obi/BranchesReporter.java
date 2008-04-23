@@ -99,6 +99,17 @@ public class BranchesReporter {
 
 	}
 
+	
+	public static String checkComment(Resource term){
+		String report ="";
+		if(term.getProperty(RDFS.comment)!=null)
+		{//System.out.println("literal "+term.getProperty(RDFS.comment).getLiteral());
+			if (!(term.getProperty(RDFS.comment).getObject().toString().trim()).equals("@en"))
+				report = "<div class=\"warning\">Warning: rdfs:comment field not empty." +
+					"Current value: " + term.getProperty(RDFS.comment).getObject().toString()+ "</div>";
+		}
+		return report;
+	}
 
 	/**
 	 * @param term
@@ -110,12 +121,12 @@ public class BranchesReporter {
 		StmtIterator stmtIterLabel = term.listProperties(RDFS.label);
 		if (stmtIterLabel.toList().size() >1)
 		{
-			report = "<div class=\"critical\">CRITICAL: only one label allowed<div>";
+			report = "<div class=\"critical\">CRITICAL: only one label allowed</div>";
 		}
 		StmtIterator stmtIterPrefTerm = term.listProperties(prefTermAnnPropObj);
 		if (stmtIterPrefTerm.toList().size() >1)
 		{
-			report = "<div class=\"critical\">CRITICAL: only one preferred term allowed<div>";
+			report = "<div class=\"critical\">CRITICAL: only one preferred term allowed</div>";
 		}
 		//term doesn't have a label
 		if(term.getProperty(RDFS.label)==null)
@@ -128,7 +139,7 @@ public class BranchesReporter {
 			}
 			else 
 			{
-				return report += "<div class=\"critical\">CRITICAL: No label or preferred term<div>";
+				return report += "<div class=\"critical\">CRITICAL: No label or preferred term</div>";
 			}
 		}
 		else //term has a label
@@ -168,7 +179,7 @@ public class BranchesReporter {
 		else {
 			StmtIterator stmtIterDef = term.listProperties(defAnnPropObj);
 			if (stmtIterDef.toList().size() >1){
-				return "<div class=\"critical\">CRITICAL: only one definition allowed<div>";
+				return "<div class=\"critical\">CRITICAL: only one definition allowed</div>";
 			}
 			else return "";
 		}
@@ -190,7 +201,7 @@ public class BranchesReporter {
 		else {
 			StmtIterator stmtIterCuration = term.listProperties(curationStatusAnnPropObj);
 			if (stmtIterCuration.toList().size() >1)
-				return "<div class=\"critical\">CRITICAL: only one curation status allowed<div>";
+				return "<div class=\"critical\">CRITICAL: only one curation status allowed</div>";
 			else return "";
 		}
 
@@ -204,6 +215,7 @@ public class BranchesReporter {
 	{
 
 		if(!term.hasProperty(defEditorAnnPropObj))
+			
 		{
 			//term.addProperty(defEditorAnnPropObj,"OBI");
 			return "<div class=\"warning\">Warning : No definition editor</div>";	
@@ -245,6 +257,8 @@ public class BranchesReporter {
 			report+=checkDefinitionSource(term);
 		if (checkDefinition(term) != "")
 			report+= checkDefinition(term);
+		if (checkComment(term) != "")
+			report+= checkComment(term);
 		return report;
 
 
@@ -269,20 +283,20 @@ public class BranchesReporter {
 			{
 				String classReport = checkAnnotations(thisClass);
 				if (classReport != ""){
-					reportTotal += "<div class=\"termreport\">"+
-					"<div class=\"termid\">" +
-					"<span class=\"id\"><a href=\"http://purl.obofoundry.org/obo/"+thisClass.getLocalName()+"\">"+thisClass.getLocalName()+"</a>: </span>";
-					reportTotal +="<span class=\"name\">"+((OntResource) thisClass).getLabel(null)+"</span>";
-					reportTotal+="</div>";
+					reportTotal += "<div class=\"termreport\">\n"+
+					"<div class=\"termid\">\n" +
+					"<span class=\"id\"><a href=\"http://purl.obofoundry.org/obo/"+thisClass.getLocalName()+"\">"+thisClass.getLocalName()+"</a>: </span>\n";
+					reportTotal +="<span class=\"name\">"+((OntResource) thisClass).getLabel(null)+"</span>\n";
+					reportTotal+="</div>\n";
 					reportTotal += classReport;
-					reportTotal += "</div>"; 
+					reportTotal += "</div>\n"; 
 
 				}
 			}
 
 		}
 
-		reportTotal += " </div></div></body>"+
+		reportTotal += "</body>"+
 		"</html>";
 
 		return reportTotal;
@@ -412,7 +426,7 @@ public class BranchesReporter {
 		"<table width=\"100%\" BACKGROUND='http://ashby.csail.mit.edu/303-images/header-main-b-blue.png' > "+
 		"<td align=\"left\">	 <a href=\"http://obi.sourceforge.net/\"><img src=\"http://ashby.csail.mit.edu/303-images/obi-blue.png\" alt=\"The Ontology for Biomedical Investigations\" id=\"cc-title\" border=\"0\"/></a></td><td align=\"right\">"+
 		"<a href=\"http://sciencecommons.org\"><img src=\"http://ashby.csail.mit.edu/303-images/sciencecommonsblue.gif\" alt=\"science commons\" id=\"cc-title\" border=\"0\"/></a></td></table>"+
-		"<div class=\"branchreport\">"+branchName+"</div><div>";
+		"<div class=\"branchreport\">"+branchName+"</div>";
 
 	}
 
