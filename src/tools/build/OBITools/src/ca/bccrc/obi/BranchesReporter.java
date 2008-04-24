@@ -20,7 +20,9 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -73,40 +75,40 @@ public class BranchesReporter {
 	 * Gets the annotation properties from the file containing them
 	 * @param theAnnotationsFile
 	 */
-	public static void getAnnotationsPropertiesObjects (File theAnnotationsFile)	{
+	public static void getAnnotationsPropertiesObjects (OntModel owlModel)	{
 		//read the annotations file into an OWL model 
-		OntModel annotationsModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
+		//OntModel annotationsModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
 
 
-		try {
+		/*try {
 			annotationsModel.read(new FileInputStream(theAnnotationsFile), OBINs);
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
 			System.exit(1);
-		}
-		prefTermAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000288");	
-		defAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000291");	
-		defSourceAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000279");	
-		exampleAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000287");
+		}*/
+		prefTermAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000288");	
+		defAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000291");	
+		defSourceAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000279");	
+		exampleAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000287");
 		//the curation status annotation property has id 281
-		curationStatusAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000281");	
-		defEditorAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000274");	
-		editorNoteAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000275");	
+		curationStatusAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000281");	
+		defEditorAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000274");	
+		editorNoteAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000275");	
 		//instances of the class curation status, id 266, are used to populate the annotation property
-		curationStatusClass= annotationsModel.getOntClass(OBINs+"OBI_0000266");
-		uncuratedInstance = annotationsModel.getIndividual(OBINs+"OBI_0000328");
+		curationStatusClass= owlModel.getOntClass(OBINs+"OBI_0000266");
+		uncuratedInstance = owlModel.getIndividual(OBINs+"OBI_0000328");
 
 	}
 
-	
+
 	public static String checkComment(Resource term){
 		String report ="";
 		if(term.getProperty(RDFS.comment)!=null)
 		{//System.out.println("literal "+term.getProperty(RDFS.comment).getLiteral());
-			if (!(term.getProperty(RDFS.comment).getObject().toString().trim()).equals("@en"))
+			if (!(term.getProperty(RDFS.comment).getObject().toString().trim()).equals("@en") && !(term.getProperty(RDFS.comment).getObject().toString().trim()).equals("^^http://www.w3.org/2001/XMLSchema#string") )
 				report = "<div class=\"warning\">Warning: rdfs:comment field not empty." +
-					"Current value: " + term.getProperty(RDFS.comment).getObject().toString()+ "</div>";
+				"Current value: " + term.getProperty(RDFS.comment).getObject().toString()+ "</div>";
 		}
 		return report;
 	}
@@ -135,7 +137,7 @@ public class BranchesReporter {
 			if(term.hasProperty(prefTermAnnPropObj))
 			{
 				//term.addLabel(term.getPropertyValue(prefTermAnnPropObj).toString(),"en");
-				return report += "<div class=\"warning\">Warning: No label</div>";
+				return report += "<div class=\"warning\">Warning: No label - will be defaulted to the preferred term value</div>";
 			}
 			else 
 			{
@@ -151,7 +153,7 @@ public class BranchesReporter {
 				//null literals are forbidden since jena 2.0
 				//if(term.getLabel(null)!=null)
 				//term.addProperty(prefTermAnnPropObj,term.getProperty(RDFS.label).getString().trim());
-				return report += "<div class=\"warning\">Warning: No preferred term</div>";
+				return report += "<div class=\"warning\">Warning: No preferred term - will be defaulted to the label value</div>";
 			}
 			//term has label and preferred term
 			else return report;
@@ -195,13 +197,21 @@ public class BranchesReporter {
 		if(!term.hasProperty(curationStatusAnnPropObj))
 		{
 			//term.addProperty(curationStatusAnnPropObj,uncuratedInstance);
-			return "<div class=\"warning\">Warning: No curation_status</div>";
+			return "<div class=\"warning\">Warning: No curation_status - will be defaulted to uncurated</div>";
 
 		}
 		else {
 			StmtIterator stmtIterCuration = term.listProperties(curationStatusAnnPropObj);
-			if (stmtIterCuration.toList().size() >1)
+			/*for (StmtIterator stmtIterCuration = term.listProperties(curationStatusAnnPropObj); stmtIterCuration.hasNext(); ) 
+			{
+				Statement curationStatus = (Statement) stmtIterCuration.next();
+				System.out.println("curation: "+ curationStatus.getObject().toString());
+			}*/
+			int sizeIterator = stmtIterCuration.toList().size();
+			if (sizeIterator >1){
+				//System.out.println ("size = "+sizeIterator );
 				return "<div class=\"critical\">CRITICAL: only one curation status allowed</div>";
+			}
 			else return "";
 		}
 
@@ -215,15 +225,15 @@ public class BranchesReporter {
 	{
 
 		if(!term.hasProperty(defEditorAnnPropObj))
-			
+
 		{
 			//term.addProperty(defEditorAnnPropObj,"OBI");
-			return "<div class=\"warning\">Warning : No definition editor</div>";	
+			return "<div class=\"critical\">CRITICAL: No definition editor</div>";	
 
 		}
 		else return "";
 	}
-	
+
 
 	public static String checkDefinitionSource(Resource term)
 	{
@@ -310,17 +320,17 @@ public class BranchesReporter {
 	 */
 	public static void writeReport(String reportPath, String report)	{
 		File newReportFile = new File(reportPath);
-		
-		
+
+
 		try {
-			
+
 			//delete the file if it already exists  - otherwise we could run into trouble :-)
 			if (newReportFile.exists())	{
 				newReportFile.delete();
 			}
 
 			FileWriter fw = new FileWriter(newReportFile);
-			
+
 			fw.write(report);
 			fw.flush();
 			fw.close();
@@ -491,8 +501,9 @@ public class BranchesReporter {
 		//the file containing the declaration of the annotation properties
 		File theAnnotationsFile = new File(theAnnotationsFilePath);
 
-		//retrieves annotations properties objects
-		getAnnotationsPropertiesObjects(theAnnotationsFile);
+		
+		
+		
 		List<String> branchesNames = new ArrayList<String>();
 		branchesNames.add("Biomaterial");
 		branchesNames.add("Role");
@@ -508,7 +519,7 @@ public class BranchesReporter {
 		branchesNames.add("DigitalEntityPlus");
 
 		//instances
-		branchesNames.add("DataFormatSpecification");
+		//branchesNames.add("DataFormatSpecification");
 
 
 		String reportPath = "/Users/melanie/Desktop/reports/";
@@ -517,9 +528,24 @@ public class BranchesReporter {
 		//e.g. get obsolete list of classes
 		//get instances
 		OntModel owlModel = OBIMerger.buildMergedFiles(physicalURI,false);
-
+	
+		
+		for (ExtendedIterator classes2 = owlModel.listAnnotationProperties(); classes2.hasNext(); ) 
+		{
+			Property annotation = (Property) classes2.next();
+			if (annotation.getProperty(RDFS.label)!=null)
+			{
+			System.out.println("annotation: "+ annotation.getURI() + " "+ annotation.getProperty(RDFS.label).getObject().toString());
+			}
+			else System.out.println("annotation: "+ annotation.getURI());
+		}
+		
+		
+		//retrieves annotations properties objects - we should get them from the whole model, they don't have to be defined in the AnnotationProperty.owl file
+		getAnnotationsPropertiesObjects(owlModel);
 
 		getInstances(owlModel, reportPath);
+
 		produceBranchReport (branchesNames, physicalURI, theAnnotationsFileName, reportPath, owlModel);
 
 
