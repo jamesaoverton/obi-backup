@@ -61,11 +61,11 @@ class	URI	label	parent_class	parent_URI	parent_label	....
 Here is an explanation of each field:
 
 1) class - the Class ID (This is what comes after the # in the URI)
-2) URI - the base URI (This is what comes before the # in the URI)
+2) URI - the complete URI, including the class ID
 3) label - the rfds:label
 4) parent_class - Class ID of the term's parent
-5) URI - base URI of the term's parent
-6) label - rdfs:label of the term's parent
+5) parent_URI - the complete URI of the parent class
+6) parent_label - rdfs:label of the term's parent
 
 After the first six columns, the fields are up to the user.  Please see
 Example.txt for reference.
@@ -95,7 +95,8 @@ NOTES
 represented in the resulting tab-delimited file.  Instead, they will be
 preserved as XML in a file with a ".xtra" extension.  If the tab-delimited file
 is later converted back into OWL, this .xtra file will be read and the OWL
-restrictions will be incorporated into the resulting OWL file.
+restrictions will be incorporated into the resulting OWL file.  Additionally,
+owl:equivalentClass declarations will be stored in a .equiv file.
 
 3) In OWL, it is possible for a term to have more than one property with an
 identical name.  This presents a problem for representation in tab-delimited for
@@ -114,6 +115,7 @@ Switch
 File::Copy
 XML::Simple
 Encode
+URI
 
 
 BUGS
