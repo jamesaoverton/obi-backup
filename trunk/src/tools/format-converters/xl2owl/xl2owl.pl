@@ -40,21 +40,24 @@ use URI;
 $XML::Simple::PREFERRED_PARSER = "XML::Parser";
 
 my (
- $csvin_file, $csvout_file, $owlin_file, $owlout_file,
- $help,       $replace,     $del_empty
+    $csvin_file, $csvout_file, $owlin_file, $owlout_file,
+    $help,       $replace,     $del_empty
 );
 my $delim  = "\t";
 my $action = "1";
+
+my $base_uri;
+
 GetOptions(
- "tabin|ti=s"    => \$csvin_file,
- "tabout|to=s"   => \$csvout_file,
- "owlin|oi=s"    => \$owlin_file,
- "owlout|oo=s"   => \$owlout_file,
- "delimiter|d=s" => \$delim,
- "action|a=i"    => \$action,
- "del_empty|r"   => \$del_empty,
- "replace"       => \$replace,
- "help|h"        => \$help,
+    "tabin|ti=s"    => \$csvin_file,
+    "tabout|to=s"   => \$csvout_file,
+    "owlin|oi=s"    => \$owlin_file,
+    "owlout|oo=s"   => \$owlout_file,
+    "delimiter|d=s" => \$delim,
+    "action|a=i"    => \$action,
+    "del_empty|r"   => \$del_empty,
+    "replace"       => \$replace,
+    "help|h"        => \$help,
 );
 
 my $USAGE = <<END;
@@ -104,33 +107,33 @@ END
 die $USAGE if ($help);
 
 switch ($action) {
- case 1 {
-  insert_terms_from_csv( $csvin_file, $owlin_file, $owlout_file, $delim,
-   $replace );
- }
- case 2 { create_csv_from_owl( $owlin_file, $csvout_file ) }
- else {
-  die " \
+    case 1 {
+        insert_terms_from_csv( $csvin_file, $owlin_file, $owlout_file, $delim,
+            $replace );
+    }
+    case 2 { create_csv_from_owl( $owlin_file, $csvout_file ) }
+    else {
+        die " \
  Unknown action: $action \
  Please choose from the following actions:\
  1: Insert terms into an OWL file from a CSV\
  2: Extract terms from an OWL file to a CSV\n\n";
- }
+    }
 }
 
 # This will return an array containing classes represented in XML format
 sub csv2xml {
 
- my ( $file, $delim ) = @_;
+    my ( $file, $delim ) = @_;
 
- my @csv_terms = read_delim( $file, $delim );
- my %csv_terms = array2hash( \@csv_terms, "label" );
- my @xml_terms;
- foreach my $key ( keys %csv_terms ) {
-  push @xml_terms, term2xml( $csv_terms{$key} );
- }
+    my @csv_terms = read_delim( $file, $delim );
+    my %csv_terms = array2hash( \@csv_terms, "label" );
+    my @xml_terms;
+    foreach my $key ( keys %csv_terms ) {
+        push @xml_terms, term2xml( $csv_terms{$key} );
+    }
 
- return @xml_terms;
+    return @xml_terms;
 
 }
 
@@ -138,106 +141,108 @@ sub csv2xml {
 # array of anonymous hashes that specify the attributes of the class
 sub mk_class {
 
- my $specs = shift;
- my $term;    # this is the class object that will be returned
+    my $specs = shift;
+    my $term;    # this is the class object that will be returned
 
- my $datatype = "http://www.w3.org/2001/XMLSchema#string";
+    my $datatype = "http://www.w3.org/2001/XMLSchema#string";
 
- # iterating through the specifications to create the term
- foreach my $key ( keys %$specs ) {
-  next if ( $key eq "rdfs:subClassOf" );
-  foreach my $val ( @{ $specs->{$key} } ) {
-   my $attr = mk_attribute(
-    ( name => $key, content => $val, "rdf:datatype" => $datatype ) );
-   if ( $key eq "rdf:about" ) {
-    $attr = mk_attribute( ( name => $key, content => $val ) );
-   }
-   $term = add_attribute_to_term( $term, $attr );
-  }
- }
+    # iterating through the specifications to create the term
+    foreach my $key ( keys %$specs ) {
+        next if ( $key eq "rdfs:subClassOf" );
+        foreach my $val ( @{ $specs->{$key} } ) {
+            my $attr =
+              mk_attribute(
+                ( name => $key, content => $val, "rdf:datatype" => $datatype )
+              );
+            if ( $key eq "rdf:about" ) {
+                $attr = mk_attribute( ( name => $key, content => $val ) );
+            }
+            $term = add_attribute_to_term( $term, $attr );
+        }
+    }
 
- # now taking care of subclassof
- if ( $specs->{"rdfs:subClassOf"} ) {
-  foreach my $s ( @{ $specs->{"rdfs:subClassOf"} } ) {
+    # now taking care of subclassof
+    if ( $specs->{"rdfs:subClassOf"} ) {
+        foreach my $s ( @{ $specs->{"rdfs:subClassOf"} } ) {
 
-   # my $subclassof = {
-   #	"owl:Class" => [
-   #	    {
-   #		"rdf:about" => $s
-   #	    }
-   #	    ]
-   #    };
-   my $subclassof = { "rdf:resource" => $s };
-   push @{ $term->{"rdfs:subClassOf"} }, $subclassof;
-  }
- }
+            # my $subclassof = {
+            #	"owl:Class" => [
+            #	    {
+            #		"rdf:about" => $s
+            #	    }
+            #	    ]
+            #    };
+            my $subclassof = { "rdf:resource" => $s };
+            push @{ $term->{"rdfs:subClassOf"} }, $subclassof;
+        }
+    }
 
- return $term;
+    return $term;
 }
 
 # this takes a hash representation of a term and converts it to xml
 sub term2xml {
 
- my ($term) = @_;
+    my ($term) = @_;
 
- # each term must have a class and rdfs label
- die "Term must have class" unless ( $term->{class} );
+    # each term must have a class and rdfs label
+    die "Term must have class" unless ( $term->{class} );
 
- #die "Term must have label" unless ( $term->{label} );
+    #die "Term must have label" unless ( $term->{label} );
 
- my $class_def = {
-  "rdf:about" => [ $term->{URI} ],
+    my $class_def = {
+        "rdf:about" => [ $term->{URI} ],
 
-  #"rdfs:label" => [$term->{label}],
-  #"rdfs:subClassOf" => [$term->{parent_URI} . "#" . $term->{parent_class}],
- };
+      #"rdfs:label" => [$term->{label}],
+      #"rdfs:subClassOf" => [$term->{parent_URI} . "#" . $term->{parent_class}],
+    };
 
- if ( $term->{label} ) {
-  $class_def->{"rdfs:label"} = [ $term->{label} ];
- }
+    if ( $term->{label} ) {
+        $class_def->{"rdfs:label"} = [ $term->{label} ];
+    }
 
- if ( $term->{parent_URI} ) {
-  $class_def->{"rdfs:subClassOf"} = [ $term->{parent_URI} ];
- }
+    if ( $term->{parent_URI} ) {
+        $class_def->{"rdfs:subClassOf"} = [ $term->{parent_URI} ];
+    }
 
- # now taking care of the remaining elments
- for ( my $i = 0 ; $i < @{ $term->{elements} } ; $i++ ) {
-  my ( $key, $value ) = ( each %{ $term->{elements}->[$i] } );
-  push @{ $class_def->{$key} }, $value;
- }
+    # now taking care of the remaining elments
+    for ( my $i = 0 ; $i < @{ $term->{elements} } ; $i++ ) {
+        my ( $key, $value ) = ( each %{ $term->{elements}->[$i] } );
+        push @{ $class_def->{$key} }, $value;
+    }
 
- return mk_class($class_def);
+    return mk_class($class_def);
 }
 
 # This will add an attribute to an XMLin-formatted term
 sub add_attribute_to_term {
 
- my ( $class, $attr ) = @_;
+    my ( $class, $attr ) = @_;
 
- my $attr_name = $attr->{name};
+    my $attr_name = $attr->{name};
 
- if ( keys %{ $attr->{values} } > 1 ) {
-  push @{ $class->{$attr_name} }, $attr->{values};
- }
- else {
-  $class->{$attr_name} = $attr->{values}->{content};
- }
+    if ( keys %{ $attr->{values} } > 1 ) {
+        push @{ $class->{$attr_name} }, $attr->{values};
+    }
+    else {
+        $class->{$attr_name} = $attr->{values}->{content};
+    }
 
- return $class;
+    return $class;
 
 }
 
 # This will take a filename as an argument and return an XMLin object
 sub get_xml {
 
- my $file = shift;
+    my $file = shift;
 
- my $xs = XML::Simple->new(
-  ForceArray => 1,
-  KeyAttr    => [],
- );
+    my $xs = XML::Simple->new(
+        ForceArray => 1,
+        KeyAttr    => [],
+    );
 
- return $xs->XMLin($file);
+    return $xs->XMLin($file);
 
 }
 
@@ -254,16 +259,16 @@ sub get_xml {
 # this function will take in a hash containing the name and values for the attribute
 # and return an attribute record
 sub mk_attribute {
- my (%attr) = @_;
+    my (%attr) = @_;
 
- my $attribute = { name => $attr{name} };
+    my $attribute = { name => $attr{name} };
 
- foreach my $key ( keys %attr ) {
-  next if $key eq "name";
-  $attribute->{values}->{$key} = $attr{$key};
- }
+    foreach my $key ( keys %attr ) {
+        next if $key eq "name";
+        $attribute->{values}->{$key} = $attr{$key};
+    }
 
- return $attribute;
+    return $attribute;
 }
 
 # one of the following three subroutines should be called
@@ -271,373 +276,422 @@ sub mk_attribute {
 # this will insert terms from a csv file into an owl file
 sub insert_terms_from_csv {
 
- my ( $csvin_file, $owlin_file, $owlout_file, $delim, $replace ) = @_;
+    my ( $csvin_file, $owlin_file, $owlout_file, $delim, $replace ) = @_;
 
- # first we retrieve the terms from the csv file
- my @new_terms = csv2xml( $csvin_file, $delim );
+    # first we retrieve the terms from the csv file
+    my @new_terms = csv2xml( $csvin_file, $delim );
 
- # now we index the terms
- my %in_new = ();
- foreach my $term (@new_terms) {
-  $in_new{ $term->{"rdf:about"} } = 1;
- }
+    # now we index the terms
+    my %in_new = ();
+    foreach my $term (@new_terms) {
+        $in_new{ $term->{"rdf:about"} } = 1;
+    }
 
- # next we read in the owl file
- my $xml = get_xml($owlin_file);
+    # next we read in the owl file
+    my $xml = get_xml($owlin_file);
 
- # unless we are supposed to replace all of the classes, we will read in the
- # terms from the owl file
- unless ($replace) {
-  my @owl_classes;
-  foreach my $class ( @{ $xml->{"owl:Class"} } ) {
-   push @owl_classes, $class;
-  }
+    # unless we are supposed to replace all of the classes, we will read in the
+    # terms from the owl file
+    unless ($replace) {
+        my @owl_classes;
+        foreach my $class ( @{ $xml->{"owl:Class"} } ) {
+            push @owl_classes, $class;
+        }
 
-  # now iterate through existing terms and push them onto the new terms array,
-  # unless there is a corresponding term in the array
-  foreach my $term (@owl_classes) {
-   next if ( $in_new{ $term->{"rdf:about"} } );
-   push @new_terms, $term;
-  }
- }
+    # now iterate through existing terms and push them onto the new terms array,
+    # unless there is a corresponding term in the array
+        foreach my $term (@owl_classes) {
+            next if ( $in_new{ $term->{"rdf:about"} } );
+            push @new_terms, $term;
+        }
+    }
 
- #Here we go through each term and remove any annotation properties that are
- # empty
- if ($del_empty) {
-  delete_empty( \@new_terms );
- }
+    #Here we go through each term and remove any annotation properties that are
+    # empty
+    if ($del_empty) {
+        delete_empty( \@new_terms );
+    }
 
- $xml->{"owl:Class"} = \@new_terms;
+    $xml->{"owl:Class"} = \@new_terms;
 
- # here, we retrieve it an put it into the xml structure
- $xml = check_extra( $xml, $csvin_file );
- 
- # here , we look for equivalent classes
- $xml = check_equiv( $xml, $csvin_file );
+    # here, we retrieve it an put it into the xml structure
+    $xml = check_extra( $xml, $csvin_file );
 
- # now we copy to backup file before writing output
- my $backup_file = $owlout_file . ".bak";
- copy( $owlout_file, $backup_file );
+    # here , we look for equivalent classes
+    $xml = check_equiv( $xml, $csvin_file );
 
- my $xout = XMLout(
-  $xml,
-  KeyAttr    => [],
-  AttrIndent => 1,
-  XMLDecl    => 1,
-  RootName   => "rdf:RDF"
- );
+    # now we copy to backup file before writing output
+    my $backup_file = $owlout_file . ".bak";
+    copy( $owlout_file, $backup_file );
 
- # we must encode the string as utf8
- $xout = encode( "utf8", $xout );
+    my $xout = XMLout(
+        $xml,
+        KeyAttr    => [],
+        AttrIndent => 1,
+        XMLDecl    => 1,
+        RootName   => "rdf:RDF"
+    );
 
- open( OUTF, ">$owlout_file" );
- print OUTF $xout;
- close OUTF;
+    # we must encode the string as utf8
+    $xout = encode( "utf8", $xout );
 
- return 0;
+    open( OUTF, ">$owlout_file" );
+    print OUTF $xout;
+    close OUTF;
+
+    return 0;
 }
 
 # this will go through each term and delete any annotation properties that are empty
 sub delete_empty {
 
- my ($classes_ref) = @_;
+    my ($classes_ref) = @_;
 
- # iterating through each of the terms
- foreach my $term (@$classes_ref) {
+    # iterating through each of the terms
+    foreach my $term (@$classes_ref) {
 
-  # iterating over the annotation properties
-  foreach my $key ( keys %$term ) {
+        # iterating over the annotation properties
+        foreach my $key ( keys %$term ) {
 
-   #print Dumper $term->{$key};
-   #delete $term->{$key} unless $term->{$key};
+            #print Dumper $term->{$key};
+            #delete $term->{$key} unless $term->{$key};
 
-   next if ( ref( $term->{$key} ) ne "ARRAY" );
+            next if ( ref( $term->{$key} ) ne "ARRAY" );
 
-   # iterating through each element of the annotation property array
-   for ( my $i = 0 ; $i < @{ $term->{$key} } ; $i++ ) {
+            # iterating through each element of the annotation property array
+            for ( my $i = 0 ; $i < @{ $term->{$key} } ; $i++ ) {
 
-    # first we get the keys of the hash
-    my @keys = keys %{ $term->{$key}->[$i] };
-    my %keys;
+                # first we get the keys of the hash
+                my @keys = keys %{ $term->{$key}->[$i] };
+                my %keys;
 
-    # next we index them
-    foreach my $k (@keys) {
-     $keys{$k} = 1;
-    }
+                # next we index them
+                foreach my $k (@keys) {
+                    $keys{$k} = 1;
+                }
 
     # finally, we skip over the element if it does not contain a "content" field
-    next unless $keys{content};
+                next unless $keys{content};
 
-    # deleting the annotation property if the content is empty
-    delete $term->{$key}->[$i] unless $term->{$key}->[$i]->{content};
-   }
+                # deleting the annotation property if the content is empty
+                delete $term->{$key}->[$i]
+                  unless $term->{$key}->[$i]->{content};
+            }
 
-   # completely deleting the annotation property if the array is empty
-   delete $term->{$key} unless @{ $term->{$key} };
-  }
+            # completely deleting the annotation property if the array is empty
+            delete $term->{$key} unless @{ $term->{$key} };
+        }
 
-  #print Dumper $term;
+        #print Dumper $term;
 
- }
+    }
 
 }
 
 # this will extract all of the terms from an OWL file and put them into csv format
 sub create_csv_from_owl {
 
- my ( $owl_file, $out_file ) = @_;
+    my ( $owl_file, $out_file ) = @_;
 
- # first we read in the terms from the owl file
- my @owl_classes;
- my $xml = get_xml($owl_file);
- foreach my $class ( @{ $xml->{"owl:Class"} } ) {
+    # first we read in the terms from the owl file
+    my @owl_classes;
+    my $xml = get_xml($owl_file);
+    #print Dumper $xml;
+    $base_uri = $xml->{"xml:base"};
+    unless ($base_uri) {
+	warn ("no base URI specified in header\n");
+    }
+    #print "$base_uri\n";
+    foreach my $class ( @{ $xml->{"owl:Class"} } ) {
 
-  #print Dumper $class;
-  push @owl_classes, $class;
- }
+        #print Dumper $class;
+        push @owl_classes, $class;
+    }
 
- array2csv( \@owl_classes, $out_file );
+    array2csv( \@owl_classes, $out_file );
 
- return 0;
+    return 0;
 }
 
 # this does the work for create_csv_from_owl
 sub array2csv {
 
- my ( $a_ref, $outfile ) = @_;
+    my ( $a_ref, $outfile ) = @_;
 
- my %fields;
+    my %fields;
 
- foreach my $h_ref (@$a_ref) {
-  my @headers = keys %$h_ref;
-  my %row_fields;
-  foreach my $h (@headers) {
+    foreach my $h_ref (@$a_ref) {
+        my @headers = keys %$h_ref;
+        my %row_fields;
+        foreach my $h (@headers) {
 
-   # we skip over rdf:about since it is not an array
-   next if ( $h eq "rdf:about" );
-   next if ( $h eq "rdf:ID" );
-   next if ( $h eq "rdfs:subClassOf" );
-   next if ( $h eq "owl:equivalentClass" );
-   $row_fields{$h} = @{ $h_ref->{$h} };
-   if ( $fields{$h} ) {
-    if ( $row_fields{$h} > $fields{$h} ) {
-     $fields{$h} = $row_fields{$h};
+            # we skip over rdf:about since it is not an array
+            next if ( $h eq "rdf:about" );
+            next if ( $h eq "rdf:ID" );
+            next if ( $h eq "rdfs:subClassOf" );
+            next if ( $h eq "owl:equivalentClass" );
+            $row_fields{$h} = @{ $h_ref->{$h} };
+            if ( $fields{$h} ) {
+                if ( $row_fields{$h} > $fields{$h} ) {
+                    $fields{$h} = $row_fields{$h};
+                }
+            }
+            else {
+                $fields{$h} = @{ $h_ref->{$h} };
+            }
+        }
     }
-   }
-   else {
-    $fields{$h} = @{ $h_ref->{$h} };
-   }
-  }
- }
 
-# the @fields array holds the fields that make it into the CSV document
-# the @unique_fields array is identical to the @fields array, except it doesn't include redundant
-# field names
- my @fields =
-   ( "class", "label", "URI", "parent_class", "parent_label", "parent_URI" );
- my @unique_fields = @fields;
+    # the @fields array holds the fields that make it into the CSV document
+    # the @unique_fields array is identical to the @fields array, except it doesn't include redundant
+    # field names
+    my @fields =
+      ( "class", "label", "URI", "parent_class", "parent_label", "parent_URI" );
+    my @unique_fields = @fields;
 
- foreach my $f ( keys %fields ) {
-  next if ( $f eq "rdfs:subClassOf" );
-  next if ( $f eq "rdfs:label" );
-  next if ( $f eq "owl:equivalentClass" );
-  if ( $fields{$f} > 1 ) {
-   push @fields,        $f;
-   push @unique_fields, $f;
-   for ( my $i = 1 ; $i < $fields{$f} ; $i++ ) {
-    push @fields, $f;
-   }
-  }
-  else {
-   push @fields,        $f;
-   push @unique_fields, $f;
-  }
- }
+    foreach my $f ( keys %fields ) {
+        next if ( $f eq "rdfs:subClassOf" );
+        next if ( $f eq "rdfs:label" );
+        next if ( $f eq "owl:equivalentClass" );
+        if ( $fields{$f} > 1 ) {
+            push @fields,        $f;
+            push @unique_fields, $f;
+            for ( my $i = 1 ; $i < $fields{$f} ; $i++ ) {
+                push @fields, $f;
+            }
+        }
+        else {
+            push @fields,        $f;
+            push @unique_fields, $f;
+        }
+    }
 
- open( OUTF, ">$outfile" ) || die "Can't open file $outfile for writing";
+    open( OUTF, ">$outfile" ) || die "Can't open file $outfile for writing";
 
- my $header_row = join "\t", @fields;
- print OUTF $header_row, "\n";
+    my $header_row = join "\t", @fields;
+    print OUTF $header_row, "\n";
 
- my $inferred_classes;
- my $equivalent_classes;
+    my $inferred_classes;
+    my $equivalent_classes;
 
- # Now lets go through and print each line
- foreach my $h_ref (@$a_ref) {
+    # Now lets go through and print each line
+    foreach my $h_ref (@$a_ref) {
 
-  my @line = ();
+        my @line = ();
 
-  my $uri_string;
-  if ( $h_ref->{"rdf:about"} ) {
-   $uri_string = $h_ref->{"rdf:about"};
-  }
-  else {
-   $uri_string = $h_ref->{"rdf:ID"};
-  }
+        my $uri_string;
+        if ( $h_ref->{"rdf:about"} ) {
+            $uri_string = $h_ref->{"rdf:about"};
+        }
+        else {
+            $uri_string = $h_ref->{"rdf:ID"};
+        }
 
-  my $uri = URI->new($uri_string);
+        my $uri = URI->new($uri_string);
 
-  #print $uri->as_string;
+	# here we assume that if there is no scheme, we should use the base uri
+	# however, if no base_uri is found in the file, we will throw a warning and
+	# not append anything
+	
+	# if the uri doesn't include the full path
+	unless($uri->scheme) {
+	    #rint "not valid uri\n";
+	    $base_uri =~ s/\/$//;
+	    $uri = URI->new($base_uri . "/" . $uri_string);
+	    $uri_string = $uri->as_string;
+	}
 
-  my $parent_class_uri_string;
+
+        #print $uri->as_string;
+
+        my $parent_class_uri_string;
 
 # for each subclassof entry, we determine if it is a true subclass definition or some
 # funky owl
-  foreach my $c ( @{ $h_ref->{"rdfs:subClassOf"} } ) {
-   if ( $c->{"rdf:resource"} ) {
-    $parent_class_uri_string = $c->{"rdf:resource"};
-   }
-   elsif ( $c->{"owl:Class"} ) {
-    if ( $c->{"owl:Class"}->[0]->{"rdf:about"} ) {
-     $parent_class_uri_string = $c->{"owl:Class"}->[0]->{"rdf:about"};
-    }
-    elsif ( $c->{"owl:Class"}->[0]->{"rdf:ID"} ) {
-     $parent_class_uri_string = $c->{"owl:Class"}->[0]->{"rdf:ID"};
-    }
-    else {
-     $c->{id} = $uri_string;
-     push @{ $inferred_classes->{"class"} }, $c;
-    }
-   }
-   else {
+        foreach my $c ( @{ $h_ref->{"rdfs:subClassOf"} } ) {
+            if ( $c->{"rdf:resource"} ) {
+                $parent_class_uri_string = $c->{"rdf:resource"};
+            }
+            elsif ( $c->{"owl:Class"} ) {
+                if ( $c->{"owl:Class"}->[0]->{"rdf:about"} ) {
+                    $parent_class_uri_string =
+                      $c->{"owl:Class"}->[0]->{"rdf:about"};
+                }
+                elsif ( $c->{"owl:Class"}->[0]->{"rdf:ID"} ) {
+                    $parent_class_uri_string =
+                      $c->{"owl:Class"}->[0]->{"rdf:ID"};
+                }
+                else {
+                    $c->{id} = $uri_string;
+                    push @{ $inferred_classes->{"class"} }, $c;
+                }
+            }
+            else {
 
  # this means that there is some funky owl that cannot be represented as csv, so
  # we save these structures to another file (.xtra)
-    $c->{id} = $uri_string;
-    push @{ $inferred_classes->{"class"} }, $c;
-   }
-  }
+                $c->{id} = $uri_string;
+                push @{ $inferred_classes->{"class"} }, $c;
+            }
+        }
 
-  # now taking care of the equivalent classes
-  foreach my $c ( @{ $h_ref->{"owl:equivalentClass"} } ) {
-   $c->{id} = $uri_string;
-   push @{ $equivalent_classes->{"class"} }, $c;
-  }
+        # now taking care of the equivalent classes
+        foreach my $c ( @{ $h_ref->{"owl:equivalentClass"} } ) {
+            $c->{id} = $uri_string;
+            push @{ $equivalent_classes->{"class"} }, $c;
+        }
 
-  my $class = "";
+        my $class = "";
 
-  # now we take care of the static portion of the csv file
+        # now we take care of the static portion of the csv file
 
-  my @path = $uri->path_segments;
+        my @path = $uri->path_segments;
 
-  if ( $uri->fragment ) {
-   $class = $uri->fragment;
-  }
-  else {
-   $class = $path[-1];
-  }
-  my $label = "";
-  if ( ref( $h_ref->{"rdfs:label"} ) eq "ARRAY" ) {
-   if ( !ref( $h_ref->{"rdfs:label"}->[0] ) ) {
-    $label = $h_ref->{"rdfs:label"}->[0];
-   }
-   else {
-    $label = $h_ref->{"rdfs:label"}->[0]->{content};
-   }
-  }
+        if ( $uri->fragment ) {
+            $class = $uri->fragment;
+        }
+        else {
+            $class = $path[-1];
+        }
+        my $label = "";
+        if ( ref( $h_ref->{"rdfs:label"} ) eq "ARRAY" ) {
+            if ( !ref( $h_ref->{"rdfs:label"}->[0] ) ) {
+                $label = $h_ref->{"rdfs:label"}->[0];
+            }
+            else {
+                $label = $h_ref->{"rdfs:label"}->[0]->{content};
+            }
+        }
 
-  # Here we deal with empty label fields...we set them to the empty string
-  # instead of undef
-  unless ($label) {
-   $label = "";
-  }
+        # Here we deal with empty label fields...we set them to the empty string
+        # instead of undef
+        unless ($label) {
+            $label = "";
+        }
 
-  my $parent_class     = "";
-  my $parent_class_uri = URI->new($parent_class_uri_string);
-  my @ppath            = $parent_class_uri->path_segments;
+        my $parent_class     = "";
+        my $parent_class_uri = URI->new($parent_class_uri_string);
 
-  if ($parent_class_uri_string) {
-   if ( $parent_class_uri->fragment ) {
-    $parent_class = $parent_class_uri->fragment;
-   }
-   else {
-    $parent_class = $ppath[-1];
-   }
-  }
-  push @line,
-    ( $class, $label, $uri_string, $parent_class, "",
-   $parent_class_uri_string );
-
-  #print Dumper $h_ref;
-
-  # here we take care of the dynamic portion of the csv
-  foreach my $f ( @unique_fields[ 6 .. $#unique_fields ] ) {
-   for ( my $i = 0 ; $i < $fields{$f} ; $i++ ) {
-    my $value = "";
-    if ( $h_ref->{$f}->[$i] ) {
-     if ( ref( $h_ref->{$f}->[$i] ) ne "HASH" ) {
-			$value = $h_ref->{$f}->[$i];		    
-		    } elsif ($h_ref->{$f}->[$i]->{content}) {
-			$value = $h_ref->{$f}->[$i]->{content};
-		    }
-		}
-		$value =~ s/[\n\r]+/\\n/g;
-		push @line, $value;
-		
-	    }
+	# if the uri doesn't include the full path
+	unless($parent_class_uri->scheme) {
+	    #rint "not valid uri\n";
+	    $base_uri =~ s/\/$//;
+	    $parent_class_uri = URI->new($base_uri . "/" . $parent_class_uri_string);
+	    $parent_class_uri_string = $parent_class_uri->as_string;
 	}
 
-	#print "----------------\n";
-	#print Dumper @line;
-	my $line = join "\t", @line;
-	print OUTF $line, "\n";
+
+        my @ppath            = $parent_class_uri->path_segments;
+
+        if ($parent_class_uri_string) {
+            if ( $parent_class_uri->fragment ) {
+                $parent_class = $parent_class_uri->fragment;
+            }
+            else {
+                $parent_class = $ppath[-1];
+            }
+        }
+        push @line,
+          (
+            $class, $label, $uri_string, $parent_class, "",
+            $parent_class_uri_string
+          );
+
+        #print Dumper $h_ref;
+
+        # here we take care of the dynamic portion of the csv
+        foreach my $f ( @unique_fields[ 6 .. $#unique_fields ] ) {
+            for ( my $i = 0 ; $i < $fields{$f} ; $i++ ) {
+                my $value = "";
+                if ( $h_ref->{$f}->[$i] ) {
+                    if ( ref( $h_ref->{$f}->[$i] ) ne "HASH" ) {
+                        $value = $h_ref->{$f}->[$i];
+                    }
+                    elsif ( $h_ref->{$f}->[$i]->{content} ) {
+                        $value = $h_ref->{$f}->[$i]->{content};
+                    }
+                }
+                $value =~ s/[\n\r]+/\\n/g;
+                push @line, $value;
+
+            }
+        }
+
+        #print "----------------\n";
+        #print Dumper @line;
+        my $line = join "\t", @line;
+        print OUTF $line, "\n";
     }
 
-    # if we found any funky owl, it will be in the $inferred_classes hash in XMLin format
+# if we found any funky owl, it will be in the $inferred_classes hash in XMLin format
     if ($inferred_classes) {
 
-	 open (XTRA, ">$outfile.xtra");
-	 #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
-	 my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>0);
+        open( XTRA, ">$outfile.xtra" );
 
-	 $xout = encode("utf8",$xout);
+     #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
+        my $xout = XMLout(
+            $inferred_classes,
+            KeyAttr    => [],
+            AttrIndent => 1,
+            XMLDecl    => 0
+        );
 
-	 print XTRA $xout, "\n";
-	 close XTRA;
+        $xout = encode( "utf8", $xout );
+
+        print XTRA $xout, "\n";
+        close XTRA;
     }
-     # if we found any equivalent classes
+
+    # if we found any equivalent classes
     if ($equivalent_classes) {
 
-	 open (EQUIV, ">$outfile.equiv");
-	 #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
-	 my $xout = XMLout($equivalent_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>0);
+        open( EQUIV, ">$outfile.equiv" );
 
-	 $xout = encode("utf8",$xout);
+     #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
+        my $xout = XMLout(
+            $equivalent_classes,
+            KeyAttr    => [],
+            AttrIndent => 1,
+            XMLDecl    => 0
+        );
 
-	 print EQUIV $xout, "\n";
-	 close EQUIV;
+        $xout = encode( "utf8", $xout );
+
+        print EQUIV $xout, "\n";
+        close EQUIV;
     }
-    
-    
+
     close OUTF;
 
     return 0;
 
 }
 
-
 # This will check for the existence of extra subclass declarations that couldn't
 # be captured in csv format - they will exist in a file with a .xtra extension
 sub check_extra {
 
-    my ($xml, $csv_file) = @_;
+    my ( $xml, $csv_file ) = @_;
 
     # here we check to see if there are extra subclasses defined
     my $xtra_file = $csv_file . ".xtra";
-    if (-e $xtra_file) {
-	my $xtra = get_xml($xtra_file);
-	# iterating through each of the extra classes
-	foreach my $sc (@{$xtra->{class}}) {
-	    # iterating through each of the classes from the file
-	    foreach my $c (@{$xml->{"owl:Class"}}) {
-		#inserting the subclassof declarations if the id matches
-		if ($c->{"rdf:about"} eq $sc->{id}) {
-		    delete $sc->{id};
-		    push @{$c->{"rdfs:subClassOf"}}, $sc;
-		    last;
-		}
-	    }
-	}
+    if ( -e $xtra_file ) {
+        my $xtra = get_xml($xtra_file);
+
+        # iterating through each of the extra classes
+        foreach my $sc ( @{ $xtra->{class} } ) {
+
+            # iterating through each of the classes from the file
+            foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+
+                #inserting the subclassof declarations if the id matches
+                if ( $c->{"rdf:about"} eq $sc->{id} ) {
+                    delete $sc->{id};
+                    push @{ $c->{"rdfs:subClassOf"} }, $sc;
+                    last;
+                }
+            }
+        }
     }
 
     return $xml;
@@ -648,30 +702,32 @@ sub check_extra {
 # be captured in csv format - they will exist in a file with a .equiv extension
 sub check_equiv {
 
-    my ($xml, $csv_file) = @_;
+    my ( $xml, $csv_file ) = @_;
 
     # here we check to see if there are extra subclasses defined
     my $xtra_file = $csv_file . ".equiv";
-    if (-e $xtra_file) {
-	my $xtra = get_xml($xtra_file);
-	# iterating through each of the extra classes
-	foreach my $sc (@{$xtra->{class}}) {
-	    # iterating through each of the classes from the file
-	    foreach my $c (@{$xml->{"owl:Class"}}) {
-		#inserting the subclassof declarations if the id matches
-		if ($c->{"rdf:about"} eq $sc->{id}) {
-		    delete $sc->{id};
-		    push @{$c->{"owl:equivalentClass"}}, $sc;
-		    last;
-		}
-	    }
-	}
+    if ( -e $xtra_file ) {
+        my $xtra = get_xml($xtra_file);
+
+        # iterating through each of the extra classes
+        foreach my $sc ( @{ $xtra->{class} } ) {
+
+            # iterating through each of the classes from the file
+            foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+
+                #inserting the subclassof declarations if the id matches
+                if ( $c->{"rdf:about"} eq $sc->{id} ) {
+                    delete $sc->{id};
+                    push @{ $c->{"owl:equivalentClass"} }, $sc;
+                    last;
+                }
+            }
+        }
     }
 
     return $xml;
 
 }
-
 
 # this will convert the array to a hash
 sub array2hash {
@@ -680,8 +736,8 @@ sub array2hash {
 
     my %hash_rep;
 
-    # the first six elements will be hash keys and the remaining elements will be stored
-    # in an array of hashes, since there can be more than 1 per class
+# the first six elements will be hash keys and the remaining elements will be stored
+# in an array of hashes, since there can be more than 1 per class
 
     foreach my $e (@$array_ref) {
         my @elements;
@@ -689,20 +745,19 @@ sub array2hash {
             push @elements, $e->[$i];
         }
         $hash_rep{ $e->[0]->{class} } = {
-            class         => $e->[0]->{class},
-            label         => $e->[1]->{label},
-            URI           => $e->[2]->{URI},
-            parent_class  => $e->[3]->{parent_class},
-            parent_label  => $e->[4]->{parent_label},
-            parent_URI    => $e->[5]->{parent_URI},
-            elements      => \@elements
+            class        => $e->[0]->{class},
+            label        => $e->[1]->{label},
+            URI          => $e->[2]->{URI},
+            parent_class => $e->[3]->{parent_class},
+            parent_label => $e->[4]->{parent_label},
+            parent_URI   => $e->[5]->{parent_URI},
+            elements     => \@elements
         };
     }
 
     return %hash_rep;
 
 }
-
 
 # This function takes in a tab-delimited filename, reads in the file,
 # and returns and array of records with fields corresponding to the
@@ -713,10 +768,10 @@ sub read_delim {
     my ( $infile, $delim, $header_ref ) = @_;
 
     open( INF, "<$infile" ) || die("Cannot open file: $infile for reading\n");
-    $/=undef;
-    my $file=<INF>;
-    $/="\n";
-    my @lines=split /[\r\n]+/, $file;
+    $/ = undef;
+    my $file = <INF>;
+    $/ = "\n";
+    my @lines = split /[\r\n]+/, $file;
     close INF;
 
     my @headers = ();
