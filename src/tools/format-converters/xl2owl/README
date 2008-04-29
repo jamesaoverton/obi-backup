@@ -1,17 +1,22 @@
-xl2owl - Version 0.1
+xl2owl - Version 0.2
 
 Performs 2-way conversion between OWL format and tab-delimited text
 (for import into spreadsheet).
+
+PURL: http://purl.oclc.org/NET/jgbaum/xl2owl
+
+There is a web server implementing this tool at the above address.  This is the preferred
+method of use.
 
 SYNOPSIS
 
 Running from the source code:
 
-perl xl2owl.pl -a [options]
+perl xl2owl.pl -a [1:2] [options]
 
 Running an executable:
 
-xl2owl -a [options]
+xl2owl[.exe] -a [1:2] [options]
 
 
 OPTIONS
@@ -95,8 +100,8 @@ NOTES
 represented in the resulting tab-delimited file.  Instead, they will be
 preserved as XML in a file with a ".xtra" extension.  If the tab-delimited file
 is later converted back into OWL, this .xtra file will be read and the OWL
-restrictions will be incorporated into the resulting OWL file.  Additionally,
-owl:equivalentClass declarations will be stored in a .equiv file.
+restrictions will be incorporated into the resulting OWL file. Currently,  these
+include the following tags: owl:Restriction, owl:equivalentClass, & owl:disjointWith.
 
 3) In OWL, it is possible for a term to have more than one property with an
 identical name.  This presents a problem for representation in tab-delimited for
