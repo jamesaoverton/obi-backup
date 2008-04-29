@@ -1,4 +1,4 @@
-#!/opt/local/bin/perl -w
+#!/usr/bin/perl
 
 # Author: Jason Greenbaum (jgbaum@gmail.com)
 # Date: February 5, 2008
@@ -27,6 +27,8 @@
 # 4. Keep track of BFO class, in case OBI class disappears
 
 use strict;
+use warnings;
+
 use Data::Dumper;
 use Getopt::Long;
 use Switch;
@@ -62,9 +64,25 @@ GetOptions(
 
 my $USAGE = <<END;
 
+xl2owl - Version 0.2
+
+Performs 2-way conversion between OWL format and tab-delimited text
+(for import into spreadsheet).
+
+PURL: http://purl.oclc.org/NET/jgbaum/xl2owl
+
+There is a web server implementing this tool at the above address.  This is the preferred
+method of use.
+
 SYNOPSIS
 
-perl xl2owl.pl -a [options]
+Running from the source code:
+
+perl xl2owl.pl -a [1:2] [options]
+
+Running an executable:
+
+xl2owl[.exe] -a [1:2] [options]
 
 
 OPTIONS
@@ -73,34 +91,25 @@ OPTIONS
                     1 - Add terms to OWL file from tab-delimited text
                     2 - Create tab-delimited text from OWL
 
-    --tabin|-ti     tab-delimited input: Name of the tab-delimited file which to add/convert to 
-                    OWL output file
+    --tabin|-ti     tab-delimited input: Name of the tab-delimited file which
+                    to add/convert to OWL output file
 
-    --tabout|-to    tab-delimited output: Name of the tab-delimited file to create from the OWL
-                    input
+    --tabout|-to    tab-delimited output: Name of the tab-delimited file to
+                    create from the OWL input
 
-    --owlin|-oi	    OWL input: Name of the OWL file from which terms/headers should be extracted
+    --owlin|-oi	    OWL input: Name of the OWL file from which terms/headers
+                    should be extracted
 
     --owlout|-oo    OWL output: Name of the OWL file to create or add terms to
 
     --delimiter|-d  Delimiter used in the tab-delimited file [defalut = TAB]
 
-    --del_empty|-r  Do not include annotation properties that are empty in the owl output file
+    --del_empty|-r  Do not include annotation properties that are empty in the
+                    owl output file
 
     --replace       Replace all classes in OWL file with those from tab-delimited file
 
     --help|-h       Print this help screen
-
-
-The user must always specify an action.  Following is a brief descritpion of each action and their
-required and optional parameters.
-
-1) Add terms to an OWL file from tab-delimed file
-Required parameters: --tabin, --owlin, --owlout
-
-2) Create a tab-delimited file from OWL
-Required parameters: --owlin, --tabout
-
 
 END
 
@@ -150,10 +159,9 @@ sub mk_class {
     foreach my $key ( keys %$specs ) {
         next if ( $key eq "rdfs:subClassOf" );
         foreach my $val ( @{ $specs->{$key} } ) {
-            my $attr =
-              mk_attribute(
+            my $attr = mk_attribute(
                 ( name => $key, content => $val, "rdf:datatype" => $datatype )
-              );
+            );
             if ( $key eq "rdf:about" ) {
                 $attr = mk_attribute( ( name => $key, content => $val ) );
             }
@@ -318,7 +326,7 @@ sub insert_terms_from_csv {
     $xml = check_extra( $xml, $csvin_file );
 
     # here , we look for equivalent classes
-    $xml = check_equiv( $xml, $csvin_file );
+    #$xml = check_equiv( $xml, $csvin_file );
 
     # now we copy to backup file before writing output
     my $backup_file = $owlout_file . ".bak";
@@ -396,11 +404,13 @@ sub create_csv_from_owl {
     # first we read in the terms from the owl file
     my @owl_classes;
     my $xml = get_xml($owl_file);
+
     #print Dumper $xml;
     $base_uri = $xml->{"xml:base"};
     unless ($base_uri) {
-	warn ("no base URI specified in header\n");
+        warn("no base URI specified in header\n");
     }
+
     #print "$base_uri\n";
     foreach my $class ( @{ $xml->{"owl:Class"} } ) {
 
@@ -442,9 +452,9 @@ sub array2csv {
         }
     }
 
-    # the @fields array holds the fields that make it into the CSV document
-    # the @unique_fields array is identical to the @fields array, except it doesn't include redundant
-    # field names
+# the @fields array holds the fields that make it into the CSV document
+# the @unique_fields array is identical to the @fields array, except it doesn't include redundant
+# field names
     my @fields =
       ( "class", "label", "URI", "parent_class", "parent_label", "parent_URI" );
     my @unique_fields = @fields;
@@ -453,6 +463,7 @@ sub array2csv {
         next if ( $f eq "rdfs:subClassOf" );
         next if ( $f eq "rdfs:label" );
         next if ( $f eq "owl:equivalentClass" );
+        next if ( $f eq "owl:disjointWith" );
         if ( $fields{$f} > 1 ) {
             push @fields,        $f;
             push @unique_fields, $f;
@@ -473,6 +484,7 @@ sub array2csv {
 
     my $inferred_classes;
     my $equivalent_classes;
+    my $disjoint_classes;
 
     # Now lets go through and print each line
     foreach my $h_ref (@$a_ref) {
@@ -489,22 +501,22 @@ sub array2csv {
 
         my $uri = URI->new($uri_string);
 
-	# here we assume that if there is no scheme, we should use the base uri
-	# however, if no base_uri is found in the file, we will throw a warning and
-	# not append anything
-	
-	# if the uri doesn't include the full path
-	unless($uri->scheme) {
-	    #rint "not valid uri\n";
-	    $base_uri =~ s/\/$//;
-	    $uri = URI->new($base_uri . "/" . $uri_string);
-	    $uri_string = $uri->as_string;
-	}
+     # here we assume that if there is no scheme, we should use the base uri
+     # however, if no base_uri is found in the file, we will throw a warning and
+     # not append anything
 
+        # if the uri doesn't include the full path
+        unless ( $uri->scheme ) {
+
+            #rint "not valid uri\n";
+            $base_uri =~ s/\/$//;
+            $uri        = URI->new( $base_uri . "/" . $uri_string );
+            $uri_string = $uri->as_string;
+        }
 
         #print $uri->as_string;
 
-        my $parent_class_uri_string;
+        my $parent_class_uri_string = "";
 
 # for each subclassof entry, we determine if it is a true subclass definition or some
 # funky owl
@@ -541,6 +553,12 @@ sub array2csv {
             push @{ $equivalent_classes->{"class"} }, $c;
         }
 
+        # now taking care of the disjoint classes
+        foreach my $c ( @{ $h_ref->{"owl:disjointWith"} } ) {
+            $c->{id} = $uri_string;
+            push @{ $disjoint_classes->{"class"} }, $c;
+        }
+
         my $class = "";
 
         # now we take care of the static portion of the csv file
@@ -572,18 +590,21 @@ sub array2csv {
         my $parent_class     = "";
         my $parent_class_uri = URI->new($parent_class_uri_string);
 
-	# if the uri doesn't include the full path
-	unless($parent_class_uri->scheme) {
-	    #rint "not valid uri\n";
-	    $base_uri =~ s/\/$//;
-	    $parent_class_uri = URI->new($base_uri . "/" . $parent_class_uri_string);
-	    $parent_class_uri_string = $parent_class_uri->as_string;
-	}
-
-
-        my @ppath            = $parent_class_uri->path_segments;
-
         if ($parent_class_uri_string) {
+
+         # if the uri doesn't include the full path, we will append the base_uri
+            unless ( $parent_class_uri->scheme ) {
+
+                #print "p: $parent_class_uri_string\n";
+                #rint "not valid uri\n";
+                $base_uri =~ s/\/$//;
+                $parent_class_uri =
+                  URI->new( $base_uri . "/" . $parent_class_uri_string );
+                $parent_class_uri_string = $parent_class_uri->as_string;
+            }
+
+            my @ppath = $parent_class_uri->path_segments;
+
             if ( $parent_class_uri->fragment ) {
                 $parent_class = $parent_class_uri->fragment;
             }
@@ -620,50 +641,55 @@ sub array2csv {
         #print "----------------\n";
         #print Dumper @line;
         my $line = join "\t", @line;
-        print OUTF $line, "\n";
-    }
 
-# if we found any funky owl, it will be in the $inferred_classes hash in XMLin format
-    if ($inferred_classes) {
-
-        open( XTRA, ">$outfile.xtra" );
-
-     #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
-        my $xout = XMLout(
-            $inferred_classes,
-            KeyAttr    => [],
-            AttrIndent => 1,
-            XMLDecl    => 0
-        );
-
-        $xout = encode( "utf8", $xout );
-
-        print XTRA $xout, "\n";
-        close XTRA;
-    }
-
-    # if we found any equivalent classes
-    if ($equivalent_classes) {
-
-        open( EQUIV, ">$outfile.equiv" );
-
-     #my $xout = XMLout($inferred_classes,KeyAttr=>[],AttrIndent=>1,XMLDecl=>1);
-        my $xout = XMLout(
-            $equivalent_classes,
-            KeyAttr    => [],
-            AttrIndent => 1,
-            XMLDecl    => 0
-        );
-
-        $xout = encode( "utf8", $xout );
-
-        print EQUIV $xout, "\n";
-        close EQUIV;
+        #print OUTF $line, "\n";
+        print OUTF encode( "utf8", $line . "\n" );
     }
 
     close OUTF;
 
+    mk_extra( $outfile, $inferred_classes, $equivalent_classes,
+        $disjoint_classes );
+
     return 0;
+
+}
+
+# This will create the .xtra file containing the restrictions, equivalent classes, & disjoints
+sub mk_extra {
+
+    my ( $prefix, $r, $e, $d ) = @_;
+
+    return unless ( $r || $e || $d );
+
+    # first, lets create the hash references
+    my $xml;
+    
+    if ($r) {
+        $xml->{Restrictions}->[0] = $r;
+    }
+
+    if ($e) {
+        $xml->{Equivalents}->[0] = $e;
+    }
+    
+    if ($d) {
+        $xml->{Disjoints}->[0] = $d;
+    }
+
+    # now we encode it in XML
+    my $xout = XMLout(
+        $xml,
+        KeyAttr    => [],
+        AttrIndent => 1,
+        XMLDecl    => 0
+    );
+
+    $xout = encode( "utf8", $xout );
+
+    open( XTRA, ">$prefix.xtra" );
+    print XTRA $xout, "\n";
+    close XTRA;
 
 }
 
@@ -676,21 +702,71 @@ sub check_extra {
     # here we check to see if there are extra subclasses defined
     my $xtra_file = $csv_file . ".xtra";
     if ( -e $xtra_file ) {
+
         my $xtra = get_xml($xtra_file);
 
-        # iterating through each of the extra classes
-        foreach my $sc ( @{ $xtra->{class} } ) {
+        # If there are disjoints
+        if ( $xtra->{Disjoints}[0] ) {
+            my $disj = $xtra->{Disjoints}[0];
 
-            # iterating through each of the classes from the file
-            foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+            # iterating through each of the extra classes
+            foreach my $sc ( @{ $disj->{class} } ) {
 
-                #inserting the subclassof declarations if the id matches
-                if ( $c->{"rdf:about"} eq $sc->{id} ) {
-                    delete $sc->{id};
-                    push @{ $c->{"rdfs:subClassOf"} }, $sc;
-                    last;
+                # iterating through each of the classes from the file
+                foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+
+                    #inserting the subclassof declarations if the id matches
+                    if ( $c->{"rdf:about"} eq $sc->{id} ) {
+                        delete $sc->{id};
+                        push @{ $c->{"owl:disjointWith"} }, $sc;
+                        last;
+                    }
                 }
             }
+
+        }
+
+        # If there are equivalents
+        if ( $xtra->{Equivalents}[0] ) {
+            my $equiv = $xtra->{Equivalents}[0];
+
+            # iterating through each of the extra classes
+            foreach my $sc ( @{ $equiv->{class} } ) {    
+
+                # iterating through each of the classes from the file
+                foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+
+                    #inserting the subclassof declarations if the id matches
+                    if ( $c->{"rdf:about"} eq $sc->{id} ) {
+                        delete $sc->{id};
+                        push @{ $c->{"owl:equivalentClass"} }, $sc;
+                        last;
+                    }
+                }
+            }
+
+        }
+
+        # If there are restrictions
+        if ( $xtra->{Restrictions}[0] ) {
+
+            my $rest = $xtra->{Restrictions}[0];
+
+            # iterating through each of the extra classes
+            foreach my $sc ( @{ $rest->{class} } ) {
+
+                # iterating through each of the classes from the file
+                foreach my $c ( @{ $xml->{"owl:Class"} } ) {
+
+                    #inserting the subclassof declarations if the id matches
+                    if ( $c->{"rdf:about"} eq $sc->{id} ) {
+                        delete $sc->{id};
+                        push @{ $c->{"rdfs:subClassOf"} }, $sc;
+                        last;
+                    }
+                }
+            }
+
         }
     }
 
