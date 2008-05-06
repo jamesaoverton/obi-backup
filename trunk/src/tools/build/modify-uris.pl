@@ -34,7 +34,7 @@ my %tagReplacements;
 #  Finally, allocate new ids for alphanumeric names that need an id.
 
 sub computeReplacements
-{ open URILIST, "<uri-report.txt" or die("can't open uri list");
+{ open URILIST, "<../../tools/uri-report.txt" or die("can't open uri list");
   
   my @todo;
   while (<URILIST>)
@@ -53,14 +53,14 @@ if (defined $rewrite)
     else {$debug && print "don't bother ",$uri,"\n"}
   }
   close URILIST;
-  foreach (@todo)
+  foreach my $do (@todo)
   {
- my $newid = allocateNewId();
-    $uriReplacements{$_} = $idNamespace."OBI_".$newid;
+    my $newid = allocateNewId();
+    $uriReplacements{$do} = $idNamespace."OBI_".$newid;
     s/.*[\/#]//;
-    $tagReplacements{$_}="OBI_".$newid;
-    $debug && print $_,"=>",$uriReplacements{$_},"\n";
-print $_,"=>",$uriReplacements{$_},"\n";
+    $tagReplacements{$do}="OBI_".$newid;
+    $debug && print $do,"=>",$uriReplacements{$do},"\n";
+    print $do,"=>",$uriReplacements{$do},"\n";
 
   }
 }
