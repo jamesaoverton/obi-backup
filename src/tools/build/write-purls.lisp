@@ -1,4 +1,4 @@
-(defun write-purls (kb kbprev &optional (dest "obi:list-purls.xml"))
+(defun write-purls (kb kbprev &optional (dest "obi:build;list-purls.xml"))
   (let((kb-purls
 	(sparql
 	 '(:select (?thing) (:distinct t)

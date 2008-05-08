@@ -4,7 +4,10 @@
 (in-package :asdf)
 
 (setf (logical-pathname-translations "obi")
-      `(("**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*))
+      `(("branches;**;*.*" "obi:src;ontology;branches;**;*.*")
+	("build;**;*.*" "obi:build;**;*.*")
+	("lisp;**;*.*" "obi:src;tools;build;**;*.*")
+	("**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 3)
 						     '(:wild-inferiors))
 				  :name :wild
 				  :type :wild))))

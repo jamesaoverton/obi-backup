@@ -1,4 +1,4 @@
-(defun write-disjoints (&optional (kb (load-kb-jena :obi)) (path "obi:disjoints.owl"))
+(defun write-disjoints (&optional (kb (load-kb-jena :obi)) (path "obi:branches;disjoints.owl"))
   (loop 
      with parent2child = (make-hash-table)
      with labels = (make-hash-table)
