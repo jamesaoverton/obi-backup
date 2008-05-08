@@ -11,12 +11,17 @@ my $individualNamespace = "http://purl.obofoundry.org/obo/";
 
 my $debug = 0;
 
+my $trunk=$0;
+$trunk=~s|/src/tools.*||;
+my $branches = "$trunk/src/ontology/branches";
+my $build = "$trunk/build";
+
 # suck in obi.owl to know which files to process
-open TOP, "<obi.owl" or die("can't find obi.owl");
+open TOP, "<$branches/obi.owl" or die("can't find obi.owl");
 my @lines = <TOP>;
 close TOP;
 
-my $copydir = "newids/"; # write the rewritten files here
+my $copydir = "$build/newids/"; # write the rewritten files here
 
 my %used; # to record used numeric ids
 
@@ -34,7 +39,7 @@ my %tagReplacements;
 #  Finally, allocate new ids for alphanumeric names that need an id.
 
 sub computeReplacements
-{ open URILIST, "<../../tools/uri-report.txt" or die("can't open uri list");
+{ open URILIST, "<$build/uri-report.txt" or die("can't open uri list");
   
   my @todo;
   while (<URILIST>)
@@ -130,8 +135,9 @@ sub allocateNewId
 sub replacenames
 { my $count=1;
   foreach my $part ( @obiParts) {
-      my $path = "$part".".owl";
+      my $path = "$branches/$part".".owl";
       open PART, "<$path" or die("Trouble loading $path");
+      if (! -e $copydir) { mkdir($copydir,0777) };
       my $copypath = $copydir.$part.".owl";
       open PARTCOPY, ">$copypath" or die ("Trouble writing $path");
       my $copy;
