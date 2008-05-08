@@ -2,13 +2,26 @@
 
 #!/bin/sh
 
-#starting configuration: create a directory containing the compiled OBIReleaseClient.java (might be worth getting from SVN or adding a javac OBIReleaseClient.java) and the OBIrelease.sh script
-
+#starting configuration: create a directory containing the OBIrelease.sh script (e.g. obireleases)
 
 
 ######################################################## VARIABLES YOU NEED TO MODIFY ###############################################
 #you need to have the OBITools.jar in your classpath and to download lsw
-#TODO try and get them directly from SVN 
+# let's get them from SVN and manage that for you
+
+
+#get lsw
+svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
+#get OBITools.jar
+svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+
+
+#######################################################################################################################################
+
+############################################################## BASIC SETUP ########################################################
+
+
+
 
 #the file where to write the merge
 NEWFILEPATH="UncheckedMerge.owl"
@@ -18,17 +31,10 @@ NEWFILEPATHPROTEGE="UncheckedMergePROTEGE.owl"
 HERE=`pwd`
 LSW_PATH=$HERE/svn-lsw/
 
-#get lsw
-svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
-#get OBITools.jar
-svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+
+
 export CLASSPATH=$HERE:$HERE/OBITools/OBITools.jar
 echo $CLASSPATH
-
-#######################################################################################################################################
-
-############################################################## BASIC SETUP ########################################################
-
 
 #we create a directory for this release - its name is the date
 CUR_DATE=`date +%Y%m%d`
@@ -36,26 +42,41 @@ mkdir $CUR_DATE
 
 #let's go there
 cd $CUR_DATE
+
+OBI_DIR_PATH=`pwd`/src/ontology/branches/
+echo "OBI DIR PATH is set to" $OBI_DIR_PATH 
+
+EXTERNAL_DIR_PATH=`pwd`/src/ontology/external/
+echo "EXTERNAL DIR PATH is set to" $EXTERNAL_DIR_PATH 
+
+OBI_TOOLS_PATH=`pwd`/src/tools/
+echo "OBI TOOLS PATH is set to" $OBI_TOOLS_PATH 
+
+OBI_CODE_PATH=`pwd`/src/tools/build/
+echo "OBI CODE PATH is set to" $OBI_CODE_PATH 
+
 # we do a fresh svn checkout
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches .
-# we need the sourcecodes as well - these have been moved during SVN re organization
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./sourcecodes
+# we need only the branches and external files
+# we are not taking spreadsheets and others
+svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
+svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
+# we need the sourcecodes as well 
+svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
+echo "SVN checked out"
+
 
 #javac the client
-javac ./sourcecodes/OBIReleaseClient.java
-# we need the external files as well - these have been moved during SVN re organization
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external ./external
+javac $OBI_CODE_PATH/OBIReleaseClient.java 
+echo "java client compiled"
+
+
+
 
 
 #we need to copy obi.owl.template to obi.owl
 #needed by modify-uris.pl
-cp ./obi.owl.template ./obi.owl
-
-############################################################### OBIL.OWL #########################################################
-#we define the path to the ontology (local copy) for lisp to use
-#basic building of an obil.owl file - could probably be moved somewhere else :-)
-
-OBI_DIR_PATH=`pwd`
+cp $OBI_DIR_PATH/obi.owl.template $OBI_DIR_PATH/obi.owl
+echo "obi.owl.template copied to obi.owl"
 
 
 echo "<?xml version=\"1.0\"?>
@@ -73,15 +94,15 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Biomaterial.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataFormatSpecification.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/bfo11.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/ro.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/ro_bfo_bridge11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/protege.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/protege-dc.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
@@ -90,40 +111,42 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   </owl:Ontology>
-</rdf:RDF>" > ./obil.owl
+</rdf:RDF>" > ./src/ontology/branches/obil.owl
+
+echo "obil.owl created"
 
 #we need the initial obi branches to modify their URIs and IDs
 OBI_OWL_PATH=${OBI_DIR_PATH}/obil.owl
 
 
-
-
 ###################################################################################################################################
+
 
 ############################################################### URI-REPORT #########################################################
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the uri-report.txt file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_DIR_PATH}/sourcecodes/uri-report.lisp --load owl/standard-ontologies.lisp --eval "(list-obi-uris \"${OBI_DIR_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/uri-report.lisp --load owl/standard-ontologies.lisp --eval "(list-obi-uris \"${OBI_CODE_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
+
+echo "uri-report.txt created"
 
 
-#we create the directory that will host the modified branch files
-mkdir newids
-#the modify-uris perl script will normalize OBI IDS, update curation_status strings to instances
-#and write the result in the newids directory created above
-perl ./sourcecodes/modify-uris.pl
+perl  $OBI_CODE_PATH/modify-uris.pl
 
-###################################################################################################################################
+
 
 ################################################## OPTIONAL - NEWIDS CHECK #######################################################
 
 #files needed to open the newids files in protege
 #not required -but I like checking that the files I will commit will be ok for others
-cp ./obi.owl ./newids/obi.owl
-cp ./obi.repository.template ./newids/obi.repository
-cp -R ./external ./newids/external
-#cp -R ./bfo ./newids/bfo
-#at this point you should be able to open $CUR_DATE/newids/obi.owl in protege (if you are under *nix system - otherwise you need the obi.repository.template.pc file and to modify it)
+cp $OBI_DIR_PATH/obi.owl $OBI_CODE_PATH/newids/obi.owl
+cp $OBI_DIR_PATH/obi.repository.template $OBI_CODE_PATH/newids/obi.repository
+mkdir $OBI_CODE_PATH/external/
+echo "created $OBI_CODE_PATH/external/ directory"
+cp  $EXTERNAL_DIR_PATH/* $OBI_CODE_PATH/external/
+echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_CODE_PATH/newids/obi.owl"
+#at this point you should be able to open $OBI_CODE_PATH/newids/obi.owl in protege (if you are under *nix system - otherwise you need the obi.repository.template.pc file and to modify it)
 ###################################################################################################################################
+
 
 ################################################## DATE AND REVISION NUMBER #######################################################
 #note: we need to replace the date in TheRest.owl to do so, or we will get a consistency error from the reasoner
@@ -131,22 +154,21 @@ cp -R ./external ./newids/external
 #we replace the date and the version number in TheRest.owl
 TODAY=`date "+%G-%m-%d"`
 
-perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" TheRest.owl
+perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_CODE_PATH/newids/TheRest.owl
+echo "date replaced in $OBI_CODE_PATH/newids/TheRest.owl"
 
-SVN_REVISION_NUMBER=`./sourcecodes/get-svn-revision.sh`
+############################################## ugly path hack - for whatever reason the get-revision-number.sh script doesn't like to be called at the root (maybe some problem with the size of svn...?)
+cd $OBI_CODE_PATH
+SVN_REVISION_NUMBER=`./get-svn-revision.sh`
+echo "got SVN revision number" $SVN_REVISION_NUMBER
+cd $HERE
 
-perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" TheRest.owl
-
+perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" $OBI_CODE_PATH/newids/TheRest.owl
+echo "revision number replaced in $OBI_CODE_PATH/newids/TheRest.owl"
 ###################################################################################################################################
-
-########################################################### CHECKS ###############################################################
-#we now want to load qc-queries.lisp and perform a few checks on the files
 
 
 ########################################################## DISJOINTS ###############################################################
-#finally, we create the disjoints.owl file
-#we want to create the disjoints on the newids files (otherwise we'll get old ids in there)
-
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
     xmlns=\"http://purl.obofoundry.org/obo/\"
@@ -155,22 +177,22 @@ echo "<?xml version=\"1.0\"?>
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
-    xml:base=\"file://$OBI_DIR_PATH/newids/\">
+    xml:base=\"file://$OBI_CODE_PATH/newids/\">
   <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
     <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Biomaterial.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataFormatSpecification.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/bfo11.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/ro.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/ro_bfo_bridge11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/protege.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"./external/protege-dc.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
@@ -179,14 +201,17 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   </owl:Ontology>
-</rdf:RDF>" > $OBI_DIR_PATH/newids/obil.owl
+</rdf:RDF>" > $OBI_CODE_PATH/newids/obil.owl
 
-OBI_OWL_PATH_NEW=${OBI_DIR_PATH}/newids/obil.owl
+OBI_OWL_PATH_NEW=$OBI_CODE_PATH/newids/obil.owl
+echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_DIR_PATH}/sourcecodes/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_DIR_PATH}/newids/disjoints.owl\")" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_CODE_PATH}/newids/disjoints.owl\")" --eval "(quit)"
 
+echo "disjoints.owl created"
 ###################################################################################################################################
+
 
 ###################################################################################################################################
 #                                     ALL FILES READY AND MODIFIED FOR MERGE AT THIS POINT                                        #
@@ -197,16 +222,15 @@ perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_DIR
 # and second the physical location of the OBI files to be merged.
 
 # we go back to the parent directory
-cd ..
+cd $HERE
 
-HERE2=`pwd`
-echo $HERE2
- cp $HERE2/$CUR_DATE/sourcecodes/OBIReleaseClient.class .
+
+ cp $OBI_CODE_PATH/OBIReleaseClient.class .
 
 
 #launch the merger itself
 #the jar needs to be in your classpath
-RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $CUR_DATE/newids/`
+RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_CODE_PATH/newids/`
 
 # print out the result
 echo "result is $RESULT"
@@ -229,7 +253,11 @@ then
 exit 1
 fi
 
-#TODO: generate purls
+########################################################   TODO    #############################################################
+## generate purls
+## play with qc-queries
+
+###################################################################################################################################
 
 
 
