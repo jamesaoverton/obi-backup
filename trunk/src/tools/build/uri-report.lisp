@@ -2,9 +2,13 @@
   (let ((seen (make-hash-table)))
     (with-open-file (f dest :direction :output :if-does-not-exist :create :if-exists :supersede)
       (loop for class in
-	   (sparql '(:select (?class) (:distinct t) (?class !rdfs:subClassOf !owl:Thing))  :use-reasoner :jena :kb kb :flatten t)
+	   (sparql '(:select (?class) (:distinct t)
+		     (?class !rdfs:subClassOf !owl:Thing))
+		   :use-reasoner :jena :kb kb :flatten t)
 	   do (format f "Class ~a~%" (uri-full class))
 	   (setf (gethash class seen) t))
+      (print-db (hash-table-size seen))
+      (break)
       (loop for proptype in (list !owl:AnnotationProperty !owl:DatatypeProperty !owl:ObjectProperty )
 	 for name = (subseq (format nil "~a" proptype) 5)
 	 do
