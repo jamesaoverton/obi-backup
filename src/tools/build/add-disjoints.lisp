@@ -1,3 +1,6 @@
+(defun build-disjoints ()
+  (write-disjoints (load-kb-jena "obi:newids;obil.owl") "obi:newids;disjoints.owl"))
+
 (defun write-disjoints (&optional (kb (load-kb-jena :obi)) (path "obi:branches;disjoints.owl"))
   (loop 
      with parent2child = (make-hash-table)
@@ -57,7 +60,8 @@
 			       ,all-disjoints
 			     (write-rdfxml disjoints ,path)))
 	    )
-	 )))
+	 ))
+  (truename path))
 
 (defun defined-classes (&optional (kb (load-kb-jena :obi)))
   (sparql '(:select (?class) (:distinct t)
