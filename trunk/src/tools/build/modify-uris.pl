@@ -1,5 +1,5 @@
 use strict;
-
+use File::Copy;
 # Rewrite the old OBI namespace into new purls. Beware UGLY HACKS below
 
 # Policy here. TBD.
@@ -140,6 +140,8 @@ sub replacenames
       my $path = "$branches/$part".".owl";
       open PART, "<$path" or die("Trouble loading $path");
       if (! -e $copydir) { mkdir($copydir,0777) };
+      copy("$branches/obil.owl", "$copydir/obil.owl") or die("Couldn't copy obil.owl");
+      copy("$branches/obid.owl", "$copydir/obid.owl") or die("Couldn't copy obid.owl");
       my $copypath = $copydir.$part.".owl";
       open PARTCOPY, ">$copypath" or die ("Trouble writing $path");
       my $copy;
