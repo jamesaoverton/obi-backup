@@ -11,7 +11,9 @@ my $individualNamespace = "http://purl.obofoundry.org/obo/";
 
 my $debug = 0;
 
-my $trunk=$0;
+my $cwd=`pwd`;
+chop $cwd;
+my $trunk=$cwd."/".$0;
 $trunk=~s|/src/tools.*||;
 my $branches = "$trunk/src/ontology/branches";
 my $build = "$trunk/build";
