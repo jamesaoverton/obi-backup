@@ -16,6 +16,7 @@ chop $cwd;
 my $trunk=$cwd."/".$0;
 $trunk=~s|/src/tools.*||;
 my $branches = "$trunk/src/ontology/branches";
+my $external = "$trunk/src/ontology/external";
 my $build = "$trunk/build";
 
 # suck in obi.owl to know which files to process
@@ -24,6 +25,7 @@ my @lines = <TOP>;
 close TOP;
 
 my $copydir = "$build/newids/"; # write the rewritten files here
+my $copyexternal = "$build/external/";
 
 my %used; # to record used numeric ids
 
@@ -140,8 +142,10 @@ sub replacenames
       my $path = "$branches/$part".".owl";
       open PART, "<$path" or die("Trouble loading $path");
       if (! -e $copydir) { mkdir($copydir,0777) };
-      copy("$branches/obil.owl", "$copydir/obil.owl") or die("Couldn't copy obil.owl");
+      if (! -e "$copyexternal") { mkdir("$copyexternal",0777) };
       copy("$branches/obid.owl", "$copydir/obid.owl") or die("Couldn't copy obid.owl");
+      foreach my $file qw(bfo11.owl ro.owl ro_bfo_bridge11.owl protege.owl protege-dc.owl)
+      { copy("$external/$file", "$copyexternal/$file") or die("Couldn't copy $file");}
       my $copypath = $copydir.$part.".owl";
       open PARTCOPY, ">$copypath" or die ("Trouble writing $path");
       my $copy;
