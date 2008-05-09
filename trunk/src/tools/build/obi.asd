@@ -13,6 +13,10 @@
 							'("build"))
 				     :name :wild
 				     :type :wild))
+	("newids;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 3)
+							'("build" "newids"))
+				     :name :wild
+				     :type :wild))
 	("lisp;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 3)
 						       '("src" "tools" "build"))
 				    :name :wild
