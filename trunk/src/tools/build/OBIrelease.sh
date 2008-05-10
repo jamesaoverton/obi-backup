@@ -55,6 +55,12 @@ echo "OBI TOOLS PATH is set to" $OBI_TOOLS_PATH
 OBI_CODE_PATH=`pwd`/src/tools/build/
 echo "OBI CODE PATH is set to" $OBI_CODE_PATH 
 
+OBI_BUILD_PATH=`pwd`/build/
+echo "OBI BUILD PATH is set to" $OBI_BUILD_PATH 
+
+mkdir $OBI_BUILD_PATH
+
+
 # we do a fresh svn checkout
 # we need only the branches and external files
 # we are not taking spreadsheets and others
@@ -125,12 +131,13 @@ OBI_OWL_PATH=${OBI_DIR_PATH}/obil.owl
 ############################################################### URI-REPORT #########################################################
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the uri-report.txt file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/uri-report.lisp --load owl/standard-ontologies.lisp --eval "(list-obi-uris \"${OBI_CODE_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/uri-report.lisp --load owl/standard-ontologies.lisp --eval "(list-obi-uris \"${OBI_BUILD_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
 
 echo "uri-report.txt created"
 
+echo `pwd`
 
-perl  $OBI_CODE_PATH/modify-uris.pl
+perl  ./src/tools/build/modify-uris.pl
 
 
 
@@ -138,13 +145,13 @@ perl  $OBI_CODE_PATH/modify-uris.pl
 
 #files needed to open the newids files in protege
 #not required -but I like checking that the files I will commit will be ok for others
-cp $OBI_DIR_PATH/obi.owl $OBI_CODE_PATH/newids/obi.owl
-cp $OBI_DIR_PATH/obi.repository.template $OBI_CODE_PATH/newids/obi.repository
-mkdir $OBI_CODE_PATH/external/
+cp $OBI_DIR_PATH/obi.owl $OBI_BUILD_PATH/newids/obi.owl
+cp $OBI_DIR_PATH/obi.repository.template $OBI_BUILD_PATH/newids/obi.repository
+mkdir $OBI_BUILD_PATH/external/
 echo "created $OBI_CODE_PATH/external/ directory"
-cp  $EXTERNAL_DIR_PATH/* $OBI_CODE_PATH/external/
-echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_CODE_PATH/newids/obi.owl"
-#at this point you should be able to open $OBI_CODE_PATH/newids/obi.owl in protege (if you are under *nix system - otherwise you need the obi.repository.template.pc file and to modify it)
+cp  $EXTERNAL_DIR_PATH/* $OBI_BUILD_PATH/external/
+echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BUILD_PATH/newids/obi.owl"
+#at this point you should be able to open $OBI_BUILD_PATH/newids/obi.owl in protege (if you are under *nix system - otherwise you need the obi.repository.template.pc file and to modify it)
 ###################################################################################################################################
 
 
@@ -154,8 +161,8 @@ echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_CO
 #we replace the date and the version number in TheRest.owl
 TODAY=`date "+%G-%m-%d"`
 
-perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_CODE_PATH/newids/TheRest.owl
-echo "date replaced in $OBI_CODE_PATH/newids/TheRest.owl"
+perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_BUILD_PATH/newids/TheRest.owl
+echo "date replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
 
 ############################################## ugly path hack - for whatever reason the get-revision-number.sh script doesn't like to be called at the root (maybe some problem with the size of svn...?)
 cd $OBI_CODE_PATH
@@ -163,8 +170,8 @@ SVN_REVISION_NUMBER=`./get-svn-revision.sh`
 echo "got SVN revision number" $SVN_REVISION_NUMBER
 cd $HERE
 
-perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" $OBI_CODE_PATH/newids/TheRest.owl
-echo "revision number replaced in $OBI_CODE_PATH/newids/TheRest.owl"
+perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" $OBI_BUILD_PATH/newids/TheRest.owl
+echo "revision number replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
 ###################################################################################################################################
 
 
@@ -177,7 +184,7 @@ echo "<?xml version=\"1.0\"?>
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
-    xml:base=\"file://$OBI_CODE_PATH/newids/\">
+    xml:base=\"file://$OBI_BUILD_PATH/newids/\">
   <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
     <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
@@ -201,13 +208,13 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   </owl:Ontology>
-</rdf:RDF>" > $OBI_CODE_PATH/newids/obil.owl
+</rdf:RDF>" > $OBI_BUILD_PATH/newids/obil.owl
 
-OBI_OWL_PATH_NEW=$OBI_CODE_PATH/newids/obil.owl
+OBI_OWL_PATH_NEW=$OBI_BUILD_PATH/newids/obil.owl
 echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_CODE_PATH}/newids/disjoints.owl\")" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(quit)"
 
 echo "disjoints.owl created"
 ###################################################################################################################################
@@ -230,7 +237,7 @@ cd $HERE
 
 #launch the merger itself
 #the jar needs to be in your classpath
-RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_CODE_PATH/newids/`
+RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
 
 # print out the result
 echo "result is $RESULT"
