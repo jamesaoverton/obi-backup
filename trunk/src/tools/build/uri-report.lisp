@@ -7,8 +7,6 @@
 		   :use-reasoner :jena :kb kb :flatten t)
 	   do (format f "Class ~a~%" (uri-full class))
 	   (setf (gethash class seen) t))
-      (print-db (hash-table-size seen))
-      (break)
       (loop for proptype in (list !owl:AnnotationProperty !owl:DatatypeProperty !owl:ObjectProperty )
 	 for name = (subseq (format nil "~a" proptype) 5)
 	 do
@@ -22,4 +20,5 @@
 		     (not (gethash instance seen))
 		     (not (#"matches" (uri-full instance) "urn:blank.*"))
 		     (not (#"matches" (uri-full instance) ".*owl$")))
-	   do (format f "Individual ~a~%"  (uri-full instance))))))
+	   do (format f "Individual ~a~%"  (uri-full instance)))
+      (truename dest))))
