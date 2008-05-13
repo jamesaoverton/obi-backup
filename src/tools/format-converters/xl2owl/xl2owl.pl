@@ -1,17 +1,23 @@
 #!/usr/bin/perl
 
 # Author: Jason Greenbaum (jgbaum@gmail.com)
-# Date: February 5, 2008
-# Web interface available at: http://70.167.3.46/~jgbaum/xl2owl
+# Web interface available at: http://purl.oclc.org/NET/jgbaum/xl2owl
 # username & password: OBI
 
 # Release Notes
+# 
+# Version 0.3 - May 13, 2008
+# * Fixed handling of OBI_0000281 - curation_status instances
+#
 # Version 0.2 - April 25, 2008
 # * Fixed URI handling for purls
 # * URL in delimited text format now includes the entire URL, including the class ID
 # * now handles owl:equivalentClass tags by placing them in a separate text file with
 #   a .equiv extension - these will be read in during conversion back to owl and placed under
 #   their respective class
+#
+# Version 0.1 - February 25, 2008
+# * Initial release
 
 # Descritpion
 #
@@ -153,18 +159,36 @@ sub mk_class {
     my $specs = shift;
     my $term;    # this is the class object that will be returned
 
-    my $datatype = "http://www.w3.org/2001/XMLSchema#string";
+#    my $datatype = "http://www.w3.org/2001/XMLSchema#string";
 
     # iterating through the specifications to create the term
     foreach my $key ( keys %$specs ) {
         next if ( $key eq "rdfs:subClassOf" );
         foreach my $val ( @{ $specs->{$key} } ) {
-            my $attr = mk_attribute(
-                ( name => $key, content => $val, "rdf:datatype" => $datatype )
-            );
+            my $attr;
             if ( $key eq "rdf:about" ) {
                 $attr = mk_attribute( ( name => $key, content => $val ) );
+            } elsif ($key eq "OBI_0000281") {
+		# first lets test if the value is defined.  If not, we advance to the next value
+		# Note that handling of this should be much cleaner
+		#print Dumper $val;
+		#print qq/$key,$val->{"rdf:resource"},/;
+		if ($val->{"rdf:resource"}) {
+		    #print "in\n";
+		    $attr = mk_attribute( (name => $key, "rdf:resource" => $val ));
+		} else {
+		    next;
+		}
+            } else {
+               $attr = mk_attribute(
+                ( name => $key, content => $val, "xml:lang" => "en" )
+            );
+                
             }
+            # OBI curation status requires special consideration
+            #if ( $key eq "OBI_0000281" ) {
+            ##    $attr = mk_attribute(( name => "OBI_0000281", "rdf:resource" => $val));
+            #}            
             $term = add_attribute_to_term( $term, $attr );
         }
     }
@@ -213,11 +237,20 @@ sub term2xml {
         $class_def->{"rdfs:subClassOf"} = [ $term->{parent_URI} ];
     }
 
+    #print Dumper $term;
+
     # now taking care of the remaining elments
     for ( my $i = 0 ; $i < @{ $term->{elements} } ; $i++ ) {
         my ( $key, $value ) = ( each %{ $term->{elements}->[$i] } );
-        push @{ $class_def->{$key} }, $value;
+        if ($key eq "OBI_0000281") {
+            push @{$class_def->{OBI_0000281}}, {"rdf:resource" => $value};
+            #print "$value\n"     
+        } else {
+            push @{ $class_def->{$key} }, $value;
+        }
     }
+
+    #print Dumper $class_def;
 
     return mk_class($class_def);
 }
@@ -231,8 +264,10 @@ sub add_attribute_to_term {
 
     if ( keys %{ $attr->{values} } > 1 ) {
         push @{ $class->{$attr_name} }, $attr->{values};
-    }
-    else {
+       
+    } elsif ($attr->{name} eq "OBI_0000281") {
+        $class->{$attr_name} = $attr->{values}->{"rdf:resource"};
+    } else {
         $class->{$attr_name} = $attr->{values}->{content};
     }
 
@@ -445,8 +480,7 @@ sub array2csv {
                 if ( $row_fields{$h} > $fields{$h} ) {
                     $fields{$h} = $row_fields{$h};
                 }
-            }
-            else {
+            } else {
                 $fields{$h} = @{ $h_ref->{$h} };
             }
         }
@@ -470,8 +504,7 @@ sub array2csv {
             for ( my $i = 1 ; $i < $fields{$f} ; $i++ ) {
                 push @fields, $f;
             }
-        }
-        else {
+        } else {
             push @fields,        $f;
             push @unique_fields, $f;
         }
@@ -494,8 +527,7 @@ sub array2csv {
         my $uri_string;
         if ( $h_ref->{"rdf:about"} ) {
             $uri_string = $h_ref->{"rdf:about"};
-        }
-        else {
+        } else {
             $uri_string = $h_ref->{"rdf:ID"};
         }
 
@@ -523,22 +555,18 @@ sub array2csv {
         foreach my $c ( @{ $h_ref->{"rdfs:subClassOf"} } ) {
             if ( $c->{"rdf:resource"} ) {
                 $parent_class_uri_string = $c->{"rdf:resource"};
-            }
-            elsif ( $c->{"owl:Class"} ) {
+            } elsif ( $c->{"owl:Class"} ) {
                 if ( $c->{"owl:Class"}->[0]->{"rdf:about"} ) {
                     $parent_class_uri_string =
                       $c->{"owl:Class"}->[0]->{"rdf:about"};
-                }
-                elsif ( $c->{"owl:Class"}->[0]->{"rdf:ID"} ) {
+                } elsif ( $c->{"owl:Class"}->[0]->{"rdf:ID"} ) {
                     $parent_class_uri_string =
                       $c->{"owl:Class"}->[0]->{"rdf:ID"};
-                }
-                else {
+                } else {
                     $c->{id} = $uri_string;
                     push @{ $inferred_classes->{"class"} }, $c;
                 }
-            }
-            else {
+            } else {
 
  # this means that there is some funky owl that cannot be represented as csv, so
  # we save these structures to another file (.xtra)
@@ -567,16 +595,14 @@ sub array2csv {
 
         if ( $uri->fragment ) {
             $class = $uri->fragment;
-        }
-        else {
+        } else {
             $class = $path[-1];
         }
         my $label = "";
         if ( ref( $h_ref->{"rdfs:label"} ) eq "ARRAY" ) {
             if ( !ref( $h_ref->{"rdfs:label"}->[0] ) ) {
                 $label = $h_ref->{"rdfs:label"}->[0];
-            }
-            else {
+            } else {
                 $label = $h_ref->{"rdfs:label"}->[0]->{content};
             }
         }
@@ -607,8 +633,7 @@ sub array2csv {
 
             if ( $parent_class_uri->fragment ) {
                 $parent_class = $parent_class_uri->fragment;
-            }
-            else {
+            } else {
                 $parent_class = $ppath[-1];
             }
         }
@@ -624,17 +649,22 @@ sub array2csv {
         foreach my $f ( @unique_fields[ 6 .. $#unique_fields ] ) {
             for ( my $i = 0 ; $i < $fields{$f} ; $i++ ) {
                 my $value = "";
-                if ( $h_ref->{$f}->[$i] ) {
+
+            # first we check if it is the curation_status field as this requires
+            # special consideration
+                if ( $f eq "OBI_0000281" ) {
+                    $value = $h_ref->{$f}[$i]{"rdf:resource"} ? $h_ref->{$f}[$i]{"rdf:resource"} : "";
+                } elsif ( $h_ref->{$f}->[$i] ) {
                     if ( ref( $h_ref->{$f}->[$i] ) ne "HASH" ) {
                         $value = $h_ref->{$f}->[$i];
-                    }
-                    elsif ( $h_ref->{$f}->[$i]->{content} ) {
+                    } elsif ( $h_ref->{$f}->[$i]->{content} ) {
                         $value = $h_ref->{$f}->[$i]->{content};
+                    } else {    
+                        $value = $h_ref->{$f}->[$i];
                     }
                 }
                 $value =~ s/[\n\r]+/\\n/g;
                 push @line, $value;
-
             }
         }
 
@@ -664,7 +694,7 @@ sub mk_extra {
 
     # first, lets create the hash references
     my $xml;
-    
+
     if ($r) {
         $xml->{Restrictions}->[0] = $r;
     }
@@ -672,7 +702,7 @@ sub mk_extra {
     if ($e) {
         $xml->{Equivalents}->[0] = $e;
     }
-    
+
     if ($d) {
         $xml->{Disjoints}->[0] = $d;
     }
@@ -731,7 +761,7 @@ sub check_extra {
             my $equiv = $xtra->{Equivalents}[0];
 
             # iterating through each of the extra classes
-            foreach my $sc ( @{ $equiv->{class} } ) {    
+            foreach my $sc ( @{ $equiv->{class} } ) {
 
                 # iterating through each of the classes from the file
                 foreach my $c ( @{ $xml->{"owl:Class"} } ) {
@@ -854,8 +884,7 @@ sub read_delim {
 
     if ($header_ref) {
         @headers = @$header_ref;
-    }
-    else {
+    } else {
         @headers = split( /$delim/, shift @lines );
     }
 
@@ -879,8 +908,7 @@ sub read_delim {
             if ( $fields[$i] ) {
                 $fields[$i] =~ s/\"//g;
                 $records[$index][$i] = { $headers[$i] => $fields[$i] };
-            }
-            else {
+            } else {
                 $records[$index][$i] = { $headers[$i] => "" };
             }
         }
