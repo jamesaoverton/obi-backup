@@ -216,7 +216,26 @@ echo "new OWL path set to " $OBI_OWL_PATH_NEW
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
 perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(quit)"
 
-echo "disjoints.owl created"
+echo "disjoints.owl created at $OBI_BUILD_PATH/newids/disjoints.owl"
+###################################################################################################################################
+
+
+########################################################## PURLS ###############################################################
+
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load owl/standard-ontologies.lisp --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")" --eval "(quit)"
+
+echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
+
+###################################################################################################################################
+
+########################################################## LSW ONTOLOGY REPORT ###############################################################
+
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
+
+echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
+
 ###################################################################################################################################
 
 
