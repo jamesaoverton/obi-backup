@@ -45,12 +45,12 @@ remark: This file is an subset of OBI adequate for indexing using the OLS servic
 	   for obsolete = (member !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (ancestors class kb))
 	   when (#"matches" (uri-full class) ".*(OBI|CHEBI|CL|NCBITaxon)_\\d+")
 	   do 
-	   (format f "[Typedef]~%id: ~a~%name: ~a~%"
+	   (format f "[Term]~%id: ~a~%name: ~a~%"
 		   (#"replaceFirst" (uri-full class) ".*(OBI|CHEBI|CL|NCBITaxon)(_\\d+)" "$1:$1$2")
 		   (rdfs-label class))
 	   (let ((comment (rdfs-comment class)))
 	     (unless (or (null comment) (equal comment ""))
-	       (format f "def: ~a~%" (#"replaceAll" comment "\\n" " " ))))
+	       (format f "def:\"~a\" \[\]~%" (#"replaceAll" comment "\\n" " " ))))
 	   (if obsolete
 	       (format f "is_obsolete: true~%")
 	       (loop for super in (parents class kb)
@@ -66,7 +66,7 @@ remark: This file is an subset of OBI adequate for indexing using the OLS servic
 		      (rdfs-label prop))
 	      (let ((comment (rdfs-comment prop)))
 		(unless (or (null comment) (equal comment ""))
-		  (format f "def: ~a~%" (#"replaceAll" comment "\\n" " " ))))
+		  (format f "def:\"~a\" \[\]~%" (#"replaceAll" comment "\\n" " " ))))
 	      (format f "is_a: OBO_REL:relationship~%")
 	      (let ((inverses
 		     (mapcar 'aterm-to-sexp
