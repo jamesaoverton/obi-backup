@@ -31,7 +31,6 @@ date: ~a
 saved-by: https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/generate-obo.lisp
 auto-generated-by: https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/generate-obo.lisp
 default-namespace: OBI
-remark: This file is an subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obofoundry.org/obo/obi.owl
 idspace: OBO_REL http://www.obofoundry.org/ro/ro.owl# \"OBO Relation ontology official home on OBO Foundry\"
 idspace: snap http://www.ifomis.org/bfo/1.1/snap# \"BFO SNAP ontology (continuants)\"
 idspace: span http://www.ifomis.org/bfo/1.1/span# \"BFO SPAN ontology (occurrents)\"
@@ -39,6 +38,7 @@ idspace: OBI http://purl.obofoundry.org/obo/OBI_ \"Ontology for Biomedical Inves
 idspace: CHEBI http://purl.org/obo/owl/CHEBI# \"Chemical Entities of Biological Interest\"
 idspace: CL http://purl.org/obo/owl/CL# \"Cell Ontologhy\"
 idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
+remark: This file is an subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obofoundry.org/obo/obi.owl
 
 " (format-time))
 	(loop for class in (descendants !owl:Thing kb)
