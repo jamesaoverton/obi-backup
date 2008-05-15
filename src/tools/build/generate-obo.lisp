@@ -39,6 +39,7 @@ idspace: OBI http://purl.obofoundry.org/obo/OBI_ \"Ontology for Biomedical Inves
 idspace: CHEBI http://purl.org/obo/owl/CHEBI# \"Chemical Entities of Biological Interest\"
 idspace: CL http://purl.org/obo/owl/CL# \"Cell Ontologhy\"
 idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
+
 " (format-time))
 	(loop for class in (descendants !owl:Thing kb)
 	   for obsolete = (member !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (ancestors class kb))
@@ -58,10 +59,10 @@ idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
 	(loop for proptype in (list !owl:AnnotationProperty !owl:DatatypeProperty !owl:ObjectProperty )
 	   do
 	   (loop for prop in (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
-	      when (#"matches" (uri-full prop) ".*(OBI|CHEBI|CL|NCBITaxon)_\\d+")
+	      when (#"matches" (uri-full prop) ".*OBI_\\d+")
 	      do
 	      (format f "[Typedef]~%id: ~a~%name: ~a~%"
-		      (#"replaceFirst" (uri-full prop) ".*(OBI|CHEBI|CL|NCBITaxon)(_\\d+)" "$1:$1$2")
+		      (localname-namespaced prop)
 		      (rdfs-label prop))
 	      (let ((comment (rdfs-comment prop)))
 		(unless (or (null comment) (equal comment ""))
