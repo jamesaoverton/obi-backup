@@ -1,5 +1,3 @@
-
-
 #!/bin/sh
 
 #starting configuration: create a directory containing the OBIrelease.sh script (e.g. obireleases)
@@ -59,6 +57,11 @@ OBI_BUILD_PATH=`pwd`/build/
 echo "OBI BUILD PATH is set to" $OBI_BUILD_PATH 
 
 mkdir $OBI_BUILD_PATH
+
+OBI_MERGED_PATH=`pwd`/merged/
+mkdir $OBI_MERGED_PATH
+echo "OBI_MERGED_PATH is set to" $OBI_MERGED_PATH 
+
 
 
 # we do a fresh svn checkout
@@ -231,7 +234,6 @@ echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
 
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
 
-
 perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
 echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
@@ -254,6 +256,9 @@ cd $HERE
  cp $OBI_CODE_PATH/OBIReleaseClient.class .
 
 
+
+
+
 #launch the merger itself
 #the jar needs to be in your classpath
 RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
@@ -265,9 +270,29 @@ echo "result is $RESULT"
 if [ "$RESULT" == "true" ]
 then
         echo "ok to commit"
-        cp $NEWFILEPATH ./OBI.owl
-        md5sum ./OBI.owl >> md5.txt
-        cp $NEWFILEPATHPROTEGE ./OBI-ProtegeFriendly.owl
+	rm $OBI_MERGED_PATH/OBI.owl
+	echo "$OBI_MERGED_PATH/OBI.owl deleted"
+
+	rm $OBI_MERGED_PATH/OBI-ProtegeFriendly.owl
+	echo "$OBI_MERGED_PATH/OBI-ProtegeFriendly.owl deleted"
+
+	rm $OBI_MERGED_PATH/md5.txt
+	echo "$OBI_MERGED_PATH/md5.txt deleted"
+
+        cp $NEWFILEPATH $OBI_MERGED_PATH/OBI.owl
+	echo "$OBI_MERGED_PATH/OBI.owl created"
+        md5 $OBI_MERGED_PATH/OBI.owl >> $OBI_MERGED_PATH/md5.txt
+	echo "$OBI_MERGED_PATH/md5.txt created"
+        cp $NEWFILEPATHPROTEGE $OBI_MERGED_PATH/OBI-ProtegeFriendly.owl
+	echo "$OBI_MERGED_PATH/OBI-ProtegeFriendly.owl created"
+        
+        cp $OBI_BUILD_PATH/list-purls.xml $OBI_MERGED_PATH/list-purls.xml
+	echo "list-purls copied"
+	rm $OBI_BUILD_PATH/list-purls.xml
+	cp $OBI_BUILD_PATH/obi-lsw-report.html $OBI_MERGED_PATH/obi-lsw-report.html 
+	echo "obi-lsw-report copied"
+	rm $OBI_BUILD_PATH/obi-lsw-report.html
+
 	#the merge went through - we should commit the newids files at this point
 exit 1
 fi
@@ -280,7 +305,7 @@ exit 1
 fi
 
 ########################################################   TODO    #############################################################
-## generate purls
+
 ## play with qc-queries
 
 ###################################################################################################################################
