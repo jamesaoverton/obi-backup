@@ -2,8 +2,8 @@
  * @author Melanie
  * Feb 21, 2008
  * 
- * Filename    : MergeOBI.java
- * Copyright (C)  Melanie Courtot 2007
+ * Filename    : OBIMerger.java
+ * Copyright (C)  Melanie Courtot 2008
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
@@ -38,7 +38,7 @@ import org.mindswap.pellet.jena.OWLReasoner;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 
-import com.hp.hpl.jena.ontology.OntDocumentManager;
+//import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.Ontology;
@@ -61,7 +61,7 @@ public class OBIMerger {
 	private static String OBINs = "http://purl.obofoundry.org/obo/";
 	//the OBI xmlbase element
 	//private static String xmlbase = "http://obi.sourceforge.net/ontology/OBI.owl";
-	private static String xmlbase = "http://purl.obofoundry.org/obo/";
+	private static String xmlbase = "http://purl.obofoundry.org/obo/obi.owl";
 	//the name of the file containing the declaration of all the imports
 	private static String obi = "obi.owl";
 	//the obiPath - this is the path for the branches files
@@ -79,28 +79,6 @@ public class OBIMerger {
 	public static List<String> getBranchesNames(String obi, String physicalURI){
 		List<String> branchesNames = new ArrayList<String>();
 		try{
-			// Open the file 
-			/*FileInputStream fstream = new FileInputStream(physicalURI+obi);
-			// Get the object of DataInputStream
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String str;
-			//Read File Line By Line
-			while ((str = br.readLine()) != null)   {			    	
-				Pattern p = Pattern.compile("<owl:imports rdf:resource=\"(.*).owl\"/>");
-				Matcher m = p.matcher(str);
-				if (m.find()){
-					// we replace occurrences
-					String s = str.replace("<owl:imports rdf:resource=\"",""); 
-					String s2 = s.replace(".owl\"/>", "");
-					System.out.println("string: "+s2);
-					branchesNames.add(s2.trim());
-				}
-
-			}
-			//Close the input stream
-			in.close();*/
-			//branchesNames.add(s2.trim());
 			branchesNames.add("Biomaterial");
 			branchesNames.add("externalDerived");
 			branchesNames.add("external");
@@ -113,13 +91,16 @@ public class OBIMerger {
 
 			branchesNames.add("OBI-Function");
 			branchesNames.add("DataTransformation");
-			
+
 			branchesNames.add("Quality");
 			branchesNames.add("Obsolete");
 
 			branchesNames.add("DigitalEntityPlus");
-			branchesNames.add("disjoints");
-			
+			//branchesNames.add("disjoints");
+
+			//instances
+			branchesNames.add("DataFormatSpecification");
+
 		}catch (Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
@@ -166,11 +147,6 @@ public class OBIMerger {
 			System.out.println("level"+level);
 		}
 
-		/*OWLSpecies species  = reasoner.getSpecies();
-		OWLSpeciesReport report2 = species.getReport();
-		report2.print();
-		 */
-
 		//return false if there has been any problem, or true if everything is fine
 		return toCommit;
 	}
@@ -201,6 +177,8 @@ public class OBIMerger {
 		//sets the writer properties
 		writer.setProperty("xmlbase", xmlbase);
 		writer.setProperty("showXmlDeclaration","true");
+		//absolute uris: we want rdf:about http://purl.obofoundry.org and not ../
+		writer.setProperty("relativeURIs","");
 		//write the model into the out file
 		writer.write(model, out, OBINs);
 
@@ -230,30 +208,15 @@ public class OBIMerger {
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 	}
 
-	/**
-	 * The method merging the files
-	 * @param newFilePath - the path to the file to be created
-	 * @param physicalURI - the physical URI where to find the OBI branch files
-	 */
-	public static void mergeFiles(String newFilePath,String physicalURI, boolean ProtegeFriendly){
+
+
+	public static OntModel buildOWLModel (String physicalURI){
 		//create the Jena model
 		OntModel owlModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
 
-
-		//the output file
-		File newFile = new File(newFilePath);
-
-		//delete the file if it already exists 
-		if (newFile.exists())	{
-			newFile.delete();
-		}
-
-		//get the list of branches, based on the obi.owl file
 		//we read all the branches into the owlModel to merge them
-		//TODO check if better way to handle this
-		//TODO we might need to remove owl-full if Alan adds it to the template
 		List<String> branchesnames = getBranchesNames(obi,physicalURI);
-		StatementImpl stmt;
+
 		for(String s : branchesnames) {
 
 			try {
@@ -261,7 +224,7 @@ public class OBIMerger {
 				//System.out.println("branch names: "+ branchPath);
 				String ontoURI = obiPath+s+".owl";
 				Ontology ont = owlModel.createOntology(ontoURI);
-				
+
 				//we define alternative entry for the ontologies
 				//this allows us to map for example purl.obofoundry.org/obo/obi/Biomaterial.owl to its physical location
 				//needed in the case where for example Relations.owl imports Biomaterial.owl.
@@ -269,10 +232,19 @@ public class OBIMerger {
 				//AND if I get the java exception I guess Jena skips the import and I'm not getting the namespace problem with Protege
 				//OntDocumentManager OntDocumentManager = owlModel.getDocumentManager();
 				//OntDocumentManager.addAltEntry(ontoURI, branchPath);
-				
+
+
+				//owlModel.read(new FileInputStream(branchPath), obiPath+s+".owl");
 
 				//we read each branch into the model to merge them
-				owlModel.read(new FileInputStream(branchPath), obiPath+s+".owl");
+				//problem if I do that is that then for the namespaces defined in branch files the prefixes are not kept.
+				//for example xmlns:cell="http://purl.org/obo/owl/CL#" disappears from the final merge, which gives a p1 namespace in Protege.
+				//other option is to read and write the branch file, and then read it in the total merged file
+				OntModel branchModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
+				branchModel.read(new FileInputStream(branchPath), obiPath+s+".owl");
+				//System.out.println("reading : "+s);
+				owlModel.add(branchModel);
+
 
 				//we remove the individual properties per branch (e.g. version)
 				ont.removeProperties();
@@ -284,9 +256,17 @@ public class OBIMerger {
 				System.exit(1);
 			}
 		}
+		return owlModel;
+	}
+	
+	public static OntModel buildMergedFiles(String physicalURI, boolean ProtegeFriendly){
 
-
+	
+		//creates the ontology model
+		OntModel owlModel = buildOWLModel(physicalURI);
+		//creates the ontology
 		Ontology ont = owlModel.createOntology(xmlbase);
+		//Protege-Friendly version?
 		if(ProtegeFriendly) addProtegeFriendlyImports(ont, owlModel);
 		else addImports(ont, owlModel);
 
@@ -307,6 +287,7 @@ public class OBIMerger {
 		}
 
 		StmtIterator properties = ont2.listProperties();
+		StatementImpl stmt;
 		while (properties.hasNext())
 		{
 			stmt = (StatementImpl) properties.next();
@@ -331,13 +312,22 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("dcterms", "http://purl.org/dc/terms/");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("dc", "http://purl.org/dc/elements/1.1/");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("protege", "http://protege.stanford.edu/plugins/owl/protege#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("protege-dc", "http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("oboInOwl", "http://www.geneontology.org/formats/oboInOwl#");
 
 
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("bfo", "http://www.ifomis.org/bfo/1.1#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("robfo", "http://purl.org/obo/owl/ro_bfo_bridge/1.1#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("snap", "http://www.ifomis.org/bfo/1.1/snap#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("span", "http://www.ifomis.org/bfo/1.1/span#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("ro", "http://www.obofoundry.org/ro/ro.owl#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("rotoo", "http://purl.org/obo/owl/ro#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("pato", "http://purl.org/obo/owl/PATO#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("cell", "http://purl.org/obo/owl/CL#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("chebi", "http://purl.org/obo/owl/CHEBI#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("envo","http://purl.org/obo/owl/ENVO#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("ncbitax","http://purl.org/obo/owl/NCBITaxon#");
+			
 
 		//specific case: the empty string means default namespace
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
@@ -358,8 +348,26 @@ public class OBIMerger {
 		owlModel.removeNsPrefix("obi_ext");
 		owlModel.removeNsPrefix("obi_extd");
 		owlModel.removeNsPrefix("obi_owlfull");
+		
+		
+		return owlModel;
+	}
+	/**
+	 * The method merging the files
+	 * @param newFilePath - the path to the file to be created
+	 * @param physicalURI - the physical URI where to find the OBI branch files
+	 */
+	public static void mergeFiles(String newFilePath,String physicalURI, boolean ProtegeFriendly){
 
+		//the output file
+		File newFile = new File(newFilePath);
 
+		//delete the file if it already exists  - otherwise we could run into trouble :-)
+		if (newFile.exists())	{
+			newFile.delete();
+		}
+
+		OntModel owlModel = buildMergedFiles(physicalURI,ProtegeFriendly);
 		//writes the file
 		try {
 			writeFile(newFile,owlModel);
@@ -377,25 +385,29 @@ public class OBIMerger {
 
 
 	//For testing purposes
-	/*
+/*
 	public final static void main(String[] args) throws Exception  {
-		String newFilePath = "/Users/melanie/Desktop/FINAL_MERGE.owl";
+		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/melanie/Desktop/OBI/SVN/obi/";
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080529/build/newids/";
+
+		//if we had modification of the branches that are to be kept, we need to give a destination path
+		//String destinationURI="Users/melanie/OBIReleases/test/";
+
+
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
 		//check consistency
 		boolean valid = checkConsistency(newFilePath);
 		System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
-		String newFilePathProtegeFriendly = "/Users/melanie/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
+		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
 		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
 		System.out.println("to be committed: ");
 
 
 
 	}*/
-
 
 
 
