@@ -218,7 +218,7 @@ echo "<?xml version=\"1.0\"?>
 OBI_OWL_PATH_NEW=$OBI_BUILD_PATH/newids/obil.owl
 echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
-#the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
+#the following command launches abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
 perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load ${OBI_CODE_PATH}/add-inferred-superclasses.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
 
 
@@ -238,11 +238,25 @@ echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-super
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
 #################### kept separated from other lisp calls as it is quite long and I often comment it out for testing :-) ) ###################
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
+####################perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
 echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
 
 ###################################################################################################################################
+
+
+########################################################## SVN logs ###############################################################
+######### we are interested only in the logs of the branch files, nothing else 
+cd $OBI_DIR_PATH
+svn log > $OBI_MERGED_PATH/SVNlogs.txt
+echo "SVN logs created at $OBI_MERGED_PATH/SVNlogs.txt "
+cd $HERE
+####################
+
+
+
+
+
 
 
 ###################################################################################################################################
@@ -293,10 +307,10 @@ then
 	echo "$OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl created"
         
         cp $OBI_BUILD_PATH/list-purls.xml $OBI_MERGED_PATH/list-purls.xml
-	echo "list-purls copied"
+	echo "list-purls copied to $OBI_MERGED_PATH "
 	rm $OBI_BUILD_PATH/list-purls.xml
 	cp $OBI_BUILD_PATH/obi-lsw-report.html $OBI_MERGED_PATH/obi-lsw-report.html 
-	echo "obi-lsw-report copied"
+	echo "obi-lsw-report copied to $OBI_MERGED_PATH"
 	rm $OBI_BUILD_PATH/obi-lsw-report.html
 
 	#the merge went through - we should commit the newids files at this point
