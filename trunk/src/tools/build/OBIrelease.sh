@@ -62,7 +62,9 @@ OBI_MERGED_PATH=`pwd`/merged/
 mkdir $OBI_MERGED_PATH
 echo "OBI_MERGED_PATH is set to" $OBI_MERGED_PATH 
 
-
+OBI_MERGED_PATH_PROTEGE=`pwd`/merged/protege
+mkdir $OBI_MERGED_PATH_PROTEGE
+echo "OBI_MERGED_PATH_PROTEGE is set to" $OBI_MERGED_PATH_PROTEGE 
 
 # we do a fresh svn checkout
 # we need only the branches and external files
@@ -167,7 +169,7 @@ TODAY=`date "+%G-%m-%d"`
 perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_BUILD_PATH/newids/TheRest.owl
 echo "date replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
 
-############################################## ugly path hack - for whatever reason the get-revision-number.sh script doesn't like to be called at the root (maybe some problem with the size of svn...?)
+############################################## ugly path hack - for whatever reason the get-revision-number.sh script doesn't like to be called at the root (maybe some problem with external...?)
 cd $OBI_CODE_PATH
 SVN_REVISION_NUMBER=`./get-svn-revision.sh`
 echo "got SVN revision number" $SVN_REVISION_NUMBER
@@ -178,7 +180,7 @@ echo "revision number replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
 ###################################################################################################################################
 
 
-########################################################## DISJOINTS ###############################################################
+########################################################## DISJOINTS, PURLS AND INFERRED SUPERCLASSES ###############################################################
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
     xmlns=\"http://purl.obofoundry.org/obo/\"
@@ -217,22 +219,24 @@ OBI_OWL_PATH_NEW=$OBI_BUILD_PATH/newids/obil.owl
 echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load ${OBI_CODE_PATH}/add-inferred-superclasses.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
+
+
+
+
 
 echo "disjoints.owl created at $OBI_BUILD_PATH/newids/disjoints.owl"
-###################################################################################################################################
-
-
-########################################################## PURLS ###############################################################
-
-
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load owl/standard-ontologies.lisp --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")" --eval "(quit)"
-
 echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
+echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-superclasses.owl"
+
+
 
 ###################################################################################################################################
+
+
 
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
+#################### kept separated from other lisp calls as it is quite long and I often comment it out for testing :-) ) ###################
 
 perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
@@ -273,18 +277,20 @@ then
 	rm $OBI_MERGED_PATH/OBI.owl
 	echo "$OBI_MERGED_PATH/OBI.owl deleted"
 
-	rm $OBI_MERGED_PATH/OBI-ProtegeFriendly.owl
-	echo "$OBI_MERGED_PATH/OBI-ProtegeFriendly.owl deleted"
+	rm $OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl
+	echo "$OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl deleted"
 
 	rm $OBI_MERGED_PATH/md5.txt
 	echo "$OBI_MERGED_PATH/md5.txt deleted"
 
         cp $NEWFILEPATH $OBI_MERGED_PATH/OBI.owl
 	echo "$OBI_MERGED_PATH/OBI.owl created"
+
         md5 $OBI_MERGED_PATH/OBI.owl >> $OBI_MERGED_PATH/md5.txt
 	echo "$OBI_MERGED_PATH/md5.txt created"
-        cp $NEWFILEPATHPROTEGE $OBI_MERGED_PATH/OBI-ProtegeFriendly.owl
-	echo "$OBI_MERGED_PATH/OBI-ProtegeFriendly.owl created"
+
+        cp $NEWFILEPATHPROTEGE $OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl
+	echo "$OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl created"
         
         cp $OBI_BUILD_PATH/list-purls.xml $OBI_MERGED_PATH/list-purls.xml
 	echo "list-purls copied"
