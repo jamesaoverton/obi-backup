@@ -181,3 +181,41 @@
 	       (regex (str ?super) "obi|OBI")))
      )
    :kb kb :use-reasoner :none :trace "asserted subclass of defined-class" :values nil :trace-show-query nil))
+
+(defun lost-terms (&key (current (load-kb-jena "obi:branches;obil.owl")))
+  (let* ((merged (make-pathname :directory '(:relative "merged") :name "OBI" :type "owl"))
+ 
+					; work around bug in logical pathnames :(
+	 (versions (remove-if-not
+		    (lambda(dir) (and
+				  (#"matches" (namestring dir) ".*\\d{4}-\\d{2}-\\d{2}/")
+				  (probe-file (merge-pathnames merged dir))))
+		    (directory (concatenate 'string (namestring (truename "obi:releases;")) "*"))))
+	 (latest (car (sort versions 'string-greaterp
+			    :key (lambda(el) (car (last (pathname-directory el)))))))
+	 (kbprev  (load-kb-jena (merge-pathnames merged latest))))
+  (let((kb-purls
+	(sparql
+	 '(:select (?thing) (:distinct t)
+	   (:union
+	    ((?thing ?p ?o))
+	    ((?s ?thing ?o))
+	    ((?s ?p ?thing)))
+	   (:filter (and (isuri ?thing) (regex (str ?thing) "OBI_\\d+")))
+	   )
+	 :kb current :use-reasoner :none :flatten t))
+       (kbprev-purls
+	(and kbprev
+	     (sparql
+	      '(:select (?thing) (:distinct t)
+		(:union
+		 ((?thing ?p ?o))
+		 ((?s ?thing ?o))
+		 ((?s ?p ?thing)))
+		(:filter (and (isuri ?thing) (regex (str ?thing) "OBI_\\d+")))
+		)
+	      :kb kbprev :use-reasoner :none :flatten t))))
+    (when (set-difference kbprev-purls kb-purls)
+      (format t "Hmm, we seem to have lost some ids (deprecation lossage?): ~%~{~a~%~}"
+	      (set-difference kbprev-purls kb-purls)))    
+    )))
