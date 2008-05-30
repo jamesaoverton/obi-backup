@@ -96,7 +96,8 @@ public class OBIMerger {
 			branchesNames.add("Obsolete");
 
 			branchesNames.add("DigitalEntityPlus");
-			//branchesNames.add("disjoints");
+			branchesNames.add("disjoints");
+			branchesNames.add("inferred-superclasses");
 
 			//instances
 			branchesNames.add("DataFormatSpecification");
