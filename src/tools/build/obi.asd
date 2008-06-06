@@ -21,6 +21,10 @@
 						       '("src" "tools" "build"))
 				    :name :wild
 				    :type :wild))
+	("releases;**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 4)
+						       '("tags" :wild-inferiors))
+				    :name :wild
+				    :type :wild))
 	))
 
 (defsystem :obi
@@ -32,7 +36,7 @@
     ((:file "qc-queries")
      (:file "uri-report")
      (:file "add-disjoints")
-     (:file "new-purls")
+     (:file "write-purls")
      )
     :depends-on (owl))
 
