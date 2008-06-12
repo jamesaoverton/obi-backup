@@ -37,6 +37,7 @@
      (:file "uri-report")
      (:file "add-disjoints")
      (:file "write-purls")
+     (:file "add-inferred-superclasses")
      )
     :depends-on (owl))
 
