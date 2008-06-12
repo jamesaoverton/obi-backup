@@ -1,3 +1,19 @@
+
+
+
+(defun rdfs-class-report (kb)
+  (sparql
+   '(:select (?si ?label) (:distinct t)
+     (?si !rdfs:label ?label)
+     (?si :a ?type)
+     (:filter 
+	       (equal ?type !rdfs:Class)
+	       )
+     )
+   :kb kb :use-reasoner :jena :trace "rdfs:Class" :values nil :trace-show-query nil))
+
+
+
 (defun curation-status-report (kb)
   (sparql
    '(:select (?s ?status) (:distinct t)
