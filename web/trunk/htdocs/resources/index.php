@@ -39,11 +39,10 @@ title();
   <tr>
   <td>
   <div class=small align=right>On this page:<br>
+  <a href="#obiusers" class=menu>obi-users list</a>,
   <a href="#faq" class=menu>FAQ</a>,
-  <a href="#development" class=menu>Get Involved</a>,
+  <a href="#purls" class=menu>OBI links</a>,
   <a href="#pubs" class=menu>Publications</a>,
-  <a href="#workshop" class=menu>Workshop Docs</a>,
-  <a href="#presentations" class=menu>OBI Presentations</a>,
   <a href="#links" class=menu>Links</a>
   </div>
   </td>
@@ -56,56 +55,36 @@ title();
   <div class=small>
 
 
+<br>  <img src="http://groups.google.com/groups/img/3nb/groups_bar.gif"         height=26 width=132 alt="Google Groups"><br><a name=obiusers><b>Subscribe to obi-users</b></a>  <form action="http://groups.google.com/group/obi-users/boxsubscribe">  <input type=hidden name="hl" value="en">  Email: <input type=text name=email>  <input type=submit name="sub" value="Subscribe"><br></form>  <a href="http://groups.google.com/group/obi-users?hl=en">Visit this group</a><br>
+<br>
+
+
   <a name=faq><b>OBI FAQ</b></a>
-  <br><br>
+  <br>
   OBI maintains a <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/FAQ">Frequently Asked Questions</a> section on
   our Wiki Pages. 
 
-  <br><br>
-  <a name=development><b>Get involved with OBI!</b></a>
-  <br><br>
-  The OBI project has a number of mailing lists that you may subscribe or post to. Please see the list below to determine
-  which is best forum for your query or suggestion.
-  <ul>
-  <li>OBI Developers. <a href="https://lists.sourceforge.net/lists/listinfo/obi-devel">Subscribe</a> | Post to obi-devel
-   at lists.sourceforge.net. This list covers announcements of conference calls, the agenda and minutes in case you miss
-   a call, and general topics of interest for all communites involved in the project.</li>
-    <li>OBI Relations Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-relations">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/ListOfRelationships">View Wiki</a> | Post
-    to obi-relations at lists.sourceforge.net. This list covers the properties and relationships used within OBI.</li>
-    <li>OBI DENRIE Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-denrie-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/DigitalEntityTerms">View Wiki</a> | Post
-     to obi-denrie-branch at lists.sourceforge.net. It is an OBI Branch concerned with identifying entities and relations
-      to describe information entities that can be interpreted by a computer or documented and communicated.</li>
-    <li>OBI Function Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-function-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/FunctionTerms">View Wiki</a> | Post to obi-function-branch
-    at lists.sourceforge.net. The list covers functions, which are end-directed activities manifested by specific continuants. 
-    Functions typically provide a description of how a variety of continuants inter-relate in a particular context.</li>
-    <li>OBI Role Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-role-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/RoleTerms">View Wiki</a> | Post to obi-role-branch at
-    lists.sourceforge.net. The list covers terms for role / reagent / reporter / variable identified by different
-    communities.</li>
-    <li>OBI Data Transformation Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-datatrfm-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/DataTransformation">View Wiki</a> | Post to obi-datatrfm-branch
-    at lists.sourceforge.net. The branch is concerned with identifying entities and relations to describe methods which
-    perform some processing, manipulation or transformation upon input data to produce a transformed view(s) of 
-    biomedical data.</li>
-    <li>OBI Protocol Application Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-protocol-application-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/ProtocolApplicationBranch">View Wiki</a> | Post to
-    obi-protocol-application-branch at lists.sourceforge.net. The list covers topics related to the specifica application
-    of experimental protocols.</li>
-    <li>OBI Plan Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-plan-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/PlanBranch">View Wiki</a> | Post to obi-plan-branch at
-    lists.sourceforge.net. The scope of the branch is to identify essential entities to describe the intent and
-    organizing steps of realizable entities such as an investigation (study/experiment), protocol or algorithm</li>
-    <li>OBI Instrument Branch. <a href="https://lists.sourceforge.net/lists/listinfo/obi-instrument-branch">Subscribe</a> |
-    <a href="https://wiki.cbil.upenn.edu/obiwiki/index.php/InstrumentTerms">View Wiki</a> | Post to
-    obi-instrument-branch at lists.sourceforge.net. The list covers all instruments that fall within the scope of
-    OBI.</li>
-    <li>OBI Web Support. <a href="https://lists.sourceforge.net/lists/listinfo/obi-web-support">Subscribe</a> | Post to
-    obi-web-support at lists.sourceforge.net. The list covers any questions that users may have about either the
-    static web pages hosted on SourceForge, or the wiki pages.</li>
-  </ul>
+
+
+  <br>
+  <hr class=lightgray>
+  <br>
+
+
+  <a name=purls><b>OBI links</b></a>
+  <br>
+ Some OBI resources are permanently linked using PURL (Persistent Uniform Resource Locator):
+<ul>
+<li><a href="http://purl.obofoundry.org/obo/obi/">http://purl.obofoundry.org/obo/obi/</a>: this website</li>
+<li><a href="http://purl.obofoundry.org/obo/obi/doc/">http://purl.obofoundry.org/obo/obi/doc/</a>: OBI documentation</li>
+<li><a href="http://purl.obofoundry.org/obo/obi/tracker">http://purl.obofoundry.org/obo/obi/tracker</a>: Sourceforge tracker</li>
+<li><a href="http://purl.obofoundry.org/obo/obi.owl">http://purl.obofoundry.org/obo/obi.owl</a>: the latest OWL version of OBI</li>
+<li><a href="http://purl.obofoundry.org/obo/obi/release-notes.html">http://purl.obofoundry.org/obo/obi/release-notes.html</a>: release notes</li>
+<li><a href="http://purl.obofoundry.org/obo/obi/protege/obi.owl">http://purl.obofoundry.org/obo/obi/protege/obi.owl</a>: OBI Protege friendly version 
+<li><a href="http://purl.obofoundry.org/obo/obi/wiki/">http://purl.obofoundry.org/obo/obi/wiki/</a>: the OBI wiki (mostly used for development)</li>
+</ul>
+
+
   <br>
   <hr class=lightgray>
   <br>
@@ -118,84 +97,6 @@ title();
     Leontis N, Rocca-Serra P, Ruttenberg A, Sansone SA, Scheuermann RH, Shah N, Whetzel PL, Lewis S.</li>
     </ul>
   
-  <br>
-  <hr class=lightgray>
-  <br>
-
-  <a name=workshop><b>OBI (formerly FuGO) Workshop Documents</b></a>
-  <ul>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458979">1st Workshop (February 2006; Philadelphia, PA)</a>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=458978">2nd Workshop (July 2006; Hinxton, UK)</a>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=177891&package_id=209476&release_id=485800">3rd Workshop (February 2007; San Diego, CA)</a> 
-  </ul>
-  <br>
-  <hr class=lightgray>
-  <br>
-  
-
-  <a name=presentations><b>Posters, presentations and talks on OBI/FuGO</b></a>
-  <br>
-
-  <ul>
-  <li><b>2006</b>
-  <br><br>
-  <b>April 21-23</b>
- 
-  <br>
-
-  <a href="http://psidev.sourceforge.net/meetings/2006-04">HUPO PSI Spring Workshop</a>
-  <br>  
-  <ul type=circle>
-  <li>Presentation: <a href="presentations/PSI-Spring-2006_FuGO.ppt">FuGO Overview and Community Work Towards FuGO</a>
-  <br> 
-  This set of slides were presented at the PSI Spring Workshop as an introduction to FuGO and to show 
-  how various communities are helping to develop FuGO.<br>
-  </ul> 
-  
-  <br>
-
-  <b>Jan 25-26th</b>
-  <br>
-  <a href="http://www.w3.org/2001/sw/hcls">W3C HCLS Meeting</a>
-  <br>
-  <ul type=circle>
-  <li>Presentation: <a href="presentations/FuGO-HCLS_Jan-2006.ppt">FuGO overview</a><br>
-  </ul>
-  
-  <br>
-
-  <b>Jan 9-10th</b>
-  <br>
-  <a href="http://www.mpdg.org/Metabomeeting2.htm">MetaboMeeting2</a>
-  <ul type=circle> 
-  <li>Presentation: <a href="presentations/Sansone-MetabMeeting2-FuGO.ppt">FuGO and Metabolomics Society Ontology WG Overview</a><br>
-  </ul>
-  </ul>
-  
-  <!-- List 2005 Talks -->
-  <br> 
-
-  <ul>
-  <li><b>2005</b></li><br>
-
-  <b>Sep 14th</b>
-  <br>
-  <a href="http://www.cbu.uib.no/mged8/">MGED 8 meeting</a>
-  <ul type=circle>
-  <li>Presentation: <a href="presentations/FuGO-MGED_2005.ppt">FuGO Workshop</a> (MGED Ontology Workshop - MO/FuGO Overview)
-  <li><a href="presentations/RSBI-FuGO-workshopv2.ppt">RSBI</a> (MGED Ontology Workshop - RSBI Overview)
-  </ul>
-
-  <br>
-  <br>
-
-  <b>Jun 24th</b>
-  <br>
-  <a href="http://bio-ontologies.man.ac.uk/">BioOntologies, 2005</a>
-  <ul type=circle>
-  <li><a href="presentations/BioOntologies-2005.doc">Abstract</a> (BioOntologies FuGO Abstract)
-  <li><a href="presentations/BioOntologiesPoster-2005.ppt">Poster</a> (BioOntologies Poster)
-  </ul>
   </div>
 
   <hr class=lightgray>
@@ -218,6 +119,18 @@ title();
     <li><a href="http://www.bioontology.org" target="_blank">The National Center for Biomedical Ontology</a>
     </ul>
   </ul>
+  <ul>
+  <li><b>OBI documents</b>
+    <ul>
+    <li><a href="./documents.php#workshop">OBI workshop documents</a>  
+    <li><a href="./documents.php#presentations">OBI presentations</a>  
+    <li><a href="./documents.php#logo">OBI logo</a>  
+    </ul>
+  </ul>
+
+
+
+
   
   </div>
   
