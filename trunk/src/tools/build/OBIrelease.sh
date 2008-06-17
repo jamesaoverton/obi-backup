@@ -12,6 +12,8 @@
 svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
 #get OBITools.jar
 svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+#get binaries
+svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/bin
 
 
 #######################################################################################################################################
@@ -236,17 +238,32 @@ echo "new OWL path set to " $OBI_OWL_PATH_NEW
 perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load ${OBI_CODE_PATH}/add-inferred-superclasses.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
 
 
-
-
-
 echo "disjoints.owl created at $OBI_BUILD_PATH/newids/disjoints.owl"
 echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
 echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-superclasses.owl"
 
 
 
+############################################################### QC-QUERIES #########################################################
+# preforms some check on the file
+# currently:
+# --- is there any rdfs:Class (instead of owl:Class)
+# --- list of terms missing a curation status instance
+# --- list of terms with extra curation instance (only one allowed per term)
+# --- list of (OBI) terms with non OBI IDs
+# --- list of terms missing a label
+# --- list of classes that are asserted under a defined class
+# writes the result of the queries in the merged directory, in the file qc-queries-report.txt
+# TODO: add lost-terms (as soon as I understand the arguments ;-) )
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/qc-queries.lisp --load owl/standard-ontologies.lisp --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report.txt
+
 ###################################################################################################################################
-##### we need to cretae the new obid.owl which will include inferred-superclasses.owl
+
+
+
+###################################################################################################################################
+##### we need to create the new obid.owl which will include inferred-superclasses.owl
 ##### we can't create it before as inferred-superclasses don't exist yet
 
 echo "<?xml version=\"1.0\"?>
@@ -362,8 +379,6 @@ perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/stand
 echo "OBI.owl now includes xml comments"
 
 
-
-
         md5 $OBI_MERGED_PATH/OBI.owl >> $OBI_MERGED_PATH/md5.txt
 	echo "$OBI_MERGED_PATH/md5.txt created"
 
@@ -390,7 +405,8 @@ fi
 
 ########################################################   TODO    #############################################################
 
-## play with qc-queries
+## #  qc-queries: TODO: add lost-terms (as soon as I understand the arguments ;-) )
+## #  replace repetitive calls to lisp with perl obi-lisp-eval (as soon as I manage with the paths ;-) )
 
 ###################################################################################################################################
 
