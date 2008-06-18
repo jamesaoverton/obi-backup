@@ -366,6 +366,9 @@ then
 	rm $OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl
 	echo "$OBI_MERGED_PATH_PROTEGE/OBI-ProtegeFriendly.owl deleted"
 
+        wget http://purl.obofoundry.org/obo/obi/protege/obi.pprj -P $OBI_MERGED_PATH_PROTEGE/
+        echo "got the pprj file too!"
+
 	rm $OBI_MERGED_PATH/md5.txt
 	echo "$OBI_MERGED_PATH/md5.txt deleted"
 
