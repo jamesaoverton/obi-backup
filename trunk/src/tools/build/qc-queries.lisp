@@ -198,18 +198,21 @@
      )
    :kb kb :use-reasoner :none :trace "asserted subclass of defined-class" :values nil :trace-show-query nil))
 
-(defun lost-terms (&key (current (load-kb-jena "obi:branches;obil.owl")))
+(defun path-of-last-released-obi ()
   (let* ((merged (make-pathname :directory '(:relative "merged") :name "OBI" :type "owl"))
- 
-					; work around bug in logical pathnames :(
 	 (versions (remove-if-not
 		    (lambda(dir) (and
 				  (#"matches" (namestring dir) ".*\\d{4}-\\d{2}-\\d{2}/")
 				  (probe-file (merge-pathnames merged dir))))
-		    (directory (concatenate 'string (namestring (truename "obi:releases;")) "*"))))
+		    (directory (concatenate 'string (namestring (truename "obi:releases;")) "*")
+			       )))
 	 (latest (car (sort versions 'string-greaterp
-			    :key (lambda(el) (car (last (pathname-directory el)))))))
-	 (kbprev  (load-kb-jena (merge-pathnames merged latest))))
+			    :key (lambda(el) (car (last (pathname-directory el))))))))
+    (merge-pathnames merged latest)))
+    
+(defun lost-terms (&key
+		   (current (load-kb-jena "obi:branches;obil.owl"))
+		   (previous (load-kb-jena (path-of-last-released-obi))))
   (let((kb-purls
 	(sparql
 	 '(:select (?thing) (:distinct t)
@@ -220,8 +223,8 @@
 	   (:filter (and (isuri ?thing) (regex (str ?thing) "OBI_\\d+")))
 	   )
 	 :kb current :use-reasoner :none :flatten t))
-       (kbprev-purls
-	(and kbprev
+       (previous-purls
+	(and previous
 	     (sparql
 	      '(:select (?thing) (:distinct t)
 		(:union
@@ -230,8 +233,8 @@
 		 ((?s ?p ?thing)))
 		(:filter (and (isuri ?thing) (regex (str ?thing) "OBI_\\d+")))
 		)
-	      :kb kbprev :use-reasoner :none :flatten t))))
-    (when (set-difference kbprev-purls kb-purls)
+	      :kb previous :use-reasoner :none :flatten t))))
+    (when (set-difference previous-purls kb-purls)
       (format t "Hmm, we seem to have lost some ids (deprecation lossage?): ~%~{~a~%~}"
-	      (set-difference kbprev-purls kb-purls)))    
-    )))
+	      (set-difference previous-purls kb-purls)))    
+    ))
