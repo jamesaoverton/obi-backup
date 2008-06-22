@@ -79,14 +79,3 @@ foreach (@lines)
 close EXTERNAL;
 
 
-__DATA__
-
-
-epithelium = CARO:0000066
-multi-tissue structure = CARO:0000055
-polypeptide CHEBI:15841
-protein PRO:000000001
-cell component = CARO:0000014
-cytoxic T-cell = CL:0000794
-
-
