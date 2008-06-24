@@ -162,23 +162,32 @@
 	   (return-from next-unused-id nexts)))))
 
 (defun missing-label (kb)
-  (sparql
-   '(:select (?si) (:distinct t)
-     (:union
-      ((?si !rdf:type !owl:AnnotationProperty))
-      ((?si !rdf:type !owl:ObjectProperty))
-      ((?si !rdf:type !owl:DatatypeProperty))
-      ((?si !rdf:type !owl:Class))
-      )
-     (:optional (?si !rdfs:label ?label))
-     (?si :a ?type)
-     (:filter (and (regex (str ?si) "obi|OBI")
-	       (not (equal ?type !rdf:Property))
-	       (not (equal ?type !owl:Thing))
-	       (not (equal ?type !rdfs:Class))
-	       (not (bound ?label))))
-     )
-   :kb kb :use-reasoner :jena :trace "Missing labels" :values nil :trace-show-query nil))
+  (let ((missing 
+	 (sparql
+	  '(:select (?si) (:distinct t)
+	    (:union
+	     ((?si !rdf:type !owl:AnnotationProperty))
+	     ((?si !rdf:type !owl:ObjectProperty))
+	     ((?si !rdf:type !owl:DatatypeProperty))
+	     ((?si !rdf:type !owl:Class))
+	     )
+	    (:optional (?si !rdfs:label ?label))
+	    (?si :a ?type)
+	    (:filter (and (regex (str ?si) "(http://purl.obofoundry.org/)|obi|OBI")
+		      (not (equal ?type !rdf:Property))
+		      (not (equal ?type !owl:Thing))
+		      (not (equal ?type !rdfs:Class))
+		      (not (bound ?label))))
+	    )
+	  :kb kb :use-reasoner :jena :flatten t)))
+    (when missing
+      (loop for el in missing do
+	   (format t "~a ~{~%  ~a: ~s~}~%" el
+		    (sparql `(:select (?p ?annot) (:distinct t)
+				     (,el ?p ?annot)
+				     (:filter (and (not (equal ?p !owl:disjointWith))))) 
+			   :use-reasoner :none :flatten t :kb kb
+			   ))))))
 
 (defun asserted-subclass-of-defined-class (kb)
   (sparql
