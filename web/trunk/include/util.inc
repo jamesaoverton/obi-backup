@@ -27,6 +27,7 @@ if ($location=="home") {
   <a href=consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
   <a href=supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
   <a href=resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
+  <a href='http://purl.org/obo/obi/owldoc' class=menuNew>Browse OBI</a>&nbsp;|&nbsp;
 ");
 }
 elseif ($location=="ontology") {
@@ -36,6 +37,7 @@ elseif ($location=="ontology") {
   <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
   <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
   <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
+  <a href='http://purl.org/obo/obi/owldoc' class=menuNew>Browse OBI</a>&nbsp;|&nbsp;
 ");
 }
 elseif ($location=="consortium"){
@@ -45,6 +47,7 @@ elseif ($location=="consortium"){
   *Consortium &nbsp;|&nbsp;
   <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
   <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
+  <a href='http://purl.org/obo/obi/owldoc' class=menuNew>Browse OBI</a>&nbsp;|&nbsp;
 ");
 }
 elseif ($location=="supportgroups"){
@@ -54,6 +57,7 @@ elseif ($location=="supportgroups"){
   <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
   *Supporting Groups&nbsp;|&nbsp;
   <a href=../resources/index.php class=menuNew>Resources</a>&nbsp;|&nbsp;
+  <a href='http://purl.org/obo/obi/owldoc' class=menuNew>Browse OBI</a>&nbsp;|&nbsp;
 ");
 }
 else {
@@ -62,7 +66,8 @@ else {
   <a href=../ontologyInformation/index.php class=menuNew>Ontology</a>&nbsp;|&nbsp;
   <a href=../consortium/index.php class=menuNew>Consortium</a>&nbsp;|&nbsp;
   <a href=../supportgroups/index.php class=menuNew>Supporting Groups</a>&nbsp;|&nbsp;
-  *Resources &nbsp;&nbsp;
+  *Resources&nbsp;|&nbsp;
+  <a href='http://purl.org/obo/obi/owldoc' class=menuNew>Browse OBI</a>&nbsp;|&nbsp;
 ");
 }
 
