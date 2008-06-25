@@ -43,3 +43,22 @@
 
 
 
+;; e.g. (create-dated-purls "2007-06-27" "alanruttenberg" "alanspassword")
+;1. /obo/2008-06-27/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/OBI.owl
+;2. /obo/2008-06-27/obi/branches/ http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/branches/
+(defun create-dated-purls (datestring user password)
+  (create-new-purl (format nil "/obo/~a/obi.owl" datestring)
+		   (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/OBI.owl" datestring) user password '("obi"))
+  (create-new-purl (format nil "/obo/~a/obi/branches/" datestring)
+		   (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/branches/" datestring) user password '("obi") t))
+
+;; e.g. (update-current-purls "2007-06-27" "alanruttenberg" "alanspassword")
+;1. /obo/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/OBI.owl
+;2. /obo/obi/protege/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/protege/OBI-ProtegeFriendly.owl
+(defun update-current-purls (datestring user password)
+  (macrolet ((create-new-purl (&rest args)
+	       `(print (list 'create-new-purl ,@args))))
+    (update-purl (format nil "/obo/obi.owl" datestring)
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/OBI.owl" datestring) user password '("obi") (format nil "release of ~a" datestring))
+    (update-purl (format nil "/obo/obi/protege/obi.owl" datestring)
+		     (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.owl" datestring) user password '("obi") (format nil "release of ~a" datestring))))
