@@ -60,15 +60,45 @@
 
 (defun update-current-purls (datestring user password)
   (list
-   (update-purl (format nil "/obo/obi.owl" datestring)
+   (update-purl "/obo/obi.owl" 
 		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/OBI.owl" datestring)
 		user password '("obi") (format nil "release of ~a" datestring))
-   (update-purl (format nil "/obo/obi/protege/obi.owl" datestring)
-		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.owl" datestring)
-		user password '("obi") (format nil "release of ~a" datestring))
-   (update-purl (format nil "/obo/obi/protege/obi.pprj" datestring)
-		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.pprj" datestring)
-		user password '("obi") (format nil "release of ~a" datestring))
-   (update-purl (format nil "/obo/obi/protege/" datestring)
-		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/" datestring)
-		user password '("obi") (format nil "release of ~a" datestring))))
+   (update-purl  "/obo/obi/protege/obi.owl"
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.owl" datestring)
+		 user password '("obi") (format nil "release of ~a" datestring))
+   (update-purl  "/obo/obi/protege/obi.pprj"
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.pprj" datestring)
+		 user password '("obi") (format nil "release of ~a" datestring))
+   (update-purl  "/obo/obi/protege/"
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/" datestring)
+		 user password '("obi") (format nil "release of ~a" datestring))
+   (update-purl  "/obo/obi/protege/report.html"
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/obi-lsw-report.html" datestring)
+		 user password '("obi") (format nil "release of ~a" datestring))))
+
+(defparameter *obi-purls* 
+  (list
+   "/obo/obi.owl"
+   "/obo/obi/protege/obi.owl"
+   "/obo/obi/protege/obi.pprj"
+   "/obo/obi/protege/"
+   "/obo/obi/report.html"
+   "/obo/obi/doc/"
+   "/obo/obi/owldoc"
+   "/obo/obi/repository/"
+   "/obo/obi/tracker"
+   "/obo/obi/wiki/"))
+
+(defun report-current-purls ()
+  (format t "$svn = \"http://obi.svn.sourceforge.net/svnroot/obi\"~%")
+  (loop for apurl in *obi-purls* 
+     for (url purl partial . maintainers) = (get-purl apurl)
+     for retrieved = (get-url purl :persist nil :ignore-errors t)
+     do (format t "~a: ~a~a~a~a~%" (subseq url 21)
+		(and purl (#"replaceFirst" purl "http://obi.svn.sourceforge.net/svnroot/obi" "\\$svn"))
+		(if partial " (partial redirect)" "")
+		(if (member "OBI" maintainers :test 'equalp) "" " Missing \"obi\" as maintainer!")
+		(if retrieved "" " !! Failure fetching !!" )
+		)))
+	     
+
