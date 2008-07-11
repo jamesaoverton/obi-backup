@@ -53,7 +53,8 @@ menu(home);
   <a href="#statement" class menu>Mission Statement</a>,
   <a href="#news" class menu>News</a>,
   <a href="#organization" class menu>Project Organization</a>,
-  <a href="#call">Conference Calls</a>
+  <a href="#call">Conference Calls</a>,
+  <a href="#cite">Citing OBI</a>
   </div>
    </td>
   </tr>
@@ -173,9 +174,21 @@ The development of OBI is <a href="supportgroups/index.php">advised and supporte
 
   <a name=call><b>Notes From Previous Conference Calls</b></a><br>
   <a href="./notes">View Notes</a>
+  
+  <br><br> 
 
-  </div>
+  <hr class=lightgray>
 
+  <a name="cite"><b>Citing OBI</b></a><br>
+  To cite OBI please use the following:
+  <br>
+  <b>The OBI Consortium http://purl.obofoundry.org/obo/obi/</b>
+ 
+  <br><br>
+</div>
+
+
+ 
   <br>
 
   <hr class=lightgray>
