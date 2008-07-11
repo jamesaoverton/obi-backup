@@ -108,10 +108,11 @@ menu(home);
   <br>
 
   <ul>
+  <li>July 2008 : The OBI Consortium will be presenting a poster in the ISMB SIG on Bioontologies and the ISMB main conference this summer. Please come by and visit if you have questions or are interested in finding out more about OBI. </li>
   <li>16 November 2007: <em><a href="http://www.nature.com/nbt/journal/v25/n11/full/nbt1346.html">OBO Foundry Paper
-  Published in Nature Biotechnology</a></em><br>
+    Published in Nature Biotechnology</a></em><br>
   "The OBO Foundry: coordinated evolution of ontologies to support biomedical data integration" by Smith et al. and
-  co-authored by the OBI Consortium is now available as an open access paper from Nature Biotechnology.</li>
+    co-authored by the OBI Consortium is now available as an open access paper from Nature Biotechnology.</li>
   </ul>
 
   <br>
