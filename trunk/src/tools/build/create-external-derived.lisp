@@ -126,7 +126,10 @@
 (defun create-external-derived (&key
 				(kb (load-kb-jena "obi:branches;external.owl"))
 				(templates-path "obi:lisp;external-templates.txt")
-				(output-path "obi:build;externalDerived.owl")
+				(output-path (merge-pathnames
+					      "externalDerived.owl"
+					      (truename "obi:branches;")))
+
 				(endpoint nil))
   (let ((classes 
 	 (sparql '(:select (?class ?where ?parent) () 
