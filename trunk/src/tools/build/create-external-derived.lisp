@@ -152,12 +152,12 @@
 			  (loop for query in queries
 			     for filled-query = (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class)))
 			     collect (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))))))
-;	  (let ((basic-info
-;		 (with-output-to-string (s)
-;		   (loop for (class where parent) in classes
-;		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
-;				 (uri-full class) (uri-full parent))))))
-	    (combine-template-query-results rdfs output-path))
+	  (let ((basic-info
+		 (with-output-to-string (s)
+		   (loop for (class where parent) in classes
+		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
+				 (uri-full class) (uri-full parent))))))
+	    (combine-template-query-results (cons basic-info rdfs) output-path))
 	  (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
 	  nil
 	  )))))
