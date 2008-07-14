@@ -20,7 +20,7 @@
     ("chebi" "http://purl.org/obo/owl/CHEBI#")
     ("envo""http://purl.org/obo/owl/ENVO#")
     ("ncbitax""http://purl.org/obo/owl/NCBITaxon#")
-    ("obi" "http://purl.obofoundry.org/obo/obi/")
+    ("obi" "http://purl.obofoundry.org/obo/")
     ("caro" "http://purl.org/obo/owl/CARO#")
     ("pro" "http://purl.org/obo/owl/PRO#")
     ("obi_denrie" "http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#")
@@ -64,7 +64,6 @@
 			    do (format s "prefix ~a~%" value))))
 	   (templates nil))
       (flet ((ont+query (lines)
-	       (print-db lines)
 	       (setq lines (remove #\# (remove "" (reverse lines) :test 'equal) :key (lambda(el) (char el 0))))
 	       (let ((ont (caar (all-matches (car lines) "==\\s+(.*?)\\s+==" 1)))
 		     (query
@@ -108,7 +107,7 @@
     (write-string *external-derived-header* f)
     (loop for rdf in results
        do
-	 (write-string (#"replaceFirst" (#"replaceAll" "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") f))
+	 (write-string (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") f))
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
@@ -118,9 +117,11 @@
       (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) default-base)
       (loop for (prefix namespace) in prefixmapping
 	 do (#"setNsPrefix" (#"getPrefixMapping" (#"getGraph" model)) prefix namespace))
-      (#"setProperty" (#"getWriter" model "RDF/XML-ABBREV") "showXmlDeclaration" "true")
-      (#"write" (#"getWriter" model "RDF/XML-ABBREV") model (new '|FileOutputStream| path)  "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
-      )))
+      (let ((writer (#"getWriter" model "RDF/XML-ABBREV")))
+	(#"setProperty" writer "showXmlDeclaration" "true")
+	(#"setProperty" writer "relativeURIs" "")
+	(#"write" writer model (new '|FileOutputStream| path)  "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
+      ))))
 
 (defun create-external-derived (&key
 				(kb (load-kb-jena "obi:branches;external.owl"))
@@ -151,13 +152,12 @@
 			  (loop for query in queries
 			     for filled-query = (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class)))
 			     collect (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))))))
-	  (pprint classes)
-	  (let ((basic-info
-		 (with-output-to-string (s)
-		   (loop for (class where parent) in classes
-		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
-				 (uri-full class) (uri-full parent))))))
-	    (combine-template-query-results (cons basic-info rdfs) output-path))
+;	  (let ((basic-info
+;		 (with-output-to-string (s)
+;		   (loop for (class where parent) in classes
+;		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
+;				 (uri-full class) (uri-full parent))))))
+	    (combine-template-query-results rdfs output-path))
 	  (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
 	  nil
 	  )))))
