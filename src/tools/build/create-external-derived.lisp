@@ -74,6 +74,7 @@
 					     (#"replaceFirst"
 					      (second
 					       (find alias params :test (lambda(what el)
+									  (declare (ignore what))
 									  (and (equal (car el) "alias")
 									       (eql 0 (search alias (second el)))))))
 					       ".*=(.*)" "$1"))
@@ -111,8 +112,8 @@
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
-  (setq file (maybe-url-filename path))
-  (let* ((model (#"createOntologyModel" 'modelfactory (get-java-field 'OntModelSpec "OWL_MEM"))))
+  (let* ((file (maybe-url-filename path))
+	 (model (#"createOntologyModel" 'modelfactory (get-java-field 'OntModelSpec "OWL_MEM"))))
     (let ((default-base "http://purl.obofoundry.org/obo/obi/branches/externalDerived.owl#"))
       (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) default-base)
       (loop for (prefix namespace) in prefixmapping
@@ -121,7 +122,7 @@
 	(#"setProperty" writer "showXmlDeclaration" "true")
 	(#"setProperty" writer "relativeURIs" "")
 	(#"write" writer model (new '|FileOutputStream| path)  "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
-      ))))
+	))))
 
 (defun create-external-derived (&key
 				(kb (load-kb-jena "obi:branches;external.owl"))
@@ -157,7 +158,7 @@
 			     collect (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))))))
 	  (let ((basic-info
 		 (with-output-to-string (s)
-		   (loop for (class where parent) in classes
+		   (loop for (class nil parent) in classes
 		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
 				 (uri-full class) (uri-full parent))))))
 	    (combine-template-query-results (cons basic-info rdfs) output-path))
