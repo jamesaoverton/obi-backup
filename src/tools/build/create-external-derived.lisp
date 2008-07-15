@@ -114,14 +114,15 @@
 (defun clean-rdf (path prefixmapping)
   (let* ((file (maybe-url-filename path))
 	 (model (#"createOntologyModel" 'modelfactory (get-java-field 'OntModelSpec "OWL_MEM"))))
-    (let ((default-base "http://purl.obofoundry.org/obo/obi/branches/externalDerived.owl#"))
-      (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) default-base)
+    (let ((base "http://purl.obofoundry.org/obo/obi/externalDerived.owl"))
+      (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) base)
       (loop for (prefix namespace) in prefixmapping
 	 do (#"setNsPrefix" (#"getPrefixMapping" (#"getGraph" model)) prefix namespace))
       (let ((writer (#"getWriter" model "RDF/XML-ABBREV")))
 	(#"setProperty" writer "showXmlDeclaration" "true")
+	(#"setProperty" writer "xmlbase" base)
 	(#"setProperty" writer "relativeURIs" "")
-	(#"write" writer model (new '|FileOutputStream| path)  "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
+	(#"write" writer model (new '|FileOutputStream| path) base)
 	))))
 
 (defun create-external-derived (&key
