@@ -65,6 +65,7 @@
 	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000320>))
 	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000323>))
 	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000328>))
+	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000366>)) 
 	       )))
    :kb kb :use-reasoner :jena :trace "Extra curation status instances" :values nil :trace-show-query nil))
   
