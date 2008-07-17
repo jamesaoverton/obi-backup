@@ -38,6 +38,7 @@
      (:file "add-disjoints")
      (:file "write-purls")
      (:file "add-inferred-superclasses")
+     (:file "add-assumed-individuals")
      )
     :depends-on (owl))
 
