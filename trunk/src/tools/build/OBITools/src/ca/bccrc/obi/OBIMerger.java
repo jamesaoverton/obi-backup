@@ -98,7 +98,7 @@ public class OBIMerger {
 			branchesNames.add("DigitalEntityPlus");
 			branchesNames.add("disjoints");
 			branchesNames.add("inferred-superclasses");
-
+			branchesNames.add("assumed-individuals");
 			//instances
 			branchesNames.add("DataFormatSpecification");
 
@@ -328,8 +328,8 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("chebi", "http://purl.org/obo/owl/CHEBI#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("envo","http://purl.org/obo/owl/ENVO#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("ncbitax","http://purl.org/obo/owl/NCBITaxon#");
-			
-
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("pro","http://purl.org/obo/owl/PRO#");	
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("caro","http://purl.org/obo/owl/CARO#");
 		//specific case: the empty string means default namespace
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
 
@@ -385,13 +385,13 @@ public class OBIMerger {
 
 
 
-	//For testing purposes
-/*
+	/*For testing purposes
+
 	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080529/build/newids/";
-
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080716/build/newids/";
+		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
 		//if we had modification of the branches that are to be kept, we need to give a destination path
 		//String destinationURI="Users/melanie/OBIReleases/test/";
 
