@@ -33,7 +33,7 @@ if ($child =~ /(.*?):(.*)$/)
 }
 else { $childuri =~ $child; }
 
-if ($parent =~ /^OBI_(\d+)$/)
+if ($parent =~ /^(OBI_\d+)$/)
 { $parenturi = "http://purl.obofoundry.org/obo/$1" }
 elsif ($parent =~ /^http/)
 { $parenturi = $parent }
