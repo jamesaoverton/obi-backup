@@ -1,4 +1,4 @@
-(defun write-inferred-superclasses (&optional (kb (load-kb-jena "obi:newids;obid.owl"))
+(defun write-inferred-superclasses (&optional (kb (load-kb-jena "obi:newids;obidi.owl"))
 				    (path "obi:newids;superclasses.owl"))
   (if (check kb)
       (with-ontology inferred (:base (format nil "http://purl.obofoundry.org/obo/obi/~a.~a"
