@@ -21,6 +21,7 @@
 						       '("src" "tools" "build"))
 				    :name :wild
 				    :type :wild))
+
 	("releases;**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 4)
 						       '("tags" :wild-inferiors))
 				    :name :wild
@@ -38,6 +39,7 @@
      (:file "add-disjoints")
      (:file "write-purls")
      (:file "add-inferred-superclasses")
+     (:file "create-external-derived")
      (:file "add-assumed-individuals")
      )
     :depends-on (owl))
