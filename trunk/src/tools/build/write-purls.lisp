@@ -44,36 +44,38 @@
 
 
 ;; e.g. (create-dated-purls "2007-06-27" "alanruttenberg" "alanspassword")
-;1. /obo/2008-06-27/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/OBI.owl
-;2. /obo/2008-06-27/obi/branches/ http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/branches/
+;1. /obo/2008-06-27/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/releases/2008-06-27/merged/OBI.owl
+;2. /obo/2008-06-27/obi/branches/ http://obi.svn.sourceforge.net/svnroot/obi/releases/2008-06-27/branches/
+
+(defparameter *obi-release-dir* "http://obi.svn.sourceforge.net/svnroot/obi/releases/")
 
 (defun create-dated-purls (datestring user password)
   (list
    (create-new-purl (format nil "/obo/~a/obi.owl" datestring)
-		    (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/OBI.owl" datestring) user password '("obi"))
+		    (format nil "~a~a/merged/OBI.owl"  *obi-release-dir* datestring) user password '("obi"))
    (create-new-purl (format nil "/obo/~a/obi/branches/" datestring)
-		    (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/branches/" datestring) user password '("obi") t)))
+		    (format nil "~a~a/branches/" *obi-release-dir* datestring) user password '("obi") t)))
 
 ;; e.g. (update-current-purls "2007-06-27" "alanruttenberg" "alanspassword")
-;1. /obo/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/OBI.owl
-;2. /obo/obi/protege/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/2008-06-27/merged/protege/OBI-ProtegeFriendly.owl
+;1. /obo/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/releases/2008-06-27/merged/OBI.owl
+;2. /obo/obi/protege/obi.owl http://obi.svn.sourceforge.net/svnroot/obi/releases/2008-06-27/merged/protege/OBI-ProtegeFriendly.owl
 
 (defun update-current-purls (datestring user password)
   (list
    (update-purl "/obo/obi.owl" 
-		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/OBI.owl" datestring)
+		(format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/merged/OBI.owl" datestring)
 		user password '("obi") (format nil "release of ~a" datestring))
    (update-purl  "/obo/obi/protege/obi.owl"
-		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.owl" datestring)
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/merged/protege/OBI-ProtegeFriendly.owl" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))
    (update-purl  "/obo/obi/protege/obi.pprj"
-		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/OBI-ProtegeFriendly.pprj" datestring)
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/merged/protege/OBI-ProtegeFriendly.pprj" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))
    (update-purl  "/obo/obi/protege/"
-		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/merged/protege/" datestring)
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/merged/protege/" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))
    (update-purl  "/obo/obi/protege/report.html"
-		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/tags/releases/~a/obi-lsw-report.html" datestring)
+		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/obi-lsw-report.html" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))))
 
 (defparameter *obi-purls* 
@@ -87,11 +89,12 @@
    "/obo/obi/owldoc"
    "/obo/obi/repository/"
    "/obo/obi/tracker"
-   "/obo/obi/wiki/"))
+   "/obo/obi/wiki/"
+   "/obo/obi/calendar"))
 
 (defun report-current-purls ()
   (format t "$svn = \"http://obi.svn.sourceforge.net/svnroot/obi\"~%")
-  (loop for apurl in *obi-purls* 
+  (loop for apurl in (last *obi-purls* )
      for (url purl partial . maintainers) = (get-purl apurl)
      for retrieved = (get-url purl :persist nil :ignore-errors t)
      do (format t "~a: ~a~a~a~a~%" (subseq url 21)
