@@ -1,0 +1,137 @@
+OBI RELEASE NOTES
+
+
+The current version of OBI.owl provided at the site is still a draft.
+In fact, it is a pre-release version that is meant for review and could change substantially after review.
+The current version however represents the efforts from the different OBI branch development as provided at http://obi.svn.sourceforge.net/viewvc/obi/branchDevelopment/tags/releases/2008-03-10/ on Mar 10, 2008.
+
+The release consists in several files:
+
+- OBI.owl
+The merged file representing the current status of the project, created by merging the branches together.
+This file is OWL-DL and consistent. (checked with Pellet 1.5)
+
+- OBI-ProtegeFriendly.owl
+Due to a bug in Protege 3.x, the namespaces are not properly handled in the OWL-DL version.
+We therefore produce as a temporary fix a Protege friendly version, wich is consistent but OWL-Full.
+This will allow the display via label instead of IDs in Protege 3.x
+See instructions on how to use Protege with OBI at http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&hl=en
+
+- OBI-ProtegeFriendly.pprj
+As a convenience, we also provide a Protege project file (OBI-ProtegeFriendly.pprj) which will activate the label display in Protege.
+To use it, download OBI-ProtegeFriendly.pprj AND OBI-ProtegeFriendly.owl in the same directory. In Protege, choose File, Open, and open the OBI-ProtegeFriendly.pprj project file.
+
+- md5.txt
+This file contains an md5 checksum computed from OBI.owl. It is intended as an integrity check of your download, and is the first step towards a versioning control system.
+It will most probably be modified in its structure in the following releases.
+
+- release_notes.txt
+This file.
+
+
+DOCUMENTATION
+
+- Using Protege with OBI http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&hl=en 
+- OBI ID policy http://docs.google.com/Doc?docid=dzprnmw_8fnr5nmd4&hl=en 
+
+
+KNOWN ISSUES
+
+1. Some class names use upper case or camel case (e.g. OBI_0000005, 'Conclusion'). Current OBI and obo Foundry policy is not to enforce initial upper case (see http://www.obofoundry.org/wiki/index.php/Naming), and in general start with a lower case.
+2. The word delimiter in class and property names should be ' ' (space) rather than '_' (underscore). Currently we have a crude mixture, even within single class names, e.g. OBI_0000056, 'Notified_Body role'.
+
+
+
+CHANGELOGS
+
+
+- modified namespaces
+We don't want to have any reference to the branches in the merged file, and the merging script removes unused namespaces declarations.
+The branches had protege-created prefixes (e.g. p7 for
+data_transformation), and we replaced that by uniform namespaces (e.g.
+data_trans for data_transformation)
+
+Alan checked in new versions of all the files that should have stable namespaces now.
+See sourcecodes/normalize-namespaces.pl
+
+- modified curation status
+Bill added the new curation status values to the AnnotationProperty.owl file as an enumeration class.
+This brings us into owl-full (declaratio not included in the release which is OWL-DL, but values are - documentation in progress)
+
+- created a protege widget for use of the above described curation_status
+
+- modified svn keyword
+We need to define an OBI general policy regarding that. Currently
+TheRest.owl contains an old versionInfo, and the obi.owl contained
+$Revision:80$ which was a wrong svn:keyword.
+
+Corrected by Bill, general policy added to agenda for next obi-dev call.
+
+- corrected consistency
+We needed to do several changes, some classes had been deleted,
+deprecated or have had their ID re-assigned and thus relations towards
+them were inconsistent.
+
+As per release policy, we will in the future check the files at D-8 and D-3, and email obi-dev with inconsistency problems.
+
+- Protege 3 and label display
+We produce 2 versions of the release: OBI.owl is the official file, which is OWL-DL and consistent.
+
+Protege 3 doesn't read properly the «owl:Ontology rdf:about.../»
+and thus doesn't recognize the proper namespace. This causes problems
+when the user wants to display the labels instead of the IDs. The
+workaround for that Protege bug causes the file to be classified as
+OWL-Full from Pellet, and our requirement for release was to have an
+OWL-DL file. We thus decided to provide a second version
+Protege-friendly for convenience.
+
+- Added by Chris Mungall on Bill's request in the BFO v1.1 to RO bridge (http://obofoundry.org/ro/ro_bfo1-1_bridge.owl):
+
+  «owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Continuant"/»
+
+  «owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Occurrent"/»
+
+Pellet isn't able to pass the file as OWL DL, unless these declarations
+are included.  Without a BFO import statement, it has no way of knowing
+these BFO entities are valid OWL types.
+
+- import of ro_bfo_bridge corrected
+Chris Mungall added a version of http://purl.org/obo/owl/ro_bfo_bridge/1.1
+under http://www.berkeleybop.org/ontologies/owl/ro_bfo_bridge/1.1
+
+
+- modified URIs - added/checked IDs
+Alan worked on a script to assign IDs and rewrite the OBI URIs as purl, to comply with the OBI ID policy http://docs.google.com/Doc?docid=dzprnmw_8fnr5nmd4&hl=en 
+See /sourcecodes/modify-uris.pl and sourcecodes/uri-report.lisp
+
+- merging scripts
+All scripts under http://www.ebi.ac.uk/~courtot/OBIRelease/ need to be SVN committed.
+Melanie will commit the sourcecode, as well as the shell script used to check and generate the release.
+
+- added HTML report
+see http://obi.svn.sourceforge.net/viewvc/*checkout*/obi/branchDevelopment/tags/releases/2008-03-10/obi-lsw-report.html 
+
+- added disjoints
+Disjoints have been added via script. See http://obi.svn.sourceforge.net/viewvc/obi/branchDevelopment/tags/releases/2008-03-10/sourcecodes/add-disjoints.lisp?view=log
+Currently no disjoints have been added for classes below device, which is at the moment asserted under a defined class.
+
+- added an md5 checksum
+
+- normalization of date and versionInfo
+We will use the date as version info for now. A general policy on how to version OBI should be discussed.
+«owl:versionInfo»2008-03-09«/owl:versionInfo»
+
+«dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date"»2008-03-09«/dc:date»
+
+- creation of SVN tags
+A new tag will be created for each release, and will allow users to have stability by importing always the same version. 
+
+
+
+
+
+
+    
+    
+
+
