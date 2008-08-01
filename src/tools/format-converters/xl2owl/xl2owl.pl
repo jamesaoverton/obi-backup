@@ -55,6 +55,7 @@ my $delim  = "\t";
 my $action = "1";
 
 my $base_uri;
+my $DEBUG;
 
 GetOptions(
     "tabin|ti=s"    => \$csvin_file,
@@ -65,6 +66,7 @@ GetOptions(
     "action|a=i"    => \$action,
     "del_empty|r"   => \$del_empty,
     "replace"       => \$replace,
+    "debug"         => \$DEBUG,
     "help|h"        => \$help,
 );
 
@@ -221,7 +223,7 @@ sub term2xml {
     die "Term must have class" unless ( $term->{class} );
 
     #die "Term must have label" unless ( $term->{label} );
-
+    #print Dumper $term if $DEBUG;
     my $class_def = {
         "rdf:about" => [ $term->{URI} ],
 
@@ -328,6 +330,7 @@ sub insert_terms_from_csv {
     my %in_new = ();
     foreach my $term (@new_terms) {
         $in_new{ $term->{"rdf:about"} } = 1;
+	#print Dumper $term if $DEBUG;
     }
 
     # next we read in the owl file
@@ -887,6 +890,14 @@ sub read_delim {
     } else {
         @headers = split( /$delim/, shift @lines );
     }
+    
+    # Here we die with an error if the first six fields are not in the proper
+    # format
+    my $first_six = join "\t", @headers[0..5];
+    my $proper_format = join "\t", qw/class label URI parent_class parent_label parent_URI/;
+    
+    die "ERROR: CSV input file: $infile is not in the proper format.  The first six columns must \
+                be formatted as such:\n$proper_format\n\n" unless ($first_six eq $proper_format);
 
     # Here we strip the quotes from the text fields and replace
     # spaces with underscores
