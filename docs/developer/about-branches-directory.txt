@@ -1,0 +1,58 @@
+====== README file for OBI branches directory =====
+
+This directory contains several files, amongst which:
+
+- obi.owl is the official OBI file which in turn imports all other
+  branch files and external ontologies as required.
+
+- obil.owl is the OBI Local version of obi.owl. It is used for lisp
+  scripting and development, which doesn't have the same .repository
+  mechanism that protege uses, and instead uses relative paths to
+  physically find the branch files.
+
+- obid.owl is the OBI Disjoints version of obi.owl. It consists of
+  obil.owl importing the disjoints.owl file.
+
+- obidi.owl is the OBI Disjoints and Individuals file. It consists of
+  obid.owl importing the assumed-individuals.owl file.
+
+*How to produce the disjoint.owl file
+
+You need to use the add-disjoints.lisp script (in obi/trunk/src/tools/build).
+
+Using lsw, start abcl, load obi.asd and then execute
+
+(write-disjoints (load-kb-jena "obi.owl") "~/Desktop/disjoints.owl")
+
+where obi.owl is the merged file (e.g. the latest obi.owl released
+file, available at http://purl.obofoundry.org/obo/obi.owl) and
+~/Desktop/disjoints.owl is where to write the resulting file (i.e. the
+one containing the declaration of the disjoints)
+
+*How to produce the assumed-individuals.owl file
+
+You need to use the add-assumed-individuals.lisp script (in
+obi/trunk/src/tools/build). Using lsw, start abcl. In we assume your 
+current directory is the obi trunk.
+
+lib/external/lsw/bin/lsw
+
+When the prompt appears, load the obi lisp tools
+
+(load "src/tools/build/obi.asd")
+(asdf::oos 'asdf::load-op :obi)
+
+To create the individuals file based on the current developer version
+
+(write-assumed-individuals (load-kb-jena "src/ontology/branches/obil.owl")
+  "~/Desktop/assumed-individuals.owl")
+
+You can use a different file instead of obil.owl. For example the latest obi.owl
+released file, can be used instead with:
+
+(write-assumed-individuals (load-kb-jena "http://purl.obofoundry.org/obo/obi.owl")
+  "~/Desktop/assumed-individuals.owl")
+
+~/Desktop/assumed-individuals.owl is where the resulting
+file (i.e. the one containing the declaration of the individuals) is written.
+
