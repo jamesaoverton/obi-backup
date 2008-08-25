@@ -22,7 +22,7 @@ my $valid_parent_pattern = "(http:\/\/purl.org\/obo\/owl\/"
     ."(".join(":(\\d+)\$|", @valid_externals).")|OBI_\\d+\$";
 
 $child =~ /$valid_child_pattern/i or die "child term '$child' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
-$parent =~ /$valid_parent_pattern/i or die "child term '$child' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
+$parent =~ /$valid_parent_pattern/i or die "parent term '$parent' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
 -e $branchpath or die "$branchpath doesn't exist";
 
 my ($parenturi,$childuri);
