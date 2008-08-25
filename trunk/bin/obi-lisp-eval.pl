@@ -39,7 +39,7 @@ if (!lispeval(1))
 	chdir $obidir; $obidir = `pwd`;chop $obidir;
 	my $obiasd = "$obidir/obi.asd";
 	lispeval("(load \"$obiasd\")");
-	lispeval("(asdf::oos 'asd::load-op 'obi)");
+	lispeval("(asdf::oos 'asdf::load-op 'obi)");
 	print lispeval($eval),"\n"; 
     }
 }
