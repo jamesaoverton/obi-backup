@@ -37,6 +37,8 @@
     xmlns:obi_ext="http://purl.obofoundry.org/obo/obi/external.owl#"
   xml:base="http://purl.obofoundry.org/obo/obi/Biomaterial.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl"/>
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141">
@@ -107,18 +109,23 @@ An organism_part is a part of organism's anatomy or substance arising from an or
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/Class_4">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_3"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >should we use PCR (or the written out words)? These are also in the Sequence Ontology, should we take them from there? Needs DNA added to the logical definition</OBI_0000275>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is double stranded DNA that is the output of a polymerase chain reaction</OBI_0000291>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PCR product</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_3"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+          </owl:Restriction>
+          <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233"/>
     </rdfs:subClassOf>
@@ -294,8 +301,8 @@ AJR Am J Roentgenol. 1990 Jan;154(1):87-93.</OBI_0000287>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000264"/>
     </rdfs:subClassOf>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: does not feel right, definition is unclear. a pool is in this is case understood as a process of mixing to homogeneity but NOT the creation of a population of individuals which retain the capability of being singled out.</OBI_0000275>
     <OBI_0000275 xml:lang="en">check with advisors as to how to represent multiple instances of any class? a set of specimens which have been gathered from one or more sample_populations, obtained by the physical process of mixing individual specimens, e.g.  mixing the DNA collected from the individual fish</OBI_0000275>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: does not feel right, definition is unclear. a pool is in this is case understood as a process of mixing to homogeneity but NOT the creation of a population of individuals which retain the capability of being singled out.</OBI_0000275>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</OBI_0000274>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
@@ -406,12 +413,6 @@ A dirt sample containing different populations of bacteria. A sample of martian 
     <OBI_0000275 xml:lang="en">PRS:22022008: moved from _unclassified to _a defined class is needed following BM call</OBI_0000275>
     <OBI_0000287 xml:lang="en">solution containing RPMI, fetal calf sera, antibiotics, and monoclonal antibody UCHT1.</OBI_0000287>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600029"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <OBI_0000275 xml:lang="en">PRS:22022008. result from protocol_application where input=cell culture and output=supernatant</OBI_0000275>
@@ -429,6 +430,12 @@ A dirt sample containing different populations of bacteria. A sample of martian 
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600029"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000288 xml:lang="en">cell culture supernatant</OBI_0000288>
     <OBI_0000291 xml:lang="en">Supernatant of a cell culture.  Contains media, supplements, and secreted products of the cells.</OBI_0000291>
     <rdfs:label xml:lang="en">cell culture supernatant</rdfs:label>
@@ -436,26 +443,11 @@ A dirt sample containing different populations of bacteria. A sample of martian 
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100026">
     <OBI_0000287 xml:lang="en">animal</OBI_0000287>
     <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Organism</OBI_0000279>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
-            </owl:unionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000275 xml:lang="en">organism "has_role_which_can_only_be_played_by_biomaterial_entity" some specimen_role, organism "has_role" some investigation_object_role in obi before split (LF 040907).</OBI_0000275>
     <OBI_0000274 xml:lang="en">Melanie Courtot</OBI_0000274>
     <OBI_0000275 xml:lang="en">examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses rem1: OBI should link to an external resource (e.g. NCBI Taxonomy) Altdef: an organism is a biomaterial entity which is self-contained
 MC: virus and viroid are not organisms</OBI_0000275>
     <OBI_0000287 xml:lang="en">fungus</OBI_0000287>
-    <OBI_0000287 xml:lang="en">micro-organism</OBI_0000287>
-    <rdfs:label xml:lang="en">organism</rdfs:label>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -466,8 +458,23 @@ MC: virus and viroid are not organisms</OBI_0000275>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <OBI_0000287 xml:lang="en">micro-organism</OBI_0000287>
+    <rdfs:label xml:lang="en">organism</rdfs:label>
     <OBI_0000287 xml:lang="en">plant</OBI_0000287>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000291 xml:lang="en">An organism is biomaterial entity that is an individual living system, such as animal, plant or micro-organism, that is capable of reproduction, growth and maintenance. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.</OBI_0000291>
     <OBI_0000288 xml:lang="en">organism</OBI_0000288>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -831,8 +838,8 @@ change biomaterial to material in definition</OBI_0000275>
     <rdfs:label xml:lang="en">physical document</rdfs:label>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</OBI_0000279>
-    <OBI_0000275 xml:lang="en">BP: moved and renamed for BFO</OBI_0000275>
     <OBI_0000275 xml:lang="en">information_content_entity "is_encoded_in" some physical_document in obi before split (040907).</OBI_0000275>
+    <OBI_0000275 xml:lang="en">BP: moved and renamed for BFO</OBI_0000275>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a book is a physical document</OBI_0000287>
