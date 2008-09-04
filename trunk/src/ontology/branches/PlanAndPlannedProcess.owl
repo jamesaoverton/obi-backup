@@ -37,10 +37,10 @@
     xmlns:obi_ext="http://purl.obofoundry.org/obo/obi/external.owl#"
   xml:base="http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/externalDerived.owl"/>
     <owl:imports rdf:resource="http://purl.org/obo/owl/ro"/>
-    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/externalDerived.owl"/>
     <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Biomaterial.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600007">
@@ -48,22 +48,22 @@
     <OBI_0000288 xml:lang="en">administering substance in vivo</OBI_0000288>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <OBI_0000275 xml:lang="en">needs roles such as perturber and perturbee (children of input role). Perturb is too strong. Host might be the name for one role. Others considered: Doner, Donated, Acceptor.</OBI_0000275>
+    <OBI_0000287 xml:lang="en">injecting mice with 10 ug morphine intranasally, a patient taking two pills of 1 mg aspirin orally</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000275 xml:lang="en">needs roles such as perturber and perturbee (children of input role). Perturb is too strong. Host might be the name for one role. Others considered: Doner, Donated, Acceptor.</OBI_0000275>
-    <OBI_0000287 xml:lang="en">injecting mice with 10 ug morphine intranasally, a patient taking two pills of 1 mg aspirin orally</OBI_0000287>
+    <OBI_0000291 xml:lang="en">a substance is intentionally given to an organism through a specified route of administration</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000291 xml:lang="en">a substance is intentionally given to an organism through a specified route of administration</OBI_0000291>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <rdfs:label xml:lang="en">administering substance in vivo</rdfs:label>
   </owl:Class>
@@ -80,6 +80,20 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600047">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000288 xml:lang="en">sequencing</OBI_0000288>
@@ -87,20 +101,6 @@
     >has_input should be something like "organic polymer" - as of 9/4/08 "ChEBI ontology" is best choice</OBI_0000275>
     <OBI_0000291 xml:lang="en">the use of a chemical or biochemical means to infer the sequence of a biomaterial</OBI_0000291>
     <rdfs:label xml:lang="en">sequencing</rdfs:label>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
     <OBI_0000287 xml:lang="en">The use of the Sanger method of DNA sequencing to determine the order of the nucleotides in a DNA template</OBI_0000287>
@@ -247,7 +247,6 @@
     <OBI_0000291 xml:lang="en">A material transformation is a protocol_application carried out to generate output material from the input material</OBI_0000291>
     <OBI_0000288 xml:lang="en">material transformation</OBI_0000288>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
-    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -263,6 +262,7 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000275 xml:lang="en">we may not need this one in the long term, and just keep the children? (TC 14 June)</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600065"/>
@@ -303,26 +303,12 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0400003"/>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
-                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400175"/>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -342,8 +328,8 @@
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000291 xml:lang="en">Place holder class, see editor note</OBI_0000291>
@@ -363,12 +349,6 @@
     <OBI_0000287 xml:lang="en">Determination of the frequency of cells producing IFN-gamma in response to viral peptides</OBI_0000287>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000080"/>
@@ -380,9 +360,15 @@
     <rdfs:label xml:lang="en">ELISPOT assay</rdfs:label>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
     <OBI_0000291 xml:lang="en">an assay in which the number of cells producing a biomaterial in a larger cell population are stained and counted</OBI_0000291>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000288 xml:lang="en">ELISPOT</OBI_0000288>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000275 xml:lang="en">\n---\nThis term conflates several things. Everytime you stain a population of cells and count them this is NOT an ELISPOT assay. We need assay terms to describe the staining of things that are cells, and a counting of things that are cells. We need to work out what make an ELISPOT assay different from staining and counting cells\n</OBI_0000275>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302899">
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -616,13 +602,6 @@
     <OBI_0000291 xml:lang="en">A protocol application in which an organism is intentionally put to death</OBI_0000291>
     <rdfs:label xml:lang="en">killing</rdfs:label>
     <OBI_0000287 xml:lang="en">Terminal sacrifice of animals by cervical dislocation at the end of an investigation.</OBI_0000287>
-    <OBI_0000288 xml:lang="en">killing</OBI_0000288>
-    <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >life termination</OBI_0000286>
-    <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >euthanisia</OBI_0000286>
-    <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
@@ -639,22 +618,29 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000288 xml:lang="en">killing</OBI_0000288>
+    <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >life termination</OBI_0000286>
+    <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >euthanisia</OBI_0000286>
+    <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0100026"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001422"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001422"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000286 xml:lang="en">death status type</OBI_0000286>
     <OBI_0000275 xml:lang="en">difficult to place this properly - JG. Death process (e.g. unscheduled death) is out of scope but should be added somewhere. All killings have death process as a part, but not all death processes are part of a killing.</OBI_0000275>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
@@ -741,12 +727,12 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100051"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100051"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -770,22 +756,22 @@
     <OBI_0000288 xml:lang="en">weight assessment</OBI_0000288>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000291 xml:lang="en">an assay in which the weight of an organism is measured over time</OBI_0000291>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <OBI_0000287 xml:lang="en">The comparison of the weight of vaccinated and non-vaccinated mice after infection with influenza A over 6 weeks post-infection</OBI_0000287>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">weight assessment</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <OBI_0000287 xml:lang="en">The comparison of the weight of vaccinated and non-vaccinated mice after infection with influenza A over 6 weeks post-infection</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">weight assessment</rdfs:label>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000275 xml:lang="en">Alan says something is funny\n---\nThis is a description of what you did as opposed to the description of the assay. This should be more generic. something like 'mass_assay'\n</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600064">
@@ -833,13 +819,13 @@ to create a common base for comparisons.</OBI_0000291>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302885">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000151"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000151"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
     </rdfs:subClassOf>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 18524968.Filtration of CSF improves isolation of Mycobacteria.J Clin Microbiol. 2008 Jun 4.</OBI_0000287>
@@ -856,26 +842,26 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/temp_0001055"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_5"/>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000316"/>
                 </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_5"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/temp_0001055"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -953,8 +939,8 @@ to create a common base for comparisons.</OBI_0000291>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -962,8 +948,8 @@ to create a common base for comparisons.</OBI_0000291>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                     <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302865"/>
+                    <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
@@ -976,8 +962,8 @@ to create a common base for comparisons.</OBI_0000291>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
                   <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000250"/>
                     <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000250"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
@@ -1041,15 +1027,31 @@ to create a common base for comparisons.</OBI_0000291>
     <OBI_0000275 xml:lang="en">definition blessed by Allyson, Bjoern, Jay &amp; Randi</OBI_0000275>
     <OBI_0000274 xml:lang="en">PERSON:Kevin Clancy</OBI_0000274>
     <OBI_0000291 xml:lang="en">the addition of a labeling reagent to an input biomaterial in order to detect the labeled material in the future</OBI_0000291>
+    <rdfs:label xml:lang="en">labeling</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">labeling</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000288 xml:lang="en">labeling</OBI_0000288>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000140"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -1067,22 +1069,6 @@ to create a common base for comparisons.</OBI_0000291>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000287 xml:lang="en">The addition of phycoerytherin label to an anti-CD8 antibody, to label all antibodies. The addition of anti-CD8-PE to a population of cells, to label the subpopulation cells that are CD8+.</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
-              <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000140"/>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600044">
@@ -1102,20 +1088,20 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000385"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400002"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000385"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1156,8 +1142,19 @@ to create a common base for comparisons.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000069">
     <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600065"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">protocol application</rdfs:label>
+    <OBI_0000291 xml:lang="en">A protocol application is a process carried out to bring about the  objective defined in the protocol applied. Every protocol_application has one or more inputs and outputs definition_source: OBI. a protocol_application is a planned process realizes a process in which the   objective of the protocol is achieved. The manipulation of materials and information on materials as part of an investigation</OBI_0000291>
+    <OBI_0000279 xml:lang="en">OBI</OBI_0000279>
+    <OBI_0000275 xml:lang="en">protocol_application part_of_process some sample_preparation_for_assay in obi before split (LF 040907)</OBI_0000275>
+    <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1165,8 +1162,8 @@ to create a common base for comparisons.</OBI_0000291>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
             <owl:someValuesFrom>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000294"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000272"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000294"/>
               </owl:Restriction>
             </owl:someValuesFrom>
           </owl:Restriction>
@@ -1174,17 +1171,6 @@ to create a common base for comparisons.</OBI_0000291>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:label xml:lang="en">protocol application</rdfs:label>
-    <OBI_0000291 xml:lang="en">A protocol application is a process carried out to bring about the  objective defined in the protocol applied. Every protocol_application has one or more inputs and outputs definition_source: OBI. a protocol_application is a planned process realizes a process in which the   objective of the protocol is achieved. The manipulation of materials and information on materials as part of an investigation</OBI_0000291>
-    <OBI_0000279 xml:lang="en">OBI</OBI_0000279>
-    <OBI_0000275 xml:lang="en">protocol_application part_of_process some sample_preparation_for_assay in obi before split (LF 040907)</OBI_0000275>
-    <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000275 xml:lang="en">rem1: This is an actual part of the experiment. It includes the protocol that the experimenter intends to carry out, deviations from this and unintended variables, such as the earthquake that occurred while the experiment was taking place.</OBI_0000275>
     <OBI_0000288 xml:lang="en">protocol application</OBI_0000288>
@@ -1209,8 +1195,8 @@ to create a common base for comparisons.</OBI_0000291>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000382"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
           </owl:Restriction>
           <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
         </owl:intersectionOf>
@@ -1318,26 +1304,31 @@ to create a common base for comparisons.</OBI_0000291>
     >adapted from wordnet (wkipedia)</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600062">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
+    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
         <owl:someValuesFrom>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000294"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000217"/>
           </owl:Restriction>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <OBI_0000291 xml:lang="en">is a process that is the realization of some plan</OBI_0000291>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600065"/>
+    </rdfs:subClassOf>
+    <OBI_0000288 xml:lang="en">planned process</OBI_0000288>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1354,11 +1345,6 @@ to create a common base for comparisons.</OBI_0000291>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000291 xml:lang="en">is a process that is the realization of some plan</OBI_0000291>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600065"/>
-    </rdfs:subClassOf>
-    <OBI_0000288 xml:lang="en">planned process</OBI_0000288>
     <rdfs:label xml:lang="en">planned process</rdfs:label>
     <OBI_0000275 xml:lang="en">several roles are implied in this: There must be one or more actors that realizes the plan, potentially a planner that devised the plan, potentially a supervisor monitoring the plan.</OBI_0000275>
   </owl:Class>
@@ -1391,13 +1377,6 @@ to create a common base for comparisons.</OBI_0000291>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302905">
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >the process of extracting one material from another by washing with a solvent to remove adsorbed material from an adsorbent (as in washing of loaded ion-exchange resins to remove captured ions)</OBI_0000291>
-    <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PMID: 18549238.Theory and Application of the Two-Mode Gradient Elution in Liquid Chromatography Involving Simultaneous Changes in Temperature and Mobile-Phase Composition.Anal Chem. 2008 Jun 13.</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
-    </rdfs:subClassOf>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
@@ -1414,14 +1393,21 @@ to create a common base for comparisons.</OBI_0000291>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PMID: 18549238.Theory and Application of the Two-Mode Gradient Elution in Liquid Chromatography Involving Simultaneous Changes in Temperature and Mobile-Phase Composition.Anal Chem. 2008 Jun 13.</OBI_0000287>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000038"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
     </rdfs:subClassOf>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >elution</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000038"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >wordnet.princeton.edu/perl/webwn</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -1491,23 +1477,23 @@ to create a common base for comparisons.</OBI_0000291>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302888">
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 6874122. Dialysis leucopenia--no correction after prolonged washing of the membrane. Int J Artif Organs. 1983 May;6(3):113-4.</OBI_0000287>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >washing</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >washing is a process by which a material entity acting as  contaminant (e.g. excess staining reagent) is removed by application of one or more cycles of solution in flow.</OBI_0000291>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI-Branch</OBI_0000279>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
@@ -1557,14 +1543,14 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1697,9 +1683,9 @@ to create a common base for comparisons.</OBI_0000291>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1711,9 +1697,9 @@ to create a common base for comparisons.</OBI_0000291>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >storage</rdfs:label>
   </owl:Class>
@@ -1740,12 +1726,14 @@ to create a common base for comparisons.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000201">
     <OBI_0000288 xml:lang="en">radioactivity detection</OBI_0000288>
+    <OBI_0000287 xml:lang="en">Measurment of the radioactivity of a supernatant, as in chromium_release_assay.</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
@@ -1753,6 +1741,11 @@ to create a common base for comparisons.</OBI_0000291>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Restriction>
+                    <owl:someValuesFrom>
+                      <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000019">
+                        <rdfs:comment xml:lang="en">move to dependent.owl</rdfs:comment>
+                      </rdf:Description>
+                    </owl:someValuesFrom>
                     <owl:onProperty>
                       <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000314">
                         <OBI_0000291 xml:lang="en">A relation between continuant instances c1 and c2 where within a protocol 
@@ -1760,11 +1753,6 @@ to create a common base for comparisons.</OBI_0000291>
     measurement of c2.</OBI_0000291>
                       </rdf:Description>
                     </owl:onProperty>
-                    <owl:someValuesFrom>
-                      <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000019">
-                        <rdfs:comment xml:lang="en">move to dependent.owl</rdfs:comment>
-                      </rdf:Description>
-                    </owl:someValuesFrom>
                   </owl:Restriction>
                   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000305"/>
                 </owl:intersectionOf>
@@ -1774,8 +1762,6 @@ to create a common base for comparisons.</OBI_0000291>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000287 xml:lang="en">Measurment of the radioactivity of a supernatant, as in chromium_release_assay.</OBI_0000287>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
@@ -1849,13 +1835,13 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302884"/>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000287 xml:lang="en">Phenol / chlorophorm extraction disolvation of protein content folllowed by ethanol precipitation of the nucleic acid fraction over night in the fridge followed by centrifugation to obtain a nucleic acid pellet.</OBI_0000287>
-    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000275 xml:lang="en">requested by Helen Parkinson for MO. Could be defined class</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000131">
@@ -1886,8 +1872,8 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -1895,62 +1881,62 @@ to create a common base for comparisons.</OBI_0000291>
     <rdfs:label xml:lang="en">artificially induced reverse transcription</rdfs:label>
     <OBI_0000274 xml:lang="en">PERSON:Kevin Clancy</OBI_0000274>
     <OBI_0000287 xml:lang="en">The use of M-MLV reverse transcriptase from the Moloney murine leukemia virus to transcribe an RNA sample into cDNA</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >We need to indicate the relationship between the cDNA generated and the RNA that was used as a template. This may be outside of the OBI scope</OBI_0000275>
     <OBI_0000288 xml:lang="en">artifically induced reverse transcription</OBI_0000288>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >multiple reagents including dNTPs are utilized in therprocess. Need to be added</OBI_0000275>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000126"/>
+    <OBI_0000291 xml:lang="en">a protocol with the objective to transcribe single-stranded RNA into complementary DNA (cDNA)</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000126"/>
-    <OBI_0000291 xml:lang="en">a protocol with the objective to transcribe single-stranded RNA into complementary DNA (cDNA)</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302736">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000030"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:label xml:lang="en">comet assay</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <OBI_0000286 xml:lang="en">SCGE assay</OBI_0000286>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000030"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000286 xml:lang="en">SCGE assay</OBI_0000286>
     <OBI_0000291 xml:lang="en">a comet assay is an assay which utilizes gel electropheris on cell exposed to a challenge with the objective to assess DNA damage (DNA breakage) by determining the size and shape of DNA migration in cell placed in an electric field in specific conditions.</OBI_0000291>
     <OBI_0000286 xml:lang="en">single cell gel electrophoresis  assay</OBI_0000286>
+    <OBI_0000287 xml:lang="en">PMID: 18326531.Mutagenesis. 2008 Mar 6.Recommendations for design of the rat comet assay.</OBI_0000287>
+    <OBI_0000288 xml:lang="en">comet assay</OBI_0000288>
+    <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400140"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000287 xml:lang="en">PMID: 18326531.Mutagenesis. 2008 Mar 6.Recommendations for design of the rat comet assay.</OBI_0000287>
-    <OBI_0000288 xml:lang="en">comet assay</OBI_0000288>
-    <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000279 xml:lang="en">PMID:7686265 .Mutat Res. 1993 Jul;288(1):47-63.The single cell gel electrophoresis assay (comet assay): a European review.</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600024">
@@ -2043,13 +2029,13 @@ to create a common base for comparisons.</OBI_0000291>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 18428461.Purification of oligodendrocytes and their progenitors using immunomagnetic separation and Percoll gradient centrifugation. Curr Protoc Neurosci. 2001 May;Chapter 3:Unit 3.12.</OBI_0000287>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400106"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302895">
@@ -2061,13 +2047,13 @@ to create a common base for comparisons.</OBI_0000291>
     >PMID: 9587208. Electrocution of horses and cattle. Vet Rec. 1998 Apr 4;142(14):376.</OBI_0000287>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >electrocution is process by which electric current is applied to a material with quality alive and result the termination of life process.</OBI_0000291>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600006"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400142"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400142"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600006"/>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -2108,39 +2094,33 @@ to create a common base for comparisons.</OBI_0000291>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302912">
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400142"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.org/obo/owl/CL#CL_0000000"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302883"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >electroporation</rdfs:label>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Electroporation, or electropermeabilization, is a significant increase in the electrical conductivity and permeability of the cell plasma membrane caused by an externally applied electrical field. It is usually used in molecular biology as a way of introducing some substance into a cell, such as loading it with a molecular probe, a drug that can change the cell's function, or a piece of coding DNA</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400142"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2150,6 +2130,12 @@ to create a common base for comparisons.</OBI_0000291>
 http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600033"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302897">
@@ -2199,38 +2185,38 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:label xml:lang="en">intervention design</rdfs:label>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <OBI_0000291 xml:lang="en">an intervention design is a study design in which treatments (perturbations or intervention) defined as a combination of values taken by independant variable manipulated by the experimentalists are applied to the recruited subjects assigned (possibly by applying specific methods) to treatment groups. The specificity of intervention design is the fact that independent variables are being manipulated and a response of the biological system is evaluated via response variables as monitored by possibly a series of assays.</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000297"/>
         <owl:someValuesFrom>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                     <owl:someValuesFrom>
                       <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
                         <owl:someValuesFrom>
                           <owl:Restriction>
                             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
                             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000090"/>
                           </owl:Restriction>
                         </owl:someValuesFrom>
+                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
                       </owl:Restriction>
                     </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                   </owl:Restriction>
                   <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
           </owl:Restriction>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">an intervention design is a study design in which treatments (perturbations or intervention) defined as a combination of values taken by independant variable manipulated by the experimentalists are applied to the recruited subjects assigned (possibly by applying specific methods) to treatment groups. The specificity of intervention design is the fact that independent variables are being manipulated and a response of the biological system is evaluated via response variables as monitored by possibly a series of assays.</OBI_0000291>
     <OBI_0000287 xml:lang="en">PMID: 18208636.Br J Nutr. 2008 Jan 22;:1-11.Effect of vitamin D supplementation on bone and vitamin D status among Pakistani immigrants in Denmark: a randomised double-blinded placebo-controlled intervention study.</OBI_0000287>
     <OBI_0000274 xml:lang="en">Philppe Rocca-Serra</OBI_0000274>
   </owl:Class>
@@ -2287,26 +2273,26 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600000">
-    <OBI_0000291 xml:lang="en">material combination where one of the input materials is a cell culture and another material is not a cell culture</OBI_0000291>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000291 xml:lang="en">material combination where one of the input materials is a cell culture and another material is not a cell culture</OBI_0000291>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <OBI_0000287 xml:lang="en">adding fetal calf serum to a 96 well plate containing a cell culture derived from a blood sample of a patient</OBI_0000287>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
     <OBI_0000288 xml:lang="en">administering substance to cell culture</OBI_0000288>
     <rdfs:label xml:lang="en">administering substance to cell culture</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600056">
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
@@ -2324,10 +2310,6 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000275 xml:lang="en">like' is one of the things that you should be controling for in a well-designed experiment. The instances of material need to have the same class.</OBI_0000275>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000286 xml:lang="en">sample pooling</OBI_0000286>
-    <OBI_0000288 xml:lang="en">material pooling</OBI_0000288>
-    <OBI_0000291 xml:lang="en">physical combination of several instances of like material</OBI_0000291>
-    <rdfs:label xml:lang="en">material pooling</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
@@ -2335,8 +2317,9 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
         >2</owl:minCardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000287 xml:lang="en">http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=104564; Combining spleens of 20 mice, Combining supernatant from a cell culture obtained at different time points</OBI_0000287>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <OBI_0000286 xml:lang="en">sample pooling</OBI_0000286>
+    <OBI_0000288 xml:lang="en">material pooling</OBI_0000288>
+    <OBI_0000291 xml:lang="en">physical combination of several instances of like material</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
@@ -2345,18 +2328,21 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302872"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">material pooling</rdfs:label>
+    <OBI_0000287 xml:lang="en">http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=104564; Combining spleens of 20 mice, Combining supernatant from a cell culture obtained at different time points</OBI_0000287>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100051"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100051"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -2412,34 +2398,34 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     >PMID: 18563778.Histological and modeling study of skin thermal injury to 2.0 mum laser irradiation.Lasers Surg Med. 2008 Jun 18;40(5):358-370.</OBI_0000287>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302848"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
               </owl:Restriction>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000019"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >adapted from wikipedia (http://en.wikipedia.org/wiki/Irradiation)</OBI_0000279>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >adapted from wikipedia (http://en.wikipedia.org/wiki/Irradiation)</OBI_0000279>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >irradiation is a process by which a material entity is exposed to radiative energy, which could be ionizing radiation (such as gamma rays or X-rays)  or not such as UV light or microwaves</OBI_0000291>
@@ -2458,25 +2444,25 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_50076"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">chromium release assay</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000305"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000287 xml:lang="en">from http://cvi.asm.org/cgi/content/full/11/2/255 (and slightly simplified)\nAutologous EBV-transformed B-LCL were used as target cells for the influenza virus-specific CTL assays. Equal volumes of target (5 x 10E4 cells/ml) and effector cells were added to triplicate wells of 96-well tissue culture plates, and 1:2 serial dilutions of effectors were made, producing effector-to-target (E:T) ratios of 100:1, 50:1, 25:1, and 12.5:1 (9). Spontaneous release of 51Cr was assessed by the incubation of target cells in medium alone, and maximum release of 51Cr was determined by the incubation of target cells in 0.1% Triton X-100 (Sigma-Aldrich).\nAfter a 4-h incubation of the effector cells with the target cells at 37?é??C in 6% CO2, supernatants were collected following brief centrifugation. The supernatant was collected into filters of supernatant collection system harvesting frames (Molecular Devices Skatron, Sunnyvale, Calif.) and transferred to polystyrene tubes to be counted with the LKB 1272 Clinigamma counter (Wallac).\nPercent specific was determined with the following equation: (experimental 51Cr release - spontaneous 51Cr release)/(maximum 51Cr release - spontaneous 51Cr release) x 100.</OBI_0000287>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_50076"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000288 xml:lang="en">chromium release assay</OBI_0000288>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
   </owl:Class>
@@ -2536,17 +2522,17 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <rdfs:label xml:lang="en">substance detection</rdfs:label>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000274 xml:lang="en">PERSON:Kevin Clancy</OBI_0000274>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000288 xml:lang="en">substance detection</OBI_0000288>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000291 xml:lang="en">any protocol which results in the detection of a specified substance</OBI_0000291>
     <OBI_0000287 xml:lang="en">the detection of phycoerytherin by means of flow cytometry</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000354">
     <OBI_0000291 xml:lang="en">is a process through which a disease manifests itself</OBI_0000291>
@@ -2580,6 +2566,16 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Digital curation is the process of establishing and developing long term repositories of digital assets for current and future reference by researchers, scientists, and historians, and scholars generally.</OBI_0000291>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200166">
+    <OBI_0000274 xml:lang="en">James Malone</OBI_0000274>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000288 xml:lang="en">data transformation objective</OBI_0000288>
+    <OBI_0000279 xml:lang="en">PERSON: James Malone</OBI_0000279>
+    <OBI_0000287 xml:lang="en">normalize objective</OBI_0000287>
+    <OBI_0000291 xml:lang="en">A data transformation objective is an objective specification that a data transformation may have towards which the realization of that transformation is directed.</OBI_0000291>
+    <rdfs:label xml:lang="en">data transformation objective</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000217"/>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0500028">
     <rdfs:label xml:lang="en">exclusion rule</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0500026"/>
@@ -2596,17 +2592,17 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <rdfs:label xml:lang="en">clinical diagnosis</rdfs:label>
     <OBI_0000275 xml:lang="en">(maybe CIO)</OBI_0000275>
-    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
+    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000075"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000291 xml:lang="en">a protocol application during which a series of tests are made of a patient  leading to determination of disease state, or condition.</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2618,42 +2614,14 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">a protocol application during which a series of tests are made of a patient  leading to determination of disease state, or condition.</OBI_0000291>
     <OBI_0000288 xml:lang="en">clinical diagnosis</OBI_0000288>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200166">
-    <OBI_0000274 xml:lang="en">James Malone</OBI_0000274>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <OBI_0000288 xml:lang="en">data transformation objective</OBI_0000288>
-    <OBI_0000279 xml:lang="en">PERSON: James Malone</OBI_0000279>
-    <OBI_0000287 xml:lang="en">normalize objective</OBI_0000287>
-    <OBI_0000291 xml:lang="en">A data transformation objective is an objective specification that a data transformation may have towards which the realization of that transformation is directed.</OBI_0000291>
-    <rdfs:label xml:lang="en">data transformation objective</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000217"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600042">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
-              <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_6"/>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <OBI_0000288 xml:lang="en">recombinant plasmid cloning</OBI_0000288>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2665,20 +2633,38 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_6"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <OBI_0000288 xml:lang="en">recombinant plasmid cloning</OBI_0000288>
     <rdfs:label xml:lang="en">recombinant plasmid cloning</rdfs:label>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000291 xml:lang="en">the insertion of a particular DNA fragment into a plasmid in order to make copies of a biomaterial</OBI_0000291>
     <OBI_0000274 xml:lang="en">PERSON:Kevin Clancy</OBI_0000274>
+    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000035"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/temp_0001055"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000035"/>
     <OBI_0000287 xml:lang="en">The DNA fragment encoding the p35 gene from Mycobacterium avium complex was inserted into pcDNAII and expressed in E coli in order to study p35.</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0500020">
@@ -2697,8 +2683,8 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
             <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400002"/>
@@ -2717,13 +2703,13 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302898">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >lethal injection</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600006"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23091"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600006"/>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 18246869. Loss of cortical function in mice after decapitation, cervical dislocation, potassium chloride injection, and CO2 inhalation. Comp Med. 2007 Dec;57(6):570-</OBI_0000287>
@@ -2731,12 +2717,15 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     >Philippe Rocca-Serra</OBI_0000274>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302737">
+    <OBI_0000287 xml:lang="en">PMID: 17334176.Hum Exp Toxicol. 2007 Jan;26(1):9-18.Is there a role for PCR-SSCP among the methods for missense mutation detection of TP53 gene?</OBI_0000287>
+    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_input should be "DNA molecules" or something similar - as of 9/4/08 "ChEBI ontology" was the best choice</OBI_0000275>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_3"/>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
@@ -2747,17 +2736,14 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000030"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600014"/>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000287 xml:lang="en">PMID: 17334176.Hum Exp Toxicol. 2007 Jan;26(1):9-18.Is there a role for PCR-SSCP among the methods for missense mutation detection of TP53 gene?</OBI_0000287>
-    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >has_input should be "DNA molecules" or something similar - as of 9/4/08 "ChEBI ontology" was the best choice</OBI_0000275>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000279 xml:lang="en">PMID: 18219595.Mol Biotechnol. 2008 Feb;38(2):155-63.PCR-SSCP: a method for the molecular analysis of genetic diseases.</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
@@ -2810,13 +2796,13 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <OBI_0000279 xml:lang="en">PRS</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/temp_0001056">
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0666666"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100027"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0666666"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >viral RNA extraction</rdfs:label>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
@@ -2846,13 +2832,15 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     >purification</OBI_0000286>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <OBI_0000288 xml:lang="en">material separation</OBI_0000288>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
             <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
             >1</owl:cardinality>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
@@ -2862,8 +2850,6 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <OBI_0000288 xml:lang="en">material separation</OBI_0000288>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <OBI_0000287 xml:lang="en">Using a cell sorter to separate a mixture of T cells into two fractions; one with surface receptor CD8 and the other lacking the receptor</OBI_0000287>
     <OBI_0000291 xml:lang="en">a protocol application in which one input material is separated (in space) into two or more output materials</OBI_0000291>
     <rdfs:label xml:lang="en">material separation</rdfs:label>
@@ -2955,25 +2941,25 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
             <owl:someValuesFrom>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000217"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000294"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000217"/>
               </owl:Restriction>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
           </owl:Restriction>
           <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600065"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600065"/>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >I (BP) felt the need for this upper class, as processes like planning or interpreting data clearly have an objective but do not have a plan. This distinction may get tricky.</OBI_0000275>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2985,8 +2971,6 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000153">
     <OBI_0000288 xml:lang="en">cell co-culturing</OBI_0000288>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000291 xml:lang="en">A material combination in which cell cultures of two or more different types are are combined and allowed to culture as one.</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -2996,12 +2980,14 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
             >2</owl:minCardinality>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
             <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <OBI_0000291 xml:lang="en">A material combination in which cell cultures of two or more different types are are combined and allowed to culture as one.</OBI_0000291>
     <OBI_0000287 xml:lang="en">Culturing  cytotoxic T-lymphocytes together with target cells in order to study lysis of the target cells. See chromium_release_assay</OBI_0000287>
     <OBI_0000274 xml:lang="en">PlanAndPlannedProcess Branch</OBI_0000274>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
@@ -3010,6 +2996,12 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0600021">
     <OBI_0000288 xml:lang="en">cell fixation</OBI_0000288>
+    <OBI_0000291 xml:lang="en">a protocol application to preserve defined  qualities of cells or tissues (sample) which may otherwise change over time</OBI_0000291>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <OBI_0000275 xml:lang="en">we could generalize this for other input materials</OBI_0000275>
+    <OBI_0000275 xml:lang="en">should include capturing what qualities are being preserved</OBI_0000275>
+    <rdfs:label xml:lang="en">cell fixation</rdfs:label>
+    <OBI_0000274 xml:lang="en">PERSON:Bjoern Peters</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
@@ -3039,12 +3031,6 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">a protocol application to preserve defined  qualities of cells or tissues (sample) which may otherwise change over time</OBI_0000291>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <OBI_0000275 xml:lang="en">we could generalize this for other input materials</OBI_0000275>
-    <OBI_0000275 xml:lang="en">should include capturing what qualities are being preserved</OBI_0000275>
-    <rdfs:label xml:lang="en">cell fixation</rdfs:label>
-    <OBI_0000274 xml:lang="en">PERSON:Bjoern Peters</OBI_0000274>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <OBI_0000287 xml:lang="en">http://www.tissuearray.org/CellLinesProtocolforTMA112.pdf; the treatment of CD8+ cells with methanol at -20oC; http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=Retrieve&amp;db=PubMed&amp;amp;list_uids=16080188&amp;dopt=AbstractPlus</OBI_0000287>
@@ -3087,17 +3073,17 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
     <rdfs:label xml:lang="en">cell permeabalization</rdfs:label>
     <OBI_0000275 xml:lang="en">definition blessed by Jay, Alan, Randi</OBI_0000275>
     <OBI_0000287 xml:lang="en">Electroporation of HeLa cells to allow transfection with pUC19.</OBI_0000287>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000279 xml:lang="en">OBI branch derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
         <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -3191,30 +3177,30 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000070">
     <OBI_0000275 xml:lang="en">proposal to group the assays by what is the data gathered: detection of material (analyte), measurement of material quality (radioactivity), identification of material, measurement of process (</OBI_0000275>
-    <OBI_0000291 xml:lang="en">An assay is a protocol application which includes evaluant (evaluant term  definition to be added by Richard, currently under role) as an input  and  which objective is to generate output data about qualities or other   features on the input material [Action Item for Barry to refine   definition] definition_source: OBI.</OBI_0000291>
-    <rdfs:label xml:lang="en">assay</rdfs:label>
-    <OBI_0000288 xml:lang="en">assay</OBI_0000288>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000080"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
           </owl:Restriction>
           <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <OBI_0000291 xml:lang="en">An assay is a protocol application which includes evaluant (evaluant term  definition to be added by Richard, currently under role) as an input  and  which objective is to generate output data about qualities or other   features on the input material [Action Item for Barry to refine   definition] definition_source: OBI.</OBI_0000291>
+    <rdfs:label xml:lang="en">assay</rdfs:label>
+    <OBI_0000288 xml:lang="en">assay</OBI_0000288>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0600065"/>
     <OBI_0000275 xml:lang="en">AltDef: An assay is a protocol application which is a process of measuring. rem1: Imaging is covered by this definition. rem2: material:  used in the context of studying some biological problem, example: hybridization</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400002"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000313"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0400002"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
@@ -3227,4 +3213,4 @@ http://en.wikipedia.org/wiki/Electroporation</OBI_0000279>
   </rdf:Description>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 505)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 504)  http://protege.stanford.edu -->
