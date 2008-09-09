@@ -94,7 +94,7 @@
 
 (defun report-current-purls ()
   (format t "$svn = \"http://obi.svn.sourceforge.net/svnroot/obi\"~%")
-  (loop for apurl in (last *obi-purls* )
+  (loop for apurl in *obi-purls* 
      for (url purl partial . maintainers) = (get-purl apurl)
      for retrieved = (get-url purl :persist nil :ignore-errors t)
      do (format t "~a: ~a~a~a~a~%" (subseq url 21)
