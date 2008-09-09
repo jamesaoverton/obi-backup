@@ -8,7 +8,12 @@
 					(pathname-name (translate-logical-pathname path))
 					(pathname-type (translate-logical-pathname path)))) 
       ((loop for class in (descendants !bfo:Entity kb)
-	  when (null (descendants class kb))
+	  with obsoletes = (loop for obs in (descendants !obo:ObsoleteClass kb)
+			      with table = (make-hash-table :test 'eql)
+			      do (setf (gethash obs table) t)
+			      finally (return table))
+	  when (and (null (descendants class kb))
+		    (not (gethash class obsoletes)))
 	  collect (individual (type class))))
     ;; rewrite the rdfxml to get rid of the classes (redundant) and undo the 
     ;; abstract syntax anonymous indivual bug and make then really anonymous
@@ -20,8 +25,8 @@
     ;; now check that the ontology + assumed individuals is consistent 
     ;; removed, as it triggers something nasty when run in the server
     '(with-ontology +assumed ()
-	((owl-imports (kb-loaded-from kb))
-	 (owl-imports (format nil "file://~a" (namestring (truename path)))))
+      ((owl-imports (kb-loaded-from kb))
+       (owl-imports (format nil "file://~a" (namestring (truename path)))))
       (unless (check +assumed)
 	(format t "Ontology is inconsistent when assumed individuals are added")))
     t
