@@ -12,7 +12,8 @@
 	 do
 	 (loop for prop in
 	      (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
-	      do (format f "~a ~a~%" name (uri-full prop))
+	      unless (gethash prop seen)
+	    do (format f "~a ~a~%" name (uri-full prop))
 	      (setf (gethash prop seen) t)))
       (loop for instance in
 	   (sparql '(:select (?thing) (:distinct t) (?thing !rdf:type !owl:Thing))  :use-reasoner :jena :kb kb :flatten t)
