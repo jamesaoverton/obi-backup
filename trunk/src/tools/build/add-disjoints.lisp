@@ -68,7 +68,8 @@
   (sparql '(:select (?class) (:distinct t)
 	    (?class !owl:equivalentClass ?other)
 	    (:optional (?class !rdfs:label ?classname))
-	    (:filter (isblank ?other)))
+	    (:optional (?other !owl:unionOf ?union))
+	    (:filter (and (isblank ?other) (not (bound ?union)))))
 	  :kb kb
 	  :use-reasoner :none
 	  :flatten t))
