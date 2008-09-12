@@ -1,0 +1,79 @@
+FuGO Developers Call Minutes
+
+Participants: Trish Whetzel (TW), Chris Stoeckert (CS), Allison Lister (AL), Helen Causton (HC), Bjoern Peters (BP), Mervi Heiskanen (MH), Pete Sounda (PS), Ryan Brinkman (RB), Jennifer Fostel (JF), Tom Moloshok (TM), Tanya Gray (TG), Liju Fan (LF)
+
+Agenda:
+-Review items for further clean-up before posting OWL file (All)
+-Plan for future development (All)
+
+Agenda Item: Review items for further clean-up before posting OWL file (All)
+-items to address:
+--term identifier, OBI vs FuGO vs Class
+--update ontology metadata; versionInfo, date
+--extra annotations in rdfs:comment field, e.g. defprov, defneed, etc.?
+--properties example, e.g. 'has_role_which_can_only_be_played_by_biomaterial_entity Question: should this remain in SVN trunk version of file?
+
+
+-Plan for future development (All)
+BP - how to view the relations?
+LF - role, highly coordinated (too many terms exist here, perhaps they should be in other locations), there are many things under this term, this needs to review, ask Robert to comment on role? need to give a clear definition of role between function. function and blender example.
+Action Item - BP will contact Robert Stevens
+LF - maintained a list of possible potential relationships that can exist between classes based on what was mentioned at the workshop
+Action Item - LF send this info out
+
+JF - try a Use Case and see how it align with the current FuGO, an idea of an offline idea
+
+TB - would like to try out a use case of pooled genotypes
+
+AL - try to not do too much on the phone, however it would nice to finish the top-level on the phone
+
+RB - separate items into working groups and then bring back work to the entire developers group? 
+HC - the working groups can be dynamic
+
+JF - sounds like there are 2 ideas - to work on the independent continuant branch and the use case working group
+
+LF - use of rdf:ID and BFO, they use rdf:ID as the class name. what will groups be using in this field? difficult to use ontology developed in this way 
+RB - agree, this was difficult at first
+GF - some high level ontologies don't have this issue of usability in mind, limited in mind with usage. the rdfs:label was to hold a string label and the rdf:ID was meant to hold a meaningless label. prefer the current strategy. other people need to think of tools to handle this if not already handled efficiently. e.g. head and neck - they are not logically talking about head and neck and this naming doesn't make sense. problem with descriptive class names being used in rdf:ID.
+
+LF - good point. editors need to find ways to work with this.
+
+Action Item TW - set-up wiki to list advantages/disadvantages of meaningless identifier in the rdf:ID field and check with OBO Foundry and Robert Stevens and Chris Mungall
+
+CS - to clarify the equivalent of this in OBO format would be GO:0000124
+All - correct
+
+TW - JF, have the items in the document that you generated (scope.doc) been addressed at this point in the development of FuGO?
+
+JF - not sure without a formal check, but will continue to monitor this as the development proceeds to make sure that all items are addressed
+
+TW - is anyone interested in a demo of SVN/branching
+All - no one is using this from the FuGO site and is therefore not needed
+
+Resolution - the next items to address are to review the independent continuant branch and to plan for a demo of how to use apply restrictions to classes in OWL to gain reasoning power
+
+Agenda Item: Review items for further clean-up before posting OWL file (All)
+TW - is further clean-up of the OWL file needed, e.g. update metadata date and versionInfo?
+All - yes, as agreed to at the Coordinators call
+
+TW - should the properties added into the OWL file, e.g. has_role_which_can_only_be_played_by_biomaterial_entity, be maintained?
+Resolution by vote - create a branch to leave a version with this example and then from the trunk version, remove this example
+
+TW - disjoint classes, is it too early in development to assert these or assert now and be careful when classes move locations in the hierarchy?
+
+GF - allValues or someValues, the reasoner can not use these properly unless disjoint is used, need to remove this condition before deleting
+
+LF - still in development, need to make top-level disjoint 
+
+TW - don't add new disjoints & check that all current usage of disjoint are ok for now with respect to parents and double parents
+
+LF - Action Item - generate list of classes to make disjoint
+
+GF - comments on Ontology Metadata, others are interested in a consensus development on this topic, possible outcomes
+1) identify groups interested in developing a consensus recommendatation and develop following the recommendation
+2) some groups will either not want to switch or will not be able to switch.
+3) group does not want to publish their ontology following the consensus recommendatation, but will provide a mapping to the consensus
+
+NCI would agree to a consensus mapping
+
+

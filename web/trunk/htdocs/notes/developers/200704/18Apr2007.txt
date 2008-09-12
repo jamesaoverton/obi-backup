@@ -1,0 +1,132 @@
+OBI Developers Call - 18Apr2007
+
+Agenda: 
+-Update on discussion on representation of definition_source/citation
+-Branch report - volunteers?
+-Vote on representation of ontology authors using dc:creator tag, 1 per
+author - All
+-Vote on information re:representing advisors - All
+
+Participants: Trish Whetzel (TW), Allyson Lister (AL), Chris Stoeckert(CS),
+Bill Bug (BB), Tina Boussard (TB), Daniel Schober (DS), Gilberto Fragoso
+(GF), Alan Ruttenberg (AR), Ryan Brinkman (RB)
+
+Excused: Liju Fan, Helen Parkinson, Jennifer Fostel, Bjoern Peters
+
+=-=-=-=-=-=-=
+-TW - Update on discussion on representation of definition_source
+The representation of instances used as the definition_source was
+discussed at the Coordinators call in March. It was decided that in the
+official file representing OBI, that this information would not be
+represented as instances. For those that are using semantic web
+frameworks, the code that Alan developed can be used to convert the string
+representation used as a value for the definition_citation annotation
+property for use in semantic frameworks. 
+
+AR - why is this a Coordinators decision?
+TW - this is one of the problems with the current structure of the OBI
+Groups Reg document, where I believe that it states that the Coordinators
+make 
+
+BB - this also came up with MIO
+AR - we decided what to capture, but needed to make it accessible
+BB - we committed to use the string tag
+AR - there are 2 issues, what to record
+CS - the reason I view this as a Coordinators issue is WRT to where we
+should place our effort, it seemed to be additional work to get this implemented
+TB - is is easier to capture as a string
+TW - there was additional work needed to figure out where to 
+AR - there was a script to do this and check the syntax and convert to 
+the instance representation. this would be done by OBI itself, not needed 
+on an individual community basis.
+
+CS - there would be two versions of OBI
+AR - 
+BB - then those that use the semantic framework can access this information
+AR/TW - i think that the strings that do not pass the syntax checker, then
+these need to be fixed.
+
+CS - if there are strings that do not meet the spec of the string syntax
+then these need to go back to the developers, submitter who submitted the
+term. We don't want to put extra effort on the communities.
+
+AR - e.g. the script checks if there is a valid PMID that exists for what
+was submitted
+
+BB - implies that there is a specific task for the editors to review,
+syntax can be fixed by editors and others can go back to the term submitter
+
+AR - so there will be a second official version of OBI that will be maintained by Alan 
+
+DS - can we put this agreed upon policy on the wiki
+TW - yes, this is on my To Do list and is on the MinimalMetadata wiki page
+
+AR - there is the MinimalMetadata page, a link from definition_source and
+then there will be a page to display the instance representation.
+
+-Branch report - volunteers?
+AR - ProtocolApplication Update
+-Goal getting to Top Level and a few subclasses. Worked to clean-up the
+file, removed deleted_classes, restrictions etc. Added new properties,
+getting 
+
+BB - removed deprecated_classes? are we looking to send out a version
+vetted by the reasoner?
+AR - we agreed to at the workshop to remove the deleted_classes since they
+were interfering with the reasoner
+TW - the removal of these classes 
+
+RB - Instrument Update
+starting reviewing the master list of instrument terms and beginning to 
+review what is appropriate to this branch and what needs to be sent to 
+other branches
+AL - there should be more terms from the PSI groups after their Spring
+meeting next week
+
+RB - DataTransformation Branch
+TB - Richard S sent terms, but it seemed as though the terms did not fit
+RB - suggest to re-propose the terms with definitions and the hierarchy
+and see if that will help the DT branch what the terms mean
+TB - have gone through all the terms as to whether the terms that are
+appropriate for this branch
+CS - for those that are not appropriate, what are being done with those?
+TB - will send to the obi-devel list with the suggested branch
+CS - why not send to the branch they seem to belong to
+
+BB - if there is a way to get the terms into the term tracker, batch process, then we can go to that
+RB - not at this level and easier to send via email
+
+BB - Role
+how to deal with Role in the context of BFO. AR has proposed some ideas
+to BFO and looking to see what needs to be in another branch. discussed a
+few issues that are in the process of being resolved. examined role in 
+a certain type of experiment
+
+
+BB - Function
+getting this set-up and how to interact with people from GO as to where
+different aspects of 'Function' is best covered. this function as it relates to investigational detail.
+
+-Vote on information re:representing advisors - All
+TW - do we want to list the advisors in the OBI.owl file?
+DS - yes, why not
+CS - there have been active advisors and those that have not, although all
+are contacted on the advisors list etc. would be nice to run it by them 
+before listing them.
+AR - would be nice if there is metric for including people,e.g. as an advisor?
+CS - this might now be a chance to ask the advisors this question.
+TW - not sure is this information is appropriate for a wiki 
+CS - responsiveness of advisor to email discussions
+AR - a wiki page would be useful to organize this information
+Action Items - add wiki page about the expectations 
+
+BB - are all the developers, advisors all in the same tag?
+TW - no, their affiliation is in the dc:contributor
+
+-Vote on representation of ontology authors using dc:creator tag, 1 per
+author - All
+-1 person/tag - OK to all
+-add in new developers - yes, 
+Action Item - add information with 1 dc:creator/author and svn commit this file
+
+

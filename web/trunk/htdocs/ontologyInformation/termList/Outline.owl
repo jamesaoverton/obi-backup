@@ -1,0 +1,805 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/unnamed.owl#"
+  xml:base="http://www.owl-ontologies.com/unnamed.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="OrganCollection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SpecimenPrepProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Clinical_Observations">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Behavior, Appearance of Subject</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SubjectObservationProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Microscopic_Exam">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssayProtocol"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Histopathology, histomorphometrics</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ModifiedStd_protocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="User_protocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Pool">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Object"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >composed of specimens or subspecimens
+has ID, depositor name</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Sub-topography">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SpecimenCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Documentation">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Study">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Experiment carried out over defined period of time for purpose of data generation.
+belongs to an Investigation
+
+</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Process"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StressorProtocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#User_protocol"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Has stressor ID, stressor dose, stressor dose unit, stressor dose unit type, application frequency, frequency unit
+</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Transcriptomics">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TechnologyData"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OrganismCommonName">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Taxonomy"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RNAisolationProtocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Standard_protocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Standard_protocol">
+    <rdfs:subClassOf rdf:resource="#Process"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Standard protocols have:  ID, description, standard name</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LocusLinkID">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GeneCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#User_protocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >User protocol has ID, depositor name, display name, description, study ID, link to std protocol, modifications to std prpotocol</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Process"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RNA_AliquotMember">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Disease_stressor_proptocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Exit">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Appllies to human subjects</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DispositionProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Strain">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Taxonomy"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SpecimenIdentifier">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SpecimenCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LabAnimalCharacteristic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SubjectCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AcclimationProtocol">
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ObservationData">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Datum"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PoolMember">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FluorescentStain">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SpecialStaining"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="DispositionEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ScheduledEvent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ComparatorGroup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SubjectGroup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CellularAssay">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssayData"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PersonRole">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Characteristic"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >role a particular person plays in a given study</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Glucose">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ChemistryTest"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Behavior">
+    <rdfs:subClassOf rdf:resource="#ObservationData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Fred">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Personnel"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Chemical">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ExternalEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TimeLine"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="InSituHybridization">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MicroscopicAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Image">
+    <rdfs:subClassOf rdf:resource="#Transcriptomics"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Metric">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >weight, food consumption, water consumption, etc.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SubjectObservationProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GeneticStressor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="DisciplineType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StudyClassifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Weight">
+    <rdfs:subClassOf rdf:resource="#ObservationData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HumanCharacteristic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SubjectCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RNAlabellingProtocol">
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PoolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ReferenceEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TimeLine"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="FreezeAt_-70">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SpecimenPresProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SubjectObservationProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has domain, measurement list, may have frequency</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HistopathologyDiagnosis">
+    <rdfs:subClassOf rdf:resource="#Microscopic_Exam"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WhiteCellCount">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Cell_Count"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyStartDate">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StudyCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ObservationCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BoneMarrowFractionation">
+    <rdfs:subClassOf rdf:resource="#CellularAssay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SurgicalStressor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="UnscheduledEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TimeLine"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Linked to Unscheduled protocol and one or more subjects</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FoodConsumption">
+    <rdfs:subClassOf rdf:resource="#ObservationData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Publication">
+    <rdfs:subClassOf rdf:resource="#Documentation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SpecimenPrepEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ScheduledEvent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GeneList">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StressorProtocolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ClinicalChemistryAssay">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="EnzymeMeasure"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DispositionProtocol">
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RNA_Aliquot">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Nanoparticle_Stressor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BloodCollection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SpecimenPrepProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StandardProtocolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AssayProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has std unit, domain, unit type
+occurs outside study timeline</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Store_in_formalin">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SpecimenPresProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Personnel">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >People with role in carrying out the Study, generating or analyzing data</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ChemistryTest">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Clinical Chemistry, Enzyme Assay, Chemistry Measurement</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AssayProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectGroupCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DiseaseStressorCharacteristic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StressorCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LabeledRNA">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Husbandry_Protocol">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CareProtocol"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ChemicalMeasure">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MolecularAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NormalizedIntensity">
+    <rdfs:subClassOf rdf:resource="#Transcriptomics"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AssayProtocolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CareProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has care frequency</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ArraySpotCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PatientCharacteristic">
+    <rdfs:subClassOf rdf:resource="#HumanCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Environmental_stressor_protocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AccessRights">
+    <rdfs:subClassOf rdf:resource="#PersonRole"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TechnologyData">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Datum"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has biomaterial ID; conforms to technology standard</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DigitizedRawIntensity">
+    <rdfs:subClassOf rdf:resource="#Transcriptomics"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GlucoseAssay">
+    <rdfs:subClassOf rdf:resource="#ChemicalMeasure"/>
+  </owl:Class>
+  <owl:Class rdf:about="#EnzymeMeasure">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MolecularAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="InVitroSubjectCharacteristic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SubjectCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="DiseaseStressor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Metabonomics">
+    <rdfs:subClassOf rdf:resource="#TechnologyData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CareEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ScheduledEvent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EnvironmentalStressorCharacteristic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StressorCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AssayDataAccessionNumber">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssayDataCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Chemical_stressor_protocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Taxonomy">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Euthenasia">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >applies to Lab Animals</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#DispositionProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TissueName">
+    <rdfs:subClassOf rdf:resource="#PoolCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TreatmentEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ScheduledEvent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Histopathology">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MicroscopicAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Nanoparticle_stressor_protocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Genetic_stressor_proptocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ScanProtocol">
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ObservationMeasurementCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Sodium">
+    <rdfs:subClassOf rdf:resource="#ChemicalMeasure"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SpecimenPrepProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has time needed and time unit</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Species">
+    <rdfs:subClassOf rdf:resource="#Taxonomy"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SpecimenObservationProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Gross Observations at disposition</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="subSpecimenCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ClinObs">
+    <rdfs:subClassOf rdf:resource="#ObservationData"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SpecimenCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AntibodyAssay">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MolecularAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StressorType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StudyClassifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TimeType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StudyClassifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Microarray">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AssayData">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has original value, operator (text) and unit; has CDISC numeric and CDISC text; has specimen ID and study ID; has accession number</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Datum"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyAccessionNumber">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StudyCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VitalDye">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SpecialStaining"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectNatureType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StudyClassifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ChromosomeCoordinates">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GeneCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ALT">
+    <rdfs:subClassOf rdf:resource="#ChemistryTest"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AssayDataCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EnvironmentalStressor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Stressor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Report">
+    <rdfs:subClassOf rdf:resource="#Documentation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Genus">
+    <rdfs:subClassOf rdf:resource="#Taxonomy"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ElectronMicroscopy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MicroscopicAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GrossObs">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MeasurementName"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Annotation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GeneCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="QCdata">
+    <rdfs:subClassOf rdf:resource="#Transcriptomics"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CreatineKinase">
+    <rdfs:subClassOf rdf:resource="#ClinicalChemistryAssay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EventType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="EventCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SpecialStaining">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MicroscopicAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#StressorCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#StudyCharacteristic">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >title, objective / description, duration, start date, PI</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SpecimenPresProtocol">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has temperature and temperature unit</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VitalSigns">
+    <rdfs:subClassOf rdf:resource="#ObservationData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="UserDefinedProtocolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Stressor">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PoolMemberType">
+    <rdfs:subClassOf rdf:resource="#PoolCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectIdentifier">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SubjectCharacteristic"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Harvest">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >applies to cultured cells</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#DispositionProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hematology">
+    <rdfs:subClassOf rdf:resource="#CellularAssay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Phase">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TimeLine"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Potassium">
+    <rdfs:subClassOf rdf:resource="#ChemicalMeasure"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ELISA">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MolecularAssay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AssayDataDomain">
+    <rdfs:subClassOf rdf:resource="#AssayDataCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectType">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#StudyClassifier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Gene">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:about="#GeneCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GeneticStressorCharacteristic">
+    <rdfs:subClassOf rdf:resource="#StressorCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Culture_protocol">
+    <rdfs:subClassOf rdf:resource="#CareProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MeasurementName">
+    <rdfs:subClassOf rdf:resource="#SpecimenObservationProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Datum">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has test name, test result</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyObjective">
+    <rdfs:subClassOf rdf:resource="#StudyCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubjectObsEvent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ScheduledEvent"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HybridizationProtocol">
+    <rdfs:subClassOf rdf:resource="#Standard_protocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GenBankID">
+    <rdfs:subClassOf rdf:resource="#GeneCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Subject">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has depositor name, ID; part of a SubjectGroup; has Genus and Species; has Study ID, has CEBS Subject ID.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MicrosatelliteAssay">
+    <rdfs:subClassOf rdf:resource="#TechnologyData"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MicroscopicAssay">
+    <rdfs:subClassOf rdf:resource="#AssayData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SubGroup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SubjectGroup"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has subGroup factor (e.g. "sex")</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SNPassay">
+    <rdfs:subClassOf rdf:resource="#TechnologyData"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TimeLine">
+    <rdfs:subClassOf rdf:resource="#Process"/>
+  </owl:Class>
+  <owl:Class rdf:about="#EventCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Organ">
+    <rdfs:subClassOf rdf:resource="#SpecimenCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ChemicalStressorCharacteristic">
+    <rdfs:subClassOf rdf:resource="#StressorCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MechanicalOrSurgical_stressor_protocol">
+    <rdfs:subClassOf rdf:resource="#StressorProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:about="#StudyClassifier">
+    <rdfs:subClassOf rdf:resource="#StudyCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyDesignType">
+    <rdfs:subClassOf rdf:resource="#StudyClassifier"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VolunteerCharacteristic">
+    <rdfs:subClassOf rdf:resource="#HumanCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Proteomics">
+    <rdfs:subClassOf rdf:resource="#TechnologyData"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Clinical_care_protocol">
+    <rdfs:subClassOf rdf:resource="#CareProtocol"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Unscheduled_protocol">
+    <rdfs:subClassOf rdf:resource="#User_protocol"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Substance or medication use, environmental variables that pertain to one subject rather than a SubjectGroup.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Cell_Count">
+    <rdfs:subClassOf rdf:resource="#AssayProtocol"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hematology, Bone marrow characterization, FACS, etc.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SubSpecimen">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >part of a Specimen
+has type, depositor name, length-of-time-preserved and ID</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Hematocrit">
+    <rdfs:subClassOf rdf:resource="#Cell_Count"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StudyTitle">
+    <rdfs:subClassOf rdf:resource="#StudyCharacteristic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MolecularAssay">
+    <rdfs:subClassOf rdf:resource="#AssayData"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ScheduledEvent">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >can be study time or clock time
+all events are ordered on the TimeLine
+linked to Protocol and SubjectGroup(s)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TimeLine"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CareProtocolCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="UnitOfMeasure">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SorbitolDehydrogenase">
+    <rdfs:subClassOf rdf:resource="#ClinicalChemistryAssay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PrincipalInvestigator">
+    <rdfs:subClassOf rdf:resource="#PersonRole"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Person responsible for the body of work</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Biomaterial">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Starting point of 'omics experiment; derived from Pool, Specimen or subSpecimen</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OrganWeight">
+    <rdfs:subClassOf rdf:resource="#MeasurementName"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AlaninAminotransferase">
+    <rdfs:subClassOf rdf:resource="#ClinicalChemistryAssay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Creatinine">
+    <rdfs:subClassOf rdf:resource="#ChemicalMeasure"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Specimen">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >part of a Subject;
+removed from Study timeline
+has preservation and preparation protocol, event ID, depositor ID, length-of-time-preserved</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RNA">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SubjectCharacteristic">
+    <rdfs:subClassOf rdf:resource="#Characteristic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BUN">
+    <rdfs:subClassOf rdf:resource="#ChemicalMeasure"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SubjectGroup">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has two experimental factor levels; may have Comparator Group ID; has Study ID, has display name</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.1, Build 284)  http://protege.stanford.edu -->
