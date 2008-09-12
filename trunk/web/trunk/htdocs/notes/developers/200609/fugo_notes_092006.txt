@@ -1,0 +1,74 @@
+OBI Conference Call - 9/20/06
+
+Agenda: Discuss Ontology Metadata to include in OBI to promote programmatic interoperability
+Goal: Identify what metadata to include and start discussions on how best to represent this information
+
+Participants: Bjoern Peters (BP), Gilberto Fragoso (GF), Mervi Heiskanen (MH),
+Holger Stenzhorn (HS), Liju Fan (LF), Philippe Rocca-Serra (PRS), Chris
+Stoeckert (CS), Susanna Sansone (SS), Daniel Schoeber (DS), Allyson Lister
+(AL)
+
+Presentation by Gilberto/NCI
+Disclaimer - using a proprietary system and have had to make a few specific modifications. Now are moving to Protege environment.
+
+Properties - usually need to have additional info attached to them.
+Review file summary from Gilberto separated into diff sections.
+Note - need to develop policy and mechanism for deprecation
+
+Programmatic support properties
+TW- would OBI include these?
+GF - no ISO rules for creating names of properties, therefore are free to add as requested
+LF - nice grouping of these, programmatic will be useful in the future, but we can look at this later. focus on the most important for the time being - preferred name, definition, synonym.
+
+GF - in addition to lexical terminology, we have seen a need create diff properties for diff authorities. GO has a good way to develop this dbxref and ID. User can go to the authoritative source and get the definitive information.
+
+ISO std - things to include in with a concept, but does not advise what these "things" should be named.  If starting over, would use terms more closely aligned with the iso stds.
+
+preferred_name is the preferred term utilized by a specific community (e.g. mol bio folks). if they want a diff name then that can be provided as a full_synonym (term, type, source, code)
+
+definition and alt_definition - text and source
+
+designnote/scopenote - written from the editor to the user
+
+editor_note - written from 1 editor to another editor
+
+
+for complex properties,e.g. FULL_SYN, use xml syntax within OWL - see example file
+allows for quality control of the file versus some sort or delimiter. in the future we hope annotations on annotations will be supported by OWL.
+
+TW - Later Question - why not use some of these as they exist in SKOS?
+Re-visit when discussing implementation.
+GF - code will be the rdf:ID of the property in the future
+
+LF - annotation properties, there are 2 kinds in Protege. GF showed the
+example as using both kinds. That might effect how we include these in OBI.
+
+GF - basic annotation property has a value of string, there can be an
+ObjectAnnotationProperty with the filler of an existing class OR
+DatatypeAnnotationProperty where the value can be specified as various xml schema datatypes. For the most part, DatatypeAnnotationProperties OR DC or SKOS.
+
+DS - MetatAnnotation wiki page add only what we want to include. GF can you add the extra information from the first table that you showed?
+
+TW - can you provide the rationale for the extra 
+DS - oimp -> can this be put in an editornote?
+LF - can provide a hierarchy for these 
+
+LF - synonym - need the source of the synonym and the version of the source and a ID (?) to the synonym, consider using the Full_synonym as used by NCI.
+
+GF - editornote is important 
+LF - preferredname is human friendly
+TW - this may actually be the SKOS hiddenLabel
+
+GF - implementation and the names of the properties
+LF - add definition to these
+
+Next Call
+Agree to the kinds of things we want to include (need to see needs from BIRN) and then discuss BFO import. The next step for annotation properties will be to decided on implementation methods, e.g. SKOS, DC, existing OWL property or a new DatatypeAnnotationProperty.
+
+LF - Bill to provide his needs
+DS - doc to include of NCI rec
+LF - can you send the table to the list? and the grouping?
+
+GF - update on the annotation properties and the BFO import work
+LF - review BFO more closely so that there is nothing that is a surprise to us as a group
+

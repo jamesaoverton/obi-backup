@@ -1,0 +1,141 @@
+Developers Call - December 6, 2006
+
+Agenda:
+-Review Action Item list for development items to address before the workshop
+-Review wiki page with minimal term list
+
+Participants: Luisa (LM), Ryan (RB), Daniel (DS), Philippe (PRS), Kevin (KC), 
+Chris S (CS), Bjoern (BP), Liju (LF), Gilberto (GF), Trish (TW
+
+
+Action Item List
+1. Set all sibling class terms disjoint in the ontology file.
+Liju
+
+2. Add definitions to terms that do not currently have a text definition 
+in the ontology file.
+Allyson Lister - see if interested in lead?
+Chris S
+Trish
+Liju
+
+3. Agree on a minimal set of annotation metadata tags (those that refer to 
+the MSI equivalent of RU_metadata) and add those to the ontology file 
+replacing the existing search tags. 
+Daniel will edit the ontology file
+All need to approve the minimal set of terms
+
+Also, have a short discussion on the additional metadata tags (MSI 
+equivalent of RA_metadata) that exist in the last version of the OBI.owl 
+file (e.g. rdfs:comment, value discussion version). Example questions for 
+discussion - do we agree that the tags added should exist in the file and 
+do we agree on the information in the tags. Once resolved, modify the 
+ontology file as needed.
+Trish
+All need to approve the minimal set of terms
+
+4. Collect data transformation terms from all groups and add to the 
+ontology file.
+Tina
+Ryan
+
+
+5. Move all terms from the FuGO term tracker to the OBI term tracker and 
+resolve term proposals by discussing the term proposals amongst developers 
+and adding agreed upon terms to the ontology file.
+Trish change list to send mail to the obi-devel list
+
+6. Review community Use Cases for the ontology to identify areas of 
+further development
+Bjoern - lead
+Tina?
+Jennifer?
+
+
+7. Incorporate past term lists that have been proposed, e.g. study factor 
+terms as proposed by the Transcriptomics community, Instrument terms (I 
+think a few groups have proposed those). Perhaps this is part of item 6.
+Trish - MO and PSI
+Luisa - PSI
+Ryan? - Flow Cytometry
+Tina - assay terms 
+
+
+8. Continue reviewing the independent_continuant branch of OBI as was the
+plan before the BFO import and Metadata discussions came into existence.
+Bjoern - lead
+All
+
+
+Action Item - send to developers list and ask for additional volunteers. Organize/prioritize at next Coord call, Dec.13. 
+
+It is critical to email the developers list before taking 'ownership' of the file!!!
+
+
+Review Annotation Terms
+Questions/Comments from Daniel
+-rdf:id/rdf:about - add that this is to be used to contain the unique identifier of the term
+
+TW - is this list to be extra annotations to add to the ontology?
+GF - this is an implementation item? this is a documentation issue, this is not an annotation that we control. list of annotations that need to be added as extra annotation properties.
+
+GF - preferred_name and rdfs:label, the preferred_name is the one used by a community. suggested to use separately because the rdfs:label is supposed to be the display name of the ontology, but has no semantics.
+
+TW - i agree
+BP - doesn't agree
+TW - able to set the display name to an annotation property value?
+GF - yes, metaproject information. suggest to use rdfs:label as this is how semantic web apps look at this.
+
+BP - agree we DS, we implement the preferred_name as a rdfs:label
+LM - would like rdfs:label to be the equivalent of the obo term name
+
+LF - rdfs:label 
+
+GF - the preferred term name can be made as the display slot, but often the rdfs:label is what current search agents use to find the information for the term name. would argue against merging the meanings of both
+
+DS - modify definitions? rdfs:label is displayed by tools
+BP - would avoid having to fill-out the names in two places
+GF - this is something that a tool can do. one thing that can be done is that the file can be modified and run a program over this to add in what is needed.
+would that work?
+BP - yes, but does this need to be added by curators? the minimum list is that added by the curators. you have mentioned what would be added by a program.
+TW - a similar action has been done for the BIRN file. Suggest to define a list of what needs to be modified by tools.
+LF - like this idea
+TW - have a few more questions, but need to work on this offline first
+
+BP - dbxref comment, ....
+GF - should this be an optional annotation
+BP - can not use dbxref for attribution of definitions and remove the comment
+
+BP - curation_status annotation tag
+GF - what are the different terms? 
+TW - not relevant for deprecation
+
+LM - depends on how it is implemented, it could be for deprecated terms
+
+TW - what is class_old_state for
+
+GF - i think this came from the NCI Thesaurus, defined or primitive class and
+it is for the 
+TW - having trouble seeing how this overlaps with deprecation
+
+LF - to create a new superclass "terms_to_be_treed" to hold those terms to be treed? 
+TW - not in favor, what do others think
+GF - this is an editor note, use curation_status and editor note in combination
+
+TW - what can we do to clarify this?
+Action Items DS - write email to Bill on this via the obi-devel list to ask if the "graph position temporary" overlap with a deprecation policy
+
+LF - to review the additional proposal 
+
+PRS - develop ontology in parallel development tracks and then resolve any differences
+TW - yes, agree this is what I have been saying and how development items have 
+been generally arranged
+
+DS - source_code?
+GF - this is an accepted term for this information, it does sound like software development type of term but should be fine here
+
+Action Item  - GF send around definitions of how these annotation are specified 
+in UMLS
+
+Action Item - TW review need for annotation property for example usage of the term, i.e. what kinds of things are annotated with this term
+
