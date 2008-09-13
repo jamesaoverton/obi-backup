@@ -1,5 +1,5 @@
-
-
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (def-uri-alias "material-entity" !material-entity))
 
 (defun rdfs-class-report (kb)
   (sparql
@@ -11,8 +11,6 @@
 	       )
      )
    :kb kb :use-reasoner :jena :trace "rdfs:Class" :values nil :trace-show-query nil))
-
-
 
 (defun curation-status-report (kb)
   (sparql
@@ -193,20 +191,36 @@
 (defun asserted-subclass-of-defined-class (kb)
   (sparql
    '(:select (?sublabel ?superlabel) (:distinct t)
+     (?super !owl:equivalentClass ?other)
      (?sub !rdf:type !owl:Class)
      (?super !rdf:type !owl:Class)
      (?sub !rdfs:subClassOf ?super)
-     (?super !owl:equivalentClass ?other)
      (:optional 
       (?sub !rdfs:label ?sublabel))
      (:optional
       (?super !rdfs:label ?superlabel))
      (:filter (and
-	       (not (equal ?super !<http://purl.obofoundry.org/obo/OBI_0000141>))
+	       (not (equal ?super !material-entity))
 	       (regex (str ?sub) "obi|OBI")
 	       (regex (str ?super) "obi|OBI")))
      )
    :kb kb :use-reasoner :none :trace "asserted subclass of defined-class" :values nil :trace-show-query nil))
+
+(defun covering-classes (kb)
+  "Defined classes that are the union of some other set of classes"
+  (let ((them
+	 (sparql
+	  '(:select (?me ?label) (:distinct t)
+	    (?other !owl:unionOf ?list)
+	    (?me !owl:equivalentClass ?other)
+	    (?me !rdf:type !owl:Class)
+	    (?other !rdf:type !owl:Class)
+	    (:optional 
+	     (?me !rdfs:label ?label))
+	    (:filter (not (equal ?me !material-entity)))
+	    )   :kb kb :use-reasoner :none)))
+    (loop for (it name) in them collect
+	 (list* it name (mapcar (lambda(e)(car (rdfs-label e kb)))  (children it kb))))))
 
 (defun path-of-last-released-obi ()
   (let* ((merged (make-pathname :directory '(:relative "merged") :name "OBI" :type "owl"))
