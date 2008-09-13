@@ -40,6 +40,7 @@
      (:file "write-purls")
      (:file "add-inferred-superclasses")
      (:file "create-external-derived")
+     (:file "comment-ids-in-owl-file")
      (:file "add-assumed-individuals")
      )
     :depends-on (owl))

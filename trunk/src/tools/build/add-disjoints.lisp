@@ -13,7 +13,7 @@
 		 (:filter (not (or (isblank ?sub) (isblank ?super)))))
 	       :kb kb
 	       :use-reasoner :none)
-       ; build a tree
+       ; build the asserted hierarchy tree as a hash table mapping parent to children
        do
        (pushnew sub (gethash super parent2child))
        (setf (gethash sub labels) subname)
@@ -35,7 +35,8 @@
 				       children)
 	    for ignore-children = (mapcan (lambda(c)
 					    (when (or (and (gethash c labels) (#"matches" (gethash c labels) "_.*"))
-						      (member c defined-classes))
+						      ;(member c defined-classes)
+						      )
 					      (list c)))
 					  children)
 	    for other-children = (set-difference (set-difference children obi-children) ignore-children)
@@ -48,13 +49,19 @@
 	    do (progn
 		 (when nil		;debug
 		   (print-db (or (gethash root labels) root) (labels-of obi-children) (labels-of ignore-children) other-children))
-		 (let ((obi-disjoints (set-difference obi-children ignore-children)))
+		 (let ((obi-disjoints (remove-if
+				       (lambda(c) (#"matches" (gethash c labels) "_.*"))
+				       (set-difference (set-difference obi-children ignore-children) defined-classes))))
 		   (when (>= (length obi-disjoints) 2)
 		     (push `(disjoint-classes ,@obi-disjoints) all-disjoints))
 		   (dolist (other other-children)
 		     (dolist (obi obi-children)
-		       ;(print-db other-children)
-		       (push `(disjoint-classes ,obi ,other) all-disjoints)))))
+		       (unless (or (not (#"matches" (gethash other labels) "_.*"))
+				   (not (member obi defined-classes))
+				   (not (member other defined-classes))
+				   (not (#"matches" (gethash obi labels) "_.*")))
+					;(print-db other-children)
+			 (push `(disjoint-classes ,obi ,other) all-disjoints))))))
 	    do (setf queue (append queue obi-children other-children))
 	    until (null queue)
 	    finally (eval `(with-ontology disjoints (:base "http://purl.obofoundry.org/obo/obi/disjoints.owl")
@@ -67,9 +74,18 @@
 (defun defined-classes (&optional (kb (load-kb-jena :obi)))
   (sparql '(:select (?class) (:distinct t)
 	    (?class !owl:equivalentClass ?other)
-	    (:optional (?class !rdfs:label ?classname))
 	    (:optional (?other !owl:unionOf ?union))
-	    (:filter (and (isblank ?other) (not (bound ?union)))))
+	    (:filter (and (isblank ?other))))
 	  :kb kb
 	  :use-reasoner :none
 	  :flatten t))
+
+(defun placeholder-classes (&optional (kb (load-kb-jena :obi)))
+  (sparql '(:select (?class) (:distinct t)
+	    (?class !rdf:type !owl:Class)
+	    (?class !rdfs:label ?label)
+	    (:filter (regex ?label "^_.*")))
+	  :kb kb
+	  :use-reasoner :none
+	  :flatten t
+	  :trace t))
