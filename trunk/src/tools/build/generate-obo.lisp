@@ -13,7 +13,7 @@
 (defun localname-namespaced (uri)
   (let* ((full (uri-full uri))
 	(local  (#"replaceFirst" full ".*/(.*)" "$1")))
-    (if (#"matches" (uri-full uri) "http://purl.obofoundry.org/obo/OBI_\\d+")
+    (if (is-obi-uri uri)
 	(concatenate 'string "OBI:" local)
 	(if (#"matches" local "^ro\\.owl#.*")
 	    (concatenate 'string "OBO_REL:" (#"replaceFirst" local ".*#(.*)" "$1"))
@@ -47,7 +47,7 @@ remark: This file is an subset of OBI adequate for indexing using the OLS servic
 
 " (format-time))
 	(loop for class in (descendants !owl:Thing kb)
-	   for obsolete = (member !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (ancestors class kb))
+	   for obsolete = (member !obsolete-class (ancestors class kb))
 	   when (#"matches" (uri-full class) classes-matching)
 	   do 
 	   (format f "[Term]~%id: ~a~%name: ~a~%"
