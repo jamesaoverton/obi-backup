@@ -34,7 +34,7 @@
     :version "1"
     :licence "BSD"
     :components
-    ((:file "uri-aliases")
+    ((:file "util")
      (:file "qc-queries")
      (:file "uri-report")
      (:file "add-disjoints")

@@ -55,12 +55,12 @@
      (?ci :a ?c)
      (:optional (?ci !rdfs:label ?label))
      (:filter (and 
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000318>))
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000319>))
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000320>))
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000323>))
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000328>))
-	       (not (equal ?ci !<http://purl.obofoundry.org/obo/OBI_0000366>)) 
+	       (not (equal ?ci !ready-for-release))
+	       (not (equal ?ci !metadata-complete))
+	       (not (equal ?ci !metadata-incomplete))
+	       (not (equal ?ci !pending-final-vetting))
+	       (not (equal ?ci !uncurated))
+	       (not (equal ?ci !placeholder)) 
 	       )))
    :kb kb :use-reasoner :jena :trace "Extra curation status instances" :values nil :trace-show-query nil))
   
