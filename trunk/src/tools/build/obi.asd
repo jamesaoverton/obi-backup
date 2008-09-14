@@ -34,7 +34,8 @@
     :version "1"
     :licence "BSD"
     :components
-    ((:file "qc-queries")
+    ((:file "uri-aliases")
+     (:file "qc-queries")
      (:file "uri-report")
      (:file "add-disjoints")
      (:file "write-purls")
@@ -43,6 +44,7 @@
      (:file "comment-ids-in-owl-file")
      (:file "add-assumed-individuals")
      )
+    :serial t
     :depends-on (owl))
 
 ;;;; eof

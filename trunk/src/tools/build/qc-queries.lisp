@@ -1,6 +1,3 @@
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (def-uri-alias "material-entity" !material-entity))
-
 (defun rdfs-class-report (kb)
   (sparql
    '(:select (?si ?label) (:distinct t)
