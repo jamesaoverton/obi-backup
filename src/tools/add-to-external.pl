@@ -11,7 +11,7 @@ if (!$branchpath)
   chomp $branchpath;
   $branchpath .= "/external.owl";
 }
-my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO);
+my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO SO);
 
 my $valid_child_pattern = "(http:\/\/purl.org\/obo\/owl\/"
     ."(".join("",map "$_#$_\_|", @valid_externals).")(\\d+)\$)|"

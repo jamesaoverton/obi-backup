@@ -23,6 +23,7 @@
     ("obi" "http://purl.obofoundry.org/obo/")
     ("caro" "http://purl.org/obo/owl/CARO#")
     ("pro" "http://purl.org/obo/owl/PRO#")
+    ("so" "http://purl.org/obo/owl/SO#")
     ("obi_denrie" "http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#")
     ("obi_biomat" "http://purl.obofoundry.org/obo/obi/Biomaterial.owl#")
     ("obi_extd" "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
