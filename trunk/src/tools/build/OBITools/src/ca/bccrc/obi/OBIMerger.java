@@ -336,6 +336,8 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("ncbitax","http://purl.org/obo/owl/NCBITaxon#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("pro","http://purl.org/obo/owl/PRO#");	
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("caro","http://purl.org/obo/owl/CARO#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("so","http://purl.org/obo/owl/SO#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("go","http://purl.org/obo/owl/GO#");
 		//specific case: the empty string means default namespace
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
 
@@ -421,7 +423,7 @@ public class OBIMerger {
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
 		//check consistency
-		//boolean valid = checkConsistency(newFilePath);
+		boolean valid = checkConsistency(newFilePath);
 		//System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
