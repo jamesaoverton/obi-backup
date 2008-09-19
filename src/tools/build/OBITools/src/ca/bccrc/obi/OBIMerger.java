@@ -39,8 +39,10 @@ import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 
 //import com.hp.hpl.jena.ontology.OntDocumentManager;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFWriter;
@@ -98,7 +100,7 @@ public class OBIMerger {
 			branchesNames.add("DigitalEntityPlus");
 			branchesNames.add("disjoints");
 			branchesNames.add("inferred-superclasses");
-			branchesNames.add("assumed-individuals");
+			//branchesNames.add("assumed-individuals");
 			//instances
 			branchesNames.add("DataFormatSpecification");
 
@@ -260,6 +262,10 @@ public class OBIMerger {
 		return owlModel;
 	}
 	
+	
+
+	
+	
 	public static OntModel buildMergedFiles(String physicalURI, boolean ProtegeFriendly){
 
 	
@@ -351,6 +357,22 @@ public class OBIMerger {
 		owlModel.removeNsPrefix("obi_owlfull");
 		
 		
+		//some clean-up
+		//e.g. remove the defined classes buckets at the top
+		//remove _defined protocol application (OBI_0600065)
+		OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
+		//remove _defined_material (OBI_0000233)
+		OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
+		
+		r.remove();
+		r2.remove();
+		
+		
+		
+		
+		
+		
+		
 		return owlModel;
 	}
 	/**
@@ -385,12 +407,12 @@ public class OBIMerger {
 
 
 
-	/*For testing purposes
-
+	//For testing purposes
+/*
 	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080716/build/newids/";
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080919/build/newids/";
 		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
 		//if we had modification of the branches that are to be kept, we need to give a destination path
 		//String destinationURI="Users/melanie/OBIReleases/test/";
@@ -399,17 +421,19 @@ public class OBIMerger {
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
 		//check consistency
-		boolean valid = checkConsistency(newFilePath);
-		System.out.println("to be committed: "+ valid);
+		//boolean valid = checkConsistency(newFilePath);
+		//System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
 		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
 		System.out.println("to be committed: ");
+		
+		
+	
 
 
-
-	}*/
-
+	}
+*/
 
 
 }
