@@ -39,17 +39,6 @@
   <owl:Ontology rdf:about="">
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
-
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000286"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000287"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000288"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000279"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000275"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000274"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000281"/>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000291"/>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000082">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <rdfs:label xml:lang="en">role of acclimating subject</rdfs:label>
@@ -161,7 +150,9 @@
     >PRS 210608: moved from biomaterial branch following deprecation of biomolecule class (note: polymer has been moved under quality (since polymer describes the result of a polymerization process where as monomer indicates that  a chemical entity has the potential to be used as a monomer such polymerization reaction)</OBI_0000274>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000236"/>
+    </rdfs:subClassOf>
     <OBI_0000275 xml:lang="en">TEMP FOR NOW FOR STRUCTURE - MAY NEED TO REMOVE THIS.  JAMES</OBI_0000275>
     <OBI_0000288 xml:lang="en">monomer</OBI_0000288>
   </owl:Class>
@@ -312,8 +303,8 @@
     <rdfs:label xml:lang="en">specimen_role</rdfs:label>
     <OBI_0000291 xml:lang="en">A specimen role is an investigation object role where the object is a piece of a material.</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000104"/>
-    <OBI_0000275 xml:lang="en">rem: not necessarily played by biomaterial entities, also include material entity</OBI_0000275>
     <OBI_0000275 xml:lang="en">organism "has_role_which_can_only_be_played_by_biomaterial_entity" some specimen_role in obi before split (LF 040907).</OBI_0000275>
+    <OBI_0000275 xml:lang="en">rem: not necessarily played by biomaterial entities, also include material entity</OBI_0000275>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</OBI_0000279>
   </owl:Class>
@@ -339,7 +330,6 @@
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000288 xml:lang="en">dye</OBI_0000288>
   </owl:Class>
- 
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000247">
     <OBI_0000291 xml:lang="en">Eligible population is a study population role characterized by meeting the inclusion / exclusion criteria</OBI_0000291>
     <rdfs:subClassOf>
@@ -363,7 +353,6 @@
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
     <rdfs:label xml:lang="en">administrative unit role</rdfs:label>
   </owl:Class>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000143">
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -381,6 +370,12 @@
     <rdfs:label xml:lang="en">contract research organization role</rdfs:label>
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000091">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">detector reagent role</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000145">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000291 xml:lang="en">Pathologist is a worker role of being responsible for making the histopathology diagnoses associated with data from a study; this activity occurs outside the study timeline</OBI_0000291>
@@ -388,12 +383,6 @@
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000116"/>
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
     <rdfs:label xml:lang="en">pathologist role</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000091">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
-    </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">detector reagent role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000056">
     <OBI_0000288 xml:lang="en">Notified Body</OBI_0000288>
@@ -548,7 +537,6 @@
     <rdfs:label xml:lang="en">pH indicator dye role</rdfs:label>
     <OBI_0000287 xml:lang="en">phenol red in RPMI; pH=4 indicator dye (also carries reference role)</OBI_0000287>
   </owl:Class>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000127">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000288 xml:lang="en">Epitope</OBI_0000288>
@@ -768,14 +756,6 @@ A drug, broadly speaking, is any substance that alters normal bodily function. W
     <OBI_0000288 xml:lang="en">Inactive isomer</OBI_0000288>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000214"/>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000023">
-    <OBI_0000291 xml:lang="en">An output role is a role which is played by an entity such as data or material at the end of a process.</OBI_0000291>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI</OBI_0000279>
-    <OBI_0000275 xml:lang="en">role of data or material played by an entity at the end of a process</OBI_0000275>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000104"/>
-    <rdfs:label xml:lang="en">output_role</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000079">
     <OBI_0000287 xml:lang="en">A growth medium or culture medium is a substance in which microorganisms or cells can grow.  Wikipedia, growth medium, Feb 29, 2008</OBI_0000287>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -785,6 +765,14 @@ A drug, broadly speaking, is any substance that alters normal bodily function. W
     <OBI_0000288 xml:lang="en">Culture medium</OBI_0000288>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000162"/>
     <rdfs:label xml:lang="en">culture medium role</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000023">
+    <OBI_0000291 xml:lang="en">An output role is a role which is played by an entity such as data or material at the end of a process.</OBI_0000291>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</OBI_0000279>
+    <OBI_0000275 xml:lang="en">role of data or material played by an entity at the end of a process</OBI_0000275>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000104"/>
+    <rdfs:label xml:lang="en">output_role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000173">
     <rdfs:label xml:lang="en">role of being excluded study participant</rdfs:label>
@@ -816,8 +804,8 @@ A drug, broadly speaking, is any substance that alters normal bodily function. W
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <OBI_0000288 xml:lang="en">Vector</OBI_0000288>
     <rdfs:label xml:lang="en">vector role</rdfs:label>
-    <OBI_0000287 xml:lang="en">Some epidemiological aspects and vector role of tick infestation on layers in the Faisalabad district (Pakistan). http://journals.cambridge.org/action/displayAbstract;jsessionid=0373164489D00868AEEF2C556EB4FD29.tomcat1?fromPage=online&amp;aid=624280</OBI_0000287>
     <OBI_0000287 xml:lang="en">1983 Sci. Amer. Jan. 58/2 Plasmids are routinely used as vectors for introducing foreign DNA into bacteria.</OBI_0000287>
+    <OBI_0000287 xml:lang="en">Some epidemiological aspects and vector role of tick infestation on layers in the Faisalabad district (Pakistan). http://journals.cambridge.org/action/displayAbstract;jsessionid=0373164489D00868AEEF2C556EB4FD29.tomcat1?fromPage=online&amp;aid=624280</OBI_0000287>
     <OBI_0000291 xml:lang="en">vector is a role played by an agent which indicates the ability or potential to carry and deliver material and information entities into another entity.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000128">
@@ -910,7 +898,7 @@ A drug, broadly speaking, is any substance that alters normal bodily function. W
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/Class_5">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >cloning insert role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000236"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is the role a DNA or RNA fragment plays that is inserted into a cloning vector in a cloning process.</OBI_0000291>
   </owl:Class>
@@ -979,6 +967,13 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <OBI_0000279 xml:lang="en">source pending</OBI_0000279>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000236"/>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000221">
+    <rdfs:label xml:lang="en">vital dye role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000250"/>
+    <OBI_0000288 xml:lang="en">Vital dye</OBI_0000288>
+    <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000006">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000275 xml:lang="en">FDA official who coordinates the review</OBI_0000275>
@@ -989,13 +984,6 @@ http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1887478&amp;group_i
     <OBI_0000287 xml:lang="en">Person charged with serving as CSO</OBI_0000287>
     <OBI_0000288 xml:lang="en">Consumer safety officer; Consumer Safety Officer Positions at FDA http://69.20.19.211/jobs/cso.htm</OBI_0000288>
     <OBI_0000279 xml:lang="en">OBI, CDISC</OBI_0000279>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000221">
-    <rdfs:label xml:lang="en">vital dye role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000250"/>
-    <OBI_0000288 xml:lang="en">Vital dye</OBI_0000288>
-    <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000252">
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
@@ -1118,7 +1106,7 @@ www.uhhospitals.org/tabid/591/Default.aspx</OBI_0000279>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000086"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/Class_6">
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000236"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is the role played by extrachromosomal genetic material in a cloning process into which DNA or RNA is inserted to be able to later recover copies of the inserted material</OBI_0000291>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1149,7 +1137,6 @@ www.uhhospitals.org/tabid/591/Default.aspx</OBI_0000279>
     <rdfs:label xml:lang="en">role of being member of screened population</rdfs:label>
     <OBI_0000274 xml:lang="en">Jennifer Fostel</OBI_0000274>
   </owl:Class>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000106">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000291 xml:lang="en">Vulnerable subject is a potential study participant role characterized by being unduly influenced by the expectation that participation in the trial will provide direct benefit</OBI_0000291>
@@ -1169,16 +1156,25 @@ www.uhhospitals.org/tabid/591/Default.aspx</OBI_0000279>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000102"/>
     <OBI_0000291 xml:lang="en">Coordinating committee is a responsible party role overseeing the progress of a multicenter trial</OBI_0000291>
   </owl:Class>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000274"/>
   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000094">
     <OBI_0000291 xml:lang="en">a material_application is protocol_application which has the objective to 
     produce output material(s) from input material(s)</OBI_0000291>
   </rdf:Description>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000275"/>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000291"/>
   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0200000">
     <OBI_0000291 xml:lang="en">a protocol application which has the objective to  produce output data from input data</OBI_0000291>
   </rdf:Description>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000286"/>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000287"/>
   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000011">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
   </rdf:Description>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000288"/>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000281"/>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000279"/>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 505)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 506)  http://protege.stanford.edu -->
