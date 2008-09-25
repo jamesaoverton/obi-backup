@@ -11,6 +11,9 @@
   (def-uri-alias "pending-final-vetting" !<http://purl.obofoundry.org/obo/OBI_0000323>)
   (def-uri-alias "uncurated" !<http://purl.obofoundry.org/obo/OBI_0000328>)
   (def-uri-alias "placeholder" !<http://purl.obofoundry.org/obo/OBI_0000366>)
-  (def-uri-alias "obsolete-class" !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
+  (def-uri-alias "obsolete-class" !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
+  (def-uri-alias "definition" !obi:OBI_0000291)
+  (def-uri-alias "example-of-usage" !obi:OBI_0000287)
+  )
 
 
