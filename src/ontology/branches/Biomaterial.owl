@@ -3,8 +3,8 @@
     xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
     xmlns:pato="http://purl.org/obo/owl/PATO#"
     xmlns:obi_owlfull="http://purl.obofoundry.org/obo/obi/obi-owl-full.owl#"
-    xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
     xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
+    xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
     xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
@@ -89,49 +89,36 @@
     >PRS: Possible Import from CARO:0000000</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/DNA_polymerase">
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >group:OBI</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233"/>
     </rdfs:subClassOf>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DNA polymerase</rdfs:label>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/enzyme"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
             <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0034061"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DNA polymerase</OBI_0000288>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >enzyme and  has_function some GO:0034061 (DNA polymerase activity)</OBI_0000291>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DNA polymerase</rdfs:label>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >person:Melanie Courtot</OBI_0000274>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >group:OBI</OBI_0000279>
+    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DNA polymerase</OBI_0000288>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100017">
-    <OBI_0000275 xml:lang="en">PRS:19032008-moved under entity of organismal origin -&gt;modification to definition to reflect change + addition of pubmed based example</OBI_0000275>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000275 xml:lang="en">PRS:19032008-moved under entity of organismal origin -&gt;modification to definition to reflect change + addition of pubmed based example</OBI_0000275>
     <rdfs:label xml:lang="en">blood serum</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
-            </owl:unionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <OBI_0000274 xml:lang="en">Melanie Courtot</OBI_0000274>
     <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Blood_plasma</OBI_0000279>
     <rdfs:subClassOf>
@@ -143,20 +130,33 @@
     <OBI_0000274 xml:lang="en">Maura Gasparetto</OBI_0000274>
     <OBI_0000287 xml:lang="en">PMID: 18229666.Adv Med Sci. 2007;52 Suppl 1:204-6.Antioxidant activity of blood serum and saliva in patients with periodontal disease treated due to epilepsy.</OBI_0000287>
     <OBI_0000288 xml:lang="en">blood serum</OBI_0000288>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100061">
-    <OBI_0000288 xml:lang="en">primary cell culture</OBI_0000288>
-    <OBI_0000291 xml:lang="en">cells put directly into culture from a tissue source.</OBI_0000291>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI Biomaterial derived</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100060"/>
     </rdfs:subClassOf>
-    <OBI_0000287 xml:lang="en">spleen cells put directly into culture</OBI_0000287>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI Biomaterial derived</OBI_0000279>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <rdfs:label xml:lang="en">primary cell culture</rdfs:label>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Susanna Sansone</OBI_0000274>
-    <rdfs:label xml:lang="en">primary cell culture</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000287 xml:lang="en">spleen cells put directly into culture</OBI_0000287>
+    <OBI_0000291 xml:lang="en">cells put directly into culture from a tissue source.</OBI_0000291>
+    <OBI_0000288 xml:lang="en">primary cell culture</OBI_0000288>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100014">
     <OBI_0000274 xml:lang="en">Helen Parkinson</OBI_0000274>
@@ -203,40 +203,40 @@ DS: Is this synthetic an oxymoron to the biomaterial?</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233"/>
     </rdfs:subClassOf>
-    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >should we use PCR (or the written out words)? These are also in the Sequence Ontology, should we take them from there? Needs DNA added to the logical definition</OBI_0000275>
+    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is double stranded DNA that is the output of a polymerase chain reaction</OBI_0000291>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PCR product</rdfs:label>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000415"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
           </owl:Restriction>
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is double stranded DNA that is the output of a polymerase chain reaction</OBI_0000291>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PCR product</rdfs:label>
+    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >should we use PCR (or the written out words)? These are also in the Sequence Ontology, should we take them from there? Needs DNA added to the logical definition</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302743">
-    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CARO#CARO_0000055"/>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI Biomaterial Branch</OBI_0000279>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS: Test. added for evaluation and validation of possible imports from CARO (or other anatomical resources)</OBI_0000275>
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CARO#CARO_0000055"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >liver is an anatomical entity which consituant are mainly hepatocytes, which has a function of detoxification,hemotapoeietic center, glucose and fat metabolism management. liver is only found in animals , all Vertebrates and some families of invertebrates</OBI_0000291>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >liver</rdfs:label>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 2104732. Caudate lobe of the liver: anatomy, embryology, and pathology.
 AJR Am J Roentgenol. 1990 Jan;154(1):87-93.</OBI_0000287>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >liver</rdfs:label>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI Biomaterial Branch</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000036">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
@@ -277,38 +277,40 @@ AJR Am J Roentgenol. 1990 Jan;154(1):87-93.</OBI_0000287>
     <OBI_0000288 xml:lang="en">enzyme</OBI_0000288>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302716">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pool of specimens</rdfs:label>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</OBI_0000274>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000291 xml:lang="en">A pool of specimens is a sample population that is a set of specimens which have been gathered from one or more sample_populations, obtained by the physical process of mixing individual specimens, e.g.  mixing the DNA collected from the individual fish.</OBI_0000291>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CEBS</OBI_0000279>
-    <OBI_0000291 xml:lang="en">A pool of specimens is a sample population that is a set of specimens which have been gathered from one or more sample_populations, obtained by the physical process of mixing individual specimens, e.g.  mixing the DNA collected from the individual fish.</OBI_0000291>
+    <OBI_0000275 xml:lang="en">check with advisors as to how to represent multiple instances of any class? a set of specimens which have been gathered from one or more sample_populations, obtained by the physical process of mixing individual specimens, e.g.  mixing the DNA collected from the individual fish</OBI_0000275>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: does not feel right, definition is unclear. a pool is in this is case understood as a process of mixing to homogeneity but NOT the creation of a population of individuals which retain the capability of being singled out.</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000264"/>
     </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pool of specimens</rdfs:label>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: does not feel right, definition is unclear. a pool is in this is case understood as a process of mixing to homogeneity but NOT the creation of a population of individuals which retain the capability of being singled out.</OBI_0000275>
-    <OBI_0000275 xml:lang="en">check with advisors as to how to represent multiple instances of any class? a set of specimens which have been gathered from one or more sample_populations, obtained by the physical process of mixing individual specimens, e.g.  mixing the DNA collected from the individual fish</OBI_0000275>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100062">
-    <rdfs:label xml:lang="en">cell line culture</rdfs:label>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100060"/>
-    </rdfs:subClassOf>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Susanna Sansone</OBI_0000274>
     <OBI_0000288 xml:lang="en">cell line culture</OBI_0000288>
+    <OBI_0000291 xml:lang="en">long term culture of cells that are replicating continuosly. The cell population is homogenous but not clonal</OBI_0000291>
+    <rdfs:label xml:lang="en">cell line culture</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100060"/>
+    </rdfs:subClassOf>
+    <OBI_0000287 xml:lang="en">HeLa cells</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
-    <OBI_0000291 xml:lang="en">long term culture of cells that are replicating continuosly. The cell population is homogenous but not clonal</OBI_0000291>
-    <OBI_0000287 xml:lang="en">HeLa cells</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000256">
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000291 xml:lang="en">Matter in or on which organisms may live (From ENVO) OR an environmental sample is an object that contains an array of objects that may or may not contain a biomaterial. definition_source: OBI.</OBI_0000291>
+    <rdfs:label xml:lang="en">environmental matter</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -317,10 +319,9 @@ AJR Am J Roentgenol. 1990 Jan;154(1):87-93.</OBI_0000287>
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">Matter in or on which organisms may live (From ENVO) OR an environmental sample is an object that contains an array of objects that may or may not contain a biomaterial. definition_source: OBI.</OBI_0000291>
-    <rdfs:label xml:lang="en">environmental matter</rdfs:label>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Norman Morrison</OBI_0000274>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
@@ -336,7 +337,6 @@ A dirt sample containing different populations of bacteria. A sample of martian 
     >OBI Biomaterial derived</OBI_0000279>
     <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >site_sample</OBI_0000286>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302714">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
@@ -354,19 +354,20 @@ A dirt sample containing different populations of bacteria. A sample of martian 
     <OBI_0000279 xml:lang="en">PERSON: Philippe Rocca-Serra</OBI_0000279>
     <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000042">
+    <rdfs:label xml:lang="en">peptide construct</rdfs:label>
+    <OBI_0000287 xml:lang="en">Multiple Antigenic Peptide (MAP) construct containing T and B cell epitopes from p. falciparum congugated to a central glycin</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000291 xml:lang="en">is a biomaterial containing a number of peptides conjugated together in a non-linear fashion</OBI_0000291>
+    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
+    <OBI_0000288 xml:lang="en">peptide construct</OBI_0000288>
+    <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
+    </rdfs:subClassOf>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a chemical entity which has output_role during conjugation protocol-application AND derives_from Peptide</OBI_0000275>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/enzyme">
-    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >enzyme</OBI_0000288>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >enzyme</rdfs:label>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >GROUP:OBI</OBI_0000279>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >person: Melanie Courtot</OBI_0000274>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >(protein or rna) or has_part (protein or rna) and
-has_function some GO:0003824 (catalytic activity)</OBI_0000291>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -377,8 +378,8 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PRO#PRO_000000001"/>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
               </owl:Restriction>
               <owl:Restriction>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
@@ -396,31 +397,30 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person: Melanie Courtot</OBI_0000274>
+    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(protein or rna) or has_part (protein or rna) and
+has_function some GO:0003824 (catalytic activity)</OBI_0000291>
+    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >enzyme</OBI_0000288>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000042">
-    <rdfs:label xml:lang="en">peptide construct</rdfs:label>
-    <OBI_0000287 xml:lang="en">Multiple Antigenic Peptide (MAP) construct containing T and B cell epitopes from p. falciparum congugated to a central glycin</OBI_0000287>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <OBI_0000291 xml:lang="en">is a biomaterial containing a number of peptides conjugated together in a non-linear fashion</OBI_0000291>
-    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
-    <OBI_0000288 xml:lang="en">peptide construct</OBI_0000288>
-    <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
-    </rdfs:subClassOf>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a chemical entity which has output_role during conjugation protocol-application AND derives_from Peptide</OBI_0000275>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI</OBI_0000279>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >enzyme</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233">
+    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Place holder class, Utility class to gather the defined classes</OBI_0000291>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Susanna Sansone</OBI_0000274>
     <rdfs:label xml:lang="en">_defined_material</rdfs:label>
-    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Place holder class, Utility class to gather the defined classes</OBI_0000291>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100052">
@@ -442,13 +442,6 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
     <OBI_0000287 xml:lang="en">solution containing RPMI, fetal calf sera, antibiotics, and monoclonal antibody UCHT1.</OBI_0000287>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600029"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -457,12 +450,19 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <OBI_0000288 xml:lang="en">cell culture supernatant</OBI_0000288>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600029"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000275 xml:lang="en">PRS:22022008: moved from _unclassified to _a defined class is needed following BM call</OBI_0000275>
     <rdfs:label xml:lang="en">cell culture supernatant</rdfs:label>
     <OBI_0000291 xml:lang="en">Supernatant of a cell culture.  Contains media, supplements, and secreted products of the cells.</OBI_0000291>
@@ -471,6 +471,19 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000164">
     <OBI_0000287 xml:lang="en">PMID:6110205. collection of cDNA derived from mouse splenocytes.</OBI_0000287>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000275 xml:lang="en">PRS: 22022008. class moved under population,
 modification of definition and replacement of biomaterials in previous definition with 'material'
 addition of has_role restriction</OBI_0000275>
@@ -484,46 +497,28 @@ ALT DEF:: a cDNA library is a collection of host cells, typically E.Coli cells b
     <OBI_0000288 xml:lang="en">cDNA library</OBI_0000288>
     <OBI_0000274 xml:lang="en">Luisa Montecchi</OBI_0000274>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302714"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100026">
+    <OBI_0000287 xml:lang="en">fungus</OBI_0000287>
+    <OBI_0000288 xml:lang="en">organism</OBI_0000288>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100026">
-    <OBI_0000287 xml:lang="en">fungus</OBI_0000287>
-    <OBI_0000288 xml:lang="en">organism</OBI_0000288>
     <OBI_0000287 xml:lang="en">micro-organism</OBI_0000287>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
     <OBI_0000274 xml:lang="en">Melanie Courtot</OBI_0000274>
     <OBI_0000275 xml:lang="en">organism "has_role_which_can_only_be_played_by_biomaterial_entity" some specimen_role, organism "has_role" some investigation_object_role in obi before split (LF 040907).</OBI_0000275>
     <rdfs:label xml:lang="en">organism</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000254"/>
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
-            </owl:unionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Organism</OBI_0000279>
-    <OBI_0000275 xml:lang="en">examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses rem1: OBI should link to an external resource (e.g. NCBI Taxonomy) Altdef: an organism is a biomaterial entity which is self-contained
-MC: virus and viroid are not organisms</OBI_0000275>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <OBI_0000291 xml:lang="en">An organism is biomaterial entity that is an individual living system, such as animal, plant or micro-organism, that is capable of reproduction, growth and maintenance. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.</OBI_0000291>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -534,6 +529,11 @@ MC: virus and viroid are not organisms</OBI_0000275>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Organism</OBI_0000279>
+    <OBI_0000275 xml:lang="en">examples: Archaea, Bacteria,Eukaryota,Viroids, Viruses rem1: OBI should link to an external resource (e.g. NCBI Taxonomy) Altdef: an organism is a biomaterial entity which is self-contained
+MC: virus and viroid are not organisms</OBI_0000275>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000291 xml:lang="en">An organism is biomaterial entity that is an individual living system, such as animal, plant or micro-organism, that is capable of reproduction, growth and maintenance. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.</OBI_0000291>
     <OBI_0000287 xml:lang="en">plant</OBI_0000287>
     <OBI_0000287 xml:lang="en">animal</OBI_0000287>
   </owl:Class>
@@ -583,16 +583,23 @@ MC: virus and viroid are not organisms</OBI_0000275>
     <OBI_0000291 xml:lang="en">Group of biomaterials present in the bronchial aveolar space of an organism which are collected through lavage including the reagents used to for the lavage process, organisms, cells, and cellular secretions present in the bronchial aveolar space.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100024">
-    <OBI_0000291 xml:lang="en">A DNA polymerase is an enzyme that assists in DNA replication. Such enzymes catalyze the polymerization of deoxyribonucleotides alongside a DNA strand, which they "read" and use as a template. The newly-polymerized molecule is complementary to the template strand and identical to the template's partner strand.</OBI_0000291>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0100023"/>
-    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/DNA_polymerase</OBI_0000279>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <OBI_0000274 xml:lang="en">Melanie Courtot</OBI_0000274>
     <OBI_0000288 xml:lang="en">DNA polymerase</OBI_0000288>
-    <rdfs:label xml:lang="en">DNA polymerase</rdfs:label>
     <OBI_0000287 xml:lang="en">Taq polymerase is a commonly used DNA polymerase to copy DNA templates in PCR reactions.</OBI_0000287>
+    <OBI_0000274 xml:lang="en">Melanie Courtot</OBI_0000274>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0100023"/>
+    <rdfs:label xml:lang="en">DNA polymerase</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/DNA_polymerase</OBI_0000279>
+    <OBI_0000291 xml:lang="en">A DNA polymerase is an enzyme that assists in DNA replication. Such enzymes catalyze the polymerization of deoxyribonucleotides alongside a DNA strand, which they "read" and use as a template. The newly-polymerized molecule is complementary to the template strand and identical to the template's partner strand.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100010">
+    <OBI_0000288 xml:lang="en">PMID: 8777380. Expression of thyroid peroxidase in EBV-transformed B cell lines using adenovirus.Thyroid. 1996 Feb;6(1):23-8.</OBI_0000288>
+    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >an EBV transformed B cell is an entity of organismal entity which results from viral transformation process using EBV as transformation agent when applied to B-cell entity</OBI_0000291>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI Biomaterial derived</OBI_0000279>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Susanna Sansone</OBI_0000274>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
     </rdfs:subClassOf>
@@ -614,43 +621,24 @@ MC: virus and viroid are not organisms</OBI_0000275>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000236"/>
             <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
+            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000236"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000288 xml:lang="en">PMID: 8777380. Expression of thyroid peroxidase in EBV-transformed B cell lines using adenovirus.Thyroid. 1996 Feb;6(1):23-8.</OBI_0000288>
-    <rdfs:label xml:lang="en">Epstein Barr virus transformed B cell</rdfs:label>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI Biomaterial derived</OBI_0000279>
-    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >an EBV transformed B cell is an entity of organismal entity which results from viral transformation process using EBV as transformation agent when applied to B-cell entity</OBI_0000291>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Susanna Sansone</OBI_0000274>
+    <rdfs:label xml:lang="en">Epstein Barr virus transformed B cell</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000410">
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></OBI_0000291>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >recombinant plasmid</rdfs:label>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >recombinant plasmid</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000029">
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
-    <OBI_0000288 xml:lang="en">phage display library</OBI_0000288>
-    <OBI_0000291 xml:lang="en">a display library is a collection of materials in which a mixture of genes or gene fragments is expressed and can be individually selected and amplified.</OBI_0000291>
-    <OBI_0000286 xml:lang="en">display_library</OBI_0000286>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302714"/>
-    <OBI_0000275 xml:lang="en">PRS: 22022008. class moved under population,
-modification of definition and replacement of biomaterials in previous definition with 'material'
-addition of has_role restriction</OBI_0000275>
-    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
-    <rdfs:label xml:lang="en">phage display library</rdfs:label>
-    <OBI_0000287 xml:lang="en">PMID: 15905471.Nucleic Acids Res. 2005 May 19;33(9):e81.Oligonucleotide-assisted cleavage and ligation: a novel directional DNA cloning technology to capture cDNAs. Application in the construction of a human immune antibody phage-display library. [Phage display library encoding fragments of human antibodies. m-rna library encoding for 9-mer peptides]</OBI_0000287>
-    <OBI_0000279 xml:lang="en">WEB: http://www.immuneepitope.org/home.do</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
@@ -664,51 +652,67 @@ addition of has_role restriction</OBI_0000275>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000288 xml:lang="en">phage display library</OBI_0000288>
+    <OBI_0000286 xml:lang="en">display_library</OBI_0000286>
+    <OBI_0000291 xml:lang="en">a display library is a collection of materials in which a mixture of genes or gene fragments is expressed and can be individually selected and amplified.</OBI_0000291>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302714"/>
+    <OBI_0000275 xml:lang="en">PRS: 22022008. class moved under population,
+modification of definition and replacement of biomaterials in previous definition with 'material'
+addition of has_role restriction</OBI_0000275>
+    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
+    <rdfs:label xml:lang="en">phage display library</rdfs:label>
+    <OBI_0000287 xml:lang="en">PMID: 15905471.Nucleic Acids Res. 2005 May 19;33(9):e81.Oligonucleotide-assisted cleavage and ligation: a novel directional DNA cloning technology to capture cDNAs. Application in the construction of a human immune antibody phage-display library. [Phage display library encoding fragments of human antibodies. m-rna library encoding for 9-mer peptides]</OBI_0000287>
+    <OBI_0000279 xml:lang="en">WEB: http://www.immuneepitope.org/home.do</OBI_0000279>
     <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100056">
+    <OBI_0000288 xml:lang="en">immortalized cell line</OBI_0000288>
     <OBI_0000279 xml:lang="en">OBI Biomaterial derived</OBI_0000279>
-    <rdfs:label xml:lang="en">immortalized cell line</rdfs:label>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Susanna Sansone</OBI_0000274>
+    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
     </rdfs:subClassOf>
-    <OBI_0000288 xml:lang="en">immortalized cell line</OBI_0000288>
-    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000291 xml:lang="en">An immortalized cell line is a cell line that is able to replicate indefinitely</OBI_0000291>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Susanna Sansone</OBI_0000274>
+    <rdfs:label xml:lang="en">immortalized cell line</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/plasmid">
     <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plasmid</OBI_0000288>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >group:OBI</OBI_0000279>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000233"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_4705"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
             <owl:someValuesFrom>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0010467"/>
               </owl:Restriction>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
+            <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/SO#SO_0000988"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >person:Melanie Courtot</OBI_0000274>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plasmid</rdfs:label>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >plasmid = DNA and has_quality circular and has_function
 (is_realized_as some gene expression) GO:0010467</OBI_0000291>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000233"/>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >group:OBI</OBI_0000279>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >person:Melanie Courtot</OBI_0000274>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100035">
     <OBI_0000288 xml:lang="en">immortal cell</OBI_0000288>
@@ -721,6 +725,7 @@ addition of has_role restriction</OBI_0000275>
     <rdfs:label xml:lang="en">immortal cell</rdfs:label>
     <rdfs:subClassOf>
       <rdf:Description rdf:about="http://purl.org/obo/owl/CL#CL_0000000">
+        <OBI_0000287 xml:lang="en">PMID:18089833.Cancer Res. 2007 Dec 15;67(24):12018-25. "...Epithelial cells were harvested from histologically confirmed adenocarcinomas .."</OBI_0000287>
         <rdfs:subClassOf>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -734,7 +739,6 @@ addition of has_role restriction</OBI_0000275>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
           </owl:Restriction>
         </rdfs:subClassOf>
-        <OBI_0000287 xml:lang="en">PMID:18089833.Cancer Res. 2007 Dec 15;67(24):12018-25. "...Epithelial cells were harvested from histologically confirmed adenocarcinomas .."</OBI_0000287>
       </rdf:Description>
     </rdfs:subClassOf>
     <OBI_0000279 xml:lang="en">none</OBI_0000279>
@@ -756,7 +760,6 @@ Also how different it is from a fragment</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100058">
     <OBI_0000275 xml:lang="en">MC: xenotransplantation should be submited to material_transformation</OBI_0000275>
-    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Xenograft</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
@@ -770,6 +773,7 @@ Also how different it is from a fragment</OBI_0000275>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Xenograft</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
     </rdfs:subClassOf>
@@ -802,27 +806,24 @@ Also how different it is from a fragment</OBI_0000275>
     <OBI_0000287 xml:lang="en">PMID: 16279733.Dent Mater J. 2005 Sep;24(3):414-21.PBS buffer solutions with different pH values can change porosity of DNA-chitosan complexes.</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302745">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >adipose tissue</rdfs:label>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PMID: 18435934.Fatty acid composition of adipose tissue and blood in humans and its use as a biomarker of dietary intake.Prog Lipid Res. 2008 Apr 4.</OBI_0000287>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
-    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CARO#CARO_0000055"/>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >adipose tissue</rdfs:label>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS: this class has been added during major biomaterial.owl cleanup for evaluation and testing of imports from CARO</OBI_0000275>
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CARO#CARO_0000055"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >adipose tissue is a tissue which main constituants are adipocytes. adipose tissue can be classified base on its location (site) but also based on adipocyte subtypes (brown or white) which reflect functional differences and is only found in animals, Vertebrates or invertebrates.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100064">
-    <OBI_0000275 xml:lang="en">added as hierarchy term</OBI_0000275>
-    <OBI_0000287 xml:lang="en">PMID: 15615535.J Med Chem. 2004 Dec 30;47(27):6864-74.A screening library for peptide activated G-protein coupled receptors. 1. The test set. [cdna_library, phage display library]</OBI_0000287>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -831,8 +832,11 @@ Also how different it is from a fragment</OBI_0000275>
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000275 xml:lang="en">added as hierarchy term</OBI_0000275>
+    <OBI_0000287 xml:lang="en">PMID: 15615535.J Med Chem. 2004 Dec 30;47(27):6864-74.A screening library for peptide activated G-protein coupled receptors. 1. The test set. [cdna_library, phage display library]</OBI_0000287>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
     <OBI_0000288 xml:lang="en">screening library</OBI_0000288>
     <OBI_0000291 xml:lang="en">a screening library is a collection of materials engineered to identify qualities of a subset of its members during a screening process?</OBI_0000291>
@@ -840,20 +844,20 @@ Also how different it is from a fragment</OBI_0000275>
 change biomaterial to material in definition</OBI_0000275>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IEDB</OBI_0000279>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <rdfs:label xml:lang="en">screening library</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302714"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000044">
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OBI</OBI_0000279>
-    <OBI_0000275 xml:lang="en">BP: moved and renamed for BFO</OBI_0000275>
-    <OBI_0000275 xml:lang="en">information_content_entity "is_encoded_in" some physical_document in obi before split (040907).</OBI_0000275>
-    <rdfs:label xml:lang="en">physical document</rdfs:label>
-    <OBI_0000291 xml:lang="en">A physical document is an object serving as a record of information by means of symbolic marks.</OBI_0000291>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a book is a physical document</OBI_0000287>
+    <OBI_0000291 xml:lang="en">A physical document is an object serving as a record of information by means of symbolic marks.</OBI_0000291>
+    <rdfs:label xml:lang="en">physical document</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <OBI_0000275 xml:lang="en">information_content_entity "is_encoded_in" some physical_document in obi before split (040907).</OBI_0000275>
+    <OBI_0000275 xml:lang="en">BP: moved and renamed for BFO</OBI_0000275>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</OBI_0000279>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100016">
     <rdfs:label xml:lang="en">blood plasma</rdfs:label>
@@ -868,6 +872,9 @@ change biomaterial to material in definition</OBI_0000275>
     <OBI_0000274 xml:lang="en">Maura Gasparetto</OBI_0000274>
     <OBI_0000288 xml:lang="en">blood plasma</OBI_0000288>
     <OBI_0000287 xml:lang="en">PMID: 18217225.Sex Transm Dis. 2008 Jan;35(1):55-60. Review.Human immunodeficiency virus viral load in blood plasma and semen: review and implications of empirical findings.</OBI_0000287>
+    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Blood_plasma</OBI_0000279>
+    <OBI_0000275 xml:lang="en">This is in FMA</OBI_0000275>
+    <OBI_0000291 xml:lang="en">blood plasma is an entity of organismal origin which corresponds to the liquid component of blood, in which the blood cells are suspended.</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
@@ -881,30 +888,27 @@ change biomaterial to material in definition</OBI_0000275>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Blood_plasma</OBI_0000279>
-    <OBI_0000275 xml:lang="en">This is in FMA</OBI_0000275>
-    <OBI_0000291 xml:lang="en">blood plasma is an entity of organismal origin which corresponds to the liquid component of blood, in which the blood cells are suspended.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/reverse_transcriptase">
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >group:OBI</OBI_0000279>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000233"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >enzyme and has_function some GO:0003964 (RNA-directed DNA polymerase
 activity)</OBI_0000291>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >person:Melanie Courtot</OBI_0000274>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000233"/>
-    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >reverse transcriptase</OBI_0000288>
+    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >group:OBI</OBI_0000279>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >reverse transcriptase</rdfs:label>
+    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reverse transcriptase</OBI_0000288>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/enzyme"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
             <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0003964"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -930,12 +934,12 @@ activity)</OBI_0000291>
     <OBI_0000279 xml:lang="en">OBI Biomaterial derived</OBI_0000279>
     <OBI_0000291 xml:lang="en">A cell line is an entity of organismal origin that represents generations of a primary culture.</OBI_0000291>
     <OBI_0000288 xml:lang="en">cell line cell</OBI_0000288>
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Susanna Sansone</OBI_0000274>
-    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
-    <rdfs:label xml:lang="en">cell line cell</rdfs:label>
-    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <rdfs:label xml:lang="en">cell line cell</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000245">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
@@ -999,16 +1003,22 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <rdfs:label xml:lang="en">fragment derived from protein</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051">
+    <rdfs:label xml:lang="en">entity of organismal origin</rdfs:label>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</OBI_0000274>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000288 xml:lang="en">entity of organismal origin</OBI_0000288>
+    <OBI_0000279 xml:lang="en">OBI Biomaterial derived</OBI_0000279>
+    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000069"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1017,17 +1027,11 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:label xml:lang="en">entity of organismal origin</rdfs:label>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</OBI_0000274>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <OBI_0000288 xml:lang="en">entity of organismal origin</OBI_0000288>
-    <OBI_0000279 xml:lang="en">OBI Biomaterial derived</OBI_0000279>
-    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000291 xml:lang="en">An entity of organismal origin is a biomaterial entity which is obtained from an organism.</OBI_0000291>
@@ -1051,29 +1055,46 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     >Philippe Rocca-Serra</OBI_0000274>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000264">
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
+    <OBI_0000291 xml:lang="en">A sample population is an object aggregate that is selected from the population, e.g. the fish in the net that were sampled from the lake, the people that responded to the call for volunteers.</OBI_0000291>
+    <OBI_0000275 xml:lang="en">PRS 22-02-2008: this is still a population. may be we need qualifiers for this entity e.g. 'screened population, recruited population or we need to use the following label: sample of population, subpopulation</OBI_0000275>
+    <rdfs:label xml:lang="en">sample population</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000181"/>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</OBI_0000274>
-    <rdfs:label xml:lang="en">sample population</rdfs:label>
-    <OBI_0000275 xml:lang="en">PRS 22-02-2008: this is still a population. may be we need qualifiers for this entity e.g. 'screened population, recruited population or we need to use the following label: sample of population, subpopulation</OBI_0000275>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000181"/>
-    <OBI_0000291 xml:lang="en">A sample population is an object aggregate that is selected from the population, e.g. the fish in the net that were sampled from the lake, the people that responded to the call for volunteers.</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000065">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <rdfs:label xml:lang="en">polyethylene glycol p-(1,1,3,3-tetramethylbutyl)-phenyl ether</rdfs:label>
+    <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000279 xml:lang="en">adapted from Wikipedia before possible import from CHEBI</OBI_0000279>
+    <OBI_0000287 xml:lang="en">PMID: 30799. J Histochem Cytochem. 1978 Sep;26(9):696-712. Acid lipase: a histochemical and biochemical study using triton X100-naphtyl palmitate micelles.</OBI_0000287>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000291 xml:lang="en">triton X100 is a chemical entity which belongs to the group of The pluronics which are triblock copolymers of ethylene oxide and propylene oxide. Triton x-100 is_used_as detergent due to its non-ionic surfactant properties</OBI_0000291>
-    <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
-    <OBI_0000287 xml:lang="en">PMID: 30799. J Histochem Cytochem. 1978 Sep;26(9):696-712. Acid lipase: a histochemical and biochemical study using triton X100-naphtyl palmitate micelles.</OBI_0000287>
-    <rdfs:label xml:lang="en">polyethylene glycol p-(1,1,3,3-tetramethylbutyl)-phenyl ether</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000049">
+    <OBI_0000291 xml:lang="en">A whole_mount tissue is an entity of organismal origin resulting from a histological preparation known as whole mount preparation where the whole specimen is mounted or spread on the microscope (glass) slide</OBI_0000291>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: indicates the need to create a protocol application and distinguish it from this entity</OBI_0000275>
+    <OBI_0000286 xml:lang="en">whole mount sample</OBI_0000286>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000288 xml:lang="en">whole mount tissue</OBI_0000288>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000341"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
+    <OBI_0000274 xml:lang="en">Helen Parkinson</OBI_0000274>
+    <rdfs:label xml:lang="en">whole mount tissue</rdfs:label>
+    <OBI_0000279 xml:lang="en">OBI</OBI_0000279>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a material which has output_role during whole mount preparation protocol-application</OBI_0000275>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -1082,38 +1103,21 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">A whole_mount tissue is an entity of organismal origin resulting from a histological preparation known as whole mount preparation where the whole specimen is mounted or spread on the microscope (glass) slide</OBI_0000291>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000341"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: indicates the need to create a protocol application and distinguish it from this entity</OBI_0000275>
-    <OBI_0000286 xml:lang="en">whole mount sample</OBI_0000286>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <OBI_0000288 xml:lang="en">whole mount tissue</OBI_0000288>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</OBI_0000274>
-    <OBI_0000274 xml:lang="en">Helen Parkinson</OBI_0000274>
-    <rdfs:label xml:lang="en">whole mount tissue</rdfs:label>
-    <OBI_0000279 xml:lang="en">OBI</OBI_0000279>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a material which has output_role during whole mount preparation protocol-application</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100063">
-    <OBI_0000288 xml:lang="en">clonal cell culture</OBI_0000288>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <OBI_0000287 xml:lang="en">cell cut</OBI_0000287>
     <OBI_0000291 xml:lang="en">cell culture in which all cells can be assumed to be identical, tracking back to a single ancestor cell.</OBI_0000291>
+    <rdfs:label xml:lang="en">clonal cell culture</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Susanna Sansone</OBI_0000274>
+    <OBI_0000287 xml:lang="en">cell cut</OBI_0000287>
+    <OBI_0000288 xml:lang="en">clonal cell culture</OBI_0000288>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
-    <rdfs:label xml:lang="en">clonal cell culture</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
   </owl:Class>
   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000047">
     <OBI_0000291 xml:lang="en">An artefact_object is an object that is produced or shaped by human craft, especially a tool, weapon, or ornament of archaeological or historical interest, i.e. something that is manufactered.</OBI_0000291>
