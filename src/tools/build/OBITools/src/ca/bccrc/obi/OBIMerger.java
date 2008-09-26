@@ -203,7 +203,7 @@ public class OBIMerger {
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
-		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
+		//ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 
 
@@ -217,6 +217,7 @@ public class OBIMerger {
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
+		
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 	}
@@ -421,10 +422,10 @@ public class OBIMerger {
 
 	//For testing purposes
 
-	/*public final static void main(String[] args) throws Exception  {
+	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080923/build/newids/";
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080925/build/newids/";
 		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
 		//if we had modification of the branches that are to be kept, we need to give a destination path
 		//String destinationURI="Users/melanie/OBIReleases/test/";
@@ -433,8 +434,8 @@ public class OBIMerger {
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
 		//check consistency -> this is now done via the owlapi
-		boolean valid = checkConsistency(newFilePath);
-		System.out.println("to be committed: "+ valid);
+		//boolean valid = checkConsistency(newFilePath);
+		//System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
 		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
@@ -444,7 +445,7 @@ public class OBIMerger {
 	
 
 
-	}*/
+	}
 	
 
 
