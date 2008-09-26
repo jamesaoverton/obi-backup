@@ -44,6 +44,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFWriter;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -63,12 +64,15 @@ public class OBIMerger {
 	private static String OBINs = "http://purl.obofoundry.org/obo/";
 	//the OBI xmlbase element
 	//private static String xmlbase = "http://obi.sourceforge.net/ontology/OBI.owl";
-	private static String xmlbase = "http://purl.obofoundry.org/obo/obi.owl";
+	private static String xmlbase = "http://purl.obofoundry.org/obo/";
 	//the name of the file containing the declaration of all the imports
 	private static String obi = "obi.owl";
 	//the obiPath - this is the path for the branches files
 	//private static String obiPath = "http://obi.sourceforge.net/ontology/OBI/";
 	private static String obiPath = "http://purl.obofoundry.org/obo/obi/";
+	
+	//the Ontology URI
+	private static String obiURI = "http://purl.obofoundry.org/obo/obi.owl";
 
 
 
@@ -112,6 +116,12 @@ public class OBIMerger {
 		return branchesNames;
 	}
 
+	/*
+	 * 
+	 * This method has now been replaced by a call via the owlapi, in EquivalentClassesChecker.java
+	 * 
+	 * 
+	 */
 	public static boolean checkConsistency(String ontologyPath)	{
 
 
@@ -127,7 +137,7 @@ public class OBIMerger {
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 
 		// read in the ontology:
-		model.read(fstream, xmlbase);
+		model.read(fstream, obiURI);
 
 
 
@@ -267,12 +277,12 @@ public class OBIMerger {
 	
 	
 	public static OntModel buildMergedFiles(String physicalURI, boolean ProtegeFriendly){
-
 	
+
 		//creates the ontology model
 		OntModel owlModel = buildOWLModel(physicalURI);
 		//creates the ontology
-		Ontology ont = owlModel.createOntology(xmlbase);
+		Ontology ont = owlModel.createOntology(obiURI);
 		//Protege-Friendly version?
 		if(ProtegeFriendly) addProtegeFriendlyImports(ont, owlModel);
 		else addImports(ont, owlModel);
@@ -299,7 +309,7 @@ public class OBIMerger {
 		{
 			stmt = (StatementImpl) properties.next();
 			//we create a resource in the OBI namespace for these properties
-			Resource obins = owlModel2.createResource(xmlbase);
+			Resource obins = owlModel2.createResource(obiURI);
 			StatementImpl stmt2 = new StatementImpl(obins,stmt.getPredicate(),stmt.getObject());
 			owlModel.add(stmt2);
 		}
@@ -410,11 +420,11 @@ public class OBIMerger {
 
 
 	//For testing purposes
-/*
-	public final static void main(String[] args) throws Exception  {
+
+	/*public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080919/build/newids/";
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080923/build/newids/";
 		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
 		//if we had modification of the branches that are to be kept, we need to give a destination path
 		//String destinationURI="Users/melanie/OBIReleases/test/";
@@ -422,9 +432,9 @@ public class OBIMerger {
 
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
-		//check consistency
+		//check consistency -> this is now done via the owlapi
 		boolean valid = checkConsistency(newFilePath);
-		//System.out.println("to be committed: "+ valid);
+		System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
 		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
@@ -434,8 +444,9 @@ public class OBIMerger {
 	
 
 
-	}
-*/
+	}*/
+	
+
 
 
 }
