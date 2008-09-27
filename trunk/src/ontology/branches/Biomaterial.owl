@@ -88,33 +88,6 @@
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PRS: Possible Import from CARO:0000000</OBI_0000275>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/DNA_polymerase">
-    <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DNA polymerase</OBI_0000288>
-    <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >group:OBI</OBI_0000279>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://purl.obofoundry.org/obo/enzyme"/>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
-            <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0034061"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >person:Melanie Courtot</OBI_0000274>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DNA polymerase</rdfs:label>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000323"/>
-    <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >enzyme and  has_function some GO:0034061 (DNA polymerase activity)</OBI_0000291>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100017">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000275 xml:lang="en">PRS:19032008-moved under entity of organismal origin -&gt;modification to definition to reflect change + addition of pubmed based example</OBI_0000275>
@@ -354,6 +327,19 @@ A dirt sample containing different populations of bacteria. A sample of martian 
     <OBI_0000279 xml:lang="en">PERSON: Philippe Rocca-Serra</OBI_0000279>
     <OBI_0000274 xml:lang="en">Philippe Rocca-Serra</OBI_0000274>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000042">
+    <rdfs:label xml:lang="en">peptide construct</rdfs:label>
+    <OBI_0000287 xml:lang="en">Multiple Antigenic Peptide (MAP) construct containing T and B cell epitopes from p. falciparum congugated to a central glycin</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000291 xml:lang="en">is a biomaterial containing a number of peptides conjugated together in a non-linear fashion</OBI_0000291>
+    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
+    <OBI_0000288 xml:lang="en">peptide construct</OBI_0000288>
+    <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
+    </rdfs:subClassOf>
+    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a chemical entity which has output_role during conjugation protocol-application AND derives_from Peptide</OBI_0000275>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/enzyme">
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:OBI</OBI_0000279>
@@ -382,12 +368,10 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
               </owl:Restriction>
-              <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="http://purl.org/obo/owl/PRO#PRO_000000001"/>
-                  <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
-                </owl:unionOf>
-              </owl:Class>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0043234"/>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+              </owl:Restriction>
             </owl:unionOf>
           </owl:Class>
           <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
@@ -399,19 +383,6 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
     >person: Melanie Courtot</OBI_0000274>
     <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >enzyme</OBI_0000288>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000042">
-    <rdfs:label xml:lang="en">peptide construct</rdfs:label>
-    <OBI_0000287 xml:lang="en">Multiple Antigenic Peptide (MAP) construct containing T and B cell epitopes from p. falciparum congugated to a central glycin</OBI_0000287>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
-    <OBI_0000291 xml:lang="en">is a biomaterial containing a number of peptides conjugated together in a non-linear fashion</OBI_0000291>
-    <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
-    <OBI_0000288 xml:lang="en">peptide construct</OBI_0000288>
-    <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
-    </rdfs:subClassOf>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: is a chemical entity which has output_role during conjugation protocol-application AND derives_from Peptide</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000233">
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1119,6 +1090,14 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     >Susanna Sansone</OBI_0000274>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
   </owl:Class>
+  <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0042575">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000306"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0034061"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
   <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000047">
     <OBI_0000291 xml:lang="en">An artefact_object is an object that is produced or shaped by human craft, especially a tool, weapon, or ornament of archaeological or historical interest, i.e. something that is manufactered.</OBI_0000291>
   </rdf:Description>
