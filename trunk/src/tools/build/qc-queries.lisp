@@ -1,3 +1,15 @@
+(defun owl-version-info-report (kb)
+  (sparql
+   '(:select (?si ?label) (:distinct t)
+     (?si !owl:versionInfo ?label)
+     (?si :a ?type)
+     (:filter 
+	    (not(equal ?type !owl:Ontology))
+	       )
+     )
+   :kb kb :use-reasoner :jena :trace "owl:VersionInfo" :values nil :trace-show-query nil))
+
+
 (defun rdfs-class-report (kb)
   (sparql
    '(:select (?si ?label) (:distinct t)
