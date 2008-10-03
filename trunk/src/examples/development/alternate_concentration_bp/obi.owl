@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://purl.obofoundry.org/obo/"
+  xml:base="http://purl.obofoundry.org/obo/">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
+    <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.1"/>
+    <owl:imports rdf:resource="http://purl.org/obo/owl/ro_bfo1-1_bridge"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Biomaterial.owl"/>
+    <owl:imports rdf:resource="http://purl.org/obo/owl/ro"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Obsolete.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl"/>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/InstrumentAndPart.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Quality.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/obi-owl-full.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/DataFormatSpecification.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/OBI-Function.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/DataTransformation.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/TheRest.owl"/>
+    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >en</protege:defaultLanguage>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/external.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Role.owl"/>
+    <owl:versionInfo xml:lang="en">$Rev: 511 $</owl:versionInfo>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/externalDerived.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/AnnotationProperty.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/concentration">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Tris">
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/concentration_1_percent_by_mass">
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/concentration"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Component_of_Portion_of_Liquid">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:valuesFrom>
+          <owl:Class rdf:about="http://purl.obofoundry.org/obo/Portion_of_Liquid"/>
+        </owl:valuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/is_component_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/concentration"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_granular_part"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Portion_of_Liquid">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_granular_part"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Tris_buffer">
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/Portion_of_Liquid"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Component_of_Portion_of_Liquid"/>
+                  <owl:Restriction>
+                    <owl:onProperty>
+                      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_granular_part"/>
+                    </owl:onProperty>
+                    <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Tris"/>
+                  </owl:Restriction>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/concentration"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_component"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_component"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Component_of_Portion_of_Liquid"/>
+                  <owl:Restriction>
+                    <owl:allValuesFrom>
+                      <owl:Class rdf:about="http://purl.obofoundry.org/obo/H20"/>
+                    </owl:allValuesFrom>
+                    <owl:onProperty>
+                      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_granular_part"/>
+                    </owl:onProperty>
+                  </owl:Restriction>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000298"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/concentration"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/H20">
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_component">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/is_component_of"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/is_component_of">
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/has_component"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/has_granular_part">
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 505)  http://protege.stanford.edu -->
