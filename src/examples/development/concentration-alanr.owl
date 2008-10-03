@@ -26,6 +26,21 @@
     
 
 
+    <!-- http://purl.obofoundry.org/obo/CON_0000001 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000001">
+        <rdfs:label>of_solvent</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000003"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000032"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000029"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.obofoundry.org/obo/CON_0000002 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000002">
@@ -152,11 +167,11 @@
     <owl:DatatypeProperty rdf:about="http://pages.towson.edu/ladon/concas.html">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label
-            >http://pages.towson.edu/ladon/concas.html</rdfs:label>
-        <rdfs:label
-            >has_concentration_value</rdfs:label>
+            >has_molarity_value</rdfs:label>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
             >http://pages.towson.edu/ladon/concas.html</rdfs:seeAlso>
+        <rdfs:comment
+            >molarity = moles of solute / volume of solution (Litres)</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000014"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     </owl:DatatypeProperty>
@@ -167,16 +182,6 @@
 
     <owl:DatatypeProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000014">
         <rdfs:label>has_value</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.obofoundry.org/obo/IAO_0000043 -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000043">
-        <rdfs:label
-            >has_m/m_concentration</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="http://pages.towson.edu/ladon/concas.html"/>
     </owl:DatatypeProperty>
     
 
@@ -274,7 +279,7 @@
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000012">
         <rdfs:label
-            >portion of tris buffer</rdfs:label>
+            >portion of 1X tris buffer</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -285,16 +290,16 @@
                                 <owl:intersectionOf rdf:parseType="Collection">
                                     <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000006"/>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/IAO_0000041"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000010"/>
+                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000001"/>
+                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000009"/>
                                     </owl:Restriction>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000014"/>
+                                        <owl:onProperty rdf:resource="http://pages.towson.edu/ladon/concas.html"/>
                                         <owl:someValuesFrom>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</xsd:minExclusive>
-                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</xsd:maxExclusive>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.9</xsd:minExclusive>
+                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1</xsd:maxExclusive>
                                                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                                             </rdf:Description>
                                         </owl:someValuesFrom>
@@ -314,12 +319,12 @@
                                         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000010"/>
                                     </owl:Restriction>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000014"/>
+                                        <owl:onProperty rdf:resource="http://pages.towson.edu/ladon/concas.html"/>
                                         <owl:someValuesFrom>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</xsd:minExclusive>
-                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</xsd:maxExclusive>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.04</xsd:minExclusive>
+                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.06</xsd:maxExclusive>
                                                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                                             </rdf:Description>
                                         </owl:someValuesFrom>
@@ -360,6 +365,37 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000031"/>
+        <rdfs:comment
+            >Recipe at http://www.histosearch.com/histonet/Feb04/HistonetWhynotjustmakeTRI.html
+
+Instead of making PBS, make up TRIS buffered saline.  Make up a 10X
+solution of TRIS, dilute when you need it 1:10, extremely easy. 
+
+Here is Chris van der Loos recipe that is excellent, simple - just test pH
+of 10X - we dilute it 1:10, and the pH is always right on the nose. 
+
+10X TRIS (0.5M) Buffered Saline (8.9% to 9%)
+
+TRIS base				60.57g/liter
+Sodium chloride			89 - 90g
+Conc Hydrochloric acid		30 ml
+Test pH approx 7.8
+
+We store stock 10X in refrigerator, others may not. 
+
+Working 0.05M TBS
+
+Dilute Stock 10X 1:10 with pure water.
+
+--
+
+10x Tris is .5M
+1x Tris is .05M
+
+--
+
+NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some other recipes). Removed earlier &quot;has_granular_part only (tris or h20)&quot;
+</rdfs:comment>
     </owl:Class>
     
 
