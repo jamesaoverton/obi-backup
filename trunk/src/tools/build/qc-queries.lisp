@@ -2,7 +2,7 @@
   (sparql
    '(:select (?si ?label) (:distinct t)
      (?si !owl:versionInfo ?label)
-     (?si :a ?type)
+     (:optional (?si :a ?type))
      (:filter 
 	    (not(equal ?type !owl:Ontology))
 	       )
