@@ -5,6 +5,7 @@
      xmlns:obo="http://purl.obofoundry.org/obo/"
      xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
      xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+     xmlns:CHEBI="http://purl.org/obo/owl/CHEBI#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:PATO="http://purl.org/obo/owl/PATO#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -64,7 +65,7 @@
     <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000017">
         <rdfs:label
             >has_granular_part</rdfs:label>
-        <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000042"/>
+        <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000042"/>
         <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
     </owl:ObjectProperty>
     
@@ -107,9 +108,9 @@
     
 
 
-    <!-- http://purl.obofoundry.org/obo/IAO_0000041 -->
+    <!-- http://purl.obofoundry.org/obo/CON_0000041 -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000041">
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000041">
         <rdfs:label>of_solute</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000003"/>
         <rdfs:range>
@@ -122,9 +123,9 @@
     
 
 
-    <!-- http://purl.obofoundry.org/obo/IAO_0000042 -->
+    <!-- http://purl.obofoundry.org/obo/CON_0000042 -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000042">
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/CON_0000042">
         <rdfs:label
             >granular_part_of</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
@@ -197,6 +198,36 @@
     
 
 
+    <!-- http://purl.obofoundry.org/obo/CON_0000004 -->
+
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000004">
+        <rdfs:label
+            >portion of pure water</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000048"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
+                        <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_15377"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000031"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obofoundry.org/obo/CON_0000005 -->
+
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000005">
+        <rdfs:label>_probe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obofoundry.org/obo/CON_0000006 -->
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000006">
@@ -207,7 +238,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000003"/>
-                        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000008"/>
+                        <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
                     </owl:Restriction>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000020"/>
@@ -233,28 +264,16 @@
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000008">
         <rdfs:label
-            >molecular entity</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000007"/>
-        <owl:disjointWith rdf:resource="http://purl.obofoundry.org/obo/IAO_0000048"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obofoundry.org/obo/CON_0000009 -->
-
-    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000009">
-        <rdfs:label>h20</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000008"/>
-        <owl:disjointWith rdf:resource="http://purl.obofoundry.org/obo/CON_0000010"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obofoundry.org/obo/CON_0000010 -->
-
-    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000010">
-        <rdfs:label>tris</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000008"/>
+            >has granular part tris</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_9754"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000005"/>
+        <rdfs:comment
+            >probe to see whether the property chain property infers that tris buffer has granular part tris</rdfs:comment>
     </owl:Class>
     
 
@@ -291,15 +310,15 @@
                                     <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000006"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000001"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000009"/>
+                                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_15377"/>
                                     </owl:Restriction>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://pages.towson.edu/ladon/concas.html"/>
                                         <owl:someValuesFrom>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.9</xsd:minExclusive>
-                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1</xsd:maxExclusive>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</xsd:minExclusive>
+                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">56</xsd:maxExclusive>
                                                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                                             </rdf:Description>
                                         </owl:someValuesFrom>
@@ -315,47 +334,19 @@
                                 <owl:intersectionOf rdf:parseType="Collection">
                                     <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000006"/>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/IAO_0000041"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000010"/>
+                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000041"/>
+                                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_9754"/>
                                     </owl:Restriction>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://pages.towson.edu/ladon/concas.html"/>
                                         <owl:someValuesFrom>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.04</xsd:minExclusive>
-                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">.06</xsd:maxExclusive>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#double">.04</xsd:minExclusive>
+                                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#double">.06</xsd:maxExclusive>
                                                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
                                             </rdf:Description>
                                         </owl:someValuesFrom>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000009"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000032"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000029"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000010"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000032"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000030"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
@@ -394,8 +385,7 @@ Dilute Stock 10X 1:10 with pure water.
 
 --
 
-NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some other recipes). Removed earlier &quot;has_granular_part only (tris or h20)&quot;
-</rdfs:comment>
+NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some other recipes). Removed earlier &quot;has_granular_part only (tris or h20)&quot;</rdfs:comment>
     </owl:Class>
     
 
@@ -414,7 +404,7 @@ NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some 
                             <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000006"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000003"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000009"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_15377"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -456,7 +446,7 @@ TBD</rdfs:comment>
                     <rdf:Description rdf:about="http://purl.org/obo/owl/PATO#PATO_0001237"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000020"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000048"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000048"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -473,7 +463,7 @@ TBD</rdfs:comment>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000009"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_15377"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000031"/>
@@ -494,10 +484,10 @@ TBD</rdfs:comment>
                         <owl:onClass>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000008"/>
+                                    <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/IAO_0000042"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000048"/>
+                                        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000042"/>
+                                        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000048"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
@@ -524,8 +514,8 @@ TBD</rdfs:comment>
                         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000020"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/IAO_0000042"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000048"/>
+                                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000042"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000048"/>
                             </owl:Restriction>
                         </owl:someValuesFrom>
                     </owl:Restriction>
@@ -556,7 +546,7 @@ TBD</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000009"/>
+                            <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_15377"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000032"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000029"/>
@@ -571,18 +561,75 @@ TBD</rdfs:comment>
     
 
 
-    <!-- http://purl.obofoundry.org/obo/IAO_0000048 -->
+    <!-- http://purl.obofoundry.org/obo/CON_0000048 -->
 
-    <owl:Class rdf:about="http://purl.obofoundry.org/obo/IAO_0000048">
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000048">
         <rdfs:label
             >portion of macroscopic substance</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/CON_0000008"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000007"/>
+        <owl:disjointWith rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_15377 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_15377">
+        <rdfs:label>h20</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+        <owl:disjointWith rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_9754"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_16189 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_16189">
+        <rdfs:label>sulfate</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_23367 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23367">
+        <rdfs:label
+            >molecular entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000007"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_26836 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_26836">
+        <rdfs:label>sulfuric acid</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_29412 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_29412">
+        <rdfs:label>hydronium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CHEBI#CHEBI_9754 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_9754">
+        <rdfs:label>tris</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
     </owl:Class>
     
 
@@ -685,6 +732,31 @@ TBD</rdfs:comment>
     <!-- http://www.w3.org/2002/07/owl#Thing -->
 
     <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
+        <owl:propertyChain rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000002"/>
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000001"/>
+        </owl:propertyChain>
+    </rdf:Description>
+    <rdf:Description>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
+        <owl:propertyChain rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000002"/>
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000041"/>
+        </owl:propertyChain>
+    </rdf:Description>
 </rdf:RDF>
 
 
