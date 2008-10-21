@@ -97,20 +97,21 @@
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</OBI_0000274>
     <OBI_0000287 xml:lang="en">PMID: 18229666.Adv Med Sci. 2007;52 Suppl 1:204-6.Antioxidant activity of blood serum and saliva in patients with periodontal disease treated due to epilepsy.</OBI_0000287>
-    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Blood_plasma</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0302886"/>
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0302885"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0600052"/>
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <OBI_0000279 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Blood_plasma</OBI_0000279>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -467,13 +468,13 @@ has_function some GO:0003824 (catalytic activity)</OBI_0000291>
     <rdfs:label xml:lang="en">_defined_material</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100052">
-    <OBI_0000291 xml:lang="en">A cell of organismal origin is an entity of organismal origin that contains nuclear and cytoplasmic material enclosed by a semipermeable membrane. definition_source: OBI.</OBI_0000291>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000275 xml:lang="en">rem1:link to Cell Type Ontology (CO)</OBI_0000275>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
-    <OBI_0000287 xml:lang="en">example_of_usage to be added</OBI_0000287>
     <rdfs:label xml:lang="en">cell of organismal origin</rdfs:label>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <OBI_0000287 xml:lang="en">hepatocyte</OBI_0000287>
+    <OBI_0000291 xml:lang="en">A cell of organismal origin is an entity of organismal origin that contains nuclear and cytoplasmic material enclosed by a semipermeable membrane.</OBI_0000291>
     <OBI_0000288 xml:lang="en">cell of organismal origin</OBI_0000288>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000274>
@@ -554,6 +555,7 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000164">
     <OBI_0000287 xml:lang="en">PMID:6110205. collection of cDNA derived from mouse splenocytes.</OBI_0000287>
     <OBI_0000279 xml:lang="en">PSI</OBI_0000279>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302714"/>
     <OBI_0000274 xml:lang="en">Luisa Montecchi</OBI_0000274>
     <OBI_0000275 xml:lang="en">PRS: 22022008. class moved under population,
@@ -561,7 +563,6 @@ modification of definition and replacement of biomaterials in previous definitio
 addition of has_role restriction</OBI_0000275>
     <OBI_0000274 xml:lang="en">Philippe Rocca-Serra (ALT DEF)</OBI_0000274>
     <rdfs:label xml:lang="en">cDNA library</rdfs:label>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
@@ -576,6 +577,12 @@ addition of has_role restriction</OBI_0000275>
       </owl:Restriction>
     </rdfs:subClassOf>
     <OBI_0000288 xml:lang="en">cDNA library</OBI_0000288>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600064"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000291 xml:lang="en">Mixed population of cDNAs (complementaryDNA) made from mRNA from a defined source, usually a specific cell type. This term should be associated only to nucleic acid interactors not to their proteins product. For instance in 2h screening use living cells (MI:0349) as sample process.
 
 ALT DEF:: a cDNA library is a collection of host cells, typically E.Coli cells but not exclusively. modified by transfer of plasmid DNA molecule used as vector containing a fragment or totality of cDNA molecule (the insert) .  cDNA library may have an array of role and applications.</OBI_0000291>
@@ -663,18 +670,37 @@ MC: virus and viroid are not organisms</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
     </rdfs:subClassOf>
+    <OBI_0000291 xml:lang="en">A cell pellet is a entity of organismal origin which results from the aggegration of cells produced by the application of centrifugal force to a liquid containing cells in suspension</OBI_0000291>
     <rdfs:label xml:lang="en">cell pellet</rdfs:label>
-    <OBI_0000279 xml:lang="en">CEBS</OBI_0000279>
-    <OBI_0000275 xml:lang="en">PRS:22-02-2008: output role in a centrifugation protocol application</OBI_0000275>
-    <OBI_0000287 xml:lang="en">The product of a centriguation process on a cell culture</OBI_0000287>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
+    <OBI_0000279 xml:lang="en">CEBS and OBI Biomaterial</OBI_0000279>
     <OBI_0000274 xml:lang="en">Helen Parkinson</OBI_0000274>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100060"/>
+              <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100067"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302886"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
+    <OBI_0000287 xml:lang="en">Detection of fetal DNA in a cell pellet after centrifugation of mountant. J Forensic Sci. 2003 Jan;48(1):135-6. PMID: 12570214</OBI_0000287>
     <OBI_0000288 xml:lang="en">cell pellet</OBI_0000288>
-    <OBI_0000291 xml:lang="en">A cell pellet is an aggegration of cells produced by the application of centrifugal force</OBI_0000291>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100067">
-    <rdfs:label xml:lang="en">bronchial aveolar lavage</rdfs:label>
-    <OBI_0000288 xml:lang="en">bronchial aveolar lavage</OBI_0000288>
+    <OBI_0000288 xml:lang="en">bronchial alveolar lavage</OBI_0000288>
     <OBI_0000291 xml:lang="en">Group of biomaterials present in the bronchial aveolar space of an organism which are collected through lavage including the reagents used to for the lavage process, organisms, cells, and cellular secretions present in the bronchial aveolar space.</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
@@ -687,6 +713,7 @@ MC: virus and viroid are not organisms</OBI_0000275>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600044"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">bronchial alveolar lavage</rdfs:label>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
     <OBI_0000275 xml:lang="en">PRS:22-02-2008: output role in protocol application lavage and need to submit protocol application</OBI_0000275>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
@@ -741,6 +768,12 @@ MC: virus and viroid are not organisms</OBI_0000275>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000029">
     <rdfs:label xml:lang="en">phage display library</rdfs:label>
     <OBI_0000274 xml:lang="en">Bjoern Peters</OBI_0000274>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600064"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000279 xml:lang="en">WEB: http://www.immuneepitope.org/home.do</OBI_0000279>
     <OBI_0000275 xml:lang="en">PRS: 22022008. class moved under population,
@@ -1139,7 +1172,7 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <OBI_0000288 xml:lang="en">fragment derived from protein</OBI_0000288>
     <OBI_0000279 xml:lang="en">IEDB</OBI_0000279>
     <OBI_0000275 xml:lang="en">PRS:22022008. result from protocol_application where input=protein and output=polypeptide or peptide (to capture: derives_from protein)</OBI_0000275>
-    <OBI_0000291 xml:lang="en">is a biomaterial which is derived from a  protein</OBI_0000291>
+    <OBI_0000291 xml:lang="en">a fragment derived from protein is an entity of organismal origin  which is derived from a  protein</OBI_0000291>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100051"/>
     </rdfs:subClassOf>
@@ -1199,15 +1232,34 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <rdfs:label xml:lang="en">person</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000264">
+    <rdfs:label xml:lang="en">sample population</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000181"/>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</OBI_0000274>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000296"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0600012"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <OBI_0000291 xml:lang="en">A sample population is an object aggregate that is selected from the population, e.g. the fish in the net that were sampled from the lake, the people that responded to the call for volunteers.</OBI_0000291>
-    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jennifer Fostel</OBI_0000274>
     <OBI_0000275 xml:lang="en">PRS 22-02-2008: this is still a population. may be we need qualifiers for this entity e.g. 'screened population, recruited population or we need to use the following label: sample of population, subpopulation</OBI_0000275>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000181"/>
-    <rdfs:label xml:lang="en">sample population</rdfs:label>
+    <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000319"/>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Biomaterial derived</OBI_0000279>
+    <OBI_0000286 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >recruited population</OBI_0000286>
+    <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Patterns of benzylpiperazine/trifluoromethylphenylpiperazine party pill use and adverse effects in a population sample in New Zealand. Drug Alcohol Rev. 2008 Mar 31:1-7.  PMID: 18608458</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000065">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
