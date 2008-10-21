@@ -328,7 +328,7 @@ need to add mobile phase as role</OBI_0000275>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302905"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302905"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -712,6 +712,21 @@ MC: virus and viroid are not organisms</OBI_0000275>
     </rdfs:subClassOf>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Physicochemical properties and antibacterial activity of the precipitate of vancomycin and ceftazidime: implications in the management of endophthalmitis. Retina. 2008 Feb;28(2):320-5. PMID: 18301038</OBI_0000287>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/Class_32">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >body fluid</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
+    <OBI_0000274 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PRS:21-10-2008: will be imported from FMA:9669:</OBI_0000274>
+    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PRS: 21-10-2008: we should get all the children !</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_1000024">
     <rdfs:subClassOf>
@@ -1257,23 +1272,42 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000320"/>
     <owl:equivalentClass>
       <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000141"/>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000069"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
-                  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000112"/>
-                </owl:unionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-          </owl:Restriction>
+        <owl:intersectionOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000069"/>
+              </owl:Restriction>
+            </rdf:first>
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:first>
+                <owl:Restriction>
+                  <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000316"/>
+                  <owl:someValuesFrom>
+                    <owl:Class>
+                      <owl:unionOf rdf:parseType="Collection">
+                        <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000086"/>
+                        <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000112"/>
+                      </owl:unionOf>
+                    </owl:Class>
+                  </owl:someValuesFrom>
+                </owl:Restriction>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:List>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  <rdf:first>
+                    <owl:Restriction>
+                      <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
+                      <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
+                    </owl:Restriction>
+                  </rdf:first>
+                </rdf:List>
+              </rdf:rest>
+            </rdf:rest>
+          </rdf:rest>
+          <rdf:first rdf:resource="http://purl.obofoundry.org/obo/OBI_0000141"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
