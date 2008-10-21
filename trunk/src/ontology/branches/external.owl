@@ -6,6 +6,7 @@
     xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
     xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
     xmlns:pro="http://purl.org/obo/owl/PRO#"
+    xmlns:obo="http://purl.obofoundry.org/obo/" 
     xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
     xmlns:dcterms="http://purl.org/dc/terms/"
@@ -221,6 +222,87 @@ xmlns:go="http://purl.org/obo/owl/GO#"
     <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/GO#GO_0043234"/>
     <OBI_0000283 rdf:resource="http://purl.org/obo/owl/GO"/>
   </owl:Class>
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000136">
+        <rdfs:label>is about</rdfs:label>
+        <obo:OBI_0000287
+            >This document is about information artifacts and their representations</obo:OBI_0000287>
+        <obo:OBI_0000291
+            >a representation is_about anything exactly when some part of the information_artifact denotes the entity</obo:OBI_0000291>
+    <OBI_0000283 rdf:resource="http://purl.obofoundry.org/obo/iao.owl"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000219">
+        <rdfs:label
+            >generically denotes</rdfs:label>
+        <obo:OBI_0000287
+            >The word Boston on a traffic sign in Massachusetts generically denotes the city of Boston</obo:OBI_0000287>
+        <obo:OBI_0000291
+            >g generically denotes r =def 
+r is a portion of reality
+there is some c that is a concretization of g 
+every c that is a concretization of g specifically denotes r</obo:OBI_0000291>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000136"/>
+        <OBI_0000283 rdf:resource="http://purl.obofoundry.org/obo/iao.owl"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000221">
+        <rdfs:label
+            >is measurement of quality</rdfs:label>
+        <obo:OBI_0000291
+            >m is a quality measurement of q at t when
+q is a determinable quality 
+there is a measurement process p that has_output m and m is about q
+        </obo:OBI_0000291>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000136"/>
+        <OBI_0000283 rdf:resource="http://purl.obofoundry.org/obo/iao.owl"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000135">
+        <rdfs:label
+            >specifically denotes</rdfs:label>
+        <obo:OBI_0000291
+            >c specifically denotes r =def 
+r is a portion of reality
+&amp; c is a particular quality
+&amp; c depends specifically on some independent continuant b 
+&amp; b acquired c as the result of the achievement of an objective to enable pointing to r repeatedly. 
+
+Marked means there is a changed or additional quality of the bearer - the  quality is the information carrier.
+
+Case 1
+Memory trace as mark created when reading some description of some friend. The trace can denote.
+
+Case 2
+Pattern of ink arrayed on paper as mark when writing down a friend&#39;s name
+
+Case 3
+Pattern of magnetic domains on scattered pieces of a hard disk platter as mark when saving a file.</obo:OBI_0000291>
+        <obo:OBI_0000283
+            >The process of creation is, for example,  writing down on paper the name of a friend by deliberately creating a certain pattern using ink.
+
+Here the ink + paper is the independent continuant and the carrier is the pattern in the ink.
+
+c = pattern in the ink
+b = paper + ink
+r = friend</obo:OBI_0000283>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000136"/>
+    </owl:ObjectProperty>
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/IAO_0000109">
+        <rdfs:label xml:lang="en">measurement datum</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000142"/>
+        <obo:OBI_0000291 xml:lang="en"
+            >A measurement datum is an information content entity that is a recording of the output of a measurement such as produced by an instrument.</obo:OBI_0000291>
+        <obo:OBI_0000283 xml:lang="en"
+            >Examples of data are the recoding of the weight of a mouse, the recording of an observation of the behavior of the mouse, the recording of the expression level of a gene as measured through the process of microarray experiment.</obo:OBI_0000283>
+    </owl:Class>
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/IAO_0000003">
+        <rdfs:label xml:lang="en">measurement unit label</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000142"/>
+        <obo:IAO_0000115 xml:lang="en"
+            >A measurement unit label is an information content entity associated with a physical magnitude that has been conventionally assigned a number.</obo:IAO_0000115>
+        <obo:IAO_0000112 xml:lang="en"
+            >Examples of measurement unit labels are liter, inch, milligrams per cubic centimeter</obo:IAO_0000112>
+    </owl:Class>
+    <owl:DatatypeProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000004">
+        <rdfs:label>has measurement value</rdfs:label>
+    </owl:DatatypeProperty>
 </rdf:RDF>
 
 
