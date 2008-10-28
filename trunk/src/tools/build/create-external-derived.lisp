@@ -134,40 +134,47 @@
 					      "externalDerived.owl"
 					      (truename "obi:branches;")))
 
-				(endpoint nil))
-  (let ((classes 
-	 (sparql '(:select (?class ?where ?parent) () 
-		   (?class !rdf:type !owl:Class)
-		   (?class !obi:OBI_0000283 ?where)
-		   (?class !rdfs:subClassOf ?parent))
-		 :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
-		 :kb kb)))
-    (format t "There are ~a external classes~%" (length classes))
-    (multiple-value-bind (params templates) (parse-templates templates-path)
-      (let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint)))
-	(assert endpoint () "What endpoint should I use?")
-	(format t "Using endpoint: ~a~%" endpoint)
-	(let ((rdfs 
-	       (append
-		(loop for query in (cadr (assoc "Once Only" templates :test 'equalp))
+				(endpoint nil)
+				(debug nil))
+  (let ((*sparql-always-trace* (or *sparql-always-trace* debug)))
+    (declare (special *sparql-always-trace*))
+    (let ((classes 
+	   (sparql '(:select (?class ?where ?parent) () 
+		     (?class !rdf:type !owl:Class)
+		     (?class !obi:OBI_0000283 ?where)
+		     (?class !rdfs:subClassOf ?parent))
+		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
+		   :kb kb)))
+      (format t "There are ~a external classes~%" (length classes))
+      (multiple-value-bind (params templates) (parse-templates templates-path)
+	(let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint)))
+	  (assert endpoint () "What endpoint should I use?")
+	  (format t "Using endpoint: ~a~%" endpoint)
+	  (let ((rdfs 
+		 (append
+		  (loop for query in (cadr (assoc "Once Only" templates :test 'equalp))
 		     collect (get-url endpoint :post `(("query" ,query)) :persist nil :dont-cache t :force-refetch t))
-		(loop for (class where) in classes
-		   append
+		  (loop for (class where) in classes
+		     append
 		     (loop for (ont-pattern queries) in templates
-			  when (#"matches" (uri-full where)  (format nil "(?i)~a" ont-pattern))
+			when (#"matches" (uri-full where)  (format nil "(?i)~a" ont-pattern))
 			append
-			  (loop for query in queries
-			     for filled-query = (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class)))
-			     collect (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))))))
-	  (let ((basic-info
-		 (with-output-to-string (s)
-		   (loop for (class nil parent) in classes
-		      do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
-				 (uri-full class) (uri-full parent))))))
-	    (combine-template-query-results (cons basic-info rdfs) output-path))
-	  (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
-	  nil
-	  )))))
+			(loop for query in queries
+			   for filled-query = (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class)))
+			   collect (if debug
+				       (progn
+					 (print-db filled-query)
+					 (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))
+				       (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t))))))))
+	    (let ((basic-info
+		   (with-output-to-string (s)
+		     (loop for (class nil parent) in classes
+			do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
+				   (uri-full class) (uri-full parent))))))
+	      (combine-template-query-results (cons basic-info rdfs) output-path))
+	    (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
+	    nil
+	    ))))))
 
 
 
