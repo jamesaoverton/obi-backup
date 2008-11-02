@@ -1,7 +1,7 @@
 ;; see http://groups.google.com/group/obi-owl/msg/e64b981a835405eb
 ;; 
-(defun write-assumed-individuals (&optional (kb (load-kb-jena "obi:newids;obid.owl"))
-				  (path "obi:newids;assumed-individuals.owl"))
+(defun write-assumed-individuals (&optional (kb (load-kb-jena "obi:branches;obil.owl"))
+				  (path "obi:branches;assumed-individuals.owl"))
   ;; add instances of classes with no descendants
   (check kb)
   (with-ontology assumed (:base (format nil "http://purl.obofoundry.org/obo/obi/~a.~a"

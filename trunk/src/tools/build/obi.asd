@@ -34,17 +34,23 @@
     :version "1"
     :licence "BSD"
     :components
-    ((:file "util")
-     (:file "qc-queries")
-     (:file "uri-report")
-     (:file "add-disjoints")
-     (:file "write-purls")
-     (:file "add-inferred-superclasses")
-     (:file "create-external-derived")
-     (:file "comment-ids-in-owl-file")
-     (:file "add-assumed-individuals")
-     )
-    :serial t
-    :depends-on (owl))
+    ((:module macros
+	      :pathname ""
+	      :components
+	      ((:file "util")))
+     (:module main
+	      :pathname ""
+	      :components 
+	      ((:file "qc-queries")
+	       (:file "uri-report")
+	       (:file "add-disjoints")
+	       (:file "write-purls")
+	       (:file "add-inferred-superclasses")
+	       (:file "create-external-derived")
+	       (:file "comment-ids-in-owl-file")
+	       (:file "add-assumed-individuals")
+	       (:file "generate-obo"))
+	      :depends-on (macros)))
+     :depends-on (owl))
 
 ;;;; eof
