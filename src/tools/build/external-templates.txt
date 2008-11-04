@@ -27,7 +27,6 @@ construct
  { ?super rdf:type owl:Class.
    ?super rdfs:label ?label.
  }
-from <http://purl.org/science/graph/taxon>
 where
  { ?super rdfs:label ?label.
    {?super rdfs:subClassOf tax:_1} UNION {?super rdfs:subClassOf alias:cellularOrganism}
@@ -42,7 +41,6 @@ construct
    ?super alias:preferredTerm ?label.
    ?super rdfs:label ?label.
  }
-from <http://purl.org/science/graph/taxon>
  where  
   {
      {  #direct superclass. We harvest the transitive superclass annotations
@@ -71,7 +69,6 @@ construct
   _ID_GOES_HERE_ rdfs:label ?label.
   _ID_GOES_HERE_ alias:definition ?definition.
 }
-from <http://purl.org/hcls/potluck>
 where
 {
   {   _ID_GOES_HERE_ rdfs:label ?label. }
