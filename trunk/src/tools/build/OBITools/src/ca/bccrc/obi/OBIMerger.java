@@ -104,7 +104,8 @@ public class OBIMerger {
 			branchesNames.add("DigitalEntityPlus");
 			branchesNames.add("disjoints");
 			branchesNames.add("inferred-superclasses");
-			//branchesNames.add("assumed-individuals");
+		//	branchesNames.add("assumed-individuals");
+			branchesNames.add("external-byhand");
 			//instances
 			branchesNames.add("DataFormatSpecification");
 
@@ -203,7 +204,7 @@ public class OBIMerger {
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
-		//ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
+		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 
 
@@ -373,12 +374,12 @@ public class OBIMerger {
 		//some clean-up
 		//e.g. remove the defined classes buckets at the top
 		//remove _defined protocol application (OBI_0600065)
-		OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
+		//OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
 		//remove _defined_material (OBI_0000233)
-		OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
+		//OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
 		
-		r.remove();
-		r2.remove();
+		//r.remove();
+		//r2.remove();
 		
 		
 		
@@ -421,33 +422,32 @@ public class OBIMerger {
 
 
 	//For testing purposes
-
+/*
 	public final static void main(String[] args) throws Exception  {
 		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080925/build/newids/";
-		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
+		//String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080925/build/newids/";
+		String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
 		//if we had modification of the branches that are to be kept, we need to give a destination path
 		//String destinationURI="Users/melanie/OBIReleases/test/";
 
 
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
+		
+		
 		//check consistency -> this is now done via the owlapi
-		//boolean valid = checkConsistency(newFilePath);
-		//System.out.println("to be committed: "+ valid);
+		boolean valid = checkConsistency(newFilePath);
+		System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
-		String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
-		mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
-		System.out.println("to be committed: ");
-		
-		
-	
+	//	String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
+	//	mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
+		//System.out.println("to be committed: ");
 
 
 	}
 	
 
-
+*/
 
 }
