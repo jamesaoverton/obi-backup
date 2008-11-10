@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import ca.bccrc.obi.old.OBIInitializer;
+
 import com.hp.hpl.jena.ontology.AnnotationProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -21,6 +23,7 @@ import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -28,18 +31,6 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 
-/**
- * @author melanie
- *
- */
-/**
- * @author melanie
- *
- */
-/**
- * @author melanie
- *
- */
 public class BranchesReporter {
 	private static String obiPath = "http://purl.obofoundry.org/obo/obi/";
 
@@ -137,7 +128,7 @@ public class BranchesReporter {
 			if(term.hasProperty(prefTermAnnPropObj))
 			{
 				//term.addLabel(term.getPropertyValue(prefTermAnnPropObj).toString(),"en");
-				return report += "<div class=\"warning\">Warning: No label - will be defaulted to the preferred term value</div>";
+				return report += "<div class=\"warning\">Warning: No label</div>";
 			}
 			else 
 			{
@@ -153,7 +144,7 @@ public class BranchesReporter {
 				//null literals are forbidden since jena 2.0
 				//if(term.getLabel(null)!=null)
 				//term.addProperty(prefTermAnnPropObj,term.getProperty(RDFS.label).getString().trim());
-				return report += "<div class=\"warning\">Warning: No preferred term - will be defaulted to the label value</div>";
+				return report += "<div class=\"warning\">Warning: No preferred term</div>";
 			}
 			//term has label and preferred term
 			else return report;
@@ -197,12 +188,12 @@ public class BranchesReporter {
 		if(!term.hasProperty(curationStatusAnnPropObj))
 		{
 			//term.addProperty(curationStatusAnnPropObj,uncuratedInstance);
-			return "<div class=\"warning\">Warning: No curation_status - will be defaulted to uncurated</div>";
+			return "<div class=\"warning\">Warning: No curation status</div>";
 
 		}
 		else {
 			StmtIterator stmtIterCuration = term.listProperties(curationStatusAnnPropObj);
-			/*for (StmtIterator stmtIterCuration = term.listProperties(curationStatusAnnPropObj); stmtIterCuration.hasNext(); ) 
+			/*for (stmtIterCuration = term.listProperties(curationStatusAnnPropObj); stmtIterCuration.hasNext(); ) 
 			{
 				Statement curationStatus = (Statement) stmtIterCuration.next();
 				System.out.println("curation: "+ curationStatus.getObject().toString());
@@ -288,15 +279,27 @@ public class BranchesReporter {
 			OntResource thisClass = it.next();
 
 			//only for OBI classes
-			int index = thisClass.getLocalName().indexOf("OBI");
-			if (index != -1)
+			//int index = thisClass.getLocalName().indexOf("OBI");
+			//int index = thisClass.getURI().indexOf("obofoundry");
+			//System.out.println("URI: "+thisClass.getURI());
+			if (thisClass.getURI() != null && thisClass.getURI().indexOf("obofoundry") != -1)
 			{
+				if(thisClass.hasProperty(curationStatusAnnPropObj) && thisClass.getProperty(curationStatusAnnPropObj).getObject().toString().equals("http://purl.obofoundry.org/obo/OBI_0000328"))
+				{
+					System.out.println("UNCURATED"+((OntResource) thisClass).getLabel(null));
+				}
 				String classReport = checkAnnotations(thisClass);
 				if (classReport != ""){
+					
 					reportTotal += "<div class=\"termreport\">\n"+
 					"<div class=\"termid\">\n" +
 					"<span class=\"id\"><a href=\"http://purl.obofoundry.org/obo/"+thisClass.getLocalName()+"\">"+thisClass.getLocalName()+"</a>: </span>\n";
 					reportTotal +="<span class=\"name\">"+((OntResource) thisClass).getLabel(null)+"</span>\n";
+					if(thisClass.hasProperty(curationStatusAnnPropObj) && thisClass.getProperty(curationStatusAnnPropObj).getObject().toString().equals("http://purl.obofoundry.org/obo/OBI_0000328"))
+					{
+						reportTotal+=" -- UNCURATED";
+					}
+					
 					reportTotal+="</div>\n";
 					reportTotal += classReport;
 					reportTotal += "</div>\n"; 
@@ -372,7 +375,8 @@ public class BranchesReporter {
 	public static String checkBranchAnnotations(OntModel branchModel, String branchName, OntModel owlModel){
 
 		//get the list of named classes
-		ExtendedIterator classes = branchModel.listNamedClasses();
+		//ExtendedIterator classes = branchModel.listNamedClasses();
+		ExtendedIterator classes = branchModel.listClasses();
 		List<OntResource> listClasses = classes.toList();
 
 
@@ -447,7 +451,7 @@ public class BranchesReporter {
 	 * @param reportPath - where to write the report
 	 * @param owlModel - the merged OntModel
 	 */
-	public static void produceBranchReport (List<String> branchesNames, String physicalURI, String theAnnotationsFileName, String reportPath, OntModel owlModel)	{
+	public static void produceBranchReport (List<String> branchesNames, String physicalURI, String reportPath, OntModel owlModel)	{
 
 		for(String s : branchesNames) {
 
@@ -485,51 +489,74 @@ public class BranchesReporter {
 
 	}
 
+	/**
+	 * Returns list of branches names as referenced in the OBI file
+	 * @param obi - the file containing the imports of all the branches, e.g. obi.owl
+	 * @param physicalURI - the physical path to the directory containing the files
+	 * @return - a list of the branches names, e.g. "Biomaterial"
+	 */
+	public static List<String> getBranchesNames(String physicalURI){
+		List<String> branchesNames = new ArrayList<String>();
+		try{
+			branchesNames.add("Biomaterial");
+			//branchesNames.add("externalDerived");
+			//branchesNames.add("external");
+			branchesNames.add("Role");
+			branchesNames.add("InstrumentAndPart");
+			branchesNames.add("TheRest");
+			branchesNames.add("Relations");
+			branchesNames.add("PlanAndPlannedProcess");
+			branchesNames.add("AnnotationProperty");
 
+			branchesNames.add("OBI-Function");
+			branchesNames.add("DataTransformation");
+
+			branchesNames.add("Quality");
+			branchesNames.add("Obsolete");
+
+			branchesNames.add("DigitalEntityPlus");
+			//branchesNames.add("disjoints");
+			//branchesNames.add("inferred-superclasses");
+
+			//instances
+			branchesNames.add("DataFormatSpecification");
+
+		}catch (Exception e){
+			System.err.println("Error: " + e.getMessage());
+		}
+
+
+		return branchesNames;
+	}
 
 
 
 	/* testing purposes */
 	public final static void main(String[] args) throws Exception  {
 
-		String physicalURI = "/Users/melanie/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
-		String theAnnotationsFileName = "AnnotationProperty.owl";
+		String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
+		//String theAnnotationsFileName = "AnnotationProperty.owl";
 
 
-		String theAnnotationsFilePath = physicalURI + theAnnotationsFileName;
+		//String theAnnotationsFilePath = physicalURI + theAnnotationsFileName;
 
 		//the file containing the declaration of the annotation properties
-		File theAnnotationsFile = new File(theAnnotationsFilePath);
+		//File theAnnotationsFile = new File(theAnnotationsFilePath);
 
 		
 		
 		
-		List<String> branchesNames = new ArrayList<String>();
-		branchesNames.add("Biomaterial");
-		branchesNames.add("Role");
-		branchesNames.add("InstrumentAndPart");
-		branchesNames.add("TheRest");
-		branchesNames.add("Relations");
-		branchesNames.add("PlanAndPlannedProcess");
-		branchesNames.add("AnnotationProperty");
-		branchesNames.add("OBI-Function");
-		branchesNames.add("DataTransformation");
-		branchesNames.add("Quality");
-		branchesNames.add("Obsolete");
-		branchesNames.add("DigitalEntityPlus");
-
-		//instances
-		//branchesNames.add("DataFormatSpecification");
+		List<String> branchesNames = getBranchesNames(physicalURI);
 
 
-		String reportPath = "/Users/melanie/Desktop/reports/";
+		String reportPath = "/Users/mcourtot/Desktop/reports/";
 
 		//some things need to be done on the whole OBI
 		//e.g. get obsolete list of classes
 		//get instances
 		OntModel owlModel = OBIMerger.buildMergedFiles(physicalURI,false);
 	
-		
+		/*
 		for (ExtendedIterator classes2 = owlModel.listAnnotationProperties(); classes2.hasNext(); ) 
 		{
 			Property annotation = (Property) classes2.next();
@@ -540,13 +567,13 @@ public class BranchesReporter {
 			else System.out.println("annotation: "+ annotation.getURI());
 		}
 		
-		
+		*/
 		//retrieves annotations properties objects - we should get them from the whole model, they don't have to be defined in the AnnotationProperty.owl file
 		getAnnotationsPropertiesObjects(owlModel);
 
 		getInstances(owlModel, reportPath);
 
-		produceBranchReport (branchesNames, physicalURI, theAnnotationsFileName, reportPath, owlModel);
+		produceBranchReport (branchesNames, physicalURI, reportPath, owlModel);
 
 
 
