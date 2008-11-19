@@ -51,6 +51,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 import com.hp.hpl.jena.reasoner.ValidityReport;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -70,7 +71,7 @@ public class OBIMerger {
 	//the obiPath - this is the path for the branches files
 	//private static String obiPath = "http://obi.sourceforge.net/ontology/OBI/";
 	private static String obiPath = "http://purl.obofoundry.org/obo/obi/";
-	
+
 	//the Ontology URI
 	private static String obiURI = "http://purl.obofoundry.org/obo/obi.owl";
 
@@ -104,7 +105,7 @@ public class OBIMerger {
 			branchesNames.add("DigitalEntityPlus");
 			branchesNames.add("disjoints");
 			branchesNames.add("inferred-superclasses");
-		//	branchesNames.add("assumed-individuals");
+			//	branchesNames.add("assumed-individuals");
 			branchesNames.add("external-byhand");
 			//instances
 			branchesNames.add("DataFormatSpecification");
@@ -218,7 +219,7 @@ public class OBIMerger {
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
-		
+
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 	}
@@ -273,13 +274,13 @@ public class OBIMerger {
 		}
 		return owlModel;
 	}
-	
-	
 
-	
-	
+
+
+
+
 	public static OntModel buildMergedFiles(String physicalURI, boolean ProtegeFriendly){
-	
+
 
 		//creates the ontology model
 		OntModel owlModel = buildOWLModel(physicalURI);
@@ -369,24 +370,19 @@ public class OBIMerger {
 		owlModel.removeNsPrefix("obi_ext");
 		owlModel.removeNsPrefix("obi_extd");
 		owlModel.removeNsPrefix("obi_owlfull");
-		
-		
+
+
 		//some clean-up
 		//e.g. remove the defined classes buckets at the top
 		//remove _defined protocol application (OBI_0600065)
-		//OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
+			OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
 		//remove _defined_material (OBI_0000233)
-		//OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
-		
-		//r.remove();
-		//r2.remove();
-		
-		
-		
-		
-		
-		
-		
+		OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
+
+			r.remove();
+		r2.remove();
+
+
 		return owlModel;
 	}
 	/**
@@ -434,20 +430,21 @@ public class OBIMerger {
 
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
-		
-		
+
+
 		//check consistency -> this is now done via the owlapi
-		boolean valid = checkConsistency(newFilePath);
-		System.out.println("to be committed: "+ valid);
+			boolean valid = checkConsistency(newFilePath);
+			System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
-	//	String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
-	//	mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
-		//System.out.println("to be committed: ");
+			String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
+			mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
+		System.out.println("to be committed: ");
 
 
 	}
-	
+	*/
 
-*/
+
+
 
 }
