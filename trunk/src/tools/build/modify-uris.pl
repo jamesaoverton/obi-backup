@@ -87,7 +87,7 @@ sub maybeRewriteURI
   if ($type =~ /Class|Property|Individual/)
   {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
    { my $localname = $1;
-     if ( $localname =~ /OBI_(\d+)/)
+     if ( $localname =~ /^OBI_(\d+)/)
      { if (length($1)>7) { return 0 } # too long - allocate new id
        my $newnum = sprintf("%07d",$1);
        if ($used{$newnum}) # collision, allocate new id
