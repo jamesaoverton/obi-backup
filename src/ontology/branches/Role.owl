@@ -3,8 +3,8 @@
     xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
     xmlns:pato="http://purl.org/obo/owl/PATO#"
     xmlns:obi_owlfull="http://purl.obofoundry.org/obo/obi/obi-owl-full.owl#"
-    xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
     xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
+    xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
     xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
@@ -374,9 +374,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000067">
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Role call - 17nov-08: JF and MC think an evaluant role is always specified input of a process. Even in the case where we have an assay taking blood as evaluant and outputing blood, the blood is not the specified output at the end of the assay (the concentration of glucose in the blood is)</OBI_0000275>
-    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >examples of features that could be described in an evaluant: quality.... e.g. "contains 10 pg/ml IL2", or "no glucose detected")</OBI_0000275>
+    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Role call - 17nov-08: JF and MC think an evaluant role is always specified input of a process. Even in the case where we have an assay taking blood as evaluant and outputing blood, the blood is not the specified output at the end of the assay (the concentration of glucose in the blood is)</OBI_0000275>
     <OBI_0000288 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >evaluant role</OBI_0000288>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -385,22 +385,22 @@
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000022"/>
     </rdfs:subClassOf>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An evaluant role is the input role played by an entity in an assay such that the output data describes a feature of the material entity playing the evaluant role</OBI_0000291>
+    >Evaluant role is a specified input role played by an entity in an assay such that the output data describes a feature of the material entity playing the evaluant role</OBI_0000291>
     <rdfs:label xml:lang="en">evaluant role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000022">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000111"/>
     </rdfs:subClassOf>
-    <OBI_0000291 xml:lang="en">An input role is a study participant role which is played by an entity at the beginning of a process and which is specified as input to the process.</OBI_0000291>
+    <OBI_0000291 xml:lang="en">Specified input role is a study participant role which is played by an entity at the beginning of a process and which is specified as input to the process.</OBI_0000291>
     <OBI_0000287 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >examples include a scale and mouse play input role in a process to determine weight; reagents for measuring glucose and a specimen of blood have input role in a glucose-measuring assay.</OBI_0000287>
-    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >data can be an entity that plays an input role</OBI_0000275>
     <OBI_0000275 xml:lang="en">role of data or material entity played at the start of a process; must be specified.  
 reagents for measuring glucose and a specimen of blood are inputs in a glucose-measuring assay.
 the input must be specified, for example, the reagents will be in tubes which aslo contain air; the air is not an input unless it is specified in the assay protocol</OBI_0000275>
-    <rdfs:label xml:lang="en">input_role</rdfs:label>
+    <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >data can be an entity that plays an input role</OBI_0000275>
+    <rdfs:label xml:lang="en">specified_input_role</rdfs:label>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</OBI_0000279>
   </owl:Class>
@@ -638,13 +638,13 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >administered material role</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000236"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
         <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_44"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000236"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000053">
@@ -659,7 +659,7 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000408">
     <OBI_0000281 rdf:resource="http://purl.obofoundry.org/obo/OBI_0000328"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000109"/>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000236"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">cloning_vector_plus_insert</rdfs:label>
   </owl:Class>
@@ -742,14 +742,14 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
     <OBI_0000287 xml:lang="en">A growth medium or culture medium is a substance in which microorganisms or cells can grow.  Wikipedia, growth medium, Feb 29, 2008</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000023">
-    <rdfs:label xml:lang="en">output_role</rdfs:label>
+    <rdfs:label xml:lang="en">specified_output_role</rdfs:label>
     <OBI_0000279 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</OBI_0000279>
-    <OBI_0000291 xml:lang="en">An output role is a study participant role which is played by an entity at the end of a process and which is specified as output to the process</OBI_0000291>
+    <OBI_0000291 xml:lang="en">Specified output role is a study participant role which is played by an entity at the end of a process and which is specified as output to the process</OBI_0000291>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000111"/>
+    <OBI_0000275 xml:lang="en">The role must be specified by the process protocol.  Example, in an assay measuring glucose in blood, the blood specimen is input to the assay, and is discarded after the assay.  In this case, unless the blood is sepcified as an output of the assay it does not play the role output role.</OBI_0000275>
     <OBI_0000275 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >data can be an entity that plays an output role</OBI_0000275>
-    <OBI_0000275 xml:lang="en">The role must be specified by the process protocol.  Example, in an assay measuring glucose in blood, the blood specimen is input to the assay, and is discarded after the assay.  In this case, unless the blood is sepcified as an output of the assay it does not play the role output role.</OBI_0000275>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000173">
     <OBI_0000275 xml:lang="en">CDISC definition:  screen failure. Potential subject who did not meet one or more criteria required for participation in a trial. See also screening of subjects. screen/screening (of substances). Screening is the process by which substances are evaluated in a</OBI_0000275>
@@ -780,8 +780,8 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >biological vector role</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <OBI_0000287 xml:lang="en">Some epidemiological aspects and vector role of tick infestation on layers in the Faisalabad district (Pakistan). http://journals.cambridge.org/action/displayAbstract;jsessionid=0373164489D00868AEEF2C556EB4FD29.tomcat1?fromPage=online&amp;aid=624280</OBI_0000287>
     <OBI_0000287 xml:lang="en">1983 Sci. Amer. Jan. 58/2 Plasmids are routinely used as vectors for introducing foreign DNA into bacteria.</OBI_0000287>
+    <OBI_0000287 xml:lang="en">Some epidemiological aspects and vector role of tick infestation on layers in the Faisalabad district (Pakistan). http://journals.cambridge.org/action/displayAbstract;jsessionid=0373164489D00868AEEF2C556EB4FD29.tomcat1?fromPage=online&amp;aid=624280</OBI_0000287>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000128">
     <rdfs:label xml:lang="en">medical institution role</rdfs:label>
@@ -1094,13 +1094,13 @@ www.uhhospitals.org/tabid/591/Default.aspx</OBI_0000279>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/Class_9">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >analyte role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000236"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_7"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000236"/>
     <OBI_0000291 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is the role of the substance that is being detected in a analyte measuring assay</OBI_0000291>
   </owl:Class>
