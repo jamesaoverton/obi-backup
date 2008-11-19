@@ -99,6 +99,9 @@ sub maybeRewriteURI
      }
 #     elsif ($localname =~ /CurationStatus|EnumerationClass/)
 #     { return $namedclassNamespace.$localname }
+     elsif ($localname =~ /^IAO_(\d+)/)
+    { #ok, it's an IAO
+    }
      else
      { return(0) }
    }
