@@ -204,10 +204,11 @@ public class OBIMerger {
 		//we add those as Ontology Resource, to get the proper syntax for the imports, otherwise Pellet complains OWL full
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
-		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL"));
+		//ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL")); 
+		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/relationship"));
 		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
-
+			ont.addImport(owlModel.createOntology("http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl"));
 
 
 	}
@@ -218,10 +219,11 @@ public class OBIMerger {
 		//we add those as Resource, to get the proper syntax for the imports, and proper display in protege
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
-		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
-
+		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
+		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
+		ont.addImport(owlModel.createResource("http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl"));
 	}
 
 
@@ -351,6 +353,7 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("caro","http://purl.org/obo/owl/CARO#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("so","http://purl.org/obo/owl/SO#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("go","http://purl.org/obo/owl/GO#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("iao", "http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl");
 		//specific case: the empty string means default namespace
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
 
@@ -434,6 +437,7 @@ public class OBIMerger {
 
 		//check consistency -> this is now done via the owlapi
 			boolean valid = checkConsistency(newFilePath);
+		//boolean valid = checkConsistency("/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/obi.owl");
 			System.out.println("to be committed: "+ valid);
 		//we create the protege-friendly version
 			String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
@@ -442,7 +446,7 @@ public class OBIMerger {
 
 
 	}
-	*/
+*/
 
 
 
