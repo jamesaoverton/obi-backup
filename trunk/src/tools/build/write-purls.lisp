@@ -74,7 +74,7 @@
    (update-purl  "/obo/obi/protege/"
 		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/merged/protege/" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))
-   (update-purl  "/obo/obi/protege/report.html"
+   (update-purl  "/obo/obi/report.html"
 		 (format nil "http://obi.svn.sourceforge.net/svnroot/obi/releases/~a/obi-lsw-report.html" datestring)
 		 user password '("obi") (format nil "release of ~a" datestring))))
 
