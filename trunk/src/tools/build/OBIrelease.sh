@@ -72,7 +72,6 @@ mkdir $OBI_BUILD_PATH
 OBI_MERGED_PATH=`pwd`/merged/
 mkdir $OBI_MERGED_PATH
 echo "OBI_MERGED_PATH is set to" $OBI_MERGED_PATH 
-
 #the path to the subdirectory of the merged directory that will contain the protege specific files
 OBI_MERGED_PATH_PROTEGE=`pwd`/merged/protege
 mkdir $OBI_MERGED_PATH_PROTEGE
@@ -84,6 +83,7 @@ echo "OBI_MERGED_PATH_PROTEGE is set to" $OBI_MERGED_PATH_PROTEGE
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
 # we need the sourcecodes as well 
+
 svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
 echo "SVN checked out"
 
@@ -112,27 +112,31 @@ echo "<?xml version=\"1.0\"?>
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_DIR_PATH/\">
   <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
-    <owl:imports rdf:resource=\"AnnotationProperty.owl\"/>
-    <owl:imports rdf:resource=\"DataTransformation.owl\"/>
-    <owl:imports rdf:resource=\"DigitalEntityPlus.owl\"/>
-    <owl:imports rdf:resource=\"Biomaterial.owl\"/>
-    <owl:imports rdf:resource=\"DataFormatSpecification.owl\"/>
-    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/>
-    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/ro.owl\"/>
+    <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Biomaterial.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataFormatSpecification.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
+  <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
+      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
+ <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
-    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/>
-    <owl:imports rdf:resource=\"Role.owl\"/>
-    <owl:imports rdf:resource=\"InstrumentAndPart.owl\"/>
-    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege.owl\"/>
-    <owl:imports rdf:resource=\"PlanAndPlannedProcess.owl\"/>
-    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/>
-    <owl:imports rdf:resource=\"TheRest.owl\"/>
-    <owl:imports rdf:resource=\"Relations.owl\"/>
-    <owl:imports rdf:resource=\"OBI-Function.owl\"/>
-    <owl:imports rdf:resource=\"Quality.owl\"/>
-    <owl:imports rdf:resource=\"external.owl\"/>
-    <owl:imports rdf:resource=\"externalDerived.owl\"/>
-    <owl:imports rdf:resource=\"Obsolete.owl\"/>
+
   </owl:Ontology>
 </rdf:RDF>" > ./src/ontology/branches/obil.owl
 
@@ -148,7 +152,7 @@ OBI_OWL_PATH=${OBI_DIR_PATH}/obil.owl
 ############################################################### URI-REPORT #########################################################
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the uri-report.txt file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/uri-report.lisp --load owl/standard-ontologies.lisp --eval "(list-obi-uris \"${OBI_BUILD_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(list-obi-uris \"${OBI_BUILD_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
 
 echo "uri-report.txt created"
 
@@ -192,7 +196,7 @@ echo "revision number replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
 ###################################################################################################################################
 
 
-########################################################## DISJOINTS, PURLS AND INFERRED SUPERCLASSES ###############################################################
+########################################################## DISJOINTS, PURLS, ASSUMED INDIVIDUALS AND INFERRED SUPERCLASSES ###############################################################
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
     xmlns=\"http://purl.obofoundry.org/obo/\"
@@ -203,27 +207,29 @@ echo "<?xml version=\"1.0\"?>
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_BUILD_PATH/newids/\">
   <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
-     <owl:imports rdf:resource=\"AnnotationProperty.owl\"/>
-     <owl:imports rdf:resource=\"DataTransformation.owl\"/>
-    <owl:imports rdf:resource=\"DigitalEntityPlus.owl\"/>
-     <owl:imports rdf:resource=\"Biomaterial.owl\"/>
-     <owl:imports rdf:resource=\"DataFormatSpecification.owl\"/>
-     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/>
-     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/ro.owl\"/>
-    <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
-     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/>
-    <owl:imports rdf:resource=\"Role.owl\"/>
-     <owl:imports rdf:resource=\"InstrumentAndPart.owl\"/>
-     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege.owl\"/>
-     <owl:imports rdf:resource=\"PlanAndPlannedProcess.owl\"/>
-     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/>
-     <owl:imports rdf:resource=\"TheRest.owl\"/>
-     <owl:imports rdf:resource=\"Relations.owl\"/>
-     <owl:imports rdf:resource=\"OBI-Function.owl\"/>
-     <owl:imports rdf:resource=\"Quality.owl\"/>
-     <owl:imports rdf:resource=\"external.owl\"/>
-     <owl:imports rdf:resource=\"externalDerived.owl\"/>
-     <owl:imports rdf:resource=\"Obsolete.owl\"/>
+   <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Biomaterial.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataFormatSpecification.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
+  <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
+      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
+  <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obil.owl
 
@@ -235,11 +241,69 @@ echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
 
 #the following command launches abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/add-disjoints.lisp --load ${OBI_CODE_PATH}/write-purls.lisp --load ${OBI_CODE_PATH}/add-inferred-superclasses.lisp --load owl/standard-ontologies.lisp --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
-
-
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")"  --eval "(quit)"
 echo "disjoints.owl created at $OBI_BUILD_PATH/newids/disjoints.owl"
+
+
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")" --eval "(quit)"
+
 echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-assumed-individuals (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/assumed-individuals.owl\")" --eval "(quit)"
+
+
+echo "assumed-individuals created at $OBI_BUILD_PATH/newids/assumed-individuals.owl"
+
+
+
+echo "<?xml version=\"1.0\"?>
+<rdf:RDF
+    xmlns=\"http://purl.obofoundry.org/obo/\"
+    xmlns:protege=\"http://protege.stanford.edu/plugins/owl/protege#\"
+    xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
+    xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
+    xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
+    xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
+    xml:base=\"file://$OBI_BUILD_PATH/newids/\">
+  <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
+   <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Biomaterial.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"DataFormatSpecification.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
+ <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
+  <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
+      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
+     <owl:imports> <owl:Ontology  rdf:about=\"disjoints.owl\"/></owl:imports>
+     <owl:imports> <owl:Ontology  rdf:about=\"assumed-individuals.owl\"/>
+</owl:imports>
+  </owl:Ontology>
+</rdf:RDF>" > $OBI_BUILD_PATH/newids/obidi.owl
+
+echo "obidi.owl created (includes assumed individuals)"
+
+
+
+######### changed to obid following disjoints problem
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
+
+
 echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-superclasses.owl"
 
 
@@ -256,7 +320,16 @@ echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-super
 # writes the result of the queries in the merged directory, in the file qc-queries-report.txt
 # TODO: add lost-terms (as soon as I understand the arguments ;-) )
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/qc-queries.lisp --load owl/standard-ontologies.lisp --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report.txt
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report1.txt
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report2.txt
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report3.txt
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report4.txt
+
+
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report5.txt
 
 ###################################################################################################################################
 
@@ -290,6 +363,8 @@ echo "<?xml version=\"1.0\"?>
      <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege.owl\"/>
      <owl:imports rdf:resource=\"PlanAndPlannedProcess.owl\"/>
      <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/>
+<owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/>
+    <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/>
      <owl:imports rdf:resource=\"TheRest.owl\"/>
      <owl:imports rdf:resource=\"Relations.owl\"/>
      <owl:imports rdf:resource=\"OBI-Function.owl\"/>
@@ -297,6 +372,7 @@ echo "<?xml version=\"1.0\"?>
      <owl:imports rdf:resource=\"external.owl\"/>
      <owl:imports rdf:resource=\"externalDerived.owl\"/>
      <owl:imports rdf:resource=\"Obsolete.owl\"/>
+ <owl:imports rdf:resource=\"external-byhand.owl\"/>
   <owl:imports rdf:resource=\"disjoints.owl\"/>
  <owl:imports rdf:resource=\"inferred-superclasses.owl\"/>
   </owl:Ontology>
@@ -310,7 +386,7 @@ echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BU
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
 #################### kept separated from other lisp calls as it is quite long and I often comment it out for testing :-) ) ###################
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
 echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
 
@@ -351,7 +427,7 @@ cd $HERE
 
 #launch the merger itself
 #the jar needs to be in your classpath
-RESULT=`java OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
+RESULT=`java -Xmx1024m OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
 
 # print out the result
 echo "result is $RESULT"
@@ -377,7 +453,7 @@ then
 
 
 #add comments
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load owl/standard-ontologies.lisp --load ${OBI_CODE_PATH}/comment-ids-in-owl-file.lisp --eval "(comment-ids-in-owl-file \"${OBI_MERGED_PATH}/OBI-nocomment.owl\" \"${OBI_MERGED_PATH}/OBI.owl\" (load-kb-jena \"${OBI_MERGED_PATH}/OBI-nocomment.owl\"))" --eval "(quit)"
+perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp ---load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(comment-ids-in-owl-file \"${OBI_MERGED_PATH}/OBI-nocomment.owl\" \"${OBI_MERGED_PATH}/OBI.owl\" (load-kb-jena \"${OBI_MERGED_PATH}/OBI-nocomment.owl\"))" --eval "(quit)"
 
 echo "OBI.owl now includes xml comments"
 
