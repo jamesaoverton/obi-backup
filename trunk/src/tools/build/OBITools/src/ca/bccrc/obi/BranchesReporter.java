@@ -66,29 +66,29 @@ public class BranchesReporter {
 	 * Gets the annotation properties from the file containing them
 	 * @param theAnnotationsFile
 	 */
-	public static void getAnnotationsPropertiesObjects (OntModel owlModel)	{
+	public static void getAnnotationsPropertiesObjects (File theAnnotationsFile)	{
 		//read the annotations file into an OWL model 
-		//OntModel annotationsModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
+		OntModel annotationsModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);	
 
 
-		/*try {
+		try {
 			annotationsModel.read(new FileInputStream(theAnnotationsFile), OBINs);
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
 			System.exit(1);
-		}*/
-		prefTermAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000288");	
-		defAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000291");	
-		defSourceAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000279");	
-		exampleAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000287");
+		}
+		prefTermAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000111");	
+		defAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000115");	
+		defSourceAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000119");	
+		exampleAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"OBI_0000287");
 		//the curation status annotation property has id 281
-		curationStatusAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000281");	
-		defEditorAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000274");	
-		editorNoteAnnPropObj = owlModel.getAnnotationProperty(OBINs+"OBI_0000275");	
+		curationStatusAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000114");	
+		defEditorAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000117");	
+		editorNoteAnnPropObj = annotationsModel.getAnnotationProperty(OBINs+"IAO_0000116");	
 		//instances of the class curation status, id 266, are used to populate the annotation property
-		curationStatusClass= owlModel.getOntClass(OBINs+"OBI_0000266");
-		uncuratedInstance = owlModel.getIndividual(OBINs+"OBI_0000328");
+		curationStatusClass= annotationsModel.getOntClass(OBINs+"IAO_0000078");
+		uncuratedInstance = annotationsModel.getIndividual(OBINs+"IAO_0000124");
 
 	}
 
@@ -535,13 +535,13 @@ public class BranchesReporter {
 	public final static void main(String[] args) throws Exception  {
 
 		String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
-		//String theAnnotationsFileName = "AnnotationProperty.owl";
+		String theAnnotationsFileName = "ontology-metadata.owl";
 
 
-		//String theAnnotationsFilePath = physicalURI + theAnnotationsFileName;
+		String theAnnotationsFilePath = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/external/iao/" + theAnnotationsFileName;
 
 		//the file containing the declaration of the annotation properties
-		//File theAnnotationsFile = new File(theAnnotationsFilePath);
+		File theAnnotationsFile = new File(theAnnotationsFilePath);
 
 		
 		
@@ -568,8 +568,8 @@ public class BranchesReporter {
 		}
 		
 		*/
-		//retrieves annotations properties objects - we should get them from the whole model, they don't have to be defined in the AnnotationProperty.owl file
-		getAnnotationsPropertiesObjects(owlModel);
+		//retrieves annotations properties objects 
+		getAnnotationsPropertiesObjects(theAnnotationsFile);
 
 		getInstances(owlModel, reportPath);
 
