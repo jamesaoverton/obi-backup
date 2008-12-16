@@ -169,8 +169,8 @@
 	    (let ((basic-info
 		   (with-output-to-string (s)
 		     (loop for (class nil parent) in classes
-			do (format s "<owl:Class rdf:about=~s><rdfs:subClassOf rdf:resource=~s/></owl:Class>~%"
-				   (uri-full class) (uri-full parent))))))
+			do (format s "<owl:Class rdf:about=~s></owl:Class>~%"
+				   (uri-full class) )))))
 	      (combine-template-query-results (cons basic-info rdfs) output-path))
 	    (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
 	    nil
