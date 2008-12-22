@@ -177,13 +177,13 @@ echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BU
 
 
 ################################################## DATE AND REVISION NUMBER #######################################################
-#note: we need to replace the date in TheRest.owl to do so, or we will get a consistency error from the reasoner
+#note: we need to replace the date in obi.owl to do so, or we will get a consistency error from the reasoner
 
-#we replace the date and the version number in TheRest.owl
+#we replace the date and the version number in obi.owl
 TODAY=`date "+%G-%m-%d"`
 
-perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_BUILD_PATH/newids/TheRest.owl
-echo "date replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
+perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_BUILD_PATH/newids/obi.owl
+echo "date replaced in $OBI_BUILD_PATH/newids/obi.owl"
 
 ############################################## ugly path hack - for whatever reason the get-revision-number.sh script doesn't like to be called at the root (maybe some problem with external...?)
 cd $OBI_CODE_PATH
@@ -191,8 +191,8 @@ SVN_REVISION_NUMBER=`./get-svn-revision.sh`
 echo "got SVN revision number" $SVN_REVISION_NUMBER
 cd $HERE
 
-perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" $OBI_BUILD_PATH/newids/TheRest.owl
-echo "revision number replaced in $OBI_BUILD_PATH/newids/TheRest.owl"
+perl -pi -e "s/<owl:versionInfo xml:lang=\"en\">(.*)<\/owl:versionInfo>/<owl:versionInfo xml:lang=\"en\">1.0.$SVN_REVISION_NUMBER<\/owl:versionInfo>/" $OBI_BUILD_PATH/newids/obi.owl
+echo "revision number replaced in $OBI_BUILD_PATH/newids/obi.owl"
 ###################################################################################################################################
 
 
