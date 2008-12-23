@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:obi_role="http://purl.obofoundry.org/obo/obi/Role.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:obi_extd="http://purl.obofoundry.org/obo/obi/externalDerived.owl#"
+    xmlns:obi_quality="http://purl.obofoundry.org/obo/obi/Quality.owl#"
+    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
+    xmlns:obi_rest="http://purl.obofoundry.org/obo/obi/TheRest.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:obi_owlfull="http://purl.obofoundry.org/obo/obi/obi-owl-full.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:obi_instr="http://purl.obofoundry.org/obo/obi/InstrumentAndPart.owl#"
+    xmlns:obi_plan="http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl#"
+    xmlns:obi_biomat="http://purl.obofoundry.org/obo/obi/Biomaterial.owl#"
+    xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
+    xmlns:obi_annot="http://purl.obofoundry.org/obo/obi/AnnotationProperty.owl#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
+    xmlns:pato="http://purl.org/obo/owl/PATO#"
+    xmlns:cell="http://purl.org/obo/owl/CL#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+    xmlns:obi_ext="http://purl.obofoundry.org/obo/obi/external.owl#"
+    xmlns:robfo="http://purl.org/obo/owl/ro_bfo_bridge/1.1#"
+    xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
+    xmlns:obi_rel="http://purl.obofoundry.org/obo/obi/Relations.owl#"
+    xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
+    xmlns:rotoo="http://purl.org/obo/owl/ro#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+   xmlns="http://purl.obofoundry.org/obo/"
+    xmlns:obi_func="http://purl.obofoundry.org/obo/obi/OBI-Function.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
+  xml:base="http://purl.obofoundry.org/obo/obi/Relations.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
+  </owl:Ontology>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000308">
+    <IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example of usage: The process of 'histidine catabolism' (GO:0006548) realizes the 
+function 'histidine ammonia lyase activity' (GO:0004397) (note: here 'activity' 
+denotes a function and not a process). We leave open the possibility of defining 
+in future the sub-relations directly_realizes (as bewteen a function and it's 
+functioning) and indirectly_realizes.</IAO_0000112>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >executes</IAO_0000118>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_realization_of</IAO_0000118>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >involves_execution_of</IAO_0000118>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_function_part</IAO_0000118>
+    <rdfs:label xml:lang="en">realizes</rdfs:label>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000300"/>
+    </owl:inverseOf>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000117>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#RealizableEntity"/>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Chris Mungal</IAO_0000117>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relation between a process and a function, where the unfolding of the 
+process requires the execution of the function. Class level: P realizes F iff: 
+given any p that instantiates P, there exists some f, t such that f instantiates
+ F at t and p *realizes* f. Here, *realizes* is the primitive 
+instance level relation" [GOC:cjm]</IAO_0000115>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000307">
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000309"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <rdfs:label xml:lang="en">is_reagent_in</rdfs:label>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <IAO_0000115 xml:lang="en">Relationship between a substance and a protocol application in which it participates, where the substance has a ReagentRole</IAO_0000115>
+    <IAO_0000112 xml:lang="en">some Triton X-100 (Sigma-Aldrich) is_reagent_in instance of Chromium Release Assay described at  https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay</IAO_0000112>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000306">
+    <IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >heart has_function to-pump-blood</IAO_0000112>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.org/obo/owl/OBO_REL#function_of"/>
+    </owl:inverseOf>
+    <rdfs:label xml:lang="en">has_function</rdfs:label>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relation between an independent continuant and a function.</IAO_0000115>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Chris Mungall</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000117>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000311">
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0400002"/>
+    <IAO_0000112 xml:lang="en">some LKB 1272 Clinigamma counter is_device_for instance of Chromium Release Assay described at https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay</IAO_0000112>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000313"/>
+    </owl:inverseOf>
+    <rdfs:label xml:lang="en">is_device_for</rdfs:label>
+    <IAO_0000115 xml:lang="en">Relationship between a device and a protocol application in which it  participates</IAO_0000115>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+    <rdfs:comment xml:lang="en"></rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000299">
+    <IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</IAO_0000117>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_specified_output</IAO_0000111>
+    <IAO_0000115 xml:lang="en">A relation between a process and a participant present at the end of that process. The process is the realization of a concretization of a realizable information entity (objective specification or plan specification).  The continuant realizes specified_output_role for that process.  In general, not all participants present at the end of the process are specified_outputs.</IAO_0000115>
+    <rdfs:label xml:lang="en">has_specified_output</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000312"/>
+    </owl:inverseOf>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Melanie Courtot</IAO_0000117>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000018"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Larry Hunter</IAO_0000117>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000417">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_objective</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
+    <IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >still under discussion</IAO_0000116>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000005"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000365">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >results_from</rdfs:label>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#DependentContinuant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000297">
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#SpecificallyDependentContinuant"/>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/IAO_0000033"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000294"/>
+    </owl:inverseOf>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is a relationship between a specifically dependent continuant and a generically dependent continuant. A generically dependent continuant may inhere in more than one entity. It does so by virtue of the fact that there is, for each entity that it inheres, a specifically dependent *concretization* of the generically dependent continuant that is specifically dependent. For instance, consider a story, which is an information artifact that inheres in some number of books. Each book bears some quality that carries the story. The relation between this quality and the generically dependent continuant is that the former is the concretization of the latter.</IAO_0000115>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Barry Smith</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Alan Ruettenburg</IAO_0000117>
+    <rdfs:label xml:lang="en">is_concretized_as</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000313">
+    <rdfs:label xml:lang="en">utilizes_device</rdfs:label>
+    <IAO_0000112 xml:lang="en">see example_of_usage for is_device_for</IAO_0000112>
+    <IAO_0000115 xml:lang="en">Relationship between protocol application and an intrument in which it  participates</IAO_0000115>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0400002"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000311"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000312">
+    <rdfs:comment xml:lang="en"></rdfs:comment>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <IAO_0000115 xml:lang="en">Relationship between a participant and a protocol application. The output is, at a minimum, present at the end of the protocol application, but not all participants present at the end of the protocol applications are input,  only those that are viewed as outputs according to the plan, and hence realize OutputRole.</IAO_0000115>
+    <rdfs:label xml:lang="en">is_specified_output_of</rdfs:label>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000299"/>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_specified_output_of</IAO_0000111>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/IAO_0000018"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000304">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000263"/>
+          <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000245"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:label xml:lang="en">is_manufactured_by</rdfs:label>
+    <IAO_0000118 xml:lang="en">has_make</IAO_0000118>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#relationship"/>
+    <IAO_0000116 xml:lang="en">http://www.affymetrix.com/products/arrays/specific/hgu133.affx is_manufactered_by http://www.affymetrix.com/ (if we decide to use these URIs for the actual entities)</IAO_0000116>
+    <IAO_0000112 xml:lang="en">http://www.affymetrix.com/products/arrays/specific/hgu133.affx is_manufactered_by http://www.affymetrix.com/ (if we decide to use these URIs for the actual entities)</IAO_0000112>
+    <IAO_0000117 xml:lang="en">Liju Fan</IAO_0000117>
+    <IAO_0000118 xml:lang="en">has_manufacturer</IAO_0000118>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/IAO_0000018"/>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <IAO_0000111 xml:lang="en">is_manufactured_by</IAO_0000111>
+    <IAO_0000115 xml:lang="en">c is_manufactured_by o means that there was a process p in which c was built in which a person, or set of people or machines did the work(bore the "Manufacturer Role", and those people/and or machines were members or of directed by the organization to do this.</IAO_0000115>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000298">
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_quality</IAO_0000111>
+    <owl:inverseOf rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Chris Mungall</IAO_0000117>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000117>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A relation between an entity and a quality. For types: E has_quality Q iff: 
+for any eEt, exists qQt such that q inheres_in e at t. 
+For instances: e has_quality q at t iff q inheres_in e at t and q instance-of Quality" [GOC:cjm]</IAO_0000115>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant"/>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <rdfs:label xml:lang="en">has_quality</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000315">
+    <rdfs:label xml:lang="en">inputs_specified_data</rdfs:label>
+    <IAO_0000115 xml:lang="en">A relation between a process and a participant in that process, that consumes a data set . The process is the realization of a concretization of a realizable information entity (objective specification or plan specification). In general, not all data present at the beginning of the process are specified_data.</IAO_0000115>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >inputs specified data</IAO_0000111>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >consumes data</IAO_0000118>
+    <IAO_0000116 xml:lang="en">See note for outputs_data</IAO_0000116>
+    <IAO_0000117 xml:lang="en">PERSON:Alan Ruttenberg</IAO_0000117>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000030"/>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Frank Gibson</IAO_0000117>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000294">
+    <rdfs:label xml:lang="en">is_concretization_of</rdfs:label>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000033"/>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#SpecificallyDependentContinuant"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Barry Smith</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Alan Ruettenburg</IAO_0000117>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is a relationship between a generically dependent continuant and a specifically dependent continuant. A generically dependent continuant may inhere in more than one entity. It does so by virtue of the fact that there is, for each entity that it inheres, a specifically dependent *concretization* of the generically dependent continuant that is specifically dependent. For instance, consider a story, which is an information artifact that inheres in some number of books. Each book bears some quality that carries the story. The relation between this quality and the generically dependent continuant is that the former is the concretization of the latter.</IAO_0000115>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000297"/>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_concretization_of</IAO_0000111>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000316">
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.org/obo/owl/OBO_REL#role_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
+    <rdfs:label xml:lang="en">has_role</rdfs:label>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Chris Mungal</IAO_0000117>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant"/>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_role</IAO_0000111>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000117>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A relation between a continuant C and a role R. The reciprocal relation of role_of.</IAO_0000115>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000293">
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000018"/>
+    <IAO_0000112 xml:lang="en">see is_input_of example_of_usage</IAO_0000112>
+    <IAO_0000115 xml:lang="en">A relation between a process and a participant present at the beginning of that process. The process is the realization of a concretization of a realizable information entity (objective specification or plan specification).  The continuant realizes specified_Input_Role for that process.  In general, not all participants present at the beginning of the process are specified_inputs.</IAO_0000115>
+    <IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FG: Due to the fact that only material entities can play roles under BFO. The range of this relation has been tighted to be material entity. If BFO relaxes its principles and allows information entities to play roles then the range should be expanded back to continuant.</IAO_0000116>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_specified_input</IAO_0000111>
+    <rdfs:label xml:lang="en">has_specified_input</rdfs:label>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000295"/>
+    </owl:inverseOf>
+    <IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</IAO_0000117>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Larry Hunter</IAO_0000117>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Melanie Coutot</IAO_0000117>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000314">
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+    <IAO_0000112 xml:lang="en">position on a gel is_proxy_for mass and charge of molecule in an western blot. Florescent intensity is_proxy_for amount of protein labeled with GFP. Examples:
+A260/A280 (of a DNA sample) is_proxy_for DNA-purity. NMR Sample scan is a proxy for sample quality.
+
+Within the assay mentioned here: https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay
+level of radioactivity is_proxy_for level of toxicity</IAO_0000112>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <IAO_0000115 xml:lang="en">A relation between continuant instances c1 and c2 where within an experiment/ protocol application,  measurement of c1 is used to determine what a measurement of c2 would be.</IAO_0000115>
+    <rdfs:comment xml:lang="en"></rdfs:comment>
+    <rdfs:label xml:lang="en">is_proxy_for</rdfs:label>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000301">
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/IAO_0000030"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000459"/>
+    </owl:inverseOf>
+    <IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</IAO_0000117>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+    <rdfs:label xml:lang="en">outputs_specified_data</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Frank Gibson</IAO_0000117>
+    <IAO_0000115 xml:lang="en">A relation between a participant in a process, that produces a data set . The process is the realization of a concretization of a realizable information entity (objective specification or plan specification). In general, not all data present at the end of the process are specified_data.</IAO_0000115>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >outputs_specified_data</IAO_0000111>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000295">
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/IAO_0000018"/>
+    <rdfs:range rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <rdfs:comment xml:lang="en"></rdfs:comment>
+    <rdfs:label xml:lang="en">is_specified_input_of</rdfs:label>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+    <IAO_0000115 xml:lang="en">Relationship between a participant and a protocol application. The input is, at a minimum, present at the beginning of the protocol application, but not all participants present at the beginning of the protocol applications are input,  only those that are viewed as inputs according to the plan, and hence realize  InputRole.</IAO_0000115>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <IAO_0000112 xml:lang="en">some Autologous EBV(Epstein-Barr virus)-transformed B-LCL (B lymphocyte cell line) is_input_for instance of Chromum Release Assay described at https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay</IAO_0000112>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000300">
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has_realization</IAO_0000118>
+    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:label xml:lang="en">is_realized_by</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000117>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >executed_during</IAO_0000118>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relation between a realizable and a process. Reciprocal relation of realizes" [GOC:cjm]</IAO_0000115>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_realized_as</IAO_0000118>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Chris Mungall</IAO_0000117>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#RealizableEntity"/>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000459">
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/IAO_0000030"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#participates_in"/>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_specified_output_data</IAO_0000111>
+    <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A relation between a data set and the process in which it participates and was produced.  Inverse of outputs_specified_data relation.</IAO_0000115>
+    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Editor</IAO_0000119>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is_specified_output_data</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000309">
+    <rdfs:label xml:lang="en">utilizes_reagent</rdfs:label>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+    <IAO_0000112 xml:lang="en">see example_of_usage for is_reagent_in</IAO_0000112>
+    <IAO_0000115 xml:lang="en">Relationship between a protocol application and a substance that has role reagent that participates in the protocol application</IAO_0000115>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0000011"/>
+    <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
+    <owl:inverseOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000307"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000292">
+    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
+    <IAO_0000115 xml:lang="en">has_feature_value datatype proprty is used to describe the feature values which the feature class can contain, for example has_base can have feature values of nonNegativeInteger values.</IAO_0000115>
+    <rdfs:domain rdf:resource="http://purl.obofoundry.org/obo/OBI_0200140"/>
+    <rdfs:label xml:lang="en">has_feature_value</rdfs:label>
+  </owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 513)  http://protege.stanford.edu -->
