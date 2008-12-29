@@ -24,7 +24,7 @@
 (defun curation-status-report (kb)
   (sparql
    '(:select (?s ?status) (:distinct t)
-     (?p !rdfs:label |\"curation status\"@en|)
+     (?p !rdfs:label |\"has curation status\"@en|)
       (:optional
        (?si ?p ?statusi)
        (?statusi !rdfs:label ?status)
@@ -40,7 +40,7 @@
 (defun missing-curation (kb)
   (sparql
    '(:select (?si ?s ?type) (:distinct t)
-     (?p !rdfs:label |\"curation status\"@en|)
+     (?p !rdfs:label |\"has curation status\"@en|)
      (?p :a !owl:AnnotationProperty)
      (:union
       ((?si !rdf:type !owl:AnnotationProperty))
@@ -62,7 +62,7 @@
 (defun extra-curation-status-instances (kb)
   (sparql
    '(:select (?ci ?label) (:distinct t)
-     (?c !rdfs:label |\"curation status\"@en|)
+     (?c !rdfs:label |\"has curation status\"@en|)
      (?c :a !owl:Class)
      (?ci :a ?c)
      (:optional (?ci !rdfs:label ?label))
@@ -71,6 +71,7 @@
 	       (not (equal ?ci !metadata-complete))
 	       (not (equal ?ci !metadata-incomplete))
 	       (not (equal ?ci !pending-final-vetting))
+               (not (equal ?ci !example-to-be-eventually-removed))
 	       (not (equal ?ci !uncurated))
 	       (not (equal ?ci !placeholder)) 
 	       )))
