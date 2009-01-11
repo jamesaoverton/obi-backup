@@ -19,8 +19,33 @@
 	    (concatenate 'string "OBO_REL:" (#"replaceFirst" local ".*#(.*)" "$1"))
 	    (if (#"matches" local "^MGEDOntology\\.owl.*")
 		(concatenate 'string "MGED:" (#"replaceFirst" local ".*#(.*)" "$1"))
-		(#"replaceFirst" local "#" ":"))))))
+		(if (#"matches" local "[A-Z]+.owl#msi_.*")
+		    (#"replaceFirst" local "[A-Z]+.owl#msi_(.*)" "OBI:X$1")
+		    (#"replaceFirst" local "#" ":")))))))
 	
+(defvar *all-prefixes* nil)
+
+(defun maybe-dbxref (class kb)
+  (let ((definition-source (sparql `(:select (?source) (:distinct t) (,class !definition-source ?source))  :use-reasoner :none :kb kb :flatten t)))
+    (if definition-source
+	(with-output-to-string (s)
+	  (format s " [~{~a~^, ~}]"
+		  (loop for defs in definition-source
+		     for msi-nmr = (or (search "MSI.owl" defs) (search "NMR.owl" defs) (search "CHROM.owl" defs))
+		     collect
+		     (if msi-nmr
+			 (format nil "MSI:~a ~s" (caar (all-matches defs ".owl#msi_(.*)" 1)) defs)
+			 (let ((match (car (all-matches defs "(?i)^(TERM:\\s*){0,1}(\\S+):\\s*(\\d+)(\\s*#\\s*(.*)){0,1}$" 2 3 5))))
+			   (if (and match (not (equalp (car match) "SEP")))
+			       (let ((prefix (car match)) (suffix (second match)) (comment (third match)))
+				 (setq prefix (string-upcase prefix))
+				 (pushnew prefix *all-prefixes* :test 'equalp)
+				 (when (equal prefix "PMID") (setq prefix "PUBMED"))
+				 (format nil "~a:~a ~a" prefix suffix (if (member comment '("" nil) :test 'equal) "" (format nil "\"~a\"" comment))))
+			       (format nil "OBI:sourced ~s" defs)))))))
+	" []")))
+		     
+
 (defun generate-obo ( &key (kb (load-kb-jena "obi:branches;obil.owl"))
 		     (classes-matching ".*([A-Za-z]+)_\\d+")
 		     (properties-matching ".*OBI_\\d+")
@@ -33,7 +58,7 @@
 	(format f "format-version: 1.2
 date: ~a
 saved-by: obi
-auto-generated-by: https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/generate-obo.lisp
+auto-generated-by: http://purl.obofoundry.org/obo/obi/repository/trunk/src/tools/build/generate-obo.lisp
 default-namespace: OBI
 idspace: OBO_REL http://www.obofoundry.org/ro/ro.owl# \"OBO Relation ontology official home on OBO Foundry\"
 idspace: snap http://www.ifomis.org/bfo/1.1/snap# \"BFO SNAP ontology (continuants)\"
@@ -52,12 +77,14 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	   (format f "[Term]~%id: ~a~%name: ~a~%"
 		   ;(#"replaceFirst"  (#"replaceFirst" (uri-full class) ".*(OBI|CHEBI|CL|NCBITaxon)(_\\d+)" "$1:$1$2") "OBI:" "")
 		   (localname-namespaced class)
-
-		   (or (rdfs-label class) (localname class)))
+		   (or (rdfs-label class) (localname class))
+		   )
 	   (let ((comment (rdfs-comment class)))
 	     (unless (or (null comment) (equal comment ""))
-	       (format f "def:\"~a\" \[\]~%"  (#"replaceAll" (#"replaceAll" comment "\\n" " " )
-			  "\\\\" "\\\\\\\\" ))))
+	       (format f "def:\"~a\"~a~%"  (#"replaceAll" (#"replaceAll" comment "\\n" " " )
+			  "\\\\" "\\\\\\\\" )
+		       (maybe-dbxref class kb)
+		       )))
 	   (if obsolete
 	       (format f "is_obsolete: true~%")
 	       (loop for super in (parents class kb)
@@ -92,4 +119,30 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		     unless (eq super !ro:relationship)
 		     do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super)))))
 	      (terpri f)))))))
-		      
+#|		      
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400082"><!-- photodetector -->
+    <IAO_0000117 xml:lang="en">John Quinn</IAO_0000117> <-- definition editor
+    <IAO_0000112 xml:lang="en">A photomultiplier tube, a photo diode</IAO_0000112> <- example of usage
+    <IAO_0000115 xml:lang="en">A photodetector is a device used to detect and measure the intensity of radiant energy through photoelectric action. In a cytometer, photodetectors measure either the number of photons of laser light scattered on inpact with a cell (for example), or the flourescence emmited by excitation of a lourescent dye.</IAO_0000115>
+    <rdfs:label xml:lang="en">photodetector</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400003"/><!-- instrument -->
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400002"/><!-- device -->
+    </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000123"/> <-- curation status
+    <IAO_0000111 xml:lang="en">photodetector</IAO_0000111> <- synonym
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000306"/><!-- has_function -->
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000382"/><!-- measure function -->
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <IAO_0000119 xml:lang="en">http://einstein.stanford.edu/content/glossary/glossary.html</IAO_0000119> <- definition source
+  </owl:Class>
+|#
