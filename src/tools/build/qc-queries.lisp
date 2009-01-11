@@ -273,3 +273,19 @@
       (format t "Hmm, we seem to have lost some ids (deprecation lossage?): ~%~{~a~%~}"
 	      (set-difference previous-purls kb-purls)))    
     ))
+
+;; start checking for malformed metadata.
+(defun malformed-metadata (kb)
+  ;; check for multiline values for definition source, definition editor, alternative term, preferred term
+  (loop for (?what ?prop ?value) in
+       (sparql `(:select (?thing ?p ?value) (:distinct t)
+			 (?thing ?p ?value)
+			 (:filter (and
+				   (or (equal ?p !definition-source)
+				       (equal ?p !definition-editor)
+				       (equal ?p !alternative-term)
+				       (equal ?p !preferred-term))
+				   (regex (str ?value) "\\n"))))
+	       :use-reasoner :none :kb kb )
+       do
+       (format t "Multiline value for ~a(~a) on ~a(~a):~%-----~%~a~%-----~%" (rdfs-label ?prop kb) ?prop (rdfs-label ?what kb) ?what ?value)))
