@@ -121,33 +121,34 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	   (loop for prop in (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
 	      when t;(#"matches" (uri-full prop) properties-matching)
 	      do
-	      (format f "[Typedef]~%id: ~a~%name: ~a~%"
-		      (localname-namespaced prop)
-		      (or (rdfs-label prop) (localname prop)))
-	      (let ((comment (rdfs-comment prop)))
-		(unless (or (null comment) (equal comment ""))
-		  (if (#"matches" comment "(?s).*beta.*") (print comment))
-		  (format f "def:\"~a\" \[\]~%" (#"replaceAll" (#"replaceAll" comment "\\n" " " )
-			  "\\\\" "\\\\\\\\" ))))
-	      ;; Magic that tells it that this is a relation rather than a class
-		(format f "is_a: OBO_REL:relationship~%")
-	      ;; compute and write inverse relation
-		(let ((inverses
-		       (mapcar 'aterm-to-sexp
-			       (set-to-list
-				(#"getInverses" (kb-kb kb) (get-entity prop kb)) ))))
-		  (loop for inverse in inverses do
-		       (format f "inverse_of: ~a ! ~a~%" (localname-namespaced inverse) (rdfs-label inverse))))
-	      ;; compute and write superproperties
-		(let ((supers
-		       (mapcar 'aterm-to-sexp
-			       (apply 'append (mapcar 'set-to-list 
-						      (set-to-list
-						       (#"getSuperProperties" (kb-kb kb) (get-entity prop kb))))))))
-		  (loop for super in supers 
-		     unless (eq super !ro:relationship)
-		     do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super)))))
-	      (terpri f)
+		(unless (member (localname-namespaced prop) '("OBO_REL:relationship" "SLOT-CONSTRAINTS" ) :test 'equal)
+		  (format f "[Typedef]~%id: ~a~%name: ~a~%"
+			  (localname-namespaced prop)
+			  (or (rdfs-label prop) (localname prop)))
+		  (let ((comment (rdfs-comment prop)))
+		    (unless (or (null comment) (equal comment ""))
+		      (if (#"matches" comment "(?s).*beta.*") (print comment))
+		      (format f "def:\"~a\" \[\]~%" (#"replaceAll" (#"replaceAll" comment "\\n" " " )
+								   "\\\\" "\\\\\\\\" ))))
+		  ;; Magic that tells it that this is a relation rather than a class
+		  (format f "is_a: OBO_REL:relationship~%")
+		  ;; compute and write inverse relation
+		  (let ((inverses
+			 (mapcar 'aterm-to-sexp
+				 (set-to-list
+				  (#"getInverses" (kb-kb kb) (get-entity prop kb)) ))))
+		    (loop for inverse in inverses do
+			 (format f "inverse_of: ~a ! ~a~%" (localname-namespaced inverse) (rdfs-label inverse))))
+		  ;; compute and write superproperties
+		  (let ((supers
+			 (mapcar 'aterm-to-sexp
+				 (apply 'append (mapcar 'set-to-list 
+							(set-to-list
+							 (#"getSuperProperties" (kb-kb kb) (get-entity prop kb))))))))
+		    (loop for super in supers 
+		       unless (eq super !ro:relationship)
+		       do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super)))))
+		  (terpri f))
 		))))))
 #|		      
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400082"><!-- photodetector -->
