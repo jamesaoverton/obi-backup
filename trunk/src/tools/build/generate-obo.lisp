@@ -130,8 +130,6 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		      (if (#"matches" comment "(?s).*beta.*") (print comment))
 		      (format f "def:\"~a\" \[\]~%" (#"replaceAll" (#"replaceAll" comment "\\n" " " )
 								   "\\\\" "\\\\\\\\" ))))
-		  ;; Magic that tells it that this is a relation rather than a class
-		  (format f "is_a: OBO_REL:relationship~%")
 		  ;; compute and write inverse relation
 		  (let ((inverses
 			 (mapcar 'aterm-to-sexp
