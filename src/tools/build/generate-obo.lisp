@@ -132,7 +132,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		    (unless (or (null comment) (equal comment ""))
 		      (if (#"matches" comment "(?s).*beta.*") (print comment))
 		      (format f "def:\"~a\" \[\]~%" (#"replaceAll" (#"replaceAll" comment "\\n" " " )
-								   "\\\\" "\\\\\\\\" )))))
+								   "\\\\" "\\\\\\\\" ))))
 		  ;; compute and write inverse relation
 		  (let ((inverses
 			 (mapcar 'aterm-to-sexp
