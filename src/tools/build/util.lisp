@@ -14,6 +14,8 @@
   (def-uri-alias "obsolete-class" !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
   (def-uri-alias "definition" !obi:IAO_0000115)
   (def-uri-alias "definition-source" !obi:IAO_0000119)
+  (def-uri-alias "preferred-term" !obi:IAO_0000111)
+  (def-uri-alias "alternative-term" !obi:IAO_0000118)
   (def-uri-alias "example-of-usage" !obi:IAO_0000112)
   )
 
