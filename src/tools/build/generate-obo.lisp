@@ -94,7 +94,7 @@ idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
 remark: This file is a subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obofoundry.org/obo/obi.owl
 
 " (obo-format-time))
-	(loop for class in (descendants !owl:Thing kb)
+	(loop for class in (set-difference (descendants !owl:Thing kb) (list !protegeowl:DIRECTED-BINARY-RELATION !protegeowl:PAL-CONSTRAINT))
 	   for obsolete = (member !obsolete-class (ancestors class kb))
 	   when t;(#"matches" (uri-full class) classes-matching)
 	   do 
@@ -119,9 +119,11 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	(loop for proptype in (list !owl:AnnotationProperty !owl:DatatypeProperty !owl:ObjectProperty )
 	   do
 	   (loop for prop in (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
+	      for name = (localname-namespaced prop)
 	      when t;(#"matches" (uri-full prop) properties-matching)
 	      do
-		(unless (member (localname-namespaced prop) '("OBO_REL:relationship" "protege:SLOT-CONSTRAINTS" ) :test 'equal)
+		(unless (or (#"matches" name ".*[A-Z]{4,}.*") ; protege noise is all upper case
+			    (member name '("OBO_REL:relationship") :test 'equal))
 		  (format f "[Typedef]~%id: ~a~%name: ~a~%"
 			  (localname-namespaced prop)
 			  (or (rdfs-label prop) (localname prop)))
@@ -129,7 +131,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		    (unless (or (null comment) (equal comment ""))
 		      (if (#"matches" comment "(?s).*beta.*") (print comment))
 		      (format f "def:\"~a\" \[\]~%" (#"replaceAll" (#"replaceAll" comment "\\n" " " )
-								   "\\\\" "\\\\\\\\" ))))
+								   "\\\\" "\\\\\\\\" )))))
 		  ;; compute and write inverse relation
 		  (let ((inverses
 			 (mapcar 'aterm-to-sexp
