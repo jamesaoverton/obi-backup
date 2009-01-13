@@ -123,6 +123,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	      when t;(#"matches" (uri-full prop) properties-matching)
 	      do
 		(unless (or (#"matches" name ".*[A-Z]{4,}.*") ; protege noise is all upper case
+			    (#"matches" name "^protege.*")
 			    (member name '("OBO_REL:relationship") :test 'equal))
 		  (format f "[Typedef]~%id: ~a~%name: ~a~%"
 			  (localname-namespaced prop)
