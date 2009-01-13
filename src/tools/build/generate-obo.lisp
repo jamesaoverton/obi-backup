@@ -121,7 +121,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	   (loop for prop in (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
 	      when t;(#"matches" (uri-full prop) properties-matching)
 	      do
-		(unless (member (localname-namespaced prop) '("OBO_REL:relationship" "SLOT-CONSTRAINTS" ) :test 'equal)
+		(unless (member (localname-namespaced prop) '("OBO_REL:relationship" "protege:SLOT-CONSTRAINTS" ) :test 'equal)
 		  (format f "[Typedef]~%id: ~a~%name: ~a~%"
 			  (localname-namespaced prop)
 			  (or (rdfs-label prop) (localname prop)))
