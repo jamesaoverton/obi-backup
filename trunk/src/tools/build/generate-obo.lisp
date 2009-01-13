@@ -106,7 +106,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	     ;; write definition and dbxref for them
 	     (let ((comment (rdfs-comment class)))
 	       (unless (or (null comment) (equal comment ""))
-		 (format f "def:\"~a\"~a~%"  (#"replaceAll" (#"replaceAll" comment "\\n" " " )
+		 (format f "def:~s~a~%"  (#"replaceAll" (#"replaceAll" comment "\\n" " " )
 							    "\\\\" "\\\\\\\\" )
 			 (definition-source-dbxref class kb))))
 	     ;; put obsolete marked for obsolete classes
@@ -150,7 +150,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		       unless (eq super !ro:relationship)
 		       do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super)))))
 		  (terpri f))
-		))))))
+		)))))
 #|		      
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400082"><!-- photodetector -->
     <IAO_0000117 xml:lang="en">John Quinn</IAO_0000117> <-- definition editor
