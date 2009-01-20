@@ -92,7 +92,7 @@
 		 ;; (:filter (regex ?label "^_")) ;; bug!! Doesn't match when it should. Fencepost?
 		 )
 	       :kb kb
-	       :use-reasoner :jena)
+	       :use-reasoner :none)
        when (and name (char= (char name 0) #\_))
        collect (cons class name)
        ))
