@@ -51,6 +51,7 @@
 	do (progn
 	     ;; all the obi-only classes are mutually disjoint
 	     (let ((obi-disjoints (set-difference (set-difference obi-children placeholders) defined-classes)))
+;	       (if (member !obi:OBI_0000233 obi-disjoints :test 'equalp) (break))
 	       (when (>= (length obi-disjoints) 2)
 		 (push `(disjoint-classes ,@obi-disjoints) all-disjoints))
 	       ;; all the obi versus other siblings are pairwise
@@ -58,8 +59,9 @@
 	       ;; already removed)
 	       (dolist (other other-children)
 		 (dolist (obi obi-children)
-		   (unless (or (not (member obi defined-classes))
-			       (not (member other defined-classes)))
+		   (unless (or (member obi defined-classes)
+			       (member obi placeholders)
+			       (member other defined-classes))
 		     (push `(disjoint-classes ,obi ,other) all-disjoints))))))
 	;; don't into placeholder classes
 	;; descend into defined classes because otherwise we never reach anything.
@@ -94,5 +96,5 @@
 	       :kb kb
 	       :use-reasoner :none)
        when (and name (char= (char name 0) #\_))
-       collect (cons class name)
+       collect class
        ))
