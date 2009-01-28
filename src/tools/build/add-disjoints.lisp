@@ -45,7 +45,7 @@
 	for other-children = (set-difference (set-difference children obi-children) placeholders)
 	;; don't bother doing anything unless there is something to do
 	when (and obi-children
-		  (or (eq root !material-entity) ; special case - we add disjoints below material-entity
+		  (or (eq root !IAO_0000018) ; special case - we add disjoints below material-entity
 		      (and (not (member root defined-classes)) ; but not defined
 			   (not (member root placeholders))))) ; or placeholder
 	do (progn
