@@ -37,6 +37,11 @@
     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
   xml:base="http://purl.obofoundry.org/obo/obi/DataTransformation.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/iao/2009-01-23/ontology-metadata.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl"/>
+    <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.1"/>
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200145">
@@ -50,10 +55,26 @@
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <rdfs:label xml:lang="en">intra subgraph connectivity calculation</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200083">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200082"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >should become DT objective</rdfs:comment>
+    <rdfs:label xml:lang="en">survival analysis</rdfs:label>
+    <IAO_0000111 xml:lang="en">survival analysis</IAO_0000111>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200026">
     <rdfs:label xml:lang="en">total intensity transformation single</rdfs:label>
     <IAO_0000111 xml:lang="en">total intensity transformation single</IAO_0000111>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
@@ -65,24 +86,8 @@
     <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <IAO_0000112 xml:lang="en">This can be used as a simple normalization method for expression microarray assays. For example, each intensity from a one-channel microarray assay is multiplied by a constant so that the output mean intensity over the microarray equals a desired target T (the multiplicative constant in this case is the T/(mean intensity)).</IAO_0000112>
     <IAO_0000115 xml:lang="en">A total intensity transformation single is a data transformation that takes as input an n-dimensional (real) vector and multiplies each component of this vector by a coefficient, where the coefficient is obtained by taking the sum of the input components or of a subset of these, multiplied by a constant of choice.</IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000116 xml:lang="en">Note that if the word "sum" is replaced by the word "mean" in the definition, the resulting definition is equivalent.</IAO_0000116>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200083">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200082"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >should become DT objective</rdfs:comment>
-    <rdfs:label xml:lang="en">survival analysis</rdfs:label>
-    <IAO_0000111 xml:lang="en">survival analysis</IAO_0000111>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200131">
     <rdfs:label xml:lang="en">quantitative node degree calculation</rdfs:label>
@@ -127,14 +132,14 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200110">
     <IAO_0000112 xml:lang="en">This type of transformation is typically used in flow cytometry.</IAO_0000112>
+    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
+    <IAO_0000111 xml:lang="en">s transformation</IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
-    <IAO_0000111 xml:lang="en">s transformation</IAO_0000111>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000119 xml:lang="en">WEB: http://flowcyt.sourceforge.net/gating/latest.pdf</IAO_0000119>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
@@ -266,8 +271,14 @@
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200124">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
@@ -280,12 +291,6 @@
     <rdfs:label xml:lang="en">kurtosis calculation</rdfs:label>
     <IAO_0000111 xml:lang="en">kurtosis calculation</IAO_0000111>
     <IAO_0000115 xml:lang="en">A kurtosis calculation is a descriptive statistics calculation defined as a parameter that measures how large or small the tails of a distribution are relative to the mean.  For details, see http://davidmlane.com/hyperstat/A53638.html</IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200054">
     <rdfs:label xml:lang="en">global modularity calculation</rdfs:label>
@@ -309,15 +314,15 @@
     <rdfs:label xml:lang="en">median centering</rdfs:label>
     <IAO_0000112 xml:lang="en">This can be used as a normalization method in expression microarray assays. For example, given a two-channel microarray assay, the log ratios of the two channels (M values) can be median-centered.</IAO_0000112>
     <IAO_0000115 xml:lang="en">A median centering is a data transformation that takes as input an n-dimensional (real) vector, performs a median calculation on its components, and subtracts the resulting median from each component of the input.</IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000118 xml:lang="en">median centring</IAO_0000118>
     <IAO_0000111 xml:lang="en">median centering</IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200150">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -398,11 +403,18 @@
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200025">
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
+    </rdfs:subClassOf>
+    <IAO_0000115 xml:lang="en">A loess scale group transformation is a data transformation consisting in the application of a scale adjustment following a loess group transformation, to render the group variances for the second variable (y) similar.  Has objective scaling.</IAO_0000115>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200183"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000119 xml:lang="en">OTHER: Editor's generalization based on MGED Ontology term</IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
@@ -411,27 +423,20 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
-    </rdfs:subClassOf>
-    <IAO_0000115 xml:lang="en">A loess scale group transformation is a data transformation consisting in the application of a scale adjustment following a loess group transformation, to render the group variances for the second variable (y) similar.  Has objective scaling.</IAO_0000115>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <IAO_0000119 xml:lang="en">OTHER: Editor's generalization based on MGED Ontology term</IAO_0000119>
     <rdfs:label xml:lang="en">loess scale group transformation</rdfs:label>
     <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <IAO_0000111 xml:lang="en">loess scale group transformation</IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200072">
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
+    <IAO_0000111 xml:lang="en">curve fitting data transformation</IAO_0000111>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <IAO_0000111 xml:lang="en">curve fitting data transformation</IAO_0000111>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000119 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Curve_fitting</IAO_0000119>
     <rdfs:label xml:lang="en">curve fitting data transformation</rdfs:label>
     <rdfs:subClassOf>
@@ -479,13 +484,13 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">logicle transformation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">logicle transformation</rdfs:label>
     <IAO_0000119 xml:lang="en">WEB: http://flowcyt.sourceforge.net/gating/latest.pdf</IAO_0000119>
     <IAO_0000111 xml:lang="en">logicle transformation</IAO_0000111>
     <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
@@ -508,6 +513,12 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200119">
     <IAO_0000115 xml:lang="en">A median calculation is a  descriptive statistics calculation in which the midpoint of the data set (the 0.5 quantile) is calculated.  First, the observations are sorted in increasing order.  For an odd number of observations, the median is the middle value of the sorted data.  For an even number of observations, the median is the average of the two middle values.</IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000111 xml:lang="en">median calculation</IAO_0000111>
     <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
     <rdfs:subClassOf>
@@ -523,14 +534,8 @@
     <rdfs:label xml:lang="en">median calculation</rdfs:label>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add center_calculation role but it doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
-    <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200006">
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
@@ -539,22 +544,24 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
     <IAO_0000112 xml:lang="en">This type of transformation is typically used in flow cytometry.</IAO_0000112>
     <IAO_0000115 xml:lang="en">A biexponential transformation is a data transformation that, for each (one dimensional) real number input x, outputs an approximation (found, e.g. with the Newton's method) to a solution y of the equation B(y)-x=0, where B denotes a b transformation.</IAO_0000115>
+    <rdfs:label xml:lang="en">biexponential transformation</rdfs:label>
+    <IAO_0000111 xml:lang="en">biexponential transformation</IAO_0000111>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
@@ -563,8 +570,6 @@
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">biexponential transformation</rdfs:label>
-    <IAO_0000111 xml:lang="en">biexponential transformation</IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200093">
     <rdfs:label xml:lang="en">polynomial transformation</rdfs:label>
@@ -740,8 +745,8 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:label xml:lang="en">mhc binding prediction</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200081"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200081"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -769,13 +774,13 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <IAO_0000111 xml:lang="en">loess transformation</IAO_0000111>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000115 xml:lang="en">A loess transformation is a data transformation that takes as input a collection of real number pairs (x, y) and, after performing (one or more) loess fittings, utilizes the resulting curves to transform each (x, y) in the input into (x, y-f(x)) where f(x) is one of the fitted curves.</IAO_0000115>
-    <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
@@ -822,8 +827,8 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200185">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200183"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:label xml:lang="en">scaling data transformation</rdfs:label>
@@ -846,8 +851,8 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <IAO_0000111 xml:lang="en">loess fitting</IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -866,23 +871,23 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200099">
     <rdfs:label xml:lang="en">discriminant function analysis</rdfs:label>
     <IAO_0000111 xml:lang="en">discriminant function analysis</IAO_0000111>
-    <IAO_0000119 xml:lang="en">WEB: http://www.statsoft.com/textbook/stdiscan.html</IAO_0000119>
-    <IAO_0000115 xml:lang="en">Discriminant function analysis is a form of discriminant analysis used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</IAO_0000115>
-    <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200179"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200106"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <IAO_0000119 xml:lang="en">WEB: http://www.statsoft.com/textbook/stdiscan.html</IAO_0000119>
+    <IAO_0000115 xml:lang="en">Discriminant function analysis is a form of discriminant analysis used to determine which variables discriminate between two or more naturally occurring groups. Analysis is used to determine which variable(s) are the best predictors of a particular outcome.</IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200179"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200106"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
   </owl:Class>
@@ -898,16 +903,16 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:label xml:lang="en">discriminant analysis</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200003">
-    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
-    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
-    <IAO_0000112 xml:lang="en">Typically used in an enzyme-linked immunosorbent assay (ELISA) to model the relationship between optical density (OD) and dilution. In this case OD_0 (also referred to OD_min) and OD_infty (also referred to OD_max) correspond to the theoretical OD of the assay at zero and infinite concentrations, respectively.</IAO_0000112>
-    <IAO_0000115 xml:lang="en">A logit-log curve fitting is a curve fitting where first the limits y_0 an y_infty of y when x-&gt;0 and x-&gt;infinity, respectively, are estimated from the input data points (x_1, y_1), (x_2,y_2), ..., (x_n, y_n). Then a curve with equation log((y-y_0)/(y_infty-y))=a+b log(x) is obtained, where a and b are determined to optimize its fit to the input data points.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
+    <IAO_0000112 xml:lang="en">Typically used in an enzyme-linked immunosorbent assay (ELISA) to model the relationship between optical density (OD) and dilution. In this case OD_0 (also referred to OD_min) and OD_infty (also referred to OD_max) correspond to the theoretical OD of the assay at zero and infinite concentrations, respectively.</IAO_0000112>
+    <IAO_0000115 xml:lang="en">A logit-log curve fitting is a curve fitting where first the limits y_0 an y_infty of y when x-&gt;0 and x-&gt;infinity, respectively, are estimated from the input data points (x_1, y_1), (x_2,y_2), ..., (x_n, y_n). Then a curve with equation log((y-y_0)/(y_infty-y))=a+b log(x) is obtained, where a and b are determined to optimize its fit to the input data points.</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000111 xml:lang="en">logit-log curve fitting</IAO_0000111>
     <rdfs:subClassOf>
@@ -938,8 +943,8 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:label xml:lang="en">spread calculation data transformation</rdfs:label>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf>
@@ -974,15 +979,15 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000425"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">mean calculation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
@@ -996,7 +1001,7 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000425"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000111 xml:lang="en">mean calculation</IAO_0000111>
@@ -1019,15 +1024,15 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000119 xml:lang="en">PERSON: Melanie Courtot</IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">A dimensionality reduction is data partitioning which transforms each input m-dimensional vector (x_1, x_2, …, x_m) into an output n-dimensional vector (y_1, y_2, …, y_n), where n is smaller than m.</IAO_0000115>
     <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >data projection</IAO_0000118>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
@@ -1118,24 +1123,24 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">mode calculation</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
     <IAO_0000119 xml:lang="en">PERSON: James Malone</IAO_0000119>
-    <IAO_0000115 xml:lang="en">A mode calulcation is a  descriptive statistics calculation in which the mode is calculated which is the most common value in a data set.  It is most often used as a measure of center for discrete data.</IAO_0000115>
-    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000115 xml:lang="en">A mode calulcation is a  descriptive statistics calculation in which the mode is calculated which is the most common value in a data set.  It is most often used as a measure of center for discrete data.</IAO_0000115>
+    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add center_calculation role but it doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
     <IAO_0000111 xml:lang="en">mode calculation</IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200107">
@@ -1160,28 +1165,28 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
     <IAO_0000115 xml:lang="en">A log-log curve fitting is a curve fitting where first a logarithmic transformation is applied both to the x and the y coordinates of the input data points (x_1, y_1), (x_2, y_2), ..., (x_n, y_n), and then coefficients a and b are determined to optimize the fit of log(y)=a+b*log(x) to these input data points.</IAO_0000115>
     <IAO_0000111 xml:lang="en">log-log curve fitting</IAO_0000111>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
-    <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
     <IAO_0000119 xml:lang="en">ARTICLE: Plikaytis B.D. et al. (1991), J. Clin. Microbiol. 29(7): 1439-1446</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200016">
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <IAO_0000119 xml:lang="en">WEB: http://mathworld.wolfram.com/Sine.html</IAO_0000119>
-    <IAO_0000112 xml:lang="en">sine(0)=0, sine(pi/2)=1, sine(pi)=0, sine(3*pi/2)=-1, sine(pi/6)=1/2, sine(x+2*k*pi)=sine(x) where k is any integer, etc.</IAO_0000112>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000119 xml:lang="en">WEB: http://mathworld.wolfram.com/Sine.html</IAO_0000119>
+    <IAO_0000112 xml:lang="en">sine(0)=0, sine(pi/2)=1, sine(pi)=0, sine(3*pi/2)=-1, sine(pi/6)=1/2, sine(x+2*k*pi)=sine(x) where k is any integer, etc.</IAO_0000112>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <rdfs:label xml:lang="en">sine transformation</rdfs:label>
     <IAO_0000115 xml:lang="en">A sine transformation is a data transformation which consists in applying the sine function to a (one dimensional) real number input. The sine function is one of the basic trigonometric functions and a definition is provided, e.g., at http://mathworld.wolfram.com/Sine.html.</IAO_0000115>
     <rdfs:subClassOf>
@@ -1219,8 +1224,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000115 xml:lang="en">A unit-variance scaling is a data transformation that divides all measurements of a variable by the standard deviation of that variable.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">PMID:16762068</IAO_0000119>
@@ -1232,6 +1237,40 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200067"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/information_transformation">
+    <IAO_0000115 xml:lang="en">An information transformation is a process which produces output information from input information.</IAO_0000115>
+    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Chris Stoeckert</IAO_0000119>
+    <IAO_0000111 xml:lang="en">information transformation</IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000005"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
+    <rdfs:label xml:lang="en">information transformation</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000030"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000315"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/IAO_0000030"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <IAO_0000117 xml:lang="en">Richard Scheuermann</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <IAO_0000119 xml:lang="en">Branch editors</IAO_0000119>
+    <IAO_0000118 xml:lang="en">information processing</IAO_0000118>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200128">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0200126"/>
@@ -1298,8 +1337,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000119 xml:lang="en">PERSON: James Malone</IAO_0000119>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200157"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <IAO_0000111 xml:lang="en">data vector reduction data transformation</IAO_0000111>
@@ -1314,8 +1353,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000111 xml:lang="en">variance calculation</IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
@@ -1325,31 +1364,31 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000115 xml:lang="en">A variance calculation is a descriptive statistics calculation in which the variance is defined as the average squared distance of each observation in the data set to the mean of the data set.  It is also known as the second central moment.</IAO_0000115>
     <rdfs:label xml:lang="en">variance calculation</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add spread_calculation and moment_calculation roles but they don't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
+    <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add spread_calculation and moment_calculation roles but they don't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
-    <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200108">
     <IAO_0000119 xml:lang="en">WEB: http://flowcyt.sourceforge.net/gating/latest.pdf</IAO_0000119>
     <rdfs:label xml:lang="en">eh transformation</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000111 xml:lang="en">eh transformation</IAO_0000111>
-    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
-    <IAO_0000115 xml:lang="en">An eh transformation is a data transformation obtained by applying the function EH described in what follows to a (one dimensional) real number input. EH(x)=exp(x*d/r)+b*(d/r)*x-1, if x&gt;=0, and EH(x)=-exp(-x*d/r)+b*(d/r)*x+1, otherwise. Here exp denotes an exponential transformation and b, d, r are positive real constants with the objective of normalization.</IAO_0000115>
-    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
-    <IAO_0000112 xml:lang="en">This type of transformation is typically used in flow cytometry.</IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
+    <IAO_0000115 xml:lang="en">An eh transformation is a data transformation obtained by applying the function EH described in what follows to a (one dimensional) real number input. EH(x)=exp(x*d/r)+b*(d/r)*x-1, if x&gt;=0, and EH(x)=-exp(-x*d/r)+b*(d/r)*x+1, otherwise. Here exp denotes an exponential transformation and b, d, r are positive real constants with the objective of normalization.</IAO_0000115>
+    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
+    <IAO_0000112 xml:lang="en">This type of transformation is typically used in flow cytometry.</IAO_0000112>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
@@ -1402,8 +1441,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -1440,12 +1479,6 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000111 xml:lang="en">mean centering</IAO_0000111>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000118 xml:lang="en">mean centring</IAO_0000118>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
@@ -1455,6 +1488,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000119 xml:lang="en">PERSON: Elisabetta Manduchi</IAO_0000119>
     <IAO_0000112 xml:lang="en">This can be used as a normalization method in expression microarray assays. For example, given a two-channel microarray assay, the log ratios of the two channels (M values) can be mean-centered.</IAO_0000112>
     <IAO_0000115 xml:lang="en">A mean centering is a data transformation that takes as input an n-dimensional (real) vector, performs a mean calculation on its components, and subtracts the resulting mean from each component of the input.</IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">mean centering</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200140">
@@ -1478,21 +1517,21 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200172"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Data_clustering#Hierarchical_clustering</IAO_0000119>
     <IAO_0000111 xml:lang="en">hierarchical clustering</IAO_0000111>
     <IAO_0000115 xml:lang="en">A hierarchical clustering is a data transformation, typically with a class discovery objective, which takes as input a collection of objects and builds a hierarchy of clusters. The traditional representation of this hierarchy is a tree (visualized by a dendrogram), with the individual input objects at one end (leaves) and a single cluster containing every object at the other (root).</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <rdfs:label xml:lang="en">hierarchical clustering</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200172"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">hierarchical clustering</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200098">
     <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
@@ -1526,18 +1565,18 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200101">
     <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
+    <rdfs:label xml:lang="en">linear discriminant functional analysis</rdfs:label>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200179"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">linear discriminant functional analysis</rdfs:label>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0200106"/>
@@ -1558,16 +1597,16 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200077">
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200172"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">PERSON:Melanie Courtot</IAO_0000119>
     <IAO_0000119 xml:lang="en">PERSON: Richard Scheuermann</IAO_0000119>
     <IAO_0000117 xml:lang="en">Josef Spidlen</IAO_0000117>
     <IAO_0000117 xml:lang="en">Richard Scheuermann</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200172"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
     <IAO_0000115 xml:lang="en">Gating is a property-based vector selection with the objective of partitioning a data vector set into vector subsets based on dimension values of individual vectors (events), in which vectors represent individual physical particles (often cells) of a sample and dimension values represent light intensity qualities as measured by flow cytometry.</IAO_0000115>
     <IAO_0000119 xml:lang="en">PERSON: Josef Spidlen</IAO_0000119>
@@ -1598,14 +1637,14 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000119 xml:lang="en">PERSON: James Malone</IAO_0000119>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >James Malone</IAO_0000117>
+    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >discriminant analysis data transformation</IAO_0000118>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >discriminant analysis data transformation</IAO_0000118>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200181">
     <IAO_0000111 xml:lang="en">center calculation data transformation</IAO_0000111>
@@ -1615,8 +1654,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <rdfs:label xml:lang="en">center calculation data transformation</rdfs:label>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <IAO_0000119 xml:lang="en">PERSON: James Malone</IAO_0000119>
@@ -1634,6 +1673,9 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
+    <IAO_0000111 xml:lang="en">b transformation</IAO_0000111>
+    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1642,15 +1684,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
-    <IAO_0000111 xml:lang="en">b transformation</IAO_0000111>
-    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
     <IAO_0000119 xml:lang="en">WEB: http://flowcyt.sourceforge.net/gating/latest.pdf</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200057">
@@ -1664,8 +1703,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000115 xml:lang="en">A replicate analysis is a data transformation in which data from replicates are combined, e.g. through descriptive statistics calculations, and the results might be utilized for a variety of purposes, like assessing reproducibility, identifying outliers, normalizing, etc.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">Replicate analysis can be used in microarray analysis to identify and potentially exclude low quality data.</IAO_0000112>
@@ -1693,8 +1732,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200174"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">Typically used in an enzyme-linked immunosorbent assay (ELISA) to model the relationship between optical density (OD) and dilution. In this case a and d correspond to the theoretical OD of the assay at zero and infinite concentrations, respectively; c is the dilution associated with the point of symmetry of the sigmoid and is located at the midpoint of the assay found at the inflection point of the curve; b is a curvature parameter and is related to the slope of the curve.</IAO_0000112>
@@ -1717,18 +1756,18 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200121">
     <IAO_0000115 xml:lang="en">A standard deviation calculation is a descriptive statistics calculation defined as the square root of the variance.  Also thought of as the average distance of each value to the mean.</IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
     <rdfs:label xml:lang="en">standard deviation calculation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
@@ -1750,6 +1789,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000111 xml:lang="en">k-means clustering</IAO_0000111>
     <rdfs:label xml:lang="en">k-means clustering</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</IAO_0000117>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1759,12 +1804,6 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">A k-means clustering is a data transformation, typically with a class discovery objective, which takes as input a collection of objects (represented as points in multidimensional space) and which partitions them into a specified number k of clusters. The algorithm attempts to find the centers of natural clusters in the data. The most common form of the algorithm starts by partitioning the input points into k initial sets, either at random or using some heuristic data. It then calculates the mean point, or centroid, of each set. It constructs a new partition by associating each point with the closest centroid. Then the centroids are recalculated for the new clusters, and the algorithm repeated by alternate applications of these two steps until convergence, which is obtained when the points no longer switch clusters (or alternatively centroids are no longer changed).</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200067">
     <IAO_0000111 xml:lang="en">_unclassified</IAO_0000111>
@@ -1787,12 +1826,6 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200141">
     <rdfs:label xml:lang="en">log base</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000292"/>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >logarithm base</IAO_0000118>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1805,6 +1838,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     >The log base is a feature of a logarithmic function which is defined in http://en.wikipedia.org/wiki/Logarithm. Its value can be any positive real number different from 1.</IAO_0000115>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Elisabetta Manduchi</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000292"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >logarithmic base</IAO_0000118>
   </owl:Class>
@@ -1823,12 +1862,6 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000111 xml:lang="en">variance stabilizing transformation</IAO_0000111>
     <IAO_0000119 xml:lang="en">PMID: 12169536</IAO_0000119>
     <IAO_0000115 xml:lang="en">A variance stabilizing transformationi is a data transformation, described in PMID 12169536, whose input is a matrix [y_ik] and whose output is a matrix obtained by applying formula (6) in this paper. One of the goals is to obtain an output matrix whose rows have equal variances. The method relies on various assumptions described in the paper.</IAO_0000115>
@@ -1838,6 +1871,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000118 xml:lang="en">variance stabilising transformation</IAO_0000118>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200160">
@@ -1856,21 +1895,21 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200028">
+    <IAO_0000115 xml:lang="en">A quantile transformation is a data transformation that takes as input a collection of data sets, where each can be thought as an n-dimensional (real) vector, and which transforms each data set so that the resulting output data sets have equal quantiles.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000115 xml:lang="en">A quantile transformation is a data transformation that takes as input a collection of data sets, where each can be thought as an n-dimensional (real) vector, and which transforms each data set so that the resulting output data sets have equal quantiles.</IAO_0000115>
     <IAO_0000112 xml:lang="en">This can be used for expression microarray assay normalization and it is referred to as "quantile normalization", according to the procedure described e.g. in PMID 12538238.</IAO_0000112>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <IAO_0000119 xml:lang="en">PERSON: Elisabetta Manduchi</IAO_0000119>
     <rdfs:label xml:lang="en">quantile transformation</rdfs:label>
     <rdfs:subClassOf>
@@ -1953,27 +1992,27 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200122">
+    <IAO_0000115 xml:lang="en">The interquartile range is a descriptive statistics calculation defined as the difference between the 0.75 quantile and the 0.25 quantile for a set of data.</IAO_0000115>
+    <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
+    <rdfs:label xml:lang="en">interquartile-range calculation</rdfs:label>
+    <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
+    <IAO_0000111 xml:lang="en">interquartile-range calculation</IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000115 xml:lang="en">The interquartile range is a descriptive statistics calculation defined as the difference between the 0.75 quantile and the 0.25 quantile for a set of data.</IAO_0000115>
-    <IAO_0000119 xml:lang="en">PERSON: Monnie McGee</IAO_0000119>
-    <rdfs:label xml:lang="en">interquartile-range calculation</rdfs:label>
-    <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add spread calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
+    </rdfs:subClassOf>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200180"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000111 xml:lang="en">interquartile-range calculation</IAO_0000111>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
-    </rdfs:subClassOf>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200152">
@@ -2016,17 +2055,17 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000425"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">The moving average is often used to handle data from tiling arrays.</IAO_0000112>
     <IAO_0000117 xml:lang="en">Helen Parkinson</IAO_0000117>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000111 xml:lang="en">moving average</IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000425"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">A moving average is a data transformation in which center calculations, usually mean calculations, are performed on values within a sliding window across the input data set.</IAO_0000115>
     <IAO_0000119 xml:lang="en">PERSON: Elisabetta Manduchi</IAO_0000119>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
@@ -2082,8 +2121,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">logarithmic transformation</rdfs:label>
@@ -2098,21 +2137,21 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000119 xml:lang="en">PERSON: Elisabetta Manduchi</IAO_0000119>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200179"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
     <IAO_0000111 xml:lang="en">similarity calculation</IAO_0000111>
     <rdfs:label xml:lang="en">similarity calculation</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200179"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200178"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -2150,12 +2189,6 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">A total intensity transformation paired is a data transformation that takes as input two n-dimensional (real) vectors and multiplies each component of the first vector by a coefficient, where the coefficient is obtained by taking the ratio of the sum of the second input components or of a subset of these by the sum of the first input components or of a subset of these (the same subset is used for the two vectors).</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000112 xml:lang="en">This can be used as a simple normalization method for the two channels from a two-channel expression microarray assay or from two related one-channel expression microarray assays.</IAO_0000112>
     <IAO_0000116 xml:lang="en">Note that if the word "sum" is replaced by the word "mean" in the definition, the resulting definition is equivalent.</IAO_0000116>
@@ -2163,6 +2196,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000119 xml:lang="en">OTHER: Adjusted from MGED Ontology</IAO_0000119>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200075">
     <rdfs:label xml:lang="en">row submatrix extraction</rdfs:label>
@@ -2192,13 +2231,13 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
+    <IAO_0000119 xml:lang="en">WEB: http://mathworld.wolfram.com/Cosine.html</IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000119 xml:lang="en">WEB: http://mathworld.wolfram.com/Cosine.html</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200008">
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
@@ -2207,13 +2246,13 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</IAO_0000116>
     <IAO_0000117 xml:lang="en">Joseph Spliden</IAO_0000117>
     <IAO_0000112 xml:lang="en">This type of transformation is typically used in flow cytometry</IAO_0000112>
     <rdfs:label xml:lang="en">hyperlog transformation</rdfs:label>
-    <IAO_0000115 xml:lang="en">A hyperlog transformation ia a data transformation that, for each (one dimensional) real number input x, outputs an approximation (found, e.g. with the Newton's method) to a solution y of the equation EH(y)-x=0, where EH denotes an eh transformation.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000115 xml:lang="en">A hyperlog transformation ia a data transformation that, for each (one dimensional) real number input x, outputs an approximation (found, e.g. with the Newton's method) to a solution y of the equation EH(y)-x=0, where EH denotes an eh transformation.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
@@ -2259,8 +2298,8 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200060">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200081"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200081"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -2287,8 +2326,8 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0200140"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000292"/>
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000292"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -2309,24 +2348,24 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000111 xml:lang="en">skewness calculation</IAO_0000111>
     <rdfs:label xml:lang="en">skewness calculation</rdfs:label>
     <IAO_0000119 xml:lang="en">WEB: http://www.riskglossary.com/link/skewness.htm</IAO_0000119>
     <IAO_0000117 xml:lang="en">Monnie McGee</IAO_0000117>
     <IAO_0000115 xml:lang="en">A skewness calculation is a descriptive statistics calculation defined as a parameter that describes how much a distribution (or a data set) varies from a bell-shaped curve.  See http://www.riskglossary.com/link/skewness.htm for details.  It is also known as the third central moment</IAO_0000115>
     <IAO_0000116 xml:lang="en">From Monnie's file comments - need to add moment calculation role but they doesn't exist yet - (editor note added by James Jan 2008)</IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200177"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200078"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200010">
@@ -2341,34 +2380,6 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200000">
     <IAO_0000117 xml:lang="en">Melanie Courtot</IAO_0000117>
-    <IAO_0000115 xml:lang="en">A data transformation is a protocol application which  produces output data from input data - e.g. the application of a clustering protocol to microarray data or the application of a statistical testing method on a primary data set to determine a p-value.</IAO_0000115>
-    <rdfs:label xml:lang="en">data transformation</rdfs:label>
-    <IAO_0000111 xml:lang="en">data transformation</IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
-    <IAO_0000118 xml:lang="en">data analysis</IAO_0000118>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000315"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/IAO_0000027"/>
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/IAO_0000100"/>
-            </owl:unionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A protocol application which has the objective to produce output data from input data</IAO_0000116>
-    <IAO_0000118 xml:lang="en">data processing</IAO_0000118>
-    <IAO_0000119 xml:lang="en">Branch editors</IAO_0000119>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</IAO_0000117>
-    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
-    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
-    <IAO_0000117 xml:lang="en">Helen Parkinson</IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2382,15 +2393,43 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <IAO_0000117 xml:lang="en">Richard Scheuermann</IAO_0000117>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
-    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000315"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/IAO_0000027"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/IAO_0000100"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">data transformation</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200166"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >k-means clustering</IAO_0000112>
+    <IAO_0000111 xml:lang="en">data transformation</IAO_0000111>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <IAO_0000117 xml:lang="en">Tina Hernandez-Boussard</IAO_0000117>
+    <IAO_0000118 xml:lang="en">data analysis</IAO_0000118>
+    <IAO_0000115 xml:lang="en">A data transformation is a process which produces output data from input data - e.g. the application of a clustering protocol to microarray data or the application of a statistical testing method on a primary data set to determine a p-value.</IAO_0000115>
+    <IAO_0000118 xml:lang="en">data processing</IAO_0000118>
+    <IAO_0000119 xml:lang="en">Branch editors</IAO_0000119>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</IAO_0000117>
+    <IAO_0000117 xml:lang="en">James Malone</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Ryan Brinkman</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Helen Parkinson</IAO_0000117>
+    <IAO_0000117 xml:lang="en">Richard Scheuermann</IAO_0000117>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000122"/>
+    <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200162">
     <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2435,18 +2474,18 @@ where β0 is the intercept ("constant" term), the βis are the respective parame
     <IAO_0000117 xml:lang="en">Elisabetta Manduchi</IAO_0000117>
     <IAO_0000117 xml:lang="en">Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000111 xml:lang="en">pareto scaling</IAO_0000111>
-    <rdfs:label xml:lang="en">pareto scaling</rdfs:label>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <IAO_0000119 xml:lang="en">PMID:16762068</IAO_0000119>
-    <IAO_0000116 xml:lang="en">Community submitted term (MSI)</IAO_0000116>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0200000"/>
-    <IAO_0000115 xml:lang="en">A pareto scaling is a data transformation that divides all measurements of a variable by the square root of the standard deviation of that variable.</IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">pareto scaling</rdfs:label>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <IAO_0000119 xml:lang="en">PMID:16762068</IAO_0000119>
+    <IAO_0000116 xml:lang="en">Community submitted term (MSI)</IAO_0000116>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0200000"/>
+    <IAO_0000115 xml:lang="en">A pareto scaling is a data transformation that divides all measurements of a variable by the square root of the standard deviation of that variable.</IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0200143">
     <IAO_0000111 xml:lang="en">subgraph indegree calculation</IAO_0000111>
