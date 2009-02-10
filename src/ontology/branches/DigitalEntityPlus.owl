@@ -37,10 +37,10 @@
     xmlns:span="http://www.ifomis.org/bfo/1.1/span#"
   xml:base="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
-    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/DataTransformation.owl"/>
     <owl:imports rdf:resource="http://purl.obofoundry.org/obo/iao/2009-01-23/ontology-metadata.owl"/>
     <owl:imports rdf:resource="http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Relations.owl"/>
+    <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/DataTransformation.owl"/>
     <owl:imports rdf:resource="http://purl.obofoundry.org/obo/obi/Quality.owl"/>
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
@@ -110,6 +110,24 @@
     <IAO_0000115 xml:lang="en">Standard error is a quantitative confidence value which is the standard deviations of the sample in a frequency distribution, obtained by dividing the standard deviation by the total number of cases in the frequency distribution.</IAO_0000115>
     <rdfs:label xml:lang="en">standard error</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/clustered_data_set">
+    <IAO_0000115 xml:lang="en">A clustered data set is a data set that is produced as the output of a class discovery data transformation and consists of a data set with assigned discovered class labels.</IAO_0000115>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200181"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >data set with assigned discovered class labels</OBI_0000284>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
+    <rdfs:label xml:lang="en">clustered data set</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000120">
     <IAO_0000116 xml:lang="en">CDISC definition: a meaningful interpretation of data or observations resulting from planned evaluations.</IAO_0000116>
     <IAO_0000112 xml:lang="en">example_of_usage to be added</IAO_0000112>
@@ -123,10 +141,10 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/average_value">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: Monnie McGee</IAO_0000117>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: James Malone</IAO_0000117>
-    <IAO_0000115 xml:lang="en">An average value is a data item that is produced as the output of an averaging data transformation data transformation and represents the average value of the input data.</IAO_0000115>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000115 xml:lang="en">An average value is a data item that is produced as the output of an averaging data transformation and represents the average value of the input data.</IAO_0000115>
     <rdfs:label xml:lang="en">average value</rdfs:label>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >average value</IAO_0000111>
@@ -134,8 +152,8 @@
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000027"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200170"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
@@ -357,35 +375,55 @@
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000120"/>
     <IAO_0000116 xml:lang="en">CDISC definition: global assessment variable. A single variable, usually a scale of ordered categorical ratings, which integrates objective variables and the investigator's overall impression about the state or change in state of a subject.</IAO_0000116>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000451">
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/center_value">
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >centre value</OBI_0000284>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200181"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >center value</IAO_0000111>
+    <rdfs:label xml:lang="en">center value</rdfs:label>
+    <IAO_0000115 xml:lang="en">A centre value is a data item that is produced as the output of a center calculation data transformation and represents the center value of the input data.</IAO_0000115>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000027"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000451">
+    <owl:equivalentClass>
+      <owl:Restriction>
         <owl:someValuesFrom>
           <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0200169">
             <owl:equivalentClass>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                   <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
                     <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
                   </owl:Restriction>
                   <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
                     <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
                   </owl:Restriction>
                 </owl:unionOf>
               </owl:Class>
             </owl:equivalentClass>
           </rdf:Description>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: Melanie Courtot</IAO_0000117>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: James Malone</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Melanie Courtot</IAO_0000117>
     <rdfs:label xml:lang="en">normalized data set</rdfs:label>
     <IAO_0000115 xml:lang="en">A normalized data set is a data set that is produced as the output of a normalization data transformation.</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
@@ -398,6 +436,10 @@
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000118">
     <rdfs:label xml:lang="en">alternative term</rdfs:label>
   </owl:AnnotationProperty>
+  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/centre_value">
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >center value</IAO_0000117>
+  </rdf:Description>
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000114">
     <rdfs:label xml:lang="en">has curation status</rdfs:label>
   </owl:AnnotationProperty>
@@ -413,12 +455,12 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
+            <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -442,6 +484,12 @@
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/clustered_data">
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >clustered data set</IAO_0000111>
+    <IAO_0000115 xml:lang="en">A clustered data set is a data set that is produced as the output of a 
+    class discovery data transformation and represents</IAO_0000115>
   </rdf:Description>
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000115">
     <rdfs:label xml:lang="en">definition</rdfs:label>
