@@ -98,12 +98,6 @@
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000006"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/classified_data_set">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/class_prediction_dt"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:label xml:lang="en">classified data set</rdfs:label>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: James Malone</IAO_0000117>
@@ -112,6 +106,12 @@
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Monnie McGee</IAO_0000117>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/class_prediction_dt"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <IAO_0000115 xml:lang="en">A classified data set is a data set that is produced as the output of a class prediction data transformation and consists of a data set with assigned class labels.</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -130,26 +130,6 @@
     <IAO_0000115 xml:lang="en">Standard error is a quantitative confidence value which is the standard deviations of the sample in a frequency distribution, obtained by dividing the standard deviation by the total number of cases in the frequency distribution.</IAO_0000115>
     <rdfs:label xml:lang="en">standard error</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/clustered_data_set">
-    <rdfs:label xml:lang="en">clustered data set</rdfs:label>
-    <IAO_0000115 xml:lang="en">A clustered data set is a data set that is produced as the output of a class discovery data transformation and consists of a data set with assigned discovered class labels.</IAO_0000115>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: Monnie McGee</IAO_0000117>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</IAO_0000117>
-    <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >data set with assigned discovered class labels</OBI_0000284>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200175"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >clustered data set</IAO_0000111>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000120">
     <IAO_0000116 xml:lang="en">CDISC definition: a meaningful interpretation of data or observations resulting from planned evaluations.</IAO_0000116>
     <IAO_0000112 xml:lang="en">example_of_usage to be added</IAO_0000112>
@@ -161,11 +141,31 @@
     <IAO_0000117 xml:lang="en">Jennifer Fostel</IAO_0000117>
     <rdfs:label xml:lang="en">Finding</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/average_value">
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</IAO_0000117>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/clustered_data_set">
+    <rdfs:label xml:lang="en">clustered data set</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200175"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <IAO_0000115 xml:lang="en">A clustered data set is a data set that is produced as the output of a class discovery data transformation and consists of a data set with assigned discovered class labels.</IAO_0000115>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >data set with assigned discovered class labels</OBI_0000284>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >clustered data set</IAO_0000111>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/average_value">
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
     <IAO_0000115 xml:lang="en">An average value is a data item that is produced as the output of an averaging data transformation and represents the average value of the input data.</IAO_0000115>
     <rdfs:label xml:lang="en">average value</rdfs:label>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -212,9 +212,9 @@
     </owl:equivalentClass>
     <rdfs:label xml:lang="en">error corrected data set</rdfs:label>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</IAO_0000117>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >error corrected data set</IAO_0000111>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
@@ -280,9 +280,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/background_corrected_data_set">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</IAO_0000117>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Melanie Courtot</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >background corrected data set</IAO_0000111>
     <rdfs:label xml:lang="en">background corrected data set</rdfs:label>
@@ -326,6 +326,24 @@
     <IAO_0000112 xml:lang="en">example_of_usage to be added</IAO_0000112>
     <IAO_0000116 xml:lang="en">The act or process of identifying or determining the nature and cause of a disease or injury through evaluation</IAO_0000116>
     <IAO_0000111 xml:lang="en">Diagnosis</IAO_0000111>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/data_set_of_predicted_values_according_to_fitted_curve">
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200072"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <IAO_0000115 xml:lang="en">A data set of predicted values according to fitted curvet is a data set which is the output of a curve fitting data transformation in which the aim is to find a curve which matches a series of data points and possibly other constraints.</IAO_0000115>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <rdfs:label xml:lang="en">data set of predicted values according to fitted curve</rdfs:label>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >data set of predicted values according to fitted curve</IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000269">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000109"/>
@@ -372,6 +390,24 @@
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <IAO_0000116 xml:lang="en">There's probably a role that it plays. Would this be considered an outcome? (alan)</IAO_0000116>
     <IAO_0000117 xml:lang="en">person:Chris Stoeckert</IAO_0000117>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/reduced_dimension_data_set">
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >reduced dimension data set</IAO_0000111>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Monnie McGee</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
+    <IAO_0000115 xml:lang="en">A reduced dimension data set is a data set that is produced as the output of a data vector reeduction data transformation and consists of producing a data set which has fewer vectors than the input data set.</IAO_0000115>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200182"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:label xml:lang="en">reduced dimension data set</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000172">
     <IAO_0000111 xml:lang="en">parameter threshold</IAO_0000111>
@@ -438,17 +474,17 @@
     >PERSON: Monnie McGee</IAO_0000117>
     <OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >centre value</OBI_0000284>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200181"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: James Malone</IAO_0000117>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >center value</IAO_0000111>
     <rdfs:label xml:lang="en">center value</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000459"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200181"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <IAO_0000115 xml:lang="en">A centre value is a data item that is produced as the output of a center calculation data transformation and represents the center value of the input data.</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000027"/>
@@ -479,15 +515,18 @@
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/IAO_0000100"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON: James Malone</IAO_0000117>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Melanie Courtot</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: James Malone</IAO_0000117>
     <rdfs:label xml:lang="en">normalized data set</rdfs:label>
     <IAO_0000115 xml:lang="en">A normalized data set is a data set that is produced as the output of a normalization data transformation.</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >normalized data set</IAO_0000111>
   </owl:Class>
+  <rdf:Description rdf:about="http://purl.obofoundry.org/obo/error_corrected_data_set_2">
+    <IAO_0000115 xml:lang="en">An error corrected data set is a data set that is produced as the output of an error correction data transformation and A data vector reduction is a data transformation that has objective data vector reduction and that consists of reducing the input vectors k to a smaller number of outpu vectors j, where j&lt;k.</IAO_0000115>
+  </rdf:Description>
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/IAO_0000113">
     <rdfs:label xml:lang="en">in branch</rdfs:label>
   </owl:AnnotationProperty>
@@ -517,8 +556,8 @@
             <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000451"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -532,8 +571,8 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200167"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000301"/>
