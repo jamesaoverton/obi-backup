@@ -553,8 +553,8 @@
     <IAO_0000119 xml:lang="en">IEDB</IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2024,6 +2024,12 @@ to create a common base for comparisons.</IAO_0000115>
     >The measurement of T cell proliferation as a response to a viral peptide by culturing T cells stimulated with APCs and peptide in the presence of tritiated thymidine, and using a scintillation counter to detect the radioactivity.</IAO_0000112>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IEDB</IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >2/26/09: RESOLVE: need to replace 'molecular entities' in the logical definition with 'tritiated thymidine'</IAO_0000116>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
@@ -4224,29 +4230,39 @@ Proteome Sci. 2008 Dec 10;6(1):34.PMID: 19077203</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_9999994">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_50076"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000309"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000441"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100060"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000441"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000417"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">from http://cvi.asm.org/cgi/content/full/11/2/255 (and slightly simplified)\nAutologous EBV-transformed B-LCL were used as target cells for the influenza virus-specific CTL assays. Equal volumes of target (5 x 10E4 cells/ml) and effector cells were added to triplicate wells of 96-well tissue culture plates, and 1:2 serial dilutions of effectors were made, producing effector-to-target (E:T) ratios of 100:1, 50:1, 25:1, and 12.5:1 (9). Spontaneous release of 51Cr was assessed by the incubation of target cells in medium alone, and maximum release of 51Cr was determined by the incubation of target cells in 0.1% Triton X-100 (Sigma-Aldrich).\nAfter a 4-h incubation of the effector cells with the target cells at 37?é??C in 6% CO2, supernatants were collected following brief centrifugation. The supernatant was collected into filters of supernatant collection system harvesting frames (Molecular Devices Skatron, Sunnyvale, Calif.) and transferred to polystyrene tubes to be counted with the LKB 1272 Clinigamma counter (Wallac).\nPercent specific was determined with the following equation: (experimental 51Cr release - spontaneous 51Cr release)/(maximum 51Cr release - spontaneous 51Cr release) x 100.</IAO_0000112>
     <IAO_0000119 xml:lang="en">OBI branch derived</IAO_0000119>
     <rdfs:label xml:lang="en">chromium release assay</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000140"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_50076"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000308"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <IAO_0000117 xml:lang="en">PlanAndPlannedProcess Branch</IAO_0000117>
     <IAO_0000111 xml:lang="en">chromium release assay</IAO_0000111>
     <IAO_0000115 xml:lang="en">An assay in which radioactive chromium is absorbed by cells and released into supernatant when the cells die. The amount of radioactivity measured in the supernatant is a proxy for the number of cells that have died.</IAO_0000115>
@@ -5210,6 +5226,12 @@ objectives is a planned process.</IAO_0000116>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IEDB</IAO_0000117>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
