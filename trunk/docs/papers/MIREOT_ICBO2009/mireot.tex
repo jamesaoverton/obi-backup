@@ -94,11 +94,12 @@
 
 \section*{Abstract}
 \emph{
-While the Web Ontology Language (OWL \cite{RefWorks:1506}) provides a mechanism to import ontologies this mechanism is not always suitable.
+While the Web Ontology Language (OWL ) provides a mechanism to import ontologies this mechanism is not always suitable.
+%FG: Abstracts tend not to have references, moved to intro
 First, given the current state of editing tools and the issues they have working with large ontologies, direct OWL imports are not practical for day-to-day development.
-Second, the other ontologies used may be under active development and not aligned with the chosen development approach. Importing -policy wise- heterogenous ontologies as a whole could lead to inconsistencies or unintended inferences.
-In this paper we propose a new minimum information standard for importing required terms from an external artefact into an own ontology. 
-We suggest an implementation, present some example of application, scripts for automation of the import process and finally some ideas for future work and extensions.}
+Second, the other ontologies used may be under active development and not aligned with the chosen development methodology. Importing -policy wise- heterogenous ontologies as a whole could lead to inconsistencies or unintended inferences.
+In this paper we propose a set of guidelines that aid ontology developers to import required terms from an external artefact into an own ontology. 
+We describe the guidelines, their implementation, present some examples of application, and oultine future work and extensions.}
 
 %DS: Maybe more straight to the point: "First, due to the inability to load only parts of e.g. large ontologies, direct OWL imports are not practical for day-to-day development.
 
@@ -107,15 +108,16 @@ We suggest an implementation, present some example of application, scripts for a
 
 \section*{Introduction}
 \label{intro}
-While OWL provides a mechanism to import ontologies (\emph{owl:imports}), current limitations in tools and reasoners can sometimes make such a solution impractical on a day-to-day basis.
-First, most current OWL tools can neither load nor reason over very large ontologies such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct OWL imports of such ontologies, as a whole, impractical for day-to-day development. 
+The Web Ontology Language (OWL \cite{RefWorks:1506}) provides an in built mechanism to import ontologies (\emph{owl:imports}). Through author experience, in building large integrative ontologiese such as the Ontology for Biomedical Investigations (OBI \ref{*****}), the \emph{owl:imports} mechanism has proved insufficient for particular development scenarios. 
+In addition, limitations in the currently available tools and reasoners can also make the implementation of the \emph{owl:imports} mechanism problematic.
+For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct OWL imports of such ontologies. 
+
 
 %DS: Is the statement that NCIT can't be reasoned over with Protege correct? o.k. its large but what do they use to reason over it? They do reasoning that is for sure. maybe also state, e.g. in the conclusion section, that this problem is likely to occure in artefacts that are not 'properly modularized'. E.g. if there would be clearer guidelines on how to delineate a domain, such artefacts would be modularized into smaller 'importable' artefacts? Just a thought.
 
-Second, external ontologies may be under active development and not aligned with the design of the resource that needs to reference their terms. 
-Importing such ontologies as a whole could lead to inconsistencies or unintended inferences.
+Ontologies are typically a dynamic knowledge resource. This is evident within the bio-ontology domain, where the codification of the knowledge must keep apace with scientific knowledge discovery. The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources. The individual resources may have been constructed using different desing principles, which may not align. These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
 
-To address these issues, we devised a more involved, but more flexible, mechanism.
+To address these issues, we have developed a set of guidelines for importing classes from numerous ontology resources..
 
 %DS: "a more involved"? 
 
