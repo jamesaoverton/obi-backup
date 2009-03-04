@@ -154,17 +154,27 @@ We can therefore consider a term as stable, in isolation from the rest of the on
 %AL: It seems from the way the sentences are worded that we're still talking about GO above. If so, we need to now have a sentence that says how it can be valid that we apply these statements to other ontologies that may have different deprecation policies! Is this the same for all OBO ontologies? If so, what about non-OBO ontologies?
 
 The minimum amount of information needed to \textit{reference} an external class is the ontology URI and the term's URI.
-Generally, these items remain stable and can be used to unambiguously reference the external class from within the importing ontology.
-The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, i.e., what class the imported class is a subclass of.
+Generally, these items remain stable and can be used to unambiguously reference the external class from within the importing target ontology.
+The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, specifically the URI of the parent class from the target ontology.
+
+% AL: Shouldn't this parent class also be a URI?
 
 Taken together, the following minimal set is enough to consistently reference an external term:
-external ontology URI: %DS: This is the core of the paper, don't just mention it in brackets, add def and example?
-external term URI: %DS: def and example?
-OBI superclass: %DS: maby make it independent from OBI: own ontologies superclass
+\begin{description}
+ \item[source ontology URI] The logical URI for the ontology containing the term(s) to be imported. %DS: This is the core of the paper, don't just mention it in brackets, add def and example? %AL: This is the logical and not the physical URI, correct?
+ \item[source term URI] The logical URI for the specific term to import. %DS: def and example?
+ \item[Target ontology superclass URI] The logical URI for the new parent class in the target ontology for the source term to be imported. %DS: maby make it independent from OBI: own ontologies superclass
+ \end{description} 
 
-In addition to this minimum information, and in order to ease editing of the ontology, we also want to provide extra information about our imported classes such as their label and definition. 
+%AL: Agree with DS. Put it in a description of some sort. Have done this as an example. Also, we're using class and term interchangeably here - stick with one!
+
+To ease development of the target ontology we also recommend, although do not require, additional metadata about the imported classes such as their label and definition.
+
+%AL: What extra metadata, specifically? That information should go here.
 
 %DS: Maybe say somewhere what the differrences between imorts and mappings are (Look at Chris Mungalls OBO mapping page) ? Also maybe discuss at the end that an equal approch can be used to import property hiererchies, if necessary (they are usually much smaller).
+
+%AL: Yes, what DS says here is really important. After all, the reviewers will definitely be wondering why we don't just make use of Prompt, the Protege plugin, to do some class-level mergings and be done with it? Perhaps should go in the discussion. Will add a comment there too.
 
 
 \section*{Implementation}
@@ -307,7 +317,7 @@ As we are importing from OBO Foundry ontologies we have a community process for 
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
 %AL: Reviewers will probably ask why are the slots/relationships not being imported too? This should go in the discussion.
-
+%AL: The reviewers will definitely be wondering why we don't just make use of Prompt, the Protege plugin, to do some class-level mergings and be done with it?
 %However, as the NCBI taxonomy currently uses only subclass relations, we are guaranteed to obtain the desired module in this case.
 %DS: desired module?
 
