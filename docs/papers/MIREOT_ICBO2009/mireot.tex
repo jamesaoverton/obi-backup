@@ -165,8 +165,10 @@ Taken together, the following minimal set is enough to consistently reference an
 \begin{description}
  \item[source ontology URI] The logical URI for the ontology containing the term(s) to be imported. %DS: This is the core of the paper, don't just mention it in brackets, add def and example? %AL: This is the logical and not the physical URI, correct?
  \item[source term URI] The logical URI for the specific term to import. %DS: def and example?
- \item[Target ontology superclass URI] The logical URI for the new parent class in the target ontology for the source term to be imported. %DS: maby make it independent from OBI: own ontologies superclass
+ \item[target parent URI] The logical URI for the new parent class in the target ontology for the source term to be imported. %DS: maby make it independent from OBI: own ontologies superclass
  \end{description} 
+ 
+ %AL: We shouldn't use ``superclass'', as that could be ambiguous, and be interpreted as any class higher in the hierarchy than the immediate parent. I've suggested a change here.
 
 %AL: Agree with DS. Put it in a description of some sort. Have done this as an example. Also, we're using class and term interchangeably here - stick with one!
 
@@ -248,10 +250,11 @@ This file can be removed on a regular basis (e.g. for a slim release), and rebui
 The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by \emph{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it isolated from the core OBI ontology.
 
 
-\subsection*{Use case one - Cell class}
+\subsection*{Use Case One - Cell class}
+%AL: Class names should be in different font. I've used the inline math format
 
-As an example, we replaced the OBI class cell with that from the OBO Foundry Cell Type (CL) ontology (cf figure \ref{fig:cell}).
-The Cell Type Ontology \cite{RefWorks:1559} is part of the OBO foundry effort, and we would like to use the cell class as defined by this resource, instead of creating our own redundant class.
+As an example, we replaced the OBI class $Cell$ with that from the OBO Foundry Cell Type (CL) ontology (cf figure \ref{fig:cell}).
+The Cell Type Ontology \cite{RefWorks:1559} is part of the OBO foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own redundant class.
 %DS: State what native format CO is (OBO?).
 
 \begin{figure}[t]
@@ -260,18 +263,19 @@ The Cell Type Ontology \cite{RefWorks:1559} is part of the OBO foundry effort, a
 \label{fig:cell}
 \end{figure}
 
-Following the MIREOT guidelines, 
-we identify the minimum information required in this case:  
+Following the MIREOT guidelines, the minimum information required is:  
 %DS: Who is we? Maybe elaborate on the implied precondition, that there is a release team or Mapping team that curates this bit?
 
 \begin{enumerate}
-\item the URI of the term cell: \url{http://purl.org/obo/owl/CL#CL_0000000}  
-\item the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL} 
-\item the position of ``cell" in the OBI hierarchy: as a subclass of material entity
+\item \textit{source ontology URI}: the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL}
+\item \textit{source term URI}: the URI of $cell$: \url{http://purl.org/obo/owl/CL#CL_0000000}
+\item \textit{target parent URI}: the position of $cell$ in the OBI hierarchy: as a subclass of material entity %AL: URI??
 \end{enumerate}
 %DS: Follow bullet list as introduced above, use same names for MIREOT entities throughout.
 
-The imported ``cell" class can be used withim axiomatisations as would be any other OBI class: for example,using Manchester owl syntax, the process ``electroporation" is defined as:
+The imported $cell$ class can be used within axiomatisations as with any other OBI class: for example, using Manchester OWL syntax, the process $electroporation$ is defined as:
+
+%AL: class or term - choose something!
 
 \begin{sourcestyle}%
 \begin{verbatimtab}[\sourcetabsize]
