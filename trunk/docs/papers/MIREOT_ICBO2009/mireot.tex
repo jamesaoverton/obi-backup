@@ -11,6 +11,8 @@
 \usepackage{moreverb}
 \usepackage{url}
 
+\newcommand{\protege}{Prot\'{e}g\'{e}}
+
 \renewcommand\floatpagefraction{.2}
 \makeatletter
 \def\elsartstyle{%
@@ -115,8 +117,8 @@ Limitations in the currently available tools and reasoners can make the implemen
 For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct OWL imports of such ontologies impractical.
 
 
-%DS: Is the statement that NCIT can't be reasoned over with Protege correct? o.k. its large but what do they use to reason over it? They do reasoning that is for sure. maybe also state, e.g. in the conclusion section, that this problem is likely to occure in artefacts that are not 'properly modularized'. E.g. if there would be clearer guidelines on how to delineate a domain, such artefacts would be modularized into smaller 'importable' artefacts? Just a thought.
-%AL: Perhaps they reason without protege - just directly use the Pellet or Fact++ API? In which case, we should talk about that too. Is there a citation describing the problems reasoning with large ontologies? That's what we need - this previous sentence is an unfounded statement at the moment.
+%DS: Is the statement that NCIT can't be reasoned over with \protege\ correct? o.k. its large but what do they use to reason over it? They do reasoning that is for sure. maybe also state, e.g. in the conclusion section, that this problem is likely to occure in artefacts that are not 'properly modularized'. E.g. if there would be clearer guidelines on how to delineate a domain, such artefacts would be modularized into smaller 'importable' artefacts? Just a thought.
+%AL: Perhaps they reason without \protege\ - just directly use the Pellet or Fact++ API? In which case, we should talk about that too. Is there a citation describing the problems reasoning with large ontologies? That's what we need - this previous sentence is an unfounded statement at the moment.
 
 Ontologies are typically dynamic knowledge resources, and must be not only maintained but constantly updated.
 %AL: The above sentence does not mean much. What is a dynamic knowledge resource?
@@ -174,28 +176,29 @@ To ease development of the target ontology we also recommend, although do not re
 
 %DS: Maybe say somewhere what the differrences between imorts and mappings are (Look at Chris Mungalls OBO mapping page) ? Also maybe discuss at the end that an equal approch can be used to import property hiererchies, if necessary (they are usually much smaller).
 
-%AL: Yes, what DS says here is really important. After all, the reviewers will definitely be wondering why we don't just make use of Prompt, the Protege plugin, to do some class-level mergings and be done with it? Perhaps should go in the discussion. Will add a comment there too.
+%AL: Yes, what DS says here is really important. After all, the reviewers will definitely be wondering why we don't just make use of Prompt, the \protege\ plugin, to do some class-level mergings and be done with it? Perhaps should go in the discussion. Will add a comment there too.
 
 
 \section*{Implementation}
 
-The practical implementation of the MIREOT standard has been performed in the context of the OBI project.
-It involves a two-steps process:
+A practical implementation of the MIREOT standard has been performed in the context of the OBI project, and involved a two-step process:
 
 \begin{enumerate}
-\item gather the minimum information for external terms
+\item gather the minimum information for external terms, and
 \item use this minimum information to fetch additional elements, like labels and definitions.
 \end{enumerate}
 
-%DS: mention somewhere that we rely on scripts. If we are very honest we would have to admit that an ontology group using MIREOT needs a talented programmer for curation. Also, not the same, but related approach exists supported by the Protege UMLS tab plugin, which allows to import terms from UMLS into an own artefact (see http://protegewiki.stanford.edu/index.php/UMLS_Tab).
+%DS: mention somewhere that we rely on scripts. If we are very honest we would have to admit that an ontology group using MIREOT needs a talented programmer for curation. Also, not the same, but related approach exists supported by the \protege\ UMLS tab plugin, which allows to import terms from UMLS into an own artefact (see http://\protege\wiki.stanford.edu/index.php/UMLS_Tab).
 
 Once the classes to import have been identified by the curators, the first step is to gather their corresponding minimum information set.
-This set is stored in a file that we call \emph{external.owl}, either by creating it, or by appending the new information to the pre-exisitng one if some terms were already imported.
-This file can be edited by hand, but to ease the process of importing external terms, we provide a perl script that can be used in command line to append to the file.
+This set is stored in a file that we call \emph{external.owl}, either by creating it, or by appending the new information to the pre-existing one if some terms were already imported.
+This file can be edited by hand, but to ease the process of importing external terms, we provide a perl script that can be used in command line to append to the file. This step could be made more user friendly in the future by implementing a \protege\ plugin.
 
 This perl script, add-to-external.pl, takes as arguments the identifiers of the term to be imported and its parent in the OBI hierarchy.
 
-%DS: Making this a Protege plugin equal to the UMLS tab would definitely increase user compliance.
+%DS: Making this a \protege\ plugin equal to the UMLS tab would definitely increase user compliance.
+%AL: Agreed - intergrate its functionality within Prompt, or your own tab...
+%AL: if we talk about scripts, we should point out where they can be found on the sf svn server.
 
 A mapping mechanism between the prefix used in the identifier and the source ontology URI is built in the script.
 
@@ -212,7 +215,7 @@ For example:
 \end{sourcestyle}
 will add the class molecular entities (CHEBI:23367) as subclass of the class material entity (IAO:0000018), and set the source ontology URI as \url{http://purl.org/obo/owl/CHEBI}.
 
-Once the minimum information has been collected (as mentioned this is a manual command line step at the moment, but could be made more user friendly by implementing it via a Protege plugin) and stored in the \emph{external.owl} file, we can use it in order to get additional elements programatically.
+Once the minimum information has been collected  and stored in the \emph{external.owl} file, we can use it in order to get additional elements programatically.
 %DS: Add examples for such additional info
 
 
@@ -230,19 +233,19 @@ These queries specify which extra information about the class to gather, such as
 
 For example, in the current OWL rendering of OBO files, definitions are individuals and the rdfs:label of that individual records the text of the definition.
 The query (figure \ref{fig:sparql}) will map the rdfs:label of the oboInOwl:Definition instance into the value of the obi:definition property.
-It is worth mentioning that we only map existing annotation properties into our own metadata: we don't create new ones (so we do not integrate all external metadata, but just whats required by the OBI agreed minimal metadata policy ( Add URL as long minimal metadata is not out), (\emph{e.g.}, curation status annotation property, definition editor or definition source).
-The term is directly imported from the external resource, with the status and definition as defined by the outside resource. 
+Within the OBI implementation of MIREOT, only annotation properties which map directly to our own metadata are mapped: new properties are not created.
+Additional metadata is integrated in accordance with the agreed minimal metadata policy ( Add URL as long minimal metadata is not out), \emph{e.g.}, curation status annotation property, definition editor or definition source.
+The term is directly imported from the external resource, with the status and definition as defined by the outside resource. %AL: What? You were just talking about additional metadata and here is a sentence about the term again - probably belongs elsewhere.
 
 A script iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}
 
-This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, that we called \emph{externalDerived.owl}.
+This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl} and generated via a script. 
+This file can be removed on a regular basis (e.g. for a slim release), and rebuilt via script based on \emph{external.owl}, allowing us to keep imported information up-to-date.
+%AL: You must describe what a slim release is - it's an undefined term here.
 
-This is generated via a script that puts the results of the queries into the \emph{externalDerived.owl} file. 
-This file can be removed on a regular basis (e.g. for a slim release), and rebuild via script based on \emph{external.owl}, allowing us to keep imported information up-to-date.
-
-The two files,\emph{external.owl} and \emph{externalDerived.owl}, are then imported by \emph{obi.owl}, providing the combined necessary information to our editors while keeping it isolated from the core OBI ontology.
+The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by \emph{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it isolated from the core OBI ontology.
 
 
 \subsection*{Use case one - Cell class}
@@ -317,7 +320,7 @@ As we are importing from OBO Foundry ontologies we have a community process for 
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
 %AL: Reviewers will probably ask why are the slots/relationships not being imported too? This should go in the discussion.
-%AL: The reviewers will definitely be wondering why we don't just make use of Prompt, the Protege plugin, to do some class-level mergings and be done with it?
+%AL: The reviewers will definitely be wondering why we don't just make use of Prompt, the \protege\ plugin, to do some class-level mergings and be done with it?
 %However, as the NCBI taxonomy currently uses only subclass relations, we are guaranteed to obtain the desired module in this case.
 %DS: desired module?
 
