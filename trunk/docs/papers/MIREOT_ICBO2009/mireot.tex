@@ -291,7 +291,7 @@ The imported $cell$ class can be used within axiomatisations as with any other O
 
 It can also be subclassed, either by other imported classes or by OBI classes.
 
-\subsection*{Use case two - taxonomic information}
+\subsection*{Use Case Two - taxonomic information}
 
 It is expected that in most cases we will want to import information as described in the cell use case above, i.e. a simple one-to-one mapping towards an external class. However in some cases we might want or need more than that, and the MIREOT mechanism has been devised to be flexible and allow to store other types of information as deemed necessary.
 
@@ -311,16 +311,18 @@ As per the mechanism described above, the minimum information about the mapped c
 %\label{fig:ncbi}
 %\end{figure}
 
-
+% AL: How does the minimal information - the three URIs - tell us that we want the superclass hierarchy for a term rather than just the term? It seems you need more than what is currently described as minimal. This is confusing to the reader. Shoudln't the minimal information also include the URI of the class to stop going up the tree at? And, if this is empty or the same as the source term URI, then it is a simple case?
 
 \section*{Discussion}
 
-The MIREOT standard is a trade-off between complete consistency checking and heavyweight importing versus lightweight importing but partial consistency checking.
+The MIREOT standard provides a lightweight import mechanism at the cost of partial consistency checks on the imported code, whereas complete importing via \textit{owl:imports} provides a heavyweight mechanism with complete consistency checking.
 
-We are aware of and accept that by copying only parts of an ontology there is the risk that inferences drawn may be incomplete or incorrect: correct inference using the external classes is only guaranteed if the full ontologies are imported.
+By copying only parts of an ontology there is the risk that inferences drawn may be incomplete or incorrect: correct inference using the external classes is only guaranteed if the full ontologies are imported.
+%AL: Why are we happy to ignore this?
 When deciding to import an external term we review the textual definition and, if needed, talk with the original editor.
 As we are importing from OBO Foundry ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
 %DS: ... in theory at least  ;-)
+%AL: that previous sentence not exactly true - in the introduction it is implied that non-OBO ontologies can use this, but then just here you state that this can be used because everyone will be using BFO: these two sentences are contradictory.
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
 %AL: Reviewers will probably ask why are the slots/relationships not being imported too? This should go in the discussion.
@@ -328,17 +330,17 @@ Therefore, we expect that terms will be deprecated if there is a significant cha
 %However, as the NCBI taxonomy currently uses only subclass relations, we are guaranteed to obtain the desired module in this case.
 %DS: desired module?
 
-An other consideration using this approach is the status of assertions made on external terms.
+Another consideration using this approach is the status of assertions made on external terms.
 In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements about the terms.
 We can also add extra restrictions to these imported classes: for example in OBI, cell is the bearer of the role reagent role or specimen role. 
-These additional restriction should be stored in the importing ontology file: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
+These additional restrictions should be stored in the target ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 %DS: Maybe elaborate on the justification for where restrictions get stored, and what the consequences would be?
 
 We anticipate that some of these statements may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
 
 \section*{Future work}
-Even though we aimed at providing an easy mechanism for our editors to use the MIREOT standard, we still rely on command-line scripts.
-Ideally, a Prot\'eg\'e\cite{RefWorks:1501} plugin could be developed to improve the interaction between the curators and the tool.
+Even though we aim to provide an easy mechanism for our editors to use the MIREOT standard, we still rely on command-line scripts.
+Ideally, a \protege\ \cite{RefWorks:1501} plugin could be developed to improve the interaction between the curators and the tool.
 %DS: Ah here you have it... so ignore previous comment about this, but maybe mention UMLS Plugin anyway.
 
 In the future, we also expect to provide an option in the OBI distribution that replaces \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}.
@@ -346,6 +348,7 @@ In the future, we also expect to provide an option in the OBI distribution that 
 
 The MIREOT standard is currently being implemented by other ontologies,
 %DS: Which ones beside IAO? Is it really already a standard?
+%AL: I agree - it is definitely NOT a standard yet - it's a suggested methodology, or similar
 and we ultimately hope that combined feedback will allow us to perfect the mechanism.
 
 
