@@ -94,12 +94,12 @@
 
 \section*{Abstract}
 \emph{
-While the Web Ontology Language (OWL ) provides a mechanism to import ontologies this mechanism is not always suitable.
+While the Web Ontology Language (OWL) provides a mechanism to import ontologies, this mechanism is not always suitable.
 %FG: Abstracts tend not to have references, moved to intro
 First, given the current state of editing tools and the issues they have working with large ontologies, direct OWL imports are not practical for day-to-day development.
-Second, the other ontologies used may be under active development and not aligned with the chosen development methodology. Importing -policy wise- heterogenous ontologies as a whole could lead to inconsistencies or unintended inferences.
-In this paper we propose a set of guidelines that aid ontology developers to import required terms from an external artefact into an own ontology. 
-We describe the guidelines, their implementation, present some examples of application, and oultine future work and extensions.}
+Second, the other ontologies used may be under active development and not aligned with the chosen development methodology. Importing heterogenous ontologies in their entirety may lead to inconsistencies or unintended inferences.
+In this paper we propose a set of guidelines for importing required terms from an external artefact into a target ontology.
+We describe the guidelines, their implementation, present some examples of application, and outline future work and extensions.}
 
 %DS: Maybe more straight to the point: "First, due to the inability to load only parts of e.g. large ontologies, direct OWL imports are not practical for day-to-day development.
 
@@ -108,16 +108,26 @@ We describe the guidelines, their implementation, present some examples of appli
 
 \section*{Introduction}
 \label{intro}
-The Web Ontology Language (OWL \cite{RefWorks:1506}) provides an in built mechanism to import ontologies (\emph{owl:imports}). Through author experience, in building large integrative ontologiese such as the Ontology for Biomedical Investigations (OBI \ref{*****}), the \emph{owl:imports} mechanism has proved insufficient for particular development scenarios. 
-In addition, limitations in the currently available tools and reasoners can also make the implementation of the \emph{owl:imports} mechanism problematic.
-For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct OWL imports of such ontologies. 
+The Web Ontology Language (OWL \cite{RefWorks:1506}) provides a built-in mechanism to import ontologies (\emph{owl:imports}).
+The \emph{owl:imports} mechanism has proved insufficient for the needs of the authors during development of the Ontology for Biomedical Investigations (OBI \ref{*****}), a large integrative ontology for the description of life-science and clinical investigations.
+%AL: The ``in addition'' does not make sense here - this is the first actual reason that it is insufficient
+Limitations in the currently available tools and reasoners can make the implementation of the \emph{owl:imports} mechanism problematic.
+For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct OWL imports of such ontologies impractical.
 
 
 %DS: Is the statement that NCIT can't be reasoned over with Protege correct? o.k. its large but what do they use to reason over it? They do reasoning that is for sure. maybe also state, e.g. in the conclusion section, that this problem is likely to occure in artefacts that are not 'properly modularized'. E.g. if there would be clearer guidelines on how to delineate a domain, such artefacts would be modularized into smaller 'importable' artefacts? Just a thought.
+%AL: Perhaps they reason without protege - just directly use the Pellet or Fact++ API? In which case, we should talk about that too. Is there a citation describing the problems reasoning with large ontologies? That's what we need - this previous sentence is an unfounded statement at the moment.
 
-Ontologies are typically a dynamic knowledge resource. This is evident within the bio-ontology domain, where the codification of the knowledge must keep apace with scientific knowledge discovery. The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources. The individual resources may have been constructed using different desing principles, which may not align. These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
+Ontologies are typically dynamic knowledge resources, and must be not only maintained but constantly updated.
+%AL: The above sentence does not mean much. What is a dynamic knowledge resource?
+This is evident within the bio-ontology domain, where the codification of knowledge must keep pace with scientific knowledge discovery.
+The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources.
+The individual resources may have been constructed using different desing principles, which may not align.
+These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
 
-To address these issues, we have developed a set of guidelines for importing classes from numerous ontology resources..
+%AL: Some sentences were not on their own line. have changed that.
+
+To address these issues, we have developed a set of guidelines for importing classes from multiple ontology resources.
 
 %DS: "a more involved"? 
 
@@ -125,26 +135,27 @@ Our solution is a new standard we call the Minimum Information to Represent an E
 MIREOT provides guidelines on importing selected terms without the overhead of importing the complete ontology from which the terms derive. 
 %DS: I am glad its not called Miroot (O=other instead of E=external)    ;-)
 
-MIREOT has been implemented during the development of the Ontology for Biomedical Investigations (OBI  \cite{RefWorks:1507}).
+MIREOT was created to aid the development of the Ontology for Biomedical Investigations (OBI  \cite{RefWorks:1507}).
 OBI uses the Basic Formal Ontology (BFO \cite{RefWorks:1557}) as upper-level ontology and is part of the OBO Foundry \cite{RefWorks:1472}. 
-One of the fundamental principles of the OBO Foundry is to reuse, where sensible, existing ontology resources, therefore avoiding duplication of efforts and ensuring orthogonality.
+One of the fundamental principles of the OBO Foundry is to reuse, where sensible, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
 
 %DS: So far the Foundry has made little effort to work out an ontology module delineation mechanism. There will always be borders with overlapping content. There had been steps in the right direction at the NCBO though.
 
-MIREOT allows the import of external terms from ontologies not yet using BFO as an upper ontology, or using other owl flavours than owl-DL or even differrent syntax formats, e.g. OBO Format.
+MIREOT describes a methodology for the import of external terms from ontologies not yet using BFO, using other OWL flavours or even differrent syntax formats such as OBO.
 
 \section*{Policy}
 
 In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
 The practice of the Gene Ontology (GO \cite{RefWorks:79}) is that the intended meanings of classes remain stable.
-Even when the ontology is repaired or reorganized, the effects of such changes do not change the intended meaning of individual terms. 
-Rather the changes are towards more carefully expressing the logical relations between them.
-When a term's definition changes meaning, the term is deprecated \cite{RefWorks:1560}.
+The repair or reorganization of an ontology should not change the intended meaning of individual terms, but rather provide a better expression of the logical relations between them.
+When a term's definition changes meaning, the term is deprecated rather than creating a situation where a term's semantics changes \cite{RefWorks:1560}.
 We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (i.e. classes) a basic unit of import. 
 
-The minimum amount of information needed to reference an external class is the ontology URI and the term's URI.
+%AL: It seems from the way the sentences are worded that we're still talking about GO above. If so, we need to now have a sentence that says how it can be valid that we apply these statements to other ontologies that may have different deprecation policies! Is this the same for all OBO ontologies? If so, what about non-OBO ontologies?
+
+The minimum amount of information needed to \textit{reference} an external class is the ontology URI and the term's URI.
 Generally, these items remain stable and can be used to unambiguously reference the external class from within the importing ontology.
-The minimum amount of information to integrate this class is its position in the hierarchy, i.e., what class the imported class is a subclass of.
+The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, i.e., what class the imported class is a subclass of.
 
 Taken together, the following minimal set is enough to consistently reference an external term:
 external ontology URI: %DS: This is the core of the paper, don't just mention it in brackets, add def and example?
@@ -294,6 +305,8 @@ When deciding to import an external term we review the textual definition and, i
 As we are importing from OBO Foundry ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
 %DS: ... in theory at least  ;-)
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
+
+%AL: Reviewers will probably ask why are the slots/relationships not being imported too? This should go in the discussion.
 
 %However, as the NCBI taxonomy currently uses only subclass relations, we are guaranteed to obtain the desired module in this case.
 %DS: desired module?
