@@ -42,6 +42,8 @@
 
 
 
+%RB: use correct reference style for journal
+
 \begin{document}
 \twocolumn[
   \begin{@twocolumnfalse}
@@ -108,7 +110,7 @@
 % \address[institute4]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 % \address[institute5]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 % \address[abcam]{Abcam plc, 332 Cambridge Science Park, Cambridge, CB4 OWN, UK}
-%\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Research Center, Vancouver, BC, Canada}
+%\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, Vancouver, BC, Canada}
 %\address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
 %\address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
 %\address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
@@ -124,8 +126,8 @@
 \emph{
 While the Web Ontology Language (OWL) provides a mechanism to import ontologies, this mechanism is not always suitable.
 First, given the current state of editing tools and the issues they have working with large ontologies, direct OWL imports have proven impractical for day-to-day development.
-Second, ontologies chosen for integration may be under active development and not aligned with the chosen development methodology. Importing heterogenous ontologies in their entirety may lead to inconsistencies or unintended inferences.
-In this paper we propose a set of guidelines for importing required terms from an external artefact into a target ontology.%MC: don't like external artefact
+Second, ontologies chosen for integration may be under active development and not aligned with the chosen development methodology. Importing heterogeneous ontologies in their entirety may lead to inconsistencies or unintended inferences.
+In this paper we propose a set of guidelines for importing required terms from an external resource into a target ontology.%MC: don't like external artefact RB: there fixed that for you
 We describe the guidelines, their implementation, present some examples of application, and outline future work and extensions.}
 
 
@@ -138,30 +140,32 @@ We describe the guidelines, their implementation, present some examples of appli
 %Limitations in the currently available tools and reasoners can make the implementation of the \emph{owl:imports} mechanism problematic.
 %MC: I specifically don't want to mention OBI up here. it is only used as an example, and Alan had the mireot idea before/outside of obi
 
-While \ac{OWL} \cite{RefWorks:1506} provides a mechanism to import ontologies (\emph{owl:imports}), current limitations in tools and reasoners can sometimes make such a solution impractical on a day-to-day basis.
-
-For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct \ac{OWL} imports of such ontologies impractical.
 
 
 %DS: Is the statement that NCIT can't be reasoned over with \protege\ correct? o.k. its large but what do they use to reason over it? They do reasoning that is for sure. maybe also state, e.g. in the conclusion section, that this problem is likely to occure in artefacts that are not 'properly modularized'. E.g. if there would be clearer guidelines on how to delineate a domain, such artefacts would be modularized into smaller 'importable' artefacts? Just a thought.
 %AL: Perhaps they reason without \protege\ - just directly use the Pellet or Fact++ API? In which case, we should talk about that too. Is there a citation describing the problems reasoning with large ontologies? That's what we need - this previous sentence is an unfounded statement at the moment.
 %JM: Is this something we know for sure (about reasoning), any way we can cite this? Certainly it doesn't work with Protege so perhaps we can say something like "a limitation of popular editing tools, such as Protege, is that they are unable to reason over very large ontologies" and be specific
 
+%RB: need to start with problem statement
 
 Ontologies are typically a knowledge resource that must be not only maintained but constantly updated.
 This is evident within the bio-ontology domain, where the codification of knowledge must keep pace with scientific knowledge discovery.
 The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources.
-The individual resources may have been constructed using different desing principles, which may not align.
+The individual resources may have been constructed using different design principles, which may not align.
 These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
+
+
+While \ac{OWL} \cite{RefWorks:1506} provides a mechanism to import ontologies (\emph{owl:imports}), current limitations in tools and reasoners can sometimes make such a solution impractical on a day-to-day basis.
+For example, some OWL tools (\emph{e.g.}, Prot\'eg\'e) can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct \ac{OWL} imports of such ontologies impractical. 
+
+%RB changed from most - unless was this cricially asssesed to get > 51% and made it explicit so we can't be nit-picked on details
 
 %AL: Some sentences were not on their own line. have changed that.
 %MC: I'm not crazily happy about the above paragraph
 
-To address these issues, we have developed a set of guidelines for importing classes from multiple ontology resources, avoiding the overhead of importing the complete ontology from which the terms derive. These guidelines are called the \ac{MIREOT}.
+To address these issues, we have developed a set of guidelines for importing classes from multiple ontology resources, avoiding the overhead of importing the complete ontology from which the terms derive. 
 %DS: I am glad its not called Miroot (O=other instead of E=external)    ;-)
 %MC: didn't get that :(
-
-
 The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}\cite{RefWorks:1507}.
 \ac{OBI} uses the \ac{BFO} \cite{RefWorks:1557} as upper-level ontology and is part of the \ac{OBO} Foundry \cite{RefWorks:1472}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where sensible, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
@@ -176,11 +180,7 @@ One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where sen
 
 \section*{Policy}
 
-In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
-The practice of the \ac{GO} \cite{RefWorks:79} is that the intended meaning of classes remains stable.
-The repair or reorganization of an ontology should not change the intended meaning of individual classes, but rather provide a better expression of the logical relations between them.
-When the class definition changes meaning, the class is deprecated rather than creating a situation where a class's semantics changes \cite{RefWorks:1560}.
-We can therefore consider a class as stable, in isolation from the rest of the ontology. 
+%moved text around here to improve flow, it started with too much pre-amble; now BOOM right into
 
 %AL: It seems from the way the sentences are worded that we're still talking about GO above. If so, we need to now have a sentence that says how it can be valid that we apply these statements to other ontologies that may have different deprecation policies! Is this the same for all OBO ontologies? If so, what about non-OBO ontologies?
 
@@ -196,6 +196,13 @@ We can therefore consider a class as stable, in isolation from the rest of the o
 
 The minimum amount of information needed to \textit{reference} an external class is the ontology URI and the external class's URI.
 Generally, these items remain stable and can be used to unambiguously reference the external class from within the importing target ontology.
+For example, the practice of the \ac{GO} \cite{RefWorks:79} is that the intended meaning of classes remains stable.
+The repair or reorganization of an ontology should not change the intended meaning of individual classes, but rather provide a better expression of the logical relations between them.
+Furthermore, when the class definition changes meaning, the class is deprecated rather than creating a situation where a class's semantics changes \cite{RefWorks:1560}.
+
+%In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
+%We can therefore consider a class as stable, in isolation from the rest of the ontology. RB: not sure this adds anything from what you just stated in the 2 sentances above so commented out
+
 The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, specifically the URI of the parent class from the target ontology.
 
 % AL: Shouldn't this parent class also be a URI?
@@ -226,8 +233,8 @@ To ease development of the target ontology we also recommend, although do not re
 An implementation of the \ac{MIREOT} guidelines was performed in the context of the \ac{OBI} project, and involved a two-step process:
 
 \begin{enumerate}
-\item gather the minimum information for the external class, and
-\item use this minimum information to fetch additional elements, like labels and definitions.
+\item Gather the minimum information for the external class.
+\item Use this minimum information to fetch additional elements, like labels and definitions.
 \end{enumerate}
 
 %DS: mention somewhere that we rely on scripts. If we are very honest we would have to admit that an ontology group using MIREOT needs a talented programmer for curation. Also, not the same, but related approach exists supported by the \protege\ UMLS tab plugin, which allows to import terms from UMLS into an own artefact (see http://\protege\wiki.stanford.edu/index.php/UMLS_Tab).
@@ -237,7 +244,7 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 Once the external class is identified for import, the first step is to gather the corresponding minimum information set.
 This set is stored in a file that we arbitrarily call \emph{external.owl}.
-A perl script \texttt{add-to-external.pl} \ref{******}was used to automatically append the minimum information set, for multiple external classes to the \emph{external.owl} file. The perl script, takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
+A Perl script \texttt{add-to-external.pl} \ref{******}was used to automatically append the minimum information set, for multiple external classes to the \emph{external.owl} file. The Perl script takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
 In addition, a mapping mechanism between the prefix used in the identifier and the external source ontology URI is built into the script.
 
 
@@ -302,7 +309,7 @@ Depending on the external ontology, it then selects the correct SPARQL template 
 The queries are executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}.
 
 This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \texttt{externalDerived.owl} and generated via a script. 
-This file can be removed on a regular basis (e.g. for a slim release), and rebuilt via script based on \texttt{}{external.owl}, allowing us to keep imported information up-to-date.
+This file can be removed on a regular basis (\emph{e.g.}, for a release of a version with a reduced set of classes), and rebuilt via script based on \texttt{}{external.owl}, allowing us to keep imported information up-to-date.
 %AL: You must describe what a slim release is - it's an undefined term here.
 %FG for AL comment, I would actully just remove this sentence, its only relevant inside OBI which actually has no documentation or implementation, its not relevant to describing MERIOT
 The two files, \texttt{external.owl} and \texttt{externalDerived.owl}, are then imported by \texttt{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it isolated from the core OBI ontology.
@@ -311,7 +318,7 @@ The two files, \texttt{external.owl} and \texttt{externalDerived.owl}, are then 
 
 %MC: agreed, would remove, we have no clue what core and slim are and it doesn't bring anything
 %FG Little intro here for the next two use-case sections
-The following sections present differing use-cases identified and implemented withing OBI describing the application of the MERIOT guidelines utilises classes from the \ac{OBO}-Format version of the\ac{CL} ontology and the ***format of the NCBI Taxonomy.
+The following sections present differing use-cases identified and implemented withing OBI describing the application of the MERIOT guidelines utilizes classes from the \ac{OBO}-Format version of the\ac{CL} ontology and the ***format of the NCBI Taxonomy.
 
 %MC to FG: IT IS CALLED MIREOT, and not MERIOT! :) grml.
 
@@ -320,24 +327,43 @@ The following sections present differing use-cases identified and implemented wi
 \subsection*{Use Case One - Cell class}
 %AL: Class names should be in different font. I've used the inline math format
 
-As an example, we replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{RefWorks:1559} (Figure \ref{fig:cell}).
+As an example, we replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{RefWorks:1559}. % (Figure \ref{fig:cell}). Removed reference to figure until it gets fixed Can yo do this just with text? seems to read OK with it gone
 The \ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own duplicated class.
 %DS: State what native format CO is (OBO?). %MC: don't see what that adds?
 %JM: We are describing an OWL mechanism for import and presumably import from OWL format ontologies, or can we import from OBO too?
 
-\begin{figure}[t]
-\centering \includegraphics*[width=1\columnwidth]{./figs/cell}
-\caption{The \texttt{cell} class in the Cell Type Ontology. The classes \texttt{cell by class} and \texttt{cell by organism} are examples of classes that did not conform to the OBI development principles and therefore were not suitable for integration within OBI.}
-\label{fig:cell}
-\end{figure}
+
+
+
+
+
+
+
+%%%%
+%%  The following figure is CRAP! Its completely illegible and needs to be WAAAAAY bigger or removed
+%%%%
+
+
+
+
+%\begin{figure}[t]
+%\centering \includegraphics*[width=1\columnwidth]{./figs/cell}
+%\caption{The \texttt{cell} class in the Cell Type Ontology. The classes \texttt{cell by class} and \texttt{cell by organism} are examples of classes that did not conform to the OBI development principles and therefore were not suitable for integration within OBI.}
+%\label{fig:cell}
+%\end{figure}
 
 Following the MIREOT guidelines, the minimum information required to integrate the \ac{CL} class \texttt{cell} within OBI is:  
 %DS: Who is we? Maybe elaborate on the implied precondition, that there is a release team or Mapping team that curates this bit?
 
 \begin{enumerate}
-\item \textit{external source ontology URI}: the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL}
-\item \textit{source exernal class URI}: the URI of $cell$: \url{http://purl.org/obo/owl/CL#CL_0000000}
-\item \textit{target parent URI}: the position of $cell$ in the OBI hierarchy: as a subclass of material entity %AL: URI??
+\item \textit{External source ontology URI}: the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL}
+\item \textit{Source external class URI}: the URI of $cell$: \url{http://purl.org/obo/owl/CL#CL_0000000}
+\item \textit{Target parent URI}: the position of $cell$ in the OBI hierarchy: as a subclass of material entity %AL: URI??
+
+
+% RB: YES add the URI here!
+
+
 \end{enumerate}
 %DS: Follow bullet list as introduced above, use same names for MIREOT entities throughout.
 
@@ -363,7 +389,7 @@ It can also be subclassed, either by other imported classes or by OBI classes.
 The \texttt{cell} use-case highlights what is likely to be the most common import scenario, i.e. a simple one-to-one mapping towards an external class. 
 However, in some cases the class import may be more complex. To account for this the MIREOT mechanism has been devised to be extensible, and account for additional types of information, as required by a particular use-case.
 
-The following example describes a more complex query that can be perfomed on classes that have been imported from an external resource. 
+The following example describes a more complex query that can be performed on classes that have been imported from an external resource. 
 %A common use of OBI is that it can be used to annotate data from biological experiments. % MC: removed - we already said that and don't se point here.
 OBI currently uses the NCBI taxonomy for its species terms.
 %(**REF?***) MC: already cited cf above
@@ -375,7 +401,7 @@ We can easily imagine that somebody would want to query a dataset asking the que
 In this case, we would need to know that human and mouse are subclasses (even indirect) of mammals in the NCBI taxonomy.
 Therefore, when mapping towards an NCBI term, it is needed to get the class itself and the parent classes up to the root class of the NCBI taxonomy.
 This is achieved by a specific SPARQL query, which retrieves all direct parent classes up to one of a set of upper-level classes in the taxonomy.% (cf figure \ref{fig:ncbi}).
-As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, Mus musculus) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.) is stored in \emph{ externalDerived.owl}. 
+As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.) is stored in \emph{ externalDerived.owl}. 
 
 
 %\begin{figure}[t]
@@ -434,7 +460,7 @@ The MIREOT guidelines are currently being implemented by other ontologies and we
 %FG You have to name the "other ontologies" this adds weight to MIREOT  emphasiszing that is is more than a crazy LISP script :)
 %MC: VO doing, IDO in process. Did you see the part where we talk about perl? ;)
 
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 
 In memory of our friend and colleague William Bug, Ontological Engineer. 
 
