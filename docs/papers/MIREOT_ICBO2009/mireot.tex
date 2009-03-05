@@ -10,9 +10,12 @@
 
 \usepackage{sectsty}
 \sectionfont{\normalsize}
+\subsectionfont{\mdseries\itshape\normalsize}
 
 \usepackage{moreverb}
 \usepackage{url}
+
+\pagestyle{empty}
 
 \newcommand{\protege}{Prot\'{e}g\'{e}}
 
@@ -244,7 +247,7 @@ For example:
 \begin{footnotesize}
 \begin{verbatim}
 perl add-to-external.pl CHEBI:23367 IAO:0000018
-\end{verbatim}%
+\end{verbatim}
 \end{footnotesize}
 will add the class molecular entities (CHEBI:23367) as subclass of the class material entity (IAO:0000018), and set the source ontology URI as \url{http://purl.org/obo/owl/CHEBI}.
 
@@ -318,7 +321,7 @@ The imported $cell$ class can be used within axiomatisations as with any other O
    has_specified_output some 
      (cell and has_quality some electroporated))
    utilizes_device some power supply
-\end{verbatimtab}%
+\end{verbatimtab}
 \end{footnotesize}
 
 It can also be subclassed, either by other imported classes or by OBI classes.
@@ -394,8 +397,12 @@ The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Ca
 
 \bibliographystyle{unsrt}   
 
+{\def\section*#1{}
+\begin{center}
+\textbf{References}
+\end{center}
 \bibliography{20090218-RefWorks}
-
+}
   \balance
 
 \end{document}
