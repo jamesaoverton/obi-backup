@@ -138,7 +138,7 @@ We describe the guidelines, their implementation, present some examples of appli
 
 \section*{Introduction}
 \label{intro}
-The \ac{OWL} \cite{RefWorks:1506}) provides a built-in mechanism to import ontologies (\emph{owl:imports}).
+The \ac{OWL} \cite{RefWorks:1506} provides a built-in mechanism to import ontologies (\emph{owl:imports}).
 The \emph{owl:imports} mechanism has proved insufficient for the needs of the authors during development of \ac{OBI} \cite{RefWorks:1507}, a large integrative ontology for the description of life-science and clinical investigations.
 Limitations in the currently available tools and reasoners can make the implementation of the \emph{owl:imports} mechanism problematic.
 For example, most current OWL tools can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct \ac{OWL} imports of such ontologies impractical.
@@ -193,7 +193,7 @@ Taken together, the following minimal set is enough to consistently reference an
 \begin{description}
  \item[external source ontology URI] The logical URI for the ontology containing the external to be imported. %DS: This is the core of the paper, don't just mention it in brackets, add def and example? %AL: This is the logical and not the physical URI, correct?
  \item[external source term URI] The logical URI for the specific term to import. %DS: def and example?
- \item[target parent URI] The logical URI for the class in the target ontology that the external class should be imported under. %DS: maby make it independent from OBI: own ontologies superclass
+ \item[target direct superclass URI] The logical URI for the class in the target ontology that the external class should be imported under. %DS: maby make it independent from OBI: own ontologies superclass
  \end{description} 
  
  %AL: We shouldn't use ``superclass'', as that could be ambiguous, and be interpreted as any class higher in the hierarchy than the immediate parent. I've suggested a change here.
@@ -417,14 +417,18 @@ The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Ca
 
 
 \begin{acronym}
-\acro{OWL}{Web Ontology Language}
-\acro{MIREOT}{Minimum Information to Represent an External Ontology Term}
 \acro{BFO}{Basic Formal Ontology}
-\acro{OBO}{Open Biomedical Ontologies}
-\acro{GO}{Gene Ontology}
-\acro{CL}{Cell Type}
-\end{acronym}
 
+\acro{CL}{Cell Type}
+
+\acro{GO}{Gene Ontology}
+
+\acro{MIREOT}{Minimum Information to Reference an External Ontology Term}
+
+\acro{OBI}{Ontology of Biomedical Investigations}
+\acro{OBO}{Open Biomedical Ontologies}
+\acro{OWL}{Web Ontology Language}
+\end{acronym}
 
 \bibliographystyle{unsrt}   
 
