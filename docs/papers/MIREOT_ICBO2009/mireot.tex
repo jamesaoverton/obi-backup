@@ -17,8 +17,6 @@
 
 \usepackage{moreverb}
 \usepackage{url}
-%Acronym added by FG
-\usepackage{acronym}
 
 \pagestyle{empty}
 
@@ -161,8 +159,8 @@ To address these issues, we have developed a set of guidelines for importing cla
 %DS: I am glad its not called Miroot (O=other instead of E=external)    ;-)
 
 
-The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}\cite{RefWorks:1507}).
-\ac{OBI} uses the \ac{BFO} \cite{RefWorks:1557}) as upper-level ontology and is part of the \ac{OBO} Foundry \cite{RefWorks:1472}. 
+The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}\cite{RefWorks:1507}.
+\ac{OBI} uses the \ac{BFO} \cite{RefWorks:1557} as upper-level ontology and is part of the \ac{OBO} Foundry \cite{RefWorks:1472}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where sensible, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
 
 %DS: So far the Foundry has made little effort to work out an ontology module delineation mechanism. There will always be borders with overlapping content. There had been steps in the right direction at the NCBO though.
@@ -172,7 +170,7 @@ The \ac{MIREOT} guidelines describes a methodology for the import of external te
 \section*{Policy}
 
 In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
-The practice of the \ac{GO} \cite{RefWorks:79}) is that the intended meaning of classes remains stable.
+The practice of the \ac{GO} \cite{RefWorks:79} is that the intended meaning of classes remains stable.
 The repair or reorganization of an ontology should not change the intended meaning of individual classes, but rather provide a better expression of the logical relations between them.
 When the class definition changes meaning, the class is deprecated rather than creating a situation where a class's semantics changes \cite{RefWorks:1560}.
 We can therefore consider a class as stable, in isolation from the rest of the ontology. 
@@ -260,7 +258,7 @@ perl add-to-external.pl CHEBI:23367 IAO:0000018
 
 will add the class molecular entities (CHEBI:23367) as subclass of the class material entity (IAO:0000018), and set the source ontology URI as \url{http://purl.org/obo/owl/CHEBI}.
 
-Once the minimum information has been collected  and stored in the \emph{external.owl} file, additional elements are obtained programatically via SPARQL\cite{RefWorks:1531} CONSTRUCT queries, as described in (figure \ref{fig:sparql})
+Once the minimum information has been collected  and stored in the \emph{external.owl} file, additional elements are obtained programatically via SPARQL\cite{RefWorks:1531} CONSTRUCT queries, as described in (Figure \ref{fig:sparql}).
 %DS: Add examples for such additional info
 
 
@@ -280,14 +278,14 @@ These queries specify which extra information about the class to gather, such as
 %DS: This can only make sense if its ensured that the meaning (formal axiomatic definition in the target ontology) has not changed. One just has to be careful here I guess.
 
 For example, in the current \ac{OWL} rendering of \ac{OBO}-Format, definitions are individuals and the rdfs:label of that individual records the text of the definition. %FG do we have a reference here, pointint to some OBO2OWL mapping paper, or the OBOformat specification. - we are side tracking here
-The query (figure \ref{fig:sparql}) will map the \texttt{rdfs:label} of the \texttt{oboInOwl:Definition} instance into the value of the \texttt{obi:definition} property.
+The query (Figure \ref{fig:sparql}) will map the \texttt{rdfs:label} of the \texttt{oboInOwl:Definition} instance into the value of the \texttt{obi:definition} property.
 Within the \ac{OBI} implementation of \ac{MIREOT} guidelines, only annotation properties which map directly to our own metadata \ref{****} are mapped: new properties are not created.
 Additional metadata is integrated in accordance with the agreed minimal metadata policy ( ***Add URL as long minimal metadata is not out), \emph{e.g.}, curation status annotation property, definition editor or definition source.
 The external term is directly imported from the external resource, with the status and definition as defined by the external resource. %AL: What? You were just talking about additional metadata and here is a sentence about the term again - probably belongs elsewhere.
 
 A script iterates through the minimum information stored in \emph{external.owl}.
 Depending on the external ontology, it then selects the correct SPARQL template and substitutes the relevant ID.
-The queries are executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}
+The queries are executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}.
 
 This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \texttt{externalDerived.owl} and generated via a script. 
 This file can be removed on a regular basis (e.g. for a slim release), and rebuilt via script based on \texttt{}{external.owl}, allowing us to keep imported information up-to-date.
@@ -302,7 +300,7 @@ The following sections present differing use-cases identified and implemented wi
 \subsection*{Use Case One - Cell class}
 %AL: Class names should be in different font. I've used the inline math format
 
-As an example, we replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{RefWorks:1559} (cf figure \ref{fig:cell}).
+As an example, we replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{RefWorks:1559} (Figure \ref{fig:cell}).
 The \ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own duplicated class.
 %DS: State what native format CO is (OBO?).
 %JM: We are describing an OWL mechanism for import and presumably import from OWL format ontologies, or can we import from OBO too?
