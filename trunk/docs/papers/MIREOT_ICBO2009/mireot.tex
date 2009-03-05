@@ -1,11 +1,9 @@
-%% JWS example using Elsevier elsart classes, adapted by Tim 
-%% Finin, finin@cs.umbc.edu
+\documentclass[a4paper,10pt,twocolumn]{article}
 
-%% comment out one of these to get preprint vs. journal format
+\usepackage[printonlyused]{acronym}
+\usepackage{palatino}
 
-%\documentclass{elsart}       %% one column for review, preprint
-\documentclass{elsart3p}    %% two columns for publication
-
+\usepackage[left=1in,top=1in,right=1in,nohead,nofoot]{geometry}
 \usepackage{graphicx,amssymb}
 
 \usepackage{moreverb}
@@ -13,31 +11,46 @@
 
 \newcommand{\protege}{Prot\'{e}g\'{e}}
 
-\renewcommand\floatpagefraction{.2}
-\makeatletter
-\def\elsartstyle{%
-   \def\normalsize{\@setfontsize\normalsize\@xiipt{14.5}}
-   \def\small{\@setfontsize\small\@xipt{13.6}}
-   \let\footnotesize=\small
-   \def\large{\@setfontsize\large\@xivpt{18}}
-   \def\Large{\@setfontsize\Large\@xviipt{22}}
-   \skip\@mpfootins = 18\p@ \@plus 2\p@
-   \normalsize
-}
-\@ifundefined{square}{}{\let\Box\square}
-\makeatother
-
-\def\sourcetabsize{4}
-\newenvironment{sourcestyle}{\begin{scriptsize}}{\end{scriptsize}}
-\def\sourceinput#1{\par\begin{sourcestyle}\verbatimtabinput[\sourcetabsize]{#1}\end{sourcestyle}\par}
+% \renewcommand\floatpagefraction{.2}
+% \makeatletter
+% \def\elsartstyle{%
+%    \def\normalsize{\@setfontsize\normalsize\@xiipt{14.5}}
+%    \def\small{\@setfontsize\small\@xipt{13.6}}
+%    \let\footnotesize=\small
+%    \def\large{\@setfontsize\large\@xivpt{18}}
+%    \def\Large{\@setfontsize\Large\@xviipt{22}}
+%    \skip\@mpfootins = 18\p@ \@plus 2\p@
+%    \normalsize
+% }
+% \@ifundefined{square}{}{\let\Box\square}
+% \makeatother
+% 
+% \def\sourcetabsize{4}
+% \newenvironment{sourcestyle}{\begin{scriptsize}}{\end{scriptsize}}
+% \def\sourceinput#1{\par\begin{sourcestyle}\verbatimtabinput[\sourcetabsize]{#1}\end{sourcestyle}\par}
 
 
 
 \begin{document}
+\twocolumn[
+  \begin{@twocolumnfalse}
+   \begin{center}
+    \begin{Large} % 14 point
+      MIREOT: the Minimum Information to Reference an External Ontology Term
+    \end{Large}
 
-\begin{frontmatter}
 
-\title{\textbf{MIREOT: the Minimum Information to Reference an External Ontology Term}}
+    \begin{large} % 12 point
+      Author One$^{1,2}$, Author Two$^{2}$, Author Three$^{1,2}$
+      
+       $^{1}$One Location, USA, $^{2}$Another Location, UK
+    \end{large}
+   \end{center}
+  \end{@twocolumnfalse}
+  ]
+% \begin{frontmatter}
+% 
+% \title{\textbf{MIREOT: the Minimum Information to Reference an External Ontology Term}}
 
 %% Here are the  AUTHORS.  Note the separating commas
 %% with no and.
@@ -52,14 +65,14 @@
 %\ead{alanruttenberg@gmail.com}
 
 
-\author[institute1]{author1\corauthref{C}},
-\ead{email1@mail.com}
-\author[institute2]{author2}, 
-\author[institute3]{author3}, 
-\author[institute4]{author4}, 
-\author[institute5]{author5}, 
-\author[institute6]{author6\corauthref{C}}
-\ead{email2@mail.com}
+% \author[institute1]{author1\corauthref{C}},
+% \ead{email1@mail.com}
+% \author[institute2]{author2}, 
+% \author[institute3]{author3}, 
+% \author[institute4]{author4}, 
+% \author[institute5]{author5}, 
+% \author[institute6]{author6\corauthref{C}}
+% \ead{email2@mail.com}
 
 
 %% these specify any 'notes' for the title and authors,
@@ -67,21 +80,21 @@
 %% indication of who the corresponding author is if there's
 %% more than one author.
 
-\corauth[C]{Corresponding authors.}
+% \corauth[C]{Corresponding authors.}
 
-\medskip
+% \medskip
 
 %% Here are the addresses refereenced for the authors.  If
 %% all of the authors are from the same institution you need
 %% not have the lables for the author and address commands.
 
 
-\address[institute1]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-\address[institute2]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-\address[institute3]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-\address[institute4]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-\address[institute5]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-\address[institute6]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute1]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute2]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute3]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute4]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute5]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
+% \address[institute6]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 %\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Research Center, Vancouver, BC, Canada}
 %\address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
 %\address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
@@ -90,11 +103,11 @@
 %\address[sc]{Science Commons, Cambridge, MA, USA}
 
 
-\end{frontmatter}
+% \end{frontmatter}
 
 
 
-\section*{Abstract}
+\begin{abstract}
 \emph{
 While the Web Ontology Language (OWL) provides a mechanism to import ontologies, this mechanism is not always suitable.
 %FG: Abstracts tend not to have references, moved to intro
@@ -107,7 +120,7 @@ We describe the guidelines, their implementation, present some examples of appli
 
 %DS:Reword abstract a bit,should be differrent from wording in intro.
 %JM: Can I suggest comments like "`reword " be removed or acted upon by the suggesting author given the limited time we have
-
+\end{abstract}
 
 \section*{Introduction}
 \label{intro}
@@ -218,11 +231,16 @@ Curators therefore need only specify the ID of the term to import and its superc
 For example:
 
 
-\begin{sourcestyle}%
-\begin{verbatimtab}[\sourcetabsize]
-    perl add-to-external.pl CHEBI:23367 IAO:0000018
-\end{verbatimtab}%
-\end{sourcestyle}
+% \begin{sourcestyle}%
+% \begin{verbatimtab}[\sourcetabsize]
+%     perl add-to-external.pl CHEBI:23367 IAO:0000018
+% \end{verbatimtab}%
+% \end{sourcestyle}
+\begin{footnotesize}
+\begin{verbatim}
+perl add-to-external.pl CHEBI:23367 IAO:0000018
+\end{verbatim}%
+\end{footnotesize}
 will add the class molecular entities (CHEBI:23367) as subclass of the class material entity (IAO:0000018), and set the source ontology URI as \url{http://purl.org/obo/owl/CHEBI}.
 
 Once the minimum information has been collected  and stored in the \emph{external.owl} file, we can use it in order to get additional elements programatically.
@@ -231,9 +249,11 @@ Once the minimum information has been collected  and stored in the \emph{externa
 
 In order to do so, we created a set of SPARQL \cite{RefWorks:1531} CONSTRUCT queries that we use as template. 
 \begin{figure}[t]
-\begin{sourcestyle}%
+% \begin{sourcestyle}%
+% \verbatiminput{./figs/sparql.txt} 
+% \end{sourcestyle}
+\scriptsize
 \verbatiminput{./figs/sparql.txt} 
-\end{sourcestyle}
 \caption{Template SPARQL query. For convenience, we use alias:preferredTerm and
 alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0000115 respectively}
 \label{fig:sparql}
@@ -286,17 +306,15 @@ The imported $cell$ class can be used within axiomatisations as with any other O
 
 %AL: class or term - choose something!
 
-\begin{sourcestyle}%
-\begin{verbatimtab}[\sourcetabsize]
-     is_a cell permeabilzation
-     has_specified_input some cell
-     has_specified_output some 
-	    (cell and has_quality some electroporated))
-     utilizes_device some power supply
-
+\begin{footnotesize}
+\begin{verbatimtab}
+   is_a cell permeabilzation
+   has_specified_input some cell
+   has_specified_output some 
+     (cell and has_quality some electroporated))
+   utilizes_device some power supply
 \end{verbatimtab}%
-\end{sourcestyle}
-
+\end{footnotesize}
 
 It can also be subclassed, either by other imported classes or by OBI classes.
 
