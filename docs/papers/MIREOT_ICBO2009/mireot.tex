@@ -257,7 +257,7 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 
 This set is stored in a file that we call \emph{external.owl}.
-A Perl script, \emph{add-to-external.pl} is used to automatically append the minimum information set, for multiple external classes, to the \emph{external.owl} file. 
+A Perl script, \emph{add-to-external.pl}\cite{obiscripts} is used to automatically append the minimum information set, for multiple external classes, to the \emph{external.owl} file. 
 This script takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
 
 %MC: the script takes external terms one by one, so inaccurate to say it take multiple external classes.
@@ -315,7 +315,7 @@ Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, only annotatio
 The external term is directly imported from the external resource, with the status and definition as defined by the external resource. %AL: What? You were just talking about additional metadata and here is a sentence about the term again - probably belongs elsewhere.
 %MC: yes, it has been wrongly updated by one of the reviewers - repaired (hopefully)
 
-Finally, a lisp script, \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
+Finally, a lisp script, \emph{create-external-derived.lisp}\cite{obiscripts}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of our imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}.
 
