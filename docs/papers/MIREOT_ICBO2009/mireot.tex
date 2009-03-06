@@ -3,7 +3,7 @@
 \usepackage[nolist]{acronym}
 \usepackage{palatino}
 
-\usepackage[left=1in,top=1in,right=1in,nohead,nofoot]{geometry}
+\usepackage[left=1in,top=1in,right=1in, bottom=1.5in, nohead,nofoot]{geometry}
 \usepackage{graphicx,amssymb}
 
 \usepackage{balance}
@@ -24,55 +24,6 @@
 
 
 
-
-\def\frontmatter{%
-  \NoHyper
-  \let\@corresp@note\relax
-  \global\t@glob@notes={}\global\c@author\z@
-  \global\c@collab\z@ \global\c@address\z@
-  \sv@mathsurround\mathsurround \m@th
-  \global\n@author=0\n@author@\relax
-  \global\n@collab=0\n@collab@\relax
-  \global\advance\n@author\m@ne   % In comparisons later on we need
-  \global\advance\n@collab\m@ne   % n@author-1 and n@collab-1
-  \global\@firstauthortrue        % set to false by first \author or \collab
-  \global\@hasabstractfalse       % Default:  no abstract or keywords
-  \global\@haskeywordsfalse       % Default:  no abstract or keywords
-  \global\@prefacefalse           %           not preface
-  \ifnum\c@firstpage=\c@lastpage
-    \gdef\@pagerange{\@pagenumprefix\ESpagenumber{firstpage}}
-  \else
-    \gdef\@pagerange{\@pagenumprefix
-   \ESpagenumber{firstpage}--\@pagenumprefix\ESpagenumber{lastpage}}%
-  \fi
-  \@ifundefined{RIfM@}{}{\global\let\vec\@bfvec}%
-  \open@fm \ignorespaces}
-\def\title@fmt#1#2{%
-\@ifundefined{@runtitle}{\global\def\@runtitle{#1}}{}%
-% \vspace*{\@overtitleskip} % Vertical space above article type,
-  \@articletypesize                  % Size for article type
-  \leavevmode\vphantom{Aye!}
-  \@articletype
-  \vskip12\p@
-  {\@titlesize #1\,\hbox{$^{#2}$}\par}%
-  \vskip\@undertitleskip
-  }
-\def\address@fmt@init{%
-  \par                                % Start new paragraph
-  \vskip \@overaddressskip}               % Vertical space before addresses
-\def\@abstract[#1]{%
-  \global\@hasabstracttrue
-  \hyphenpenalty\sv@hyphenpenalty     % restore \hyphenpenalty
-  \global\setbox\t@abstract=\vbox\bgroup
-  \leftskip\z@
-  \@rightskip\z@ \rightskip\@rightskip \parfillskip\@flushglue
-   \@abstractsize                      % Text in 9/11
-  \parindent 1em                      % \parindent in abstract
-  \noindent {\bfseries\abstractname}  % caption `Abstract' (bold)
-  \vskip 0.5\@bls    % half a line of space below
-\noindent\ignorespaces
-}
-%RB: use correct reference style for journal
 
 \begin{document}
 \twocolumn[
@@ -105,8 +56,8 @@
 \begin{abstract}
 \emph{
 While the Web Ontology Language (OWL) provides a mechanism to import ontologies, this mechanism is not always suitable.
-First, given the current state of editing tools and the issues they have working with large ontologies, direct OWL imports have proven impractical for day-to-day development.
-Second, ontologies chosen for integration may be under active development and not aligned with the chosen development methodology. Importing heterogeneous ontologies in their entirety may lead to inconsistencies or unintended inferences.
+First, given the current state of editing tools and the issues they have working with large ontologies, direct OWL imports have sometimes proven impractical for day-to-day development.
+Second, ontologies chosen for integration may be under active development and not aligned with the chosen design principles. Importing heterogeneous ontologies in their entirety may lead to inconsistencies or unintended inferences.
 In this paper we propose a set of guidelines for importing required terms from an external resource into a target ontology.%MC: don't like external artefact RB: there fixed that for you
 We describe the guidelines, their implementation, present some examples of application, and outline future work and extensions.}
 
@@ -174,7 +125,7 @@ One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where sen
 %MC: we need to justify our choice of this set of info, we can't just arbitrarily start like here it is.
 
 In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
-For example, in the Gene Ontology (GO \cite{RefWorks:79}), the intended meanings of classes remain stable.
+For example, in the Gene Ontology (GO \cite{RefWorks:79}), the intended denotation of classes remain stable.
 Even when the ontology is repaired or reorganized, the effects of such changes do not change the intended meaning of individual terms.
 Rather the changes are towards more carefully expressing the logical relations between them.
 When a term's definition changes meaning, the term is deprecated \cite{RefWorks:1560}.
@@ -197,7 +148,7 @@ We can therefore consider a term as stable, in isolation from the rest of the on
 
 %MC: maybe here is a good place to state that we are only importing from Foundry ontologies
 
-The current implementation of \ac{MIREOT} has been limited to import of terms from other Foundry ontologies, which adheres to this policy.
+The current implementation of \ac{MIREOT} has been limited to import of terms from other Foundry ontologies, which adhere to this policy.
 
 
 %Furthermore, when the class definition changes meaning, the class is deprecated rather than creating a situation where a class's semantics changes \cite{RefWorks:1560}.
@@ -222,9 +173,7 @@ Taken together, the following minimal set is enough to consistently reference an
 
 %AL: Agree with DS. Put it in a description of some sort. Have done this as an example. Also, we're using class and term interchangeably here - stick with one!
 
-To ease development of the target ontology we also recommend, although do not require,to add additional information about the external class we wish to import, such as their label and textual definition.
-%To ease development of the target ontology, we also provide a mechanism to include additional metadata about the external terms we import, such as their label and definition.
-
+To ease development of the target ontology we also recommend, although do not require, that additional information about the external class be added such as its label and textual definition.
 
 %AL: What extra metadata, specifically? That information should go here.
 
@@ -256,8 +205,8 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 
-This set is stored in a file that we call \emph{external.owl}.
-A Perl script, \emph{add-to-external.pl}\cite{obiscripts} is used to automatically append the minimum information set, for multiple external classes, to the \emph{external.owl} file. 
+This set is stored in a file that we call \emph{external.owl}\footnote{http://tinyurl.com/b7vvlt}.
+A Perl script, \emph{add-to-external.pl}\cite{obiscripts} is used to automatically append the minimum information set to the \emph{external.owl} file. 
 This script takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
 
 %MC: the script takes external terms one by one, so inaccurate to say it take multiple external classes.
@@ -294,10 +243,10 @@ Additional elements can be obtained programmatically via SPARQL\cite{RefWorks:15
 \scriptsize
 \verbatiminput{./figs/sparql.txt} 
 \caption{Template SPARQL query. For convenience, we use alias:preferredTerm and
-alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0000115 respectively}
+alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0000115 \cite{RefWorks:1496} respectively}
 \label{fig:sparql}
 \end{figure}
-These queries specify which extra information about the class to gather, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
+These queries\footnote{http://tinyurl.com/bss9mw} specify which extra information about the class to gather, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
 %DS: This can only make sense if its ensured that the meaning (formal axiomatic definition in the target ontology) has not changed. One just has to be careful here I guess.
 
 For example, in the current \ac{OWL} rendering of \ac{OBO} files, definitions are individuals and the rdfs:label of that individual records the text of the definition. %FG do we have a reference here, pointint to some OBO2OWL mapping paper, or the OBOformat specification. - we are side tracking here
@@ -315,11 +264,11 @@ Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, only annotatio
 The external term is directly imported from the external resource, with the status and definition as defined by the external resource. %AL: What? You were just talking about additional metadata and here is a sentence about the term again - probably belongs elsewhere.
 %MC: yes, it has been wrongly updated by one of the reviewers - repaired (hopefully)
 
-Finally, a lisp script, \emph{create-external-derived.lisp}\cite{obiscripts}, iterates through the minimum information stored in \emph{external.owl}.
+Finally, a script, \emph{create-external-derived.lisp}\cite{obiscripts}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of our imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}.
 
-This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl}.% and generated via a script. %MC: we just said it
+This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl}\footnote{http://tinyurl.com/bmb3f4}.% and generated via a script. %MC: we just said it
 This file can be removed on a regular basis, \emph{e.g.}, before release of OBI.
 It is then rebuilt via script based on \emph{external.owl}, allowing us to keep imported information up-to-date.
 %AL: You must describe what a slim release is - it's an undefined term here.
@@ -508,6 +457,7 @@ The MIREOT guidelines are currently being implemented by other ontologies, like 
 
 In memory of our friend and colleague William Bug, Ontological Engineer. 
 
+\begin{small}
 %added to list
 The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
 The author’s work is partially supported by funding from the NIH(R01EB005034), the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1, BB/D524283/1, BB/E025080/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139), and the Michael Smith Foundation for Health Research.
@@ -518,11 +468,11 @@ The author’s work is partially supported by funding from the NIH(R01EB005034),
 \begin{center}
 \textbf{References}
 \end{center}
-\begin{small}
+
 \bibliography{20090218-RefWorks}
-\end{small}
+
 }
-  
+ \end{small} 
     \balance
     
 \begin{acronym}
