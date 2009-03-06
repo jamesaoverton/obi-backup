@@ -22,26 +22,56 @@
 
 \newcommand{\protege}{Prot\'{e}g\'{e}}
 
-% \renewcommand\floatpagefraction{.2}
-% \makeatletter
-% \def\elsartstyle{%
-%    \def\normalsize{\@setfontsize\normalsize\@xiipt{14.5}}
-%    \def\small{\@setfontsize\small\@xipt{13.6}}
-%    \let\footnotesize=\small
-%    \def\large{\@setfontsize\large\@xivpt{18}}
-%    \def\Large{\@setfontsize\Large\@xviipt{22}}
-%    \skip\@mpfootins = 18\p@ \@plus 2\p@
-%    \normalsize
-% }
-% \@ifundefined{square}{}{\let\Box\square}
-% \makeatother
-% 
-% \def\sourcetabsize{4}
-% \newenvironment{sourcestyle}{\begin{scriptsize}}{\end{scriptsize}}
-% \def\sourceinput#1{\par\begin{sourcestyle}\verbatimtabinput[\sourcetabsize]{#1}\end{sourcestyle}\par}
 
 
 
+\def\frontmatter{%
+  \NoHyper
+  \let\@corresp@note\relax
+  \global\t@glob@notes={}\global\c@author\z@
+  \global\c@collab\z@ \global\c@address\z@
+  \sv@mathsurround\mathsurround \m@th
+  \global\n@author=0\n@author@\relax
+  \global\n@collab=0\n@collab@\relax
+  \global\advance\n@author\m@ne   % In comparisons later on we need
+  \global\advance\n@collab\m@ne   % n@author-1 and n@collab-1
+  \global\@firstauthortrue        % set to false by first \author or \collab
+  \global\@hasabstractfalse       % Default:  no abstract or keywords
+  \global\@haskeywordsfalse       % Default:  no abstract or keywords
+  \global\@prefacefalse           %           not preface
+  \ifnum\c@firstpage=\c@lastpage
+    \gdef\@pagerange{\@pagenumprefix\ESpagenumber{firstpage}}
+  \else
+    \gdef\@pagerange{\@pagenumprefix
+   \ESpagenumber{firstpage}--\@pagenumprefix\ESpagenumber{lastpage}}%
+  \fi
+  \@ifundefined{RIfM@}{}{\global\let\vec\@bfvec}%
+  \open@fm \ignorespaces}
+\def\title@fmt#1#2{%
+\@ifundefined{@runtitle}{\global\def\@runtitle{#1}}{}%
+% \vspace*{\@overtitleskip} % Vertical space above article type,
+  \@articletypesize                  % Size for article type
+  \leavevmode\vphantom{Aye!}
+  \@articletype
+  \vskip12\p@
+  {\@titlesize #1\,\hbox{$^{#2}$}\par}%
+  \vskip\@undertitleskip
+  }
+\def\address@fmt@init{%
+  \par                                % Start new paragraph
+  \vskip \@overaddressskip}               % Vertical space before addresses
+\def\@abstract[#1]{%
+  \global\@hasabstracttrue
+  \hyphenpenalty\sv@hyphenpenalty     % restore \hyphenpenalty
+  \global\setbox\t@abstract=\vbox\bgroup
+  \leftskip\z@
+  \@rightskip\z@ \rightskip\@rightskip \parfillskip\@flushglue
+   \@abstractsize                      % Text in 9/11
+  \parindent 1em                      % \parindent in abstract
+  \noindent {\bfseries\abstractname}  % caption `Abstract' (bold)
+  \vskip 0.5\@bls    % half a line of space below
+\noindent\ignorespaces
+}
 %RB: use correct reference style for journal
 
 \begin{document}
@@ -51,75 +81,25 @@
     \begin{Large} % 14 point
       MIREOT: the Minimum Information to Reference an External Ontology Term
     \end{Large}
-
-
-    \begin{large} % 12 point
-      Author One$^{1,2}$, Author Two$^{2}$, Author Three$^{1,2}$
-      
-       $^{1}$One Location, USA, $^{2}$Another Location, UK
-    \end{large}
    \end{center}
+
+
+      \begin{small}
+
+   \textbf{M\'elanie Courtot$^{1}$, Frank Gibson$^{2}$, Allyson L. Lister$^{3}$, James Malone$^{4}$, Daniel Schober$^{4,5}$, Ryan R. Brinkman$^{1}$, Alan Ruttenberg$^{6}$}
+      
+     
+       $^{1}$BC Cancer Agency, Vancouver, BC, Canada, 
+       $^{2}$Abcam plc, 332 Cambridge Science Park, Cambridge, CB4 OWN, UK,
+       $^{3}$CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne, UK,
+       $^{4}$The European Bioinformatics Institute, Cambridge, CB101SD, UK,
+       $^{5}$Institute of Medical Biometry and Medical Informatics (IMBI), University Medical Center, 70104 Freiburg, Germany,
+       $^{6}$Science Commons, Cambridge, MA, USA
+ \end{small}
+
+\hspace{12pt}
   \end{@twocolumnfalse}
   ]
-% \begin{frontmatter}
-% 
-% \title{\textbf{MIREOT: the Minimum Information to Reference an External Ontology Term}}
-
-%% Here are the  AUTHORS.  Note the separating commas
-%% with no and.
-
-%\author[tfl]{M\'elanie Courtot\corauthref{C}},
-%\ead{mcourtot@gmail.com}
-%\author[ucsd]{William Bug}, 
-%\author[ebi]{James Malone},
-%\author[ebi,IMBI]{Daniel Schober},
-%\author[tfl]{Ryan R. Brinkman},
-%\author[abcam]{Frank Gibson},
-%\author[cisban]{Allyson L. Lister}
-%\author[sc]{Alan Ruttenberg\corauthref{C}}
-%\ead{alanruttenberg@gmail.com}
-
-
-% \author[institute1]{author1\corauthref{C}},
-% \ead{email1@mail.com}
-% \author[institute2]{author2}, 
-% \author[institute3]{author3}, 
-% \author[institute4]{author4}, 
-% \author[institute5]{author5}, 
-% \author[institute6]{author6\corauthref{C}}
-% \ead{email2@mail.com}
-
-
-%% these specify any 'notes' for the title and authors,
-%% including 'thanks' that acknowledge support, etc. and an
-%% indication of who the corresponding author is if there's
-%% more than one author.
-
-% \corauth[C]{Corresponding authors.}
-
-% \medskip
-
-%% Here are the addresses refereenced for the authors.  If
-%% all of the authors are from the same institution you need
-%% not have the lables for the author and address commands.
-
-
-% \address[institute1]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-% \address[institute2]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-% \address[institute3]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-% \address[institute4]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-% \address[institute5]{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
-% \address[abcam]{Abcam plc, 332 Cambridge Science Park, Cambridge, CB4 OWN, UK}
-%\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, Vancouver, BC, Canada}
-%\address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
-%\address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
-%\address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
-%\address[ebi]{The European Bioinformatics Institute, Cambridge, CB101SD, UK}
-%\address[sc]{Science Commons, Cambridge, MA, USA}
-
-
-% \end{frontmatter}
-
 
 
 \begin{abstract}
@@ -150,17 +130,19 @@ We describe the guidelines, their implementation, present some examples of appli
 
 
 
-While \ac{OWL} \cite{RefWorks:1506} provides a mechanism to import ontologies (\emph{owl:imports}), current limitations in tools and reasoners can sometimes make such a solution impractical on a day-to-day basis.
+While the \ac{OWL} \cite{RefWorks:1506} provides a mechanism to import ontologies (\emph{owl:imports}), current limitations in tools and reasoners can sometimes make such a solution impractical on a day-to-day basis.
 First, some OWL tools (\emph{e.g.}, Prot\'eg\'e, SWOOP) can neither load nor reason over very large ontologies, such as the NCBI Taxonomy \cite{RefWorks:1502} or the Foundational Model of Anatomy \cite{RefWorks:1558}, making direct \ac{OWL} imports of such ontologies impractical. 
 
 %RB changed from most - unless was this cricially asssesed to get > 51% and made it explicit so we can't be nit-picked on details
 
 
-Ontologies are typically a knowledge resource that must be not only maintained but constantly updated.
-This is evident within the bio-ontology domain, where the codification of knowledge must keep pace with scientific knowledge discovery.
-The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources.
-The individual resources may have been constructed using different design principles, which may not align.
-These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
+%Ontologies are typically a knowledge resource that must be not only maintained but constantly updated.
+%This is evident within the bio-ontology domain, where the codification of knowledge must keep pace with scientific knowledge discovery.
+%The flux of knowledge within an ontology can also present issues when trying to import or integrate different resources.
+Second, different resources may have been constructed using different design principles, which may not align.
+Importing such ontologies as a whole could lead to inconsistencies or unintended inferences.
+
+%These issues of dynamic development, and different design principles could lead to inconsistencies or unintended inferences, when integrated.
 %AL: Some sentences were not on their own line. have changed that.
 %MC: I'm not crazily happy about the above paragraph 
 
@@ -273,12 +255,12 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 %FG I am siding with Daniel on this, if we mention our implementation, then we should reference the code we use. If we dont provide enough information for others to evaluate the process or repeat it then the paper has no scientific value, and should not be published. - these are the same questions any reviewer will ask of the paper.
 
-%MC: agree with all :) I will add the links to the scripts.
+%MC: agree with all :) I will add the links to the scripts. \footnote{http://obi.svn.sourceforge.net/viewvc/obi/trunk/src/tools/add-to-external.pl}  is too large, I need to find an other solution
 
 Once the external classes are identified for import, the first step is to gather the corresponding minimum information set.
 %MC: wanted to keep it plural - one of the question aaron asked was "you have one file per class"? 
 This set is stored in a file that we call \emph{external.owl}.
-A Perl script, \texttt{add-to-external.pl}\footnote{http://obi.svn.sourceforge.net/viewvc/obi/trunk/src/tools/add-to-external.pl} was used to automatically append the minimum information set, for multiple external classes to the \emph{external.owl} file. 
+A Perl script, \emph{add-to-external.pl}was used to automatically append the minimum information set, for multiple external classes to the \emph{external.owl} file. 
 The Perl script takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
 
 %MC: the script takes external terms one by one, so inaccurate to say it take multiple external classes.
@@ -356,13 +338,13 @@ A script iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons SPARQL endpoint\cite{RefWorks:1540}.
 
-This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \texttt{externalDerived.owl}.% and generated via a script. %MC: we just said it
-This file can be removed on a regular basis (\emph{e.g.}, before release of OBI), and rebuilt via script based on \texttt{}{external.owl}, allowing us to keep imported information up-to-date.
+This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl}.% and generated via a script. %MC: we just said it
+This file can be removed on a regular basis (\emph{e.g.}, before release of OBI), and rebuilt via script based on \emph{external.owl}, allowing us to keep imported information up-to-date.
 %AL: You must describe what a slim release is - it's an undefined term here.
 %FG for AL comment, I would actully just remove this sentence, its only relevant inside OBI which actually has no documentation or implementation, its not relevant to describing MERIOT
 
 %MC: (\emph{e.g.}, for a release of a version with a reduced set of classes) ? - we remove it before release, nothing to see with slim or reduced number of class
-The two files, \texttt{external.owl} and \texttt{externalDerived.owl}, are then imported by \texttt{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it independent from OBI proper classes.
+The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by \emph{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it independent from OBI proper classes.
 %isolated from the core OBI ontology.
 %FG what is core OBI? I would delete everything after obi.owl. Remember this is a paper about MERIOT obi is only an illustrative example, we dont really care about the details of OBI, we want other ontologies who are not OBI to use MERIOT
 
@@ -493,7 +475,7 @@ Therefore, we expect that terms will be deprecated if there is a significant cha
 Another consideration using this approach is the status of assertions made on external terms.
 In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements about the terms.
 We can also add extra restrictions to these imported classes: for example in OBI, cell is the bearer of the role reagent role or specimen role. 
-These additional restrictions should be stored in the target ontology: the \texttt{external.owl} and \texttt{externalDerived.owl} are meant to include only the imported information.
+These additional restrictions should be stored in the target ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 %DS: Maybe elaborate on the justification for where restrictions get stored, and what the consequences would be?
 
 We anticipate that some of these statements may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
@@ -504,12 +486,11 @@ We anticipate that some of these statements may migrate to the source ontologies
 %The current implementation of the \ac{MIREOT} guidelines is applied externally to an OWL IDE, such as \protege\ via command-line scripts.
 %MC: ???
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it sometimes uncomfortable to use for our curators.
-
 Ideally, a \protege\ \cite{RefWorks:1501} plugin could be developed to improve the interaction between the curators and the tool and the implementation of the MIREOT guidelines.
 %DS: Ah here you have it... so ignore previous comment about this, but maybe mention UMLS Plugin anyway.
 %MC: checked on the plugin it has been discontinued since 2006 -would rather avoid.
 
-In the future, we also expect to provide an option in the OBI distribution that replaces \texttt{}{external.owl} with \texttt{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \texttt{}{external.owl}.
+In the future, we also expect to provide an option in the OBI distribution that replaces \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}.
 %Other options are possible, for instance having the script that generates additional information use software that extracts module of the external ontology.
 
 The MIREOT guidelines are currently being implemented by other ontologies and we ultimately hope that combined feedback will allow us to perfect the mechanism.
