@@ -75,32 +75,31 @@ Importing such ontologies as a whole could lead to inconsistencies or unintended
 
 To address these issues, we have developed a set of guidelines for importing terms from multiple ontology resources, avoiding the overhead of importing the complete ontology from which the terms derive. 
 
-The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}\cite{RefWorks:1507}.
+The \ac{MIREOT} guidelines were created to aid the development of the \ac{OBI}\cite{RefWorks:1507}.
 \ac{OBI} uses the \ac{BFO} \cite{RefWorks:1557} as upper-level ontology and is part of the \ac{OBO} Foundry \cite{RefWorks:1472}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where sensible, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
-\ac{MIREOT} allows us to do so by providing a way to import of external terms from ontologies not yet using BFO as an upper ontology, or not yet using OWL DL.
+\ac{MIREOT} allows us to do so by providing a way to import external terms from ontologies not yet using BFO as an upper ontology, or not yet using OWL DL.
 
 
 \section*{Policy}
 
-In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
+In deciding upon a minimum unit of import, our first step was to consider the practice of other ontologies.
 For example, in the Gene Ontology (GO \cite{RefWorks:79}), the intended denotation of classes remain stable.
 Even when the ontology is repaired or reorganized, the effects of such changes do not change the intended meaning of individual terms.
 Rather the changes are towards more carefully expressing the logical relations between them.
 When a term's definition changes meaning, the term is deprecated \cite{RefWorks:1560}.
 We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (i.e. individual classes in isolation from the ontology) as basic unit of import.
-
-The current implementation of \ac{MIREOT} has been limited to import of terms from other Foundry ontologies, which adhere to this policy.
+The current implementation of \ac{MIREOT} has been limited to import of terms from other Foundry ontologies, which adhere to a similar deprecation policy.
 
 The minimum amount of information needed to \textit{reference} an external class is the source ontology URI and the external term's URI. 
 Generally, these items remain stable and can be used to unambiguously reference the external class from within the importing target ontology.
-The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, specifically the URI of its parent class in the target ontology. 
+The minimum amount of information to \textit{integrate} this class is its position in the hierarchy, specifically the URI of its direct superclass in the target ontology. 
 
 Taken together, the following minimal set is enough to consistently reference an external term:
 \begin{description}
- \item[source ontology URI] The logical URI for the ontology containing the external term to be imported. 
+ \item[source ontology URI] The logical URI of the ontology containing the external term to be imported. 
  \item[source term URI] The logical URI of the specific term to import. 
- \item[target direct superclass URI] The logical URI for the direct asserted superclass in the target ontology.
+ \item[target direct superclass URI] The logical URI of the direct asserted superclass in the target ontology.
  \end{description} 
 
 
@@ -126,6 +125,7 @@ Curators therefore need only specify the ID of the external class to import and 
 
 
 Additional elements can be obtained programmatically via SPARQL\cite{RefWorks:1531} CONSTRUCT queries, as described in Figure \ref{fig:sparql}.
+These queries\footnote{http://tinyurl.com/bss9mw} specify which extra information about the class to gather, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
 
 \begin{figure}[t]
 \scriptsize
@@ -134,10 +134,10 @@ Additional elements can be obtained programmatically via SPARQL\cite{RefWorks:15
 alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0000115 \cite{RefWorks:1496} respectively}
 \label{fig:sparql}
 \end{figure}
-These queries\footnote{http://tinyurl.com/bss9mw} specify which extra information about the class to gather, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
 
-For example, in the current \ac{OWL} rendering of \ac{OBO} files, definitions are individuals and the rdfs:label of that individual records the text of the definition. 
-Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, only annotation properties which map directly to our own metadata are mapped: new properties (\emph{e.g.}, curation status annotation property, definition editor or definition source) are not created.
+
+For example, in the current \ac{OWL} rendering of \ac{OBO} files, definitions are individuals and the rdfs:label of those individuals record the text of the definitions. 
+Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, only annotation properties which map directly to our own metadata are mapped: new properties (\emph{e.g.}, curation status annotation property, definition editor or definition source), if not specified in the source ontology, are not created.
 
 
 The external term is directly imported from the external resource, with the status and definition as defined by the external resource.
@@ -148,7 +148,6 @@ The queries are then executed against the Neurocommons SPARQL endpoint\cite{RefW
 This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl}\footnote{http://tinyurl.com/bmb3f4}.
 This file can be removed on a regular basis, \emph{e.g.}, before release of OBI.
 It is then rebuilt via script based on \emph{external.owl}, allowing us to keep imported information up-to-date.
-
 The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by \emph{obi.owl}, providing the necessary information to OBI editors while at the same time keeping it independent from OBI proper classes.
 
 In the following sections we present two different cases of application of the \ac{MIREOT} guidelines.
@@ -157,8 +156,7 @@ In the following sections we present two different cases of application of the \
 \subsection*{Use Case One - Cell class}
 
 We replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{RefWorks:1559}. 
-The \ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own duplicated class.
-
+\ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own duplicated class.
 The following invocation of the \emph{add-to-external.pl} script:
 
 \begin{footnotesize}
@@ -168,9 +166,7 @@ perl add-to-external.pl CL:0000000 IAO:0000018
 \end{footnotesize}
 
 will add the class $cell$ (CL:0000000) as subclass of the class material entity (IAO:0000018), and set the source ontology URI as \url{http://purl.org/obo/owl/CL}.
-
-
-The imported $cell$ class can be used as would be any other OBI class. For example, the process ``electroporation" is defined as:
+Once imported, the $cell$ class can be used as would be any other OBI class. For example, the process ``electroporation" is defined as:
 
 \begin{footnotesize}
 \begin{verbatimtab}
@@ -212,15 +208,11 @@ We are aware of and accept that by copying only parts of an ontology there is th
 
 When deciding to import an external term we review the textual definition and, if needed, talk with the original editor.
 As we are importing from OBO Foundry ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
-
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
 Another consideration using this approach is the status of assertions made on external terms.
 In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements.
-Additional restrictions can be added as required.
-For example in OBI, cell is the bearer of the role reagent role or specimen role. 
-These additional restrictions should be stored in the target ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
-
+If additional restrictions are required (for example in OBI, $cell$ is the bearer of the role reagent role or specimen role), those should be stored in the target ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 We anticipate that some of the statements added by the target ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
 
 
@@ -228,7 +220,6 @@ We anticipate that some of the statements added by the target ontology may migra
 
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it sometimes uncomfortable to use for our curators.
 Ideally, a \protege\ \cite{RefWorks:1501} plugin could be developed to improve the interaction between the curators and the tool and the implementation of the MIREOT guidelines.
-
 In the future, we also expect to provide an option in the OBI distribution that replaces \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}.
 
 The MIREOT guidelines are currently being implemented by other ontologies, like the Vaccine Ontology (VO)\cite{VO}, and we ultimately hope that combined feedback will allow us to perfect the mechanism.
