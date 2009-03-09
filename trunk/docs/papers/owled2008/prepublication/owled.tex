@@ -10,7 +10,7 @@
 \usepackage{graphicx,amssymb}
 
 \usepackage{url}
-
+\usepackage[multiple, para]{footmisc} %RB added this to get commas between multiple footnotes (e.g., after "`endpoint"', seems to work but throws error. shrug.
 \renewcommand\floatpagefraction{.2}
 \makeatletter
 \def\elsartstyle{%
@@ -61,7 +61,7 @@
 %% all of the authors are from the same institution you need
 %% not have the lables for the author and address commands.
 
-\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Research Center, Vancouver, BC, Canada}
+\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, Vancouver, BC, Canada}
 \address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
 \address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
 \address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
@@ -103,9 +103,10 @@ As a result, we chose to rely on a small group of tools, augmented with a struct
 This presented some challenges preparing OBI for distribution, as parallel editing of OWL files can lead to non-unique class identifier assignment and conflicts within the ontology. We describe some of these technical challenges and solutions in this paper.
 
 One of the fundamental principles of the OBO Foundry is to reuse, where sensible, existing ontology resources.
-While OWL provides a mechanism to import ontologies (\emph{owl:imports}), this mechanism was not always suitable for OBI. Firstly, current editing tools are not effective for working with very large ontologies such as the NCBI Taxonomy\cite{ncbi} or the Foundational Model of Anatomy\cite{fma}, making direct OWL imports of such ontologies, as a whole, impractical for day-to-day development. Secondly, other ontologies used by OBI are under active development and may not be aligned with its design (e.g., not using BFO as an upper ontology, or not using OWL DL). Importing such ontologies as a whole would lead to inconsistencies and unintended inferences. 
+While OWL provides a mechanism to import ontologies (\emph{owl:imports}), this mechanism was not always suitable for OBI. Firstly, current editing tools are not effective for working with very large ontologies such as the NCBI Taxonomy\cite{ncbi} or the Foundational Model of Anatomy\cite{fma}, making direct OWL imports of such ontologies, as a whole, impractical for day-to-day development. Secondly, other ontologies used by OBI % RB: need to give examples here (>1) to justify statement. IAO isn't one per criteria below
+are under active development and may not be aligned with its design (e.g., not using BFO as an upper ontology, or not using OWL DL). Importing such ontologies as a whole would lead to inconsistencies and unintended inferences. 
 
-An alternative to the OWL built-in import mechanism would be to copy only parts of the external ontology into \emph{obi.owl}. Software that extracts a ``module''\cite{module} is in early development and we plan to try such strategies in the future.
+One alternative to the OWL built-in import mechanism would be to copy only parts of the external ontology into \emph{obi.owl}. Software that extracts a ``module''\cite{module} is in early development and we plan to try such strategies in the future. %helpful to define module here to help explain
 Our solution was to develop a set of steps or guidelines that describes how to import selected terms without the overhead of importing the complete ontology from which the terms derive.
 These guidelines area called the Minimal Information to Reference an External Ontology Term (MIREOT) and are described in this paper.
 
@@ -116,8 +117,8 @@ These guidelines area called the Minimal Information to Reference an External On
 
 In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
 The practice of the Gene Ontology (GO)\cite{go} is that terms are deprecated if their intended meaning changes\cite{deprecated}.
-We therefore consider terms (i.e. classes) a basic unit of import.
-According to the MIREOT guidelines the minimal amount of information needed to reference an external class is i) the source ontology URI, ii) the source term URI, which generally remains stable and can be used as an unambiguous reference, and iii) the direct superclass in the target hierarchy, i.e., what OBI class the imported class is a subclass of.
+We therefore consider terms (\emph{i.e.}, classes) a basic unit of import.
+According to the MIREOT guidelines the minimal amount of information needed to reference an external class is (i) The source ontology URI; (ii) the source term URI, which generally remains stable and can be used as an unambiguous reference; and (iii) the direct superclass in the target hierarchy (\emph{i.e.}, what OBI class the imported class is a subclass of).
 
 We store this minimal information set in a separate file called \emph{external.owl}. 
 Additional information, such as labels and definitions, are mapped into the corresponding OBI annotation properties and stored in a separate file, called \emph{externalDerived.owl}. This additional information is more prone to change, and therefore a further file allows for easy update of this information.
@@ -140,16 +141,16 @@ These are then retrieved using queries against the Neurocommons\footnote{http://
 \end{figure}
 
 
-To demonstrate how the implementation of the MIREOT guidelines work, figure \ref{fig:cell} illustrates the replacement of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
-The second example presents a slightly more complicated challenge.
+Figure \ref{fig:cell} illustrates how the implementation of the MIREOT guidelines works, with the example of  replacing of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
+The second example presents a slightly more complicated challenge. %RB sory what second example, was this brought up before? mayeb "`A second example of using the NCBI taxonomy terms presents a slighly more complicated challenge?"'  -- confusing as written
 OBI currently uses the NCBI taxonomy for its species terms.
-When importing NCBI taxonomy terms as OBI classes, we decided that the information about the term itself was not sufficient on its own: for example if we want to import the term \emph{Mus musculus}, we also want to import its rank information – genus, kingdom, phylum, etc. to allow for expanded queries.
+When importing NCBI taxonomy terms as OBI classes, we decided that the information about the term itself was not sufficient on its own: for example if we want to import the term \emph{Mus musculus}, we also want to import its rank information (\emph{e.g.}, genus, kingdom, phylum. to allow for expanded queries.
 In this case the SPARQL query retrieves all direct superclasses up to one of a set of top-level classes in the taxonomy. 
 Correct inference using the external classes is only guaranteed if the full ontologies are imported.
 We expect to provide an option in the OBI distribution that replaces \textit{external.owl} with a set of import statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. 
 
 Correct inference within OBI and using the external classes is only guaranteed if the full ontologies are imported.
-We expect to provide an option in the OBI distribution where the external.owl file is replaced with a set of corresponding import statements in the \textit{obi.owl} file directly. 
+We expect to provide an option in the OBI distribution where the \emph{external.owl} file is replaced with a set of corresponding import statements in the \textit{obi.owl} file directly. 
 The import statements are generated by extracting the ontology URIs mentioned in \emph{external.owl}. 
 
 An important consideration when importing external classes into OBI with this approach is the correctness of OBI assertions made on external terms.
@@ -171,7 +172,7 @@ We required a mechanism that would allow the release of a public version of OBI\
  Such a process allows users to acquire a traceable version of the ontology that is essentially static and act as a stable reference point for usage, much like the process undertaken in the software industry. 
  Constructing a single OWL file that contained the entire ontology seemed an appropriate step towards this aim.
 Having a dedicated release process further allows us to more carefully control and modify the ontology before making it available.
-Our release process involves a number of automated steps including checks for content quality (e.g., annotations compliant with our policy, OBI-compliant identifiers, disjoints management), syntax (e.g., OWL species validation) and reporting candidate release status to the ontology developers.
+Our release process involves a number of automated steps including checks for content quality (\emph{e.g.}, annotations compliant with our policy, OBI-compliant identifiers, disjoints management), syntax (\emph{e.g.}, OWL species validation) and reporting candidate release status to the ontology developers.
 %From JM: do we mention anywhere previously that we develop in lots of separate OWL files? I think in the introduction we say 10 separate sections, but we don't explicitly say 10 separate owl files.  Maybe we should be clear here?
 %MC: I think that has been removed by Frank - need to keep a note, it should appear in final version. Good catch.
 
@@ -190,18 +191,18 @@ We use a Jena-based\cite{jena} script to read in our branch files and identify m
 %MC: see above for branch files - agreed. Regarding Jena...don't know. There was no specific reason, except I used Jena previously. We could use the owlapi too, or anything else actually doing the job. Maybe even lisp ;)
 
 Such curator reports are rated according to what action needs to be taken: simple warnings for those errors that can be corrected automatically by script or critical alerts for those issues requiring manual intervention from one of our curators. Reports are simple HTML pages displaying terms and associated issues.
-We explored different policies regarding what to do in case of significant errors (e.g. block release), but instead adopted a release early, release often approach in the hope that this would encourage developers to correct mistakes in a timely fashion.
-For example, we would occasionally encounter a problem with the Prot\'eg\'e\cite{protege} editor with one of our annotation properties being saved in the wrong branch file: for instance, when adding a label to one of the instruments after serialization, this label could get stored in the \emph{Biomaterial.owl} file instead of the \emph{InstrumentAndParts.owl} file. 
+We explored different policies regarding what to do in case of significant errors (\emph{e.g.}, block release), but instead adopted a release early, release often approach in the hope that this would encourage developers to correct mistakes in a timely fashion.
+For example, we would occasionally encounter a problem with the Prot\'eg\'e\cite{protege} editor with one of our annotation properties being saved in the wrong branch file. For example, when adding a label to one of the instruments after serialization, this label could get stored in the \emph{Biomaterial.owl} file instead of the \emph{InstrumentAndParts.owl} file. 
 In order to mitigate this, we are considering using an extra annotation property to indicate which branch classes belong in.
 By using this information we could automatically clean up and reorganize branch files according to their logical content.
-Additional scripts perform other quality control checks, including notification on terms that lack a curation status assignment, listing terms with extra curation instances (only one is allowed per term), listing terms missing a label, and listing classes that are asserted under a defined class.
+Additional scripts perform other quality control checks, including notification on terms that lack a curation status assignment, listing terms with extra curation instances (\emph{i.e.}, only one is allowed per term), listing terms missing a label, and listing classes that are asserted under a defined class.
 
 %from JM: in the above where it says 'issues using Protege' we should probably say actually 'user error' as well, in fact it is user error that is issue most of the time not Protege really. The bit about removing the problem using an extra annotation property is also interesting, might in fact introduce new errors?  Will this remove human error or in fact reduce the number of human errors we have along the lines of incorrect branch placement?  I suspect not, though I am just voicing my own personal concerns here. Don't know if this is worth putting in.
 
 \subsection{Distributing OBI with inferred superclasses}
 
 OBI aims to follow Alan Rector's\cite{rector} normalization recommendation by providing an untangled disjoint tree of defined classes and avoiding asserted multiple parenthood at the developers side. However, we also want to provide an enriched post-reasoned user-friendly file.
-To achieve this we classify the hierarchy and add the inferred superclasses via script to our OWL file, thus allowing end users to have the fully inferred hierarchy (now a directed acyclic graph), while keeping the curators version of the ontology untangled and "clean".
+To achieve this we classify the hierarchy and add the inferred superclasses via script to our OWL file, thus allowing end users to have the fully inferred hierarchy (now a directed acyclic graph), while keeping the curators version of the ontology untangled and ``clean''.
 
 \subsection{Assuming that all classes have instances}
 
@@ -227,19 +228,19 @@ Asserting a distinct anonymous individual as member of each leaf class means tha
 
 We plan to suggest that a similar mechanism is adopted by the OWL versions of all OBO ontologies.
 We note that this choice is not without problems.
-OBI, augmented with these 'assumed individuals', becomes more difficult to reason with reliably - we have had problems with both Pellet and Fact++ and are at the moment communicating with the developers of those reasoners to determine the source of the problem.
+OBI, augmented with these 'assumed individuals', becomes more difficult to reason with reliably - we have had problems with both Pellet and Fact++ and are at the moment communicating with the developers of those reasoners to determine the source of the problem. %Rb just saying you have "`problems"' isn't very informative. State what these are
 Therefore, we currently use the assumed individuals to compute the inferred class hierarchy, but do not include them in the released version of OBI.
 
 \subsection{Increasing the readability of the RDF/XML version of OBI}
 
 We use numerical identifiers for all our terms: classes, instances, but also for annotation-, data- and object properties.
-However, we sometimes need to edit the OWL RDF/XML directly, which is cumbersome because numeric IDs are not easily remembered by humans.
+However, we sometimes need to edit the OWL RDF/XML directly, which is cumbersome because numeric identifiers (IDs) are not easily remembered by humans.
 To increase human readability of the owl source code we post-process the RDF/XML and generate human readable XML comments for the released version of the file.
-We recommend that tool developers offer an option to use some annotation property as an XML comment when serializing OWL, as shown in figure \ref{fig:comments}.  
+We recommend that tool developers offer an option to use some annotation property as an XML comment when serializing OWL (Figure \ref{fig:comments}).  
 
 \begin{figure}[t]
 \centering \includegraphics*[width=1\columnwidth]{comments}
-\caption{Example of XML comments used to note what ids correspond to in RDF/XML serialization.}
+\caption{Example of XML comments used to note what IDs correspond to in RDF/XML serialization.}
 \label{fig:comments}
 \end{figure}
 
@@ -295,7 +296,7 @@ We believe it would be beneficial to the community if this practice became the g
 %JM: Added a little bit to last line. DS, even with collab development, you would still want versioning on some level I believe.
 %MC: not sure what last bit adds, but ok.
 
-While developing OBI we prefer stability (i.e., not being surprised by unplanned-for changes), and we work around the lack of published ontology versions by relying on local copies of imported ontologies.
+While developing OBI we prefer stability (\emph{i.e.}, not being surprised by unplanned-for changes), and we work around the lack of published ontology versions by relying on local copies of imported ontologies.
 %DS not sure I get this...
 %MC: we use local copies (in the external directory) of resources we import. For example last time there was a change in RO, were the parent relation was obsoleted. If we had been importing the live version all our relations would have been obsoleted. To be sure we don't have issues when external resources update, we rely on local copies.
 %This is a little contradictory to what we say about releasing 'early and often' which suggests a more dynamic approach, less reliant upon stability and more 'willing to accept a degree of error'. I would be tempted to take this out I think.  MC, AR?
