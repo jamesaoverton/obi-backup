@@ -243,7 +243,7 @@
 			       )))
 	 (latest (car (sort versions 'string-greaterp
 			    :key (lambda(el) (car (last (pathname-directory el))))))))
-    (merge-pathnames merged latest)))
+    (values (merge-pathnames merged latest) latest)))
     
 (defun lost-terms (&key
 		   (current (load-kb-jena "obi:branches;obil.owl"))
