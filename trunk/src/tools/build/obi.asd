@@ -23,7 +23,7 @@
 				    :type :wild))
 
 	("releases;**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 4)
-						       '("tags" :wild-inferiors))
+						       '(:wild-inferiors))
 				    :name :wild
 				    :type :wild))
 	))
