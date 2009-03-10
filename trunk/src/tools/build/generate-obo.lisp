@@ -31,6 +31,7 @@
   "Abbreviate a URI using the OBO conventions for namespaces."
   (let* ((full (uri-full uri))
 	 (local  (#"replaceFirst" full ".*/(.*)" "$1")))
+    (setq local (#"replaceFirst" local "([A-Za-z]{2,7})_" "$1:"))
     (if (is-obi-uri uri)
 	local
 	(if (#"matches" local "^ro\\.owl#.*")
@@ -45,7 +46,9 @@
 		    (progn
 		      ;(format *error-output* "Found (and replaced) MSI id ~a~%" local)
 		      (#"replaceFirst" local "[A-Z]+.owl#msi_(.*)" "OBI:X$1"))
-		    (#"replaceFirst" local "#" ":")))))))
+		    (let ((clean (#"replaceFirst" local "#" ":")))
+		      (#"replaceFirst" clean "(\\S+):\\S+?:(\\d+)" "$1:$2")))
+		    )))))
 	
 (defvar *all-prefixes* nil)
 
@@ -79,18 +82,18 @@
 				  (if has-isbn
 				      (format nil "ISBN:~a ~s" has-isbn defs)
 				      ;; otherwise, we are not a term and use OBO:sourced and the string for definition source
-				      (format nil "OBI:sourced ~s" defs)))))))))
-	 (loop for defs in definition-source
-	    for is-msi = (or (search "MSI.owl" defs) (search "NMR.owl" defs) (search "CHROM.owl" defs)) ; special case the MSI ontologies. Prototype.
-	    when is-msi
-	    collect (format nil "xref_analog: MSI:~a ~s~%" (caar (all-matches defs ".owl#msi_(.*)" 1)) defs))
-	 )
-	;; no definition source. Return empty list
-	(if (#"matches" (uri-full class)  ".*/OBI_.*")
-	    " [OBI:sourced \"OBI Consortium http://purl.obofoundry.org/obo/obi\"]"
-	    (progn 
-	      (format nil " [OBI:imported ~s]" (ontology-of class))
-	      )))))
+				      (format nil "OBI:sourced ~s" (#"replaceFirst" defs "OBI_" "OBI:" )))))))))))
+	(loop for defs in definition-source
+	   for is-msi = (or (search "MSI.owl" defs) (search "NMR.owl" defs) (search "CHROM.owl" defs)) ; special case the MSI ontologies. Prototype.
+	   when is-msi
+	   collect (format nil "xref_analog: MSI:~a ~s~%" (caar (all-matches defs ".owl#msi_(.*)" 1)) defs))
+	)
+    ;; no definition source. Return empty list
+    (if (#"matches" (uri-full class)  ".*/OBI_.*")
+	" [OBI:sourced \"OBI Consortium http://purl.obofoundry.org/obo/obi\"]"
+	(progn 
+	  (format nil " [OBI:imported ~s]" (ontology-of class))
+	  ))))
 		     
 
 (defun generate-obo ( &key (kb (load-kb-jena "obi:branches;obil.owl"))
