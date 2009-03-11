@@ -1,4 +1,4 @@
-(defparameter *core-terms* 
+(defparameter *core-classes* 
   (remove-duplicates(list !obo:IAO_0000018 ;;material entity
 	!obo:OBI_0100026 ;;organism
 	!obo:OBI_0000245 ;;organization
@@ -55,9 +55,6 @@
 
 	!obo:OBI_0200000 ;;DT
 	!obo:OBI_0200166 ;;DT objective
-	!obo:OBI_0000417 ;; achieves_planned_objective
-	!obo:OBI_0000301 ;;has_specified_output_information
-	!obo:OBI_0000315 ;;has_specified_input_information
 	!obo:IAO_0000027 ;;data item - already in from DENRIE
 	!obo:IAO_0000100 ;;data set - already in from DENRIE
 	;;report figure -  - already in from DENRIE
@@ -77,18 +74,54 @@
 	!obo:OBI_0000272 ;;protocol - already in from PaPP
 	)))
 
+(defparameter *core-properties*
+  (list
+   !obo:OBI_0000417 ;; achieves_planned_objective
+   !obo:OBI_0000301 ;;has_specified_output_information
+   !obo:OBI_0000315 ;;has_specified_input_information
+   ))
+
+
 (defun write-core-terms (kb &optional (dest "obi:branches;core.owl"))
-  (loop with queue = *core-terms*
-       while queue
-       for term = (pop queue)
-       with supers = (make-hash-table)
-     do
-       (dolist (one (parents term kb))
-	 (unless (#"matches" (localname one) "_.*")
-	   (pushnew one (gethash term supers)))
-	 (push one queue))
-     finally 
-       (return-from write-core-terms supers)
-       ))
+  (let ((*default-kb* kb)
+	(supers (make-hash-table))
+	(queue *core-classes*)
+	(annotation-properties nil))
+    (labels ((do-parents (term parents)
+	       (let* ((dont-show-parents (remove-if-not
+					  (lambda(e) (#"matches"  (car (rdfs-label e kb)) "^_.*"))
+					  (remove !owl:Thing parents)))
+		      (show-parents (set-difference parents dont-show-parents)))
+		 (if dont-show-parents 
+		     (do-parents term (union show-parents (apply 'append (mapcar 'parents dont-show-parents))))
+		     (dolist (one show-parents)
+		       (pushnew one (gethash term supers))
+		       (push one queue)))))
+	     (remember-annotation-property (p) (pushnew p annotation-properties)))
+      (loop for term = (pop queue)
+	 do
+	   (unless (eq term !owl:Thing)
+	     (do-parents term (or (parents term) (list !owl:Thing))))
+	 while queue
+	 finally 
+	 (with-ontology obi-core ()
+	     ((loop for sub being the hash-keys of supers 
+		 using (hash-value supers)
+		 collect (apply 'class sub :partial 
+				(append (loop for (p v) in (annotation-property-values-or-labels sub)
+					     do (remember-annotation-property p)
+					   collect (annotation p v))
+					(loop for label in (rdfs-label sub kb)
+					     collect (label label))
+				supers)
+				))
+	      (loop for p in annotation-properties collect (annotation-property p (label (car (rdfs-label p kb)))))
+	      )
+	   (show-classtree obi-core :depth 10)
+	   (write-rdfxml obi-core dest)
+	   (return-from write-core-terms supers))
+	 ))))
+
+
 
        
