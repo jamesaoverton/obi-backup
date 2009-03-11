@@ -82,6 +82,9 @@
    ))
 
 
+;(setq kb (load-kb-jena "~/repos/obi/releases/2009-03-10/branches/obil.owl"))
+; doesn't write core properties yet.
+; doesn't write axioms, either real or as text.
 (defun write-core-terms (kb &optional (dest "obi:branches;core.owl"))
   (let ((*default-kb* kb)
 	(supers (make-hash-table))
@@ -104,8 +107,10 @@
 	     (do-parents term (or (parents term) (list !owl:Thing))))
 	 while queue
 	 finally 
-	 (with-ontology obi-core ()
-	     ((loop for sub being the hash-keys of supers 
+	 (with-ontology obi-core (:base (uri-full !obi:) :about (uri-full !obi:obi.owl))
+	     ((ontology-annotation !<http://protege.stanford.edu/plugins/owl/protege#defaultLanguage> "en")
+	      (annotation-property !<http://protege.stanford.edu/plugins/owl/protege#defaultLanguage>)
+	      (loop for sub being the hash-keys of supers 
 		 using (hash-value supers)
 		 collect (apply 'class sub :partial 
 				(append (loop for (p v) in (annotation-property-values-or-labels sub)
@@ -116,6 +121,8 @@
 				supers)
 				))
 	      (loop for p in annotation-properties collect (annotation-property p (label (car (rdfs-label p kb)))))
+	      (loop for i in (instances !curation-status) collect
+		   (individual i (label (car (rdfs-label i kb)))  ))
 	      )
 	   (show-classtree obi-core :depth 10)
 	   (write-rdfxml obi-core dest)
