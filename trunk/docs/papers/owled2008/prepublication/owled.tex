@@ -90,7 +90,8 @@ Ontology, Collaborative development, OWL, reasoning, Bioinformatics, OBI
 \label{intro}
 
 The Ontology for Biomedical Investigations (OBI) Consortium\footnote{http://purl.obofoundry.org/obo/obi} is developing an ontology for the description of biological and clinical investigations.
-It is written in OWL DL, and built using the Basic Formal Ontology\footnote{http://ifomis.org/bfo/} (BFO)\cite{bfo} as its upper level ontology.
+It is written in OWL DL, and built using the Basic Formal Ontology%\footnote{http://ifomis.org/bfo/} 
+(BFO)\cite{bfo} as its upper level ontology.
 The OBI Consortium is a member of the OBO Foundry\cite{foundry}, a collective of developers of science-based ontologies who are establishing a set of principles for ontology development with the goal of creating a suite of interoperable reference ontologies in the biomedical domain. 
 %MC: I find the second sentence strange (even though it was the original version ;) ) - keep for final review.
 
@@ -99,7 +100,7 @@ The OBI Consortium is a member of the OBO Foundry\cite{foundry}, a collective of
 In order to enable development of OBI as a large collaborative project, a strategy was required that would allow concurrent editing, distributed development, version control, offline development, use of different tools and editors, and script-based augmentation of the ontology content.
 A review of the existing collaborative ontology development tools failed to identify a single application that met these requirements.
 
-As a result, we chose to rely on a small group of tools, augmented with a structured mechanism for development; the ontology structure was separated into 10 sections for concurrent development by corresponding groups, with each group working more or less independently.
+As a result, we chose to rely on a small group of tools, augmented with a structured mechanism for development; the ontology structure was separated into 10 branches (or sections) for concurrent development by corresponding groups, with each group working more or less independently.
 This presented some challenges preparing OBI for distribution, as parallel editing of OWL files can lead to non-unique class identifier assignment and conflicts within the ontology. We describe some of these technical challenges and solutions in this paper.
 
 One of the fundamental principles of the OBO Foundry is to reuse, where sensible, existing ontology resources.
@@ -108,20 +109,20 @@ are under active development and may not be aligned with its design (e.g., not u
 
 One alternative to the OWL built-in import mechanism would be to copy only parts of the external ontology into \emph{obi.owl}. Software that extracts a ``module''\cite{module} is in early development and we plan to try such strategies in the future. %helpful to define module here to help explain
 Our solution was to develop a set of steps or guidelines that describes how to import selected terms without the overhead of importing the complete ontology from which the terms derive.
-These guidelines area called the Minimal Information to Reference an External Ontology Term (MIREOT) and are described in this paper.
+These guidelines are called the Minimum Information to Reference an External Ontology Term (MIREOT) and are described in this paper.
 
 \section{OBI development practices}
 
 
-\subsection{Minimal Information to Reference External Ontology Terms (MIREOT)}
+\subsection{Minimum Information to Reference External Ontology Terms (MIREOT)}
 
 In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
 The practice of the Gene Ontology (GO)\cite{go} is that terms are deprecated if their intended meaning changes\cite{deprecated}.
 We therefore consider terms (\emph{i.e.}, classes) a basic unit of import.
-According to the MIREOT guidelines the minimal amount of information needed to reference an external class is (i) The source ontology URI; (ii) the source term URI, which generally remains stable and can be used as an unambiguous reference; and (iii) the direct superclass in the target hierarchy (\emph{i.e.}, what OBI class the imported class is a subclass of).
+According to the MIREOT guidelines the minimum amount of information needed to reference an external class is (i) The source ontology URI; (ii) the source term URI, which generally remains stable and can be used as an unambiguous reference; and (iii) the direct superclass in the target hierarchy (\emph{i.e.}, what OBI class the imported class is a subclass of).
 
-We store this minimal information set in a separate file called \emph{external.owl}. 
-Additional information, such as labels and definitions, are mapped into the corresponding OBI annotation properties and stored in a separate file, called \emph{externalDerived.owl}. This additional information is more prone to change, and therefore a further file allows for easy update of this information.
+We store this minimum information set in a separate file called \emph{external.owl}. 
+Additional information, such as labels and definitions, are mapped into the corresponding OBI annotation properties and stored in a separate file, called \emph{externalDerived.owl}. This additional information is more prone to change, and a distinct file allows for easy update of this information.
 Updates are managed using a set of templated SPARQL queries\footnote{http://purl.obofoundry.org/obo/obi/repository/trunk/src/tools/build/external-templates.txt}, which specifies which extra information about the classes in the \emph{external.owl} file to gather.
 These are then retrieved using queries against the Neurocommons\footnote{http://neurocommons.org/} SPARQL\footnote{http://www.w3.org/TR/rdf-sparql-query/} endpoint\footnote{http://sparql.neurocommons.org/sparql}.%\footnote{http://www.w3.org/TR/rdf-sparql-protocol/}. 
 
@@ -142,20 +143,19 @@ These are then retrieved using queries against the Neurocommons\footnote{http://
 
 
 Figure \ref{fig:cell} illustrates how the implementation of the MIREOT guidelines works, with the example of  replacing of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
-The second example presents a slightly more complicated challenge. %RB sory what second example, was this brought up before? mayeb "`A second example of using the NCBI taxonomy terms presents a slighly more complicated challenge?"'  -- confusing as written
+A second example presents a slightly more complicated challenge. %RB sory what second example, was this brought up before? mayeb "`A second example of using the NCBI taxonomy terms presents a slighly more complicated challenge?"'  -- confusing as written
 OBI currently uses the NCBI taxonomy for its species terms.
 When importing NCBI taxonomy terms as OBI classes, we decided that the information about the term itself was not sufficient on its own: for example if we want to import the term \emph{Mus musculus}, we also want to import its rank information (\emph{e.g.}, genus, kingdom, phylum. to allow for expanded queries.
 In this case the SPARQL query retrieves all direct superclasses up to one of a set of top-level classes in the taxonomy. 
-Correct inference using the external classes is only guaranteed if the full ontologies are imported.
-We expect to provide an option in the OBI distribution that replaces \textit{external.owl} with a set of import statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. 
 
+%need break here (MC)
 Correct inference within OBI and using the external classes is only guaranteed if the full ontologies are imported.
 We expect to provide an option in the OBI distribution where the \emph{external.owl} file is replaced with a set of corresponding import statements in the \textit{obi.owl} file directly. 
 The import statements are generated by extracting the ontology URIs mentioned in \emph{external.owl}. 
 
 An important consideration when importing external classes into OBI with this approach is the correctness of OBI assertions made on external terms.
 In adding new axioms, such as the subclass axiom, to an external term within OBI, the aim is to only assert true statements about the terms.
-However, new axioms are added on the assumption of correct interpretation of the definition.
+%However, new axioms are added on the assumption of correct interpretation of the definition.
 It is likely that an interaction with the external ontology efforts is necessary to collaborate on this important issue. Further, it is also likely that this approach is mutually beneficial in that new knowledge may be gained by the external, source ontologies, whilst OBI has a mechanism for validating this additional knowledge. This should be considered a propitious emergent feature of the collaborative nature of OBO Foundry ontology development and not a disadvantage of the approach.
 %DS I am not sure I understand the above sentence.
 %JM: It means we are stating new things as true about classes that we do not own.
@@ -192,7 +192,8 @@ We use a Jena-based\cite{jena} script to read in our branch files and identify m
 
 Such curator reports are rated according to what action needs to be taken: simple warnings for those errors that can be corrected automatically by script or critical alerts for those issues requiring manual intervention from one of our curators. Reports are simple HTML pages displaying terms and associated issues.
 We explored different policies regarding what to do in case of significant errors (\emph{e.g.}, block release), but instead adopted a release early, release often approach in the hope that this would encourage developers to correct mistakes in a timely fashion.
-For example, we would occasionally encounter a problem with the Prot\'eg\'e\cite{protege} editor with one of our annotation properties being saved in the wrong branch file. For example, when adding a label to one of the instruments after serialization, this label could get stored in the \emph{Biomaterial.owl} file instead of the \emph{InstrumentAndParts.owl} file. 
+For example, we would occasionally encounter a problem with the Prot\'eg\'e\cite{protege} editor with one of our annotation properties being saved in the wrong branch file. For example, when adding a label to one of the instruments after serialization, this label could get stored in the \emph{Biomaterial.owl} file instead of the \emph{InstrumentAndParts.owl} file. %MC:need to state what is Protege issue
+As only one file can be edited at a time using Prot\'eg\'e\, this causes editing problems if the class needs to be updated again later on.
 In order to mitigate this, we are considering using an extra annotation property to indicate which branch classes belong in.
 By using this information we could automatically clean up and reorganize branch files according to their logical content.
 Additional scripts perform other quality control checks, including notification on terms that lack a curation status assignment, listing terms with extra curation instances (\emph{i.e.}, only one is allowed per term), listing terms missing a label, and listing classes that are asserted under a defined class.
@@ -201,8 +202,9 @@ Additional scripts perform other quality control checks, including notification 
 
 \subsection{Distributing OBI with inferred superclasses}
 
-OBI aims to follow Alan Rector's\cite{rector} normalization recommendation by providing an untangled disjoint tree of defined classes and avoiding asserted multiple parenthood at the developers side. However, we also want to provide an enriched post-reasoned user-friendly file.
-To achieve this we classify the hierarchy and add the inferred superclasses via script to our OWL file, thus allowing end users to have the fully inferred hierarchy (now a directed acyclic graph), while keeping the curators version of the ontology untangled and ``clean''.
+OBI aims to follow Alan Rector's\cite{rector} normalization recommendation by providing an untangled disjoint tree of defined classes and avoiding asserted multiple parenthood on the developers side. However, we also want to provide an enriched post-reasoned user-friendly file.
+To achieve this we classify the hierarchy and add the inferred superclasses via script to our OWL file, thus allowing end users to have the fully inferred hierarchy %(now a directed acyclic graph) - OBI is always a DAG
+, while keeping the curators version of the ontology untangled and ``clean''.
 
 \subsection{Assuming that all classes have instances}
 
@@ -215,11 +217,10 @@ To achieve this we classify the hierarchy and add the inferred superclasses via 
 In Figure \ref{fig:instances}, we define a \emph{manufacturer} class, an object property \emph{is manufactured by} with range \emph{manufacturer role}, and add that a specific microarray type is manufactured by an organization \emph{Affymetrix}.
 We were expecting the reasoner to classify \emph{Affymetrix} as \emph{manufacturer}.
 However this is not the case unless we explicitly add a \emph{microarray} individual to the ontology.
-In the framework of BFO, all classes must have instances.
 
+In the framework of BFO, all classes must have instances.
 %DS this sentence is not clear to me. Is this problem occuring due to the definition of what a class is in OWL or in BFO?. Do you mean in the realism perspective the word class refers to an extension of a type (the instances of a type)? Or do you mean that in a realist perspective one should not create classes that do not have instances assigned (abstract classes in Frames speak)? How does this issue relate to the Format changes in OWL2 (Will we have the same problem there)?
 %MC: one of the principle with BFO is all classes have instances - I could find back the reference - we had a reviewer mentioning the same point IIRC.
-
 Ideally, we would indicate our assumption that all classes have at least one individual to a reasoner and have it compute subsumptions and other inferences on that basis, instead of checking satisfiability by asserting that at least one instance exists, serially, for each class.
 However the reasoners we use, Pellet\cite{pellet} and Fact++\cite{fact}, do not offer this choice, and we decided to script the addition of anonymous individuals of each type named in the ontology as part of our release process.
 We do this for each leaf class, and before computing the inferred superclasses.
@@ -228,7 +229,7 @@ Asserting a distinct anonymous individual as member of each leaf class means tha
 
 We plan to suggest that a similar mechanism is adopted by the OWL versions of all OBO ontologies.
 We note that this choice is not without problems.
-OBI, augmented with these 'assumed individuals', becomes more difficult to reason with reliably - we have had problems with both Pellet and Fact++ and are at the moment communicating with the developers of those reasoners to determine the source of the problem. %Rb just saying you have "`problems"' isn't very informative. State what these are
+OBI, augmented with these 'assumed individuals', becomes more difficult to reason with reliably - we have had problems with both Pellet and Fact++ and are at the moment communicating with the developers of those reasoners to determine the source of the problem. %Rb just saying you have "`problems"' isn't very informative. State what these are %MC: well if we knew it woudl already be progress :)
 Therefore, we currently use the assumed individuals to compute the inferred class hierarchy, but do not include them in the released version of OBI.
 
 \subsection{Increasing the readability of the RDF/XML version of OBI}
@@ -321,7 +322,7 @@ Due to the number and distributed location of developers and domain experts, OBI
 
 In memory of our friend and colleague William Bug, Ontological Engineer. 
 
-The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Mervi Heiskanen, Tina Hernandez-Boussard, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann. The author’s work is partially supported by funding from the NIH(R01EB005034), the EC EMERALD project(LSHG-CT-2006-037686), the BBSRC(BB/C008200/1), the EU NoE NuGO(NoE 503630), the CARMEN project EPSRC(EP/E002331/1), and the Michael Smith Foundation for Health Research.
+The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Mervi Heiskanen, Tina Hernandez-Boussard, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann. The author’s work is partially supported by funding from the NIH(R01EB005034), the EC EMERALD project(LSHG-CT-2006-037686), the BBSRC(BB/C008200/1), the EU NoE NuGO(NoE 503630), the CARMEN project EPSRC(EP/E002331/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139) and the Michael Smith Foundation for Health Research.
 
 
 \bibliographystyle{elsart-num-sort}
