@@ -61,11 +61,11 @@
 %% all of the authors are from the same institution you need
 %% not have the lables for the author and address commands.
 
-\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, Vancouver, BC, Canada}
+\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, 675 West 10th Avenue, Vancouver V5Z 1L3, BC, Canada}
 \address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
-\address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
-\address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne, UK}
-\address[ebi]{The European Bioinformatics Institute, Cambridge, CB101SD, UK}
+\address[new]{School of Computing Science, Newcastle University, Newcastle upon Tyne NE1 7RU, UK}
+\address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne NE1 7RU, UK}
+\address[ebi]{The European Bioinformatics Institute, Cambridge, Wellcome Trust Genome Campus, Hinxton CB101SD, UK}
 \address[IMBI]{Institute of Medical Biometry and Medical Informatics (IMBI), University Medical Center, 70104 Freiburg, Germany}
 \address[sc]{Science Commons, Cambridge, MA, USA}
 
@@ -116,14 +116,22 @@ Additional information, such as labels and definitions, are mapped into the corr
 Updates are managed using a set of templated SPARQL queries\footnote{http://purl.obofoundry.org/obo/obi/repository/trunk/src/tools/build/external-templates.txt}, which specifies which extra information about the classes in the \emph{external.owl} file to gather.
 These are then retrieved using queries against the Neurocommons\footnote{http://neurocommons.org/} SPARQL\footnote{http://www.w3.org/TR/rdf-sparql-query/} endpoint\footnote{http://sparql.neurocommons.org/sparql}.
 
-\begin{figure}[t]
-\centering \includegraphics*[width=1\columnwidth]{cell}
-\caption{The to-be-imported \emph{cell} term, as viewed in its original context in the Cell Type ontology class tree. The \emph{cell by organism} and \emph{cell by class} are examples of those we would prefer to not import into OBI.}
-\label{fig:cell}
-\end{figure}
+%\begin{figure}[t]
+%\centering \includegraphics*[width=1\columnwidth]{cell}
+%\caption{The to-be-imported \emph{cell} term, as viewed in its original context in the Cell Type ontology class tree. The \emph{cell by organism} and \emph{cell by class} are examples of those we would prefer to not import into OBI.}
+%\label{fig:cell}
+%\end{figure}
 
 
-Figure \ref{fig:cell} illustrates how the implementation of the MIREOT guidelines works, with the example of  replacing of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
+%Figure \ref{fig:cell} illustrates how the implementation of the MIREOT guidelines works, with the example of  replacing of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
+As an example, we recently replaced the OBI class cell with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}. 
+Following the MIREOT guidelines, we identify the minimum information required in this case: 
+\begin{enumerate}
+\item the URI of the term cell: \url{http://purl.org/obo/owl/CL#CL_0000000}
+\item the URI of the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL}
+\item the position of cell in the OBI hierarchy: as a subclass of material entity: \url{http://purl.obofoundry.org/obo/IAO_0000118} 
+\end{enumerate}
+
 A second example presents a slightly more complicated challenge.
 OBI currently uses the NCBI taxonomy for its species terms.
 When importing NCBI taxonomy terms as OBI classes, we decided that the information about the term itself was not sufficient on its own: for example if we want to import the term \emph{Mus musculus}, we also want to import its rank information (\emph{e.g.}, genus, kingdom, phylum. to allow for expanded queries.
@@ -163,7 +171,7 @@ To achieve this we classify the hierarchy and add the inferred superclasses via 
 \subsection{Assuming that all classes have instances}
 
 \begin{figure}[t]
-\centering \includegraphics*[width=1\columnwidth]{instances}
+\centering \includegraphics*[width=1\columnwidth]{inference}
 \caption{Abstract syntax for an ontology for which the desired inference is not made.}
 \label{fig:instances}
 \end{figure}
@@ -189,7 +197,7 @@ To increase human readability of the owl source code we post-process the RDF/XML
 We recommend that tool developers offer an option to use some annotation property as an XML comment when serializing OWL (Figure \ref{fig:comments}).  
 
 \begin{figure}[t]
-\centering \includegraphics*[width=1\columnwidth]{comments}
+\centering \includegraphics*[width=1\columnwidth]{xmlcomments}
 \caption{Example of XML comments used to note what IDs correspond to in RDF/XML serialization.}
 \label{fig:comments}
 \end{figure}
@@ -248,9 +256,15 @@ In memory of our friend and colleague William Bug, Ontological Engineer.
 
 The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Mervi Heiskanen, Tina Hernandez-Boussard, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann. The author’s work is partially supported by funding from the National Institute of Biomedical Imaging and Bioengineering, NIH; Grant Number: EB005034, the EC EMERALD project(LSHG-CT-2006-037686), the BBSRC(BB/C008200/1), the EU NoE NuGO(NoE 503630), the CARMEN project EPSRC(EP/E002331/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139) and the Michael Smith Foundation for Health Research.
 
+\section{Disclosure Statement}
+
+The authors declare no conflict of interests. 
+MC and AR conceived and implemented the project. All authors contributed to the writing of the manuscript and to aspects of the development of OBI. All authors read and approved the final manuscript.
 
 \bibliographystyle{elsart-num-sort}
 
 \bibliography{owled}
+
+
 
 \end{document}
