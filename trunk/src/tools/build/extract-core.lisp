@@ -1,5 +1,6 @@
 (defparameter *core-classes* 
-  (remove-duplicates(list !obo:IAO_0000018 ;;material entity
+  (remove-duplicates(list 
+!snap:MaterialEntity ;;material entity
 	!obo:OBI_0100026 ;;organism
 	!obo:OBI_0000245 ;;organization
 	!chebi:23367	 ;;molecular entities
@@ -37,20 +38,29 @@
 	!obo:OBI_0000112 ;;specimen role
 
 
-
-	!obo:OBI_0000066 ;;investigation
+	!obo:OBI_0000274 ;;adding a material entity into a target (was material administration?)
+	!obo:OBI_0000443 ;;analyte assay
+	!obo:OBI_0000652 ;; material combination
+	!obo:OBI_0600014 ;;material separation
+	!obo:OBI_0000011 ;;planned process
+	!obo:OBI_0000094 ;;processing material - was artifact creation?
+	!obo:OBI_0000471 ;;study design execution
+	!obo:OBI_0000070 ;;assay
+	!obo:OBI_0000457 ;;manufacturing
+	!obo:OBI_0000339 ;;planning
+	!obo:OBI_0000340 ;;documenting
 	!obo:OBI_0500000 ;;study design - already in from denrie
 	!obo:OBI_0000272 ;;protocol
-	!obo:OBI_0000070 ;;assay
-	!obo:OBI_0000443 ;;analyte assay
-	!obo:OBI_0000274 ;;adding a material entity into a target (was material administration?)
-	!obo:OBI_0000011 ;;planned process
+	!obo:OBI_0000066 ;;investigation
 	!obo:IAO_0000005 ;;objective specification - already in from DENRIE
 	!obo:IAO_0000104 ;;plan specification
-	!obo:OBI_0000094 ;;processing material - was artifact creation?
-	!obo:OBI_0600014 ;;material separation
-	!obo:OBI_0000457 ;;manufacturing
-
+	!obo:OBI_0000441 ;;assay objective
+	!obo:OBI_0000437 ;;analyte measuring objective
+	!obo:OBI_0000456 ;;material transformation objective
+	!obo:OBI_0000458 ;;manufacturing objective
+	!obo:OBI_0000686 ;;material combination objective
+	!obo:OBI_0000434 ;;adding material objective
+	!obo:OBI_0000639 ;;material separation objective
 
 
 	!obo:OBI_0200000 ;;DT
@@ -121,8 +131,7 @@
 				supers)
 				))
 	      (loop for p in annotation-properties collect (annotation-property p (label (car (rdfs-label p kb)))))
-	      (loop for i in (instances !curation-status) collect
-		   (individual i (label (car (rdfs-label i kb)))  ))
+	     
 	      )
 	   (show-classtree obi-core :depth 10)
 	   (write-rdfxml obi-core dest)

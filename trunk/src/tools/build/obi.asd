@@ -49,6 +49,7 @@
 	       (:file "create-external-derived")
 	       (:file "comment-ids-in-owl-file")
 	       (:file "add-assumed-individuals")
+	       (:file "extract-core")
 	       (:file "generate-obo"))
 	      :depends-on (macros)))
      :depends-on (owl))
