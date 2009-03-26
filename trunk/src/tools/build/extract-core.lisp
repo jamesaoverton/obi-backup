@@ -8,17 +8,19 @@
 	!obo:OBI_0000256 ;;environmental matter
 	!obo:OBI_0100015 ;;anatomical entity
 	!obo:OBI_0000047 ;;processed material - was artifact object
-	!obo:OBI_0100051 ;;specimen
+	;;!obo:OBI_0100051 ;;specimen
 
 
 
 	!obo:IAO_0000027 ;;data item
 	!obo:IAO_0000100 ;;data set
-	;;data structure
+	!obo:OBI_0000658 ;;data structure (data representational model)
 	!obo:IAO_0000091 ;;narrative object - report
 	!obo:IAO_0000059 ;;narrative object - figure
 	!obo:IAO_0000010 ;;software
-	;;variable
+	!obo:IAO_0000010 ;;controlled variable specification
+	!obo:IAO_0000014 ;;dependent variable specification
+	!obo:IAO_0000011 ;;independent variable specification
 	!obo:OBI_0000074 ;;hypothesis
 	!obo:IAO_0000088 ;;report of results
 	!obo:IAO_0000035 ;;conclusion
@@ -33,9 +35,13 @@
 	!obo:OBI_0000067 ;;evaluant role
 	!obo:OBI_0000086 ;;reagent role
 	!obo:OBI_0000133 ;;reference role
-	;;study personnel role
+	!obo:OBI_0000202 ;;investigation agent role - was study personnel role
 	!obo:OBI_0000097 ;;study subject role
 	!obo:OBI_0000112 ;;specimen role
+	!obo:OBI_0000111 ;;study participant role 
+
+
+
 
 
 	!obo:OBI_0000274 ;;adding a material entity into a target (was material administration?)
