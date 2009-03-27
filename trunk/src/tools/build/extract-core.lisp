@@ -5,7 +5,7 @@
 	!obo:OBI_0000245 ;;organization
 	!chebi:23367	 ;;molecular entities
 	!obo:OBI_0302729 ;;chemical entities in solution
-	!obo:OBI_0000256 ;;environmental matter
+	;;!obo:OBI_0000256 ;;environmental matter - tossed for now
 	!obo:OBI_0100015 ;;anatomical entity
 	!obo:OBI_0000047 ;;processed material - was artifact object
 	;;!obo:OBI_0100051 ;;specimen
