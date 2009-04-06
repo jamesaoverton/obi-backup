@@ -166,18 +166,18 @@
     <obo:IAO_0000118 xml:lang="en"></obo:IAO_0000118>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000300"/>
+          <owl:ObjectProperty rdf:about="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600014"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000300"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600014"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -208,25 +208,10 @@ is realized in same process than intervention design or observation design are r
 Alan Ruttenberg: key: study design specifies what you are observing. That entity has the subject role.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000294"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:unionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000115"/>
-              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0300311"/>
-            </owl:unionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000471"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >study subject role inheres in an entity and is realized by the 
-    implementation of (1) an observation design specifying how the entity is 
-    to be observed and/or (2) an intervention design specifying the protocols 
-    applied to anything participating in the study, whether they are treated 
-    or acting as control.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
@@ -243,19 +228,36 @@ Alan Ruttenberg: key: study design specifies what you are observing. That entity
     will either add population representative to the definition of study 
     subject or recognize case study subject as an exception to this and make a 
     subclass of study subject role that is a population representative.</obo:IAO_0000116>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000471"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Before Jan 09 Workshop definition:study subject role inheres in an entity and is realized by the 
+    implementation of (1) an observation design specifying how the entity is 
+    to be observed and/or (2) an intervention design specifying the protocols 
+    applied to anything participating in the study, whether they are treated 
+    or acting as control.</obo:IAO_0000116>
     <obo:IAO_0000116 xml:lang="en">parasite example
 people infected, then extract parasite which are then tested = observation study of the parasite
 1 study in which we observe people and 1 study in which subject is parasite is one way to split this.  the true definition will come from the study design specification.</obo:IAO_0000116>
     <obo:IAO_0000116 xml:lang="en">subject/trial subject. An individual who participates in a clinical trial, either as recipient of the investigational product(s)) or as a control. [ICH] See also healthy volunteer, human subject.; human subject. Individual who is or becomes a participant in research, either as a recipient of the test article or as a control. A subject may be either a healthy human or a patient. [21 CFR50.3]. Synonym: subject/trial subject.</obo:IAO_0000116>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >study subject role inheres in an entity and realized through the execution of a study design in which the entity participates by being that which the results are about.</obo:IAO_0000115>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Human subjects in a clinical trial, rats in a toxicogenomics study, tissue cutlures subjected to drug tests, fish observed in an ecotoxicology study.</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000294"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000115"/>
+              <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0300311"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">GROUP:  Role Branch</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000025">
@@ -330,26 +332,26 @@ people infected, then extract parasite which are then tested = observation study
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Definition of pellet :the material concentrated at the bottom of a centrifuge tube after centrifugation. http://www.everythingbio.com/glos/definition.php?word=pellet</obo:IAO_0000112>
+    <obo:IAO_0000115 xml:lang="en">pellet role is a role which inheres in a material entity and is realized by a material separation process using gravitational force generated by a centrifuge in which the material bearing the pellet role is the heavier or heaviest component of the output material..</obo:IAO_0000115>
+    <obo:OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pellet role</obo:OBI_0000284>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
         <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302886"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >pellet role</obo:OBI_0000284>
-    <obo:IAO_0000115 xml:lang="en">pellet role is a role which inheres in a material entity and is realized by a material separation process using gravitational force generated by a centrifuge in which the material bearing the pellet role is the heavier or heaviest component of the output material..</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >9Mar09 after discussion with process branch changed definition to include use of centrifuge;</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >20 Feb 2009; changed definition to this: pellet role is a role which inheres in a material entity and is realized by a material separation process using gravitational force in which the material bearing the pellet role is the heavier or heaviest component of the output material.</obo:IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:  Role branch</obo:IAO_0000117>
   </owl:Class>
@@ -433,8 +435,8 @@ population.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000121"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000412"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
@@ -548,13 +550,13 @@ population.</obo:IAO_0000115>
     >OBI</obo:IAO_0000119>
     <obo:IAO_0000116 xml:lang="en">Role call - 17nov-08: JF and MC think an evaluant role is always specified input of a process. Even in the case where we have an assay taking blood as evaluant and outputing blood, the blood is not the specified output at the end of the assay (the concentration of glucose in the blood is)</obo:IAO_0000116>
     <rdfs:label xml:lang="en">evaluant role</rdfs:label>
-    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000070"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000070"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000116 xml:lang="en">examples of features that could be described in an evaluant: quality.... e.g. "contains 10 pg/ml IL2", or "no glucose detected")</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:  Role Branch</obo:IAO_0000117>
@@ -700,17 +702,17 @@ Documentation: "The group of eligible participants that agreed to participate in
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000237">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000123"/>
-    <obo:IAO_0000115 xml:lang="en">Antigen is a role played by material which when introduced into an immune-competent organism causes an immune response</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An antigen is a substance that prompts the generation of antibodies and can cause an immune response.  Wikipedia  http://en.wikipedia.org/wiki/Antigen. In the strict sense, immunogens are those substances that elicit a response from the immune system, whereas antigens are defined as substances that bind to specific antibodies. Not all antigens produce an immunogenic response, but all immunogens are antigens</obo:IAO_0000116>
     <obo:IAO_0000117 xml:lang="en">Role Branch</obo:IAO_0000117>
+    <obo:IAO_0000115 xml:lang="en">Antigen is a role played by material which when introduced into an immune-competent organism causes an immune response</obo:IAO_0000115>
+    <obo:IAO_0000111 xml:lang="en">Antigen</obo:IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
         <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0006955"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:IAO_0000111 xml:lang="en">Antigen</obo:IAO_0000111>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -816,17 +818,17 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000040">
     <obo:IAO_0000111 xml:lang="en">Drug role</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">Drug role is a role assigned to an entity by a regulatory agency that is designed to diagnose, treat or prevent an abnormal medical condition</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000117 xml:lang="en">Role Branch</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">OBI, CDISC</obo:IAO_0000119>
     <rdfs:label xml:lang="en">drug role</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >#
 http://www.answers.com/topic/drug
@@ -839,17 +841,17 @@ http://www.answers.com/topic/drug
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000296"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">GROUP: Role Branch</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">Potential study participant</obo:IAO_0000111>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Role of a potential study participant is a study participant role realized through a process of evaluating the bearer for participation or inclusion as a study subject using criteria defined by the study design.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000296"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">People with diabetes in range of a trial site for a new diabetes therapy; SD rats living in Charles River Labs when an order for rats is placed there</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000111">
@@ -870,8 +872,8 @@ http://www.answers.com/topic/drug
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
             <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#role_of"/>
+            <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000471"/>
@@ -891,7 +893,6 @@ http://www.answers.com/topic/drug
     <obo:IAO_0000111 xml:lang="en">First subject screened</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
   </owl:Class>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000053">
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">Antibody</obo:IAO_0000111>
@@ -911,6 +912,15 @@ http://www.answers.com/topic/drug
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000025"/>
     <obo:IAO_0000112 xml:lang="en">MMS mutagen</obo:IAO_0000112>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000163">
+    <obo:IAO_0000115 xml:lang="en">Radiolabelrole is a label role which uses radiological decay as the signal</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000140"/>
+    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <obo:IAO_0000111 xml:lang="en">Radiolabel</obo:IAO_0000111>
+    <obo:IAO_0000118 xml:lang="en">Label_role</obo:IAO_0000118>
+    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <rdfs:label xml:lang="en">radiolabel role</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000124">
     <obo:IAO_0000112 xml:lang="en">Person with controlled diabetes but high blood pressure (with respect to a study of blood pressure therapy)</obo:IAO_0000112>
     <obo:IAO_0000116 xml:lang="en">volunteer. A person volunteering to participate as a subject in a clinical trial, often a healthy person agreeing to participate in a Phase 1 trial. See</obo:IAO_0000116>
@@ -920,15 +930,6 @@ http://www.answers.com/topic/drug
     <obo:IAO_0000111 xml:lang="en">Healthy volunteer</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">Healthy volunteer is a potential study participant role played by a person who is healthy in all aspects relevant to the trial</obo:IAO_0000115>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000163">
-    <obo:IAO_0000115 xml:lang="en">Radiolabelrole is a label role which uses radiological decay as the signal</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000140"/>
-    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
-    <obo:IAO_0000111 xml:lang="en">Radiolabel</obo:IAO_0000111>
-    <obo:IAO_0000118 xml:lang="en">Label_role</obo:IAO_0000118>
-    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
-    <rdfs:label xml:lang="en">radiolabel role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000169">
     <obo:IAO_0000112 xml:lang="en">Pill consisting of inert materials</obo:IAO_0000112>
@@ -957,7 +958,6 @@ http://www.answers.com/topic/drug
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">placeholder for under discussion classes</obo:IAO_0000115>
   </owl:Class>
-
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000079">
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">A growth medium or culture medium is a substance in which microorganisms or cells can grow.  Wikipedia, growth medium, Feb 29, 2008</obo:IAO_0000112>
@@ -978,6 +978,36 @@ http://www.answers.com/topic/drug
     <obo:IAO_0000112 xml:lang="en">Person too old for trial inclusion</obo:IAO_0000112>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000229"/>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_3">
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pathogen role is a role which inheres in an organislm and realized in the process of disease course in the organism bearing host role caused by the organism bearing pathogen role</obo:IAO_0000115>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pathogen: An agent of disease. A disease producer. The term pathogen most commonly is used to refer to infectious organisms. These include bacteria (such as staph), viruses (such as HIV), and fungi (such as yeast). Less commonly, pathogen refers to a noninfectious agent of disease such as a chemical.   http://www.medterms.com/script/main/art.asp?articlekey=6383</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100026"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >6 April 2009:  from the Vaccine Community</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP: Role Branch</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pathogen role</rdfs:label>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</obo:IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000354"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000657">
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1018,8 +1048,8 @@ http://www.answers.com/topic/drug
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000457"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1046,6 +1076,12 @@ http://www.answers.com/topic/drug
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000683"/>
     <obo:IAO_0000115 xml:lang="en">Protocol participant is a role of entities that is realized through the implementation of a protocol</obo:IAO_0000115>
     <rdfs:label xml:lang="en">protocol participant role</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >With respect to an injction protocol, the solution, the syringe and the 
     recipient are all protocol participants. With respect to a culture 
@@ -1071,28 +1107,16 @@ http://www.answers.com/topic/drug
     >OBI</obo:IAO_0000119>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:  Role Branch</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000444">
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >From Branch discussion with BP, AR, MC -- there is a need for the recipient to interact with the administered material.  for example, a tooth receiving a filling was not considered to be a target role.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1104,12 +1128,18 @@ http://www.answers.com/topic/drug
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:  Role Branch</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000109">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">Some epidemiological aspects and vector role of tick infestation on layers in the Faisalabad district (Pakistan). http://journals.cambridge.org/action/displayAbstract;jsessionid=0373164489D00868AEEF2C556EB4FD29.tomcat1?fromPage=online&amp;aid=624280</obo:IAO_0000112>
@@ -1118,15 +1148,15 @@ http://www.answers.com/topic/drug
     <rdfs:label xml:lang="en">biological vector role</rdfs:label>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a biological vector role is a role which inheres in a material entity and is realized by the process of transmitting material to the organism that is the target of the transmission.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI and Wikipedia</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:  Role Branch</obo:IAO_0000117>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
@@ -1152,6 +1182,12 @@ http://www.answers.com/topic/drug
     >In biology, a host is an organism that harbors a virus or parasite, or a mutual or commensal symbiont, typically providing nourishment and shelter.  http://en.wikipedia.org/wiki/Host_(biology)  30 March 09</obo:IAO_0000112>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >30 Mar09 submitted by vaccine community</obo:IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100026"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >host role is a role played by an organism and realized by providing nourishment, shelter or a means of reproduction to another organism within the organism playing the host role</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
@@ -1188,18 +1224,18 @@ http://www.answers.com/topic/drug
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000204">
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">A nutrient role is a role that inheres in a material entity and is realized in the use of that material entity by an organism when it is used in that organism's metabolism and provides nourishment.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">GROUP:  Role branch</obo:IAO_0000117>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >19 Feb 2009; old def: A nutrient role is a role played by a substance used in an organism's metabolism which is taken in from the environment and provides nourishment.</obo:IAO_0000116>
     <rdfs:label xml:lang="en">nutrient role</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">Luria broth; vitamin A; A nutrient is a substance used in an organism's metabolism which must be taken in from the environment.  Wikipedia.</obo:IAO_0000112>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">Wikipedia, feb 29, 2008</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">Nutrient</obo:IAO_0000111>
   </owl:Class>
@@ -1246,18 +1282,6 @@ specimen can later be subject.</obo:IAO_0000116>
     >OBI</obo:IAO_0000119>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >9March009 Expanded definition to agree with Biomaterial Specimen, which will bear this role once defined in a study protocol and collected, extracted, etc.  old def: Specimen role is a role borne by a material entity of biological origin and realized in a process of implementing a study design specifying the collection of a specimen from a study subject</obo:IAO_0000116>
-    <rdfs:label xml:lang="en">specimen role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <obo:IAO_0000116 xml:lang="en">renamed to clarify the relationship to study subject and to avoid use of currently undefined adjective biological</obo:IAO_0000116>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >25 March 09 (old definition) Specimen role is a role borne by a specimen and realized in a process of implementing a study design specifying the collection of a specimen. Definition changed now that there is a process of specimen creation</obo:IAO_0000116>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000659"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
@@ -1266,6 +1290,18 @@ specimen can later be subject.</obo:IAO_0000116>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">specimen role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <obo:IAO_0000116 xml:lang="en">renamed to clarify the relationship to study subject and to avoid use of currently undefined adjective biological</obo:IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000659"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >25 March 09 (old definition) Specimen role is a role borne by a specimen and realized in a process of implementing a study design specifying the collection of a specimen. Definition changed now that there is a process of specimen creation</obo:IAO_0000116>
+    <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >liver section; a portion of a culture of cells; a nemotode or other animal once no longer a subject (generally killed); portion of blood from a patient.</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">Specimen role is a role borne by a specimen and realized by a process of specimen creation</obo:IAO_0000115>
@@ -1339,7 +1375,6 @@ specimen can later be subject.</obo:IAO_0000116>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <rdfs:label xml:lang="en">laboratory role</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0100026"/>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000006">
     <obo:IAO_0000112 xml:lang="en">Person charged with serving as CSO</obo:IAO_0000112>
     <rdfs:label xml:lang="en">role of being consumer safety officer</rdfs:label>
@@ -1405,9 +1440,6 @@ the role ‘adjuvant role’ inheres in some ‘material entity’ and is realiz
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <obo:IAO_0000111 xml:lang="en">Personnel role</obo:IAO_0000111>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <obo:IAO_0000112 xml:lang="en">Study director; funding agency; animal technician; Add/Remove/Change IRB Study Personnel. www.research.umn.edu/irb/download/addchange_personnel.doc</obo:IAO_0000112>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Feb 10, 2009.  changes after discussion at OBI Consortium Workshop Feb 2-6, 2009.  accepted as core term.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
@@ -1421,6 +1453,9 @@ the role ‘adjuvant role’ inheres in some ‘material entity’ and is realiz
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <obo:IAO_0000112 xml:lang="en">Study director; funding agency; animal technician; Add/Remove/Change IRB Study Personnel. www.research.umn.edu/irb/download/addchange_personnel.doc</obo:IAO_0000112>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Feb 10, 2009.  changes after discussion at OBI Consortium Workshop Feb 2-6, 2009.  accepted as core term.</obo:IAO_0000116>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
     <rdfs:label xml:lang="en">investigation agent role</rdfs:label>
   </owl:Class>
@@ -1459,14 +1494,14 @@ the role ‘adjuvant role’ inheres in some ‘material entity’ and is realiz
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000220"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000133">
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Untreated group of animals used to compare with group of treated animals; calibration standard used to calibrate a pH meter.</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Untreated group of animals used to compare with group of treated animals; calibration standard used to calibrate a pH meter.</obo:IAO_0000112>
     <obo:IAO_0000118 xml:lang="en">control</obo:IAO_0000118>
     <rdfs:label xml:lang="en">reference role</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
@@ -1495,15 +1530,15 @@ the role ‘adjuvant role’ inheres in some ‘material entity’ and is realiz
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >20 Feb 2009 added restriction of being human</obo:IAO_0000116>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000263"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">GROUP:Role Branch</obo:IAO_0000117>
     <obo:IAO_0000116 xml:lang="en">CDISC definition:  patient. Person under a physician's care for a particular disease or condition. NOTE: A subject in a clinical trial is not necessarily a patient, but a patient in a clinical trial is a subject. See also subject, trial subject, healthy volunteer. Often used interchangeably</obo:IAO_0000116>
     <obo:IAO_0000115 xml:lang="en">Patient is a role which in heres in a person and is realized by the process of being under the care of a physician or health care provider</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000263"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000135">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000060"/>
@@ -1566,13 +1601,13 @@ the role ‘adjuvant role’ inheres in some ‘material entity’ and is realiz
     <rdfs:label xml:lang="en">material to be added role</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Role Branch</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000300"/>
+        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000274"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">material to be added role is a protocol participant role realized by a material which is added into a material bearning the target of material addition role in a material addition process</obo:IAO_0000115>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >drug added to a buffer contained in a tube; substance injected into an animal;</obo:IAO_0000112>
