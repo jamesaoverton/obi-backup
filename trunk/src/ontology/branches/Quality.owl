@@ -4,15 +4,15 @@
     xmlns:obi_owlfull="http://purl.obofoundry.org/obo/obi/obi-owl-full.owl#"
     xmlns:dcterms="http://purl.obofoundry.org/dc/terms/"
     xmlns:pato="http://purl.obofoundry.org/obo/owl/PATO#"
-    xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
     xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
+    xmlns:obi_obsolete="http://purl.obofoundry.org/obo/obi/Obsolete.owl#"
     xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:obi_biomat="http://purl.obofoundry.org/obo/obi/Biomaterial.owl#"
     xmlns:rotoo="http://purl.obofoundry.org/obo/owl/ro#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-   xmlns="http://purl.obofoundry.org/obo/"
+    xmlns="http://purl.obofoundry.org/obo/"
     xmlns:robfo="http://purl.obofoundry.org/obo/owl/ro_bfo_bridge/1.1#"
     xmlns:obi_extd="http://purl.obofoundry.org/obo/obi/externalDerived.owl#"
     xmlns:cell="http://purl.obofoundry.org/obo/owl/CL#"
@@ -44,13 +44,13 @@
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:label xml:lang="en">electrocuted</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000350"/>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302895"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302895"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000350"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
   </owl:Class>
@@ -64,10 +64,8 @@ Clin Neuropathol. 2008 Jul-Aug;27(4):224-33. PMID: 18666438</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">stained</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -79,8 +77,10 @@ Clin Neuropathol. 2008 Jul-Aug;27(4):224-33. PMID: 18666438</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302862">
@@ -100,30 +100,34 @@ Ann N Y Acad Sci. 2008 Aug;1137:36-40. PMID: 18837922</IAO_0000112>
     <rdfs:label xml:lang="en">methylated</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600039"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
     </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000320">
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -135,11 +139,7 @@ Ann N Y Acad Sci. 2008 Aug;1137:36-40. PMID: 18837922</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <rdfs:label xml:lang="en">intracardiac</rdfs:label>
@@ -164,26 +164,26 @@ Rheumatol Int. 2008 Oct 11. PMID: 18850100</IAO_0000112>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302911"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302874">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302908"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
     <rdfs:label xml:lang="en">edited</rdfs:label>
@@ -191,9 +191,6 @@ Rheumatol Int. 2008 Oct 11. PMID: 18850100</IAO_0000112>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302875">
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000115 xml:lang="en">excised is a conferred qualify which inheres in material resulting from an excision process</IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000351"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -210,6 +207,9 @@ Rheumatol Int. 2008 Oct 11. PMID: 18850100</IAO_0000112>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000351"/>
+    </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">Glioma-like proliferation within tissues excised as tubers in patients with tuberous sclerosis complex. Acta Neuropathol. 2008 Jul;116(1):67-77. PMID: 1858112</IAO_0000112>
     <rdfs:label xml:lang="en">excised</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
@@ -225,23 +225,23 @@ Nature. 2008 Sep 17. PMID: 18806774</IAO_0000112>
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000351"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000105"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000351"/>
     </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">transplanted is a conferred qualify which inheres in material resulting from an transplantation process</IAO_0000115>
   </owl:Class>
@@ -274,9 +274,6 @@ Nature. 2008 Sep 17. PMID: 18806774</IAO_0000112>
     <IAO_0000115 xml:lang="en">lyzed is a conferred qualify which inheres in material resulting from an lysis process</IAO_0000115>
     <IAO_0000112 xml:lang="en">Variation of pH in lysed platelet concentrates influence proliferation and alkaline phosphatase activity in human osteoblast-like cells. Platelets. 2007 Mar;18(2):113-8. PMID: 17365859</IAO_0000112>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
@@ -292,6 +289,9 @@ Nature. 2008 Sep 17. PMID: 18806774</IAO_0000112>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
+    </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
   </owl:Class>
@@ -305,23 +305,23 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">ligated</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000348"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302892"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000348"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000359">
@@ -334,9 +334,6 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302863">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
@@ -344,13 +341,16 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600058"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600058"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000115 xml:lang="en">amplified is a conferred qualify which inheres in material resulting from an amplification process</IAO_0000115>
@@ -362,11 +362,7 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302855">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -378,7 +374,11 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
     </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
@@ -388,42 +388,27 @@ J Biomol NMR. 2006 Apr;34(4):259-69. PMID: 16645816</IAO_0000112>
     <IAO_0000112 xml:lang="en">Gene expression analysis of RNA purified from embryonic stem cells and embryoid body-derived cells using a high-throughput microarray platform. Curr Protoc Stem Cell Biol. 2007 Sep;Chapter 1:Unit 1B.2. PMID: 18785160</IAO_0000112>
     <IAO_0000115 xml:lang="en">purified is a conferred qualify which inheres in material resulting from an purification process</IAO_0000115>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302846">
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Philippe Rocca-Serra</IAO_0000117>
-    <rdfs:label xml:lang="en">randomized</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302900"/>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302859">
     <rdfs:label xml:lang="en">genetically modified</rdfs:label>
     <IAO_0000115 xml:lang="en">genetically modified is a conferred qualify which inheres in material resulting from an genetic modification process</IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600043"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
     </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">A protocol for removal of antibiotic resistance cassettes from human embryonic stem cells genetically modified by homologous recombination or transgenesis.
 Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</IAO_0000112>
@@ -432,8 +417,22 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302846">
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Philippe Rocca-Serra</IAO_0000117>
+    <rdfs:label xml:lang="en">randomized</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302900"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302882">
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
@@ -450,6 +449,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</IAO_0000112>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <rdfs:label xml:lang="en">eluted</rdfs:label>
@@ -460,11 +460,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302866">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -476,7 +472,11 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">activated</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
@@ -507,23 +507,23 @@ Biochem Biophys Res Commun. 2008 Oct 18. PMID: 18940182</IAO_0000112>
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302889"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302889"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000348">
@@ -539,9 +539,6 @@ Biochem Biophys Res Commun. 2008 Oct 18. PMID: 18940182</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302851">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000363"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class>
@@ -556,6 +553,9 @@ Biochem Biophys Res Commun. 2008 Oct 18. PMID: 18940182</IAO_0000112>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000363"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -573,25 +573,25 @@ N Engl J Med. 2008 Oct 15. PMID: 18923165</IAO_0000112>
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:label xml:lang="en">has_been_treated</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000094"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000346"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302836">
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000360"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600011"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000360"/>
     </rdfs:subClassOf>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
@@ -599,9 +599,9 @@ N Engl J Med. 2008 Oct 15. PMID: 18923165</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000155">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Disposition"/>
-    <IAO_0000116 xml:lang="en">rem0: BS did not view disease as a process, and indeed it is now a child of dependent continuant.</IAO_0000116>
-    <IAO_0000116 xml:lang="en">rem1: BP - placed into quality. needs to be discussed</IAO_0000116>
     <IAO_0000116 xml:lang="en">moved from TheRest.OWL to Quality branch by James M 2/6/08</IAO_0000116>
+    <IAO_0000116 xml:lang="en">rem1: BP - placed into quality. needs to be discussed</IAO_0000116>
+    <IAO_0000116 xml:lang="en">rem0: BS did not view disease as a process, and indeed it is now a child of dependent continuant.</IAO_0000116>
     <rdfs:label xml:lang="en">disease</rdfs:label>
     <IAO_0000115 xml:lang="en">Place_holder for disease ontology</IAO_0000115>
   </owl:Class>
@@ -610,7 +610,6 @@ N Engl J Med. 2008 Oct 15. PMID: 18923165</IAO_0000112>
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:label xml:lang="en">precipitated</rdfs:label>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
@@ -619,14 +618,15 @@ N Engl J Med. 2008 Oct 15. PMID: 18923165</IAO_0000112>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600034"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600034"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 xml:lang="en">precipitated is a conferred qualify which inheres in material resulting from an precipitation process</IAO_0000115>
   </owl:Class>
@@ -648,21 +648,21 @@ Measurements of concentration may be in any appropriate unit. Note that precise 
 Finally, note that there is no such thing as a concentration of 0. A concentration is a *relational* quality and so can't exist unless both entities it inheres in exist. However one may may make concentration measurements that turn out not to be about concentrations qualities, if it happens that the scattered molecular aggregate doesn't actually exist.</IAO_0000116>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Alan Ruttenberg</IAO_0000117>
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001238"/>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
             <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+            <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000576"/>
             <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#towards"/>
+            <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000576"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001238"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302861">
     <IAO_0000112 xml:lang="en">Assessment of the risk of phosphorus loading due to resuspended sediment.
@@ -682,13 +682,13 @@ J Environ Qual. 2001 May-Jun;30(3):960-6. PMID: 11401287</IAO_0000112>
     <rdfs:label xml:lang="en">aliquoted</rdfs:label>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000350"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600018"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000350"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302834">
     <IAO_0000112 xml:lang="en">Degradable Disulfide Core-Cross-Linked Micelles as a Drug Delivery System Prepared from Vinyl Functionalized Nucleosides via the RAFT Process. 
@@ -707,7 +707,6 @@ Biomacromolecules. 2008 Oct 9.PMID: 18842025</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
@@ -724,6 +723,7 @@ Biomacromolecules. 2008 Oct 9.PMID: 18842025</IAO_0000112>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <IAO_0000115 xml:lang="en">filtered is a conferred qualify which inheres in material resulting from an filtration process</IAO_0000115>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000112 xml:lang="en">Detrimental effects of prenatal exposure to filtered diesel exhaust on mouse spermatogenesis.
@@ -751,9 +751,9 @@ Arch Toxicol. 2008 May 1.PMID: 18449530</IAO_0000112>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -765,18 +765,15 @@ Arch Toxicol. 2008 May 1.PMID: 18449530</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <rdfs:label xml:lang="en">digested</rdfs:label>
     <IAO_0000112 xml:lang="en">Cellobiose is extensively digested in the small intestine by beta-galactosidase in rats.
 Nutrition. 2008 Nov-Dec;24(11-12):1199-204. PMID: 18752931</IAO_0000112>
     <IAO_0000115 xml:lang="en">digested is a conferred qualify which inheres in material resulting from an digestion process</IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302856">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -793,6 +790,9 @@ Nutrition. 2008 Nov-Dec;24(11-12):1199-204. PMID: 18752931</IAO_0000112>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
+    </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">Biodegradable and radically polymerized elastomers with enhanced processing capabilities.
 Biomed Mater. 2008 Sep;3(3):034104. PMID: 18689916</IAO_0000112>
     <rdfs:label xml:lang="en">polymerized</rdfs:label>
@@ -808,9 +808,6 @@ Biomed Mater. 2008 Sep;3(3):034104. PMID: 18689916</IAO_0000112>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000112 xml:lang="en">Carboxylic multi-walled carbon nanotubes as immobilized stationary phase in capillary electrochromatography. Electrophoresis. 2008 Sep;29(18):3850-7. PMID: 18850654</IAO_0000112>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000363"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:someValuesFrom>
@@ -825,6 +822,9 @@ Biomed Mater. 2008 Sep;3(3):034104. PMID: 18689916</IAO_0000112>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000363"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">immobilized</rdfs:label>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -856,23 +856,23 @@ Biomed Mater. 2008 Sep;3(3):034104. PMID: 18689916</IAO_0000112>
     <rdfs:label xml:lang="en">electroporated</rdfs:label>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000115 xml:lang="en">electroporated is a conferred qualify which inheres in material resulting from an electroporation process</IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600033"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <IAO_0000112 xml:lang="en">Modified whole-mount in situ hybridization protocol for the detection of transgene expression in electroporated chick embryos.  PLoS ONE. 2008 Jul 9;3(7):e2638. PMID: 18612382</IAO_0000112>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
@@ -900,26 +900,26 @@ Biomed Mater. 2008 Sep;3(3):034104. PMID: 18689916</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
     <rdfs:label xml:lang="en">stored</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000360"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302893"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000360"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302868">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200029"/>
+        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0200029"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
     <rdfs:label xml:lang="en">mean-centered</rdfs:label>
@@ -946,7 +946,11 @@ Its children should be defined classes constructed as output of a process.</IAO_
 Phytopathology. 2007 Oct;97(10):1200-1206. PMID: 18943677</IAO_0000112>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -958,11 +962,7 @@ Phytopathology. 2007 Oct;97(10):1200-1206. PMID: 18943677</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000347"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">labeled</rdfs:label>
@@ -978,13 +978,13 @@ Phytopathology. 2007 Oct;97(10):1200-1206. PMID: 18943677</IAO_0000112>
     <IAO_0000112 xml:lang="en">Longterm results after phacovitrectomy and foldable intraocular lens implantation.
 Acta Ophthalmol. 2008 Oct 3. PMID: 18937822</IAO_0000112>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100015"/>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100015"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
     </rdfs:subClassOf>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <rdfs:label xml:lang="en">intraoccular</rdfs:label>
@@ -992,11 +992,7 @@ Acta Ophthalmol. 2008 Oct 3. PMID: 18937822</IAO_0000112>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302837">
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1008,7 +1004,11 @@ Acta Ophthalmol. 2008 Oct 3. PMID: 18937822</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">decapitated</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
@@ -1034,36 +1034,36 @@ J Insect Physiol. 1998 May;44(5-6):525-528. PMID: 12770172</IAO_0000112>
     <rdfs:label xml:lang="en">pooled</rdfs:label>
     <IAO_0000112 xml:lang="en">SNP frequency estimation using massively parallel sequencing of pooled DNA.
 Eur J Hum Genet. 2008 Oct 15.  PMID: 18854868</IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0600016"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 xml:lang="en">pooled is a conferred qualify which inheres in material resulting from an material pooling process</IAO_0000115>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000287">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Site"/>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
-        <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Site"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
     </rdfs:subClassOf>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 xml:lang="en">intraventricular is a positional quality which inheres in a ventricule site (e.g. heart ventricule or brain ventricule)</IAO_0000115>
@@ -1080,13 +1080,13 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
     <rdfs:label xml:lang="en">curated</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302908"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000362"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000351">
@@ -1109,23 +1109,23 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</IAO_0000112>
     <IAO_0000112 xml:lang="en">Antiproliferative Effects of Carotenoids Extracted from Chlorella ellipsoidea and Chlorella vulgaris on Human Colon Cancer Cells. J Agric Food Chem. 2008 Oct 23. PMID: 18942838</IAO_0000112>
     <rdfs:label xml:lang="en">extracted</rdfs:label>
     <IAO_0000115 xml:lang="en">extracted is a conferred qualify which inheres in material resulting from an extraction process</IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000351"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302884"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000351"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
   </owl:Class>
@@ -1159,10 +1159,8 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</IAO_0000112>
 FEBS Lett. 2006 Mar 6;580(6):1691-5. PMID: 16497300</IAO_0000112>
     <IAO_0000115 xml:lang="en">trypsinized is a conferred qualify which inheres in material resulting from an trypsination process</IAO_0000115>
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0302871"/>
-    <IAO_0000116 xml:lang="en">Why do we need this? There is always the actual record of the specific type of digestion that was done. - Alan</IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1174,29 +1172,31 @@ FEBS Lett. 2006 Mar 6;580(6):1691-5. PMID: 16497300</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <IAO_0000116 xml:lang="en">Why do we need this? There is always the actual record of the specific type of digestion that was done. - Alan</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302880">
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">washed</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302888"/>
+                <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <IAO_0000115 xml:lang="en">washed is a conferred qualify which inheres in material resulting from an washing process</IAO_0000115>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000112 xml:lang="en">Effect of extraction conditions on the yield and purity of apple pomace pectin precipitated but not washed by alcohol.  J Food Sci. 2007 Jan;72(1):C001-9. PMID: 17995865</IAO_0000112>
@@ -1206,7 +1206,6 @@ FEBS Lett. 2006 Mar 6;580(6):1691-5. PMID: 16497300</IAO_0000112>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302878">
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
     <IAO_0000112 xml:lang="en">Multi-stringency wash of partially hybridized 60-mer probes reveals that the stringency along the probe decreases with distance from the microarray surface. Nucleic Acids Res. 2008 Sep 19. PMID: 18805905</IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000348"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -1223,6 +1222,7 @@ FEBS Lett. 2006 Mar 6;580(6):1691-5. PMID: 16497300</IAO_0000112>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000348"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <rdfs:label xml:lang="en">hybridized</rdfs:label>
@@ -1235,13 +1235,13 @@ FEBS Lett. 2006 Mar 6;580(6):1691-5. PMID: 16497300</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 xml:lang="en">intrajugular is a positional quality which inheres in a material entity located in the jugular vein</IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
+        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100015"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0100015"/>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#located_in"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000277"/>
     </rdfs:subClassOf>
     <IAO_0000112 xml:lang="en">Restoration of lactation in bromocriptine-treated rats by prolactin replacement: comparison of constant versus pulsatile infusion and intrahepatic versus intrajugular routes of delivery.
 J Endocrinol Invest. 1993 Jan;16(1):29-35. PMID: 8445154</IAO_0000112>
@@ -1259,13 +1259,13 @@ J Endocrinol Invest. 1993 Jan;16(1):29-35. PMID: 8445154</IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302841">
     <rdfs:label xml:lang="en">centrifuged</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000350"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302886"/>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000350"/>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
@@ -1279,7 +1279,6 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</IAO_0000112>
     <IAO_0000115 xml:lang="en">enrolled is a conferred qualify which inheres in material resulting from an enrollment process</IAO_0000115>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">enrolled</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000347"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
@@ -1288,14 +1287,15 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</IAO_0000112>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://purl.obofoundry.org/obo/OBI_0000263"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000296"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0000296"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000347"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000353">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
@@ -1323,13 +1323,13 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</IAO_0000112>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302867">
     <rdfs:label xml:lang="en">predicted</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000124"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000362"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000365"/>
         <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302910"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000362"/>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
     <IAO_0000115 xml:lang="en">predicted is a</IAO_0000115>
@@ -1343,23 +1343,23 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</IAO_0000112>
 Eur J Cancer Prev. 2008 Nov;17(6):561-71. PMID: 18941378</IAO_0000112>
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000119 xml:lang="en">OBI Biomaterial</IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302906"/>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/OBI_0302906"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000359"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000440">
     <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000421"/>
@@ -1368,9 +1368,9 @@ Eur J Cancer Prev. 2008 Nov;17(6):561-71. PMID: 18941378</IAO_0000112>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0302849">
     <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000112 xml:lang="en">Trichostatin A improved epigenetic modifications of transfected cells but did not improve subsequent cloned embryo development. Anim Biotechnol. 2008;19(4):211-24. PMID: 18855246</IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1382,9 +1382,9 @@ Eur J Cancer Prev. 2008 Nov;17(6):561-71. PMID: 18941378</IAO_0000112>
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#quality_of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/OBI_0000346"/>
     <IAO_0000115 xml:lang="en">cloned is a conferred qualify which inheres in material resulting from an cloning process</IAO_0000115>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</IAO_0000117>
@@ -1426,4 +1426,4 @@ Eur J Cancer Prev. 2008 Nov;17(6):561-71. PMID: 18941378</IAO_0000112>
   </owl:AnnotationProperty>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 516)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 533)  http://protege.stanford.edu -->
