@@ -7,11 +7,12 @@
     xmlns:obi_data_trans="http://purl.obofoundry.org/obo/obi/DataTransformation.owl#"
     xmlns:obi_denrie="http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#"
     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:obi_biomat="http://purl.obofoundry.org/obo/obi/Biomaterial.owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rotoo="http://purl.org/obo/owl/ro#"
-   xmlns="http://purl.obofoundry.org/obo/"
+    xmlns="http://purl.obofoundry.org/obo/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:obi_extd="http://purl.obofoundry.org/obo/obi/externalDerived.owl#"
     xmlns:obi_rel="http://purl.obofoundry.org/obo/obi/Relations.owl#"
@@ -20,9 +21,11 @@
     xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
     xmlns:obi_rest="http://purl.obofoundry.org/obo/obi/TheRest.owl#"
     xmlns:robfo="http://purl.org/obo/owl/ro_bfo_bridge/1.1#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:obi_role="http://purl.obofoundry.org/obo/obi/Role.owl#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
     xmlns:obi_instr="http://purl.obofoundry.org/obo/obi/InstrumentAndPart.owl#"
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -36,59 +39,62 @@
   <owl:Ontology rdf:about="">
     <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
   </owl:Ontology>
-   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000285">
-    <rdfs:label xml:lang="en">alternative term source</rdfs:label>
-    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">alternative term source</IAO_0000111>
-    <IAO_0000115 xml:lang="en">An unambiguous and traceable reference to the source of the alternative term. Examples: ISBN, URI plus date, MeSH Term, PUBMED ID, DOI.</IAO_0000115>
-  <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-  <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Daniel Schober</IAO_0000117>
-<IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000119>
- <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Daniel Schober</IAO_0000117>
-  </owl:AnnotationProperty>
-
-
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000290">
+    <rdfs:label xml:lang="en">annotation property range</rdfs:label>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Alan Ruttenberg</IAO_0000117>
     <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Relates an Annotation Property to the class that the object is inferred to be. Can't use owl:domain else we create OWL Full.</IAO_0000115>
     <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Alan Ruttenberg</IAO_0000119>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
-    <rdfs:label xml:lang="en">annotation property range</rdfs:label>
-    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">annotation property range</IAO_0000111>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON:Alan Ruttenberg</IAO_0000117>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000284">
-    <IAO_0000115 xml:lang="en">tag to indicate sets of alternative terms Example: toxicogenomics_community, abbreviation</IAO_0000115>
-    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000119>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Daniel Schober</IAO_0000117>
-    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">alternative term tag</IAO_0000111>
-    <rdfs:label xml:lang="en">alternative term tag</rdfs:label>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >annotation property range</IAO_0000111>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000276">
-    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON:Alan Ruttenberg</IAO_0000119>
-    <rdfs:label xml:lang="en">annotation property domain</rdfs:label>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Relates an Annotation Property to a the class that a subject is inferred to be. Can't use owl:domain else we create OWL Full.</IAO_0000115>
+    <rdfs:label xml:lang="en">annotation property domain</rdfs:label>
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Alan Ruttenberg</IAO_0000117>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
+    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Alan Ruttenberg</IAO_0000119>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000284">
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >alternative term tag</IAO_0000111>
+    <IAO_0000115 xml:lang="en">tag to indicate sets of alternative terms Example: toxicogenomics_community, abbreviation</IAO_0000115>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <rdfs:label xml:lang="en">alternative term tag</rdfs:label>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Daniel Schober</IAO_0000117>
+    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000119>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000285">
+    <IAO_0000115 xml:lang="en">An unambiguous and traceable reference to the source of the alternative term. Examples: ISBN, URI plus date, MeSH Term, PUBMED ID, DOI.</IAO_0000115>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Daniel Schober</IAO_0000117>
+    <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI:&lt;http://obi.sourceforge.net&gt;</IAO_0000119>
+    <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >alternative term source</IAO_0000111>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000125"/>
+    <rdfs:label xml:lang="en">alternative term source</rdfs:label>
   </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000280">
-    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PERSON:Alan Ruttenberg</IAO_0000117>
+    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Relates an annotation property to a method which can be used to validate whether the value of the annotation property is valid.</IAO_0000115>
     <IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Alan Ruttenberg</IAO_0000119>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">has validation method</rdfs:label>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Alan Ruttenberg</IAO_0000117>
   </owl:AnnotationProperty>
-
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.3, Build 418)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.4, Build 533)  http://protege.stanford.edu -->
