@@ -2,6 +2,10 @@
 
 #starting configuration: create a directory containing the OBIrelease.sh script (e.g. obireleases)
 
+#the path to the LSW directory
+####################################UPDATE THIS WITH THE LOCATION OF YOUR INSTALLATION ####################################
+LSW_PATH=/Users/mcourtot/Desktop/lsw/
+
 
 ######################################################## CHECKOUT THE TOOLS ###############################################
 #you need to have the OBITools.jar in your classpath and to download lsw
@@ -29,8 +33,8 @@ NEWFILEPATH="UncheckedMerge.owl"
 NEWFILEPATHPROTEGE="UncheckedMergePROTEGE.owl"
 #the path to this directory
 HERE=`pwd`
-#the path to the LSW directory
-LSW_PATH=$HERE/svn-lsw/
+
+
 
 
 #set up the classpath for the jar 
@@ -53,6 +57,11 @@ echo "OBI DIR PATH is set to" $OBI_DIR_PATH
 #the path to the external files (bfo etc)
 EXTERNAL_DIR_PATH=`pwd`/src/ontology/external/
 echo "EXTERNAL DIR PATH is set to" $EXTERNAL_DIR_PATH 
+
+#the path to the instances files 
+INSTANCES_DIR_PATH=`pwd`/src/ontology/branches/instances/
+echo "INSTANCES DIR PATH is set to" $INSTANCES_DIR_PATH 
+
 
 #the path to the tools
 OBI_TOOLS_PATH=`pwd`/src/tools/
@@ -125,16 +134,19 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
-  <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
-      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
- <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"obi-quick-id.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+   
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
 
   </owl:Ontology>
@@ -167,19 +179,21 @@ perl  ./src/tools/build/modify-uris.pl
 #files needed to open the newids files in protege
 #not required -but I like checking that the files I will commit will be ok for others
 cp $OBI_DIR_PATH/obi.owl $OBI_BUILD_PATH/newids/obi.owl
+
+
 cp $OBI_DIR_PATH/obi.repository.template $OBI_BUILD_PATH/newids/obi.repository
 mkdir $OBI_BUILD_PATH/external/
 echo "created $OBI_CODE_PATH/external/ directory"
 cp  $EXTERNAL_DIR_PATH/* $OBI_BUILD_PATH/external/
-echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BUILD_PATH/newids/obi.owl"
+echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BUILD_PATH/newids/obil.owl"
 #at this point you should be able to open $OBI_BUILD_PATH/newids/obi.owl in protege (if you are under *nix system - otherwise you need the obi.repository.template.pc file and to modify it)
 ###################################################################################################################################
 
 
 ################################################## DATE AND REVISION NUMBER #######################################################
-#note: we need to replace the date in obi.owl to do so, or we will get a consistency error from the reasoner
+#note: we need to replace the date in TheRest.owl to do so, or we will get a consistency error from the reasoner
 
-#we replace the date and the version number in obi.owl
+#we replace the date and the version number in TheRest.owl
 TODAY=`date "+%G-%m-%d"`
 
 perl -pi -e "s/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">(.*)<\/dc:date>/<dc:date rdf:datatype=\"http:\/\/www.w3.org\/2001\/XMLSchema#date\">$TODAY<\/dc:date>/" $OBI_BUILD_PATH/newids/obi.owl
@@ -222,7 +236,6 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
@@ -230,6 +243,9 @@ echo "<?xml version=\"1.0\"?>
   <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
       <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
+      <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+       
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obil.owl
 
@@ -282,19 +298,23 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"PlanAndPlannedProcess.owl\"/></owl:imports>    
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"TheRest.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Relations.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"disjoints.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"assumed-individuals.owl\"/></owl:imports>
  <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
-      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
-     <owl:imports> <owl:Ontology  rdf:about=\"disjoints.owl\"/></owl:imports>
-     <owl:imports> <owl:Ontology  rdf:about=\"assumed-individuals.owl\"/>
-</owl:imports>
+      <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports> 
+          <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+       
+
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obidi.owl
+
+
 
 echo "obidi.owl created (includes assumed individuals)"
 
@@ -363,18 +383,22 @@ echo "<?xml version=\"1.0\"?>
      <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/>
 <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/>
     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/>
-     <owl:imports rdf:resource=\"TheRest.owl\"/>
      <owl:imports rdf:resource=\"Relations.owl\"/>
      <owl:imports rdf:resource=\"OBI-Function.owl\"/>
      <owl:imports rdf:resource=\"Quality.owl\"/>
      <owl:imports rdf:resource=\"external.owl\"/>
      <owl:imports rdf:resource=\"externalDerived.owl\"/>
      <owl:imports rdf:resource=\"Obsolete.owl\"/>
+<owl:imports rdf:resource=\"disjoints.owl\"/>
  <owl:imports rdf:resource=\"external-byhand.owl\"/>
-  <owl:imports rdf:resource=\"disjoints.owl\"/>
  <owl:imports rdf:resource=\"inferred-superclasses.owl\"/>
+     <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+       
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obid.owl
+
+
 
 echo "obid.owl created (includes disjoints and inferred superclasses)"
 
@@ -384,7 +408,7 @@ echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BU
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
 #################### kept separated from other lisp calls as it is quite long and I often comment it out for testing :-) ) ###################
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
+####################perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
 echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
 
@@ -398,7 +422,6 @@ svn log > $OBI_MERGED_PATH/SVNlogs.txt
 echo "SVN logs created at $OBI_MERGED_PATH/SVNlogs.txt "
 cd $HERE
 ####################
-
 
 
 
@@ -425,8 +448,8 @@ cd $HERE
 
 #launch the merger itself
 #the jar needs to be in your classpath
-RESULT=`java -Xmx1024m OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
-
+#RESULT=`java -Xmx1024m OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
+RESULT=`java -Xmx2048m OBIReleaseClient $NEWFILEPATH $NEWFILEPATHPROTEGE $OBI_BUILD_PATH/newids/`
 # print out the result
 echo "result is $RESULT"
 
@@ -482,8 +505,8 @@ fi
 
 ########################################################   TODO    #############################################################
 
-## #  qc-queries: TODO: add lost-terms (as soon as I understand the arguments ;-) )
-## #  replace repetitive calls to lisp with perl obi-lisp-eval (as soon as I manage with the paths ;-) )
+## #  qc-queries: TODO: add lost-terms (as soon as I understand the arguments ;-) ) => Done
+## #  replace repetitive calls to lisp with perl obi-lisp-eval (as soon as I manage with the paths ;-) ) => Done
 
 ###################################################################################################################################
 
