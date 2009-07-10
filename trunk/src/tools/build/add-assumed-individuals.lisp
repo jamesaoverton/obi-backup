@@ -8,7 +8,7 @@
 					(pathname-name (translate-logical-pathname path))
 					(pathname-type (translate-logical-pathname path)))) 
       ((loop for class in (descendants !bfo:Entity kb)
-	  with obsoletes = (loop for obs in (descendants !obo:ObsoleteClass kb)
+	  with obsoletes = (loop for obs in (descendants !oboinowl:ObsoleteClass kb)
 			      with table = (make-hash-table :test 'eql)
 			      do (setf (gethash obs table) t)
 			      finally (return table))
