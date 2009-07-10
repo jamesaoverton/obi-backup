@@ -1,0 +1,271 @@
+ 
+%% JWS example using Elsevier elsart classes, adapted by Tim 
+%% Finin, finin@cs.umbc.edu
+
+%% comment out one of these to get preprint vs. journal format
+
+\documentclass{elsart}       %% one column for review, preprint
+%\documentclass{elsart3p}    %% two columns for publication
+
+\usepackage{graphicx,amssymb}
+
+\usepackage{url}
+
+\renewcommand\floatpagefraction{.2}
+\makeatletter
+\def\elsartstyle{%
+   \def\normalsize{\@setfontsize\normalsize\@xiipt{14.5}}
+   \def\small{\@setfontsize\small\@xipt{13.6}}
+   \let\footnotesize=\small
+   \def\large{\@setfontsize\large\@xivpt{18}}
+   \def\Large{\@setfontsize\Large\@xviipt{22}}
+   \skip\@mpfootins = 18\p@ \@plus 2\p@
+   \normalsize
+}
+\@ifundefined{square}{}{\let\Box\square}
+\makeatother
+
+
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{The OWL of Biomedical Investigations}
+
+%% Here are the  AUTHORS.  Note the separating commas
+%% with no and.
+
+\author[tfl]{M\'elanie Courtot\corauthref{C}},
+\ead{mcourtot@gmail.com}
+\author[ucsd]{William Bug},
+\author[new]{Frank Gibson},
+\author[cisban]{Allyson L. Lister},
+\author[ebi]{James Malone},
+\author[ebi,IMBI]{Daniel Schober},
+\author[tfl]{Ryan R. Brinkman},
+\author[sc]{Alan Ruttenberg}%\corauthref{C}}
+\ead{alanruttenberg@gmail.com}
+
+%% these specify any 'notes' for the title and authors,
+%% including 'thanks' that acknowledge support, etc. and an
+%% indication of who the corresponding author is if there's
+%% more than one author.
+
+\corauth[C]{Corresponding author. Phone  +1 (604) 675-8000 x 7755}%,  +1 (781) 248-1480}
+
+\medskip
+
+%% Here are the addresses refereenced for the authors.  If
+%% all of the authors are from the same institution you need
+%% not have the lables for the author and address commands.
+
+\address[tfl]{Terry Fox Laboratory, British Columbia Cancer Agency, 675 West 10th Avenue, Vancouver V5Z 1L3, BC, Canada}
+\address[ucsd]{National Center for Microscopy Imaging Research, UCSD, CA, USA}
+\address[new]{Abcam plc, 332 Cambridge Science Park, Cambridge, CB4 OWN, UK}
+\address[cisban]{CISBAN and School of Computing Science, Newcastle University, Newcastle upon Tyne NE1 7RU, UK}
+\address[ebi]{The European Bioinformatics Institute, Cambridge, Wellcome Trust Genome Campus, Hinxton CB101SD, UK}
+\address[IMBI]{Institute of Medical Biometry and Medical Informatics (IMBI), University Medical Center, 70104 Freiburg, Germany}
+\address[sc]{Science Commons, c/o Creative Commons, 171 Second Street, San Francisco, CA 9410, USA}
+
+\begin{abstract} 
+
+The Ontology for Biomedical Investigations (OBI), written in OWL DL, brings together a large consortium seeking to provide a cross-domain, shared framework for representing investigations in the biological and biomedical sciences. In this paper we report our experiences and describe our development process as it pertains to the implementation in OWL.
+This includes a number of elements that might inform tool developers as well as suggest general development patterns.
+Finally, we review where improvements to the OWL format and corresponding tools might be beneficial.
+
+\end{abstract}
+
+%% you choose your own keywords
+%% Immediately after the abstract, provide a maximum of 6 keywords, using American spelling and avoiding general and plural terms and multiple concepts (avoid, for example, "and", "of"). Be sparing with abbreviations: only abbreviations firmly established in the field may be eligible. These keywords will be used for indexing purposes.
+
+\begin{keyword}
+Ontology; Collaborative development; OWL; Reasoning; Bioinformatics; Ontology for Biomedical Investigations%; OBI
+\end{keyword}
+\end{frontmatter}
+
+
+\section{Introduction}
+\label{intro}
+
+The Ontology for Biomedical Investigations (OBI) Consortium\footnote{\url{http://purl.obofoundry.org/obo/obi}} is developing an ontology for the description of biological and clinical investigations.
+It is written in OWL DL, and built using the Basic Formal Ontology (BFO)\cite{bfo} as its upper level ontology.
+The OBI Consortium is a member of the OBO Foundry\cite{foundry}, a collective of developers of science-based ontologies who are establishing a set of principles for ontology development with the goal of creating a suite of interoperable reference ontologies in the biomedical domain. 
+In order to enable development of OBI as a large collaborative project, a strategy was required that would allow concurrent editing, distributed development, version control, offline development, use of different tools and editors, and script-based augmentation of the ontology content.
+A review of the existing collaborative ontology development tools failed to identify a single application that met these requirements.
+As a result, we chose to rely on a small group of tools, augmented with a structured mechanism for development.
+The ontology structure was separated into 10 branches (or sections) for concurrent development by corresponding groups, with each group working more or less independently.
+This presented some challenges preparing OBI for distribution, as parallel editing of OWL files can lead to non-unique class identifier assignment and conflicts within the ontology. We describe some of these technical challenges and solutions in this paper.
+One of the fundamental principles of the OBO Foundry is to reuse, where sensible, existing ontology resources.
+While OWL provides a mechanism to import ontologies (\emph{owl:imports}), this mechanism was not always suitable for OBI. Firstly, current editing tools are not effective for working with very large ontologies such as the NCBI Taxonomy\cite{ncbi} or the Foundational Model of Anatomy\cite{fma}, making direct OWL imports of such ontologies, as a whole, impractical for day-to-day development. Secondly, other ontologies used by OBI are under active development and may not be aligned with its design (e.g., not using BFO as an upper ontology, or not using OWL DL). Importing such ontologies as a whole would lead to inconsistencies and unintended inferences. 
+One alternative to the OWL built-in import mechanism would be to copy only parts of the external ontology into \emph{obi.owl}. Software that extracts a ``module''\cite{module} is in early development and we plan to try such strategies in the future. 
+Our solution was to develop a set of steps or guidelines that describes how to import selected terms without the overhead of importing the complete ontology from which the terms derive.
+These guidelines are called the Minimum Information to Reference an External Ontology Term (MIREOT) and are described in this paper.
+
+\section{OBI development practices}
+
+
+\subsection{Minimum Information to Reference External Ontology Terms (MIREOT)}
+
+In deciding upon a minimum unit of import, our first step was to consider the practices of other ontologies.
+The practice of the Gene Ontology (GO)\cite{go} is that terms are deprecated if their intended meaning changes\cite{deprecated}.
+We therefore consider terms (\emph{i.e.}, classes) a basic unit of import.
+According to the MIREOT guidelines the minimum amount of information needed to reference an external class is (i) The source ontology URI; (ii) the source term URI, which generally remains stable and can be used as an unambiguous reference; and (iii) the direct superclass in the target hierarchy (\emph{i.e.}, what OBI class the imported class is a subclass of).
+We store this minimum information set in a separate file called \emph{external.owl}. 
+Additional information, such as labels and definitions, are mapped into the corresponding OBI annotation properties and stored in a separate file, called \emph{externalDerived.owl}. This additional information is more prone to change, and a distinct file allows for easy update of this information.
+Updates are managed using a set of templated SPARQL queries\footnote{\url{http://purl.obofoundry.org/obo/obi/repository/trunk/src/tools/build/external-templates.txt}}, which specifies which extra information about the classes in the \emph{external.owl} file to gather.
+These are then retrieved using queries against the Neurocommons\footnote{\url{http://neurocommons.org/}} SPARQL\footnote{\url{http://www.w3.org/TR/rdf-sparql-query/}} endpoint\footnote{http://sparql.neurocommons.org/sparql}.
+
+%\begin{figure}[t]
+%\centering \includegraphics*[width=1\columnwidth]{cell}
+%\caption{The to-be-imported \emph{cell} term, as viewed in its original context in the Cell Type ontology class tree. The \emph{cell by organism} and \emph{cell by class} are examples of those we would prefer to not import into OBI.}
+%\label{fig:cell}
+%\end{figure}
+
+
+%Figure \ref{fig:cell} illustrates how the implementation of the MIREOT guidelines works, with the example of  replacing of the OBI class \emph{cell} with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}.
+As an example, we recently replaced the OBI class cell with that from the OBO Foundry Cell Type (CL) ontology\cite{cell}. 
+Following the MIREOT guidelines, we identify the minimum information required in this case: 
+\begin{enumerate}
+\item the URI of the term cell: \url{http://purl.org/obo/owl/CL#CL_0000000}
+\item the URI of the ontology from which the term is imported: \url{http://purl.org/obo/owl/CL}
+\item the position of cell in the OBI hierarchy: as a subclass of material entity: \url{http://purl.obofoundry.org/obo/IAO_0000118} 
+\end{enumerate}
+
+A second example presents a slightly more complicated challenge.
+OBI currently uses the NCBI taxonomy for its species terms.
+When importing NCBI taxonomy terms as OBI classes, we decided that the information about the term itself was not sufficient on its own: for example if we want to import the term \emph{Mus musculus}, we also want to import its rank information (\emph{e.g.}, genus, kingdom, phylum. to allow for expanded queries.
+In this case the SPARQL query retrieves all direct superclasses up to one of a set of top-level classes in the taxonomy. 
+Correct inference within OBI and using the external classes is only guaranteed if the full ontologies are imported.
+We expect to provide an option in the OBI distribution where the \emph{external.owl} file is replaced with a set of corresponding import statements in the \textit{obi.owl} file directly. 
+The import statements are generated by extracting the ontology URIs mentioned in \emph{external.owl}. 
+An important consideration when importing external classes into OBI with this approach is the correctness of OBI assertions made on external terms.
+In adding new axioms, such as the subclass axiom, to an external term within OBI, the aim is to only assert true statements about the terms.
+It is likely that an interaction with the external ontology efforts is necessary to collaborate on this important issue. Further, it is also likely that this approach is mutually beneficial in that new knowledge may be gained by the external, source ontologies, whilst OBI has a mechanism for validating this additional knowledge. This should be considered a propitious emergent feature of the collaborative nature of OBO Foundry ontology development and not a disadvantage of the approach.
+
+\subsection{Releasing OBI}
+
+We required a mechanism that would allow the release of a public version of OBI\footnote{The latest version of OBI is always available at \url{http://purl.obofoundry.org/obo/obi.owl}} on a monthly basis.
+ Such a process allows users to acquire a traceable version of the ontology that is essentially static and act as a stable reference point for usage, much like the process undertaken in the software industry. 
+ Constructing a single OWL file that contained the entire ontology seemed an appropriate step towards this aim.
+Having a dedicated release process further allows us to more carefully control and modify the ontology before making it available.
+Our release process involves a number of automated steps including checks for content quality (\emph{e.g.}, annotations compliant with our policy, OBI-compliant identifiers, disjoints management), syntax (\emph{e.g.}, OWL species validation) and reporting candidate release status to the ontology developers.
+
+\subsection{Quality checks and reports}
+
+To ease curators' work whilst ensuring the quality of the ontology, we decided to provide reports to each branch that identified areas not compliant with our policies prior to each release.
+We use a Jena-based\cite{jena} script to read in our branch files and identify missing elements, duplicates or misuse of any of our metadata properties.
+Such curator reports are rated according to what action needs to be taken: simple warnings for those errors that can be corrected automatically by script or critical alerts for those issues requiring manual intervention from one of our curators. Reports are simple HTML pages displaying terms and associated issues.
+We explored different policies regarding what to do in case of significant errors (\emph{e.g.}, block release), but instead adopted a release early, release often approach in the hope that this would encourage developers to correct mistakes in a timely fashion.
+For example, we would occasionally encounter a problem with the Prot\'eg\'e\cite{protege} editor with one of our annotation properties being saved in the wrong branch file. For example, when adding a label to one of the instruments after serialization, this label could get stored in the \emph{Biomaterial.owl} file instead of the \emph{InstrumentAndParts.owl} file. 
+As only one file can be edited at a time using Prot\'eg\'e\, this causes editing problems if the class needs to be updated again later on.
+In order to mitigate this, we are considering using an extra annotation property to indicate which branch classes belong in.
+By using this information we could automatically clean up and reorganize branch files according to their logical content.
+Additional scripts perform other quality control checks, including notification on terms that lack a curation status assignment, listing terms with extra curation instances (\emph{i.e.}, only one is allowed per term), listing terms missing a label, and listing classes that are asserted under a defined class.
+
+\subsection{Distributing OBI with inferred superclasses}
+
+OBI aims to follow Alan Rector's\cite{rector} normalization recommendation by providing an untangled disjoint tree of defined classes and avoiding asserted multiple parenthood on the developers side. However, we also want to provide an enriched post-reasoned user-friendly file.
+To achieve this we classify the hierarchy and add the inferred superclasses via script to our OWL file, thus allowing end users to have the fully inferred hierarchy, while keeping the curators version of the ontology untangled and ``clean''.
+
+\subsection{Assuming that all classes have instances}
+
+\begin{figure}[t]
+\centering \includegraphics*[width=1\columnwidth]{inference}
+\caption{Abstract syntax for an ontology for which the desired inference is not made.}
+\label{fig:instances}
+\end{figure}
+
+In Figure \ref{fig:instances}, we define a \emph{manufacturer} class, an object property \emph{is manufactured by} with range \emph{manufacturer role}, and add that a specific microarray type is manufactured by an organization \emph{Affymetrix}.
+We were expecting the reasoner to classify \emph{Affymetrix} as \emph{manufacturer}.
+However this is not the case unless we explicitly add a \emph{microarray} individual to the ontology.
+In the framework of BFO, all classes must have instances.
+Ideally, we would indicate our assumption that all classes have at least one individual to a reasoner and have it compute subsumptions and other inferences on that basis, instead of checking satisfiability by asserting that at least one instance exists, serially, for each class.
+However the reasoners we use, Pellet\cite{pellet} and Fact++\cite{fact}, do not offer this choice, and we decided to script the addition of anonymous individuals of each type named in the ontology as part of our release process.
+We do this for each leaf class, and before computing the inferred superclasses.
+Asserting a distinct anonymous individual as member of each leaf class means that the superclasses will also have one member and ensures that the entailments will be reliably computed and that ontologies that are not jointly satisfiable will be detected.
+We plan to suggest that a similar mechanism is adopted by the OWL versions of all OBO ontologies.
+We note that this choice is not without problems.
+OBI, augmented with these 'assumed individuals', becomes more difficult to reason with reliably - we have had problems with both Pellet and Fact++ and are at the moment communicating with the developers of those reasoners to determine the source of the problem.
+Therefore, we currently use the assumed individuals to compute the inferred class hierarchy, but do not include them in the released version of OBI.
+
+\subsection{Increasing the readability of the RDF/XML version of OBI}
+
+We use numerical identifiers for all our terms: classes, instances, but also for annotation-, data- and object properties.
+However, we sometimes need to edit the OWL RDF/XML directly, which is cumbersome because numeric identifiers (IDs) are not easily remembered by humans.
+To increase human readability of the owl source code we post-process the RDF/XML and generate human readable XML comments for the released version of the file.
+We recommend that tool developers offer an option to use some annotation property as an XML comment when serializing OWL (Figure \ref{fig:comments}).  
+
+\begin{figure}[t]
+\centering \includegraphics*[width=1\columnwidth]{xmlcomments}
+\caption{Example of XML comments used to note what IDs correspond to in RDF/XML serialization.}
+\label{fig:comments}
+\end{figure}
+
+\subsection{OBI terms on the Web}
+
+In addition to supplying the OBI ontology as a single file, we are in the stage of prototyping a method for responding with a bounded amount of useful information for each URI naming a term in OBI\footnote{For an example view \url{http://purl.obofoundry.org/obo/OBI_0000225} in a browser}.
+In doing so we follow httpRange-14\footnote{\url{http://www.w3.org/2001/tag/issues#httpRange-14}} and use a HTTP response code of 303 with a redirect to RDF/XML describing the term.
+We do no content negotiation to emphasize that the URI names a single thing.
+In order to present readable information in web browsers, we use an XSL stylesheet, which is executed by the browser to generate HTML.
+Choices need to be made as to what the content of the RDF delivered at this URL should be.
+We chose to make each bundle of RDF delivered at this URL a valid OWL DL ontology by importing the full OBI ontology.
+A certain amount of relevant information is included for web clients that do not follow that import statement: for a class, the axioms defining it, inferred superclasses, properties that it is in the domain of or range of (class usage), and labels for any referenced terms are added.
+We also include project information using the DOAP schema\footnote{\url{http://trac.usefulinc.com/doap}} including pointers to our repository, tracker, mailing list, and release information. 
+
+\section{Discussion}
+
+Support for MIREOT and for reasoning services that assume the existence of an instance of each class, as discussed above, would be helpful.
+Below we discuss a number of additional features of OWL and associated tools that would ease development of OBI and other ontology projects.
+
+\subsection{Deprecation}
+As the obsolete terms are stored in a separate file (to make it easier to excise them from some versions of OBI), we constantly run into issues trying to move obsolete classes to the \emph{ObsoleteClass} hierarchy.
+Prot\'eg\'e allows for editing of a single ontology file at a time (the \emph{active ontology}), making this difficult and error prone.
+In addition, our deprecation policy stipulates, among other things, that axioms involving deprecated terms should be removed.
+In order to support this practice we believe it is desirable to have either better tool support for this or OWL language support that would cause axioms involving deprecated/obsoleted terms to be considered annotations.
+
+\subsection{Annotations on annotations}
+
+OBI is used in a variety of fields and we need to address the fact that one term can mean different things in different communities. 
+For example, the term \emph{probe} is a synonym for the term \emph{reporter} in one community, whereas it is a synonym for the term \emph{detector} in another.
+Annotations on annotations are an appropriate representation of these community-specific labels, and would allow us to “tag” any of our synonyms with extra information noting pertinence to a specific community.
+
+\subsection{Versioning}
+
+OBI's policy is to release frequent updates and to maintain access to all versions.
+We create dated versions of each release, currently using the Persistent Uniform Resource Locator (PURL)\cite{purl} system to provide time robust access to successive revisions.
+This leaves control over the choice between preferring stability and being up to date with the latest developments to the end-user.
+OWL 2's versionURIs\footnote{\url{http://www.w3.org/2007/OWL/wiki/Syntax#Ontology_URI_and_Version_URI}} will make it possible for users to easily choose which version of the ontology to use.
+We believe it would be beneficial to the community if this practice became the generally accepted way of managing versioning of ontologies as it provides a single and unambiguous path to accessing version numbers (independent of tools). 
+While developing OBI we prefer stability (\emph{i.e.}, not being surprised by unplanned-for changes), and we work around the lack of published ontology versions by relying on local copies of imported ontologies.
+
+\subsection{Support for Rector-normalization style editing}
+
+The dominant paradigm for editing ontologies is that of a single rooted hierarchy.
+However the style proposed by Rector and others is to develop a series of single inheritance ontologies and a separate set of classes defined in terms of elements of the disjoint single inheritance trees.
+An ontology interface that supported fluidly moving between the component trees, the defined classes, and the inferred entangled (composite) view, as well as providing easy access to common patterns for the composite definitions would significantly benefit ours and other’s efforts.
+
+\subsection{Conclusion}
+OBI is an ambitious project, uniting a large number of collaborators from different biological and biomedical sciences (more than 45 experts representing 18 communities), many of who plan to use OBI in their own projects.
+Due to the number and distributed location of developers and domain experts, OBI’s needs for collaborative ontology development bring new and currently unaddressed challenges at both the organizational and technical levels.
+
+
+\section{Acknowledgements}
+
+In memory of our friend and colleague William Bug, Ontological Engineer. 
+
+The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Mervi Heiskanen, Tina Hernandez-Boussard, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann. The author’s work is partially supported by funding from the National Institute of Biomedical Imaging and Bioengineering, NIH; Grant Number: EB005034, the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1), the EU NoE NuGO(NoE 503630), the CARMEN project EPSRC(EP/E002331/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139) and the Michael Smith Foundation for Health Research.
+
+\section{Disclosure Statement}
+
+The authors declare no conflict of interests. 
+MC and AR conceived and implemented the project. All authors contributed to the writing of the manuscript and to aspects of the development of OBI. All authors read and approved the final manuscript.
+
+\bibliographystyle{elsart-num-sort}
+
+\bibliography{owled}
+
+
+
+\end{document}

@@ -1,0 +1,31 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix obi: <http://purl.obofoundry.org/obo/>
+prefix tax: <http://purl.org/obo/owl/NCBITaxon#NCBITaxon>
+
+construct
+ { ?super rdf:type owl:Class.
+   ?super rdfs:subClassOf ?parent.
+   ?super alias:preferredTerm ?label.
+   ?super rdfs:label ?label.
+ }
+ where  
+  {
+     {  #direct superclass.
+        { _ID_GOES_HERE_ rdfs:subClassOf ?super. }
+        { ?super rdfs:subClassOf ?parent.
+          ?super rdfs:label ?label.
+        }
+      }
+   UNION
+        # now harvest the class annotations 
+      { ?super rdfs:subClassOf ?parent.
+        ?super rdfs:label ?label.
+	FILTER (?super=_ID_GOES_HERE_)
+      }
+   FILTER (!((?parent=alias:bacteria) || (?parent=alias:eukaryota) ||
+     (?parent=alias:viruses) || (?parent=alias:archaea) || 
+     (?parent = alias:cellularOrganism) || (?super=alias:bacteria) || 
+     (?super=alias:eukaryota) || (?super=alias:viruses) || 
+     (?super=alias:archaea) || (?super = alias:cellularOrganism)))
+}

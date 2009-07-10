@@ -1,0 +1,149 @@
+OBI Developers Call - 07Mar2007
+
+Agenda:
+-Finalize implementation of WorkshopMetadata in OWL
+--Agree on string syntax representation of definition_source information - All
+--Review OWL representation of definition_source information as classes and instances - Alan
+-Present working implementation of time line with triggers in OWL - Alan
+
+Participants: Trish Whetzel (TW), Bjoern Peters (BP), Philippe Rocca-Serra (PRS), Allyson Lister (AL), Ryan Brinkman (RB), Jamie Lee (JL), Joe White (JW), Daniel Schober (DS), Kevin Clancy (KC), Alan Ruttenberg (AR), Elizabeth , Gilberto Fragoso (GF), Jennifer Fostel (JF)
+Excused: Liju Fan
+
+
+TW - concern with BNF?
+AR - just checking
+DS - this has been out there for awhile and is stable
+AR - review of file contents for definition syntax
+Goal of syntax - easy to enter as a string and to re-format as instances if the group decides to follow that implementation
+
+PMID
+TW - PMID, will it always be pp regardless of whether there is one page
+HP - go with pp as the syntax
+
+Web page
+AR - this url can be any kind of uri
+HP - how to constrain things that are only represented at something represented on the web
+AR - yes, can't check pragmatically. if there is a PMID, use a doi and then use a web page as the last resort
+- what is the intention?
+AR - part of documentation of developing OBI
+
+ISBN-Book
+mesh term - anything after the comment is not machine readable and should not be needed to id the resource
+
+Person - Foaf
+MP- what is this identifying?
+AR - i received the definition
+Person - 
+
+Ontology Term
+if url, supply this
+
+HP - that speaks to the ontology development policy, shouldn't be trying to legislate this 
+AR - documentation could mention this about 
+TW - would not include this, really depends on how the ontology manages it's updates
+HP - this is re-inventing the deprecation policy
+JW - would assume that it is the last version of the ontology
+ACTION ITEM - re-visit this discussion
+JW - there are 2 # signs, how to parse?
+AR - the angle brackets
+
+
+Book only on the web
+shows that there are various levels of date representations, Y, YM, YMD, but the order is always the same
+
+TW - does this cause any problems with parsing with Jena?
+AR - it shouldn't but would be good to confirm
+
+GF - catching up from this morning, what are going to apply this to?
+AR - not following?
+GF - what is this being applied to? definition_source. i can see pmid, isbn, book, doi, but why term?
+AR - this is meant as a representation of definition source to use as the value for this annotation property. could be also be used for the alt set of tags, but we have not used 
+
+AR - DS mentioned the use of a group, e.g. OBI
+TW - yes, I believe this was the case
+HP - had not really spelled this out
+AR - this would look like the person representation
+HP - almost everyone has a web page
+DS - agree
+MP - replace url with uri?
+AR - good point, http url is preferred. tags are case-insensitive and that pipe should be reserved, therefore not included in comments
+
+MP - angle brackets?
+AR - this has been used before, we can test this in OWL.
+Date on URL for a term?
+For this  - MP
+Against this - HP, GF, TW, DS, 
+
+GF - tracked by the tool
+AR - that would be the date of entry versus the date of the term. we have not discussed the date issue.
+
+TW - based on OBO Foundry principles, why would be have that term in our own resource?
+
+MP - if it is a resource that we have no control over then ... we might want to keep the date
+
+TW - source of MO terms?
+AR - guess is that it would be close enough to the other definition that we could use this
+GF - terms are defined within a specific context and as the terms are being moved into OBI and the context of the term changes, we can not copy the definition verbatim. we can attribute the source, but is not the exact source. needs to be made explicit in the documentation. Aristotelean def is dependent on the scheme.
+AR - issue of the syntax is clear and this issue is how we edit the usage notes. how about we review the doc on usage for next week?
+
+HP - can the branches try using this?
+PRS - need to track the resource it came from
+TW - i don't think that the obo terms have a versioned in the URL
+HP - this case may be a small percentage of cases
+
+AR ACTION ITEMS 
+-test definition source syntax in OWL
+-draft doc for synonym usage
+-add group as a source for a definition, e.g. to cover OBI
+
+GF - might be difficult to write support for this and that writing this can be done manually.
+
+AR - thought that this is for the case for people to enter manually. assuming there will be a real structure and there would be tool support.
+
+TW - can this be supported by tools
+AR - the script can parse so it should be able to enter it
+GF - wasn't thinking of tool support, but for adding manually
+AR - can translate to regular this to a regular expression
+MP - there are tools to aid with this
+TW - is this done after data entry 
+
+DS - person id would contain a uri, foaf?
+AR - this refers to a foaf record
+DS - then we would use foaf metadata within obi?
+AR - that is not the intention to create a foaf record. we should port that by supporting a uri
+
+
+TW - alt term set?
+HP - would prefer to have this discussion when we get a good set of synonyms and then discuss at this time.
+AR - think that 
+
+TW - propose to refer back to this when there are more use case
+AR - second this
+
+DS - synonym types, if needed we can use these as a second type of term
+PRS - good to raise this point
+GF - referring to the doc from PSI, the term had to be synonymous for this. the point is that in cases the terms are context dependent or not. up for discussion as to whether to use the OBO solution or a term type or ...
+can not just use those as a quasi-synonym
+AR - would like to see examples?
+GF - hemoglobin - protein, lab test
+
+AR - hemoglobin could be an alt_term for a term and also a primary term
+GF - people use this as a synonym for a lab test
+
+DS - problem when there is an OBI preferred term and 
+GF - that is why class names are not a good term, concept code means that the preferred term can be anything. as a terminology producer, can propose a diff term for the resource, but still keep hemoglobin as a synonym.
+
+HP - the example that Gilberto gave was useful, can this be documented?
+GF - how many examples?
+TW - review alt terms next week....
+
+AR - there is the item of the duplicate representation of definition source, owl time trigger and 
+
+TW - would prefer to check with community before voting
+AR - they may not know how to deal OWL and this issue may conflate.
+TW - that is not the case with Transcriptomics and this is the community that I was referring to. DS, do you know of any issues that the parallel representation would cause for PSI?
+AR - perhaps we can discuss at next weeks call or offline?
+TW - anyone have concerns with offline?
+All - no, DS, would like to join in call with AR and TW
+
+

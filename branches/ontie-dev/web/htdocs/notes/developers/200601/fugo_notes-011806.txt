@@ -1,0 +1,170 @@
+FuGO Conference Call – 01/18/06
+---------------------
+
+Participants: Gilberto Fragoso, Helen Parkinson, Joe White, Ryan Brinkman, Chris S., Trish Whetzel, Susanna Sansone, Daniel Schober, Philippe Rocca-Serra, Tina Boussard, Tanya Gray, Liju Fan
+
+CS - Problems identifying what the top nodes are for some terms. Did anyone else have that problem?
+
+Daniel - making a list of top level ontologies to see if there any usable ones.
+
+Need to be understandable to biologists. 
+
+General comment should be clearer about foundational concepts imp for domain specific concepts, don't want to mix these
+
+CS:important but not what I was asking. have you had chance to map RSBI concepts to the top level nodes? The point you have is the next step. We need to look at the top nodes and map to existing other level top nodes. We may want to refine top nodes after that analysis.
+
+PRS:Tried to classify the nutrignomics terms. OK for object and process, hard for datatype, discipline etc
+
+CS:we also found that
+
+TW:would leave discipline out for a while, not yet defined, may be application specific
+
+PRS:should we not reflect on BS mail, of continuant vs occurent
+
+CS:we were finding that datatype was not adequate
+
+PRS:didn't understand definition of datatype, didn’t know where to put units etc
+CS:we had thought this was datatype, but appears not to be best class for this
+
+JW:BS argued that organism - is an object or attribute, we use it as an attribute
+
+LF:we can put a top node attribute property
+
+CS:how would that work, alternative would be characteristic, is attribute better than characteristic
+
+DS:properties of concepts? Do we talk about what level of concepts
+
+CS:foundational concepts, e.g. Age, BioMaterialCharacteristics, consider these not to be domain
+
+DS:would not consider these as ontological foundational concepts. 
+
+Barry - while Age or MeasurementUnit may not be foundational, Characteristic will be at the very top. Propose root node, which is Characteristic up to you to decide what goes in there, e.g. Age.
+
+Daniel, we can look at the existing top level concepts.
+
+PRS:I saw Barry's posting, if we look at Sumo one of the top classes are Process and Object, but there is another class attribute
+
+JW: can a term be both an object and an attribute? n the mail BS said org = object/characteristic
+
+BS:name for organism species is still under object and the associate with this specimen using using “derives from” relation
+
+LF:in the mged ontology we use organism to describe a specimen, the application is different.
+
+BS:it was once an instance of an organism, even if you associate the name with the specimen doesn't mean that the organism=specimen. There is relationship in the relation ontology “derives from”
+
+CS:if we can agree on top nodes will help us in our individual efforts
+
+TW:Measurement and Unit - feedback from Barry? wrt to DataType
+
+TW:curious as to what you think Measurement and Units classify under
+
+BS:Units are not a biological reality - introduced by humans, Units are not a top level class in a biological ontology, in experiments - they are more important
+Measurement - make statements about dimensions e.g. height, length etc are child of characteristic node.
+
+LF: in biology we separate units and values and measurements
+
+BS:EVA (entity-value-attribute) relationship to model units, this may not work, based on work from food domain,  Phenotype Ontology (PO) has attribute called eats - need values for this e.g. peanut butter sandwiches, can't have “peanut butter sandwich” in ontology, so PO are looking at attributes and have children - you won't need so many children - there will be some common ones
+
+TB:who are the phenotype people?
+
+BS:Chris Mungall suggested this. I think this is the correct approach height of 1.3 m is a child of height. Also allow you to solve the peanut butter sandwich problem. Need a formal solution. Now we can look at units, units are groups of terms within characteristic tree - height etc, each comes with it's own unit so these will come for free. 
+
+JW:so units will be defined by the attribute.
+BS:yes.
+CS:we would prefer to look at an external resource for units, how would that work?
+BS:good to refer out if you can. If you choose the child-of or value of solution will be the same. Units resource does not contain all the values. Not a big architectural feature of the ontology
+
+JW:we need to reference units for MAGEv2 since they are not in the new OM
+
+BS:if you have many terms for the ontology e.g. second, metre, Q where do these go? Not characteristics, or objects or processes, may be datatypes, should not be in physical components.
+
+TW:I understood that MAGEv2 is not encoding units
+
+JW:could be an ontology other than  FuGO - we could recommend to use a given ontology for the units. 
+
+TW:if not all the unit terms are in the unit resource we will have a problem
+
+PRS:don't you get an infinite number of units?
+
+BS:yes but we get an infinite number of attributes with the other approach as well - the PO people are working on this
+
+CS:terms for datatype definition. As part of experiment have data - raw/processed etc
+We need to give terms to identify what stage of analysis we are at. These are concepts that I assume will be in datatype - does that make sense?
+
+Do we need a datatype top node, if we don't where would these terms go?
+
+LF;datatype as a top node, rather data. Chris did you mention that data transformation is a type, should be a process. 
+JW:is data an object.
+HP:possible that if you have attributes of data are they not just characteristics?
+BS:data could be one branch under objects - get data processes, and characteristics sensible thing to try. As soon as get datatypes will get risk of counting things 2x - only include real data realm - not e.g. characteristics of data. 
+
+CS:You would classify data as continuant ie objects? Do we want to make a distinction on dependent and independent? Data is independent - data exists even if the thing which relates to it is not there. Characteristic =dependent continuant. If you want to use characteristic functions need to be children of characteristic
+
+CS:content with Object and Process, want Characteristic top node. 
+TW:now we have Data as child of object.
+JW:Characteristc will be an attribute of objects, DataType are things like Units - or even MetaData about data sets?
+GF:I agree with Joe, we should keep DataType in there. E.g. integer is a DataType
+CS:yes we need that. 
+GF:so lets keep it for now
+CS:in terms of symmetry of top nodes, data is child of object. Distinction between DataType and Characteristic these are not consistent with the Object/data subclass relation
+BS:We have problem of organism part - suggested the use is-a and part-of as used in FMA.
+Experiments will generate data - data is a mass like an ocean, divided into parts, some in integer, some string form, this division of the data is DataTypes, how close the analogy is with the body parts problem. You should experiment with relating data and datatypes with is-a and part-of - you need to see which solution works best
+GF:question - data/datatypes, not sure that we want to cover data at all - ?
+Don't think we need to include any data in the ontology
+LF:we do describe data - e.g. raw data, processed etc. They can use ontology terms for this. 
+CS:we don't need the 'sea' of data
+GF:that's what I was saying, we are describing the data, no need to include it in the ontology
+BS:I think in bio ontologies generally data should not be included, in your case experiments not just biological domain, may need to include terms that designate terms of data
+CS:both sleep regulation and integer are needed
+BS:answer Gilberto - two ways data is involved - all data expressed using terms in the ontology by people doing informatics, different body of data - not FuGO's object, for this reason GF is right, second set of data shouldn't affect FuGO it's not in FuGO
+GF:agrees
+LF:data and datatype in the ontology, wonder how to define that they are different, should be disjoint, suggest go bottom up look at subclasses - 
+CS:propose - we have come together on 3 top nodes, object, process, characteristic - I would argue start with these 3 and data and datatype are the 50 top concepts. Also argue that domain or discipline fit under characteristic as well.
+LF: I agree with this, question how go further? We can figure out what the subclasses will be.
+TW:is it worthwhile to look at the lists of measurement terms.
+CS:do you have measurement terms?
+PRS:what do you consider measurement? I have two subclasses of course Quantitative and Qualitative - after that I don't know if I have instances or classes, depends where we put the limit? Catalytic activity
+TB:we measure enzymatic activity for a drug?
+LF:do we agree that measurement is a datatype, or an activity?
+BS:activity, the act of measurement and the outcome or result, the results is a child of data
+CS:yes so far e.g. enzymatic activity is the result and not the process. 
+TW:display current work from Transcriptomics community on reviewing MO terms for Measurement. Seems that most of these are results rather than process of taking a measurement so these are data as well.
+CS:can we wrap up and summarize then?
+
+We have Object, Process and Characteristic, some we are still struggling with, we have not reached a consensus where we should go. Process embarked on is to generate as part of their concepts which are related to measurements and data and data types. OK?
+
+SS:what about draft definition for the top level nodes. Was an AA for today.
+PRS:agree
+LF:need human understandable definitions
+SS:definitions would help us with the call
+BS:If you are happy with the rough mail I sent, I will turn these into definitions, can't define everything, I will also add examples.
+SS:thanks. I want to bring up Daniel’s questions. Are we not also trying to identify fundamental top level concepts. Daniel is reviewing upper ontologies. 
+BS:the top level chosen so far as so neutral that these are in keeping with existing ontologies. You will need to let functions to be characteristics - I am convinced that this is correct.
+TW:OK so we will work on our terms and map these to the existing top nodes proposed so far.
+PRS:Suggest that we send around measurements
+BS:you want a cv so that every single word in the text in the vocabulary OR create those things that are the clauses that are instrumental e.g. 3mm in diameter, not include 3mm and diameter, 
+TW:so far we have done the first form
+BS:may be a way of solving the peanut butter sandwich, if you have  3 - mm - diameter all in the ontology, then you don't need the concept 3mm diameter
+CS:had hoped to put in the peanut butter sandwich into the ontology
+BS:but there are multiple instances of the peanut butter sandwich
+LF:could we use the pizza ontology as an example, parts and then get specialised, could we use this approach?
+BS:this is more like using the phrase approach rather than the having all the concepts in the ontology
+GF:in owl can define values e.g. 1, or 3 or 3.2   this can be a value, is a datatype string can assign to a property restriction, is it possible to assign a value to a measurement without that value being in the ontology. When instantiate you assign a value, in OWL a has-value.
+BS:leads to the peanut butter sandwich problem, if you associate values with characteristics then will get too many values.
+TW:suggesting not to use as an xml datatype
+BS:should experiment - but this will not solve the basic problem, need to deal with representation of 3mm in diameter - either in ontology -kids of has diameter, or find some way to generate out of what is the ontology - a priori don't know what will work best
+BS:two types of data - data in experiment - data that ontology will help
+someone uses the ontology to reason about experiment inputs and outputs.
+LF:not consider datatype properties as part of the ontology?
+BS:if data and datatype are part of the experiment then should be in the ontology.
+TW:any other questions? OK then wrap up, send mails to developer list. Notes will be posted.
+
+
+
+
+
+
+
+
+
+

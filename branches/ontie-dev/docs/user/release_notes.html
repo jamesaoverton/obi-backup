@@ -1,0 +1,262 @@
+<html>
+<head><title>OBI Release Notes</title></head>
+<h1>OBI Release Notes</h1>
+
+The current version of OBI.owl provided at the site is still a draft.
+In fact, it is a pre-release version that is meant for review and could change substantially after review.
+The current version however represents the efforts from the different OBI branch development as provided at <a href="http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/">http://obi.svn.sourceforge.net/viewvc/obi/tags/releases/</a> at the date of release.
+
+The release consists in several files:
+
+<ul>
+<li><u><a href='http://purl.obofoundry.org/obo/obi.owl'>OBI.owl</a></u><br>The merged file representing the current status of the project, created by merging the branches together.
+This file is OWL-DL and consistent. (checked with several reasoners, including Peller, Fact++)
+<br>
+<li><u><a href='http://purl.obofoundry.org/obo/obi/protege/'>Protege directory</a></u><br>
+<ul>
+<li><u><a href='http://purl.obofoundry.org/obo/obi/protege/obi.owl'>OBI-ProtegeFriendly.owl</a></u><br>
+Due to a bug in Protege 3.x, the namespaces are not properly handled in the OWL-DL version.
+We therefore produce as a temporary fix a Protege friendly version, wich is consistent but OWL-Full.
+This will allow the display via label instead of IDs in Protege 3.x
+See instructions on <a href="http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&amp;hl=en">Using Protege with OBI</a>
+
+<li><u><a href='http://purl.obofoundry.org/obo/obi/protege/obi.pprj'>OBI-ProtegeFriendly.pprj</a></u><br>
+As a convenience, we also provide a Protege project file (OBI-ProtegeFriendly.pprj) which will activate the label display in Protege.
+To use it, download OBI-ProtegeFriendly.pprj AND OBI-ProtegeFriendly.owl in the same directory. In Protege, choose File, Open, and open the OBI-ProtegeFriendly.pprj project file.
+</ul>
+<li><u>md5.txt</u><br>
+This file contains an md5 checksum computed from OBI.owl. It is intended as an integrity check of your download, and is the first step towards a versioning control system.
+It will most probably be modified in its structure in the following releases.
+
+<li> <u>this file</u>
+
+</ul>
+
+<h2>Documentation</h2>
+
+<ul>
+<li> <a href="http://docs.google.com/Doc?docid=dzprnmw_10gk2mcpfb&amp;hl=en">Using Protege with OBI</a> 
+<br>
+Some information on how to load OBI into Protege, how to activate label dipslay...
+<li> <a href="http://docs.google.com/Doc?docid=dzprnmw_8fnr5nmd4&amp;hl=en">OBI ID policy</a> 
+<br>
+This document explains our ID policy, and you will also find there some information about the proper way of referencing OBI Terms.
+<li> <a href="http://purl.obofoundry.org/obo/obi/report.html">Ontology report</a> 
+<br>
+This is an HTML report representing OBI as a single HTML file that can be opened directly by any web browser.
+</ul>
+
+<h2>Usage of OBI</h2>
+<ul>
+<li> if you use the <a href="http://purl.obofoundry.org/obi.owl">http://purl.obofoundry.org/obi.owl</a> version
+You know that you will always be using the latest version of OBI. The 
+drawback is that you delegate the version control of OBI to the OBI 
+consortium: OBI will change.
+
+<li> if you use a purl linking to a specific version, e.g. 
+<a href="http://purl.obofoundry.org/obo/2008-03-10/obi.owl">http://purl.obofoundry.org/obo/2008-03-10/obi.owl</a>
+You keep total control over the version of OBI you are using. However 
+you won't get the latest modifications and updates from OBI.
+</ul>
+
+
+<h2>Known Issues solved</h2>
+
+<h3>2008-09-26</h3>
+<ol>
+<li>Work has been done on using defined classes in the protocol application branch - work in progress
+				   
+<li>The hierarchy under obsolete is not flat (some axioms remaining - deprecation policy in progress)
+
+</ol>
+
+
+<h2>Known Issues</h2>
+
+<h3>2008-11-28</h3>
+<ol>
+<li>Modified relations has_input and has_output to has_specified_input and has_specified_output, with domain objective driven process and range material entity
+This modified the inferred hierarchy under the process branch
+<li>MSI terms in Instrument branch have been removed from this version, awaiting official OBI policy
+
+</ol>
+
+<h3>2008-06-27</h3>
+<ol>
+<li>"historical roles" have been added - this is still under discussion and will most probably change in the future
+</ol>
+
+<h3>2008-04-08</h3>
+<ol>
+<li>Some classes asserted under device don't have disjoints (we don't produce disjoints for asserted classes under defined classes)
+<li>Some labels haven't been updated to lang="en"
+</ol>
+
+<h3>2008-03-10</h3>
+<ol>
+<li>Some class names use upper case or camel case (e.g. OBI_0000005, 'Conclusion'). Current OBI and obo Foundry policy is not to enforce initial upper case (see <a href="http://www.obofoundry.org/wiki/index.php/Naming">OBO Foundry Naming</a>), and in general start with a lower case.
+<li>The word delimiter in class and property names should be ' ' (space) rather than '_' (underscore). Currently we have a crude mixture, even within single class names, e.g. OBI_0000056, 'Notified_Body role'.
+</ol>
+
+
+<h2>Changelog</h2>
+
+<h3>2008-09-26</h3>
+<pre>
+- imported the Information Artifact Ontology which replaces some OBI terms
+The IAO has been built based on the previous DENRIE branch in OBI, and when importing it the previous OBI terms have been deprecated.
+An editor note mentioning their replacement term has been added.
+
+- mapping towards some relations pending final vetting in ro_proposed
+
+- import of http://purl.org/obo/owl/relationship instead of purl.org/obo/owl/ro.owl, in IAO and OBI.
+
+</pre>
+
+<h3>2008-09-26</h3>
+<pre>
+- removal of top buckets for defined classes in released version of the file
+
+- removed CheBI Ontology term (replaced by appropriate imports)
+
+- obsoleted obi_function and go_molecular_function placeholders
+
+- work on necessary and sufficient restrictions on classes in PlanAndPlannedProcess branch
+
+- check on equivalent classes (check that 2 distinct classes in OBI are not equivalent because of identical N&S restrictions)
+
+- quality branch cleaned up: removal of PATO_quality placeholder and appropriate imports
+
+- more structuring around objective specification
+
+- many terms mireoted are now replacing previous OBI classes
+
+</pre>
+
+<h3>2008-05-30</h3>
+<pre>
+- the OBI.owl file now contains XML comments
+
+- updated URIs to be absolute instead of relative
+All our terms are now using URIs like  rdf:about="http://purl.obofoundry.org/obo/OBI_0000323"
+
+- updated xml:base to http://purl.obofoundry.org/obo/obi.owl
+Improves tool support
+
+- added creation of inferred-superclasses.owl 
+A reasoner is not needed to see the whole hierarchy.
+
+- added SVN logs file to the merged directory
+
+- created a protege directory: contains OBI-ProtegeFriendly.owl and OBI-ProtegeFriendly.pprj
+
+
+
+</pre>
+
+<h3>2008-04-08</h3>
+<pre>
+- versioning information
+We decided to adopt a simple versioning system for the moment. We add in the release script the current version ID from SVN, to get something of the form:
+<owl:versionInfo xml:lang="en">1.0.530</owl:versionInfo>
+
+- some checks are performed
+We are currently checking that all classes have a label, getting a list of classes which are missing a curation status and the list of classes which are asserted under defined classes. More to come.
+
+- PURLs for our terms
+We produce a list of purls that have to be created (and correspond to the classes that have been added in OBI since the previous release).
+Work is in progress on producing one HTML page per term (prototype http://purl.obofoundry.org/obo/OBO_0000225), which is OWL underneath (view source), but presents as HTML)
+
+
+
+</pre>
+<h3>2008-03-10</h3>
+<pre>
+- modified namespaces
+We don't want to have any reference to the branches in the merged file, and the merging script removes unused namespaces declarations.
+The branches had protege-created prefixes (e.g. p7 for
+data_transformation), and we replaced that by uniform namespaces (e.g.
+data_trans for data_transformation)
+
+Alan checked in new versions of all the files that should have stable namespaces now.
+See sourcecodes/normalize-namespaces.pl
+
+- modified curation status
+Bill added the new curation status values to the AnnotationProperty.owl file as an enumeration class.
+This brings us into owl-full (declaratio not included in the release which is OWL-DL, but values are - documentation in progress)
+
+- created a protege widget for use of the above described curation_status
+
+- modified svn keyword
+We need to define an OBI general policy regarding that. Currently
+TheRest.owl contains an old versionInfo, and the obi.owl contained
+$Revision:80$ which was a wrong svn:keyword.
+
+Corrected by Bill, general policy added to agenda for next obi-dev call.
+
+- corrected consistency
+We needed to do several changes, some classes had been deleted,
+deprecated or have had their ID re-assigned and thus relations towards
+them were inconsistent.
+
+As per release policy, we will in the future check the files at D-8 and D-3, and email obi-dev with inconsistency problems.
+
+- Protege 3 and label display
+We produce 2 versions of the release: OBI.owl is the official file, which is OWL-DL and consistent.
+
+Protege 3 doesn't read properly the «owl:Ontology rdf:about.../>
+and thus doesn't recognize the proper namespace. This causes problems
+when the user wants to display the labels instead of the IDs. The
+workaround for that Protege bug causes the file to be classified as
+OWL-Full from Pellet, and our requirement for release was to have an
+OWL-DL file. We thus decided to provide a second version
+Protege-friendly for convenience.
+
+- Added by Chris Mungall on Bill's request in the BFO v1.1 to RO bridge (http://obofoundry.org/ro/ro_bfo1-1_bridge.owl):
+
+  &lt;owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+
+  &lt;owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
+
+Pellet isn't able to pass the file as OWL DL, unless these declarations
+are included.  Without a BFO import statement, it has no way of knowing
+these BFO entities are valid OWL types.
+
+- import of ro_bfo_bridge corrected
+Chris Mungall added a version of http://purl.org/obo/owl/ro_bfo_bridge/1.1
+under http://www.berkeleybop.org/ontologies/owl/ro_bfo_bridge/1.1
+
+
+- modified URIs - added/checked IDs
+Alan worked on a script to assign IDs and rewrite the OBI URIs as purl, to comply with the OBI ID policy http://docs.google.com/Doc?docid=dzprnmw_8fnr5nmd4&amp;amp;hl=en 
+See /sourcecodes/modify-uris.pl and sourcecodes/uri-report.lisp
+
+- merging scripts
+All scripts under http://www.ebi.ac.uk/~courtot/OBIRelease/ need to be SVN committed.
+Melanie will commit the sourcecode, as well as the shell script used to check and generate the release.
+
+- added HTML report
+see http://obi.svn.sourceforge.net/viewvc/*checkout*/obi/branchDevelopment/tags/releases/2008-03-10/obi-lsw-report.html 
+
+- added disjoints
+Disjoints have been added via script. See http://obi.svn.sourceforge.net/viewvc/obi/branchDevelopment/tags/releases/2008-03-10/sourcecodes/add-disjoints.lisp?view=log
+Currently no disjoints have been added for classes below device, which is at the moment asserted under a defined class.
+
+- added an md5 checksum
+
+- normalization of date and versionInfo
+We will use the date as version info for now. A general policy on how to version OBI should be discussed.
+&lt;owl:versionInfo>2008-03-09&lt;/owl:versionInfo>
+
+&lt;dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2008-03-09&lt;/dc:date>
+
+- creation of SVN tags
+A new tag will be created for each release, and will allow users to have stability by importing always the same version. 
+</pre>
+
+
+
+
+
+
+   

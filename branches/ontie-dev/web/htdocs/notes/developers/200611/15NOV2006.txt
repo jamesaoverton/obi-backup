@@ -1,0 +1,133 @@
+OBI Developers Call - 15NOV2006
+
+Agenda:
+1) Establish what OBI will use for metadata terminology. Possibilities are:
+        a) make our own based on contributions from communities (MSI, PSI, 
+BIRN, NCIT, etc.) and existing terminologies (Dublin Core, Simple Knowledge 
+Organization System, etc.).
+        b) rely on external resources (which are imported and which we do not 
+control) and submit needed terms to them.
+        c) some combination of importing and making our own.
+
+2) If we decide to build our own, determine how this will be managed. If we 
+decide to rely on an external resource, then determine how to interact with 
+them.
+
+3) Discussion of Meta_Annot_v2.doc section 7.2.5.1 as a starting point 
+for what are our terms of interest that will either form the basis 
+of our terminology or submission to an external resource.
+
+Participants: Trish Whetzel (TW), Dawn Field (DF), Allyson Lister (AL), Ryan Brinkman (RB), Liju Fan (LF), Jennifer Fostel (JF), Chris Stoeckert (CS), Susanna Sansone (SS), Bjoern Peters (BP), Alan Ruttenberg (AR), Daniel Schober (DS)
+
+=-=-=-=-=
+1) Establish what OBI will use for metadata terminology. Possibilities are:
+        a) make our own based on contributions from communities (MSI, PSI, 
+BIRN, NCIT, etc.) and existing terminologies (Dublin Core, Simple Knowledge 
+Organization System, etc.).
+        b) rely on external resources (which are imported and which we do not 
+control) and submit needed terms to them.
+        c) some combination of importing and making our own.
+
+AL - prefer to use people's terms
+
+TW:DC, version set up for import into Protege. Does not include all info that people want to include.
+
+TW:SKOS is another option, Bill Bug raised this. Simple Knowledge Organization System. Not comprehensive, has synonym notions, narrower, broader etc. One problem is it developed for thesauri, might be better if SKOS were willing to split some of their info e.g. we don't need the thesauri notes
+http://www.w3.org/2004/02/skos/
+E.g. change notes, editor notes etc.
+
+DC also has information that relates more to the annotation of the ontology as a whole.
+
+Neither of these capture everything we need. 
+
+Work from MSI group does bring these parts together, so I think it's more comprehensive with respect to needs. WRT to usage, most people use DC, I don't know if RU metadata is intended to replace or extend that.
+
+SS - scope of ru_metadata is initially for MSI and open to anyone to contribute to
+
+CS:BIRN and NCI are in the same position, and have their own terminologies, these are also available, once nice things Daniel did was to summarize the Meta_Annot v2, section 7.2.5.1. table. There are multiple sources that we need to consider
+
+TW:Also need to have GF comment, NCI is switching to protege, they also need to capture these things, and don't necessary. want to use their own thing. BIRN have their own thing, not all will adopt a single thing, so there will need to be mapping as needed.
+
+CS - given these resources and our needs, what is the plan forward?
+LF - review the resources and see what ones includes these?
+CS - seems as though the Meta_Annot doc covers this
+
+Action Item - All - to review that and discuss next week
+
+AL - seems as though we do not want to develop our own
+CS - seems as though we will need to develop something on our own since the existing resources such as DC and SKOS do not meet all term needs
+AR - lots of this is technical,clear on what is wanted to be stated? e.g. describe in english what is needed and then describe the information
+
+LF:TW did you recall the minimal requirements.
+
+TW: Yes, on wiki. I was approaching what people wanted to include on a term and ontology level and then move to the implementation. These can be included in different ways.
+
+AR: Could do this in English, and then migrate when we have a set of cases for 30+ terms
+
+BP: I don't understand the implications right now.
+
+LF:list is long, may be useful in the future, we need to start now and pick some to start working with.
+
+HP:Can we start with 10, 20 terms and go with the intersection, and start working with that. And we can consider add/deletions of things later.
+
+AR:we agree that this is not a priority so lets go with the best terms right now and go ahead with these.
+
+BP - vote for doing something and then go forward
+LF - agree, 
+HP - pick items that are already there and of interest
+RB - picking the best terms to put in and then going back to the ontology building
+CS - agree that the starting point should be the Meta_Annot doc. How to move forward with that? there are different opinions as the names, definitions, items, etc. is this a MSI effort and we go with this OR use the MSI effort as a starting point and extend
+
+HP - is MSI committed to what is already developed
+LF - is the mapping valid? e.g. prpty_id does this exist elsewhere?
+TW - there are items that conflict with current development practices. Need to get on the same page. Back to Chris S's question, re do we use the MSI group as the starting point, or use it as a whole and work to ensure that it meets the needs of the communities?
+CS - if metadata terms are important than we should focus on this OR if this is just a necessity that we need and can let others focus on this
+HP - if it is usable then we should use it at this time
+
+SS - clarify we (OBI) and them (MSI), this is an odd statement, prefer that this distinction goes way since we are all trying to work together and be more collaborative. this is open to all to do so that it can be used for other communities.
+
+AR - reason to not use the full name of the term?
+DS - might be good to keep as short as possible? we could use the full long form, increase file size etc.
+AR - but you benefit from not having confusing names. Make them obvious english. for now, suggest to leave as full, long name. if file suppression is the issue, then gzip
+
+Action Item - look more closely on the term names and file size implications
+
+TB - are we in agreement to use the ru_metadata doc?
+AR - looking forward to OWL 1.1 will have additions for biomedical ontologies. Necessity. of annotation properties diminished, would it be worth prototyping a 1.1 version? 
+
+One reason for using annotation properties in 1.0, can't put regular property names on classes, can't have duplications, in 1.1 I can put any property on any class. Expectation will have this in a year.
+
+AL - that sounds quite far in the future
+TW - sounds like something to think about, but for now focus on the most immediate needs
+
+AR - if anyone is interested we can set-up a smaller group to review.
+Alan and Liju, Trish are interested. Alan suggests look at owl 1.1
+http://owl1_1.cs.manchester.ac.uk/ and will talk offline
+
+TW - how to manage requests for updates? tracker with email list?
+DS - too much, suggest to use wiki
+
+AR - Manchester is interested in ontology annotation, can this be sent to them?
+SS - they are aware of this work
+
+RB - discuss through the OBI developers list?
+HP - does the first request for a long name need to be formally requested?
+DS - no, that change will be made
+
+TW - process - list on obi wiki page and then add comments to the terms
+HP - time line - 1 week
+
+LF - don't see property definitions. we need to tell people how the properties are being used.
+BP - this is in the document
+LF - prefer this to be in the owl file
+AR - is it clear what kinds of terms the various properties should be added to?
+LF - the property rdfs:comment is still used to hold the definition and the def property is in the owl file but not used in the 
+AR - documentation, look for this kind of documentation here
+LF - location for the definition information? rdfs:comment is for a real comment. request if any abbreviations are used to refer to them in the document
+
+
+Action Item - Daniel will add page on obi wiki to list all the terms for others to comment on.
+Action Item - All - add comments on terms
+
+
+

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY example "http://example.com/">
+  <!ENTITY example0 "http://example.com/">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="http://example.com/"
+         xmlns:example0="&example;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;">
+
+<!-- Ontology Information -->
+  <owl:Ontology rdf:about="http://example.com/"/>
+
+<!-- Classes -->
+  <owl:Class rdf:about="charge">
+    <rdfs:comment rdf:datatype="&xsd;string">Quality inhering in charged particles, and in materials by virtual of the charged particles which are part of it not being balanced equally between positive and negative charged</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="quantifiable-monadic-quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="device">
+    <rdfs:comment rdf:datatype="&xsd;string">see obi</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="material-entity"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="device-setting">
+    <rdfs:comment rdf:datatype="&xsd;string">A device setting is an objective specification that specifies what an device should do</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="objective-specification"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="information-content-entity">
+    <rdfs:comment rdf:datatype="&xsd;string">see iao</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="information-entity-about-a-realizable">
+    <rdfs:comment rdf:datatype="&xsd;string">see iao</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="information-content-entity"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="label">
+    <rdfs:comment rdf:datatype="&xsd;string">see iao</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="information-content-entity"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="material-entity">
+    <rdfs:comment rdf:datatype="&xsd;string">see obi</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="monadic-quality">
+    <rdfs:comment rdf:datatype="&xsd;string">see pato</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="negative-charge">
+    <rdfs:comment rdf:datatype="&xsd;string">A quality of charge inhering in certain charged particles such as protons and in portions of material by virtual of their being an excess of such positively charged particles</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="charge"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="objective-specification">
+    <rdfs:comment rdf:datatype="&xsd;string">see iao</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="information-entity-about-a-realizable"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="positive-charge">
+    <rdfs:comment rdf:datatype="&xsd;string">A quality of charge inhering in certain charged particles such as protons and in portions of material by virtual of their being an excess of such positively charged particles. Charge can be quantified in units of coulombs, among others.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="charge"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="process"/>
+  <owl:Class rdf:about="quality">
+    <rdfs:comment rdf:datatype="&xsd;string">see bfo</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="quantifiable-monadic-quality">
+    <rdfs:comment rdf:datatype="&xsd;string">A quantifiable monadic quality is a quality that has a magnitude that can be expressed as a number</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="monadic-quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="quantifiable-relational-quality">
+    <rdfs:comment rdf:datatype="&xsd;string">A quantifiable relational quality is a quality that has a magnitude that can be expressed as a number</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="relational-quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="quantitative-device-setting">
+    <rdfs:comment rdf:datatype="&xsd;string">A quantitative device setting is a device setting that has a part that denotes a number</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="device-setting"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="relational-quality">
+    <rdfs:comment rdf:datatype="&xsd;string">see pato</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="unit-label">
+    <rdfs:comment rdf:datatype="&xsd;string">A unit-label is an information content entity that denotes a unit, the nature of which is not yet resolved in the IAO</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="label"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="voltage">
+    <rdfs:comment rdf:datatype="&xsd;string">A relational quality between two portions of material that have different charges, responsible for the dispositon of charges to flow from one point to the other. Can be quantified in units of volts among others</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="quantifiable-relational-quality"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="voltage-setting">
+    <rdfs:comment rdf:datatype="&xsd;string">A voltage setting is a quantitative device setting that specifies an objective have the the voltage between two parts of the device be the specified amount. The realization of the objective specified is a process in which the voltage specified inheres in the device (more precisely two parts have a voltage between them)</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="quantitative-device-setting"/>
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            <owl:onProperty rdf:resource="has-magnitude"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="is-about"/>
+            <owl:someValuesFrom>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="is-realized-in"/>
+                <owl:someValuesFrom>
+                  <owl:Class>
+                    <owl:intersectionOf rdf:parseType="Collection">
+                      <rdf:Description rdf:about="process"/>
+                      <owl:Restriction>
+                        <owl:onProperty rdf:resource="has-participant"/>
+                        <owl:someValuesFrom>
+                          <owl:Class>
+                            <owl:intersectionOf rdf:parseType="Collection">
+                              <rdf:Description rdf:about="voltage"/>
+                              <owl:Restriction>
+                                <owl:onProperty rdf:resource="towards"/>
+                                <owl:someValuesFrom>
+                                  <owl:Restriction rdf:nodeID="b656">
+                                    <owl:onProperty rdf:resource="part-of"/>
+                                    <owl:someValuesFrom rdf:resource="device"/>
+                                  </owl:Restriction>
+                                </owl:someValuesFrom>
+                              </owl:Restriction>
+                              <owl:Restriction>
+                                <owl:onProperty rdf:resource="inheres-in"/>
+                                <owl:someValuesFrom rdf:nodeID="b656"/>
+                              </owl:Restriction>
+                            </owl:intersectionOf>
+                          </owl:Class>
+                        </owl:someValuesFrom>
+                      </owl:Restriction>
+                    </owl:intersectionOf>
+                  </owl:Class>
+                </owl:someValuesFrom>
+              </owl:Restriction>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            <owl:onProperty rdf:resource="has-units-label"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="has-units-label"/>
+            <owl:someValuesFrom rdf:resource="voltage-unit-label"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="voltage-unit-label">
+    <rdfs:comment rdf:datatype="&xsd;string">A unit-label is a unit label that denotes a unit of voltage</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="unit-label"/>
+  </owl:Class>
+
+<!-- Annotation Properties -->
+  <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+  <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+
+<!-- Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="has-magnitude">
+    <rdfs:comment rdf:datatype="&xsd;string">An information content entity I has-magnitude m when m denotes a number and is part of I</rdfs:comment>
+  </owl:DatatypeProperty>
+
+<!-- Object Properties -->
+  <owl:ObjectProperty rdf:about="has-label">
+    <rdfs:comment rdf:datatype="&xsd;string">An information content entity I has-label l when l is a label and part of I</rdfs:comment>
+    <rdfs:domain rdf:resource="information-content-entity"/>
+    <rdfs:range rdf:resource="label"/>
+    <rdfs:subPropertyOf rdf:resource="has-part"/>
+    <owl:inverseOf rdf:resource="label-of"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="has-part"/>
+  <owl:ObjectProperty rdf:about="has-participant">
+    <rdfs:comment rdf:datatype="&xsd;string">see ro</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="has-units-label">
+    <rdfs:comment rdf:datatype="&xsd;string">An information content entity I has-units-label l when l is a units label and part of I</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="has-label"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="inheres-in">
+    <rdfs:comment rdf:datatype="&xsd;string">see ro</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="is-about">
+    <rdfs:comment rdf:datatype="&xsd;string">see iao</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="is-realized-in">
+    <rdfs:comment rdf:datatype="&xsd;string">see ro proposed</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="label-of"/>
+  <owl:ObjectProperty rdf:about="part-of">
+    <rdfs:comment rdf:datatype="&xsd;string">see ro</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="towards">
+    <rdfs:comment rdf:datatype="&xsd;string">see ro proposed</rdfs:comment>
+  </owl:ObjectProperty>
+
+<!-- Instances -->
+  <example0:voltage-setting rdf:about="example-voltage-setting">
+    <example0:has-magnitude rdf:datatype="&xsd;float">0.2</example0:has-magnitude>
+    <example0:has-units-label rdf:resource="volts-label"/>
+    <rdfs:comment rdf:datatype="&xsd;string">An instance of a voltage setting - .2 volts. Note that we haven't specified what device the setting is of, although it is implied that it is the setting of something</rdfs:comment>
+    <rdfs:label rdf:datatype="&xsd;string">Setting of .2 volts</rdfs:label>
+  </example0:voltage-setting>
+
+  <example0:voltage-unit-label rdf:about="volts-label">
+    <rdfs:comment rdf:datatype="&xsd;string">The label 'volts' shown after a quantitative value is intended to denote a voltage in units of volts</rdfs:comment>
+    <rdfs:label rdf:datatype="&xsd;string">volts</rdfs:label>
+  </example0:voltage-unit-label>
+</rdf:RDF>

@@ -1,0 +1,101 @@
+OBI Developers Call - 02/21/07
+
+Agenda: Discuss Guidelines for Implementation of Metadata
+
+Participants: Mervi Heiskanen (MH), Trish Whetzel (TW), Bjoern Peters (BP), Liju Fan (LF), Helen P (HP), Alan Ruttenberg (AR), Daniel Schober (DS), Ally Lister (AL), Gilberto Fragoso (GF), Tina Boussard (TB)
+
+Proposed Implementation of Metadata
+-preferred_term: string
+
+AR - Datatype annotation property is not an OWL-DL element
+GF - It is an OWL element, it puts you in OWL Full, RACER, FACT, Pellet don't have problems with this, the annotations are dismissed
+
+TW - Is it ok to implement as a Datatype Annotation property?
+
+DS - how would you define that you want to have an annotation property in OWL?
+AR - fill with an object or a literal. it is not typed. Protege's implementation is controversial in the owl world from because the dual annotation/datatype properties are added to ostensibly OWL-DL files.
+GF - this was requested by the users of protege to use XML Schema datatypes
+DS - what are the consequences of having this as a DT annotation property.
+AR - with the reasoner the validation as OWL-DL will fail 
+AL - AR said that we can modify the ontology using a script at a later time and get back to OWL-DL by removing the DatatypeProperty assertion.
+
+ACTION ITEM - AR look into code and svn trigger to modify this back to OWL-DL
+
+TW - FunctionalProperty?
+AR - cardinality of 1, in OWL-DL can't have this on an annotation, dealt with in OWL1.1 by "punning".
+ALL - agree, this can be changed later with the script.
+
+-definition: 
+All Agree as Datatype Annotation Property, FunctionalProperty. change back to remove FunctionalProperty axiom to be in OWL-DL for public view of the file.
+
+-definition_editor - Hold off on this property until Coordinators decide on how this is for.
+All - agree
+
+-definition_source: 
+GF - if only 1 def, then only have 1 other property for def_source
+All - agree that this should be a separate entity
+
+AR - review proposal for alternative representation of def_source
+ADD INFO HERE ON PROPOSAL
+Alan proposes "First Class" sources - explicit instance for papers, books, web pages, etc with appropriate slots, e.g "identifiedByPubmedId", "identifiedByISBN" for papers. further details in email communication. As a compromise I suggested that the string representation be allowed for data entry, and that I would write a script to populate the instances based on the string.
+I note that papers are in the domain of OBI and that it would be inconsistent to use one representation for OBI developer references to papers and another for obi user references to papers.
+LF - focus on investigation
+AR - this does not seem consistent (see above)
+HP - we don't often take def straight from a paper
+AR - seems like we need to 
+LF - definitions are those that OBI uses, if we create a new one then we need to have a Use Case for this
+
+AR - for domain entities, connect to databases and papers
+GF - NLP, don't need to implement that in the ontology. you want to be able to capture the information, but OBI does not need to create a slot for this.
+AR - for GO, take term from GO, find it in a paper and link to GO. the analogy is that someone is going to match a reagent (in the domain of OBI)
+
+GF - i would implement that in my text mining program. if a term in the abstract that matches a term in the vocabulary. i am going to store that info in my program data repository
+AR - usually the case that the ontology is the input to the NLP
+LF - can be either
+AR - in cases where it doesn't give us info we can't go further
+GF - ok, i see what you are saying. there are 2 use case- the id is for the concept in the ontology itself and the other is that the other id is for an external authority
+1- if ref in ontology, i can use that id from the ontology
+2- if we are including model organisms in OBI, then if there was 'mouse' then we need to reference ncbi. 
+we are talking about a def, not an external authority. do you agree?
+
+AR - is that true of everything? reagent
+BP - agree with gilberto. what happened to dbxref, sounds like concept that AR is referring to
+BP - i think this is alt_term, source etc.
+AR - if it is named on the web, then it needs to be referenced. if everyone refers to a string in their own way then it is not consistent and can't be well used.
+BP - there are 2 differences, the way is to use definition_source 
+AR - when i read 
+TW - simple idea
+AR - fine for high level of OBI, but for finer levels
+GF - we are talking about textual definitions, not necessary in this case. It is necessary for other references but not for this definition.
+
+BP - there are 2 different things, sounds like you are describing the dbxref, mouse is term, def ... definition_source, the ref to ncbi tax is a different thing
+AR - the thing that wikipedia uses for mouse is diff than ncbi
+GF - this is for a text definition, would need to include external authority
+
+AL - definition_source is where the def came from, that's it. i don't think we need to get into this. the question is a string or a set of classes as described by AR.
+AR - the same classes will be used for all (OBI communities, OBI developers)
+AL- i agree, 
+TW - how hard is it to convert this information later to 
+AR - make definition_source an object annotation property (not really bc. OWL-DL issues, but in spirit)
+LF - link to def, def is a property and not a class.
+AR - we already decided that there is 1 def
+TW - propose to leave an annotation property for now and then if there are Use Cases approved by 
+AR - definition_source is linked to a definition_source...
+filled with an instance of (something - information object) with a comment that is the proposed string representation.
+The script changes the type of the instance and fills in the properties based on the string.
+TW - are you ok if this info is put in as a string that is formatted in a way that can be changed later to classes and instances?
+AR - yes
+GF - for definition_source, prefer to keep as a string. AR's needs sound like a need for dbxref
+Vote for string rep, keep eye open for class/instance representation - AR abstains(to no block concensus), all others agree
+For the properties below, use a datatype annotation property with a value as a string
+-example:
+-editor_note: 
+-external_class: 
+
+TW - propose to discuss the alt term set via email. need to propose Use Cases as to how this will be used.
+
+DS - when will there be a tab for adding the complex property
+AR - would be more comfortable if we agreed that we would implement both at this point
+TW - how about AR makes a file where it exists as both and let people decide if there are any problems with the duplicate representation
+All - that is fine
+

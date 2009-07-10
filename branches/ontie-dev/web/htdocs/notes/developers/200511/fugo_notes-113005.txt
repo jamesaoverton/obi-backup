@@ -1,0 +1,95 @@
+FuGO Conference Call - 113005
+
+Action Items
+1. RB to send the OWL file to you                                                             
+2. CS to get max spend for workshop                                                           
+3. TW to get CT to agree to do a use case                                                     
+4. All to respond to Trish for workshop dates                                                 
+Particpants:Susanna, PRS, Ryan, Helen P, Trish, Mervi, Gilberto, Liju, Chris S, Jennifer, Joe                                                                               
+Agenda: 
+Flow Cytometry use case                                                                  
+intact cells/env sample from e.g. sea -> sorted singly in fluid, laser sorted assayed for surface components, or cell components, - population -> to find what's in it. 500,000 106 per second, multi param, analyse 12 param per cell, can do in a plate.                        
+                 
+Used clinically - HIV T/B cell ratio measured, bone marrow transplants etc                    
+Example; monitor hp. cell development, nice model for stem cells.               
+Invst. is isolating sample from patient (mouse/env) - need sample info, patient info, how sample processed, protocol when, storage etc. Labelling experiment = Ab fluors, cv CD - classes of differentiation - all classes of cells have a nomenclature (NIH), up to 12 Ab per cell. -.=> FC difft lasers, mirrors etc dep. on assay for what? Need to know about the parts of the machine                                                                                            
+TW:do people vary parts within a given type?   
+RB:yes. Some are preset no laser changing, some you can. No cv for that now     
+Collect signals, -> data file, flow cyt std file format (decades old). Record has a place for sample, no CV tho within the data file. Used for laser signal in binary format. -> SW  - many different packs, gating is used fr analysis. Researcher manually draws gates around cells on interest - certain cell types have high signals for some markers. Low signal marker, high signal another then map to other markers. Bivariate plots across markers get cell type of interest. Calc the proportion of cells/sample, or e.g. total wbc. Cells ul of a type, once reach this, harvest cells from patient. Can stop here at analysis but once id sub pop of interest can do sorting by FC. Take these homogenous for some marker adn then do another expt -> microarray. That's the platform summary.                                      
+Sim to microarrays, sample, processing, analyse, readout, can then reuse the sample again in another assay.                                                                                  
+GF:asks aout sorting analysis                                                                 
+RB:id population of interest - get a statistic about these cells, and in sorting use the same gates, but then do the separation.                                                       
+MH:one marker at a time?                                                                      
+RB:can use many at a time, 4/6 per time? Don't know technical upper limit?                    
+RB:up to 12 - but get Ab cn channels, 2 gaussian dist and they can o/lap.                     
+Need ab to be well sep signals. 6-8 param is common.                                          
+gf:once you are set up do you need to record other param?                                     
+rb:people need to know about the sample, machine specs                                        
+hp:this particular machine?                                                                   
+rb:yes, and how it was last stdised. Daily weekly std test with beads, and get same cluster then machine is OK.                                                                   
+hp:so if 50th run of the day then need to know relative to the std run                        
+rb:yes, and ways to stdize the experiments                                                    
+hp:what's var cn same machine in difft labs?                                                  
+rb:not much, hard to assay - noone has looked at samples cross many machines                  
+rb:people compare protocols. Source of var is the drawing of the gates.                       
+lf:what stats do people do>                                                                   
+rb: % cells of type a, e.g. graft vs host, immune cells over time -> assume rejection perhaps.                                                                                      
+HP:all relative measures for this then?                                                       
+RB:total nos of cells e.g. for stem cells, e.g. no of cells in a well, repop and see how many progenitor cells there were. So counts or percentages                                                                      
+cs:will the ontology be incorp to std format - (FCS data file) - sample and protocol. In the analysis done, cv for machine and components etc.                                         
+CS:will these be captured in existing data format?                                            
+RB:we want an xml std to do this, xml sch for gating, can add other info. Don't want to change fcs data file, already std. So add XML file that has the meta data,                    
+CS:so take std format - there will be fields and reln cn these - determine how terms related to each other. What type OM exists, will it map to the FuGO?                          
+RB:total flexibity - nothing hard coded into FCS or other representation                      
+CS:if we had attributes for hw would be ok that also work for mass spec etc?                  
+rb:hw is the first thing we did, looked at microarray, would fit in                           
+tw:want to cf to needs of proteomics field                                                    
+cs:we've never provided info that includes the names of things, but you want that detail? For microrray we can get that info e.g. serial number in the ontology, we can provide containers for names of instruments - there aren't 1000's of these.                           
+tw:more like proteomics where they ennumerate the names of the instruments                    
+rb:not a huge no of players in the market, but people want to add things.                     
+tw:another community also need this.                                                          
+hp:could be also useful for microarray too.                                                   
+rb:instrument registry? get manufacturers where collect that info - we would want to get from the ontology what info should be expressed how, but wouldn't be in the ontology itself.                                                                                       
+tw:could be done either way                                                                   
+rb:we need to know within our community who would be doing that for maintenance?              
+tw:I see that as a fugo activity - if we do unified dev then maintenance issues then could do that                                                                                       
+rb:maintenance in central system - managed by soc for flow cytometry - no need to maintain ontology info - would fit better in a database where the technology is more common.           
+tw:what kinds of relns in the ontoloy would mean that this is non std for databasing? Term could be proposed within the ontology -                                                       
+cs:next step work out reln and terms that will go in, and these use cases will pay off. keep this in the back of our minds.                                                           
+lf:was working on project model for fc, did the minimum, can see the instrument has things that we didn't deal with in the ontology, we don't do much of that in the MO. If we want to include these general common parts in FuGO - we should get info from the community for this so that we can map this into fugo          
+CS:not sure about mapping into, we can come up with common classes/concepts that apply to any kind of instrument, and can be further subclassed for techologies, some machines will have laser parts, some won't.                                                                 
+cs:there should be no mapping in the unified model                                            
+lf:by mapping I meant that they could develop something specific                              
+rb:I agree with Chris, we can go as far as we can and add the fc community terms back in    
+lf:yes that's what I meant                                                                    
+cs:key point is that terms need to fit in the class and constraints                           
+tw:want to point that dep on where and how an extension is carried out depends on how fuge group interact with the fc group. Need to explore this further.                               
+How can we go further through that and id what can be added/done                              
+RB:nothing much there, so what ever we can come up with will work                             
+cs:imagine that we keep reln simple that put few demands on the classes, is-a, has-a.         
+rb:we have an ontology in OWL for this.                                                       
+TW:we can post these on FuGO                                                       
+hp:some of the xml for proteomics etc have these things so is now a good time to start comparing these things.                                                                       
+TW:CT will do a use case next week                                                            
+JW:re: FuGO - thought that we had an instrument class, did that make it?                      
+TW:my impression is that is for discussion -  and some classes proposed.                      
+HP:was discussed in Stanford                                                                  
+TW:Specimen collection in use case #1 - interested in notion of time, mentioned that within 6h post collection then do something to get the white blood cells. Do you need for abs and relative measurements? Was also needed by RSBI use cases, need a central solution for that.                                                                                     
+RB:yes                                                                                        
+TW:have you got something for sw too?                                                         
+RB:not done sw - can't answer that                                                            
+PRS:do you talk to the manufacturers?                                            
+RB:one on our grant, Beck and Dickinson, and at least one has approached us, they want an ontology for instruments so that users can use these in a registry - what was the spec for a machine - we don;t want to control that but would be good   
+tw:would you be linking fc expts to other expts, e.g. infect mice, harvest mice, and then go to fcs - link expts together.                                                              
+when you mentioned FC settings, is there a cv or names that the people have in roles - is that needed?                                                                                  
+rb:often one person did the sample prep, and another person runs the machine, you do get operator variation                                                                            
+tw:sim to microarrays                                                                         
+rb:1. manuscript fr omics and conference                                                      
+what's the process for the manuscript?                                                        
+TW will send an outline by end of the week, who wants to write etc.                           
+SS:length depends on the costs, what will the grant support                                   
+TW:need to ask Chris S    
+CS:will find out what we have budget for, expect provide travel and hotel for most people, need to find a USD amt that we can spend.                                                                                              
+AA:All respond to the dates please                                                            
+TW:will check in with CT for a proteomics use case                                            
+TW:AA get to reln types too as well,
