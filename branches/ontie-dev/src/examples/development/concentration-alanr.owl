@@ -202,7 +202,7 @@
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000004">
         <rdfs:label
-            >portion of pure water</rdfs:label>
+            >&quot;&quot;portion of pure water&quot;&quot;</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -278,6 +278,22 @@
     
 
 
+    <!-- http://purl.obofoundry.org/obo/CON_0000010 -->
+
+    <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000010">
+        <rdfs:label>canonical-tris</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000009"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000005"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obofoundry.org/obo/CON_0000011 -->
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000011">
@@ -298,7 +314,7 @@
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000012">
         <rdfs:label
-            >portion of 1X tris buffer</rdfs:label>
+            >&quot;portion of 1X tris buffer&quot;</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -357,7 +373,7 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000031"/>
         <rdfs:comment
-            >Recipe at http://www.histosearch.com/histonet/Feb04/HistonetWhynotjustmakeTRI.html
+            >&quot;Recipe at http://www.histosearch.com/histonet/Feb04/HistonetWhynotjustmakeTRI.html
 
 Instead of making PBS, make up TRIS buffered saline.  Make up a 10X
 solution of TRIS, dilute when you need it 1:10, extremely easy. 
@@ -385,7 +401,7 @@ Dilute Stock 10X 1:10 with pure water.
 
 --
 
-NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some other recipes). Removed earlier &quot;has_granular_part only (tris or h20)&quot;</rdfs:comment>
+NaCL isn&#39;t necessary, though HCl is common for Ph adjustment (scanning some other recipes). Removed earlier &quot;has_granular_part only (tris or h20)&quot;&quot;</rdfs:comment>
     </owl:Class>
     
 
@@ -565,7 +581,7 @@ TBD</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.obofoundry.org/obo/CON_0000048">
         <rdfs:label
-            >portion of macroscopic substance</rdfs:label>
+            >&quot;portion of macroscopic substance&quot;</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
@@ -691,7 +707,8 @@ TBD</rdfs:comment>
     <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant">
         <rdfs:label
             >independent_continuant</rdfs:label>
-        <owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -704,8 +721,7 @@ TBD</rdfs:comment>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -738,6 +754,26 @@ TBD</rdfs:comment>
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obofoundry.org/obo/CON_0000009 -->
+
+    <obo:CON_0000012 rdf:about="http://purl.obofoundry.org/obo/CON_0000009">
+        <rdfs:label
+            >tris-canonical-instance</rdfs:label>
+    </obo:CON_0000012>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -747,14 +783,14 @@ TBD</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
         <owl:propertyChain rdf:parseType="Collection">
             <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000002"/>
-            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000001"/>
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000041"/>
         </owl:propertyChain>
     </rdf:Description>
     <rdf:Description>
         <rdfs:subPropertyOf rdf:resource="http://purl.obofoundry.org/obo/CON_0000017"/>
         <owl:propertyChain rdf:parseType="Collection">
             <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000002"/>
-            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000041"/>
+            <rdf:Description rdf:about="http://purl.obofoundry.org/obo/CON_0000001"/>
         </owl:propertyChain>
     </rdf:Description>
 </rdf:RDF>

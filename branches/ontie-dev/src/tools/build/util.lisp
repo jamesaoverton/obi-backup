@@ -18,6 +18,7 @@
   (def-uri-alias "preferred-term" !obi:IAO_0000111)
   (def-uri-alias "alternative-term" !obi:IAO_0000118)
   (def-uri-alias "example-of-usage" !obi:IAO_0000112)
+  (def-uri-alias "curation-status" !obi:IAO_0000078)
   )
 
 

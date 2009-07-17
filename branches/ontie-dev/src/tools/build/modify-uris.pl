@@ -4,10 +4,10 @@ use File::Copy;
 
 # Policy here. TBD.
 
-my $idNamespace = "http://purl.obofoundry.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
-my $namedclassNamespace = "http://purl.obofoundry.org/obo/";
-my $propertyNamespace = "http://purl.obofoundry.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
-my $individualNamespace = "http://purl.obofoundry.org/obo/";
+my $idNamespace = "http://purl.obolibrary.org/obo/"; # conservative, but less elegant: http://purl.org/obo/OBI/. Current OBO practice: http://purl.org/obo/OBI#
+my $namedclassNamespace = "http://purl.obolibrary.org/obo/";
+my $propertyNamespace = "http://purl.obolibrary.org/obo/"; # can't stay at top level, since no OBI differentiation with OBI_
+my $individualNamespace = "http://purl.obolibrary.org/obo/";
 
 my $debug = 0;
 
@@ -30,7 +30,7 @@ my $copyexternal = "$build/external/";
 my %used; # to record used numeric ids
 
 # extract the names of the branches
-my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/purl.obofoundry.org\/obo\/obi\/(.*)\.owl"/;$1} @lines;
+my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/purl.obolibrary.org\/obo\/obi\/(.*)\.owl"/;$1} @lines;
 my @obiParts = map { s/.*\/([A-Za-z.-]*)\.owl.*/$1/;chomp $_ ; $_} @obiParts;
 
 
@@ -85,7 +85,7 @@ sub maybeRewriteURI
 { my ($type,$uri) = @_;
   $debug && print "in: $type $uri\n";
   if ($type =~ /Class|Property|Individual/)
-  {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
+  {if ($uri =~ /http:\/\/purl\.obolibrary\.org\/obo\/(.*)/)
    { my $localname = $1;
      if ( $localname =~ /^OBI_(\d+)/)
      { if (length($1)>7) { return 0 } # too long - allocate new id
@@ -108,7 +108,7 @@ sub maybeRewriteURI
    else {return undef}
   }
   elsif ($type =~ /Property/)
-    {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
+    {if ($uri =~ /http:\/\/purl\.obolibrary\.org\/obo\/(.*)/)
     { if ($1 =~ /OBI_\d+/)
       { $uri = $idNamespace.$1; }
       else
@@ -118,7 +118,7 @@ sub maybeRewriteURI
     { return (undef) }
   }
   elsif ($type =~ /Individual/)
-    {if ($uri =~ /http:\/\/purl\.obofoundry\.org\/obo\/(.*)/)
+    {if ($uri =~ /http:\/\/purl\.obolibrary\.org\/obo\/(.*)/)
     { if ($1 =~ /OBI_\d+/)
       { $uri = $idNamespace.$1; }
       else
