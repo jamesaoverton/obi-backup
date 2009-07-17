@@ -14,11 +14,11 @@
   xml:base="http://purl.obolibrary.org/obo/ONTIE.owl">
   <owl:Ontology rdf:about="">
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jason Greenbaum (jgbaum@liai.org)</dc:creator>
+    >Bjoern Peters (bpeters@liai.org)</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Randi Vita (rvita@liai.org)</dc:creator>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Bjoern Peters (bpeters@liai.org)</dc:creator>
+    >Jason Greenbaum (jgbaum@liai.org)</dc:creator>
     <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ONTIE - ONTology of Immune Epitopes</dc:title>
     <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -41,29 +41,29 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110158">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000301"/>
+        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom>
-                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110203"/>
-                </owl:someValuesFrom>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 </owl:onProperty>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110203"/>
+                </owl:someValuesFrom>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000301"/>
-        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-6 assay</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-6 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
   </owl:Class>
@@ -71,25 +71,25 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-13 by T cells utilizing the ELISPOT methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110191"/>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT IL-13 assay</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110096">
@@ -124,18 +124,19 @@
     <obo:IAO_0000115 xml:lang="en">is a material entity that has the antigen role</obo:IAO_0000115>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110120"/>
-        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000316"/>
         </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110120"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110093">
     <obo:IAO_0000115 xml:lang="en">Is a role borne by an agent, and realized when in contact with or inside another organism in which it is capable of replicating and causing disease</obo:IAO_0000115>
     <rdfs:label xml:lang="en">infectious agent role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -151,7 +152,6 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
@@ -167,12 +167,12 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0032616"/>
           <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057"/>
-            </owl:someValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
             </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -180,25 +180,25 @@
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-13 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110059">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110185"/>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT IFN-g assay</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -212,12 +212,12 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0032621"/>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -260,6 +260,7 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057">
     <rdfs:label xml:lang="en">MHC:epitope complex binding to TCR</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">The process of an MHC molecule binding to an entity playing the role of epitope to create an MHC:epitope complex which is then bound by a TCR molecule. </obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -268,30 +269,12 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110045"/>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110086"/>
               <owl:Restriction>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
                 </owl:onProperty>
-                <owl:someValuesFrom>
-                  <owl:Class>
-                    <owl:intersectionOf rdf:parseType="Collection">
-                      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-                      <owl:Restriction>
-                        <owl:onProperty>
-                          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119"/>
-                        </owl:onProperty>
-                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042101"/>
-                      </owl:Restriction>
-                      <owl:Restriction>
-                        <owl:onProperty>
-                          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119"/>
-                        </owl:onProperty>
-                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042611"/>
-                      </owl:Restriction>
-                    </owl:intersectionOf>
-                  </owl:Class>
-                </owl:someValuesFrom>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042611"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -303,10 +286,28 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110086"/>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110045"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042611"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom>
+                  <owl:Class>
+                    <owl:intersectionOf rdf:parseType="Collection">
+                      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+                      <owl:Restriction>
+                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042101"/>
+                        <owl:onProperty>
+                          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119"/>
+                        </owl:onProperty>
+                      </owl:Restriction>
+                      <owl:Restriction>
+                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042611"/>
+                        <owl:onProperty>
+                          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119"/>
+                        </owl:onProperty>
+                      </owl:Restriction>
+                    </owl:intersectionOf>
+                  </owl:Class>
+                </owl:someValuesFrom>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -314,7 +315,6 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
@@ -322,7 +322,6 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">T cell epitope specific proliferation assay that measures T cell proliferation utilizing the Thymidine incorporation assay. </obo:IAO_0000115>
     <rdfs:label xml:lang="en">T cell epitope (3H-Thymidine) cell proliferation assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000669"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -341,6 +340,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000669"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110128">
@@ -379,17 +379,14 @@
                             <owl:intersectionOf rdf:parseType="Collection">
                               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
                               <owl:Restriction>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
                               </owl:Restriction>
                             </owl:intersectionOf>
                           </owl:Class>
                         </owl:someValuesFrom>
                       </owl:Restriction>
                       <owl:Restriction>
-                        <owl:onProperty>
-                          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        </owl:onProperty>
                         <owl:someValuesFrom>
                           <owl:Class>
                             <owl:intersectionOf rdf:parseType="Collection">
@@ -401,26 +398,29 @@
                             </owl:intersectionOf>
                           </owl:Class>
                         </owl:someValuesFrom>
+                        <owl:onProperty>
+                          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        </owl:onProperty>
                       </owl:Restriction>
                     </owl:unionOf>
                   </owl:Class>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
                     <owl:someValuesFrom>
                       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
                     </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110111"/>
-            </owl:someValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
             </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110111"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -430,23 +430,23 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100060"/>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110163">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110195"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-18 assay</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-18 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
@@ -489,6 +489,13 @@
     </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110008">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -497,13 +504,6 @@
         <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -526,30 +526,30 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                     <owl:someValuesFrom>
                       <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0001816"/>
                           <owl:Restriction>
+                            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                             <owl:onProperty>
                               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
                             </owl:onProperty>
-                            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                           </owl:Restriction>
                         </owl:intersectionOf>
                       </owl:Class>
                     </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -570,9 +570,9 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110155">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -586,9 +586,9 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of TNF by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -607,7 +607,6 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of TNF by T cells utilizing the ICS methodology.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">T cell epitope intracellular cytokine staining (ICS) TNF assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
@@ -616,16 +615,17 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110206"/>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110042">
     <rdfs:subClassOf>
@@ -642,7 +642,6 @@
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-2 by T cells utilizing the ICS methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -659,6 +658,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110108">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -675,21 +675,9 @@
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">T cell epitope MHC tetramer/multimer staining assay</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000667"/>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:complementOf>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110106"/>
-            </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-          </owl:Restriction>
-        </owl:complementOf>
-      </owl:Class>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -701,9 +689,21 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:complementOf>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110106"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:complementOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000667"/>
     <obo:IAO_0000115 xml:lang="en">An assay that measures MHC:epitope complex binding to TCR utilizing flow cytometry. The MHC molecules are prepared into multimers, loaded with epitope, and are fluorescently labeled in order to visualize the T cells that bind. The data that is generated provides information on the presence of epitope specific T cells in the cell population that was tested.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110101">
@@ -716,25 +716,25 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110172">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IFN-g by T cells utilizing the ICS methodology.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110185"/>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">T cell epitope intracellular cytokine staining (ICS) IFN-g assay</rdfs:label>
   </owl:Class>
@@ -780,7 +780,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110055"/>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
@@ -789,21 +789,13 @@
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110055"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">An occurence of disease is a process involving pathologic changes within an organism</obo:IAO_0000115>
     <rdfs:label xml:lang="en">occurrence of disease</rdfs:label>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110055"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -825,12 +817,21 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110055"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110014">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -842,10 +843,10 @@
                     <owl:intersectionOf rdf:parseType="Collection">
                       <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
                       <owl:Restriction>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110022"/>
                         <owl:onProperty>
                           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119"/>
                         </owl:onProperty>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110022"/>
                       </owl:Restriction>
                     </owl:intersectionOf>
                   </owl:Class>
@@ -854,7 +855,6 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:label xml:lang="en">epitope binding by adaptive immune receptor</rdfs:label>
@@ -882,9 +882,15 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110085">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">antigen presenting cell role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -896,15 +902,9 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
-        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">This is a role borne by a cell  bearing MHC molecules capable of binding a material. It is realized in the process of epitope recognition by a effector T cell  that  recognizes the epitope MHC complex.</obo:IAO_0000115>
     <obo:IAO_0000118 xml:lang="en">APC</obo:IAO_0000118>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -912,10 +912,10 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110026">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:label xml:lang="en">host</rdfs:label>
@@ -952,7 +952,6 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110160">
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-12 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -960,10 +959,10 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110190"/>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -971,6 +970,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-12 assay</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -984,21 +984,21 @@
     <rdfs:label xml:lang="en">RMA cell culture</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110084">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="http://purl.org/obo/owl/CL#CL_0000084"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
-        <owl:allValuesFrom>
-          <owl:Class rdf:about="http://purl.org/obo/owl/CL#CL_0000084"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">This is a role played by T cells (expressing a TCR molecule). It is realized when the TCR binds to the MHC:epitope complex.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">effector T cell role</rdfs:label>
@@ -1052,25 +1052,25 @@
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110177">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110187"/>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:label xml:lang="en">T cell epitope intracellular cytokine staining (ICS) IL-10 assay</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-10 by T cells utilizing the ICS methodology.</obo:IAO_0000115>
@@ -1126,10 +1126,10 @@
                       <owl:Class>
                         <owl:complementOf>
                           <owl:Restriction>
-                            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                             <owl:someValuesFrom>
                               <owl:Class rdf:about="http://purl.org/obo/owl/PRO#PRO_placeholder1"/>
                             </owl:someValuesFrom>
+                            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                           </owl:Restriction>
                         </owl:complementOf>
                       </owl:Class>
@@ -1164,7 +1164,6 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110098"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000643"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
@@ -1180,6 +1179,7 @@
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000643"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -1241,8 +1241,8 @@
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <obo:IAO_0000115 xml:lang="en">is a material entity bearing the infectious agent role</obo:IAO_0000115>
@@ -1258,6 +1258,7 @@
           <owl:Restriction>
             <owl:someValuesFrom>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
@@ -1269,7 +1270,6 @@
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
               </owl:Restriction>
             </owl:someValuesFrom>
             <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1277,8 +1277,8 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1#Entity"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110193">
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-17 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
@@ -1302,6 +1302,7 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110037">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_1110128"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
@@ -1310,33 +1311,32 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_1110128"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:unionOf rdf:parseType="Collection">
                       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057"/>
                       <owl:Restriction>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                         <owl:onProperty>
                           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
                         </owl:onProperty>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                       </owl:Restriction>
                     </owl:unionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <obo:IAO_0000115 xml:lang="en">An assay in which a positive measurement indicates TCR recognition of an epitope:MHC context. Inputs to the assay include: 1) the assay antigen which contains the epitope, 2) TCR molecules 3) restricting MHC molecules.</obo:IAO_0000115>
@@ -1362,25 +1362,25 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110170">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT IL-10 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110187"/>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-10 by T cells utilizing the ELISPOT methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
   </owl:Class>
@@ -1438,6 +1438,7 @@
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1473,7 +1474,6 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
@@ -1481,7 +1481,6 @@
     <rdfs:label xml:lang="en">experimental disease induction</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">Is a administration in vivo with the intend to induce a disease in the organism for the purpose of conducting experiments.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600007"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -1490,14 +1489,15 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600007"/>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110021">
     <obo:IAO_0000115 xml:lang="en">the process in which an infectious agent colonizes or replicates in a host environment</obo:IAO_0000115>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
@@ -1509,18 +1509,18 @@
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Resource">
-          <rdf:first>
-            <owl:Restriction>
-              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110085"/>
-              <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
-            </owl:Restriction>
-          </rdf:first>
           <rdf:rest>
             <rdf:List>
               <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
               <rdf:first rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
             </rdf:List>
           </rdf:rest>
+          <rdf:first>
+            <owl:Restriction>
+              <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
+              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110085"/>
+            </owl:Restriction>
+          </rdf:first>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
@@ -1529,9 +1529,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083">
     <rdfs:label xml:lang="en">host of immune response role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -1540,9 +1540,9 @@
             </owl:unionOf>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000116 xml:lang="en">vertebrata may need to be relaxed to allow for other multicellular organisms</obo:IAO_0000116>
@@ -1550,7 +1550,6 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110154">
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-5 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
@@ -1559,16 +1558,17 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110202"/>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-5 assay</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -1589,10 +1589,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0032615"/>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1602,13 +1602,13 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110045">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110014"/>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">Is a role played by a material entity when bound by a receptor of the adaptive immune system.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">epitope role</rdfs:label>
@@ -1623,9 +1623,9 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT TNF assay</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1639,9 +1639,9 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of TNF by T cells utilizing the ELISPOT methodology.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110159">
@@ -1649,23 +1649,23 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-13 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110191"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110191"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.org/obo/owl/CL#CL_0000236"/>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110199">
@@ -1677,10 +1677,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0032633"/>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1694,18 +1694,18 @@
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Resource">
-          <rdf:first>
-            <owl:Restriction>
-              <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
-              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110084"/>
-            </owl:Restriction>
-          </rdf:first>
           <rdf:rest>
             <rdf:List>
               <rdf:first rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
               <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             </rdf:List>
           </rdf:rest>
+          <rdf:first>
+            <owl:Restriction>
+              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110084"/>
+              <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
+            </owl:Restriction>
+          </rdf:first>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
@@ -1724,14 +1724,15 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110001"/>
                   <owl:Restriction>
+                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110023"/>
                     <owl:onProperty>
                       <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
                     </owl:onProperty>
-                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110023"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
               <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
@@ -1745,17 +1746,19 @@
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
               </owl:Restriction>
             </owl:unionOf>
           </owl:Class>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110082"/>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110117"/>
+            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -1766,19 +1769,16 @@
                     </owl:unionOf>
                   </owl:Class>
                   <owl:Restriction>
-                    <owl:someValuesFrom>
-                      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110016"/>
-                    </owl:someValuesFrom>
                     <owl:onProperty>
                       <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
                     </owl:onProperty>
+                    <owl:someValuesFrom>
+                      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110016"/>
+                    </owl:someValuesFrom>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110117"/>
-            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1813,23 +1813,23 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-4 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-4 assay</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110030">
@@ -1837,20 +1837,19 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">is the administration of an infectious agent to a cell culture with the objective to have the agent colonize and replicate in culture</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600000"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600000"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110009">
     <obo:IAO_0000115 xml:lang="en">Shouldn't this be something other than a process? We record it as the current state of the host, not as the process of getting well? The state of having recovered from a disease to the point that the diagnosis criteria for that disease are no longer met.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">post disease phase</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000334"/>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1861,20 +1860,21 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
                   <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110083"/>
                     <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110083"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
             <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110002"/>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000334"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110039">
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100062"/>
@@ -1894,6 +1894,7 @@
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -1906,8 +1907,8 @@
                       <owl:Class>
                         <owl:complementOf>
                           <owl:Restriction>
-                            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                             <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PRO#PRO_000001004"/>
+                            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                           </owl:Restriction>
                         </owl:complementOf>
                       </owl:Class>
@@ -1919,7 +1920,6 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
@@ -1936,36 +1936,30 @@
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-4 by T cells utilizing the ELISPOT methodology.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT IL-4 assay</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.org/obo/owl/CL#CL_0000066"/>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110120">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000067"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
-        <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000070"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
         <owl:someValuesFrom>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1977,9 +1971,15 @@
             </owl:someValuesFrom>
           </owl:Restriction>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
+        <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000070"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000067"/>
     <obo:IAO_0000115 xml:lang="en">Any molecule recognized by the adaptive immune receptors? Recognized means bound with a certain affinity? From GO ag binding:Interacting selectively with an antigen, any substance which is capable of inducing a specific immune response and of reacting with the products of that response, the specific antibody or specifically sensitized T-lymphocytes, or both. Binding may counteract the biological activity of the antigen. see OBI_1110120 below</obo:IAO_0000115>
     <rdfs:label xml:lang="en">assay antigen role</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -2008,7 +2008,6 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110175">
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-4 by T cells utilizing the ICS methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
@@ -2017,14 +2016,15 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110199"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:label xml:lang="en">T cell epitope intracellular cytokine staining (ICS) IL-4 assay</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
@@ -2034,7 +2034,6 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope chromium assay</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_9999994"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2053,12 +2052,12 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_9999994"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110178">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope intracellular cytokine staining (ICS) IL-17 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2066,8 +2065,8 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110193"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110193"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -2075,6 +2074,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000665"/>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-17 by T cells utilizing the ICS methodology.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110125">
@@ -2085,9 +2085,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110156">
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-10 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2101,9 +2101,9 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-10 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
@@ -2130,8 +2130,8 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                     <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0032609"/>
+                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
@@ -2146,10 +2146,8 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110152">
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-2 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2161,8 +2159,10 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-2 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -2171,7 +2171,6 @@
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-1b by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-1b assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2190,6 +2189,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110118">
@@ -2230,18 +2230,18 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                     <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
+                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -2283,8 +2283,8 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100060"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
             <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110097"/>
+            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -2324,8 +2324,8 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110027"/>
                   <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110026"/>
                     <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#adjacent_to"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110026"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
@@ -2339,23 +2339,23 @@
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110013">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110056"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600031"/>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-2 by T cells utilizing the ELISPOT methodology.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">T cell epitope ELISPOT IL-2 assay</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -2419,10 +2419,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0001913"/>
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -2439,15 +2439,11 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000295"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110098"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000643"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
@@ -2459,10 +2455,14 @@
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000643"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000295"/>
+        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
@@ -2481,17 +2481,17 @@
     <rdfs:label xml:lang="en">occurence of allergy</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110011"/>
         <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110049"/>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <obo:IAO_0000115 xml:lang="en">The process of an allergic disease ocurring in an organism.</obo:IAO_0000115>
@@ -2518,30 +2518,30 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                   <owl:Restriction>
-                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                     <owl:someValuesFrom>
                       <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0042098"/>
                           <owl:Restriction>
-                            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                             <owl:onProperty>
                               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
                             </owl:onProperty>
+                            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
                           </owl:Restriction>
                         </owl:intersectionOf>
                       </owl:Class>
                     </owl:someValuesFrom>
+                    <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                   </owl:Restriction>
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -2553,7 +2553,6 @@
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IFNg by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
@@ -2570,6 +2569,7 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110035">
     <rdfs:label xml:lang="en">Jurkat cell culture</rdfs:label>
@@ -2624,8 +2624,8 @@
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110109">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000444"/>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2633,6 +2633,7 @@
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110082">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2659,7 +2660,6 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/owl/OBO_REL#inheres_in"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">immunogen role</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
@@ -2670,7 +2670,6 @@
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of IL-17 by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">T cell epitope ELISA IL-17 assay</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2678,8 +2677,8 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110193"/>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110193"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -2687,6 +2686,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110010">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -2696,13 +2696,13 @@
     <obo:IAO_0000115 xml:lang="en">The role played by a material entity when it is recognized by the immune system and results in the occurrence of an allergic disease. </obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110007">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600007"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110093"/>
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600007"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">is an adminstration of an infectious agent to a host organism</obo:IAO_0000115>
@@ -2725,10 +2725,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0032635"/>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110057"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -2737,7 +2737,6 @@
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110181">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000664"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2745,8 +2744,8 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110182"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -2754,6 +2753,7 @@
         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000664"/>
     <obo:IAO_0000115 xml:lang="en">T cell epitope specific proliferation assay that measures T cell proliferation utilizing the BrdU incorporation assay. </obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -2780,9 +2780,9 @@
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-10 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110157">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2794,9 +2794,9 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000301"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000661"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A T cell epitope specific cytokine production assay that measures production of GM-CSF by T cells utilizing the ELISA methodology.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
