@@ -4,8 +4,13 @@
 
 #the path to the LSW directory
 ####################################UPDATE THIS WITH THE LOCATION OF YOUR INSTALLATION ####################################
-LSW_PATH=/Users/mcourtot/Desktop/lsw/
+LSW_TRUNK_PATH=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk/
+LSW_PATH=${LSW_TRUNK_PATH}/abcl
+LSW_STARTUP_PATH=${LSW_TRUNK_PATH}/scripts/
 
+
+#############b set the ABCL_WD variable based on the above
+export ABCL_WD=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk/
 
 ######################################################## CHECKOUT THE TOOLS ###############################################
 #you need to have the OBITools.jar in your classpath and to download lsw
@@ -13,11 +18,11 @@ LSW_PATH=/Users/mcourtot/Desktop/lsw/
 
 
 #get lsw
-svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
+##########svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
 #get OBITools.jar
-svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+##########svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
 #get binaries
-svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/bin
+##########svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/bin
 
 
 #######################################################################################################################################
@@ -44,6 +49,7 @@ echo $CLASSPATH
 #we create a directory for this release - its name is the date
 CUR_DATE=`date +%Y%m%d`
 mkdir $CUR_DATE
+
 
 #let's go there and do some work!
 cd $CUR_DATE
@@ -89,11 +95,20 @@ echo "OBI_MERGED_PATH_PROTEGE is set to" $OBI_MERGED_PATH_PROTEGE
 # we do a fresh svn checkout
 # we need only the branches and external files
 # we are not taking spreadsheets and others
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
+
+#TEMP HACK ################################# BEURK ############
+cp $INSTANCES_DIR_PATH/dataTransformationInstances.owl $OBI_DIR_PATH
+cp $INSTANCES_DIR_PATH/softwareInstances.owl $OBI_DIR_PATH
+echo "instances files ugly temp hack BEURKKKK"
+
+
+
+
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
 # we need the sourcecodes as well 
 
-svn co  https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
 echo "SVN checked out"
 
 
@@ -144,8 +159,8 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"obi-quick-id.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
-    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
    
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
 
@@ -160,11 +175,10 @@ OBI_OWL_PATH=${OBI_DIR_PATH}/obil.owl
 
 ###################################################################################################################################
 
-
 ############################################################### URI-REPORT #########################################################
 
 #the following command launch abcl, load the necessary lisp scripts, and execute the function to produce the uri-report.txt file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(list-obi-uris \"${OBI_BUILD_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
+perl ${LSW_PATH} $*   --load ${LSW_STARTUP_PATH}/system-registry.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(list-obi-uris \"${OBI_BUILD_PATH}/uri-report.txt\" (load-kb-jena \"${OBI_OWL_PATH}\"))" --eval "(quit)"
 
 echo "uri-report.txt created"
 
@@ -243,8 +257,8 @@ echo "<?xml version=\"1.0\"?>
   <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
       <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
-      <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
-    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+      <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
        
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obil.owl
@@ -257,16 +271,16 @@ echo "new OWL path set to " $OBI_OWL_PATH_NEW
 
 
 #the following command launches abcl, load the necessary lisp scripts, and execute the function to produce the disjoints.owl file
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")"  --eval "(quit)"
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-disjoints (load-kb-jena \"${OBI_OWL_PATH_NEW}\") \"${OBI_BUILD_PATH}/newids/disjoints.owl\")"  --eval "(quit)"
 echo "disjoints.owl created at $OBI_BUILD_PATH/newids/disjoints.owl"
 
 
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")" --eval "(quit)"
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-purls (load-kb-jena \"${OBI_OWL_PATH_NEW}\") (load-kb-jena \"http://purl.obofoundry.org/obo/obi.owl\") \"${OBI_BUILD_PATH}/list-purls.xml\")" --eval "(quit)"
 
 echo "list-purls created at $OBI_BUILD_PATH/list-purls.xml"
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-assumed-individuals (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/assumed-individuals.owl\")" --eval "(quit)"
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-assumed-individuals (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") \"${OBI_BUILD_PATH}/newids/assumed-individuals.owl\")" --eval "(quit)"
 
 
 echo "assumed-individuals created at $OBI_BUILD_PATH/newids/assumed-individuals.owl"
@@ -307,8 +321,8 @@ echo "<?xml version=\"1.0\"?>
  <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
       <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports> 
-          <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
-    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+          <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
        
 
   </owl:Ontology>
@@ -319,7 +333,7 @@ echo "<?xml version=\"1.0\"?>
 echo "obidi.owl created (includes assumed individuals)"
 
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obidi.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(write-inferred-superclasses (load-kb-jena \"${OBI_BUILD_PATH}/newids/obidi.owl\") \"${OBI_BUILD_PATH}/newids/inferred-superclasses.owl\")" --eval "(quit)"
 
 
 echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-superclasses.owl"
@@ -338,16 +352,16 @@ echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-super
 # writes the result of the queries in the merged directory, in the file qc-queries-report.txt
 # TODO: add lost-terms (as soon as I understand the arguments ;-) )
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report1.txt
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report1.txt
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report2.txt
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report2.txt
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report3.txt
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report3.txt
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report4.txt
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report4.txt
 
 
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report5.txt
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report5.txt
 
 ###################################################################################################################################
 
@@ -408,7 +422,7 @@ echo "CHECKPOINT: you can check in Protege the newly created files: open $OBI_BU
 ########################################################## LSW ONTOLOGY REPORT ###############################################################
 #################### kept separated from other lisp calls as it is quite long and I often comment it out for testing :-) ) ###################
 
-####################perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
+####################perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(write-ontology-report (load-kb-jena \"${OBI_BUILD_PATH}/newids/obid.owl\") :fname \"${OBI_BUILD_PATH}/obi-lsw-report.html\")" --eval "(quit)"
 
 echo "html report created at $OBI_BUILD_PATH/obi-lsw-report.html"
 
@@ -474,7 +488,7 @@ then
 
 
 #add comments
-perl ${LSW_PATH}/trunk/abcl $*  --load scripts/lsw-startup.lisp ---load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(comment-ids-in-owl-file \"${OBI_MERGED_PATH}/OBI-nocomment.owl\" \"${OBI_MERGED_PATH}/OBI.owl\" (load-kb-jena \"${OBI_MERGED_PATH}/OBI-nocomment.owl\"))" --eval "(quit)"
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp ---load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(comment-ids-in-owl-file \"${OBI_MERGED_PATH}/OBI-nocomment.owl\" \"${OBI_MERGED_PATH}/OBI.owl\" (load-kb-jena \"${OBI_MERGED_PATH}/OBI-nocomment.owl\"))" --eval "(quit)"
 
 echo "OBI.owl now includes xml comments"
 
