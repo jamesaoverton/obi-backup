@@ -33,7 +33,6 @@ my %used; # to record used numeric ids
 my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/purl.obolibrary.org\/obo\/obi\/(.*)\.owl"/;$1} @lines;
 my @obiParts = map { s/.*\/([A-Za-z.-]*)\.owl.*/$1/;chomp $_ ; $_} @obiParts;
 
-
 my %uriReplacements;
 my %tagReplacements;
 
@@ -143,11 +142,8 @@ sub replacenames
 { my $count=1;
   foreach my $part ( @obiParts) {
       my $path = "$branches/$part".".owl";
-      print "$path\n";
-      if (!(-e $path))
-      { $path = "$branches/instances/$part".".owl"; }
-      else
-      { die("Can't find obi part: $part") };
+      if (! -e $path)
+	{ $path = "$branches/instances/$part".".owl"; }
       open PART, "<$path" or die("Trouble loading $path");
       if (! -e $copydir) { mkdir($copydir,0777) };
       if (! -e "$copyexternal") { mkdir("$copyexternal",0777) };
