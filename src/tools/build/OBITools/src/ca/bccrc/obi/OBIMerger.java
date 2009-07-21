@@ -62,18 +62,18 @@ public class OBIMerger {
 	//TODO externalize those (properties file)
 	//the OBI namespace
 	//private static String OBINs = "http://obi.sourceforge.net/ontology/OBI.owl#";
-	private static String OBINs = "http://purl.obofoundry.org/obo/";
+	private static String OBINs = "http://purl.obolibrary.org/obo/";
 	//the OBI xmlbase element
 	//private static String xmlbase = "http://obi.sourceforge.net/ontology/OBI.owl";
-	private static String xmlbase = "http://purl.obofoundry.org/obo/";
+	private static String xmlbase = "http://purl.obolibrary.org/obo/";
 	//the name of the file containing the declaration of all the imports
 	private static String obi = "obi.owl";
 	//the obiPath - this is the path for the branches files
 	//private static String obiPath = "http://obi.sourceforge.net/ontology/OBI/";
-	private static String obiPath = "http://purl.obofoundry.org/obo/obi/";
+	private static String obiPath = "http://purl.obolibrary.org/obo/obi/";
 
 	//the Ontology URI
-	private static String obiURI = "http://purl.obofoundry.org/obo/obi.owl";
+	private static String obiURI = "http://purl.obolibrary.org/obo/obi.owl";
 
 
 
@@ -91,7 +91,7 @@ public class OBIMerger {
 			branchesNames.add("external");
 			branchesNames.add("Role");
 			branchesNames.add("InstrumentAndPart");
-			branchesNames.add("TheRest");
+			//branchesNames.add("TheRest");
 			branchesNames.add("Relations");
 			branchesNames.add("PlanAndPlannedProcess");
 			branchesNames.add("AnnotationProperty");
@@ -103,12 +103,23 @@ public class OBIMerger {
 			branchesNames.add("Obsolete");
 
 			branchesNames.add("DigitalEntityPlus");
-			branchesNames.add("disjoints");
-			branchesNames.add("inferred-superclasses");
-			//	branchesNames.add("assumed-individuals");
+			branchesNames.add("DataFormatSpecification");
+			branchesNames.add("dataTransformationInstances");
+			/*
+			 * remove those for testing - need to be included though for release
+			 */
+		branchesNames.add("disjoints");
+		branchesNames.add("inferred-superclasses");
+			////////	branchesNames.add("assumed-individuals");
 			branchesNames.add("external-byhand");
 			//instances
-			branchesNames.add("DataFormatSpecification");
+			branchesNames.add("softwareInstances");
+			//branchesNames.add("../instances/dataTransformationInstances");
+			//branchesNames.add("../instances/softwareInstances");
+			/* we don't include the quick-id file in the release process. 
+			 * It does get OBI IDs assigned via list-purls lisp script, but is discarded straight afterwards (not even considered for disjoints)
+			 */
+			//branchesNames.add("obi-quick-id");
 
 		}catch (Exception e){
 			System.err.println("Error: " + e.getMessage());
@@ -161,7 +172,15 @@ public class OBIMerger {
 			toCommit = false;
 			System.out.println("level"+level);
 		}
-
+		/* test writing inference with pellet
+		 * 
+		 * System.out.println("level"+level);//TO REMOVE!!!
+		try {
+			reasoner.extractModel( true ).write(new FileOutputStream("/Users/mcourtot/Desktop/20081223/merged/OBI_inferred.owl",true),"UTF8");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		//return false if there has been any problem, or true if everything is fine
 		return toCommit;
 	}
@@ -203,12 +222,14 @@ public class OBIMerger {
 		//we add the external imports
 		//we add those as Ontology Resource, to get the proper syntax for the imports, otherwise Pellet complains OWL full
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
+		ont.addImport(owlModel.createOntology("http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"));
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
 		//ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL")); 
-		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/relationship"));
+		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
+		ont.addImport(owlModel.createOntology("http://www.obofoundry.org/ro/ro.owl"));
 		ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createOntology("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
-			ont.addImport(owlModel.createOntology("http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl"));
+
 
 
 	}
@@ -218,12 +239,14 @@ public class OBIMerger {
 		//we add the external imports
 		//we add those as Resource, to get the proper syntax for the imports, and proper display in protege
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
+		ont.addImport(owlModel.createResource("http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"));
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
 		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
-		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
+		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
+		ont.addImport(owlModel.createResource("http://www.obofoundry.org/ro/ro.owl"));
 		ont.addImport(owlModel.createResource("http://purl.org/obo/owl/ro_bfo_bridge/1.1"));
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
-		ont.addImport(owlModel.createResource("http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl"));
+
 	}
 
 
@@ -268,6 +291,7 @@ public class OBIMerger {
 				ont.removeProperties();
 
 
+
 			}
 			catch (Exception ex) {
 				ex.printStackTrace();
@@ -297,26 +321,35 @@ public class OBIMerger {
 		owlModel.createAnnotationProperty("http://protege.stanford.edu/plugins/owl/protege#defaultLanguage");
 
 		//we add the information regarding creators etc that is in the file TheRest.owl
-		String theRestPath = physicalURI+"TheRest.owl";
+		//have been moved in obi.owl
+		String theRestPath = physicalURI+"obi.owl";
 		OntModel owlModel2 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-		Ontology ont2 = owlModel2.createOntology(obiPath +"TheRest.owl");
+		Ontology ont2 = owlModel2.createOntology(obiURI);
 
 		try {
-			owlModel2.read(new FileInputStream(theRestPath), obiPath +"TheRest.owl");
+			owlModel2.read(new FileInputStream(theRestPath), obiURI);
 		} catch (FileNotFoundException e) {
-			System.out.println("Can't read TheRest.owl");
+			System.out.println("Can't read obi.owl");
 			e.printStackTrace();
 		}
 
 		StmtIterator properties = ont2.listProperties();
 		StatementImpl stmt;
+		System.out.println("properties");
 		while (properties.hasNext())
 		{
 			stmt = (StatementImpl) properties.next();
-			//we create a resource in the OBI namespace for these properties
-			Resource obins = owlModel2.createResource(obiURI);
-			StatementImpl stmt2 = new StatementImpl(obins,stmt.getPredicate(),stmt.getObject());
-			owlModel.add(stmt2);
+
+			//we create a resource in the OBI namespace for dc properties only
+			//we don't want to be getting the imports declaration (especially not the import declaration of all the branch files...)
+			//    <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">en</protege:defaultLanguage>
+			System.out.println("properties: "+ stmt + stmt.getPredicate());
+			if (stmt.getPredicate().toString().matches("http://purl.org/dc/elements/1.1/(.*)") || stmt.getPredicate().toString().matches("http://protege.stanford.edu/(.*)")){
+				
+				Resource obins = owlModel2.createResource(obiURI);
+				StatementImpl stmt2 = new StatementImpl(obins,stmt.getPredicate(),stmt.getObject());
+				owlModel.add(stmt2);
+			}
 		}
 
 
@@ -336,6 +369,8 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("protege", "http://protege.stanford.edu/plugins/owl/protege#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("protege-dc", "http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("oboInOwl", "http://www.geneontology.org/formats/oboInOwl#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("oborel","http://purl.org/obo/owl/OBO_REL#");
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("relationship","http://purl.org/obo/owl/relationship#");
 
 
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("bfo", "http://www.ifomis.org/bfo/1.1#");
@@ -353,7 +388,8 @@ public class OBIMerger {
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("caro","http://purl.org/obo/owl/CARO#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("so","http://purl.org/obo/owl/SO#");
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("go","http://purl.org/obo/owl/GO#");
-		owlModel.getGraph().getPrefixMapping().setNsPrefix("iao", "http://purl.obofoundry.org/obo/iao/2008-11-24/iao.owl");
+
+		owlModel.getGraph().getPrefixMapping().setNsPrefix("iao", "http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl");
 		//specific case: the empty string means default namespace
 		owlModel.getGraph().getPrefixMapping().setNsPrefix("",OBINs);
 
@@ -378,12 +414,21 @@ public class OBIMerger {
 		//some clean-up
 		//e.g. remove the defined classes buckets at the top
 		//remove _defined protocol application (OBI_0600065)
-			OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
+		OntResource r = owlModel.getOntResource(OBINs + "OBI_0600065");
 		//remove _defined_material (OBI_0000233)
 		OntResource r2 = owlModel.getOntResource(OBINs + "OBI_0000233");
 
-			r.remove();
+		//remove _defined_output (OBI_0000449)
+		OntResource r3 = owlModel.getOntResource(OBINs + "OBI_0000449");
+		
+		
+		//remove _realizable_entity (OBI_0000683)
+		OntResource r4 = owlModel.getOntResource(OBINs + "OBI_0000683");
+
+		r.remove();
 		r2.remove();
+		r3.remove();
+		r4.remove();
 
 
 		return owlModel;
@@ -423,30 +468,57 @@ public class OBIMerger {
 	//For testing purposes
 /*
 	public final static void main(String[] args) throws Exception  {
-		String newFilePath = "/Users/mcourtot/Desktop/FINAL_MERGE.owl";
+
 		//the physical URI of the files
-		//String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20080925/build/newids/";
-		String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
-		//if we had modification of the branches that are to be kept, we need to give a destination path
-		//String destinationURI="Users/melanie/OBIReleases/test/";
+		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20090720/build/newids/";
+		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
+		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/releases/2009-01-28/branches/";
+		
 
-
+		/* We use to do that for the normal file, which is using the full import syntax, otherwise pellet was recognizing OBI as being OWL full, due to a discrepancy in the URI and the physical location of OBO_REL (error was untyped resource)
+		 * now that we replaced the import OBO_REL by relationship, this is not the case anymore, and it gets recognized as an ontology
+		 * we can therefore use the "short" syntax for the imports, which is the only one properly recognized by Protege 3 for identification of the namespaces.
+		 * Dated release of end of december 2008, the OBI-ProtegeFriendly file becomes the OBI file.
+		 * 
+		String newFilePath = "/Users/mcourtot/Desktop/OBI.owl";
 		//we check validity of the non-protege friendly version (last argument=false)
 		mergeFiles(newFilePath,physicalURI,false);
 
 
 		//check consistency -> this is now done via the owlapi
 			boolean valid = checkConsistency(newFilePath);
-		//boolean valid = checkConsistency("/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/obi.owl");
+		///boolean valid = checkConsistency("/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/obi.owl");
 			System.out.println("to be committed: "+ valid);
-		//we create the protege-friendly version
-			String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/FINAL_MERGE_PROTEGE_FRIENDLY.owl";
-			mergeFiles(newFilePathProtegeFriendly,physicalURI,true);
-		System.out.println("to be committed: ");
 
 
-	}
-*/
+		 */
+		//String newFilePath = "/Users/mcourtot/Desktop/OBI/SVN/obi/releases/2009-01-28/merged/pellet/OBIDI.owl";
+		
+		//String newFilePath = "/Users/mcourtot/Desktop/OBIJieNew.owl";
+
+		
+		//we check validity of the non-protege friendly version (last argument=false)
+		//mergeFiles(newFilePath,physicalURI,false);
+
+	//String newFilePathProtegeFriendly = "/Users/mcourtot/Desktop/OBI.owl";
+		
+		
+	//	mergeFiles(newFilePathProtegeFriendly,physicalURI,false);
+
+		//check consistency -> this is now done via the owlapi
+		//boolean valid = checkConsistency(newFilePathProtegeFriendly);
+		
+		
+
+	//	System.out.println("to be committed: ");
+
+	
+	//System.out.println("to be committed: "+ valid);
+
+
+
+//	}
+
 
 
 
