@@ -4,9 +4,9 @@
 
 #the path to the LSW directory
 ####################################UPDATE THIS WITH THE LOCATION OF YOUR INSTALLATION ####################################
-LSW_TRUNK_PATH=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk/
+LSW_TRUNK_PATH=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk
 LSW_PATH=${LSW_TRUNK_PATH}/abcl
-LSW_STARTUP_PATH=${LSW_TRUNK_PATH}/scripts/
+LSW_STARTUP_PATH=${LSW_TRUNK_PATH}/scripts
 
 
 #############b set the ABCL_WD variable based on the above
@@ -57,34 +57,34 @@ cd $CUR_DATE
 ############################################################# create the structure for the files
 
 #the path to the branch files
-OBI_DIR_PATH=`pwd`/src/ontology/branches/
+OBI_DIR_PATH=`pwd`/src/ontology/branches
 echo "OBI DIR PATH is set to" $OBI_DIR_PATH 
 
 #the path to the external files (bfo etc)
-EXTERNAL_DIR_PATH=`pwd`/src/ontology/external/
+EXTERNAL_DIR_PATH=`pwd`/src/ontology/external
 echo "EXTERNAL DIR PATH is set to" $EXTERNAL_DIR_PATH 
 
 #the path to the instances files 
-INSTANCES_DIR_PATH=`pwd`/src/ontology/branches/instances/
+INSTANCES_DIR_PATH=`pwd`/src/ontology/branches/instances
 echo "INSTANCES DIR PATH is set to" $INSTANCES_DIR_PATH 
 
 
 #the path to the tools
-OBI_TOOLS_PATH=`pwd`/src/tools/
+OBI_TOOLS_PATH=`pwd`/src/tools
 echo "OBI TOOLS PATH is set to" $OBI_TOOLS_PATH 
 
 #the path to the code
-OBI_CODE_PATH=`pwd`/src/tools/build/
+OBI_CODE_PATH=`pwd`/src/tools/build
 echo "OBI CODE PATH is set to" $OBI_CODE_PATH 
 
 #the path to the build directory: will contain new branch files
-OBI_BUILD_PATH=`pwd`/build/
+OBI_BUILD_PATH=`pwd`/build
 echo "OBI BUILD PATH is set to" $OBI_BUILD_PATH 
 #create the build directory 
 mkdir $OBI_BUILD_PATH
 
 #the path to the merged directory: will contain release files (merge, doc...)
-OBI_MERGED_PATH=`pwd`/merged/
+OBI_MERGED_PATH=`pwd`/merged
 mkdir $OBI_MERGED_PATH
 echo "OBI_MERGED_PATH is set to" $OBI_MERGED_PATH 
 #the path to the subdirectory of the merged directory that will contain the protege specific files
@@ -95,7 +95,7 @@ echo "OBI_MERGED_PATH_PROTEGE is set to" $OBI_MERGED_PATH_PROTEGE
 # we do a fresh svn checkout
 # we need only the branches and external files
 # we are not taking spreadsheets and others
-svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
+#svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
 
 #TEMP HACK ################################# BEURK ############
 cp $INSTANCES_DIR_PATH/dataTransformationInstances.owl $OBI_DIR_PATH
@@ -105,7 +105,7 @@ echo "instances files ugly temp hack BEURKKKK"
 
 
 
-svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
+#svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
 # we need the sourcecodes as well 
 
 svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
@@ -157,7 +157,7 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"obi-quick-id.owl\"/></owl:imports>
-    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+    <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/IAO.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
     <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
@@ -243,7 +243,7 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
-<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/IAO.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
@@ -305,7 +305,7 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/bfo11.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/ro_bfo_bridge11.owl\"/></owl:imports>
-<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/></owl:imports>
+<owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/IAO.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Role.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"InstrumentAndPart.owl\"/></owl:imports>
@@ -395,7 +395,7 @@ echo "<?xml version=\"1.0\"?>
      <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege.owl\"/>
      <owl:imports rdf:resource=\"PlanAndPlannedProcess.owl\"/>
      <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/protege-dc.owl\"/>
-<owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/iao.owl\"/>
+<owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/IAO.owl\"/>
     <owl:imports rdf:resource=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/>
      <owl:imports rdf:resource=\"Relations.owl\"/>
      <owl:imports rdf:resource=\"OBI-Function.owl\"/>
