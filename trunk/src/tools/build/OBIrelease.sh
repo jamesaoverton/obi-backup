@@ -20,9 +20,9 @@ export ABCL_WD=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk/
 #get lsw
 ##########svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
 #get OBITools.jar
-##########svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
+svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
 #get binaries
-##########svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/bin
+svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/bin
 
 
 #######################################################################################################################################
@@ -95,7 +95,7 @@ echo "OBI_MERGED_PATH_PROTEGE is set to" $OBI_MERGED_PATH_PROTEGE
 # we do a fresh svn checkout
 # we need only the branches and external files
 # we are not taking spreadsheets and others
-#svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ ./src/ontology/branches/
 
 #TEMP HACK ################################# BEURK ############
 cp $INSTANCES_DIR_PATH/dataTransformationInstances.owl $OBI_DIR_PATH
@@ -105,10 +105,10 @@ echo "instances files ugly temp hack BEURKKKK"
 
 
 
-#svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/ ./src/ontology/external/
 # we need the sourcecodes as well 
 
-svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build
+svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ ./src/tools/build/
 echo "SVN checked out"
 
 
@@ -135,7 +135,7 @@ echo "<?xml version=\"1.0\"?>
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_DIR_PATH/\">
-  <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
+  <owl:Ontology rdf:about=\"http://purl.obolibrary.org/obo/\">
     <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
@@ -234,7 +234,7 @@ echo "<?xml version=\"1.0\"?>
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_BUILD_PATH/newids/\">
-  <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
+  <owl:Ontology rdf:about=\"http://purl.library.org/obo/\">
    <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
@@ -296,7 +296,7 @@ echo "<?xml version=\"1.0\"?>
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_BUILD_PATH/newids/\">
-  <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
+  <owl:Ontology rdf:about=\"http://purl.obolibrary.org/obo/\">
    <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
@@ -380,7 +380,7 @@ echo "<?xml version=\"1.0\"?>
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_BUILD_PATH/newids/\">
-  <owl:Ontology rdf:about=\"http://purl.obofoundry.org/obo/\">
+  <owl:Ontology rdf:about=\"http://purl.obolibrary.org/obo/\">
      <owl:imports rdf:resource=\"AnnotationProperty.owl\"/>
      <owl:imports rdf:resource=\"DataTransformation.owl\"/>
     <owl:imports rdf:resource=\"DigitalEntityPlus.owl\"/>
