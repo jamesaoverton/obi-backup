@@ -143,6 +143,11 @@ sub replacenames
 { my $count=1;
   foreach my $part ( @obiParts) {
       my $path = "$branches/$part".".owl";
+      print "$path\n";
+      if (!(-e $path))
+      { $path = "$branches/instances/$part".".owl"; }
+      else
+      { die("Can't find obi part: $part") };
       open PART, "<$path" or die("Trouble loading $path");
       if (! -e $copydir) { mkdir($copydir,0777) };
       if (! -e "$copyexternal") { mkdir("$copyexternal",0777) };
