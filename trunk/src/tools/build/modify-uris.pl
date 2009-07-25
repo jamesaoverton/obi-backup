@@ -61,6 +61,7 @@ if (defined $rewrite)
     else {$debug && print "don't bother ",$uri,"\n"}
   }
   close URILIST;
+  open REWRITE, ">$build/uri-rewrites.txt" or die("can't write rewrites list");
   foreach my $do (@todo)
   {
     my $newid = allocateNewId();
@@ -69,8 +70,9 @@ if (defined $rewrite)
     $tagReplacements{$do}="OBI_".$newid;
     $debug && print $do,"=>",$uriReplacements{$do},"\n";
     print $do,"=>",$uriReplacements{$do},"\n";
-
+    print REWRITE $do,"=>",$uriReplacements{$do},"\n";
   }
+  close REWRITE;
 }
 
 # Rewrite one URI Logic:
