@@ -50,7 +50,8 @@
 	       (:file "comment-ids-in-owl-file")
 	       (:file "add-assumed-individuals")
 	       (:file "extract-core")
-	       (:file "generate-obo"))
+	       (:file "generate-obo")
+	       (:file "rewrite-instances"))
 	      :depends-on (macros)))
      :depends-on (owl))
 
