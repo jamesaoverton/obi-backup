@@ -114,8 +114,7 @@ public class OBIMerger {
 			branchesNames.add("external-byhand");
 			//instances
 			branchesNames.add("softwareInstances");
-			//branchesNames.add("../instances/dataTransformationInstances");
-			//branchesNames.add("../instances/softwareInstances");
+			branchesNames.add("organizationInstances");
 			/* we don't include the quick-id file in the release process. 
 			 * It does get OBI IDs assigned via list-purls lisp script, but is discarded straight afterwards (not even considered for disjoints)
 			 */
