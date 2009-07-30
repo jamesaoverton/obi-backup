@@ -4,7 +4,7 @@
 				  (path "obi:branches;assumed-individuals.owl"))
   ;; add instances of classes with no descendants
   (check kb)
-  (with-ontology assumed (:base (format nil "http://purl.obofoundry.org/obo/obi/~a.~a"
+  (with-ontology assumed (:base (format nil "http://purl.obolibrary.org/obo/obi/~a.~a"
 					(pathname-name (translate-logical-pathname path))
 					(pathname-type (translate-logical-pathname path)))) 
       ((loop for class in (descendants !bfo:Entity kb)
@@ -50,7 +50,7 @@
 				  (path "obi:branches;assumed-individuals.owl"))
   ;; add instances of classes with no descendants
   (check kb)
-  (with-ontology assumed (:base (format nil "http://purl.obofoundry.org/obo/obi/~a.~a"
+  (with-ontology assumed (:base (format nil "http://purl.obolibrary.org/obo/obi/~a.~a"
 					(pathname-name (translate-logical-pathname path))
 					(pathname-type (translate-logical-pathname path)))) 
       ((loop for class in (classes-with-definitions-mentioning-individual-but-with-no-members-themselves kb)
