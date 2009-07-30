@@ -35,7 +35,7 @@
 (defun classes-with-definitions-mentioning-individual-but-with-no-members-themselves (kb)
   (let ((term2class (make-hash-table :test 'equal)))
     (loop for class in (descendants !owl:Thing kb)
-       do (loop for term in (get-terms-reference-by-class class kb)
+       do (loop for term in (get-terms-referenced-by-class class kb)
 	     do (pushnew class (gethash term term2class))))
     (remove-duplicates 
      (remove-if (lambda(c) (instances c kb))
