@@ -1,4 +1,4 @@
-(defvar *obi-uri-pattern* (#"compile" 'java.util.regex.pattern "^http://purl.obofoundry.org/obo/OBI_\\d+$"))
+(defvar *obi-uri-pattern* (#"compile" 'java.util.regex.pattern "^http://purl.(obolibrary|obofoundry).org/obo/OBI_\\d+$"))
 
 (defun is-obi-uri (uri)
   (#"matches" (#"matcher" *obi-uri-pattern* (uri-full uri))))
