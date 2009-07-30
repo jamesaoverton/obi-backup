@@ -111,7 +111,7 @@
     (write-string *external-derived-header* f)
     (loop for rdf in results
        do
-	 (write-string (#"replaceAll" (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") "purl.obofoundry.org" "purl.obolibrary.org") f))
+	 (write-string (#"replaceAll" (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") "purl.obolibrary.org" "purl.obolibrary.org") f))
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
