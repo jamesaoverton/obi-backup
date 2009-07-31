@@ -21,6 +21,10 @@
 						       '("src" "tools" "build"))
 				    :name :wild
 				    :type :wild))
+	("spreadsheets;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 3)
+						       '("src" "ontology" "spreadsheets" "in"))
+				    :name :wild
+				    :type :wild))
 
 	("releases;**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 4)
 						       '(:wild-inferiors))
