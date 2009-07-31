@@ -18,7 +18,7 @@ export ABCL_WD=/Users/mcourtot/Desktop/releaseTest/svn-lsw/trunk/
 
 
 #get lsw
-##########svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
+svn co http://mumble.net:8080/svn/lsw/ ./svn-lsw/
 #get OBITools.jar
 svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/OBITools 
 #get binaries
@@ -100,6 +100,7 @@ svn co  http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/ 
 #TEMP HACK ################################# BEURK ############
 cp $INSTANCES_DIR_PATH/dataTransformationInstances.owl $OBI_DIR_PATH
 cp $INSTANCES_DIR_PATH/softwareInstances.owl $OBI_DIR_PATH
+cp $INSTANCES_DIR_PATH/organizationInstances.owl $OBI_DIR_PATH
 echo "instances files ugly temp hack BEURKKKK"
 
 
@@ -128,7 +129,7 @@ echo "obi.owl.template copied to obi.owl"
 
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
-    xmlns=\"http://purl.obofoundry.org/obo/\"
+    xmlns=\"http://purl.obolibrary.org/obo/\"
     xmlns:protege=\"http://protege.stanford.edu/plugins/owl/protege#\"
     xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
@@ -161,7 +162,7 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"$EXTERNAL_DIR_PATH/iao/ontology-metadata.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
     <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
-   
+       <owl:imports> <owl:Ontology  rdf:about=\"organizationInstances.owl\"/></owl:imports>
     <protege:defaultLanguage rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">en</protege:defaultLanguage>
 
   </owl:Ontology>
@@ -185,6 +186,26 @@ echo "uri-report.txt created"
 echo `pwd`
 
 perl  ./src/tools/build/modify-uris.pl
+
+
+
+
+################################################## INSTANCES REWRITE #######################################################
+
+
+################################################# dataTransformationInstances
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rewrite-instance-file \"$OBI_BUILD_PATH/uri-rewrites.txt\" \"${OBI_BUILD_PATH}/newids/dataTransformationInstances.owl\" \"${OBI_BUILD_PATH}/newids/dataTransformationInstances.owl\" \"http://purl.obolibrary.org/obo/obi/dataTransformationInstances.owl\")"  --eval "(quit)"
+echo "dataTransformationInstances.owl updated at $OBI_BUILD_PATH/newids/dataTransformationInstances.owl"
+
+################################################# softwareInstances
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rewrite-instance-file \"$OBI_BUILD_PATH/uri-rewrites.txt\" \"${OBI_BUILD_PATH}/newids/softwareInstances.owl\" \"${OBI_BUILD_PATH}/newids/softwareInstances.owl\" \"http://purl.obolibrary.org/obo/obi/softwareInstances.owl\")"  --eval "(quit)"
+echo "softwareInstances.owl updated at $OBI_BUILD_PATH/newids/softwareInstances.owl"
+
+################################################# organizationInstances
+perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rewrite-instance-file \"$OBI_BUILD_PATH/uri-rewrites.txt\" \"${OBI_BUILD_PATH}/newids/organizationInstances.owl\" \"${OBI_BUILD_PATH}/newids/organizationInstances.owl\" \"http://purl.obolibrary.org/obo/obi/organizationInstances.owl\")"  --eval "(quit)"
+echo "organizationInstances.owl updated at $OBI_BUILD_PATH/newids/organizationInstances.owl"
+
+
 
 
 
@@ -227,14 +248,14 @@ echo "revision number replaced in $OBI_BUILD_PATH/newids/obi.owl"
 ########################################################## DISJOINTS, PURLS, ASSUMED INDIVIDUALS AND INFERRED SUPERCLASSES ###############################################################
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
-    xmlns=\"http://purl.obofoundry.org/obo/\"
+    xmlns=\"http://purl.obolibrary.org/obo/\"
     xmlns:protege=\"http://protege.stanford.edu/plugins/owl/protege#\"
     xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
     xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
     xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
     xml:base=\"file://$OBI_BUILD_PATH/newids/\">
-  <owl:Ontology rdf:about=\"http://purl.library.org/obo/\">
+  <owl:Ontology rdf:about=\"http://purl.obolibrary.org/obo/\">
    <owl:imports> <owl:Ontology  rdf:about=\"AnnotationProperty.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DataTransformation.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"DigitalEntityPlus.owl\"/></owl:imports>
@@ -254,11 +275,13 @@ echo "<?xml version=\"1.0\"?>
     <owl:imports> <owl:Ontology  rdf:about=\"OBI-Function.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"Quality.owl\"/></owl:imports>
     <owl:imports> <owl:Ontology  rdf:about=\"external.owl\"/></owl:imports>
+        <owl:imports> <owl:Ontology  rdf:about=\"obi-quick-id.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"externalDerived.owl\"/></owl:imports>
       <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports>
   <owl:imports> <owl:Ontology  rdf:about=\"external-byhand.owl\"/></owl:imports>
-      <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
+    <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
     <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
+       <owl:imports> <owl:Ontology  rdf:about=\"organizationInstances.owl\"/></owl:imports>
        
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obil.owl
@@ -289,7 +312,7 @@ echo "assumed-individuals created at $OBI_BUILD_PATH/newids/assumed-individuals.
 
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
-    xmlns=\"http://purl.obofoundry.org/obo/\"
+    xmlns=\"http://purl.obolibrary.org/obo/\"
     xmlns:protege=\"http://protege.stanford.edu/plugins/owl/protege#\"
     xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
@@ -323,6 +346,7 @@ echo "<?xml version=\"1.0\"?>
       <owl:imports> <owl:Ontology  rdf:about=\"Obsolete.owl\"/></owl:imports> 
           <owl:imports> <owl:Ontology  rdf:about=\"dataTransformationInstances.owl\"/></owl:imports> 
     <owl:imports> <owl:Ontology  rdf:about=\"softwareInstances.owl\"/></owl:imports> 
+       <owl:imports> <owl:Ontology  rdf:about=\"organizationInstances.owl\"/></owl:imports>
        
 
   </owl:Ontology>
@@ -352,16 +376,16 @@ echo "inferred-superclasses.owl created at $OBI_BUILD_PATH/newids/inferred-super
 # writes the result of the queries in the merged directory, in the file qc-queries-report.txt
 # TODO: add lost-terms (as soon as I understand the arguments ;-) )
 
-perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report1.txt
+###########perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(rdfs-class-report (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report1.txt
 
-perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report2.txt
+###########perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)"  --eval "(missing-curation (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report2.txt
 
-perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report3.txt
+###########perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(extra-curation-status-instances (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report3.txt
 
-perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report4.txt
+###########perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(untranslated-uris (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))"  --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report4.txt
 
 
-perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report5.txt
+###########perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CODE_PATH}/obi.asd --eval "(asdf::oos 'asdf::load-op :obi)" --eval "(missing-label (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(asserted-subclass-of-defined-class (load-kb-jena \"${OBI_OWL_PATH_NEW}\"))" --eval "(quit)" > $OBI_MERGED_PATH/qc-queries-report5.txt
 
 ###################################################################################################################################
 
@@ -373,7 +397,7 @@ perl ${LSW_PATH} $*  --load ${LSW_STARTUP_PATH}/lsw-startup.lisp --load ${OBI_CO
 
 echo "<?xml version=\"1.0\"?>
 <rdf:RDF
-    xmlns=\"http://purl.obofoundry.org/obo/\"
+    xmlns=\"http://purl.obolibrary.org/obo/\"
     xmlns:protege=\"http://protege.stanford.edu/plugins/owl/protege#\"
     xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
     xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"
@@ -406,8 +430,11 @@ echo "<?xml version=\"1.0\"?>
 <owl:imports rdf:resource=\"disjoints.owl\"/>
  <owl:imports rdf:resource=\"external-byhand.owl\"/>
  <owl:imports rdf:resource=\"inferred-superclasses.owl\"/>
-     <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/dataTransformationInstances.owl\"/></owl:imports> 
-    <owl:imports> <owl:Ontology  rdf:about=\"$INSTANCES_DIR_PATH/softwareInstances.owl\"/></owl:imports> 
+  <owl:imports rdf:resource=\"dataTransformationInstances.owl\"/>
+   <owl:imports rdf:resource=\"softwareInstances.owl\"/>
+    <owl:imports rdf:resource=\"organizationInstances.owl\"/>
+
+
        
   </owl:Ontology>
 </rdf:RDF>" > $OBI_BUILD_PATH/newids/obid.owl
