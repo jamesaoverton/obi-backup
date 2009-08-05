@@ -52,6 +52,7 @@
      (?si :a ?type)
      (:optional (?si ?p ?status))
      (:filter (and (regex (str ?si) "obi|OBI")
+	       (not (regex (str ?s) "^obsolete"))
 	       (not (equal ?type !rdf:Property))
 	       (not (equal ?type !owl:Thing))
 	       (not (equal ?type !rdfs:Class))
