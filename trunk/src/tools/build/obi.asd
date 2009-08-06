@@ -55,7 +55,8 @@
 	       (:file "add-assumed-individuals")
 	       (:file "extract-core")
 	       (:file "generate-obo")
-	       (:file "rewrite-instances"))
+	       (:file "rewrite-instances")
+	       (:file "obsolete-report"))
 	      :depends-on (macros)))
      :depends-on (owl))
 
