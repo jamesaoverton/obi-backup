@@ -15,8 +15,10 @@
        (loop for user in (gethash obsolete term2class) 
 	  do
 	    (unless (equal user obsolete)
-	      (format t "~a(~a) uses ~a~%"
+	      (format t "~a(~a) uses ~a(~a)~%"
 		      (car (rdfs-label user kb))
 		      (#"replaceAll" (uri-full user) ".*/" "")
-		      (car (rdfs-label obsolete kb))))))))
+		      (car (rdfs-label obsolete kb))
+		      (#"replaceAll" (uri-full obsolete) ".*/" "")
+		      ))))))
 
