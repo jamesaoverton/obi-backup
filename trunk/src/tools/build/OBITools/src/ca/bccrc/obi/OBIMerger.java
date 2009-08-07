@@ -104,7 +104,7 @@ public class OBIMerger {
 
 			branchesNames.add("DigitalEntityPlus");
 			branchesNames.add("DataFormatSpecification");
-			branchesNames.add("dataTransformationInstances");
+			branchesNames.add("instances/dataTransformationInstances");
 			/*
 			 * remove those for testing - need to be included though for release
 			 */
@@ -113,8 +113,8 @@ public class OBIMerger {
 			////////	branchesNames.add("assumed-individuals");
 			branchesNames.add("external-byhand");
 			//instances
-			branchesNames.add("softwareInstances");
-			branchesNames.add("organizationInstances");
+			branchesNames.add("instances/softwareInstances");
+			branchesNames.add("instances/organizationInstances");
 			/* we don't include the quick-id file in the release process. 
 			 * It does get OBI IDs assigned via list-purls lisp script, but is discarded straight afterwards (not even considered for disjoints)
 			 */
@@ -221,7 +221,7 @@ public class OBIMerger {
 		//we add the external imports
 		//we add those as Ontology Resource, to get the proper syntax for the imports, otherwise Pellet complains OWL full
 		//NOTE: this causes a display problem in Protege 3, see https://mailman.stanford.edu/pipermail/protege-owl/2007-December/004728.html
-		ont.addImport(owlModel.createOntology("http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"));
+		ont.addImport(owlModel.createOntology("http://purl.obolibrary.org/obo/iao/dev/iao.owl"));
 		ont.addImport(owlModel.createOntology("http://www.ifomis.org/bfo/1.1"));
 		//ont.addImport(owlModel.createOntology("http://purl.org/obo/owl/OBO_REL")); 
 		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
@@ -234,11 +234,11 @@ public class OBIMerger {
 	}
 
 
-	public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
+/*	public static void addProtegeFriendlyImports(Ontology ont, OntModel owlModel)	{
 		//we add the external imports
 		//we add those as Resource, to get the proper syntax for the imports, and proper display in protege
 		//NOTE: this will cause Pellet to classify as OWL Full (Untyped Ontology)
-		ont.addImport(owlModel.createResource("http://purl.obofoundry.org/obo/iao/2009-01-23/iao.owl"));
+		ont.addImport(owlModel.createResource("http://purl.obolibrary.org/obo/iao/dev/iao.owl"));
 		ont.addImport(owlModel.createResource("http://www.ifomis.org/bfo/1.1"));
 		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/OBO_REL"));
 		//ont.addImport(owlModel.createResource("http://purl.org/obo/owl/relationship"));
@@ -247,7 +247,7 @@ public class OBIMerger {
 		ont.addImport(owlModel.createResource("http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"));
 
 	}
-
+*/
 
 
 	public static OntModel buildOWLModel (String physicalURI){
@@ -312,8 +312,8 @@ public class OBIMerger {
 		//creates the ontology
 		Ontology ont = owlModel.createOntology(obiURI);
 		//Protege-Friendly version?
-		if(ProtegeFriendly) addProtegeFriendlyImports(ont, owlModel);
-		else addImports(ont, owlModel);
+		/*if(ProtegeFriendly) addProtegeFriendlyImports(ont, owlModel);
+		else */addImports(ont, owlModel);
 
 
 		//we also add the AnnotationProperty for the defaultLanguage of Protege, otherwise Pellet complains OWL full
@@ -469,28 +469,28 @@ public class OBIMerger {
 	public final static void main(String[] args) throws Exception  {
 
 		//the physical URI of the files
-		String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20090720/build/newids/";
+		//String physicalURI = "/Users/mcourtot/Desktop/releaseTest/20090731/build/newids/";
 		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/";
-		//String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/releases/2009-01-28/branches/";
+		String physicalURI = "/Users/mcourtot/Desktop/OBI/SVN/obi/releases/2009-07-31/branches/";
 		
 
 		/* We use to do that for the normal file, which is using the full import syntax, otherwise pellet was recognizing OBI as being OWL full, due to a discrepancy in the URI and the physical location of OBO_REL (error was untyped resource)
 		 * now that we replaced the import OBO_REL by relationship, this is not the case anymore, and it gets recognized as an ontology
 		 * we can therefore use the "short" syntax for the imports, which is the only one properly recognized by Protege 3 for identification of the namespaces.
 		 * Dated release of end of december 2008, the OBI-ProtegeFriendly file becomes the OBI file.
-		 * 
-		String newFilePath = "/Users/mcourtot/Desktop/OBI.owl";
+		 */
+//		String newFilePath = "/Users/mcourtot/Desktop/OBIJie.owl";
 		//we check validity of the non-protege friendly version (last argument=false)
-		mergeFiles(newFilePath,physicalURI,false);
+//		mergeFiles(newFilePath,physicalURI,false);
 
 
 		//check consistency -> this is now done via the owlapi
-			boolean valid = checkConsistency(newFilePath);
+		//	boolean valid = checkConsistency(newFilePath);
 		///boolean valid = checkConsistency("/Users/mcourtot/Desktop/OBI/SVN/obi/trunk/src/ontology/branches/obi.owl");
-			System.out.println("to be committed: "+ valid);
+		//	System.out.println("to be committed: "+ valid);
 
 
-		 */
+		
 		//String newFilePath = "/Users/mcourtot/Desktop/OBI/SVN/obi/releases/2009-01-28/merged/pellet/OBIDI.owl";
 		
 		//String newFilePath = "/Users/mcourtot/Desktop/OBIJieNew.owl";
@@ -509,16 +509,13 @@ public class OBIMerger {
 		
 		
 
-	//	System.out.println("to be committed: ");
+//		System.out.println("to be committed: ");
 
 	
 	//System.out.println("to be committed: "+ valid);
 
 
-
-//	}
-
-
+//}
 
 
 
