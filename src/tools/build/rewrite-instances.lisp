@@ -50,6 +50,7 @@
 	(let ((writer (#"getWriter" out-model "RDF/XML-ABBREV")))
 	  (#"setProperty" writer "xmlbase" ontology-url)
 	  (#"setProperty" writer "relativeuris" "same-document")
+	  (#"setProperty" writer "showXmlDeclaration" "true")
 	  (#"write" writer out-model sw "http://purl.obolibrary.org/obo/"))
 	(with-open-file (f out-file :direction :output :if-does-not-exist :create :if-exists :supersede)
 	  (write-string (#"toString" sw) f))
