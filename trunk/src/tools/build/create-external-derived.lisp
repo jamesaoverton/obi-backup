@@ -30,7 +30,6 @@
     ("obi_extd" "http://purl.obolibrary.org/obo/obi/externalDerived.owl#")
     ("obi_rel" "http://purl.obolibrary.org/obo/obi/Relations.owl#")
     ("obi_plan" "http://purl.obolibrary.org/obo/obi/PlanAndPlannedProcess.owl#")
-    ("obi_rest" "http://purl.obolibrary.org/obo/obi/TheRest.owl#")
     ("obi_role" "http://purl.obolibrary.org/obo/obi/Role.owl#")
     ("obi_instr" "http://purl.obolibrary.org/obo/obi/InstrumentAndPart.owl#")
     ("obi_func" "http://purl.obolibrary.org/obo/obi/OBI-Function.owl#")
