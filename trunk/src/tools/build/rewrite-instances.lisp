@@ -84,3 +84,9 @@
 		     ((java-object-p value) value)
 		     (t value))))
     (#"addProperty" subject property value)))
+
+(defun make-jena-literal (model value type)
+  (if (equal type (load-time-value (uri-full !rdf:text)))
+      (apply #"createLiteral" model (car (all-matches value "(.*)@(.*)" 1 2)))
+      (#"createTypedLiteral" model (if (stringp value) value (prin1-to-string value))
+			     (new 'jena.datatypes.basedatatype (if (uri-p type) (uri-full type) type)))))
