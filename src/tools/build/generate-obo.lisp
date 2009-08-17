@@ -16,7 +16,7 @@
   "The part of the URI before the last / or #"
   (let ((full (uri-full uri)))
     (let ((candidate (#"replaceFirst" full "(.*)[/#](.*)" "$1")))
-      (if (equal candidate "http://purl.obofoundry.org/obo")
+      (if (equal candidate "http://purl.obolibrary.org/obo")
 	  (format nil "~a/~a.owl" candidate (string-downcase (#"replaceAll" (localname uri) "_|\\d" "")))
 	  (if (#"matches" candidate "http://purl.org/obo/owl/.*")
 	      (format nil "~a.owl" candidate)
@@ -90,7 +90,7 @@
 	)
     ;; no definition source. Return empty list
     (if (#"matches" (uri-full class)  ".*/OBI_.*")
-	" [OBI:sourced \"OBI Consortium http://purl.obofoundry.org/obo/obi\"]"
+	" [OBI:sourced \"OBI Consortium http://purl.obolibrary.org/obo/obi\"]"
 	(progn 
 	  (format nil " [OBI:imported ~s]" (ontology-of class))
 	  ))))
@@ -109,17 +109,17 @@
 	(format f "format-version: 1.2
 date: ~a
 saved-by: obi
-auto-generated-by: http://purl.obofoundry.org/obo/obi/repository/trunk/src/tools/build/generate-obo.lisp
+auto-generated-by: http://purl.obolibrary.org/obo/obi/repository/trunk/src/tools/build/generate-obo.lisp
 default-namespace: OBI
 idspace: OBO_REL http://www.obofoundry.org/ro/ro.owl# \"OBO Relation ontology official home on OBO Foundry\"
 idspace: PATO http://purl.org/obo/owl/PATO \"Phenotype Ontology\"
 idspace: snap http://www.ifomis.org/bfo/1.1/snap# \"BFO SNAP ontology (continuants)\"
 idspace: span http://www.ifomis.org/bfo/1.1/span# \"BFO SPAN ontology (occurrents)\"
-idspace: OBI http://purl.obofoundry.org/obo/OBI_ \"Ontology for Biomedical Investigations\"
+idspace: OBI http://purl.obolibrary.org/obo/OBI_ \"Ontology for Biomedical Investigations\"
 idspace: CHEBI http://purl.org/obo/owl/CHEBI# \"Chemical Entities of Biological Interest\"
 idspace: CL http://purl.org/obo/owl/CL# \"Cell Ontology\"
 idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
-remark: This file is a subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obofoundry.org/obo/obi.owl
+remark: This file is a subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obolibrary.org/obo/obi.owl
 
 " (obo-format-time))
 	(loop for class in (set-difference (descendants !owl:Thing kb) (list !protegeowl:DIRECTED-BINARY-RELATION !protegeowl:PAL-CONSTRAINT))
@@ -191,26 +191,26 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	      ))))))
 
 #|		      
-  <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400082"><!-- photodetector -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400082"><!-- photodetector -->
     <IAO_0000117 xml:lang="en">John Quinn</IAO_0000117> <-- definition editor
     <IAO_0000112 xml:lang="en">A photomultiplier tube, a photo diode</IAO_0000112> <- example of usage
     <IAO_0000115 xml:lang="en">A photodetector is a device used to detect and measure the intensity of radiant energy through photoelectric action. In a cytometer, photodetectors measure either the number of photons of laser light scattered on inpact with a cell (for example), or the flourescence emmited by excitation of a lourescent dye.</IAO_0000115>
     <rdfs:label xml:lang="en">photodetector</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400003"/><!-- instrument -->
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400003"/><!-- instrument -->
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0400002"/><!-- device -->
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/><!-- device -->
     </rdfs:subClassOf>
-    <IAO_0000114 rdf:resource="http://purl.obofoundry.org/obo/IAO_0000123"/> <-- curation status
+    <IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/> <-- curation status
     <IAO_0000111 xml:lang="en">photodetector</IAO_0000111> <- synonym
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obofoundry.org/obo/OBI_0000306"/><!-- has_function -->
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/><!-- has_function -->
         </owl:onProperty>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obofoundry.org/obo/OBI_0000382"/><!-- measure function -->
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000382"/><!-- measure function -->
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>

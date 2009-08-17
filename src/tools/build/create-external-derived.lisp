@@ -20,24 +20,23 @@
     ("chebi" "http://purl.org/obo/owl/CHEBI#")
     ("envo""http://purl.org/obo/owl/ENVO#")
     ("ncbitax""http://purl.org/obo/owl/NCBITaxon#")
-    ("obi" "http://purl.obofoundry.org/obo/")
+    ("obi" "http://purl.obolibrary.org/obo/")
     ("caro" "http://purl.org/obo/owl/CARO#")
     ("pro" "http://purl.org/obo/owl/PRO#")
     ("so" "http://purl.org/obo/owl/SO#")
     ("go" "http://purl.org/obo/owl/GO#")
-    ("obi_denrie" "http://purl.obofoundry.org/obo/obi/DigitalEntityPlus.owl#")
-    ("obi_biomat" "http://purl.obofoundry.org/obo/obi/Biomaterial.owl#")
-    ("obi_extd" "http://purl.obofoundry.org/obo/obi/externalDerived.owl#")
-    ("obi_rel" "http://purl.obofoundry.org/obo/obi/Relations.owl#")
-    ("obi_plan" "http://purl.obofoundry.org/obo/obi/PlanAndPlannedProcess.owl#")
-    ("obi_rest" "http://purl.obofoundry.org/obo/obi/TheRest.owl#")
-    ("obi_role" "http://purl.obofoundry.org/obo/obi/Role.owl#")
-    ("obi_instr" "http://purl.obofoundry.org/obo/obi/InstrumentAndPart.owl#")
-    ("obi_func" "http://purl.obofoundry.org/obo/obi/OBI-Function.owl#")
-    ("obi_annot" "http://purl.obofoundry.org/obo/obi/AnnotationProperty.owl#")
-    ("obi_ext" "http://purl.obofoundry.org/obo/obi/external.owl#")
-    ("obi_quality" "http://purl.obofoundry.org/obo/obi/Quality.owl#")
-    ("obi_owlfull" "http://purl.obofoundry.org/obo/obi/obi-owl-full.owl#")))
+    ("obi_denrie" "http://purl.obolibrary.org/obo/obi/DigitalEntityPlus.owl#")
+    ("obi_biomat" "http://purl.obolibrary.org/obo/obi/Biomaterial.owl#")
+    ("obi_extd" "http://purl.obolibrary.org/obo/obi/externalDerived.owl#")
+    ("obi_rel" "http://purl.obolibrary.org/obo/obi/Relations.owl#")
+    ("obi_plan" "http://purl.obolibrary.org/obo/obi/PlanAndPlannedProcess.owl#")
+    ("obi_role" "http://purl.obolibrary.org/obo/obi/Role.owl#")
+    ("obi_instr" "http://purl.obolibrary.org/obo/obi/InstrumentAndPart.owl#")
+    ("obi_func" "http://purl.obolibrary.org/obo/obi/OBI-Function.owl#")
+    ("obi_annot" "http://purl.obolibrary.org/obo/obi/AnnotationProperty.owl#")
+    ("obi_ext" "http://purl.obolibrary.org/obo/obi/external.owl#")
+    ("obi_quality" "http://purl.obolibrary.org/obo/obi/Quality.owl#")
+    ("obi_owlfull" "http://purl.obolibrary.org/obo/obi/obi-owl-full.owl#")))
 
 (defparameter *external-derived-header*
   "<?xml version=\"1.0\"?>
@@ -45,7 +44,7 @@
   xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
   xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
   xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
-  xml:base=\"http://purl.obofoundry.org/obo/obi/externalDerived.owl#\">
+  xml:base=\"http://purl.obolibrary.org/obo/obi/externalDerived.owl#\">
   <owl:Ontology rdf:about=\"\">
     <owl:versionInfo rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"
     >$Revision: 80 $</owl:versionInfo>
@@ -103,6 +102,7 @@
        do
        (loop for line in (butlast (cddr lines))
 	  do (format f "~a~%" line)))
+    (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/OBI_0000111\"/>")
     (format f "</rdf:RDF>~%")))
 
 (defun combine-template-query-results (results output-path)
@@ -110,13 +110,13 @@
     (write-string *external-derived-header* f)
     (loop for rdf in results
        do
-	 (write-string (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") f))
+	 (write-string (#"replaceAll" (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") "purl.obolibrary.org" "purl.obolibrary.org") f))
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
   (let* ((file (maybe-url-filename path))
 	 (model (#"createOntologyModel" 'modelfactory (get-java-field 'OntModelSpec "OWL_MEM"))))
-    (let ((base "http://purl.obofoundry.org/obo/obi/externalDerived.owl"))
+    (let ((base "http://purl.obolibrary.org/obo/obi/externalDerived.owl"))
       (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) base)
       (loop for (prefix namespace) in prefixmapping
 	 do (#"setNsPrefix" (#"getPrefixMapping" (#"getGraph" model)) prefix namespace))
