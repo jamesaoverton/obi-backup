@@ -33,7 +33,6 @@ my %used; # to record used numeric ids
 my @obiParts = grep {/<owl:imports rdf:resource="http:\/\/purl.obolibrary.org\/obo\/obi\/(.*)\.owl"/;$1} @lines;
 my @obiParts = map { s/.*\/([A-Za-z.-]*)\.owl.*/$1/;chomp $_ ; $_} @obiParts;
 
-
 my %uriReplacements;
 my %tagReplacements;
 
@@ -62,6 +61,7 @@ if (defined $rewrite)
     else {$debug && print "don't bother ",$uri,"\n"}
   }
   close URILIST;
+  open REWRITE, ">$build/uri-rewrites.txt" or die("can't write rewrites list");
   foreach my $do (@todo)
   {
     my $newid = allocateNewId();
@@ -70,8 +70,9 @@ if (defined $rewrite)
     $tagReplacements{$do}="OBI_".$newid;
     $debug && print $do,"=>",$uriReplacements{$do},"\n";
     print $do,"=>",$uriReplacements{$do},"\n";
-
+    print REWRITE $do,"=>",$uriReplacements{$do},"\n";
   }
+  close REWRITE;
 }
 
 # Rewrite one URI Logic:
@@ -143,6 +144,8 @@ sub replacenames
 { my $count=1;
   foreach my $part ( @obiParts) {
       my $path = "$branches/$part".".owl";
+      if (! -e $path)
+	{ $path = "$branches/instances/$part".".owl"; }
       open PART, "<$path" or die("Trouble loading $path");
       if (! -e $copydir) { mkdir($copydir,0777) };
       if (! -e "$copyexternal") { mkdir("$copyexternal",0777) };

@@ -48,7 +48,9 @@
 	when (and obi-children
 		  (or (eq root !material-entity) ; special case - we add disjoints below material-entity
 		      (and (not (member root defined-classes)) ; but not defined
-			   (not (member root placeholders))))) ; or placeholder
+			   (not (member root placeholders))
+			   (not (member root `(,!snap:Object ,!snap:ObjectAggregate ,!snap:FiatObjectPart)))
+			   ))) ; or placeholder
 	do (progn
 	     ;; all the obi-only classes are mutually disjoint
 	     (let ((obi-disjoints (set-difference (set-difference obi-children placeholders) defined-classes)))
@@ -62,7 +64,8 @@
 		 (dolist (obi obi-children)
 		   (unless (or (member obi defined-classes)
 			       (member obi placeholders)
-			       (member other defined-classes))
+			       (member other defined-classes)
+			       (not (member root `(,!snap:Object ,!snap:ObjectAggregate ,!snap:FiatObjectPart))))
 		     (push `(disjoint-classes ,obi ,other) all-disjoints))))))
 	;; don't into placeholder classes
 	;; descend into defined classes because otherwise we never reach anything.
@@ -70,7 +73,7 @@
 	until (null queue)
 	finally
 	;; create and write the file full of disjoints
-	(eval `(with-ontology disjoints (:base "http://purl.obofoundry.org/obo/obi/disjoints.owl")
+	(eval `(with-ontology disjoints (:base "http://purl.obolibrary.org/obo/obi/disjoints.owl")
 		   ,all-disjoints
 		 (write-rdfxml disjoints ,path)))
 	))

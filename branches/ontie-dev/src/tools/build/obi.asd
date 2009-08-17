@@ -21,6 +21,10 @@
 						       '("src" "tools" "build"))
 				    :name :wild
 				    :type :wild))
+	("spreadsheets;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 3)
+						       '("src" "ontology" "spreadsheets" "in"))
+				    :name :wild
+				    :type :wild))
 
 	("releases;**;*.*" ,(make-pathname :directory (append (butlast (pathname-directory *load-pathname*) 4)
 						       '(:wild-inferiors))
@@ -50,7 +54,9 @@
 	       (:file "comment-ids-in-owl-file")
 	       (:file "add-assumed-individuals")
 	       (:file "extract-core")
-	       (:file "generate-obo"))
+	       (:file "generate-obo")
+	       (:file "rewrite-instances")
+	       (:file "obsolete-report"))
 	      :depends-on (macros)))
      :depends-on (owl))
 
