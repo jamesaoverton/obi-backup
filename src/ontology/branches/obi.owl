@@ -1725,6 +1725,16 @@ Nature. 2008 Sep 17. PMID: 18806774</IAO_0000112>
     <IAO_0000115 xml:lang="en">Process of administering an object playing the role of immunogen to a living oragnism</IAO_0000115>
     <rdfs:label xml:lang="en">Immunization in vivo</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110094"/>
     </rdfs:subClassOf>
   </owl:Class>
@@ -4755,9 +4765,7 @@ Biochem Biophys Res Commun. 2008 Oct 18. PMID: 18940182</IAO_0000112>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-            </owl:onProperty>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -5199,28 +5207,6 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110002">
     <IAO_0000119 xml:lang="en">IEDB</IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
-              <owl:Restriction>
-                <owl:someValuesFrom>
-                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
-                </owl:someValuesFrom>
-                <owl:onProperty>
-                  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000316"/>
-                </owl:onProperty>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110115"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -5251,6 +5237,26 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</IAO_0000116>
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110055"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
+              <owl:Restriction>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110083"/>
+                </owl:someValuesFrom>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000316"/>
+                </owl:onProperty>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -22041,17 +22047,33 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110020">
     <rdfs:label xml:lang="en">Immunization in vitro</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000456"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000417"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000293"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110094"/>
     </rdfs:subClassOf>
     <IAO_0000115 xml:lang="en">Process of administering an object playing the role of immunogen to a cell culture</IAO_0000115>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110115"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100060"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <IAO_0000117 xml:lang="en">IEDB</IAO_0000117>
     <IAO_0000119 xml:lang="en">IEDB</IAO_0000119>
   </owl:Class>
@@ -30081,21 +30103,6 @@ level of radioactivity is_proxy_for level of toxicity</IAO_0000112>
     <IAO_0000112 xml:lang="en">some Triton X-100 (Sigma-Aldrich) is_reagent_in instance of Chromium Release Assay described at  https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay</IAO_0000112>
     <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110058">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >results_in</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#precedes"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110115">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >has_process_location</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000312">
     <IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is_specified_output_of</IAO_0000111>
@@ -30173,6 +30180,7 @@ For instances: e has_quality q at t iff q inheres_in e at t and q instance-of Qu
     >has_supplier</rdfs:label>
     <IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#precedes"/>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000313">
     <IAO_0000112 xml:lang="en">see example_of_usage for is_device_for</IAO_0000112>
     <rdfs:label xml:lang="en">obsoleted_utilizes_device</rdfs:label>
@@ -30181,13 +30189,18 @@ For instances: e has_quality q at t iff q inheres_in e at t and q instance-of Qu
     <IAO_0000117 xml:lang="en">Alan Ruttenberg</IAO_0000117>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110060">
-    <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/OBI_1110058"/>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >IEDB</IAO_0000117>
+    <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Bjoern Peters</IAO_0000117>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >results_from</rdfs:label>
+    >process is result of</rdfs:label>
+    <IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The production of IFN-gamma by effector T cells is a process result of T cell stimulation through the TCR</IAO_0000112>
     <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
     <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/span#Occurrent"/>
     <IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is a relationship between processes that are directly causually related</IAO_0000115>
+    >is a relationship between a process and a preceding occurent that directly caused the later one to occur</IAO_0000115>
     <rdfs:subPropertyOf rdf:resource="http://www.obofoundry.org/ro/ro.owl#preceded_by"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000304">
@@ -30253,13 +30266,6 @@ instance level relation [GOC:cjm]</IAO_0000115>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110119">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >bound_to</rdfs:label>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_1110113">
-    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-    <rdfs:range rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-    <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/OBI_1110115"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is_process_location_of</rdfs:label>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000311">
     <IAO_0000115 xml:lang="en">Relationship between a device and a protocol application in which it  participates</IAO_0000115>
@@ -30351,6 +30357,7 @@ instance level relation [GOC:cjm]</IAO_0000115>
       </rdf:Description>
     </owl:inverseOf>
     <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1#Entity"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000294">
     <IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
