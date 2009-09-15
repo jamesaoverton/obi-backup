@@ -141,7 +141,7 @@
     (let ((classes 
 	   (sparql '(:select (?class ?where ?parent) () 
 		     (?class !rdf:type !owl:Class)
-		     (?class !obi:OBI_0000283 ?where)
+		     (?class !obi:IAO_0000412 ?where)
 		     (?class !rdfs:subClassOf ?parent))
 		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
 		   :kb kb)))
