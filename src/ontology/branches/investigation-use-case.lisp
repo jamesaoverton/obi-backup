@@ -264,7 +264,7 @@ details of the study.
 
 	     :complete
 		  (manch (and to-be-treated-with-active-ingredient-role
-			      (some !'is_realized_by'@ (one-of fucoidan-study-execution))))
+			      (all !'is_realized_by'@ (one-of fucoidan-study-execution))))
 		  (label "Role of subject to be treated with fucoidan in the pilot study")
 		  (annotation !definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
 		  (annotation !definition-editor "Person:Alan Ruttenberg")
@@ -278,7 +278,7 @@ details of the study.
 	   ;; more detail needed here: that the subject ingests the placebo
 	   (class to-be-treated-with-guar-gum-role :complete
 		  (manch (and to-be-treated-with-placebo-role
-			      (some !'is_realized_by'@ (one-of fucoidan-study-execution))))
+			      (all !'is_realized_by'@ (one-of fucoidan-study-execution))))
 		  (label "Role of subject to be treated with placebo in the pilot study")
 		  (annotation !definition "Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo")
 		  (annotation !definition-editor "Person:Alan Ruttenberg"))
