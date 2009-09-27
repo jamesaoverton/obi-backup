@@ -2,6 +2,7 @@
 <!DOCTYPE rdf:RDF [
   <!ENTITY NCBITaxon "http://purl.org/obo/owl/NCBITaxon#">
   <!ENTITY OBO_REL "http://purl.org/obo/owl/OBO_REL#">
+  <!ENTITY fucoidan "http://purl.obolibrary.org/obo/obi/example/fucoidan/">
   <!ENTITY investigation-use-case "http://purl.obolibrary.org/obo/obi/investigation-use-case.owl">
   <!ENTITY obo "http://purl.obolibrary.org/obo/">
   <!ENTITY obo0 "http://purl.obofoundry.org/obo/">
@@ -14,6 +15,7 @@
 <rdf:RDF xml:base="http://purl.obolibrary.org/obo/obi/investigation-use-case.owl"
          xmlns:NCBITaxon="&NCBITaxon;"
          xmlns:OBO_REL="&OBO_REL;"
+         xmlns:fucoidan="&fucoidan;"
          xmlns:obo="&obo;"
          xmlns:obo0="&obo0;"
          xmlns:owl="&owl;"
@@ -197,10 +199,88 @@
     </owl:intersectionOf>
   </owl:Class>
 
+  <owl:Class rdf:about="&obo;TMPOBI_0000007">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A study subject role which begins to exist when a subject is assigned to be one of those who will receive a placebo, and realized in a study execution in which they receive the placebo</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">to be treated with placebo role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&obo;OBI_0000097"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&obo;TMPOBI_0000008">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A study subject role which begins to exist when a subject is assigned to be one of those who will receive active ingredient, and is realized in a study execution in which they receive the active ingredient</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">to be treated with active ingredient role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&obo;OBI_0000097"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&fucoidan;fc_0015">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Subject in control arm of fucoidan pilot study</rdfs:label>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&NCBITaxon;NCBITaxon_9606"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&OBO_REL;bearer_of"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0017"/>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&fucoidan;fc_0016">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Subject in treated arm of fucoidan pilot study</rdfs:label>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&NCBITaxon;NCBITaxon_9606"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&OBO_REL;bearer_of"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0018"/>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&fucoidan;fc_0017">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Role of subject to be treated with placebo in the pilot study</rdfs:label>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&obo;TMPOBI_0000007"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000300"/>
+        <owl:someValuesFrom>
+          <rdf:Description>
+            <owl:oneOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="&fucoidan;fc_0007"/>
+            </owl:oneOf>
+          </rdf:Description>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&fucoidan;fc_0018">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Role of subject to be treated with fucoidan in the pilot study</rdfs:label>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&obo;TMPOBI_0000008"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000300"/>
+        <owl:someValuesFrom>
+          <rdf:Description>
+            <owl:oneOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="&fucoidan;fc_0007"/>
+            </owl:oneOf>
+          </rdf:Description>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
   <owl:Class rdf:about="&NCBITaxon;NCBITaxon_9606"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#ProcessualEntity"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
-  <owl:Class rdf:nodeID="b399">
+  <owl:Class rdf:nodeID="b733">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -214,7 +294,7 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b397">
+  <owl:Class rdf:nodeID="b724">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -263,90 +343,90 @@
   <obo:IAO_0000078 rdf:about="&obo;IAO_0000123"/>
   <obo:IAO_0000078 rdf:about="&obo;IAO_0000124"/>
   <obo:IAO_0000078 rdf:about="&obo;IAO_0000125"/>
-  <obo:OBI_0000084 rdf:about="&obo;OBI_0000084_8">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">instance of a polystyrene tube - fucoidan study</obo:IAO_0000115>
-    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">polystyrene tube - fucoidan study</rdfs:label>
-  </obo:OBI_0000084>
-
-  <NCBITaxon:NCBITaxon_9606 rdf:about="&obo;OBI_0000263_4">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">Instance of Homo sapiens for fucoidan study treated with fucoidan</obo:IAO_0000115>
-    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Homo sapiens treated with fucoidan - fucoidan study</rdfs:label>
-  </NCBITaxon:NCBITaxon_9606>
-
-  <NCBITaxon:NCBITaxon_9606 rdf:about="&obo;OBI_0000263_5">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">Instance of Homo sapiens for fucoidan study treated with guar gum</obo:IAO_0000115>
-    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Homo sapiens treated with guar gum - fucoidan study</rdfs:label>
-  </NCBITaxon:NCBITaxon_9606>
-
   <obo0:guar_gum rdf:about="&obo;guar_gum_6">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">instance of guar gum  reference material - fucoidan study</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
     <rdfs:label rdf:datatype="&xsd;string">guar gum reference - fucoidan study</rdfs:label>
   </obo0:guar_gum>
 
-  <obo0:Class_1 rdf:about="&obo;obi/example/fucoidan/fc_0001">
+  <obo0:Class_1 rdf:about="&fucoidan;fc_0001">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">Instance of fucoidan 75% - fucoidan study</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
     <rdfs:label rdf:datatype="&xsd;string">fucoidan 75 % - fucoidan study</rdfs:label>
   </obo0:Class_1>
 
-  <NCBITaxon:NCBITaxon_9606 rdf:about="&obo;obi/example/fucoidan/fc_0002">
-    <OBO_REL:bearer_of rdf:resource="&obo;obi/example/fucoidan/fc_0003"/>
+  <NCBITaxon:NCBITaxon_9606 rdf:about="&fucoidan;fc_0002">
+    <OBO_REL:bearer_of rdf:resource="&fucoidan;fc_0003"/>
     <rdfs:label rdf:datatype="&xsd;string">RM Lowenthal</rdfs:label>
   </NCBITaxon:NCBITaxon_9606>
 
-  <obo:OBI_0000103 rdf:about="&obo;obi/example/fucoidan/fc_0003">
+  <obo:OBI_0000103 rdf:about="&fucoidan;fc_0003">
     <rdfs:label rdf:datatype="&xsd;string">PI role of RM Lowenthal</rdfs:label>
   </obo:OBI_0000103>
 
-  <obo:OBI_0000260 rdf:about="&obo;obi/example/fucoidan/fc_0004">
-    <obo:OBI_0000300 rdf:resource="&obo;obi/example/fucoidan/fc_0005"/>
-    <OBO_REL:inheres_in rdf:resource="&obo;obi/example/fucoidan/fc_0002"/>
+  <obo:OBI_0000260 rdf:about="&fucoidan;fc_0004">
+    <obo:OBI_0000300 rdf:resource="&fucoidan;fc_0005"/>
+    <OBO_REL:inheres_in rdf:resource="&fucoidan;fc_0002"/>
     <rdfs:label rdf:datatype="&xsd;string">plan - RM Lowenthal's plan to develop a study design for Fucoisidan investigation</rdfs:label>
   </obo:OBI_0000260>
 
-  <obo:OBI_0000339 rdf:about="&obo;obi/example/fucoidan/fc_0005">
-    <obo:OBI_0000299 rdf:resource="&obo;obi/example/fucoidan/fc_0009"/>
-    <obo:OBI_0000308 rdf:resource="&obo;obi/example/fucoidan/fc_0004"/>
+  <obo:OBI_0000339 rdf:about="&fucoidan;fc_0005">
+    <obo:OBI_0000299 rdf:resource="&fucoidan;fc_0009"/>
+    <obo:OBI_0000308 rdf:resource="&fucoidan;fc_0004"/>
     <rdfs:label rdf:datatype="&xsd;string">planning - part of Fucoidan Investigation</rdfs:label>
   </obo:OBI_0000339>
 
-  <obo:OBI_0600004 rdf:about="&obo;obi/example/fucoidan/fc_0006">
+  <obo:OBI_0600004 rdf:about="&fucoidan;fc_0006">
     <rdfs:label rdf:datatype="&xsd;string">enrollment - of patients for Fucoidan investigation</rdfs:label>
   </obo:OBI_0600004>
 
-  <rdf:Description rdf:about="&obo;obi/example/fucoidan/fc_0007">
-    <rdf:type rdf:nodeID="b399"/>
-    <rdf:type rdf:nodeID="b397"/>
+  <rdf:Description rdf:about="&fucoidan;fc_0007">
+    <rdf:type rdf:nodeID="b733"/>
+    <rdf:type rdf:nodeID="b724"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
-  <obo:OBI_0000066 rdf:about="&obo;obi/example/fucoidan/fc_0008">
-    <ro:has_part rdf:resource="&obo;obi/example/fucoidan/fc_0005"/>
-    <ro:has_part rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
+  <obo:OBI_0000066 rdf:about="&fucoidan;fc_0008">
+    <ro:has_part rdf:resource="&fucoidan;fc_0005"/>
+    <ro:has_part rdf:resource="&fucoidan;fc_0007"/>
     <rdfs:label rdf:datatype="&xsd;string">investigation - Fucoidan Investigation</rdfs:label>
   </obo:OBI_0000066>
 
-  <obo:OBI_0500000 rdf:about="&obo;obi/example/fucoidan/fc_0009">
+  <obo:OBI_0500000 rdf:about="&fucoidan;fc_0009">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints.</obo:IAO_0000116>
-    <obo:OBI_0000312 rdf:resource="&obo;obi/example/fucoidan/fc_0005"/>
+    <obo:OBI_0000312 rdf:resource="&fucoidan;fc_0005"/>
     <rdfs:label rdf:datatype="&xsd;string">study design - of Fucoidan Investigation</rdfs:label>
   </obo:OBI_0500000>
 
-  <obo:OBI_0000040 rdf:about="&obo;obi/example/fucoidan/fc_0010">
+  <obo:OBI_0000040 rdf:about="&fucoidan;fc_0010">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">instance of guar gum  reference material - fucoidan study</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
-    <OBO_REL:inheres_in rdf:resource="&obo;obi/example/fucoidan/fc_0001"/>
+    <OBO_REL:inheres_in rdf:resource="&fucoidan;fc_0001"/>
     <rdfs:label rdf:datatype="&xsd;string">drug role - fucoidan study</rdfs:label>
   </obo:OBI_0000040>
 
-  <obo:OBI_0000214 rdf:about="&obo;obi/example/fucoidan/fc_0011">
+  <obo:OBI_0000214 rdf:about="&fucoidan;fc_0011">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">instance of negative reference substance role for guar gum - fucoidan study</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
     <OBO_REL:inheres_in rdf:resource="&obo;guar_gum_6"/>
     <rdfs:label rdf:datatype="&xsd;string">guar gum reference - fucoidan study</rdfs:label>
   </obo:OBI_0000214>
+
+  <obo:OBI_0000084 rdf:about="&fucoidan;fc_0012">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">instance of a polystyrene tube - fucoidan study</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">polystyrene tube - fucoidan study</rdfs:label>
+  </obo:OBI_0000084>
+
+  <fucoidan:fc_0016 rdf:about="&fucoidan;fc_0019">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Instance of Homo sapiens for fucoidan study treated with fucoidan</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Homo sapiens treated with fucoidan - fucoidan study</rdfs:label>
+  </fucoidan:fc_0016>
+
+  <fucoidan:fc_0015 rdf:about="&fucoidan;fc_0020">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">Instance of Homo sapiens for fucoidan study treated with guar gum</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Helen Parkinson</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">Homo sapiens treated with guar gum - fucoidan study</rdfs:label>
+  </fucoidan:fc_0015>
 </rdf:RDF>
