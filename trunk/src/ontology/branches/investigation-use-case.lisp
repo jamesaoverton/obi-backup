@@ -296,7 +296,7 @@ details of the study.
 	       )
 	     	     
 	     (individual fucoidan-treatment-portion
-	       (label "study design execution - of Fucoidan investigation")
+	       (label "treatment portion of study design execution - of Fucoidan investigation")
 	       (signedalan)
 	       (type 
 		(manch (and 
