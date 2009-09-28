@@ -61,15 +61,20 @@ details of the study.
 (defun fciaouri (i)
   (make-uri nil (format nil "iaosoon:~7,'0d" (+ i))))
 
-(defun 4obi () (annotation !editor-note "This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case"))
+(defun 4obi () (editor-note "2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case"))
 
 (defun 4import ()
-  (annotation !editor-note "This class is a class that should be mireoted in to OBI. It was motivated by the Fucoidan trial use case"))
+  (editor-note "2009/09/28 Alan Ruttenberg. This class is a class that should be mireoted in to OBI. It was motivated by the Fucoidan trial use case"))
 
 (defun 4iao ()
-  (annotation !editor-note "This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case"))
+  (editor-note "2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case"))
 
-(defun signedalan () (annotation !definition-editor "Perosn:Alan Ruttenberg"))
+(defun signedalan () (definition-editor "Person:Alan Ruttenberg"))
+(defun signedhelen () (definition-editor "Person:Helen Parkinson"))
+(defun editor-note (note) (annotation !editor-node note))
+(defun definition (note) (annotation !definition note))
+(defun definition-source (note) (annotation !definition-source note))
+(defun definition-editor (note) (annotation !definition-editor note))
 
 (define-ontology investigation-use-case
     (:base (uri-full !obo:obi/investigation-use-case.owl) :about (uri-full !obo:obi/investigation-use-case.owl))
@@ -84,6 +89,10 @@ details of the study.
 	(object-property !oborel:has_participant) (object-property !'has_role'@)
 	(object-property !'has measurement unit label'@) (datatype-property !'has measurement value'@)
 	(annotation-property !rdfs:label)  (annotation-property !owl:versionInfo)
+	(annotation-property !definition (label "definition"))
+	(annotation-property !definition-source (label "definition source"))
+	(annotation-property !definition-editor (label "definition editor"))
+	(annotation-property !editor-note (label "editor note"))
 	;;	(owl-imports !obo:obi.owl)
 	;; put these uris into a http://purl.obolibary.org/obo/obi/example/OBIX_xxxxx
 	(let ((fucoidan-75% (fcuri 1))
@@ -114,6 +123,7 @@ details of the study.
 	      (single-treatment-of-fucoidan-in-fucoidan-study (fcuri 26))
 	      (single-treatment-of-placebo-in-fucoidan-study (fcuri 27))
 	      (mass-measurement-datum (fcuri 28))
+	      (fucoidan-treatment-portion (fcuri 29))
 	      ;; imports
 	      (mouth !obo:FMA#FMA_49184)
 	      (mass !pato:0000125)
@@ -134,6 +144,8 @@ details of the study.
 	      (capsule-shell (fcobiuri 11))
 	      (filled-capsule (fcobiuri 12))
 	      (oral-ingestion-of-pill (fcobiuri 13))
+	      (treatment-portion-of-study-execution (fcobiuri 14))
+	      (unblinding-process (fcobiuri 15))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
 	      )
@@ -167,9 +179,10 @@ details of the study.
 	     ;; to target of material addition role
 
 	     (class informed-consent-process 
-	       (annotation !definition "One or more processes in which subject is taught key facts about a clinical trial both before deciding whether or not to participate, and throughout the study. Agents of the investivation, such as doctors and nurses involved in the trial, explain the details of the study.")
+	       (definition "One or more processes in which subject is taught key facts about a clinical trial both before deciding whether or not to participate, and throughout the study. Agents of the investivation, such as doctors and nurses involved in the trial, explain the details of the study.")
 	       (4obi)
-	       (annotation !definition-source "http://clinicaltrials.gov/ct2/info/glossary#informed")
+	       (definition-source "http://clinicaltrials.gov/ct2/info/glossary#informed")
+	       (editor-note "09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.")
 	       (signedalan)
 	       (label "Informed consent process")
 	       :partial (manch (and !snap:ProcessualEntity
@@ -181,9 +194,10 @@ details of the study.
 
 	
 	     (class informed-consent-document-agreement-by-patient
-	       (annotation !definition "A process in which a subject receives an informed consent document and agrees that they have understood it")
+	       (definition "A process in which a subject receives an informed consent document and agrees that they have understood it")
 	       (signedalan)
 	       (4obi)
+	       (editor-note "09/28/2009 Alan Ruttenberg. There's a need for a general process like this in IAO - document and person in, signed document (and associated obligations, rights, out")
 	       (label "subject agrees they understand informed consent document")
 	       :partial
 	       (manch (and !'planned process'@
@@ -192,84 +206,116 @@ details of the study.
 	     (class informing-subject-of-study-arm :partial
 		    (4obi)
 		    (label "informing subject of study arm")
-		    (annotation !definition "A process in which the subject is made aware of which study arm they are participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
+		    (definition "A process in which the subject is made aware of which study arm they are participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
 		    (signedalan)
+		    (editor-note "09/28/2009 Alan Ruttenberg. This and the class informing-investigator-of-study-arm are defined in order to solve the question of how to represent single and double blind experiments. To represent the aspect of blinding pertaining to subjects (happens in single and double blinding) we say that that the study execution doesn't include any processes of this sort")
 		    (manch (and !span:Process
 				(some !oborel:has_participant
 				      (some !'has_role'@ !'study subject role'@))
 				(some !oborel:part_of informed-consent-process))))
-
-
 	       
 	     (class informing-investigator-of-subject-study-arm :partial
 		    (4obi)
 		    (label "informing investigator of subject study arm")
-		    (annotation !definition "A process in which an investigator is made aware of which study arm that a patient is participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
+		    (definition "A process in which an investigator is made aware of which study arm that a patient is participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
 		    (signedalan)
+		    (editor-note "09/28/2009 Alan Ruttenberg. This and the class informing-subject-of-study-arm are defined in order to solve the question of how to represent single and double blind experiments. To represent the aspect of double blinding pertaining to investigators, we say that the study execution doesn't include any processes of this sort")
 		    (manch (and !span:Process
 				(some !oborel:has_participant
 				      (some !'has_role'@ !'investigation agent role'@))
 				(some !'has_specified_input'@
 				      (some !'denotes'@ (some !'bearer_of'@ !'study subject role'@)))
 				)))
+	     
+	     (class treatment-portion-of-study-execution :partial (manch (and !'planned process'@
+									      (some !oborel:part_of !'study design execution'@)))
+		    (label "treatment portion of study execution")
+		    (signedalan)
+		    (4obi)
+		    (definition "A planned process, part of a study design execution, during which the treatment of subjects is ongoing")
+		    (editor-note "09/28/2009 Alan Ruttenberg. Needed because we have to have a process to scope blinding over"))
+
 
 	     (class single-blind-study-execution :complete
 		    (4obi)
 		    (label "single blind study execution")
-		    (annotation !definition "A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of")
+		    (definition "A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of")
 		    (signedalan)
-		    (annotation !definition-source "http://clinicaltrials.gov/ct2/info/glossary#single")
-		    (manch (and !'study design execution'@
+		    (definition-source "http://clinicaltrials.gov/ct2/info/glossary#single")
+		    (manch (and treatment-portion-of-study-execution
 				(all !oborel:has_part (not informing-subject-of-study-arm)))))
 
 	     (class double-blind-study-execution 
 	       (label "double blind study execution")
 	       (4obi)
-	       (annotation !definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of")
+	       (definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of")
 	       (signedalan)
-	       (annotation !definition-source "http://clinicaltrials.gov/ct2/info/glossary#double")	   
+	       (definition-source "http://clinicaltrials.gov/ct2/info/glossary#double")	   
 	       :complete
-	       (manch (and !'study design execution'@
+	       (manch (and treatment-portion-of-study-execution
 			   (all !oborel:has_part (not (or informing-subject-of-study-arm
 							  informing-investigator-of-subject-study-arm
 							  ))))))
+
+	     (class unblinding-process :partial (manch (and !'planned process'@
+						     (some !oborel:part_of !'study design execution'@)
+						     (some !oborel:part_of informing-subject-of-study-arm)))
+		    (label "Unblinding process")
+		    (definition "The part of the study execution in which the subjects are told what study arm they are in and in which the investigators are told which subjects are in which trials")
+		    (signedalan)
+		    (4obi))
 	  
 	     (individual fucoidan-investigation
 	       (label "investigation - Fucoidan Investigation")
 	       (type !'investigation'@)
+	       (signedhelen)
 	       (value !oborel:has_part fucoidan-study-execution)
 	       (value !oborel:has_part fucoidan-investigation-planning))
 
 	     (individual lowenthal-study-plan
 	       (label "plan - RM Lowenthal's plan to develop a study design for Fucoisidan investigation")
 	       (type !'plan'@)
+	       (signedhelen)
 	       (value !'inheres_in'@ rm-lowenthal)
 	       (value !'is_realized_by'@ fucoidan-investigation-planning))
 
 	     (individual fucoidan-investigation-planning
 	       (label "planning - part of Fucoidan Investigation")
 	       (type !'planning'@)
+	       (signedhelen)
 	       (value !'has_specified_output'@ fucoidan-study-design)
 	       (value !'realizes'@ lowenthal-study-plan))
 
 	     (individual fucoidan-study-execution
 	       (label "study design execution - of Fucoidan investigation")
+	       (signedhelen)
 	       (type 
 		(manch (and 
 			!'study design execution'@
 			(all !oborel:has_part (not informing-subject-of-study-arm)))))
 	       )
+	     	     
+	     (individual fucoidan-treatment-portion
+	       (label "study design execution - of Fucoidan investigation")
+	       (signedalan)
+	       (type 
+		(manch (and 
+			treatment-portion-of-study-execution
+			(all !oborel:has_part (not informing-subject-of-study-arm)))))
+	       (value !oborel:part_of fucoidan-study-execution)
+	       )
 
 	     (individual fucoidan-study-design
 	       (label "study design - of Fucoidan Investigation")
+	       (signedhelen)
 	       (type !'study design'@)
 	       (value !'is_specified_output_of'@ fucoidan-investigation-planning)
-	       (annotation !editor-note
-			   "This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints."))
+	       (editor-note "This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints."))
+
   
 	     (individual fucoidan-study-enrollment
 	       (label "enrollment - of patients for Fucoidan investigation")
-	       (annotation !definition-editor "Helen Parkinson")
+	       (signedhelen)
 	       (type !'human subject enrollment'@))
 
 	     ;; materials - there are going to be a lot of instances of these
@@ -278,14 +324,15 @@ details of the study.
 	     (individual fucoidan-75% 
 	       (label "fucoidan 75 % - fucoidan study")
 	       (type !'fucoidan'@)
-	       (annotation !definition-editor "Helen Parkinson")
-	       (annotation !definition "Instance of fucoidan 75% - fucoidan study"))
+	       (signedhelen)
+	       (definition "Instance of fucoidan 75% - fucoidan study")
+	       (editor-note "2009/09/28 Alan Ruttenberg. Mistake - fucoidan is a molecular entity. See class fucoidan-capsule-for-fucoidan-study"))
 
 	     ;; don't think we need to instantiate - better to just assert the type
 	     (individual fucoidan-drug-role
 	       (label "drug role - fucoidan study")
-	       (annotation !definition "instance of guar gum  reference material - fucoidan study")
-	       (annotation !definition-editor "Helen Parkinson")
+	       (definition "instance of guar gum  reference material - fucoidan study")
+	       (signedhelen)
 	       (type !'drug role'@)
 	       (value !'inheres_in'@ fucoidan-75%))
 
@@ -293,23 +340,25 @@ details of the study.
 	     (individual tube 
 	       (label "polystyrene tube - fucoidan study")
 	       (type !'polystyrene tube'@)
-	       (annotation !definition-editor "Helen Parkinson")
-	       (annotation !definition "instance of a polystyrene tube - fucoidan study"))
+	       (signedhelen)
+	       (definition "instance of a polystyrene tube - fucoidan study"))
 
 	     ;; and these
 	     (individual !obi:guar_gum_6
 	       (label "guar gum reference - fucoidan study")
-	       (type !<http://purl.obofoundry.org/obo/guar_gum>)
-	       (annotation !definition-editor "Helen Parkinson")
-	       (annotation !definition "instance of guar gum  reference material - fucoidan study"))
+	       (type guar-gum-capsule-for-fucoidan-study)
+	       (signedhelen)
+	       (definition "instance of guar gum  reference material - fucoidan study")
+	       (editor-note "2009/09/28 Alan Ruttenberg. See class guar-gum-capsule-for-fucoidan-study"))
 
 	     ;; don't think we need to instantiate - better to just assert the type
 	     (individual guar-gum-role
 	       (label "guar gum negative reference role - fucoidan study")
-	       (annotation !definition "instance of negative reference substance role for guar gum - fucoidan study")
-	       (annotation !definition-editor "Helen Parkinson")
+	       (definition "instance of negative reference substance role for guar gum - fucoidan study")
+	       (signedhelen)
 	       (type !'negative reference substance role'@)
-	       (value !'inheres_in'@ !obi:guar_gum_6))
+	       (value !'inheres_in'@ !obi:guar_gum_6)
+	       (editor-note "2009/09/28 Alan Ruttenberg. Probably no need to create this instance - part of type definition of guar-gum-capsule-for-fucoidan-study and can thus be queried for"))
 
 	     ;; subjects - there are going to be a lot of instances of these. 
 
@@ -317,7 +366,7 @@ details of the study.
 	       :partial !'study subject role'@
 	       (4obi)
 	       (label "to be treated with active ingredient role")
-	       (annotation !definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive active ingredient, and is realized in a study execution in which they receive the active ingredient")
+	       (definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive active ingredient, and is realized in a study execution in which they receive the active ingredient")
 	       (signedalan)
 	       )
 
@@ -327,13 +376,13 @@ details of the study.
 			   (some !'is_realized_by'@ single-treatment-of-fucoidan-in-fucoidan-study)
 			   ))
 	       (label "Role of subject to be treated with fucoidan in the pilot study")
-	       (annotation !definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
+	       (definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
 	       (signedalan)
 	       )
 
 	     (class oral-ingestion-of-pill
 	       (label "oral ingestion of pill")
-	       (annotation !definition "An adding a material entity to target with the entity is a pill and the target is the mouth")
+	       (definition "An adding a material entity to target with the entity is a pill and the target is the mouth")
 	       (4obi)
 	       :complete
 	       (manch (and (some !'realizes'@ (and !'material to be added role'@
@@ -345,22 +394,22 @@ details of the study.
 			   )))
 	   
 	     (class filled-capsule (4obi) (label "filled capsule")
-		    (annotation !definition "A pill in the form of a small rounded gelatinous container with medicine inside.")
-		    (annotation !definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
+		    (definition "A pill in the form of a small rounded gelatinous container with medicine inside.")
+		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
 		    (signedalan)
 		    :partial (manch (and pill (some !'has_part'@ capsule-shell))))
 
 	     (class pill (label "pill")
 		    (4obi)
 		    (signedalan)
-		    (annotation !definition "A dose of medicine or placebo in the form of a small pellet.")
-		    (annotation !definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=pill#2n")
+		    (definition "A dose of medicine or placebo in the form of a small pellet.")
+		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=pill#2n")
 		    :partial !snap:MaterialEntity)
 
 	     (class capsule-shell (4obi) (label "capsule shell")
-		    (annotation !definition "a small rounded gelatinous container")
+		    (definition "a small rounded gelatinous container")
 		    (signedalan)
-		    (annotation !definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
+		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
 		    :partial !snap:MaterialEntity)
 
 	     (class mass (label "mass") (4import) :partial !'quality'@)
@@ -370,7 +419,7 @@ details of the study.
 	       (4iao)
 	       (label "mass measurement datum")
 	       (signedalan)
-	       (annotation !definition "A scalar measurement datum that is the result of measurement of mass quality")
+	       (definition "A scalar measurement datum that is the result of measurement of mass quality")
 	       :partial 
 	       (manch (and !'scalar measurement datum'@ 
 			   (all !'has measurement unit label'@ mass-unit)
@@ -437,41 +486,41 @@ details of the study.
 		    (4obi)
 		    (label "to be treated with placebo role")
 		    (signedalan)
-		    (annotation !definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive a placebo, and realized in a study execution in which they receive the placebo")
+		    (definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive a placebo, and realized in a study execution in which they receive the placebo")
 		    )
 
 	     (class to-be-treated-with-guar-gum-role :complete
 		    (manch (and to-be-treated-with-placebo-role
 				(some !'is_realized_by'@ single-treatment-of-placebo-in-fucoidan-study)))
 		    (label "Role of subject to be treated with placebo in the fucoidan pilot study")
-		    (annotation !definition "Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo")
+		    (definition "Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo")
 		    (signedalan))
 
 	     (class control-subject :complete
 		    (manch (and !'homo sapiens'@
 				(some !'bearer_of'@ to-be-treated-with-guar-gum-role)))
 		    (label "Subject in control arm of fucoidan pilot study")
-		    (annotation !definition "Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study")
+		    (definition "Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study")
 		    (signedalan))
 
 	     (class treated-subject :complete
 		    (manch (and !'homo sapiens'@
 				(some !'bearer_of'@ to-be-treated-with-fucoidan-role)))
 		    (label "Subject in treated arm of fucoidan pilot study")
-		    (annotation !definition "Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study")
+		    (definition "Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study")
 		    (signedalan))
 
 	     ;; test - should be able to query for participants in the study and have this individual returned as result
 	     (individual subject1
 	       (label "Homo sapiens treated with fucoidan - fucoidan study")
 	       (type treated-subject)
-	       (annotation !definition-editor "Helen Parkinson")
-	       (annotation !definition "Instance of Homo sapiens for fucoidan study treated with fucoidan"))
+	       (signedhelen)
+	       (definition "Instance of Homo sapiens for fucoidan study treated with fucoidan"))
 
 	     (individual subject2
 	       (label "Homo sapiens treated with guar gum - fucoidan study")
 	       (type control-subject)
-	       (annotation !definition-editor "Helen Parkinson")
-	       (annotation !definition "Instance of Homo sapiens for fucoidan study treated with guar gum"))
+	       (signedhelen)
+	       (definition "Instance of Homo sapiens for fucoidan study treated with guar gum"))
 	     )
 	    )))))
