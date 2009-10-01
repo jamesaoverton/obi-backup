@@ -69,12 +69,16 @@ details of the study.
 (defun 4iao ()
   (editor-note "2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case"))
 
+(defun fcusecase ()
+  (editor-note "2009/09/28 Alan Ruttenberg. Part of the Fucoidan use case"))
+
 (defun signedalan () (definition-editor "Person:Alan Ruttenberg"))
 (defun signedhelen () (definition-editor "Person:Helen Parkinson"))
-(defun editor-note (note) (annotation !editor-node note))
+(defun editor-note (note) (annotation !editor-note note))
 (defun definition (note) (annotation !definition note))
 (defun definition-source (note) (annotation !definition-source note))
 (defun definition-editor (note) (annotation !definition-editor note))
+(defun example-of-usage (note) (annotation !example-of-usage note))
 
 (define-ontology investigation-use-case
     (:base (uri-full !obo:obi/investigation-use-case.owl) :about (uri-full !obo:obi/investigation-use-case.owl))
@@ -124,6 +128,7 @@ details of the study.
 	      (single-treatment-of-placebo-in-fucoidan-study (fcuri 27))
 	      (mass-measurement-datum (fcuri 28))
 	      (fucoidan-treatment-portion (fcuri 29))
+	      (fucoidan-hospital (fcuri 30))
 	      ;; imports
 	      (mouth !obo:FMA#FMA_49184)
 	      (mass !pato:0000125)
@@ -146,6 +151,8 @@ details of the study.
 	      (oral-ingestion-of-pill (fcobiuri 13))
 	      (treatment-portion-of-study-execution (fcobiuri 14))
 	      (unblinding-process (fcobiuri 15))
+	      (hospital (fcobiuri 16))
+	      (is-member-of-organization (fcobiuri 17))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
 	      )
@@ -161,10 +168,23 @@ details of the study.
 
 	     (object-property is-quality-measured-as (label "is quality measured as") (inverse-of !'is quality measurement of'@))
 
+	     (object-property is-member-of-organization 
+	       (label "is member of organization")
+	       (definition "Relating a legal person to an organization in the case where the legal person has a role as member of the organization")
+	       (definition-source "Person:Alan Ruttenberg")
+	       (definition-source "Person:Helen Parkinson")
+	       (signedalan)
+	       (signedhelen)
+	       (range !'organization'@)
+	       (fcusecase)
+	       (editor-note "2009/10/01 Alan Ruttenberg. Mail sent to Barry asking what he thinks. Should add 'legal person' if this sticks")
+	       (4obi))
+
 	     ;; involved in running the study
 	     (individual rm-lowenthal
 	       (label "RM Lowenthal")
 	       (type !taxon:9606)
+	       (value is-member-of-organization fucoidan-hospital)
 	       (value !'bearer_of'@ lowenthal-pi-role))
 
 	     ;; don't know if we need this. Alternative (type (manch (some !bearer_of !'principal investigator role'@)))
@@ -308,7 +328,7 @@ details of the study.
 	     (individual fucoidan-study-design
 	       (label "study design - of Fucoidan Investigation")
 	       (signedhelen)
-	       (type !'study design'@)
+	       (type !'parallel group design'@obi)
 	       (value !'is_specified_output_of'@ fucoidan-investigation-planning)
 	       (editor-note "This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints."))
 
@@ -454,11 +474,16 @@ details of the study.
 				(some !'has_part'@
 				      (and
 				       (some !'has grain'@ !'fucoidan'@)
-				       (some !'has_quality'@ mass-of-2point25-grams)))
+				       (some !'has_quality'@ mass-of-2point25-grams)
+				       (some !'has_role'@ !'drug role'@)))
 				(some !'has_part'@
 				      (and
 				       (some !'has_quality'@ mass-of-point75-grams)))
-				(some !'has_part'@ capsule-shell))))
+				(some !'has_part'@ capsule-shell)
+				)))
+
+; http://journals.prous.com/journals/servlet/xmlxsl/pk_journals.xml_summaryn_pr?p_JournalId=6&p_RefId=948919
+; http://www.vitacost.com/Doctors-Best-Best-Fucoidan-70#IngredientFacts
 
 	     (class single-treatment-of-placebo-in-fucoidan-study 
 	       (label "single treatment of placebo in fucoidan study")
@@ -478,7 +503,8 @@ details of the study.
 	       (manch (and oral-ingestion-of-pill 
 			   (some !'has_specified_input'@ fucoidan-capsule-for-fucoidan-study)
 			   (some !'realizes'@ (and !'material to be added role'@
-						   (some !'role_of'@ fucoidan-capsule-for-fucoidan-study)))
+						   (some !'role_of'@
+							 fucoidan-capsule-for-fucoidan-study)))
 			   (has !'part_of'@ fucoidan-study-execution)
 			   )))
 
@@ -510,6 +536,24 @@ details of the study.
 		    (definition "Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study")
 		    (signedalan))
 
+	     ;; 
+	     (class hospital
+	       (label "hospital")
+	       (definition "A medical organization at which sick or injured people are given clinical care")
+	       (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=hospital#2n")
+	       (editor-note "Helen and Alan modified the wording from the wordnet definition")
+	       (4obi)
+	       (signedalan)
+	       (signedhelen)
+	       (example-of-usage "human ethics approval was obtained from the Southern Tasmania Health & Medical Human Research Ethics Committee and the Royal Hobart Hospital Research Ethics Committee [pmid:19696660]")
+	       :partial !'organization'@)
+
+	     (individual fucoidan-hospital
+	       (label "Royal Hobart Hospital")
+	       (definition-source "http://www.dhhs.tas.gov.au/hospitals/royal_hobart")
+	       (signedhelen)
+	       (signedalan))
+	     
 	     ;; test - should be able to query for participants in the study and have this individual returned as result
 	     (individual subject1
 	       (label "Homo sapiens treated with fucoidan - fucoidan study")
