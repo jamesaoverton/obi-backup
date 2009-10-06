@@ -66,14 +66,39 @@
   <owl:Class rdf:about="&obo;OBI_0000214"/>
   <owl:Class rdf:about="&obo;OBI_0000245"/>
   <owl:Class rdf:about="&obo;OBI_0000260"/>
+  <owl:Class rdf:about="&obo;OBI_0000275"/>
   <owl:Class rdf:about="&obo;OBI_0000319"/>
   <owl:Class rdf:about="&obo;OBI_0000339"/>
+  <owl:Class rdf:about="&obo;OBI_0000437"/>
   <owl:Class rdf:about="&obo;OBI_0000444"/>
   <owl:Class rdf:about="&obo;OBI_0000471"/>
+  <owl:Class rdf:about="&obo;OBI_0000576"/>
   <owl:Class rdf:about="&obo;OBI_0100017"/>
   <owl:Class rdf:about="&obo;OBI_0500006"/>
   <owl:Class rdf:about="&obo;OBI_0600004"/>
   <owl:Class rdf:about="&obo;OBI_0600005"/>
+  <owl:Class rdf:about="&obo;TMPIAO_0000002">
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:label rdf:datatype="&xsd;string">time measurement datum</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="&obo;IAO_0000032"/>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+            <owl:onProperty rdf:resource="&obo;TMPIAO_0000003"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+
   <owl:Class rdf:about="&obo;TMPOBI_0000001">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">One or more processes in which subject is taught key facts about a clinical trial both before deciding whether or not to participate, and throughout the study. Agents of the investivation, such as doctors and nurses involved in the trial, explain the details of the study.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.</obo:IAO_0000116>
@@ -461,11 +486,41 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0000437"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
             <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="&obo;OBI_0000275"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&OBO_REL;role_of"/>
+                <owl:someValuesFrom>
+                  <owl:Class>
+                    <owl:intersectionOf rdf:parseType="Collection">
+                      <rdf:Description rdf:about="&obo;OBI_0000576"/>
+                      <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PRO#PRO_gimme_serpinc1"/>
+                      </owl:Restriction>
+                    </owl:intersectionOf>
+                  </owl:Class>
+                </owl:someValuesFrom>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
 
@@ -893,6 +948,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   </owl:Class>
 
+  <owl:Class rdf:about="http://purl.org/obo/owl/PRO#PRO_000000001"/>
+  <owl:Class rdf:about="http://purl.org/obo/owl/PRO#PRO_gimme_serpinc1">
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">Alan Ruttenberg, 2009/10/06: Requested PRO id https://sourceforge.net/tracker/?func=detail&amp;aid=2873648&amp;group_id=266825&amp;atid=1135711</obo:IAO_0000116>
+    <rdfs:label rdf:datatype="&xsd;string">Human Antithrombin-III protein</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/PRO#PRO_000000001"/>
+  </owl:Class>
+
   <owl:Class rdf:about="&UO;UO_0000002">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be mireoted in to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
@@ -900,11 +963,19 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <rdfs:subClassOf rdf:resource="&obo;IAO_0000003"/>
   </owl:Class>
 
+  <owl:Class rdf:about="&UO;UO_0000003">
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be mireoted in to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <rdfs:label rdf:datatype="&xsd;string">time unit</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&obo;IAO_0000003"/>
+  </owl:Class>
+
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+  <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Process"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-  <owl:Class rdf:nodeID="b1451">
+  <owl:Class rdf:nodeID="b2410">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -918,7 +989,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b1423">
+  <owl:Class rdf:nodeID="b2369">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000014"/>
       <owl:Restriction>
@@ -932,7 +1003,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b1400">
+  <owl:Class rdf:nodeID="b2367">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -988,10 +1059,23 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <owl:ObjectProperty rdf:about="&obo;OBI_0000308"/>
   <owl:ObjectProperty rdf:about="&obo;OBI_0000312"/>
   <owl:ObjectProperty rdf:about="&obo;OBI_0000316"/>
+  <owl:ObjectProperty rdf:about="&obo;OBI_0000417"/>
   <owl:ObjectProperty rdf:about="&obo;OBI_0000643"/>
   <owl:ObjectProperty rdf:about="&obo;TMPIAO_0000001">
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <rdfs:label rdf:datatype="&xsd;string">is quality measured as</rdfs:label>
     <owl:inverseOf rdf:resource="&obo;IAO_0000221"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&obo;TMPIAO_0000003">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">relates a process to a time-measurement-datum that represents the duration of the process</obo:IAO_0000115>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdfs:domain rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Process"/>
+    <rdfs:label rdf:datatype="&xsd;string">is duration of</rdfs:label>
+    <rdfs:range rdf:resource="&obo;TMPIAO_0000002"/>
+    <rdfs:subPropertyOf rdf:resource="&obo;IAO_0000136"/>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="&obo;TMPOBI_0000017">
@@ -1066,8 +1150,8 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <rdf:Description rdf:about="&fucoidan;fc_0007">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Helen Parkinson</obo:IAO_0000117>
-    <rdf:type rdf:nodeID="b1451"/>
-    <rdf:type rdf:nodeID="b1400"/>
+    <rdf:type rdf:nodeID="b2410"/>
+    <rdf:type rdf:nodeID="b2367"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -1121,7 +1205,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <ro:part_of rdf:resource="&fucoidan;fc_0007"/>
-    <rdf:type rdf:nodeID="b1423"/>
+    <rdf:type rdf:nodeID="b2369"/>
     <rdfs:label rdf:datatype="&xsd;string">treatment portion of study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 

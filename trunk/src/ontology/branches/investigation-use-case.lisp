@@ -100,6 +100,7 @@ details of the study.
 	(annotation-property !definition-source (label "definition source"))
 	(annotation-property !definition-editor (label "definition editor"))
 	(annotation-property !editor-note (label "editor note"))
+	(object-property !'achieves_planned_objective'@)
 	(owl-imports !obo:obi.owl)
 	;; put these uris into a http://purl.obolibary.org/obo/obi/example/OBIX_xxxxx
 	(let ((fucoidan-75% (fcuri 1))
@@ -137,8 +138,10 @@ details of the study.
 	      (mouth !obo:FMA#FMA_49184)
 	      (mass !pato:0000125)
 	      (mass-unit !unit:0000002)
+	      (time-unit !unit:0000003)
 	      (gram !unit:00000021)
 	      (blood-coagulation !go:007596)
+	      (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_gimme_serpinc1>)
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
 	      (informed-consent-process (fcobiuri 1))
 	      (informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -165,6 +168,8 @@ details of the study.
 	      (prothrombin-time (fcobiuri 22))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
+	      (time-measurement-datum (fciaouri 2))
+	      (is-temporal-measure-of (fciaouri 3))
 	      )
 	  (macrolet ((mass-measured-as-grams-def (n)
 		       `(manch (and mass
@@ -172,7 +177,7 @@ details of the study.
 					  (and mass-measurement-datum
 					       (has !'has measurement unit label'@ gram)
 					       (has !'has measurement value'@ (literal ,n !xsd:float)))))))
-		     (blood-assay (name label example def defsource)
+		     (blood-assay (name label example def defsource &optional objective)
 		       `(class ,name (label ,label) 
 			       (fcusecase)
 			       (signedalan)
@@ -185,11 +190,36 @@ details of the study.
 					  (some !'has_specified_input'@ !'blood serum specimen'@)
 					  (some !'has_specified_output'@ 
 						(and !'scalar measurement datum'@ 
-						     (some !'is about'@ blood-coagulation))))))))
+						     (some !'is about'@ blood-coagulation)))
+					  ,(if objective `(some !'achieves_planned_objective'@ ,objective))
+					  )))))
 
 	    (list
 
-	     (object-property is-quality-measured-as (label "is quality measured as") (inverse-of !'is quality measurement of'@))
+	     (object-property is-quality-measured-as
+	       (label "is quality measured as")
+	       (4iao)
+	       (signedalan)
+	       (inverse-of !'is quality measurement of'@))
+
+	     (object-property is-temporal-measure-of
+	       (label "is duration of")
+	       (definition "relates a process to a time-measurement-datum that represents the duration of the process")
+	       (domain !snap:Process)
+	       (range time-measurement-datum)
+	       (super !'is about'@)
+	       (4iao)
+	       (signedalan))
+	     
+	     (class time-measurement-datum :partial
+		    (label "time measurement datum")
+		    (signedalan)
+		    (4iao)
+		    (fcusecase)
+		    (manch (and !'scalar measurement datum'@ 
+				(all is-temporal-measure-of  !span:Process)
+				(all !'has measurement unit label'@ time-unit))))
+	     
 
 	     (object-property is-member-of
 	       (label "is member of")
@@ -442,6 +472,10 @@ details of the study.
 	     (class (fcusecase) mass (label "mass") (4import) :partial !'quality'@)
 	     (class (fcusecase) mouth (label "mouth") (4import) :partial (manch (and !snap:MaterialEntity (some !'part_of'@ !'homo sapiens'@))))
 
+	     (class (fcusecase) serpinc1-product (label "Human Antithrombin-III protein") 
+		    :partial !'protein'@
+		    (editor-note "Alan Ruttenberg, 2009/10/06: Requested PRO id https://sourceforge.net/tracker/?func=detail&aid=2873648&group_id=266825&atid=1135711"))
+
 	     (class (fcusecase) mass-measurement-datum
 		    (4iao)
 		    (label "mass measurement datum")
@@ -453,6 +487,7 @@ details of the study.
 				(all !'is quality measurement of'@ mass))))
 	     
 	     (class (fcusecase) mass-unit (4import) (label "mass unit") :partial !'measurement unit label'@)
+	     (class (fcusecase) time-unit (4import) (label "time unit") :partial !'measurement unit label'@)
 
 	     (individual (fcusecase) gram (4import) (label "gram") (type mass-unit))
 
@@ -557,7 +592,15 @@ details of the study.
 
 	     (blood-assay at-iii "antithrombin-III (AT-III) assay" "The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A)."
 			  "A test to measure the amount of antithrombin III in blood"
-			  "WEB:http://www.muschealth.com/lab/content.aspx?id=150006@2009/08/06")
+			  "WEB:http://www.muschealth.com/lab/content.aspx?id=150006@2009/08/06"
+			  !'analyte measurement objective'@
+			  )
+	     
+	     (class at-iii :partial
+		    (manch (some !'realizes'@
+				 (and !'analyte role'@
+				      (some !'role_of'@
+					    (and !'scattered molecular aggregate'@ (some !'has grain'@ serpinc1-product)))))))
 
 	     (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
 			  "A  thrombin time assay is on in which after liberating the plasma from whole blood by centrifugation, bovine Thrombin is added to the sample of plasma. The clot is formed and is detected optically or mechanically by a coagulation instrument. The time between the addition of the thrombin and the clot formation is recorded as the thrombin clotting time"
