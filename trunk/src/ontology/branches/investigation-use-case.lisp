@@ -83,6 +83,7 @@ details of the study.
 (define-ontology investigation-use-case
     (:base (uri-full !obo:obi/investigation-use-case.owl) :about (uri-full !obo:obi/investigation-use-case.owl))
   (ontology-annotation !owl:versionInfo "$Revision: 80 $")
+  (ontology-annotation !protegeowl:defaultLanguage "en")
   (let ((*default-uri-label-source* :obi))
     (with-obo-metadata-uris
 	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)
@@ -97,7 +98,7 @@ details of the study.
 	(annotation-property !definition-source (label "definition source"))
 	(annotation-property !definition-editor (label "definition editor"))
 	(annotation-property !editor-note (label "editor note"))
-	;;	(owl-imports !obo:obi.owl)
+	(owl-imports !obo:obi.owl)
 	;; put these uris into a http://purl.obolibary.org/obo/obi/example/OBIX_xxxxx
 	(let ((fucoidan-75% (fcuri 1))
 	      (rm-lowenthal (fcuri 2))
@@ -205,7 +206,7 @@ details of the study.
 	       (editor-note "09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.")
 	       (signedalan)
 	       (label "Informed consent process")
-	       :partial (manch (and !snap:ProcessualEntity
+	       :partial (manch (and !span:ProcessualEntity
 				    (some !oborel:has_participant
 					  (some !'has_role'@ !'investigation agent role'@))
 				    (some !oborel:has_participant
@@ -339,14 +340,6 @@ details of the study.
 	       (type !'human subject enrollment'@))
 
 	     ;; materials - there are going to be a lot of instances of these
-
-	     ;; this one is wrong - fucoidan is a molecular entity. We need to use the concentration example here.
-	     (individual fucoidan-75% 
-	       (label "fucoidan 75 % - fucoidan study")
-	       (type !'fucoidan'@)
-	       (signedhelen)
-	       (definition "Instance of fucoidan 75% - fucoidan study")
-	       (editor-note "2009/09/28 Alan Ruttenberg. Mistake - fucoidan is a molecular entity. See class fucoidan-capsule-for-fucoidan-study"))
 
 	     ;; don't think we need to instantiate - better to just assert the type
 	     (individual fucoidan-drug-role
