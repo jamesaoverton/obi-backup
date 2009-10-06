@@ -70,7 +70,7 @@ details of the study.
   (editor-note "2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case"))
 
 (defun fcusecase ()
-  (editor-note "2009/09/28 Alan Ruttenberg. Part of the Fucoidan use case"))
+  (editor-note "2009/09/28 Alan Ruttenberg. Fucoidan-use-case"))
 
 (defun signedalan () (definition-editor "Person:Alan Ruttenberg"))
 (defun signedhelen () (definition-editor "Person:Helen Parkinson"))
@@ -87,7 +87,9 @@ details of the study.
   (let ((*default-uri-label-source* :obi))
     (with-obo-metadata-uris
 	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)
-	(object-property !'has_specified_input'@) (object-property !'denotes'@)
+	(object-property !'has_specified_input'@)
+	(object-property !'is about'@)
+	(object-property !'denotes'@)
 	(object-property !'realizes'@)  (object-property !'is_realized_by'@) (object-property !'bearer_of'@)
 	(object-property !'inheres_in'@) (object-property !'role_of'@) (object-property !'has grain'@)
 	(object-property !'has_quality'@) (object-property !oborel:has_part) (object-property !oborel:part_of)
@@ -130,11 +132,13 @@ details of the study.
 	      (mass-measurement-datum (fcuri 28))
 	      (fucoidan-treatment-portion (fcuri 29))
 	      (fucoidan-hospital (fcuri 30))
+	      (fucoidan-sample-taking (fcuri 31))
 	      ;; imports
 	      (mouth !obo:FMA#FMA_49184)
 	      (mass !pato:0000125)
 	      (mass-unit !unit:0000002)
 	      (gram !unit:00000021)
+	      (blood-coagulation !go:007596)
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
 	      (informed-consent-process (fcobiuri 1))
 	      (informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -153,7 +157,12 @@ details of the study.
 	      (treatment-portion-of-study-execution (fcobiuri 14))
 	      (unblinding-process (fcobiuri 15))
 	      (hospital (fcobiuri 16))
-	      (is-member-of-organization (fcobiuri 17))
+	      (is-member-of (fcobiuri 17))
+	      (aptt (fcobiuri 18))
+	      (at-iii (fcobiuri 19))
+	      (thrombin-time (fcobiuri 20))
+	      (Antifactor-Xa (fcobiuri 21))
+	      (prothrombin-time (fcobiuri 22))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
 	      )
@@ -162,15 +171,28 @@ details of the study.
 				    (some is-quality-measured-as
 					  (and mass-measurement-datum
 					       (has !'has measurement unit label'@ gram)
-					       (has !'has measurement value'@ (literal ,n !xsd:float))))))))
-
+					       (has !'has measurement value'@ (literal ,n !xsd:float)))))))
+		     (blood-assay (name label example def defsource)
+		       `(class ,name (label ,label) 
+			       (fcusecase)
+			       (signedalan)
+			       (4obi)
+			       (example-of-usage ,(format nil "PMID:19696660#~a" example))
+			       (definition ,def)
+			       (definition-source ,defsource)
+			       :partial
+			       (manch (and !'assay'@
+					  (some !'has_specified_input'@ !'blood serum specimen'@)
+					  (some !'has_specified_output'@ 
+						(and !'scalar measurement datum'@ 
+						     (some !'is about'@ blood-coagulation))))))))
 
 	    (list
 
 	     (object-property is-quality-measured-as (label "is quality measured as") (inverse-of !'is quality measurement of'@))
 
-	     (object-property is-member-of-organization 
-	       (label "is member of organization")
+	     (object-property is-member-of
+	       (label "is member of")
 	       (definition "Relating a legal person to an organization in the case where the legal person has a role as member of the organization")
 	       (definition-source "Person:Alan Ruttenberg")
 	       (definition-source "Person:Helen Parkinson")
@@ -178,20 +200,20 @@ details of the study.
 	       (signedhelen)
 	       (range !'organization'@)
 	       (fcusecase)
-	       (editor-note "2009/10/01 Alan Ruttenberg. Mail sent to Barry asking what he thinks. Should add 'legal person' if this sticks")
+	       (editor-note "2009/10/01 Alan Ruttenberg. Barry prefers generic is-member-of. Question of what the range should be. For now organization. Is organization a population? Would the same relation be used to record members of a population")
 	       (4obi))
 
 	     ;; involved in running the study
-	     (individual rm-lowenthal
-	       (label "RM Lowenthal")
-	       (type !taxon:9606)
-	       (value is-member-of-organization fucoidan-hospital)
-	       (value !'bearer_of'@ lowenthal-pi-role))
+	     (individual (fcusecase) rm-lowenthal
+			 (label "RM Lowenthal")
+			 (type !taxon:9606)
+			 (value is-member-of fucoidan-hospital)
+			 (value !'bearer_of'@ lowenthal-pi-role))
 
 	     ;; don't know if we need this. Alternative (type (manch (some !bearer_of !'principal investigator role'@)))
-	     (individual lowenthal-pi-role
-	       (label "PI role of RM Lowenthal")
-	       (type !'principal investigator role'@))
+	     (individual (fcusecase) lowenthal-pi-role
+			 (label "PI role of RM Lowenthal")
+			 (type !'principal investigator role'@))
 
 	     ;; the investigation as process
 	
@@ -199,32 +221,32 @@ details of the study.
 	     ;; process, with information giver and receiver role analogous
 	     ;; to target of material addition role
 
-	     (class informed-consent-process 
-	       (definition "One or more processes in which subject is taught key facts about a clinical trial both before deciding whether or not to participate, and throughout the study. Agents of the investivation, such as doctors and nurses involved in the trial, explain the details of the study.")
-	       (4obi)
-	       (definition-source "http://clinicaltrials.gov/ct2/info/glossary#informed")
-	       (editor-note "09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.")
-	       (signedalan)
-	       (label "Informed consent process")
-	       :partial (manch (and !span:ProcessualEntity
-				    (some !oborel:has_participant
-					  (some !'has_role'@ !'investigation agent role'@))
-				    (some !oborel:has_participant
-					  (manch (some !'has_role'@ !'study subject role'@)))
-				    )))
+	     (class (fcusecase) informed-consent-process 
+		    (definition "One or more processes in which subject is taught key facts about a clinical trial both before deciding whether or not to participate, and throughout the study. Agents of the investivation, such as doctors and nurses involved in the trial, explain the details of the study.")
+		    (4obi)
+		    (definition-source "http://clinicaltrials.gov/ct2/info/glossary#informed")
+		    (editor-note "09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.")
+		    (signedalan)
+		    (label "Informed consent process")
+		    :partial (manch (and !span:ProcessualEntity
+					 (some !oborel:has_participant
+					       (some !'has_role'@ !'investigation agent role'@))
+					 (some !oborel:has_participant
+					       (manch (some !'has_role'@ !'study subject role'@)))
+					 )))
 
 	
-	     (class informed-consent-document-agreement-by-patient
-	       (definition "A process in which a subject receives an informed consent document and agrees that they have understood it")
-	       (signedalan)
-	       (4obi)
-	       (editor-note "09/28/2009 Alan Ruttenberg. There's a need for a general process like this in IAO - document and person in, signed document (and associated obligations, rights, out")
-	       (label "subject agrees they understand informed consent document")
-	       :partial
-	       (manch (and !'planned process'@
-			   (some !oborel:part_of informed-consent-process))))
+	     (class (fcusecase) informed-consent-document-agreement-by-patient
+		    (definition "A process in which a subject receives an informed consent document and agrees that they have understood it")
+		    (signedalan)
+		    (4obi)
+		    (editor-note "09/28/2009 Alan Ruttenberg. There's a need for a general process like this in IAO - document and person in, signed document (and associated obligations, rights, out")
+		    (label "subject agrees they understand informed consent document")
+		    :partial
+		    (manch (and !'planned process'@
+				(some !oborel:part_of informed-consent-process))))
 
-	     (class informing-subject-of-study-arm :partial
+	     (class (fcusecase) informing-subject-of-study-arm :partial
 		    (4obi)
 		    (label "informing subject of study arm")
 		    (definition "A process in which the subject is made aware of which study arm they are participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
@@ -235,7 +257,7 @@ details of the study.
 				      (some !'has_role'@ !'study subject role'@))
 				(some !oborel:part_of informed-consent-process))))
 	       
-	     (class informing-investigator-of-subject-study-arm :partial
+	     (class (fcusecase) informing-investigator-of-subject-study-arm :partial
 		    (4obi)
 		    (label "informing investigator of subject study arm")
 		    (definition "A process in which an investigator is made aware of which study arm that a patient is participating in, for example whether they are receiving a placebo or a treatment with an investigational compound.")
@@ -248,8 +270,8 @@ details of the study.
 				      (some !'denotes'@ (some !'bearer_of'@ !'study subject role'@)))
 				)))
 	     
-	     (class treatment-portion-of-study-execution :partial (manch (and !'planned process'@
-									      (some !oborel:part_of !'study design execution'@)))
+	     (class (fcusecase) treatment-portion-of-study-execution :partial (manch (and !'planned process'@
+											  (some !oborel:part_of !'study design execution'@)))
 		    (label "treatment portion of study execution")
 		    (signedalan)
 		    (4obi)
@@ -257,7 +279,7 @@ details of the study.
 		    (editor-note "09/28/2009 Alan Ruttenberg. Needed because we have to have a process to scope blinding over"))
 
 
-	     (class single-blind-study-execution :complete
+	     (class (fcusecase) single-blind-study-execution :complete
 		    (4obi)
 		    (label "single blind study execution")
 		    (definition "A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of")
@@ -266,202 +288,194 @@ details of the study.
 		    (manch (and treatment-portion-of-study-execution
 				(all !oborel:has_part (not informing-subject-of-study-arm)))))
 
-	     (class double-blind-study-execution 
-	       (label "double blind study execution")
-	       (4obi)
-	       (definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of")
-	       (signedalan)
-	       (definition-source "http://clinicaltrials.gov/ct2/info/glossary#double")	   
-	       :complete
-	       (manch (and treatment-portion-of-study-execution
-			   (all !oborel:has_part (not (or informing-subject-of-study-arm
-							  informing-investigator-of-subject-study-arm
-							  ))))))
+	     (class (fcusecase) double-blind-study-execution 
+		    (label "double blind study execution")
+		    (4obi)
+		    (definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of")
+		    (signedalan)
+		    (definition-source "http://clinicaltrials.gov/ct2/info/glossary#double")	   
+		    :complete
+		    (manch (and treatment-portion-of-study-execution
+				(all !oborel:has_part (not (or informing-subject-of-study-arm
+							       informing-investigator-of-subject-study-arm
+							       ))))))
 
-	     (class unblinding-process :partial (manch (and !'planned process'@
-						     (some !oborel:part_of !'study design execution'@)
-						     (some !oborel:part_of informing-subject-of-study-arm)))
+	     (class (fcusecase) unblinding-process :partial (manch (and !'planned process'@
+									(some !oborel:part_of !'study design execution'@)
+									(some !oborel:part_of informing-subject-of-study-arm)))
 		    (label "Unblinding process")
 		    (definition "The part of the study execution in which the subjects are told what study arm they are in and in which the investigators are told which subjects are in which trials")
 		    (signedalan)
 		    (4obi))
 	  
-	     (individual fucoidan-investigation
-	       (label "investigation - Fucoidan Investigation")
-	       (type !'investigation'@)
-	       (signedhelen)
-	       (value !oborel:has_part fucoidan-study-execution)
-	       (value !oborel:has_part fucoidan-investigation-planning))
+	     (individual (fcusecase) fucoidan-investigation
+			 (label "investigation - Fucoidan Investigation")
+			 (type !'investigation'@)
+			 (signedhelen)
+			 (value !oborel:has_part fucoidan-study-execution)
+			 (value !oborel:has_part fucoidan-investigation-planning))
 
-	     (individual lowenthal-study-plan
-	       (label "plan - RM Lowenthal's plan to develop a study design for Fucoisidan investigation")
-	       (type !'plan'@)
-	       (signedhelen)
-	       (value !'inheres_in'@ rm-lowenthal)
-	       (value !'is_realized_by'@ fucoidan-investigation-planning))
+	     (individual (fcusecase) lowenthal-study-plan
+			 (label "plan - RM Lowenthal's plan to develop a study design for Fucoisidan investigation")
+			 (type !'plan'@)
+			 (signedhelen)
+			 (value !'inheres_in'@ rm-lowenthal)
+			 (value !'is_realized_by'@ fucoidan-investigation-planning))
 
-	     (individual fucoidan-investigation-planning
-	       (label "planning - part of Fucoidan Investigation")
-	       (type !'planning'@)
-	       (signedhelen)
-	       (value !'has_specified_output'@ fucoidan-study-design)
-	       (value !'realizes'@ lowenthal-study-plan))
+	     (individual (fcusecase) fucoidan-investigation-planning
+			 (label "planning - part of Fucoidan Investigation")
+			 (type !'planning'@)
+			 (signedhelen)
+			 (value !'has_specified_output'@ fucoidan-study-design)
+			 (value !'realizes'@ lowenthal-study-plan))
 
-	     (individual fucoidan-study-execution
-	       (label "study design execution - of Fucoidan investigation")
-	       (signedhelen)
-	       (type 
-		(manch (and 
-			!'study design execution'@
-			(all !oborel:has_part (not informing-subject-of-study-arm)))))
-	       )
+	     (individual (fcusecase) fucoidan-study-execution
+			 (label "study design execution - of Fucoidan investigation")
+			 (signedhelen)
+			 (type 
+			  (manch (and 
+				  !'study design execution'@
+				  (all !oborel:has_part (not informing-subject-of-study-arm)))))
+			 )
 	     	     
-	     (individual fucoidan-treatment-portion
-	       (label "treatment portion of study design execution - of Fucoidan investigation")
-	       (signedalan)
-	       (type 
-		(manch (and 
-			treatment-portion-of-study-execution
-			(all !oborel:has_part (not informing-subject-of-study-arm)))))
-	       (value !oborel:part_of fucoidan-study-execution)
-	       )
+	     (individual (fcusecase) fucoidan-treatment-portion
+			 (label "treatment portion of study design execution - of Fucoidan investigation")
+			 (signedalan)
+			 (type 
+			  (manch (and 
+				  treatment-portion-of-study-execution
+				  (all !oborel:has_part (not informing-subject-of-study-arm)))))
+			 (value !oborel:part_of fucoidan-study-execution)
+			 )
 
-	     (individual fucoidan-study-design
-	       (label "study design - of Fucoidan Investigation")
-	       (signedhelen)
-	       (type !'parallel group design'@obi)
-	       (value !'is_specified_output_of'@ fucoidan-investigation-planning)
-	       (editor-note "This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints."))
+	     (individual (fcusecase) fucoidan-study-design
+			 (label "study design - of Fucoidan Investigation")
+			 (signedhelen)
+			 (type !'parallel group design'@obi)
+			 (value !'is_specified_output_of'@ fucoidan-investigation-planning)
+			 (editor-note "This should be a more specific subclass of study design. Parallel group and reference design were suggested. Need to further investigate and determine disjoints."))
 
   
-	     (individual fucoidan-study-enrollment
-	       (label "enrollment - of patients for Fucoidan investigation")
-	       (signedhelen)
-	       (type !'human subject enrollment'@))
+	     (individual (fcusecase) fucoidan-study-enrollment
+			 (label "enrollment - of patients for Fucoidan investigation")
+			 (signedhelen)
+			 (type !'human subject enrollment'@))
 
 	     ;; materials - there are going to be a lot of instances of these
 
-	     ;; don't think we need to instantiate - better to just assert the type
-	     (individual fucoidan-drug-role
-	       (label "drug role - fucoidan study")
-	       (definition "instance of guar gum  reference material - fucoidan study")
-	       (signedhelen)
-	       (type !'drug role'@)
-	       (value !'inheres_in'@ fucoidan-75%))
-
 	     ;; going to be a lot of these
-	     (individual tube 
-	       (label "polystyrene tube - fucoidan study")
-	       (type !'polystyrene tube'@)
-	       (signedhelen)
-	       (definition "instance of a polystyrene tube - fucoidan study"))
+	     (individual (fcusecase) tube 
+			 (label "polystyrene tube - fucoidan study")
+			 (type !'polystyrene tube'@)
+			 (signedhelen)
+			 (definition "instance of a polystyrene tube - fucoidan study"))
 
 	     ;; and these
-	     (individual !obi:guar_gum_6
-	       (label "guar gum reference - fucoidan study")
-	       (type guar-gum-capsule-for-fucoidan-study)
-	       (signedhelen)
-	       (definition "instance of guar gum  reference material - fucoidan study")
-	       (editor-note "2009/09/28 Alan Ruttenberg. See class guar-gum-capsule-for-fucoidan-study"))
+	     (individual (fcusecase) !obi:guar_gum_6
+			 (label "guar gum reference - fucoidan study")
+			 (type guar-gum-capsule-for-fucoidan-study)
+			 (signedhelen)
+			 (definition "instance of guar gum  reference material - fucoidan study")
+			 (editor-note "2009/09/28 Alan Ruttenberg. See class guar-gum-capsule-for-fucoidan-study"))
 
 	     ;; don't think we need to instantiate - better to just assert the type
-	     (individual guar-gum-role
-	       (label "guar gum negative reference role - fucoidan study")
-	       (definition "instance of negative reference substance role for guar gum - fucoidan study")
-	       (signedhelen)
-	       (type !'negative reference substance role'@)
-	       (value !'inheres_in'@ !obi:guar_gum_6)
-	       (editor-note "2009/09/28 Alan Ruttenberg. Probably no need to create this instance - part of type definition of guar-gum-capsule-for-fucoidan-study and can thus be queried for"))
+	     (individual (fcusecase) guar-gum-role
+			 (label "guar gum negative reference role - fucoidan study")
+			 (definition "instance of negative reference substance role for guar gum - fucoidan study")
+			 (signedhelen)
+			 (type !'negative reference substance role'@)
+			 (value !'inheres_in'@ !obi:guar_gum_6)
+			 (editor-note "2009/09/28 Alan Ruttenberg. Probably no need to create this instance - part of type definition of guar-gum-capsule-for-fucoidan-study and can thus be queried for"))
 
 	     ;; subjects - there are going to be a lot of instances of these. 
 
-	     (class to-be-treated-with-active-ingredient-role
-	       :partial !'study subject role'@
-	       (4obi)
-	       (label "to be treated with active ingredient role")
-	       (definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive active ingredient, and is realized in a study execution in which they receive the active ingredient")
-	       (signedalan)
-	       )
+	     (class (fcusecase) to-be-treated-with-active-ingredient-role
+		    :partial !'study subject role'@
+		    (4obi)
+		    (label "to be treated with active ingredient role")
+		    (definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive active ingredient, and is realized in a study execution in which they receive the active ingredient")
+		    (signedalan)
+		    )
 
-	     (class to-be-treated-with-fucoidan-role
-	       :complete
-	       (manch (and to-be-treated-with-active-ingredient-role
-			   (some !'is_realized_by'@ single-treatment-of-fucoidan-in-fucoidan-study)
-			   ))
-	       (label "Role of subject to be treated with fucoidan in the pilot study")
-	       (definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
-	       (signedalan)
-	       )
+	     (class (fcusecase) to-be-treated-with-fucoidan-role
+		    :complete
+		    (manch (and to-be-treated-with-active-ingredient-role
+				(some !'is_realized_by'@ single-treatment-of-fucoidan-in-fucoidan-study)
+				))
+		    (label "Role of subject to be treated with fucoidan in the pilot study")
+		    (definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
+		    (signedalan)
+		    )
 
-	     (class oral-ingestion-of-pill
-	       (label "oral ingestion of pill")
-	       (definition "An adding a material entity to target with the entity is a pill and the target is the mouth")
-	       (4obi)
-	       :complete
-	       (manch (and (some !'realizes'@ (and !'material to be added role'@
-						   (some !'role_of'@ pill)))
-			   (some !'realizes'@
-				 (and !'target of material addition role'@
-				      (some !'role_of'@ mouth)))
-			   (some !'has_specified_input'@ pill)
-			   )))
+	     (class (fcusecase) oral-ingestion-of-pill
+		    (label "oral ingestion of pill")
+		    (definition "An adding a material entity to target with the entity is a pill and the target is the mouth")
+		    (4obi)
+		    :complete
+		    (manch (and (some !'realizes'@ (and !'material to be added role'@
+							(some !'role_of'@ pill)))
+				(some !'realizes'@
+				      (and !'target of material addition role'@
+					   (some !'role_of'@ mouth)))
+				(some !'has_specified_input'@ pill)
+				)))
 	   
-	     (class filled-capsule (4obi) (label "filled capsule")
+	     (class (fcusecase) filled-capsule (4obi) (label "filled capsule")
 		    (definition "A pill in the form of a small rounded gelatinous container with medicine inside.")
 		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
 		    (signedalan)
 		    :partial (manch (and pill (some !'has_part'@ capsule-shell))))
 
-	     (class pill (label "pill")
+	     (class (fcusecase) pill (label "pill")
 		    (4obi)
 		    (signedalan)
 		    (definition "A dose of medicine or placebo in the form of a small pellet.")
 		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=pill#2n")
 		    :partial !snap:MaterialEntity)
 
-	     (class capsule-shell (4obi) (label "capsule shell")
+	     (class (fcusecase) capsule-shell (4obi) (label "capsule shell")
 		    (definition "a small rounded gelatinous container")
 		    (signedalan)
 		    (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=capsule#2n")
 		    :partial !snap:MaterialEntity)
 
-	     (class mass (label "mass") (4import) :partial !'quality'@)
-	     (class mouth (label "mouth") (4import) :partial (manch (and !snap:MaterialEntity (some !'part_of'@ !'homo sapiens'@))))
+	     (class (fcusecase) mass (label "mass") (4import) :partial !'quality'@)
+	     (class (fcusecase) mouth (label "mouth") (4import) :partial (manch (and !snap:MaterialEntity (some !'part_of'@ !'homo sapiens'@))))
 
-	     (class mass-measurement-datum
-	       (4iao)
-	       (label "mass measurement datum")
-	       (signedalan)
-	       (definition "A scalar measurement datum that is the result of measurement of mass quality")
-	       :partial 
-	       (manch (and !'scalar measurement datum'@ 
-			   (all !'has measurement unit label'@ mass-unit)
-			   (all !'is quality measurement of'@ mass))))
+	     (class (fcusecase) mass-measurement-datum
+		    (4iao)
+		    (label "mass measurement datum")
+		    (signedalan)
+		    (definition "A scalar measurement datum that is the result of measurement of mass quality")
+		    :partial 
+		    (manch (and !'scalar measurement datum'@ 
+				(all !'has measurement unit label'@ mass-unit)
+				(all !'is quality measurement of'@ mass))))
 	     
-	     (class mass-unit (4import) (label "mass unit") :partial !'measurement unit label'@)
+	     (class (fcusecase) mass-unit (4import) (label "mass unit") :partial !'measurement unit label'@)
 
-	     (individual gram (4import) (label "gram") (type mass-unit))
+	     (individual (fcusecase) gram (4import) (label "gram") (type mass-unit))
 
-	     (class mass-of-3-grams (label "mass measured to be 3 grams") :complete
+	     (class (fcusecase) mass-of-3-grams (label "mass measured to be 3 grams") :complete
 		    (mass-measured-as-grams-def 3.0))
 	     
-	     (class mass-of-2point25-grams (label "mass measured to be 2.25 grams") :complete
+	     (class (fcusecase) mass-of-2point25-grams (label "mass measured to be 2.25 grams") :complete
 		    (mass-measured-as-grams-def 2.25))
 		    
-	     (class mass-of-point75-grams (label "mass measured to be .75 grams") :complete
+	     (class (fcusecase) mass-of-point75-grams (label "mass measured to be .75 grams") :complete
 		    (mass-measured-as-grams-def .75))
 	   
-	     (class guar-gum-capsule-for-fucoidan-study
-	       (label "guar gum capsule for fucoidan study")
-	       :complete
-	       (manch (and filled-capsule
-			   (some !'has_part'@ 
-				 (and
-				  !'guar gum'@
-				  (some !'has_quality'@ mass-of-3-grams))
-				 capsule-shell))))
+	     (class (fcusecase) guar-gum-capsule-for-fucoidan-study
+		    (label "guar gum capsule for fucoidan study")
+		    :complete
+		    (manch (and filled-capsule
+				(some !'has_part'@ 
+				      (and
+				       !'guar gum'@
+				       (some !'has_quality'@ mass-of-3-grams))
+				      capsule-shell))))
 
-	     (class fucoidan-capsule-for-fucoidan-study :complete
+	     (class (fcusecase) fucoidan-capsule-for-fucoidan-study :complete
 		    (label "fucoidan capsule for fucoidan study")
 		    (manch (and filled-capsule
 				(some !'has_part'@
@@ -475,62 +489,117 @@ details of the study.
 				(some !'has_part'@ capsule-shell)
 				)))
 
-; http://journals.prous.com/journals/servlet/xmlxsl/pk_journals.xml_summaryn_pr?p_JournalId=6&p_RefId=948919
-; http://www.vitacost.com/Doctors-Best-Best-Fucoidan-70#IngredientFacts
+					; http://journals.prous.com/journals/servlet/xmlxsl/pk_journals.xml_summaryn_pr?p_JournalId=6&p_RefId=948919
+					; http://www.vitacost.com/Doctors-Best-Best-Fucoidan-70#IngredientFacts
 
-	     (class single-treatment-of-placebo-in-fucoidan-study 
-	       (label "single treatment of placebo in fucoidan study")
-	       (signedalan)
-	       :complete
-	       (manch (and oral-ingestion-of-pill 
-			   (some !'has_specified_input'@ guar-gum-capsule-for-fucoidan-study)
-			   (some !'realizes'@ (and !'material to be added role'@
-						   (some !'role_of'@ guar-gum-capsule-for-fucoidan-study)))
-			   (has !'part_of'@ fucoidan-study-execution)
-			   )))
+	     (class (fcusecase) single-treatment-of-placebo-in-fucoidan-study 
+		    (label "single treatment of placebo in fucoidan study")
+		    (signedalan)
+		    :complete
+		    (manch (and oral-ingestion-of-pill 
+				(some !'has_specified_input'@ guar-gum-capsule-for-fucoidan-study)
+				(some !'realizes'@ (and !'material to be added role'@
+							(some !'role_of'@ guar-gum-capsule-for-fucoidan-study)))
+				(has !'part_of'@ fucoidan-study-execution)
+				)))
 
-	     (class single-treatment-of-fucoidan-in-fucoidan-study 
-	       (label "single treatment of fucoidan in fucoidan study")
-	       (signedalan)
-	       :complete
-	       (manch (and oral-ingestion-of-pill 
-			   (some !'has_specified_input'@ fucoidan-capsule-for-fucoidan-study)
-			   (some !'realizes'@ (and !'material to be added role'@
-						   (some !'role_of'@
-							 fucoidan-capsule-for-fucoidan-study)))
-			   (has !'part_of'@ fucoidan-study-execution)
-			   )))
+	     (class (fcusecase) single-treatment-of-fucoidan-in-fucoidan-study 
+		    (label "single treatment of fucoidan in fucoidan study")
+		    (signedalan)
+		    :complete
+		    (manch (and oral-ingestion-of-pill 
+				(some !'has_specified_input'@ fucoidan-capsule-for-fucoidan-study)
+				(some !'realizes'@ (and !'material to be added role'@
+							(some !'role_of'@
+							      fucoidan-capsule-for-fucoidan-study)))
+				(has !'part_of'@ fucoidan-study-execution)
+				)))
 
-	     (class to-be-treated-with-placebo-role :partial !'study subject role'@
+	     (class (fcusecase) to-be-treated-with-placebo-role :partial !'study subject role'@
 		    (4obi)
 		    (label "to be treated with placebo role")
 		    (signedalan)
 		    (definition "A study subject role which begins to exist when a subject is assigned to be one of those who will receive a placebo, and realized in a study execution in which they receive the placebo")
 		    )
 
-	     (class to-be-treated-with-guar-gum-role :complete
+	     (class (fcusecase) to-be-treated-with-guar-gum-role :complete
 		    (manch (and to-be-treated-with-placebo-role
 				(some !'is_realized_by'@ single-treatment-of-placebo-in-fucoidan-study)))
 		    (label "Role of subject to be treated with placebo in the fucoidan pilot study")
 		    (definition "Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo")
 		    (signedalan))
 
-	     (class control-subject :complete
+	     (class (fcusecase) control-subject :complete
 		    (manch (and !'homo sapiens'@
 				(some !'bearer_of'@ to-be-treated-with-guar-gum-role)))
 		    (label "Subject in control arm of fucoidan pilot study")
 		    (definition "Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study")
 		    (signedalan))
 
-	     (class treated-subject :complete
+	     (class (fcusecase) treated-subject :complete
 		    (manch (and !'homo sapiens'@
 				(some !'bearer_of'@ to-be-treated-with-fucoidan-role)))
 		    (label "Subject in treated arm of fucoidan pilot study")
 		    (definition "Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study")
 		    (signedalan))
 
+	     (class fucoidan-sample-taking
+	       :complete
+	       (manch (and !'collecting specimen from organism'@
+			   (some !'has_specified_input'@ (or control-subject treated-subject))
+			   (some !'has_specified_output'@ !'blood serum specimen'@))))
+
+	     (class blood-coagulation (label "blood coagulation") :partial !span:Process)
+
+	     (blood-assay aptt "activated partial thromboplastin time (aPTT) assay" "The activated partial thromboplastin time (aPTT) was determined using Dade Actin FSL activated PTT reagent."
+			  "An activated partial thromboplastin time (aPTT) assay is a an assay measuring the efficacy of both the 'intrinsic' (now referred to as the contact activation pathway) and the common coagulation pathways. In order to activate the intrinsic pathway, phospholipid, an activator (such as silica, celite, kaolin, ellagic acid), and calcium (to reverse the anticoagulant effect of the oxalate) are mixed into the plasma sample . The time is measured until a thrombus (clot) forms."
+			  "WEB:http://en.wikipedia.org/wiki/Partial_thromboplastin_time@2008/10/06")
+
+	     (blood-assay at-iii "antithrombin-III (AT-III) assay" "The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A)."
+			  "A test to measure the amount of antithrombin III in blood"
+			  "WEB:http://www.muschealth.com/lab/content.aspx?id=150006@2009/08/06")
+
+	     (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
+			  "A  thrombin time assay is on in which after liberating the plasma from whole blood by centrifugation, bovine Thrombin is added to the sample of plasma. The clot is formed and is detected optically or mechanically by a coagulation instrument. The time between the addition of the thrombin and the clot formation is recorded as the thrombin clotting time"
+			  "WEB:http://en.wikipedia.org/wiki/Thrombin_time@2009/10/06"
+			  )
+
+	     (blood-assay Antifactor-Xa "Spectrolyse Heparin Antifactor-Xa Assay" "Antifactor-Xa (anti-Xa) was determined using spectrolyse heparin (Xa) (Trinity Biotech plc, Bray, County Wicklow, Ireland)."
+			  "A Spectrolyse Heparin (Xa) assay is intended for the quantitative determination of therapeutic Heparin in human plasma.
+
+The principle inhibitor of Thrombin, Factor Xa and other coagulation serine proteases in plasma is Antithrombin III. The rate of inhibition, under normal conditions, is slow, but can be increased several thousand-fold by Heparin. This mechanism accounts for the anticoagulant effect of Heparin. Low Molecular Weight Therapeutic Heparin (LMWH) preparations appear to catalyze the reaction between Factor Xa and Antithrombin III more readily than the reaction between Thrombin and Antithrombin III while standard Heparin catalyzes both reactions equally. The Factor Xa inhibition test is the most useful test for assaying the widest variety of therapeutic Heparin preparations. In this method, when both Factor Xa and Antithrombin III are present in excess, the rate of Factor Xa inhibition is directly proportional to the Heparin concentration. The residual Factor Xa activity, measured with a Factor Xa-specific chromogenic substrate, is inversely proportional to the Heparin concentration."
+			  "WEB:http://www.kordia.nl/en/product/hemostasis/specialty_kits__reagens/598/spectrolyse_heparin_anti_xa@2009/08/06"
+			  )
+	     (blood-assay prothrombin-time "prothrombin time assay" "The prothrombin time (PT) was quantitatively determined using RecombiPlasTin (Instrumentation Laboratory Company, Lexington, Massachusetts, USA)."
+			  "The prothrombin time is an assay most commonly measured using blood plasma. Blood is drawn into a test tube containing liquid citrate, which acts as an anticoagulant by binding the calcium in a sample. The blood is mixed, then centrifuged to separate blood cells from plasma. In newborns, whole blood is used. The plasma is analyzed by a biomedical scientist on an automated instrument at 37 degrees C, which takes a sample of the plasma. An excess of calcium is added (thereby reversing the effects of citrate), which enables the blood to clot again. For an accurate measurement the proportion of blood to citrate needs to be fixed; many laboratories will not perform the assay if the tube is underfilled and contains a relatively high concentration of citrate. If the tube is underfilled or overfilled with blood, the standardized dilution of 1 part anticoagulant to 9 parts whole blood is no longer valid. For the prothrombin time test the appropriate sample is the blue top tube, or sodium citrate tube, which is a liquid anticoagulant. Tissue factor (also known as factor III or thromboplastin) is added, and the time the sample takes to clot is measured optically. Some laboratories use a mechanical measurement, which eliminates interferences from lipemic and icteric samples. The prothrombin ratio is the prothrombin time for a patient, divided by the result for control plasma."
+			  "WEB:http://en.wikipedia.org/wiki/Prothrombin_time@2009/10/06"
+			  )
+
+	     #|
+	     Coagulation tests 
+
+	     All tests were performed on the 
+
+	     Sysmex CA6000 (Sysmex Corporation, Kobe, Japan) automated instrument
+
+	     citrated plasma samples
+
+	     According to the manufacturer's specifications (Dade Behring, Marburg, Germany)
+
+	     The activated partial thromboplastin time (aPTT) was determined using Dade Actin FSL activated PTT reagent.
+
+	     The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A).
+
+	     The thrombin time was determined using thromboclotin assay kit.
+
+	     Antifactor-Xa (anti-Xa) was determined using spectrolyse heparin (Xa) (Trinity Biotech plc, Bray, County Wicklow, Ireland).
+
+	     The prothrombin time (PT) was quantitatively determined using RecombiPlasTin (Instrumentation Laboratory Company, Lexington, Massachusetts, USA). 
+	     |#
+
+
 	     ;; 
-	     (class hospital
+	     (class (fcusecase) hospital
 	       (label "hospital")
 	       (definition "A medical organization at which sick or injured people are given clinical care")
 	       (definition-source "http://www.golovchenko.org/cgi-bin/wnsearch?q=hospital#2n")
@@ -541,23 +610,22 @@ details of the study.
 	       (example-of-usage "human ethics approval was obtained from the Southern Tasmania Health & Medical Human Research Ethics Committee and the Royal Hobart Hospital Research Ethics Committee [pmid:19696660]")
 	       :partial !'organization'@)
 
-	     (individual fucoidan-hospital
+	     (individual (fcusecase) fucoidan-hospital
 	       (label "Royal Hobart Hospital")
 	       (definition-source "http://www.dhhs.tas.gov.au/hospitals/royal_hobart")
 	       (signedhelen)
 	       (signedalan))
 	     
 	     ;; test - should be able to query for participants in the study and have this individual returned as result
-	     (individual subject1
+	     (individual (fcusecase) subject1
 	       (label "Homo sapiens treated with fucoidan - fucoidan study")
 	       (type treated-subject)
 	       (signedhelen)
 	       (definition "Instance of Homo sapiens for fucoidan study treated with fucoidan"))
 
-	     (individual subject2
+	     (individual (fcusecase) subject2
 	       (label "Homo sapiens treated with guar gum - fucoidan study")
 	       (type control-subject)
 	       (signedhelen)
 	       (definition "Instance of Homo sapiens for fucoidan study treated with guar gum"))
-	     )
-	    )))))
+	     ))))))
