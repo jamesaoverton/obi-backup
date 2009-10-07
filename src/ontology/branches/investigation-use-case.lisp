@@ -86,7 +86,7 @@ details of the study.
   (ontology-annotation !protegeowl:defaultLanguage "en")
   (let ((*default-uri-label-source* :obi))
     (with-obo-metadata-uris
-	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)
+	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)(object-property !'contains'@)
 	(object-property !'has_specified_input'@)(object-property !'is_manufactured_by'@)
 	(object-property !'is about'@)
 	(object-property !'denotes'@)
@@ -143,6 +143,9 @@ details of the study.
 	      (gram !unit:00000021)
 	      (blood-coagulation !go:007596)
 	      (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_gimme_serpinc1>)
+	      (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_gimme_citrate>) ;http://www.answers.com/topic/sodium-citrate
+	      (edta !<http://purl.org/obo/owl/CHEBI#CHEBI_42191>)
+	      ;; https://sourceforge.net/tracker/?func=detail&aid=2873869&group_id=125463&atid=703818
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
 	      (informed-consent-process (fcobiuri 1))
 	      (informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -171,6 +174,8 @@ details of the study.
 	      (sysmex-ca-6000 (fcobiuri 24))
 	      (berichrome-atIII-kit (fcobiuri 25))
 	      (at-iii-berichrome-assay (fcobiuri 26))
+	      (anticoagulant-containing-test-tube (fcobiuri 27))
+	      (anticoagulant-tube-storage-of-blood (fcobiuri 28))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
 	      (time-measurement-datum (fciaouri 2))
@@ -379,7 +384,9 @@ details of the study.
 			 (type 
 			  (manch (and 
 				  treatment-portion-of-study-execution
-				  (all !oborel:has_part (not informing-subject-of-study-arm)))))
+				  (all !oborel:has_part (not informing-subject-of-study-arm))
+				  (some !oborel:has_part fucoidan-sample-taking)
+				  (some !oborel:has_part anticoagulant-tube-storage-of-blood))))
 			 (value !oborel:part_of fucoidan-study-execution)
 			 )
 
@@ -480,6 +487,14 @@ details of the study.
 	     (class (fcusecase) serpinc1-product (label "Human Antithrombin-III protein") 
 		    :partial !'protein'@
 		    (editor-note "Alan Ruttenberg, 2009/10/06: Requested PRO id https://sourceforge.net/tracker/?func=detail&aid=2873648&group_id=266825&atid=1135711"))
+
+
+	     (class (fcusecase) sodium-citrate (label "Sodium Citrate") 
+		    :partial !'molecular entity'@
+		    (editor-note "Alan Ruttenberg, 2009/10/06: Requested ChEBI id https://sourceforge.net/tracker/?func=detail&aid=2873869&group_id=125463&atid=703818"))
+
+	     (class (fcusecase) edta (label "EDTA") 
+		    :partial !'molecular entity'@)
 
 	     (class (fcusecase) mass-measurement-datum
 		    (4iao)
@@ -589,6 +604,28 @@ details of the study.
 	       (manch (and !'collecting specimen from organism'@
 			   (some !'has_specified_input'@ (or control-subject treated-subject))
 			   (some !'has_specified_output'@ !'blood serum specimen'@))))
+
+	     
+	     (class anticoagulant-containing-test-tube :partial 
+		    (label "anticoagulant-containing test tube")
+		    (definition "A 'blue top' test tube that contains anticoagulant for storing blood specimens'")
+		    (fcusecase) (4obi) (signedalan)
+		    (manch (and !'test tube'@ 
+				(some !'contains'@
+				      (some !'has_part'@ (some !'has grain'@ sodium-citrate))
+				      (some !'has_part'@ (some !'has grain'@ edta))))))
+
+	     (class anticoagulant-tube-storage-of-blood
+	       (label "anticoagulant tube storage of blood specimen")
+	       (definition "Storage of a blood specimen in a tube with anticoagulant")
+	       :partial
+	       (manch (and !'storage'@
+			   (some !'has_specified_output'@
+				 (and anticoagulant-containing-test-tube
+				      (some !'contains'@ !'blood serum specimen'@)))
+			   (some !'has_specified_input'@ !'blood serum specimen'@)))
+	       (fcusecase)
+	       (signedalan))
 
 	     (class blood-coagulation (label "blood coagulation") :partial !span:Process)
 
