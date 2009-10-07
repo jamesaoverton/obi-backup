@@ -87,7 +87,7 @@ details of the study.
   (let ((*default-uri-label-source* :obi))
     (with-obo-metadata-uris
 	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)
-	(object-property !'has_specified_input'@)
+	(object-property !'has_specified_input'@)(object-property !'is_manufactured_by'@)
 	(object-property !'is about'@)
 	(object-property !'denotes'@)
 	(object-property !'realizes'@)  (object-property !'is_realized_by'@) (object-property !'bearer_of'@)
@@ -134,6 +134,7 @@ details of the study.
 	      (fucoidan-treatment-portion (fcuri 29))
 	      (fucoidan-hospital (fcuri 30))
 	      (fucoidan-sample-taking (fcuri 31))
+	      (fucoidan-at-iii-berichrome-assay (fcuri 32))
 	      ;; imports
 	      (mouth !obo:FMA#FMA_49184)
 	      (mass !pato:0000125)
@@ -166,6 +167,10 @@ details of the study.
 	      (thrombin-time (fcobiuri 20))
 	      (Antifactor-Xa (fcobiuri 21))
 	      (prothrombin-time (fcobiuri 22))
+	      (sysmex (fcobiuri 23))
+	      (sysmex-ca-6000 (fcobiuri 24))
+	      (berichrome-atIII-kit (fcobiuri 25))
+	      (at-iii-berichrome-assay (fcobiuri 26))
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
 	      (is-quality-measured-as (fciaouri 1))
 	      (time-measurement-datum (fciaouri 2))
@@ -579,6 +584,7 @@ details of the study.
 		    (signedalan))
 
 	     (class fucoidan-sample-taking
+	       (label "Taking blood specimen from subject in fucoidan study")
 	       :complete
 	       (manch (and !'collecting specimen from organism'@
 			   (some !'has_specified_input'@ (or control-subject treated-subject))
@@ -591,7 +597,7 @@ details of the study.
 			  "WEB:http://en.wikipedia.org/wiki/Partial_thromboplastin_time@2008/10/06")
 
 	     (blood-assay at-iii "antithrombin-III (AT-III) assay" "The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A)."
-			  "A test to measure the amount of antithrombin III in blood"
+			  "A test to measure the amount of antithrombin III in blood."
 			  "WEB:http://www.muschealth.com/lab/content.aspx?id=150006@2009/08/06"
 			  !'analyte measurement objective'@
 			  )
@@ -602,6 +608,50 @@ details of the study.
 				      (some !'role_of'@
 					    (and !'scattered molecular aggregate'@ (some !'has grain'@ serpinc1-product)))))))
 
+	     (class at-iii-berichrome-assay :partial (manch (and at-iii
+								 (exactly !'has_specified_output'@ 1)
+								 (some !'has_specified_output'@ !'scalar measurement datum'@)))
+								 
+		    (label "antithrombin-III (AT-III) berichrome assay")
+		    (definition "An antithrombin-III (AT-III) assay in which exogenous bovine thrombin and heparin are added to test plasma to form a thrombin-heparin-AT complex. The residual thrombin not bound then hydrolyzes the p-nitroalanine substrate to produce a yellow color, which is read at 405 nm. The intensity of color produced is inversely proportional to the AT present. A calibration is done with standard human plasma reagent and results for a given speciment are reported as a percentage relative to the standard")
+		    (definition-source "WEB:http://www.clinchem.org/cgi/content/full/43/9/1783@2009/08/06")
+		    (editor-note "todo Reagents from Berichrom(r) Antithrombin III (A) and standard human plasma")
+		    (fcusecase)
+		    (4obi))
+
+	     (class berichrome-atIII-kit (label "Berichrom(r) Antithrombin III (A)") :partial !'processed material'@
+		    "For the chromogenic determination of antithrombin III. Autoanalyzer method for undiluted samples. For the quantitative chromogenic determination of the functional activity of antithrombin III in plasma on autoanalyzers for the diagnosis of diminished AT III synthesis, increased consumption, and for monitoring substitution therapy. Berichrom(r) Antithrombin III (A) is used for the rapid determination of the physiologically active antithrombin III and permits the diagnsis of congenital and acquired antithrombin III deficiency, a condition frequently associated with an increased risk of thrombosis. Acquired antithrombin III deficiencies frequently occur due to consumption following major operations or due to disseminated intravascular coagulation (DIC) in cases of septicaemia, nephroses, liver parenchymal damage (hepatitis, drug intoxication, alcoholism) and oestrogen-containing contraceptives. The test permits early detection of patients at increased risk for thrombosis. Kit contains: 6 x for 5.0 mL Thrombin (bovine), 3 x for 3.0 mL Substrate Reagent, 1 x 30.0 mL Buffer Solution"
+		    (definition-source "WEB:http://www.dadebehring.com/edbna2/ebusiness/products/productDetail.jsp?sDiscipline=Hemostasis&FirstLevelOID=-13075&sCategory_Name=BCS&SecondLevelOID=-13895&ThirdLevelOID=-13904&selectedProductType=H-Assays+-+non+US&sProductName=OWWR15&PROD_OID=44198@2009/08/06")
+		    (signedalan)
+		    (fcusecase)
+		    (4obi))
+
+	     (individual sysmex (label "Sysmex Corporation, Kobe, Japan")
+			 (type !'organization'@)
+			 (definition-source "WEB:http://www.sysmex.com/@2009/08/06")
+			 (fcusecase)
+			 (4obi))
+
+	     (class sysmex-ca-6000 (label "Sysmex CA-6000 Coagulation Analyzer")
+		    (definition "The Sysmex CA-6000 automated coagulation analyzer is a random access instrument that is capable of performing 20 clot-based and chromogenic assays")
+		    (definition-source "web:http://www.clinchem.org/cgi/content/full/43/9/1783@2009/08/06")
+		    (signedalan)
+		    (4obi)
+		    (fcusecase)
+		    :partial (manch (and !'instrument'@
+					 (has !'is_manufactured_by'@ sysmex))))
+
+	     (class fucoidan-at-iii-berichrome-assay
+	       (label "Antithrombin assay in the fucoidan study")
+	       (fcusecase)
+	       (signedalan)
+	       :partial
+	       (manch (and at-iii-berichrome-assay
+			   (some !'has_specified_input'@ (some !'is_specified_output_of'@ fucoidan-sample-taking))
+			   (exactly !'has_specified_input'@ 1)
+			   (some !'has_participant'@ (and sysmex-ca-6000 (some !'realizes'@ !'device function'@))))))
+									  
+		    
 	     (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
 			  "A  thrombin time assay is on in which after liberating the plasma from whole blood by centrifugation, bovine Thrombin is added to the sample of plasma. The clot is formed and is detected optically or mechanically by a coagulation instrument. The time between the addition of the thrombin and the clot formation is recorded as the thrombin clotting time"
 			  "WEB:http://en.wikipedia.org/wiki/Thrombin_time@2009/10/06"
@@ -625,6 +675,11 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 
 	     Sysmex CA6000 (Sysmex Corporation, Kobe, Japan) automated instrument
 
+http://www.clinchem.org/cgi/content/full/43/9/1783
+AT: Exogenous bovine thrombin and heparin are added to test plasma to form a thrombin-heparin-AT complex. The residual thrombin not bound then hydrolyzes the p-nitroalanine substrate to produce a yellow color, which is read at 405 nm. The intensity of color produced is inversely proportional to the AT present. A single calibration curve was performed at the onset and used for the duration of sample testing.
+
+
+
 	     citrated plasma samples
 
 	     According to the manufacturer's specifications (Dade Behring, Marburg, Germany)
@@ -633,6 +688,17 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 
 	     The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A).
 
+http://www.dadebehring.com/edbna2/ebusiness/products/productDetail.jsp?sDiscipline=Hemostasis&FirstLevelOID=-13075&sCategory_Name=BCS&SecondLevelOID=-13895&ThirdLevelOID=-13904&selectedProductType=H-Assays+-+non+US&sProductName=OWWR15&PROD_OID=44198
+
+5 or 15 ml kits
+
+http://www.freepatentsonline.com/5646007.html
+
+sodium citrate is anticoagulant
+http://books.google.com/books?id=cHAjsUgegpQC&pg=RA1-PA472&lpg=RA1-PA472&dq=%22Substrate+Reagent%22+coagulation&source=bl&ots=qvOEvCHnG5&sig=r2KyNzH3K1FIyenMHzKP3e2tpI4&hl=en&ei=zPDLSt2kLs_ElAequYXcBQ&sa=X&oi=book_result&ct=result&resnum=1#v=onepage&q=%22Substrate%20Reagent%22%20coagulation&f=false
+
+
+
 	     The thrombin time was determined using thromboclotin assay kit.
 
 	     Antifactor-Xa (anti-Xa) was determined using spectrolyse heparin (Xa) (Trinity Biotech plc, Bray, County Wicklow, Ireland).
@@ -640,8 +706,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 	     The prothrombin time (PT) was quantitatively determined using RecombiPlasTin (Instrumentation Laboratory Company, Lexington, Massachusetts, USA). 
 	     |#
 
+	     
+	     ;; antithrombin-III increased  from 113.5 to 117% (n U 10, P U 0.03).
+	     ;; The percentages are 
 
-	     ;; 
+	     ;; http://www.doctorslounge.com/hematology/labs/inr.htm
+
 	     (class (fcusecase) hospital
 	       (label "hospital")
 	       (definition "A medical organization at which sick or injured people are given clinical care")
