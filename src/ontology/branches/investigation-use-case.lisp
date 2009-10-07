@@ -142,8 +142,8 @@ details of the study.
 	      (time-unit !unit:0000003)
 	      (gram !unit:00000021)
 	      (blood-coagulation !go:007596)
-	      (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_gimme_serpinc1>)
-	      (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_gimme_citrate>) ;http://www.answers.com/topic/sodium-citrate
+	      (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_000003252>)
+	      (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_32142>) ;http://www.answers.com/topic/sodium-citrate
 	      (edta !<http://purl.org/obo/owl/CHEBI#CHEBI_42191>)
 	      ;; https://sourceforge.net/tracker/?func=detail&aid=2873869&group_id=125463&atid=703818
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
