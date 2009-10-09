@@ -2450,7 +2450,6 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</obo:IAO_000011
     <rdfs:label xml:lang="en">administration in vivo with infectious agent</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110203">
-    <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-6 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <owl:equivalentClass>
@@ -2469,7 +2468,7 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</obo:IAO_000011
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:label xml:lang="en">epitope specific IL-6 release by T cells</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-6 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.org/obo/owl/GO#GO_0003824"/>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000514">
@@ -2936,20 +2935,14 @@ HAS MADE_UP_OF RELATION WITH PEPTIDE CONCEPT.  JAMES</obo:IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000076">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
-    <rdfs:label xml:lang="en">spontaneous process</rdfs:label>
+    <rdfs:label xml:lang="en">unplanned occurence effecting an investigation</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">Earthquake that destroys the lab, an outside investigator discovering an adverse effect of the reagants used</obo:IAO_0000112>
-    <obo:IAO_0000115 xml:lang="en">An extraneous process is a process which is external in origin to the investigation that has an impact on the outcome.</obo:IAO_0000115>
+    <obo:IAO_0000115 xml:lang="en">a process which is external in origin to the investigation that has an impact on the outcome.</obo:IAO_0000115>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Bjoern Peters</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000599">
     <rdfs:subClassOf>
@@ -3399,9 +3392,8 @@ to create a common base for comparisons.</obo:IAO_0000115>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110182">
-    <rdfs:label xml:lang="en">epitope specific T cell proliferation</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:label xml:lang="en">epitope specific T cell proliferation</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells proliferate resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <owl:equivalentClass>
@@ -5274,7 +5266,6 @@ where \beta_0 =  0 is the intercept ("constant" term), the \beta_i s  are the re
     <obo:IAO_0000112 xml:lang="en">Gene expression analysis of RNA purified from embryonic stem cells and embryoid body-derived cells using a high-throughput microarray platform. Curr Protoc Stem Cell Biol. 2007 Sep;Chapter 1:Unit 1B.2. PMID: 18785160</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110190">
-    <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">epitope specific IL-12 release by T cells</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-12 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <owl:equivalentClass>
@@ -5292,7 +5283,7 @@ where \beta_0 =  0 is the intercept ("constant" term), the \beta_i s  are the re
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110168">
@@ -6470,9 +6461,11 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">Determination of the frequency of cells producing IFN-gamma in response to viral peptides by placing effector cells on a anti IFN-gamma coated plate, and adding antigen presenting cells pulsed with a peptide. After washing, the bound IFN-gamma is detected with a secondary antibody linked to a dye that visualizes as one spot per cell.</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000115 xml:lang="en">An assay in which the number of cells producing a material in a larger cell population are stained and counted. This is done by visualizing and counting the number of spots present on a surface via an antibody specific for the produced material. Each spot represents one cell producing the material of interest.</obo:IAO_0000115>
     <obo:IAO_0000111 xml:lang="en">ELISPOT</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
@@ -7010,7 +7003,6 @@ PMID: 18605936</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110185">
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IFNg resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">epitope specific IFN-g release by T cells</rdfs:label>
@@ -7707,6 +7699,9 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</obo:IAO_0000112>
     >Enzyme-Linked ImmunoSorbent Assay</obo:IAO_0000118>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ELISA is an assay where an enzyme linked antibody is used to detect a plate bound material in a liquid (the evaluant) utilizing a chemiluminescent reaction. The detected signal is proxy for the concentration of an analyte in the evaluant.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
+    </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >ELISA</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -7734,7 +7729,6 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</obo:IAO_0000112>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IEDB</obo:IAO_0000119>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -9955,6 +9949,8 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110204">
+    <rdfs:label xml:lang="en">epitope specific killing by T cells</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">A biological process where T cells lyse antigen presenting cells resulting from the recognition of a T cell epitope on MHC molecules of the antigen presenting cell.</obo:IAO_0000115>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -9968,9 +9964,6 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:label xml:lang="en">epitope specific killing by T cells</rdfs:label>
-    <obo:IAO_0000115 xml:lang="en">A biological process where T cells lyse antigen presenting cells resulting from the recognition of a T cell epitope on MHC molecules of the antigen presenting cell.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
@@ -10093,9 +10086,8 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110187">
-    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -10220,7 +10212,6 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110191">
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">epitope specific IL-13 release by T cells</rdfs:label>
     <owl:equivalentClass>
@@ -10253,7 +10244,6 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110195">
-    <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <rdfs:label xml:lang="en">epitope specific IL-18 release by T cells</rdfs:label>
     <owl:equivalentClass>
       <owl:Class>
@@ -10268,7 +10258,7 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-18 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
   </owl:Class>
@@ -11015,6 +11005,21 @@ Biomacromolecules. 2008 Oct 9.PMID: 18842025</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">An averaging objective is a data transformation objective where the aim is to perform mean calculations on the input of the data transformation.</obo:IAO_0000115>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200166"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_9">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >fluorescently labeled MHC multimer</rdfs:label>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A complex of two or more linked MHC molecules including a fluorescent label that can be loaded with a ligand, and is used in flow cytometry assay to bind to T cell receptors of T cells specific for the ligand</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000018"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110167">
@@ -13851,7 +13856,6 @@ Diagn Cytopathol. 2008 Oct 16. PMID: 18925569</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110056">
     <rdfs:label xml:lang="en">epitope specific IL-2 release by T cells</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-2 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
@@ -14173,7 +14177,9 @@ Diagn Cytopathol. 2008 Oct 16. PMID: 18925569</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Continuant"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -14796,7 +14802,6 @@ N Engl J Med. 2008 Oct 15. PMID: 18923165</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110202">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:label xml:lang="en">epitope specific IL-5 release by T cells</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-5 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <owl:equivalentClass>
@@ -16401,7 +16406,6 @@ Nature. 2008 Sep 17. PMID: 18806774</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110193">
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-17 resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <rdfs:label xml:lang="en">epitope specific IL-17 release by T cells</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
     <owl:equivalentClass>
@@ -17457,6 +17461,9 @@ need to add mobile phase as role</obo:IAO_0000116>
     <obo:IAO_0000119 xml:lang="en">PERSON: James Malone</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_9999994">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">from http://cvi.asm.org/cgi/content/full/11/2/255 (and slightly simplified)\nAutologous EBV-transformed B-LCL were used as target cells for the influenza virus-specific CTL assays. Equal volumes of target (5 x 10E4 cells/ml) and effector cells were added to triplicate wells of 96-well tissue culture plates, and 1:2 serial dilutions of effectors were made, producing effector-to-target (E:T) ratios of 100:1, 50:1, 25:1, and 12.5:1 (9). Spontaneous release of 51Cr was assessed by the incubation of target cells in medium alone, and maximum release of 51Cr was determined by the incubation of target cells in 0.1% Triton X-100 (Sigma-Aldrich).\nAfter a 4-h incubation of the effector cells with the target cells at 37 degrees C in 6% CO2, supernatants were collected following brief centrifugation. The supernatant was collected into filters of supernatant collection system harvesting frames (Molecular Devices Skatron, Sunnyvale, Calif.) and transferred to polystyrene tubes to be counted with the LKB 1272 Clinigamma counter (Wallac).\nPercent specific was determined with the following equation: (experimental 51Cr release - spontaneous 51Cr release)/(maximum 51Cr release - spontaneous 51Cr release) x 100.</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -17478,7 +17485,6 @@ need to add mobile phase as role</obo:IAO_0000116>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">An assay in which radioactive chromium is absorbed by cells and released into supernatant when the cells die. The amount of radioactivity measured in the supernatant is a proxy for the number of cells that have died.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000119 xml:lang="en">OBI branch derived</obo:IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -19223,7 +19229,6 @@ Eur J Hum Genet. 2008 Oct 15.  PMID: 18854868</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce IL-1b resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">epitope specific IL-1b release by T cells</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0500008">
     <rdfs:label xml:lang="en">balanced incomplete block design</rdfs:label>
@@ -19498,11 +19503,29 @@ Eur J Hum Genet. 2008 Oct 15.  PMID: 18854868</obo:IAO_0000112>
     >IEDB</obo:IAO_0000119>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >2/26/09 RESOLVE: Need to add a restriction for the 'MHC multimer' as a reagent used</obo:IAO_0000116>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An MHC multimer assay is an assay that detects T cells capable of binding the MHC:ligand complexes present in the multimer. The multimer is fluorescently labelled. The T cells bound to multimers are counted in a flow cytometer</obo:IAO_0000115>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MHC multimer assay</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="#Class_9"/>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000070"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IEDB</obo:IAO_0000117>
     <rdfs:subClassOf>
@@ -23176,7 +23199,6 @@ DOCUMENTATION NOTE: OBI anatomical entity granularity level excludes cell and bi
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">autosampler</obo:IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000116 xml:lang="en">msi_400002</obo:IAO_0000116>
     <rdfs:label xml:lang="en">autosampler</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">An optional part of an NMR instrument used to hold samples prior to NMR analysis and that sequentially loads these samples into the analytical part of the NMR instrument. \n   alt The autosampler is an automatic sample changer device.</obo:IAO_0000115>
@@ -28652,11 +28674,19 @@ Sanger F, Nicklen S, Coulson AR. Proc Natl Acad Sci U S A. 1977 Dec;74(12):5463-
     >sep:00096</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000278">
-    <rdfs:label xml:lang="en">_disease stage</rdfs:label>
+    <rdfs:label xml:lang="en">disease stage</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">Stage II breast cancer, The timepoint of recovery from a disease</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000076"/>
-    <obo:IAO_0000115 xml:lang="en">is a fiat_process_part which is part_of a disease_process which is associated with position in the normal progression of the disease</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110002"/>
+        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000115 xml:lang="en">a part of an occurence of a disease process which is associated with position in the normal progression of the disease</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Bjoern peters</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000063">
     <obo:IAO_0000112 xml:lang="en">Insertion of approved cardiac pace maker</obo:IAO_0000112>
@@ -29583,9 +29613,8 @@ I THINK THIS IS LIKELY A QUALITY.  JAMES</obo:IAO_0000116>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110199">
-    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -30236,9 +30265,8 @@ Clouser C, Dunkan C, Ichikawa J, Lee C, Zhang Z, Sheridan A, Fu H, Ranade S, Dim
     <obo:IAO_0000117 xml:lang="en">James Malone</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110206">
-    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+    <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
     <rdfs:label xml:lang="en">epitope specific TNF release by T cells</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A biological process where T cells produce TNF resulting from the recognition of a T cell epitope.</obo:IAO_0000115>
     <owl:equivalentClass>
