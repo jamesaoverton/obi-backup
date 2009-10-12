@@ -165,6 +165,11 @@ details of the study.
 		(fucoidan-hospital (fcuri 30))
 		(fucoidan-sample-taking (fcuri 31))
 		(fucoidan-at-iii-berichrome-assay (fcuri 32))
+		(fucoidan-hypothesis (fcuri 33))
+		(fucoidan-conclusion (fcuri 34))
+		(statistical-test (fcuri 35))
+		(interpreting-fucoidan-study-data (fcuri 36))
+		(p-value (fcuri 36))
 		;; the following should move into obi proper - here for now to be able to keep track of them
 		(informed-consent-process (fcobiuri 1))
 		(informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -195,6 +200,8 @@ details of the study.
 		(at-iii-berichrome-assay (fcobiuri 26))
 		(anticoagulant-containing-test-tube (fcobiuri 27))
 		(anticoagulant-tube-storage-of-blood (fcobiuri 28))
+		(conclusion (fcobiuri 29))
+
 		;; the following should move into iao proper - here for now to be able to keep track of them
 		(is-quality-measured-as (fciaouri 1))
 		(time-measurement-datum (fciaouri 2))
@@ -787,4 +794,70 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 	       (type control-subject)
 	       (signedhelen)
 	       (definition "Instance of Homo sapiens for fucoidan study treated with guar gum"))
+
+	     (individual fucoidan-hypothesis
+	       (label "fucoidan may have anticoagulant activity in vivo")
+	       (type !'hypothesis'@)
+	       (definition "The hypothesis that fucoidan may have anticoagulant activity in vivo, as expressed, slightly obliquely, in the first paragraph of the abstract of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.")
+	       (signedalan)
+	       (fcusecase)
+	       (editor-note "2009/10/12 Alan Ruttenberg. There isn't a clear statement of hypothesis in the paper but one can infer the hypothesis from the paper's abstract, relevant bit cited in definition source.")
+	       (definition-source "PMID:19696660#Seaweed-derived heparin-like substances such as fucoidan have been extensively studied in vitro as potential blood anticoagulants. However, there have been no human studies investigating the anticoagulant activity of fucoidan when administered orally. This pilot clinical trial was aimed to assess the safety and clinical effects of fucoidan ingestion on hemostasis as well as study its in-vitro anticoagulant activity."))
+	     (individual fucoidan-conclusion 
+	       (type conclusion)
+	       (label "fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant")
+	       (definition "The conclusion that fucoidan has a small statistically significant effect on AT3 level but no useful useful clinical effect as in-vivo anticoagulant, as expressed in the final paragraph of the paper first paragraph of the abstract of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.")
+	       (definition-source "PMID:19696660#In conclusion, this study demonstrated that a small quantity of bioavailable fucoidan, given orally, had a modest but significant effect on some of the coagulation assays, in particular, the intrinsic pathway. Changes in the coagulation tests were still within reference ranges and unlikely in themselves to be 'clinically valuable'.")
+	       (fcusecase)
+	       (signedalan)
+	       (value !'is_specified_output_of'@obi interpreting-fucoidan-study-data)
+	       )
+
+	     (individual interpreting-fucoidan-study-data
+	       (label "interpreting fucoidan study data")
+	       (value !'has_specified_input'@ statistical-test)
+	       (definition "The process of interpreting the results of the statistical analyses on the fucoidan study assays")
+	       (definition-source "PMID:19696660")
+	       (signedalan)
+	       (fcusecase))
+
+	     (class conclusion (label "conclusion")
+		    :partial !'information content entity'@
+		    (definition "A conclusion is an information content entity that is an assertion of the outcome of a testing of a hypothesis.")
+		    (editor-note "2009/10/12 Alan Ruttenberg. This term is provisional and was made by analogy to the definition of hypothesis in OBI. There is a distinction that needs to be made between textual entities and the entity which is the conclusion/hypothesis and this needs further work")
+		    (signedalan)
+		    (4obi)
+		    (fcusecase)
+		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
+	     
+	     (individual statistical-test
+	       (type !'statistical hypothesis test'@)
+	       (label "Test of significance of Antithrombin-III level change between day 1 and day 4")
+	       (definition-source "PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)")
+	       (signedalan)
+	       (fcusecase)
+	       (value !'has_specified_output'@ p-value)
+	       )
+	     (individual p-value
+	       (type !'p-value'@)
+	       (label "p-value of 0.02")
+	       (definition-source "PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)")
+	       (signedalan)
+	       (fcusecase)
+	       (value !'has_specified_output'@ p-value)
+	       )
 	     )))))))
+#|
+From Call summary 7 Oct 09
+1. We have now completed enough detail for the clinical trials use case to support the original aim - to show the breadth of OBI vs the glucose use case which shows depth
+
+2. We discussed what we need to complete and in what granularity, remaining issues are
+  2.1 Statistical test - discussion on what are the inputs and we don't have enough info in the paper on what the test was. AR and JF will work offline to model what they think is going on
+  2.2 Hypothesis - we understand this to be 'fucoidan may have anticoagulant activity in vivo. result is a small stat sig effect of AT3 anticoagulant effect, author interpretation indicates no useful clinical effect.
+  2.3 Modelling the dosing regime - we decided to do this using day processes instances, with subparts, and these will be related using preceded by. AR will work on this. 
+We understand that
+
+we will not model time triggers now
+we do not need instances for all patients, one representative for each group is enough
+we will not work on this use case in Philly, but working on it later is desirable
+|$
