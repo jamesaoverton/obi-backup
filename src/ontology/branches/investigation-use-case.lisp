@@ -834,7 +834,13 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
 	     
 	     (individual statistical-test
-	       (type !'statistical hypothesis test'@)
+	       (type (manch (and !'statistical hypothesis test'@
+				 (all !'has_specified_input'@
+				       (some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay))
+				 )))
+				 
+		     
+
 	       (label "Test of significance of Antithrombin-III level change between day 1 and day 4")
 	       (definition-source "PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)")
 	       (signedalan)
