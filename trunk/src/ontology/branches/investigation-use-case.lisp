@@ -170,7 +170,7 @@ details of the study.
 		(fucoidan-conclusion (fcuri 34))
 		(statistical-test (fcuri 35))
 		(interpreting-fucoidan-study-data (fcuri 36))
-		(p-value (fcuri 36))
+		(p-value (fcuri 37))
 		;; the following should move into obi proper - here for now to be able to keep track of them
 		(informed-consent-process (fcobiuri 1))
 		(informed-consent-document-agreement-by-patient (fcobiuri 2))
