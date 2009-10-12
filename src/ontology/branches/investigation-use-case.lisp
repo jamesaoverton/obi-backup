@@ -99,7 +99,8 @@ details of the study.
       `(list ,@body)))
 
 (define-ontology investigation-use-case
-    (:base (uri-full !obo:obi/investigation-use-case.owl) :about (uri-full !obo:obi/investigation-use-case.owl))
+    (:base (uri-full !obo:obi/investigation-use-case.owl) :about
+	   (uri-full !obo:obi/investigation-use-case.owl))
   (ontology-annotation !owl:versionInfo "$Revision: 80 $")
   (ontology-annotation !protegeowl:defaultLanguage "en")
   (let ((*default-uri-label-source* :obi))
@@ -201,6 +202,7 @@ details of the study.
 		(anticoagulant-containing-test-tube (fcobiuri 27))
 		(anticoagulant-tube-storage-of-blood (fcobiuri 28))
 		(conclusion (fcobiuri 29))
+		;; using ids 30-42 for days.
 
 		;; the following should move into iao proper - here for now to be able to keep track of them
 		(is-quality-measured-as (fciaouri 1))
@@ -815,7 +817,8 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 
 	     (individual interpreting-fucoidan-study-data
 	       (label "interpreting fucoidan study data")
-	       (value !'has_specified_input'@ statistical-test)
+	       (value !'has_specified_input'@ p-value)
+	       (value !'has_specified_output'@ fucoidan-conclusion)
 	       (definition "The process of interpreting the results of the statistical analyses on the fucoidan study assays")
 	       (definition-source "PMID:19696660")
 	       (signedalan)
@@ -838,13 +841,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 	       (fcusecase)
 	       (value !'has_specified_output'@ p-value)
 	       )
+
 	     (individual p-value
 	       (type !'p-value'@)
 	       (label "p-value of 0.02")
 	       (definition-source "PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)")
 	       (signedalan)
 	       (fcusecase)
-	       (value !'has_specified_output'@ p-value)
+	       (value !'has measurement value'@ (literal 0.02 !xsd:float))
 	       )
 	     )))))))
 #|
