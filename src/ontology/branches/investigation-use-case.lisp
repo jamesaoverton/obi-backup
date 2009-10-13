@@ -80,6 +80,8 @@ details of the study.
 (defun definition-editor (note) (annotation !definition-editor note))
 (defun example-of-usage (note) (annotation !example-of-usage note))
 
+(defun blood-assay-unfinished (class) (class class :partial (editor-note "2009/10/18 Alan Ruttenberg. This assay was added during the fucoidan use case exercise but still needs to be fleshed out. Only the AT-III assay has more carefully specified inputs and outputs")))
+
 (defmacro with-mireot-terms (var-id-parent-source-tuples &body body)
   (setq var-id-parent-source-tuples (eval-uri-reader-macro var-id-parent-source-tuples))
   (if var-id-parent-source-tuples
@@ -89,7 +91,7 @@ details of the study.
 	     ,(if (and (consp parent)
 		       (eq (car parent) :individual))
 		  `(individual ,var (type ,(second parent)) (fcusecase)
-			      (annotation !'imported from'@obi ,source)
+			      (annotation !'imported from'@obi  ,source)
 			      (if ,label (label ,label)))
 		  `(class ,var :partial ,parent (fcusecase)
 			 (annotation !'imported from'@obi ,source)
@@ -119,6 +121,7 @@ details of the study.
 	(annotation-property !definition-source (label "definition source"))
 	(annotation-property !definition-editor (label "definition editor"))
 	(annotation-property !editor-note (label "editor note"))
+	(annotation-property !'imported from'@)
 	(object-property !'achieves_planned_objective'@)
 	(owl-imports !obo:obi.owl)
 	(with-mireot-terms ((time-unit !unit:0000003 !'measurement unit label'@ !oboont:UO "time unit")
@@ -128,7 +131,7 @@ details of the study.
 			    (mass-unit !unit:0000002 !'measurement unit label'@ !oboont:UO "mass unit")
 			    (gram !unit:00000021 (:individual mass-unit) !oboont:UO "gram")
 			    (blood-coagulation !go:007596 !span:Process !obo:GO "blood coagulation")
-			    (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_000003252> !'protein'@ !oboont:PRO  "Human Antithrombin-III protein") 
+			    (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_000003252> !'protein'@ !oboont:PRO  "human Antithrombin-III protein") 
 			    (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_32142> !'molecular entity'@ !oboont:CHEBI "sodium citrate dihydrate") 
 			    (edta !<http://purl.org/obo/owl/CHEBI#CHEBI_42191> !'molecular entity'@ !oboont:CHEBI "EDTA"))
 	  ;; https://sourceforge.net/tracker/?func=detail&aid=2873869&group_id=125463&atid=703818
@@ -251,6 +254,7 @@ details of the study.
 	     
 	       (class time-measurement-datum :partial
 		      (label "time measurement datum")
+		      (definition "A scalar measurement datum that is the result of measuring a temporal interval")
 		      (signedalan)
 		      (4iao)
 		      (fcusecase)
@@ -295,7 +299,7 @@ details of the study.
 		      (definition-source "http://clinicaltrials.gov/ct2/info/glossary#informed")
 		      (editor-note "09/28/2009 Alan Ruttenberg: This is made a subclass of the higher level processual entity in BFO because I don't want to take a stand on whether it is a process aggregate. Analogous to the situation with Material entity.")
 		      (signedalan)
-		      (label "Informed consent process")
+		      (label "informed consent process")
 		      :partial (manch (and !span:ProcessualEntity
 					   (some !oborel:has_participant
 						 (some !'has_role'@ !'investigation agent role'@))
@@ -350,7 +354,7 @@ details of the study.
 	       (class (fcusecase) single-blind-study-execution :complete
 		      (4obi)
 		      (label "single blind study execution")
-		      (definition "A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of")
+		      (definition "A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of during the portion of the trial when the subjects are being treated")
 		      (signedalan)
 		      (definition-source "http://clinicaltrials.gov/ct2/info/glossary#single")
 		      (manch (and treatment-portion-of-study-execution
@@ -359,7 +363,7 @@ details of the study.
 	       (class (fcusecase) double-blind-study-execution 
 		      (label "double blind study execution")
 		      (4obi)
-		      (definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of")
+		      (definition "A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of during the portion of the trial when the subjects are being treated")
 		      (signedalan)
 		      (definition-source "http://clinicaltrials.gov/ct2/info/glossary#double")	   
 		      :complete
@@ -371,7 +375,7 @@ details of the study.
 	       (class (fcusecase) unblinding-process :partial (manch (and !'planned process'@
 									  (some !oborel:part_of !'study design execution'@)
 									  (some !oborel:part_of informing-subject-of-study-arm)))
-		      (label "Unblinding process")
+		      (label "unblinding process")
 		      (definition "The part of the study execution in which the subjects are told what study arm they are in and in which the investigators are told which subjects are in which trials")
 		      (signedalan)
 		      (4obi))
@@ -472,8 +476,8 @@ details of the study.
 		      (manch (and to-be-treated-with-active-ingredient-role
 				  (some !'is_realized_by'@ single-treatment-of-fucoidan-in-fucoidan-study)
 				  ))
-		      (label "Role of subject to be treated with fucoidan in the pilot study")
-		      (definition "Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
+		      (label "role of subject to be treated with fucoidan in the pilot study")
+		      (definition "role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
 		      (signedalan)
 		      )
 
@@ -481,6 +485,7 @@ details of the study.
 		      (label "oral ingestion of pill")
 		      (definition "An adding a material entity to target with the entity is a pill and the target is the mouth")
 		      (4obi)
+		      (signedalan)
 		      :complete
 		      (manch (and (some !'realizes'@ (and !'material to be added role'@
 							  (some !'role_of'@ pill)))
@@ -510,13 +515,6 @@ details of the study.
 		      :partial !snap:MaterialEntity)
 
 
-	       (class (fcusecase) serpinc1-product (label "Human Antithrombin-III protein") 
-		      :partial !'protein'@
-		      (editor-note "Alan Ruttenberg, 2009/10/06: Requested PRO id https://sourceforge.net/tracker/?func=detail&aid=2873648&group_id=266825&atid=1135711"))
-
-
-
-
 	       (class (fcusecase) edta (label "EDTA") 
 		      :partial !'molecular entity'@)
 
@@ -531,14 +529,21 @@ details of the study.
 				  (all !'is quality measurement of'@ mass))))
 	     
 	       (class (fcusecase) mass-of-3-grams (label "mass measured to be 3 grams") :complete
-		      (mass-measured-as-grams-def 3.0))
+		      (mass-measured-as-grams-def 3.0)
+		      (definition "A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be 3 grams")
+		      (editor-note "2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable")
+		      )
 	     
 	       (class (fcusecase) mass-of-2point25-grams (label "mass measured to be 2.25 grams") :complete
-		      (mass-measured-as-grams-def 2.25))
+		      (definition "A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be 2.25 grams")
+		      (mass-measured-as-grams-def 2.25)
+		      (editor-note "2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable"))
 		    
 	       (class (fcusecase) mass-of-point75-grams (label "mass measured to be .75 grams") :complete
-		      (mass-measured-as-grams-def .75))
-	   
+		      (definition "A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be .75 grams")
+		      (mass-measured-as-grams-def .75)
+		      (editor-note "2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable"))
+	       
 	       (class (fcusecase) guar-gum-capsule-for-fucoidan-study
 		      (label "guar gum capsule for fucoidan study")
 		      :complete
@@ -599,21 +604,21 @@ details of the study.
 	       (class (fcusecase) to-be-treated-with-guar-gum-role :complete
 		      (manch (and to-be-treated-with-placebo-role
 				  (some !'is_realized_by'@ single-treatment-of-placebo-in-fucoidan-study)))
-		      (label "Role of subject to be treated with placebo in the fucoidan pilot study")
+		      (label "role of subject to be treated with placebo in the fucoidan pilot study")
 		      (definition "Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo")
 		      (signedalan))
 
 	       (class (fcusecase) control-subject :complete
 		      (manch (and !'homo sapiens'@
 				  (some !'bearer_of'@ to-be-treated-with-guar-gum-role)))
-		      (label "Subject in control arm of fucoidan pilot study")
+		      (label "subject in control arm of fucoidan pilot study")
 		      (definition "Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study")
 		      (signedalan))
 
 	       (class (fcusecase) treated-subject :complete
 		      (manch (and !'homo sapiens'@
 				  (some !'bearer_of'@ to-be-treated-with-fucoidan-role)))
-		      (label "Subject in treated arm of fucoidan pilot study")
+		      (label "subject in treated arm of fucoidan pilot study")
 		      (definition "Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study")
 		      (signedalan))
 
@@ -650,6 +655,7 @@ details of the study.
 	       (blood-assay aptt "activated partial thromboplastin time (aPTT) assay" "The activated partial thromboplastin time (aPTT) was determined using Dade Actin FSL activated PTT reagent."
 			    "An activated partial thromboplastin time (aPTT) assay is a an assay measuring the efficacy of both the 'intrinsic' (now referred to as the contact activation pathway) and the common coagulation pathways. In order to activate the intrinsic pathway, phospholipid, an activator (such as silica, celite, kaolin, ellagic acid), and calcium (to reverse the anticoagulant effect of the oxalate) are mixed into the plasma sample . The time is measured until a thrombus (clot) forms."
 			    "WEB:http://en.wikipedia.org/wiki/Partial_thromboplastin_time@2008/10/06")
+	       (blood-assay-unfinished aptt)
 
 	       (blood-assay at-iii "antithrombin-III (AT-III) assay" "The antithrombin-III (AT-III) was determined using Berichrom Antithrombin-III (A)."
 			    "A test to measure the amount of antithrombin III in blood."
@@ -665,7 +671,11 @@ details of the study.
 
 	       (class at-iii-berichrome-assay :partial (manch (and at-iii
 								   (exactly !'has_specified_output'@ 1)
-								   (some !'has_specified_output'@ !'scalar measurement datum'@)))
+								   (some !'has_specified_output'@ !'scalar measurement datum'@)
+								   (some !'realizes'@
+									 (and !'reagent role'@
+									      (some !'role_of'@ berichrome-atIII-kit)))
+								   (some !'has_participant'@ berichrome-atIII-kit)))
 								 
 		      (label "antithrombin-III (AT-III) berichrome assay")
 		      (definition "An antithrombin-III (AT-III) assay in which exogenous bovine thrombin and heparin are added to test plasma to form a thrombin-heparin-AT complex. The residual thrombin not bound then hydrolyzes the p-nitroalanine substrate to produce a yellow color, which is read at 405 nm. The intensity of color produced is inversely proportional to the AT present. A calibration is done with standard human plasma reagent and results for a given speciment are reported as a percentage relative to the standard")
@@ -674,8 +684,8 @@ details of the study.
 		      (fcusecase)
 		      (4obi))
 
-	       (class berichrome-atIII-kit (label "Berichrom(r) Antithrombin III (A)") :partial !'processed material'@
-		      "For the chromogenic determination of antithrombin III. Autoanalyzer method for undiluted samples. For the quantitative chromogenic determination of the functional activity of antithrombin III in plasma on autoanalyzers for the diagnosis of diminished AT III synthesis, increased consumption, and for monitoring substitution therapy. Berichrom(r) Antithrombin III (A) is used for the rapid determination of the physiologically active antithrombin III and permits the diagnsis of congenital and acquired antithrombin III deficiency, a condition frequently associated with an increased risk of thrombosis. Acquired antithrombin III deficiencies frequently occur due to consumption following major operations or due to disseminated intravascular coagulation (DIC) in cases of septicaemia, nephroses, liver parenchymal damage (hepatitis, drug intoxication, alcoholism) and oestrogen-containing contraceptives. The test permits early detection of patients at increased risk for thrombosis. Kit contains: 6 x for 5.0 mL Thrombin (bovine), 3 x for 3.0 mL Substrate Reagent, 1 x 30.0 mL Buffer Solution"
+	       (class berichrome-atIII-kit (label "Berichrom(r) Antithrombin III (A) Kit") :partial !'processed material'@
+		      (definition "For the chromogenic determination of antithrombin III. Autoanalyzer method for undiluted samples. For the quantitative chromogenic determination of the functional activity of antithrombin III in plasma on autoanalyzers for the diagnosis of diminished AT III synthesis, increased consumption, and for monitoring substitution therapy. Berichrom(r) Antithrombin III (A) is used for the rapid determination of the physiologically active antithrombin III and permits the diagnsis of congenital and acquired antithrombin III deficiency, a condition frequently associated with an increased risk of thrombosis. Acquired antithrombin III deficiencies frequently occur due to consumption following major operations or due to disseminated intravascular coagulation (DIC) in cases of septicaemia, nephroses, liver parenchymal damage (hepatitis, drug intoxication, alcoholism) and oestrogen-containing contraceptives. The test permits early detection of patients at increased risk for thrombosis. Kit contains: 6 x for 5.0 mL Thrombin (bovine), 3 x for 3.0 mL Substrate Reagent, 1 x 30.0 mL Buffer Solution")
 		      (definition-source "WEB:http://www.dadebehring.com/edbna2/ebusiness/products/productDetail.jsp?sDiscipline=Hemostasis&FirstLevelOID=-13075&sCategory_Name=BCS&SecondLevelOID=-13895&ThirdLevelOID=-13904&selectedProductType=H-Assays+-+non+US&sProductName=OWWR15&PROD_OID=44198@2009/08/06")
 		      (signedalan)
 		      (fcusecase)
@@ -697,7 +707,9 @@ details of the study.
 					   (has !'is_manufactured_by'@ sysmex))))
 
 	       (class fucoidan-at-iii-berichrome-assay
-		 (label "Antithrombin assay in the fucoidan study")
+		 (label "antithrombin assay in the fucoidan study")
+		 (definition "antithrombin assay in the fucoidan study, which used the Berichrom(r) Antithrombin III (A) Kit for reagents and the Sysmex CA-6000 Coagulation Analyzer for measurement")
+		 (definition-source "PMID:19696660")
 		 (fcusecase)
 		 (signedalan)
 		 :partial
@@ -714,17 +726,23 @@ details of the study.
 			    "A  thrombin time assay is on in which after liberating the plasma from whole blood by centrifugation, bovine Thrombin is added to the sample of plasma. The clot is formed and is detected optically or mechanically by a coagulation instrument. The time between the addition of the thrombin and the clot formation is recorded as the thrombin clotting time"
 			    "WEB:http://en.wikipedia.org/wiki/Thrombin_time@2009/10/06"
 			    )
+	       (blood-assay-unfinished thrombin-time)
 
-	       (blood-assay Antifactor-Xa "Spectrolyse Heparin Antifactor-Xa Assay" "Antifactor-Xa (anti-Xa) was determined using spectrolyse heparin (Xa) (Trinity Biotech plc, Bray, County Wicklow, Ireland)."
+
+	       (blood-assay Antifactor-Xa "spectrolyse heparin antifactor-Xa assay" "Antifactor-Xa (anti-Xa) was determined using spectrolyse heparin (Xa) (Trinity Biotech plc, Bray, County Wicklow, Ireland)."
 			    "A Spectrolyse Heparin (Xa) assay is intended for the quantitative determination of therapeutic Heparin in human plasma.
 
 The principle inhibitor of Thrombin, Factor Xa and other coagulation serine proteases in plasma is Antithrombin III. The rate of inhibition, under normal conditions, is slow, but can be increased several thousand-fold by Heparin. This mechanism accounts for the anticoagulant effect of Heparin. Low Molecular Weight Therapeutic Heparin (LMWH) preparations appear to catalyze the reaction between Factor Xa and Antithrombin III more readily than the reaction between Thrombin and Antithrombin III while standard Heparin catalyzes both reactions equally. The Factor Xa inhibition test is the most useful test for assaying the widest variety of therapeutic Heparin preparations. In this method, when both Factor Xa and Antithrombin III are present in excess, the rate of Factor Xa inhibition is directly proportional to the Heparin concentration. The residual Factor Xa activity, measured with a Factor Xa-specific chromogenic substrate, is inversely proportional to the Heparin concentration."
 			    "WEB:http://www.kordia.nl/en/product/hemostasis/specialty_kits__reagens/598/spectrolyse_heparin_anti_xa@2009/08/06"
 			    )
+
+	       (blood-assay-unfinished Antifactor-Xa)
+
 	       (blood-assay prothrombin-time "prothrombin time assay" "The prothrombin time (PT) was quantitatively determined using RecombiPlasTin (Instrumentation Laboratory Company, Lexington, Massachusetts, USA)."
 			    "The prothrombin time is an assay most commonly measured using blood plasma. Blood is drawn into a test tube containing liquid citrate, which acts as an anticoagulant by binding the calcium in a sample. The blood is mixed, then centrifuged to separate blood cells from plasma. In newborns, whole blood is used. The plasma is analyzed by a biomedical scientist on an automated instrument at 37 degrees C, which takes a sample of the plasma. An excess of calcium is added (thereby reversing the effects of citrate), which enables the blood to clot again. For an accurate measurement the proportion of blood to citrate needs to be fixed; many laboratories will not perform the assay if the tube is underfilled and contains a relatively high concentration of citrate. If the tube is underfilled or overfilled with blood, the standardized dilution of 1 part anticoagulant to 9 parts whole blood is no longer valid. For the prothrombin time test the appropriate sample is the blue top tube, or sodium citrate tube, which is a liquid anticoagulant. Tissue factor (also known as factor III or thromboplastin) is added, and the time the sample takes to clot is measured optically. Some laboratories use a mechanical measurement, which eliminates interferences from lipemic and icteric samples. The prothrombin ratio is the prothrombin time for a patient, divided by the result for control plasma."
 			    "WEB:http://en.wikipedia.org/wiki/Prothrombin_time@2009/10/06"
 			    )
+	       (blood-assay-unfinished prothrombin-time)
 
 	       #|
 	       Coagulation tests 
@@ -874,3 +892,6 @@ we will not model time triggers now
 we do not need instances for all patients, one representative for each group is enough
 we will not work on this use case in Philly, but working on it later is desirable
 |$
+
+
+
