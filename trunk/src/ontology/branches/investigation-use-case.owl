@@ -64,6 +64,7 @@
   <owl:Class rdf:about="&obo;OBI_0000070"/>
   <owl:Class rdf:about="&obo;OBI_0000074"/>
   <owl:Class rdf:about="&obo;OBI_0000084"/>
+  <owl:Class rdf:about="&obo;OBI_0000086"/>
   <owl:Class rdf:about="&obo;OBI_0000097"/>
   <owl:Class rdf:about="&obo;OBI_0000103"/>
   <owl:Class rdf:about="&obo;OBI_0000175"/>
@@ -87,6 +88,7 @@
   <owl:Class rdf:about="&obo;OBI_0600004"/>
   <owl:Class rdf:about="&obo;OBI_0600005"/>
   <owl:Class rdf:about="&obo;TMPIAO_0000002">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A scalar measurement datum that is the result of measuring a temporal interval</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to IAO. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
@@ -96,12 +98,12 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
-            <owl:onProperty rdf:resource="&obo;TMPIAO_0000003"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
             <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
+            <owl:onProperty rdf:resource="&obo;TMPIAO_0000003"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -115,7 +117,7 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">http://clinicaltrials.gov/ct2/info/glossary#informed</obo:IAO_0000119>
-    <rdfs:label rdf:datatype="&xsd;string">Informed consent process</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">informed consent process</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -175,10 +177,6 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&ro;part_of"/>
-            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000001"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;has_participant"/>
             <owl:someValuesFrom>
               <owl:Restriction>
@@ -186,6 +184,10 @@
                 <owl:someValuesFrom rdf:resource="&obo;OBI_0000097"/>
               </owl:Restriction>
             </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&ro;part_of"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000001"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -232,7 +234,7 @@
   </owl:Class>
 
   <owl:Class rdf:about="&obo;TMPOBI_0000005">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of</obo:IAO_0000115>
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A single blind study execution is defined as any study execution in which the subjects are not informed of which study arm they are part of during the portion of the trial when the subjects are being treated</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
@@ -252,7 +254,7 @@
   </owl:Class>
 
   <owl:Class rdf:about="&obo;TMPOBI_0000006">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of</obo:IAO_0000115>
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A double blind study execution is defined as any study execution in which neither the subjects nor the investigators are informed of which study arm the subjects are part of during the portion of the trial when the subjects are being treated</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
@@ -340,12 +342,9 @@
     <obo:IAO_0000115 rdf:datatype="&xsd;string">An adding a material entity to target with the entity is a pill and the target is the mouth</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <rdfs:label rdf:datatype="&xsd;string">oral ingestion of pill</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000009"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
         <owl:someValuesFrom>
@@ -373,6 +372,10 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000009"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -402,18 +405,18 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Unblinding process</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">unblinding process</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0000011"/>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;part_of"/>
-            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000003"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0000471"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;part_of"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0000471"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000003"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -438,6 +441,7 @@
     <obo:IAO_0000115 rdf:datatype="&xsd;string">An activated partial thromboplastin time (aPTT) assay is a an assay measuring the efficacy of both the 'intrinsic' (now referred to as the contact activation pathway) and the common coagulation pathways. In order to activate the intrinsic pathway, phospholipid, an activator (such as silica, celite, kaolin, ellagic acid), and calcium (to reverse the anticoagulant effect of the oxalate) are mixed into the plasma sample . The time is measured until a thrombus (clot) forms.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. This assay was added during the fucoidan use case exercise but still needs to be fleshed out. Only the AT-III assay has more carefully specified inputs and outputs</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://en.wikipedia.org/wiki/Partial_thromboplastin_time@2008/10/06</obo:IAO_0000119>
     <rdfs:label rdf:datatype="&xsd;string">activated partial thromboplastin time (aPTT) assay</rdfs:label>
@@ -521,12 +525,12 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0000437"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
             <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0000437"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -538,6 +542,7 @@
     <obo:IAO_0000115 rdf:datatype="&xsd;string">A  thrombin time assay is on in which after liberating the plasma from whole blood by centrifugation, bovine Thrombin is added to the sample of plasma. The clot is formed and is detected optically or mechanically by a coagulation instrument. The time between the addition of the thrombin and the clot formation is recorded as the thrombin clotting time</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. This assay was added during the fucoidan use case exercise but still needs to be fleshed out. Only the AT-III assay has more carefully specified inputs and outputs</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://en.wikipedia.org/wiki/Thrombin_time@2009/10/06</obo:IAO_0000119>
     <rdfs:label rdf:datatype="&xsd;string">thrombin time assay</rdfs:label>
@@ -575,9 +580,10 @@
 The principle inhibitor of Thrombin, Factor Xa and other coagulation serine proteases in plasma is Antithrombin III. The rate of inhibition, under normal conditions, is slow, but can be increased several thousand-fold by Heparin. This mechanism accounts for the anticoagulant effect of Heparin. Low Molecular Weight Therapeutic Heparin (LMWH) preparations appear to catalyze the reaction between Factor Xa and Antithrombin III more readily than the reaction between Thrombin and Antithrombin III while standard Heparin catalyzes both reactions equally. The Factor Xa inhibition test is the most useful test for assaying the widest variety of therapeutic Heparin preparations. In this method, when both Factor Xa and Antithrombin III are present in excess, the rate of Factor Xa inhibition is directly proportional to the Heparin concentration. The residual Factor Xa activity, measured with a Factor Xa-specific chromogenic substrate, is inversely proportional to the Heparin concentration.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. This assay was added during the fucoidan use case exercise but still needs to be fleshed out. Only the AT-III assay has more carefully specified inputs and outputs</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://www.kordia.nl/en/product/hemostasis/specialty_kits__reagens/598/spectrolyse_heparin_anti_xa@2009/08/06</obo:IAO_0000119>
-    <rdfs:label rdf:datatype="&xsd;string">Spectrolyse Heparin Antifactor-Xa Assay</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">spectrolyse heparin antifactor-Xa assay</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -610,6 +616,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000115 rdf:datatype="&xsd;string">The prothrombin time is an assay most commonly measured using blood plasma. Blood is drawn into a test tube containing liquid citrate, which acts as an anticoagulant by binding the calcium in a sample. The blood is mixed, then centrifuged to separate blood cells from plasma. In newborns, whole blood is used. The plasma is analyzed by a biomedical scientist on an automated instrument at 37 degrees C, which takes a sample of the plasma. An excess of calcium is added (thereby reversing the effects of citrate), which enables the blood to clot again. For an accurate measurement the proportion of blood to citrate needs to be fixed; many laboratories will not perform the assay if the tube is underfilled and contains a relatively high concentration of citrate. If the tube is underfilled or overfilled with blood, the standardized dilution of 1 part anticoagulant to 9 parts whole blood is no longer valid. For the prothrombin time test the appropriate sample is the blue top tube, or sodium citrate tube, which is a liquid anticoagulant. Tissue factor (also known as factor III or thromboplastin) is added, and the time the sample takes to clot is measured optically. Some laboratories use a mechanical measurement, which eliminates interferences from lipemic and icteric samples. The prothrombin ratio is the prothrombin time for a patient, divided by the result for control plasma.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. This assay was added during the fucoidan use case exercise but still needs to be fleshed out. Only the AT-III assay has more carefully specified inputs and outputs</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://en.wikipedia.org/wiki/Prothrombin_time@2009/10/06</obo:IAO_0000119>
     <rdfs:label rdf:datatype="&xsd;string">prothrombin time assay</rdfs:label>
@@ -661,12 +668,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:Class>
 
   <owl:Class rdf:about="&obo;TMPOBI_0000025">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">For the chromogenic determination of antithrombin III. Autoanalyzer method for undiluted samples. For the quantitative chromogenic determination of the functional activity of antithrombin III in plasma on autoanalyzers for the diagnosis of diminished AT III synthesis, increased consumption, and for monitoring substitution therapy. Berichrom(r) Antithrombin III (A) is used for the rapid determination of the physiologically active antithrombin III and permits the diagnsis of congenital and acquired antithrombin III deficiency, a condition frequently associated with an increased risk of thrombosis. Acquired antithrombin III deficiencies frequently occur due to consumption following major operations or due to disseminated intravascular coagulation (DIC) in cases of septicaemia, nephroses, liver parenchymal damage (hepatitis, drug intoxication, alcoholism) and oestrogen-containing contraceptives. The test permits early detection of patients at increased risk for thrombosis. Kit contains: 6 x for 5.0 mL Thrombin (bovine), 3 x for 3.0 mL Substrate Reagent, 1 x 30.0 mL Buffer Solution</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://www.dadebehring.com/edbna2/ebusiness/products/productDetail.jsp?sDiscipline=Hemostasis&amp;FirstLevelOID=-13075&amp;sCategory_Name=BCS&amp;SecondLevelOID=-13895&amp;ThirdLevelOID=-13904&amp;selectedProductType=H-Assays+-+non+US&amp;sProductName=OWWR15&amp;PROD_OID=44198@2009/08/06</obo:IAO_0000119>
-    <rdfs:comment rdf:datatype="&xsd;string">For the chromogenic determination of antithrombin III. Autoanalyzer method for undiluted samples. For the quantitative chromogenic determination of the functional activity of antithrombin III in plasma on autoanalyzers for the diagnosis of diminished AT III synthesis, increased consumption, and for monitoring substitution therapy. Berichrom(r) Antithrombin III (A) is used for the rapid determination of the physiologically active antithrombin III and permits the diagnsis of congenital and acquired antithrombin III deficiency, a condition frequently associated with an increased risk of thrombosis. Acquired antithrombin III deficiencies frequently occur due to consumption following major operations or due to disseminated intravascular coagulation (DIC) in cases of septicaemia, nephroses, liver parenchymal damage (hepatitis, drug intoxication, alcoholism) and oestrogen-containing contraceptives. The test permits early detection of patients at increased risk for thrombosis. Kit contains: 6 x for 5.0 mL Thrombin (bovine), 3 x for 3.0 mL Substrate Reagent, 1 x 30.0 mL Buffer Solution</rdfs:comment>
-    <rdfs:label rdf:datatype="&xsd;string">Berichrom(r) Antithrombin III (A)</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">Berichrom(r) Antithrombin III (A) Kit</rdfs:label>
     <rdfs:subClassOf rdf:resource="&obo;OBI_0000047"/>
   </owl:Class>
 
@@ -682,12 +689,30 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;TMPOBI_0000019"/>
           <owl:Restriction>
-            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+            <owl:onProperty rdf:resource="&ro;has_participant"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000025"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom rdf:resource="&obo;IAO_0000032"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="&obo;OBI_0000086"/>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="&OBO_REL;role_of"/>
+                    <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000025"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -733,6 +758,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0302893"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom>
               <owl:Class>
@@ -745,10 +774,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -770,7 +795,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000115 rdf:datatype="&xsd;string">Exactly those subjects who are assigned to be treated with active ingredient in the fucoidan pilot study</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Subject in control arm of fucoidan pilot study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">subject in control arm of fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&NCBITaxon;NCBITaxon_9606"/>
       <owl:Restriction>
@@ -784,7 +809,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000115 rdf:datatype="&xsd;string">Exactly those subjects who are assigned to be treated with placebo in the fucoidan pilot study</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Subject in treated arm of fucoidan pilot study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">subject in treated arm of fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&NCBITaxon;NCBITaxon_9606"/>
       <owl:Restriction>
@@ -798,7 +823,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000115 rdf:datatype="&xsd;string">Role of any subject in the fucoidan study who is to be treated with guar gum in the pilot study as placebo</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Role of subject to be treated with placebo in the fucoidan pilot study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">role of subject to be treated with placebo in the fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000007"/>
       <owl:Restriction>
@@ -809,10 +834,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:Class>
 
   <owl:Class rdf:about="&fucoidan;fc_0018">
-    <obo:IAO_0000115 rdf:datatype="&xsd;string">Role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient</obo:IAO_0000115>
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Role of subject to be treated with fucoidan in the pilot study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">role of subject to be treated with fucoidan in the pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000008"/>
       <owl:Restriction>
@@ -851,18 +876,17 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
       <rdf:Description rdf:about="&obo;TMPOBI_0000012"/>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
-            <owl:someValuesFrom rdf:resource="&fucoidan;fc_0025"/>
-          </owl:Restriction>
-        </owl:someValuesFrom>
+        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000011"/>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_1"/>
+              </owl:Restriction>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000316"/>
                 <owl:someValuesFrom rdf:resource="&obo;OBI_0000040"/>
@@ -871,23 +895,26 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="&fucoidan;fc_0024"/>
               </owl:Restriction>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_1"/>
-              </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000011"/>
+        <owl:someValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
+            <owl:someValuesFrom rdf:resource="&fucoidan;fc_0025"/>
+          </owl:Restriction>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
   <owl:Class rdf:about="&fucoidan;fc_0023">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be 3 grams</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable</obo:IAO_0000116>
     <rdfs:label rdf:datatype="&xsd;string">mass measured to be 3 grams</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/PATO#PATO_0000125"/>
@@ -913,7 +940,9 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:Class>
 
   <owl:Class rdf:about="&fucoidan;fc_0024">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be 2.25 grams</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable</obo:IAO_0000116>
     <rdfs:label rdf:datatype="&xsd;string">mass measured to be 2.25 grams</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/PATO#PATO_0000125"/>
@@ -939,7 +968,9 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:Class>
 
   <owl:Class rdf:about="&fucoidan;fc_0025">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A mass quality that has been measured, to the precision of whatever instrument did the measuring, to be .75 grams</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/10/18 Alan Ruttenberg. OBO/OBI doesn't yet have a standard way of representing determinable qualities. This is a strategy that works however, and is arguable more accurate. The class members are those mass quality instances that are measured to be a specific number of grams. An actualy mass of exactly some specified number of grams is, statistically speaking, highly improbable</obo:IAO_0000116>
     <rdfs:label rdf:datatype="&xsd;string">mass measured to be .75 grams</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/PATO#PATO_0000125"/>
@@ -950,12 +981,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="&fucoidan;fc_0028"/>
               <owl:Restriction>
-                <owl:hasValue rdf:resource="&UO;UO_00000021"/>
-                <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
-              </owl:Restriction>
-              <owl:Restriction>
                 <owl:hasValue rdf:datatype="&xsd;float">0.75</owl:hasValue>
                 <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:hasValue rdf:resource="&UO;UO_00000021"/>
+                <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -971,6 +1002,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000013"/>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0022"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
+        <owl:onProperty rdf:resource="&ro;part_of"/>
+      </owl:Restriction>
+      <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
         <owl:someValuesFrom>
           <owl:Class>
@@ -984,14 +1023,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
-      <owl:Restriction>
-        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
-        <owl:onProperty rdf:resource="&ro;part_of"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0022"/>
-      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
@@ -1001,14 +1032,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <rdfs:label rdf:datatype="&xsd;string">single treatment of placebo in fucoidan study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000013"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0021"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
-        <owl:onProperty rdf:resource="&ro;part_of"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
         <owl:someValuesFrom>
@@ -1022,6 +1045,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
+        <owl:onProperty rdf:resource="&ro;part_of"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0021"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -1037,12 +1068,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="&UO;UO_0000002"/>
-            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000125"/>
             <owl:onProperty rdf:resource="&obo;IAO_0000221"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="&UO;UO_0000002"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1072,9 +1103,11 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:Class>
 
   <owl:Class rdf:about="&fucoidan;fc_0032">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">antithrombin assay in the fucoidan study, which used the Berichrom(r) Antithrombin III (A) Kit for reagents and the Sysmex CA-6000 Coagulation Analyzer for measurement</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdfs:label rdf:datatype="&xsd;string">Antithrombin assay in the fucoidan study</rdfs:label>
+    <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
+    <rdfs:label rdf:datatype="&xsd;string">antithrombin assay in the fucoidan study</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1098,6 +1131,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&ro;has_participant"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000024"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
             <owl:someValuesFrom>
               <owl:Restriction>
@@ -1105,10 +1142,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 <owl:someValuesFrom rdf:resource="&fucoidan;fc_0031"/>
               </owl:Restriction>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&ro;has_participant"/>
-            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000024"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1148,9 +1181,8 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <owl:Class rdf:about="http://purl.org/obo/owl/PRO#PRO_000000001"/>
   <owl:Class rdf:about="http://purl.org/obo/owl/PRO#PRO_000003252">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
-    <obo:IAO_0000116 rdf:datatype="&xsd;string">Alan Ruttenberg, 2009/10/06: Requested PRO id https://sourceforge.net/tracker/?func=detail&amp;aid=2873648&amp;group_id=266825&amp;atid=1135711</obo:IAO_0000116>
     <obo:IAO_0000412 rdf:resource="http://purl.org/obo/owl/PRO"/>
-    <rdfs:label rdf:datatype="&xsd;string">Human Antithrombin-III protein</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">human Antithrombin-III protein</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/PRO#PRO_000000001"/>
   </owl:Class>
 
@@ -1173,7 +1205,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-  <owl:Class rdf:nodeID="b4428">
+  <owl:Class rdf:nodeID="b3116">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -1187,9 +1219,13 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b4451">
+  <owl:Class rdf:nodeID="b3106">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000014"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000028"/>
+      </owl:Restriction>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
@@ -1202,14 +1238,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom rdf:resource="&fucoidan;fc_0031"/>
       </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000028"/>
-      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b4492">
+  <owl:Class rdf:nodeID="b3136">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000673"/>
       <owl:Restriction>
@@ -1224,7 +1256,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b4500">
+  <owl:Class rdf:nodeID="b3134">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -1261,7 +1293,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   </owl:AnnotationProperty>
 
   <owl:AnnotationProperty rdf:about="&obo;IAO_0000412"/>
-  <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
   <owl:AnnotationProperty rdf:about="&rdfs;label"/>
   
   <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
@@ -1382,8 +1413,8 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <rdf:Description rdf:about="&fucoidan;fc_0007">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Helen Parkinson</obo:IAO_0000117>
-    <rdf:type rdf:nodeID="b4428"/>
-    <rdf:type rdf:nodeID="b4500"/>
+    <rdf:type rdf:nodeID="b3116"/>
+    <rdf:type rdf:nodeID="b3134"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -1437,7 +1468,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <ro:part_of rdf:resource="&fucoidan;fc_0007"/>
-    <rdf:type rdf:nodeID="b4451"/>
+    <rdf:type rdf:nodeID="b3106"/>
     <rdfs:label rdf:datatype="&xsd;string">treatment portion of study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -1472,7 +1503,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)</obo:IAO_0000119>
     <obo:OBI_0000299 rdf:resource="&fucoidan;fc_0037"/>
-    <rdf:type rdf:nodeID="b4492"/>
+    <rdf:type rdf:nodeID="b3136"/>
     <rdfs:label rdf:datatype="&xsd;string">Test of significance of Antithrombin-III level change between day 1 and day 4</rdfs:label>
   </rdf:Description>
 
