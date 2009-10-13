@@ -82,4 +82,20 @@ where
       ?blank rdfs:label ?definition}
 }
 
+# get the label and definition for BIRN terms
+== http://ontology.neuinfo.org/NIF/BiomaterialEntities/.* == 
+construct
+{ 
+  _ID_GOES_HERE_ rdf:type owl:Class.
+  _ID_GOES_HERE_ alias:preferredTerm ?label.
+  _ID_GOES_HERE_ rdfs:label ?label.
+  _ID_GOES_HERE_ alias:definition ?definition.
+}
+where
+{
+  {   _ID_GOES_HERE_ rdfs:label ?label. }
+  UNION
+  {   _ID_GOES_HERE_ <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#birnlexDefinition> ?definition}
+}
+
 
