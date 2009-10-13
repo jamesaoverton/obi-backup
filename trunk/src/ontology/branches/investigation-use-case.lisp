@@ -106,7 +106,7 @@ details of the study.
   (let ((*default-uri-label-source* :obi))
     (with-obo-metadata-uris
 	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)(object-property !'contains'@)
-	(object-property !'has_specified_input'@)(object-property !'is_manufactured_by'@)
+	(object-property !'has_specified_input'@)(object-property !'is_manufactured_by'@)(object-property !'function_of'@)
 	(object-property !'is about'@)
 	(object-property !'denotes'@)
 	(object-property !'realizes'@)  (object-property !'is_realized_by'@) (object-property !'bearer_of'@)
@@ -704,7 +704,10 @@ details of the study.
 		 (manch (and at-iii-berichrome-assay
 			     (some !'has_specified_input'@ (some !'is_specified_output_of'@ fucoidan-sample-taking))
 			     (exactly !'has_specified_input'@ 1)
-			     (some !'has_participant'@ (and sysmex-ca-6000 (some !'realizes'@ !'device function'@))))))
+			     (some !'realizes'@
+				   (and !'device function'@
+					(some !'function_of'@ sysmex-ca-6000)))
+			     (some !'has_participant'@ sysmex-ca-6000 ))))
 									  
 		    
 	       (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
@@ -834,10 +837,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
 	     
 	     (individual statistical-test
-	       (type (manch (and !'statistical hypothesis test'@
-				 (all !'has_specified_input'@
-				       (some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay))
-				 )))
+ 	       (type (manch (and !'statistical hypothesis test'@
+ 				(all !'has_specified_input'@
+					(some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay))
+ 				 )))
 				 
 		     
 
