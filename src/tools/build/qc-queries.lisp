@@ -35,7 +35,7 @@
       (?si !rdfs:label ?s)
       )
      )
-   :kb kb :use-reasoner :jena :trace "Curation status" :values nil :trace-show-query nil))
+   :kb kb :use-reasoner :none :trace "Curation status" :values nil :trace-show-query nil))
 
 (defun missing-curation (kb)
   (sparql
@@ -58,7 +58,7 @@
 	       (not (equal ?type !rdfs:Class))
 	       (not (bound ?status))))
      )
-   :kb kb :use-reasoner :jena :trace "Terms missing curation status" :values nil :trace-show-query nil))
+   :kb kb :use-reasoner :none :trace "Terms missing curation status" :values nil :trace-show-query nil))
 
 (defun extra-curation-status-instances (kb)
   (sparql
@@ -76,7 +76,7 @@
 	       (not (equal ?ci !uncurated))
 	       (not (equal ?ci !placeholder)) 
 	       )))
-   :kb kb :use-reasoner :jena :trace "Extra curation status instances" :values nil :trace-show-query nil))
+   :kb kb :use-reasoner :none :trace "Extra curation status instances" :values nil :trace-show-query nil))
   
 
 ;; (defun string-curation-status (kb)
