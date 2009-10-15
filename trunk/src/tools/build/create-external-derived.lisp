@@ -119,6 +119,9 @@
 	(#"write" writer model (new '|FileOutputStream| path) base)
 	))))
 
+(defparameter *smart-leftquote-pattern* (coerce (list #\. (code-char 196) (code-char 242)) 'string))
+(defparameter *smart-rightquote-pattern* (coerce (list #\. (code-char 196) (code-char 244)) 'string))
+
 (defun create-external-derived (&key
 				(kb (load-kb-jena "obi:branches;external.owl"))
 				(templates-path "obi:lisp;external-templates.txt")
@@ -157,7 +160,9 @@
 				       (progn
 					 (print-db filled-query)
 					 (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))
-				       (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t))))))))
+
+				       ;; FIXME - Horrible workaround to compensate for abcl not understanding unicode and VO using smart quotes
+				       (#"replaceAll" (#"replaceAll" (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;"))))))))
 	    (let ((basic-info
 		   (with-output-to-string (s)
 		     (loop for (class nil parent) in classes
