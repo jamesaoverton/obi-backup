@@ -102,15 +102,7 @@
        do
        (loop for line in (butlast (cddr lines))
 	  do (format f "~a~%" line)))
-    (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/OBI_0000111\"/>")
-    (format f "</rdf:RDF>~%")))
-
-(defun combine-template-query-results (results output-path)
-  (with-open-file (f output-path :direction :output :if-does-not-exist :create :if-exists :supersede)
-    (write-string *external-derived-header* f)
-    (loop for rdf in results
-       do
-	 (write-string (#"replaceAll" (#"replaceFirst" (#"replaceAll" rdf "(?i)</{0,1}rdf:rdf.*?>" "") "<\\?xml.*?\\?>" "") "purl.obolibrary.org" "purl.obolibrary.org") f))
+    (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000111\"/>")
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
