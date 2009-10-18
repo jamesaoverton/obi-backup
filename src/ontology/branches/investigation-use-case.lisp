@@ -105,7 +105,8 @@ details of the study.
 	   (uri-full !obo:obi/investigation-use-case.owl))
   (ontology-annotation !owl:versionInfo "$Revision: 80 $")
   (ontology-annotation !protegeowl:defaultLanguage "en")
-  (let ((*default-uri-label-source* :obi))
+  (let ((*default-uri-label-source* :obi)
+	(molecular-entity !chebi:23367))
     (with-obo-metadata-uris
 	(object-property !'is_specified_output_of'@)   (object-property !'has_specified_output'@)(object-property !'contains'@)
 	(object-property !'has_specified_input'@)(object-property !'is_manufactured_by'@)(object-property !'function_of'@)
@@ -132,8 +133,8 @@ details of the study.
 			    (gram !unit:00000021 (:individual mass-unit) !oboont:UO "gram")
 			    (blood-coagulation !go:007596 !span:Process !obo:GO "blood coagulation")
 			    (serpinc1-product !<http://purl.org/obo/owl/PRO#PRO_000003252> !'protein'@ !oboont:PRO  "human Antithrombin-III protein") 
-			    (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_32142> !'molecular entity'@ !oboont:CHEBI "sodium citrate dihydrate") 
-			    (edta !<http://purl.org/obo/owl/CHEBI#CHEBI_42191> !'molecular entity'@ !oboont:CHEBI "EDTA"))
+			    (sodium-citrate !<http://purl.org/obo/owl/CHEBI#CHEBI_32142> molecular-entity !oboont:CHEBI "sodium citrate dihydrate") 
+			    (edta !<http://purl.org/obo/owl/CHEBI#CHEBI_42191> molecular-entity !oboont:CHEBI "EDTA"))
 	  ;; https://sourceforge.net/tracker/?func=detail&aid=2873869&group_id=125463&atid=703818
 
 	  ;; put these uris into a http://purl.obolibary.org/obo/obi/example/OBIX_xxxxx
@@ -174,6 +175,7 @@ details of the study.
 		(statistical-test (fcuri 35))
 		(interpreting-fucoidan-study-data (fcuri 36))
 		(p-value (fcuri 37))
+		(fucoidan-cohort-assignment (fcuri 38))
 		;; the following should move into obi proper - here for now to be able to keep track of them
 		(informed-consent-process (fcobiuri 1))
 		(informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -204,7 +206,8 @@ details of the study.
 		(at-iii-berichrome-assay (fcobiuri 26))
 		(anticoagulant-containing-test-tube (fcobiuri 27))
 		(anticoagulant-tube-storage-of-blood (fcobiuri 28))
-		(conclusion (fcobiuri 29))
+		(conclusion (fciaouri 29))
+		(hypothesis (fciaouri 30))
 		;; using ids 30-42 for days.
 
 		;; the following should move into iao proper - here for now to be able to keep track of them
@@ -516,7 +519,7 @@ details of the study.
 
 
 	       (class (fcusecase) edta (label "EDTA") 
-		      :partial !'molecular entity'@)
+		      :partial molecular-entity)
 
 	       (class (fcusecase) mass-measurement-datum
 		      (4iao)
@@ -697,6 +700,18 @@ details of the study.
 			   (fcusecase)
 			   (4obi))
 
+	       (individual fucoidan-cohort-assignment 
+		 (label "fucoidan study cohort assignment")
+		 (definition "A group assignment process in which participants in the fucoidan study are assigned to either the control or treated arm of the study")
+		 (fcusecase)
+		 (signedalan)
+		 (type
+		  (manch (and !'group assignment'@
+			      (some !'has_specified_output'@
+				    (or to-be-treated-with-guar-gum-role
+					to-be-treated-with-fucoidan-role))))))
+			      
+
 	       (class sysmex-ca-6000 (label "Sysmex CA-6000 Coagulation Analyzer")
 		      (definition "The Sysmex CA-6000 automated coagulation analyzer is a random access instrument that is capable of performing 20 clot-based and chromogenic assays")
 		      (definition-source "web:http://www.clinchem.org/cgi/content/full/43/9/1783@2009/08/06")
@@ -840,6 +855,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 	       (label "interpreting fucoidan study data")
 	       (value !'has_specified_input'@ p-value)
 	       (value !'has_specified_output'@ fucoidan-conclusion)
+	       (type !'interpreting data'@)
 	       (definition "The process of interpreting the results of the statistical analyses on the fucoidan study assays")
 	       (definition-source "PMID:19696660")
 	       (signedalan)
@@ -847,8 +863,23 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
 
 	     (class conclusion (label "conclusion")
 		    :partial !'information content entity'@
-		    (definition "A conclusion is an information content entity that is an assertion of the outcome of a testing of a hypothesis.")
-		    (editor-note "2009/10/12 Alan Ruttenberg. This term is provisional and was made by analogy to the definition of hypothesis in OBI. There is a distinction that needs to be made between textual entities and the entity which is the conclusion/hypothesis and this needs further work")
+		    (definition "A conclusion is a textual entity that expresses the results of reasoning about a problem, for instance as typically found towards the end of scientific papers.")
+		    (signedalan)
+		    (4obi)
+		    (fcusecase)
+		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
+
+	     (class conclusion (label "conclusion")
+		    :partial !'textual entity'@
+		    (definition "A conclusion is a textual entity that expresses the results of reasoning about a problem, for instance as is typically found towards the end of scientific papers.")
+		    (signedalan)
+		    (4obi)
+		    (fcusecase)
+		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
+
+	     (class hypothesis (label "hypothesis")
+		    :partial !'textual entity'@
+		    (definition "A textual entity that expresses an assertion that is intended to be tested.")
 		    (signedalan)
 		    (4obi)
 		    (fcusecase)

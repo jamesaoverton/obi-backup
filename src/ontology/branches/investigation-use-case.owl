@@ -87,6 +87,7 @@
   <owl:Class rdf:about="&obo;OBI_0500006"/>
   <owl:Class rdf:about="&obo;OBI_0600004"/>
   <owl:Class rdf:about="&obo;OBI_0600005"/>
+  <owl:Class rdf:about="&obo;OBI_0600015"/>
   <owl:Class rdf:about="&obo;TMPIAO_0000002">
     <obo:IAO_0000115 rdf:datatype="&xsd;string">A scalar measurement datum that is the result of measuring a temporal interval</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
@@ -98,12 +99,12 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
-            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
             <owl:onProperty rdf:resource="&obo;TMPIAO_0000003"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -350,10 +351,10 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="&obo;OBI_0000319"/>
+              <rdf:Description rdf:about="&obo;OBI_0000444"/>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="&OBO_REL;role_of"/>
-                <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000009"/>
+                <owl:someValuesFrom rdf:resource="&obo;FMA#FMA_49184"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -364,10 +365,10 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="&obo;OBI_0000444"/>
+              <rdf:Description rdf:about="&obo;OBI_0000319"/>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="&OBO_REL;role_of"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA#FMA_49184"/>
+                <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000009"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -412,11 +413,11 @@
           <rdf:Description rdf:about="&obo;OBI_0000011"/>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;part_of"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0000471"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000003"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;part_of"/>
-            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000003"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0000471"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -450,6 +451,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom>
               <owl:Class>
@@ -462,10 +467,6 @@
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -480,6 +481,35 @@
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">WEB:http://www.muschealth.com/lab/content.aspx?id=150006@2009/08/06</obo:IAO_0000119>
     <rdfs:label rdf:datatype="&xsd;string">antithrombin-III (AT-III) assay</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="&obo;OBI_0000070"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0000437"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="&obo;IAO_0000032"/>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                    <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_007596"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
@@ -506,35 +536,6 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="&obo;OBI_0000070"/>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="&obo;IAO_0000032"/>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                    <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_007596"/>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0000437"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
   </owl:Class>
 
   <owl:Class rdf:about="&obo;TMPOBI_0000020">
@@ -551,6 +552,10 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom>
               <owl:Class>
@@ -563,10 +568,6 @@
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -589,6 +590,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom>
               <owl:Class>
@@ -601,10 +606,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -625,6 +626,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;OBI_0000070"/>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
             <owl:someValuesFrom>
               <owl:Class>
@@ -637,10 +642,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-            <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -689,16 +690,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;TMPOBI_0000019"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&ro;has_participant"/>
-            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000025"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-            <owl:someValuesFrom rdf:resource="&obo;IAO_0000032"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&ro;has_participant"/>
+            <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000025"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
@@ -713,6 +710,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 </owl:intersectionOf>
               </owl:Class>
             </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+            <owl:someValuesFrom rdf:resource="&obo;IAO_0000032"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -876,17 +877,18 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
       <rdf:Description rdf:about="&obo;TMPOBI_0000012"/>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000011"/>
+        <owl:someValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
+            <owl:someValuesFrom rdf:resource="&fucoidan;fc_0025"/>
+          </owl:Restriction>
+        </owl:someValuesFrom>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_1"/>
-              </owl:Restriction>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000316"/>
                 <owl:someValuesFrom rdf:resource="&obo;OBI_0000040"/>
@@ -895,18 +897,17 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
                 <owl:someValuesFrom rdf:resource="&fucoidan;fc_0024"/>
               </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obofoundry.org/obo/Class_1"/>
+              </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
-            <owl:someValuesFrom rdf:resource="&fucoidan;fc_0025"/>
-          </owl:Restriction>
-        </owl:someValuesFrom>
+        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000011"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -981,12 +982,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="&fucoidan;fc_0028"/>
               <owl:Restriction>
-                <owl:hasValue rdf:datatype="&xsd;float">0.75</owl:hasValue>
-                <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
-              </owl:Restriction>
-              <owl:Restriction>
                 <owl:hasValue rdf:resource="&UO;UO_00000021"/>
                 <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:hasValue rdf:datatype="&xsd;float">0.75</owl:hasValue>
+                <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -1001,10 +1002,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <rdfs:label rdf:datatype="&xsd;string">single treatment of fucoidan in fucoidan study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000013"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0022"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
         <owl:onProperty rdf:resource="&ro;part_of"/>
@@ -1023,6 +1020,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0022"/>
+      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
@@ -1032,6 +1033,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <rdfs:label rdf:datatype="&xsd;string">single treatment of placebo in fucoidan study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;TMPOBI_0000013"/>
+      <owl:Restriction>
+        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
+        <owl:onProperty rdf:resource="&ro;part_of"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0021"/>
+      </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
         <owl:someValuesFrom>
@@ -1045,14 +1054,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:hasValue rdf:resource="&fucoidan;fc_0007"/>
-        <owl:onProperty rdf:resource="&ro;part_of"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0021"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -1068,12 +1069,12 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000125"/>
-            <owl:onProperty rdf:resource="&obo;IAO_0000221"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="&UO;UO_0000002"/>
             <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000125"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000221"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1085,10 +1086,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0600005"/>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
-      </owl:Restriction>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
         <owl:someValuesFrom>
           <owl:Class>
@@ -1098,6 +1095,10 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -1113,20 +1114,6 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;TMPOBI_0000026"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="&obo;OBI_0400167"/>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&OBO_REL;function_of"/>
-                    <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000024"/>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
           </owl:Restriction>
@@ -1141,6 +1128,20 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                 <owl:onProperty rdf:resource="&obo;OBI_0000312"/>
                 <owl:someValuesFrom rdf:resource="&fucoidan;fc_0031"/>
               </owl:Restriction>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="&obo;OBI_0400167"/>
+                  <owl:Restriction>
+                    <owl:onProperty rdf:resource="&OBO_REL;function_of"/>
+                    <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000024"/>
+                  </owl:Restriction>
+                </owl:intersectionOf>
+              </owl:Class>
             </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
@@ -1205,7 +1206,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-  <owl:Class rdf:nodeID="b3116">
+  <owl:Class rdf:nodeID="b19">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -1219,29 +1220,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b3106">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="&obo;TMPOBI_0000014"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000028"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class>
-            <owl:complementOf rdf:resource="&obo;TMPOBI_0000003"/>
-          </owl:Class>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0031"/>
-      </owl:Restriction>
-    </owl:intersectionOf>
-  </owl:Class>
-
-  <owl:Class rdf:nodeID="b3136">
+  <owl:Class rdf:nodeID="b82">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000673"/>
       <owl:Restriction>
@@ -1256,7 +1235,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b3134">
+  <owl:Class rdf:nodeID="b90">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -1266,6 +1245,45 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
           </owl:Class>
         </owl:allValuesFrom>
         <owl:onProperty rdf:resource="&ro;has_part"/>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:nodeID="b101">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&obo;TMPOBI_0000014"/>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:complementOf rdf:resource="&obo;TMPOBI_0000003"/>
+          </owl:Class>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&fucoidan;fc_0031"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&obo;TMPOBI_0000028"/>
+      </owl:Restriction>
+    </owl:intersectionOf>
+  </owl:Class>
+
+  <owl:Class rdf:nodeID="b50">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&obo;OBI_0600015"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="&fucoidan;fc_0017"/>
+              <rdf:Description rdf:about="&fucoidan;fc_0018"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -1413,8 +1431,8 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
   <rdf:Description rdf:about="&fucoidan;fc_0007">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Helen Parkinson</obo:IAO_0000117>
-    <rdf:type rdf:nodeID="b3116"/>
-    <rdf:type rdf:nodeID="b3134"/>
+    <rdf:type rdf:nodeID="b19"/>
+    <rdf:type rdf:nodeID="b90"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -1468,7 +1486,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <ro:part_of rdf:resource="&fucoidan;fc_0007"/>
-    <rdf:type rdf:nodeID="b3106"/>
+    <rdf:type rdf:nodeID="b101"/>
     <rdfs:label rdf:datatype="&xsd;string">treatment portion of study design execution - of Fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -1503,7 +1521,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)</obo:IAO_0000119>
     <obo:OBI_0000299 rdf:resource="&fucoidan;fc_0037"/>
-    <rdf:type rdf:nodeID="b3136"/>
+    <rdf:type rdf:nodeID="b82"/>
     <rdfs:label rdf:datatype="&xsd;string">Test of significance of Antithrombin-III level change between day 1 and day 4</rdfs:label>
   </rdf:Description>
 
@@ -1524,6 +1542,14 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days (n = 10, P =  0.02; Table 2)</obo:IAO_0000119>
     <rdfs:label rdf:datatype="&xsd;string">p-value of 0.02</rdfs:label>
   </obo:OBI_0000175>
+
+  <rdf:Description rdf:about="&fucoidan;fc_0038">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">A group assignment process in which participants in the fucoidan study are assigned to either the control or treated arm of the study</obo:IAO_0000115>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <rdf:type rdf:nodeID="b50"/>
+    <rdfs:label rdf:datatype="&xsd;string">fucoidan study cohort assignment</rdfs:label>
+  </rdf:Description>
 
   <UO:UO_0000002 rdf:about="&UO;UO_00000021">
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
