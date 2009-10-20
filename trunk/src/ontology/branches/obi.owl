@@ -11278,16 +11278,26 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">Animal care technician is a worker role involved in day-to-day care of lab animals; this role occurs before and during the study</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000422">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Instrument adapted from Wikipedia</obo:IAO_0000119>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">Accuracy of oral liquid measuring devices: comparison of dosing cup and oral dosing syringe.Ann Pharmacother. 2008 Jan;42(1):46-52. Epub 2007 Dec 4. PMID: 18056832</obo:IAO_0000112>
     <rdfs:label xml:lang="en">syringe</rdfs:label>
-    <obo:IAO_0000115 xml:lang="en">a syringe is a device which is used to introduce or draw  fluids from a material entity. Syringe is made of a piston and body. the movement of the piston in the body determines the amount/volume of fluid to inject or draw</obo:IAO_0000115>
+    <obo:IAO_0000115 xml:lang="en">a processed material which is used to introduce or draw fluids from a material entity. A syringe is made of a piston and body. the movement of the piston in the body determines the amount/volume of fluid to inject or draw</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000383"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600015">
@@ -12671,18 +12681,14 @@ Proteins are large organic compounds made of amino acids arranged in a linear ch
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000097">
     <obo:OBI_0000284 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Subject</obo:OBI_0000284>
-    <obo:IAO_0000116 xml:lang="en">subject/trial subject. An individual who participates in a clinical trial, either as recipient of the investigational product(s)) or as a control. [ICH] See also healthy volunteer, human subject.; human subject. Individual who is or becomes a participant in research, either as a recipient of the test article or as a control. A subject may be either a healthy human or a patient. [21 CFR50.3]. Synonym: subject/trial subject.</obo:IAO_0000116>
-    <obo:IAO_0000116 xml:lang="en">parasite example
-people infected, then extract parasite which are then tested = observation study of the parasite
-1 study in which we observe people and 1 study in which subject is parasite is one way to split this.  the true definition will come from the study design specification.</obo:IAO_0000116>
     <obo:IAO_0000117 xml:lang="en">GROUP:  Role Branch</obo:IAO_0000117>
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Human subjects in a clinical trial, rats in a toxicogenomics study, tissue cutlures subjected to drug tests, fish observed in an ecotoxicology study.</obo:IAO_0000112>
-    <obo:IAO_0000111 xml:lang="en">Study subject</obo:IAO_0000111>
+    <obo:IAO_0000111 xml:lang="en">study subject role</obo:IAO_0000111>
     <rdfs:label xml:lang="en">study subject role</rdfs:label>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >23 march removed restriction on subject - now permits subject to be petri dishes and data as well as biological entities and organisms.</obo:IAO_0000116>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Human subjects in a clinical trial, rats in a toxicogenomics study, tissue cutlures subjected to drug tests, fish observed in an ecotoxicology study. 
+Parasite example
+people infected, then extract parasite which are then tested = observation study of the parasite
+1 study in which we observe people and 1 study in which subject is parasite is one way to split this.  the true definition will come from the study design specification.</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -12698,33 +12704,12 @@ people infected, then extract parasite which are then tested = observation study
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:IAO_0000116 xml:lang="en">investigation design has several parts study design
-Alan Ruttenberg: key: study design specifies what you are observing. That entity has the subject role.</obo:IAO_0000116>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <obo:IAO_0000116 xml:lang="en">JF: subject is undergoing the process study - we need a study process
-AR: been there and lost
-is realized in same process than intervention design or observation design are realized
-1. in an observational design, would be anything observed as part of the study
-2. in an intervention design, would be anything participating in the study, whether the are treated or acting as control</obo:IAO_0000116>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Before Jan 09 Workshop definition:study subject role inheres in an entity and is realized by the 
-    implementation of (1) an observation design specifying how the entity is 
-    to be observed and/or (2) an intervention design specifying the protocols 
-    applied to anything participating in the study, whether they are treated 
-    or acting as control.</obo:IAO_0000116>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >study subject role inheres in an entity and realized through the execution of a study design in which the entity participates by being that which the results are about.</obo:IAO_0000115>
-    <obo:IAO_0000116 xml:lang="en">Study subject is a Study participant role that is played by the objects of 
-    the study during the study timeline. In most cases, a study subject is 
-    considered to be a population representative. The only exception which 
-    comes to mind is the subject of a case study, and even here the physician 
-    is writing up the case because he or she feels it would be pertinent to 
-    others with a similar syndrome, if such as syndrome were to exist.  we 
-    will either add population representative to the definition of study 
-    subject or recognize case study subject as an exception to this and make a 
-    subclass of study subject role that is a population representative.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000471"/>
@@ -29182,15 +29167,15 @@ Genome Res. 2009 Jul 6.</obo:IAO_0000112>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400171">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <rdfs:label xml:lang="en">animal cage</rdfs:label>
-    <obo:IAO_0000115 xml:lang="en">a laboratory cage is a device which defines an bounded habitat which is amenable to breeding and keeping laboratory animals during experimentation. cages may be made in various material and serve specific purpose (e.g metabolic cages). cages maybe equiped with additional devices such as water and food dispenser, weighing device</obo:IAO_0000115>
     <obo:IAO_0000118 xml:lang="en">laboratory cage</obo:IAO_0000118>
+    <obo:IAO_0000115 xml:lang="en">a processed material which has the function to define a bounded habitat which is amenable to keeping animals.</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Phillippe Rocca-Serra</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">animal cage</obo:IAO_0000111>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI biomaterial branch</obo:IAO_0000119>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000112 xml:lang="en">PMID: 18246864.Barthold SW.Effects of cage density on behavior in young adult mice.</obo:IAO_0000112>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:subClassOf>
@@ -29554,17 +29539,6 @@ The liquid handling class remains but as an undefined class with are unlikely to
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600058"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000655">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is a material entity containing a portion of blood drawn from an organism</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000312"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0600005"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000112"/>
@@ -29574,12 +29548,33 @@ The liquid handling class remains but as an undefined class with are unlikely to
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >blood specimen</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000312"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0600005"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bjoern Peters</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bjoern Peters</obo:IAO_0000119>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a material entity derived from a portion of blood collected from an organism</obo:IAO_0000115>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >blood specimen</rdfs:label>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/FMA#FMA_9670"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >blood drawn from a human for glucose assay</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000712">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
