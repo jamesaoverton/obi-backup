@@ -2362,16 +2362,14 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</obo:IAO_000011
     <obo:IAO_0000117 xml:lang="en">James Malone</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000025">
-    <obo:IAO_0000115 xml:lang="en">Reference substance is a reference role in which the characteristics or responses elicited by the substance playing the reference substance role are used for comparison or reference.</obo:IAO_0000115>
+    <obo:IAO_0000115 xml:lang="en">a role inhering in a substance that is realized when  characteristics or responses elicited by the substance are used for comparison or reference.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">reference substance role</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">Reference substance</obo:IAO_0000111>
     <obo:IAO_0000112 xml:lang="en">Calibration standard, positive control substance, vehicle   Good Laboratory Practices: Questions and Answers - Test Control and Reference Substance Characterization  http://www.epa.gov/enforcement/monitoring/programs/fifra/glpqanda-character.html</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000133"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000663">
     <obo:IAO_0000119 xml:lang="en">PERSON: James Malone</obo:IAO_0000119>
@@ -2620,22 +2618,16 @@ THIS IS NOT A CONCEPT FOR BIOMATERIAL - LIKELY A QUALITY.  JAMES</obo:IAO_000011
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000133">
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
     </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">obsolete_reference role</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">GROUP:  Role Branch</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
-    <rdfs:label xml:lang="en">reference role</rdfs:label>
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Untreated group of animals used to compare with group of treated animals; calibration standard used to calibrate a pH meter.</obo:IAO_0000112>
+    <obo:IAO_0000231 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000103"/>
     <obo:IAO_0000118 xml:lang="en">control</obo:IAO_0000118>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">Reference is a role that is realised in the use of the bearer to support the observation of similarities, differences, relative magnitude or change</obo:IAO_0000115>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Untreated group of animals used to compare with group of treated animals (each animal has a reference role in that case).; calibration standard used to calibrate a pH meter.</obo:IAO_0000112>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >19 Feb 2009:  core term</obo:IAO_0000116>
   </owl:Class>
@@ -7583,9 +7575,6 @@ PMID: 18605936</obo:IAO_0000112>
     <obo:IAO_0000116 xml:lang="en">editor_note pending</obo:IAO_0000116>
     <obo:IAO_0000111 xml:lang="en">supernatant collection system harvesting frame</obo:IAO_0000111>
     <obo:IAO_0000119 xml:lang="en">google</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">The Supernatant Collection system is designed for collecting 90% of the supernatant in a microplate well and separating the living cell with no stress, eliminating centrifugation and other similar techniques. It can be used in a variety of release assays with different radioactive isotopes, such as Cr51 or I125.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">supernatant collection system harvesting frame</rdfs:label>
     <rdfs:subClassOf>
@@ -7597,6 +7586,9 @@ PMID: 18605936</obo:IAO_0000112>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
   </owl:Class>
@@ -8329,6 +8321,32 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000003"/>
+  <owl:Class rdf:ID="Class_16">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >measurement device</rdfs:label>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</obo:IAO_0000119>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP:OBI Philly workshop</obo:IAO_0000117>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A ruler, a microarray scanner, a Geiger counter.</obo:IAO_0000112>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a processed material created to have the function to measure</obo:IAO_0000115>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obofoundry.org/obo/guar_gum">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >guar gum</rdfs:label>
@@ -8379,9 +8397,7 @@ Oncologist. 2008 Jun;13(6):679-89. PMID: 18586923</obo:IAO_0000112>
     <obo:IAO_0000116 xml:lang="en">we need to sort out probe, detector and reporter</obo:IAO_0000116>
     <obo:IAO_0000111 xml:lang="en">Label</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Role Branch</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000086"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000115 xml:lang="en">Label role is a reagent role where the bearer is a material entity and which is realized in a detection of label assay</obo:IAO_0000115>
     <obo:IAO_0000116 xml:lang="en">Nucleotides synthesized with the incorporation of biotin were used to synthesize cDNA, which was then detected by adding fluorochrome-conjugated anti-biotin antibody.  the fluorochrome bears label role, the antibody bears detector role, the biotin bears reporter role. may need to change the terms following discussion</obo:IAO_0000116>
     <obo:IAO_0000112 xml:lang="en"></obo:IAO_0000112>
@@ -9263,9 +9279,6 @@ ALT DEF (PRS):: a cDNA library is a collection of host cells, typically E.Coli c
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000116 xml:lang="en">DS: This was heated_bath. It was renamed to reflect the possability that the same bath can be used for cooling. We can now define the temperature variables and based on that infer if it is a cooling device or a heating device (also quite relative to surrounding temperature).</obo:IAO_0000116>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">temperature control bath</obo:IAO_0000111>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
@@ -9287,6 +9300,9 @@ ALT DEF (PRS):: a cDNA library is a collection of host cells, typically E.Coli c
     <obo:IAO_0000112 xml:lang="en">VWR Signature Deep-Chamber Heated Water Bath. A water bath is used for temperatures up to 100 degrees C. An oil bath is employed for temperatures over 100 degrees C.</obo:IAO_0000112>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Daniel Schober</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A temperature_control_bath is a device that has the function to regulate the temperature of a material, the function to contain fluid and the function to vary and maintain the temperature of the contained fluid. Heat exchange (energy transfer) between the material and the heating element is facilitated via the contained fluid. A temperature_control_bath is composed of a container, a heating element and/or a cooling element and a means to adjust the needed temperature. In most cases also a timer and a means to stir the fluid is provided as well.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
@@ -10251,6 +10267,9 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sample tube</obo:IAO_0000118>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000370"/>
@@ -10259,9 +10278,6 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/>
     </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A test tube is a device consisting of a glass or plastic tubing, open at the top, usually with a rounded U-shaped bottom which has the function to contain material</obo:IAO_0000115>
@@ -10300,6 +10316,40 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_15">
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >the process of using pH buffer adjust a pH meter</obo:IAO_0000112>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GROUP: OBI Philly workshop</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Class_16"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >calibration</rdfs:label>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WEB:http://en.wikipedia.org/wiki/calibration</obo:IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000011"/>
+    </rdfs:subClassOf>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A planned process with the objective to establish the relationship between data produced by a measurement device and physical qualities. This is done by using the measurement device under defined conditions, and either tuning it to adjust the measured output, or record the output and use it as a reference in future measurements.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0500016">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
@@ -11250,7 +11300,7 @@ Neurosurgery. 2008 Jun;62(6 Suppl 3):1042-8.PMID: 18695524</obo:IAO_0000112>
     <rdfs:label xml:lang="en">syringe</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">a syringe is a device which is used to introduce or draw  fluids from a material entity. Syringe is made of a piston and body. the movement of the piston in the body determines the amount/volume of fluid to inject or draw</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600015">
@@ -11615,7 +11665,7 @@ Biomacromolecules. 2008 Oct 9.PMID: 18842025</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400100">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400002"/>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">syringe_pump</obo:IAO_0000111>
     <rdfs:subClassOf>
@@ -14338,13 +14388,21 @@ specimen can later be subject.</obo:IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000129">
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Reference substance is a reference role in which the characteristics or responses elicited by the substance playing the reference substance role are used to ensure an instrument is within protocol specification of accuracy or performance</obo:IAO_0000115>
-    <obo:IAO_0000112 xml:lang="en">ice water (calibrates a thermometer)</obo:IAO_0000112>
+    >A reference substance role that is realized when characteristics or responses elicited by the bearer are used to ensure an instrument is within protocol specification of accuracy or performance</obo:IAO_0000115>
+    <obo:IAO_0000112 xml:lang="en">pH buffer used to calibrate a pH meter bears a calibration substance role</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Class_15"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000025"/>
     <rdfs:label xml:lang="en">calibration substance role</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
-    <obo:IAO_0000111 xml:lang="en">Calibration substance</obo:IAO_0000111>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000111 xml:lang="en">calibration substance role</obo:IAO_0000111>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000402">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
@@ -17424,7 +17482,7 @@ Nature. 2008 Sep 17. PMID: 18806774</obo:IAO_0000112>
     >OBI</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     <obo:IAO_0000111 xml:lang="en">buffer</obo:IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000086"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Philippe Rocca-Serra</obo:IAO_0000117>
   </owl:Class>
@@ -20016,11 +20074,13 @@ Nat Protoc. 2008;3(11):1736-50. PMID: 18927559</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">A vortexer is an instrument that mixes small vials of liquid by creating a rotation of the liquid around its own center. It consists of an electric motor with the drive shaft oriented vertically and attached to a cupped rubber piece mounted slightly off-center. As the motor runs the rubber piece oscillates rapidly in a circular motion. When a test tube or other appropriate container is pressed into the rubber cup (or touched to its edge) the motion is transmitted to the liquid inside and a vortex is created.</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">VWR  Genie 2</obo:IAO_0000112>
     <rdfs:label xml:lang="en">vortexer</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Vortex_mixer</obo:IAO_0000119>
     <obo:IAO_0000118 xml:lang="en">vortex_mixer</obo:IAO_0000118>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000111 xml:lang="en">vortexer</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
   </owl:Class>
@@ -21661,7 +21721,7 @@ Documentation: "The group of eligible participants that agreed to participate in
     <obo:IAO_0000115 xml:lang="en">Continuous wave NMR spectrometers are similar to optical spectrometers, but the sample is held in a strong magnetic field, where the frequency of the source is slowly scanned (in some instruments, the source frequency is held constant, and the field is scanned).</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0302733">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000086"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000112 xml:lang="en">PMID: 18380397.Pharmazie. 2008 Feb;63(2):113-21.Deviations of drug solubility in water-cosolvent mixtures from the Jouyban-Acree model--effect of solute structure.</obo:IAO_0000112>
     <rdfs:label xml:lang="en">solute role</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">solute role is a role played by a chemical entity which is dissolved by another chemical entity (the solvent) when creating a solution</obo:IAO_0000115>
@@ -21867,7 +21927,7 @@ Documentation: "The group of eligible participants that agreed to participate in
     <rdfs:label xml:lang="en">solvent role</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >adpated from wikipedia (http://en.wikipedia.org/wiki/Solvatation)</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000086"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     <obo:IAO_0000115 xml:lang="en">solvent role is a role played by a chemical entity capable of ensuring the dissolution of another chemical entity, thereby exhibiting solvatation properties</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -22331,14 +22391,14 @@ change biomaterial to material in definition</obo:IAO_0000116>
     >Philippe Rocca-Serra</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000220">
-    <obo:IAO_0000115 xml:lang="en">Reference participant role is a reference role in which the characteristics or responses of the participant playing the reference participant role are used for comparison or reference.</obo:IAO_0000115>
-    <rdfs:label xml:lang="en">reference participant role</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">a study subject role in which the characteristics or responses of the participant playing the reference participant role are used for comparison or reference.</obo:IAO_0000115>
+    <rdfs:label xml:lang="en">reference subject role</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">Saline treated rat; one of three identically-treated subjects</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">Reference participant</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000133"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000097"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_17137"/>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000213">
@@ -23301,10 +23361,12 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400007">
     <obo:IAO_0000119 xml:lang="en">http://en.wiktionary.org/wiki/Analog-to-Digital_Converter</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000111 xml:lang="en">analog-to-digital converter</obo:IAO_0000111>
     <obo:IAO_0000112 xml:lang="en">The analog to digital converter transformed the analog output from the photomultiplier tube to a digital signal for collection.</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -23464,13 +23526,15 @@ The part between () is optional. A flow cytometer sorter has all the parts a flo
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000392"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000116 xml:lang="en">NMR instrument</obo:IAO_0000116>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <rdfs:label xml:lang="en">acquisition computer</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">acquisition computer</obo:IAO_0000111>
     <obo:IAO_0000116 xml:lang="en">msi_400013</obo:IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A Computer used for NMR, can be divided into central processing unit (CPU), consisting of instruction, interpretation and arithmetic unit plus fast access memory, and peripheral devices such as bulk data storage and input and output devices (including, via the interface, the spectrometer). Under software control, the computer controls the RF pulses and gradients necessary to acquire data, and process the data to produce spectra or images. Note that devices such as the spectrometer may themselves incorporate small computers.</obo:IAO_0000115>
   </owl:Class>
@@ -23497,8 +23561,10 @@ The part between () is optional. A flow cytometer sorter has all the parts a flo
     <obo:IAO_0000115 xml:lang="en">An instrument that is capable of repeatedly altering and maintaining specific temperatures for defined periods of time.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">thermal cycler</rdfs:label>
     <obo:IAO_0000118 xml:lang="en">DNA_amplifier</obo:IAO_0000118>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000111 xml:lang="en">thermal cycler</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000118 xml:lang="en">PCR_machine</obo:IAO_0000118>
@@ -24048,7 +24114,6 @@ AJR Am J Roentgenol. 1990 Jan;154(1):87-93.</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000233"/>
     <obo:IAO_0000117 xml:lang="en">Frank Gibson</obo:IAO_0000117>
     <rdfs:label xml:lang="en">processed material</rdfs:label>
     <owl:equivalentClass>
@@ -24452,59 +24517,44 @@ DOCUMENTATION NOTE: OBI anatomical entity granularity level excludes cell and bi
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/TMPOBI_0000026">
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An antithrombin-III (AT-III) assay in which exogenous bovine thrombin and heparin are added to test plasma to form a thrombin-heparin-AT complex. The residual thrombin not bound then hydrolyzes the p-nitroalanine substrate to produce a yellow color, which is read at 405 nm. The intensity of color produced is inversely proportional to the AT present. A calibration is done with standard human plasma reagent and results for a given speciment are reported as a percentage relative to the standard</obo:IAO_0000115>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >antithrombin-III (AT-III) berichrome assay</rdfs:label>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WEB:http://www.clinchem.org/cgi/content/full/43/9/1783@2009/08/06</obo:IAO_0000119>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >todo Reagents from Berichrom(r) Antithrombin III (A) and standard human plasma</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/TMPOBI_0000019"/>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
-            </owl:onProperty>
-            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
             >1</owl:cardinality>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/TMPOBI_0000025"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000086"/>
-                  <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/TMPOBI_0000025"/>
-                    <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#role_of"/>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
-            </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
             </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/TMPOBI_0000025"/>
+            <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000032"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >todo Reagents from Berichrom(r) Antithrombin III (A) and standard human plasma</obo:IAO_0000116>
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
-    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >WEB:http://www.clinchem.org/cgi/content/full/43/9/1783@2009/08/06</obo:IAO_0000119>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2009/09/28 Alan Ruttenberg. This class is a class that should be added to OBI. It was motivated by the Fucoidan trial use case</obo:IAO_0000116>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An antithrombin-III (AT-III) assay in which exogenous bovine thrombin and heparin are added to test plasma to form a thrombin-heparin-AT complex. The residual thrombin not bound then hydrolyzes the p-nitroalanine substrate to produce a yellow color, which is read at 405 nm. The intensity of color produced is inversely proportional to the AT present. A calibration is done with standard human plasma reagent and results for a given speciment are reported as a percentage relative to the standard</obo:IAO_0000115>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >antithrombin-III (AT-III) berichrome assay</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110093">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
@@ -25028,10 +25078,12 @@ PMID: 14680949</obo:IAO_0000112>
     <obo:IAO_0000119 xml:lang="en">John Quinn</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400101">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000111 xml:lang="en">voltage amplifier</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000115 xml:lang="en">A voltage amplifier is a device that amplifies the voltage signal.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://en.wiktionary.org/wiki/amplifier</obo:IAO_0000119>
@@ -27106,6 +27158,7 @@ objectives is a planned process.</obo:IAO_0000116>
     <obo:IAO_0000115 xml:lang="en">A packed column is a chromatography column where the particles of the solid stationary phase or the support coated with a liquid stationary phase may fill the whole inside volume of the tube.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000390">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">A thermostatic circulator is a device which cools or heats a circulating liquid. It has the function to contain control the contained environment and transfer energy from or to the circulating liquid</obo:IAO_0000115>
     <rdfs:subClassOf>
@@ -27116,7 +27169,6 @@ objectives is a planned process.</obo:IAO_0000116>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000370"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sep:00098</obo:IAO_0000119>
     <rdfs:label xml:lang="en">thermostatic circulator</rdfs:label>
@@ -27178,8 +27230,8 @@ objectives is a planned process.</obo:IAO_0000116>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000401"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000112 xml:lang="en">Model 777 Microarray Oven</obo:IAO_0000112>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <rdfs:label xml:lang="en">vacuum dryer</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">An instrument which removes liquid by the application of negative pressure,  i.e. vacuum.</obo:IAO_0000115>
@@ -28260,6 +28312,7 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000397"/>
@@ -28268,7 +28321,6 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000115 xml:lang="en">An array scanner is an instrument which acquires visual images of microarray chips by measuring fluorescence (induced with lasers) from labeled molecules on the surface of the microarray chip and converts the information into digital data.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000674">
@@ -29161,6 +29213,7 @@ Genome Res. 2009 Jul 6.</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <rdfs:label xml:lang="en">animal cage</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">a laboratory cage is a device which defines an bounded habitat which is amenable to breeding and keeping laboratory animals during experimentation. cages may be made in various material and serve specific purpose (e.g metabolic cages). cages maybe equiped with additional devices such as water and food dispenser, weighing device</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <obo:IAO_0000118 xml:lang="en">laboratory cage</obo:IAO_0000118>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Phillippe Rocca-Serra</obo:IAO_0000117>
@@ -29168,7 +29221,6 @@ Genome Res. 2009 Jul 6.</obo:IAO_0000112>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI biomaterial branch</obo:IAO_0000119>
     <obo:IAO_0000112 xml:lang="en">PMID: 18246864.Barthold SW.Effects of cage density on behavior in young adult mice.</obo:IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -30415,7 +30467,7 @@ part_of fluidic_subsystem</obo:IAO_0000116>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000091">
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >detector reagent role is a reagent role which inheres in a molecular entity and is realized by the process of recording or registering a stimulus.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000086"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <rdfs:label xml:lang="en">detector reagent role</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -30958,7 +31010,7 @@ Finally, note that there is no such thing as a concentration of 0. A concentrati
     <obo:IAO_0000115 xml:lang="en">An assay that measures MHC:epitope complex binding to TCR utilizing flow cytometry. The MHC molecules are prepared into multimers, loaded with epitope, and are fluorescently labeled in order to visualize the T cells that bind. The data that is generated provides information on the presence of epitope specific T cells in the cell population that was tested.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000405">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000086"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:label xml:lang="en">primer role</rdfs:label>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >primer role is a reagent role which inheres in nucleic acid molecular entity and is realized by the use of the entity bearing the role to initiate chain elongation.</obo:IAO_0000115>
@@ -31696,8 +31748,8 @@ MC: A virus is not an orgnism</obo:IAO_0000116>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidics systems. In analyzers the sheath and sample fluid, once analyzed is dumped into a waste tank. The waste tank is where the fluids passing through the cytometer end up after the analysis is finished.</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400002"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/Class_5">
