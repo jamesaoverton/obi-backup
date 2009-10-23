@@ -80,6 +80,8 @@
 									       (eql 0 (search alias (second el)))))))
 					       ".*=(.*)" "$1"))
 			 1)))
+		 (when (search "_GRAPH_GOES_HERE_" query)
+		   (setq graph-was-seen t))
 		 (if (assoc ont templates :test 'equalp)
 		     (pushnew query (cadr (assoc ont templates :test 'equalp)) :test 'equal)
 		     (push (list ont (list query)) templates))
@@ -92,6 +94,9 @@
 	     (when (or (eql #\= (peek-char t f nil)) (null (peek-char t f nil)))
 	       (ont+query lines) (setq lines nil))
 	   finally (when lines (ont+query lines))))
+      (assert (or (and graph-was-seen (second (assoc "default graph_base" params :test 'equal)))
+		  (not graph-was-seen)) ()
+		  "_GRAPH_GOES_HERE_ used but 'default graph_base' not asserted in file")
       (values params templates))))
 
 (defun combine-template-query-results (results output-path)
@@ -142,7 +147,8 @@
 		   :kb kb)))
       (format t "There are ~a external classes~%" (length classes))
       (multiple-value-bind (params templates) (parse-templates templates-path)
-	(let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint)))
+	(let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint))
+	      (graph_base (second (assoc "default graph_base" params :test 'equal))))
 	  (assert endpoint () "What endpoint should I use?")
 	  (format t "Using endpoint: ~a~%" endpoint)
 	  (let ((rdfs 
@@ -150,12 +156,14 @@
 		  (loop for query in (cadr (assoc "Once Only" templates :test 'equalp))
 		     collect (get-url endpoint :post `(("query" ,query)) :persist nil :dont-cache t :force-refetch t))
 		  (loop for (class where) in classes
+		       for graph = (#"replaceAll" (uri-full where) ".*[/#](.*)" "$1")
 		     append
 		     (loop for (ont-pattern queries) in templates
 			when (#"matches" (uri-full where)  (format nil "(?i)~a" ont-pattern))
 			append
 			(loop for query in queries
-			   for filled-query = (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class)))
+			   for filled-query = 
+			     (#"replaceAll" (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class))) "_GRAPH_GOES_HERE_" (format nil "<~a>" graph_base graph))
 			   collect (if debug
 				       (progn
 					 (print-db filled-query)
