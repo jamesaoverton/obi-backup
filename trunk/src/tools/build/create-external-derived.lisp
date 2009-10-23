@@ -156,21 +156,23 @@
 		  (loop for query in (cadr (assoc "Once Only" templates :test 'equalp))
 		     collect (get-url endpoint :post `(("query" ,query)) :persist nil :dont-cache t :force-refetch t))
 		  (loop for (class where) in classes
-		       for graph = (#"replaceAll" (uri-full where) ".*[/#](.*)" "$1")
+		     for graph = (#"replaceAll" (uri-full where) ".*[/#](.*?)(\.owl){0,1}" "$1")
+		     ;; when debug do (print-db graph)
 		     append
 		     (loop for (ont-pattern queries) in templates
 			when (#"matches" (uri-full where)  (format nil "(?i)~a" ont-pattern))
 			append
 			(loop for query in queries
 			   for filled-query = 
-			     (#"replaceAll" (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class))) "_GRAPH_GOES_HERE_" (format nil "<~a>" graph_base graph))
-			   collect (if debug
-				       (progn
-					 (print-db filled-query)
-					 (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)))
+			   (#"replaceAll" (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class))) "_GRAPH_GOES_HERE_" (format nil "<~a~a>" graph_base (#"replaceAll" (string-upcase graph) ".OWL$" "")))
+			     do (when debug
+				     (progn
+				       (print-db (uri-full class))
+				       (print-db filled-query)
+				       (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t))))
 
-				       ;; FIXME - Horrible workaround to compensate for abcl not understanding unicode and VO using smart quotes
-				       (#"replaceAll" (#"replaceAll" (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;"))))))))
+			   ;; FIXME - Horrible workaround to compensate for abcl not understanding unicode and VO using smart quotes
+			   collect (setq foo (#"replaceAll" (#"replaceAll" (setq bar (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;"))))))))
 	    (let ((basic-info
 		   (with-output-to-string (s)
 		     (loop for (class nil parent) in classes
