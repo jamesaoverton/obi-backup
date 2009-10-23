@@ -1,5 +1,5 @@
 default endpoint:http://sparql.obo.neurocommons.org/sparql/
-
+default graph_base:http://purl.org/science/graph/obo/
 # define the prefixes that will be added to all queries
 
 prefix:rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -39,7 +39,7 @@ where
 construct
  { ?super rdf:type owl:Class.
    ?super rdfs:subClassOf ?parent.
-   ?super iao:IAO_0000111 ?label.
+   ?super alias:preferredTerm ?label.
    ?super rdfs:label ?label.
  }
 where  
@@ -74,17 +74,7 @@ construct
   _ID_GOES_HERE_ rdfs:label ?label.
   _ID_GOES_HERE_ alias:definition ?definition.
 }
-from <http://purl.org/science/graph/obo/CHEBI>
-from <http://purl.org/science/graph/obo/PATO>
-from <http://purl.org/science/graph/obo/PRO>
-from <http://purl.org/science/graph/obo/CARO>
-from <http://purl.org/science/graph/obo/ENVO>
-from <http://purl.org/science/graph/obo/CL>
-from <http://purl.org/science/graph/obo/FMA>
-from <http://purl.org/science/graph/obo/GO>
-from <http://purl.org/science/graph/obo/SO>
-from <http://purl.org/science/graph/obo/UO>
-from <http://purl.org/science/graph/obo/HP>
+from _GRAPH_GOES_HERE_
 where
 {
   {   _ID_GOES_HERE_ rdfs:label ?label. }
@@ -118,6 +108,7 @@ construct
   _ID_GOES_HERE_ rdfs:label ?label.
   _ID_GOES_HERE_ alias:definition ?definition.
 }
+from _GRAPH_GOES_HERE_
 where
 {
   {   _ID_GOES_HERE_ rdfs:label ?label. }
