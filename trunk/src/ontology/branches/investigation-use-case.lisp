@@ -628,7 +628,7 @@ details of the study.
 				      (and
 				       (some !'has grain'@ !'fucoidan'@)
 				       (some !'has_quality'@ mass-of-2point25-grams)
-				       (some !'has_role'@ !'drug role'@)))
+				       (some !'has_role'@ !'test substance role'@)))
 				(some !'has_part'@
 				      (and
 				       (some !'has_quality'@ mass-of-point75-grams)))
