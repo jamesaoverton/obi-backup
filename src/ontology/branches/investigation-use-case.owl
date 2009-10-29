@@ -34,7 +34,6 @@
   <owl:Class rdf:about="&obo;IAO_0000032"/>
   <owl:Class rdf:about="&obo;IAO_0000078"/>
   <owl:Class rdf:about="&obo;IAO_0000300"/>
-  <owl:Class rdf:about="&obo;OBI_0000040"/>
   <owl:Class rdf:about="&obo;OBI_0000066"/>
   <owl:Class rdf:about="&obo;OBI_0000175"/>
   <owl:Class rdf:about="&obo;OBI_0000202"/>
@@ -57,6 +56,7 @@
   <owl:Class rdf:about="&obo;OBI_0000842"/>
   <owl:Class rdf:about="&obo;OBI_0000843"/>
   <owl:Class rdf:about="&obo;OBI_0000844"/>
+  <owl:Class rdf:about="&obo;OBI_0000847"/>
   <owl:Class rdf:about="&obo;OBI_0100017"/>
   <owl:Class rdf:about="&obo;OBI_0500006"/>
   <owl:Class rdf:about="&obo;OBI_0600004"/>
@@ -74,12 +74,12 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
-            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/span#Process"/>
             <owl:onProperty rdf:resource="&obo;TMPIAO_0000003"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="&UO;UO_0000003"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -214,31 +214,31 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
-                <owl:someValuesFrom rdf:resource="&obo;OBI_0000817"/>
-              </owl:Restriction>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000316"/>
-                <owl:someValuesFrom rdf:resource="&obo;OBI_0000040"/>
-              </owl:Restriction>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
-                <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0024"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
+            <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0025"/>
+          </owl:Restriction>
         </owl:someValuesFrom>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
-            <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0025"/>
-          </owl:Restriction>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000316"/>
+                <owl:someValuesFrom rdf:resource="&obo;OBI_0000847"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
+                <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0024"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
+                <owl:someValuesFrom rdf:resource="&obo;OBI_0000817"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:intersectionOf>
@@ -337,6 +337,10 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000837"/>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0022"/>
+      </owl:Restriction>
+      <owl:Restriction>
         <owl:hasValue rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
         <owl:onProperty rdf:resource="&ro;part_of"/>
       </owl:Restriction>
@@ -354,10 +358,6 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
           </owl:Class>
         </owl:someValuesFrom>
       </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0022"/>
-      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
@@ -370,12 +370,12 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000837"/>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0021"/>
-      </owl:Restriction>
-      <owl:Restriction>
         <owl:hasValue rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
         <owl:onProperty rdf:resource="&ro;part_of"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0021"/>
       </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
@@ -406,12 +406,12 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&obo;IAO_0000032"/>
           <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000125"/>
-            <owl:onProperty rdf:resource="&obo;IAO_0000221"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:allValuesFrom rdf:resource="&UO;UO_0000002"/>
             <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000125"/>
+            <owl:onProperty rdf:resource="&obo;IAO_0000221"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -425,10 +425,6 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0600005"/>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
-      </owl:Restriction>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
         <owl:someValuesFrom>
           <owl:Class>
@@ -438,6 +434,10 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -458,10 +458,6 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
             <owl:someValuesFrom rdf:resource="&obo;OBI_0000843"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
             <owl:someValuesFrom>
               <owl:Restriction>
@@ -478,6 +474,10 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
                 <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
               </owl:Restriction>
             </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -556,7 +556,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
-  <owl:Class rdf:nodeID="b173">
+  <owl:Class rdf:nodeID="b14">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -570,7 +570,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b184">
+  <owl:Class rdf:nodeID="b18">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
       <owl:Restriction>
@@ -580,7 +580,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b164">
+  <owl:Class rdf:nodeID="b16">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000673"/>
       <owl:Restriction>
@@ -595,7 +595,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b160">
+  <owl:Class rdf:nodeID="b7">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -609,7 +609,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b192">
+  <owl:Class rdf:nodeID="b25">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
       <owl:Restriction>
@@ -619,13 +619,9 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b194">
+  <owl:Class rdf:nodeID="b46">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000826"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
@@ -638,16 +634,16 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
         <owl:onProperty rdf:resource="&ro;has_part"/>
         <owl:someValuesFrom rdf:resource="&obo;OBI_0000819"/>
       </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
+      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b199">
+  <owl:Class rdf:nodeID="b5">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0600015"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
         <owl:someValuesFrom>
@@ -658,6 +654,10 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -770,8 +770,8 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
     <obo:OBI_0000846 rdf:resource="&obo;obi/example/fucoidan/fc_0030"/>
-    <rdf:type rdf:nodeID="b184"/>
-    <rdf:type rdf:nodeID="b192"/>
+    <rdf:type rdf:nodeID="b18"/>
+    <rdf:type rdf:nodeID="b25"/>
     <rdfs:label rdf:datatype="&xsd;string">RM Lowenthal</rdfs:label>
   </rdf:Description>
 
@@ -807,8 +807,8 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Helen Parkinson</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
-    <rdf:type rdf:nodeID="b173"/>
-    <rdf:type rdf:nodeID="b160"/>
+    <rdf:type rdf:nodeID="b14"/>
+    <rdf:type rdf:nodeID="b7"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution in fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -837,7 +837,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
     <ro:part_of rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
-    <rdf:type rdf:nodeID="b194"/>
+    <rdf:type rdf:nodeID="b46"/>
     <rdfs:label rdf:datatype="&xsd;string">treatment portion of study design execution in fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -873,7 +873,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days n = 10, P =  0.02; Table 2</obo:IAO_0000119>
     <obo:OBI_0000299 rdf:resource="&obo;obi/example/fucoidan/fc_0037"/>
-    <rdf:type rdf:nodeID="b164"/>
+    <rdf:type rdf:nodeID="b16"/>
     <rdfs:label rdf:datatype="&xsd;string">Test of significance of Antithrombin-III level change between day 1 and day 4</rdfs:label>
   </rdf:Description>
 
@@ -899,7 +899,7 @@ the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660</obo:
     <obo:IAO_0000115 rdf:datatype="&xsd;string">A group assignment process in which participants in the fucoidan study are assigned to either the control or treated arm of the study</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdf:type rdf:nodeID="b199"/>
+    <rdf:type rdf:nodeID="b5"/>
     <rdfs:label rdf:datatype="&xsd;string">group assignment for fucoidan study</rdfs:label>
   </rdf:Description>
 
