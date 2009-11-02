@@ -19,6 +19,8 @@
   (def-uri-alias "alternative-term" !obi:IAO_0000118)
   (def-uri-alias "example-of-usage" !obi:IAO_0000112)
   (def-uri-alias "curation-status" !obi:IAO_0000078)
+  (def-uri-alias "editor-note" !obo:IAO_0000116)
+  (def-uri-alias "curator-note" !obo:IAO_0000232)
   )
 
 
@@ -38,11 +40,12 @@
 	     ("example-of-usage" !obo:IAO_0000112)
 	     ("has-curation-status" !obo:IAO_0000114)
 	     ("editor-note" !obo:IAO_0000116)
+	     ("curator-note" !obo:IAO_0000232)
 	     ("curation-status" !obo:IAO_0000078)
 	     ("imported-from" !obo:IAO_0000412)
 	     )
-	    ,@(loop for p in (list !obo:IAO_0000078 !obo:IAO_0000112 !obo:IAO_0000118 !obo:IAO_0000111 !obo:IAO_0000117
-				   !obo:IAO_0000119 !obo:IAO_0000115 !obo:IAO_0000412 !obo:IAO_0000114)
+	    ,@(loop for p in (list !obo:IAO_0000112 !obo:IAO_0000118 !obo:IAO_0000111 !obo:IAO_0000117 !obo:IAO_0000232
+				   !obo:IAO_0000119 !obo:IAO_0000115 !obo:IAO_0000412 !obo:IAO_0000114 !obo:IAO_0000116)
 		 collect `(annotation-property ,p))
 	    ,@(loop for i in (list !obo:IAO_0000122 !obo:IAO_0000120 !obo:IAO_0000123 !obo:IAO_0000125 !obo:IAO_0000124 !obo:IAO_0000121) 
 		 collect `(individual ,i (type !curation-status)))
