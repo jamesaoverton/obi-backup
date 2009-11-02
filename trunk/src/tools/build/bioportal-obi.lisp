@@ -22,12 +22,17 @@
 	  :kb kb :use-reasoner :none :flatten t)))
 
 (defun create-bioportal-obi (dest obi &optional last)
+  (create-combined-obi dest obi :bioportal last))
+
+(defun create-combined-obi (dest obi type &optional last)
   (let* ((kb (load-kb-jena obi))
 	 (imported (remove "http://" (imported kb) :test 'search))
 	 (out-model (create-empty-obi-model))
 	 (necessary-subclass-assertions (and last (necessary-subclass-assertions (load-kb-jena last))))
 	 (imported-ontology-names (remove "http://purl.obolibrary.org/obo/obi.owl" (ontology-names kb) :test 'equal)))
-    (loop for file in imported
+    (loop for file in (if (or (not last) (eq type :bioportal))
+			  imported
+			  (remove-if-not (lambda(e) (search "/src/ontology/branches/" e)) imported))
        for in-model = (#"createDefaultModel" 'modelfactory)
        with dont = (list*
 		    (mapcar 'uri-full (sparql '(:select (?term) ()
@@ -68,9 +73,16 @@
 			  (member (#"toString" (#"getURI" object)) dont :test 'equal)))
 	  do (#"add" out-model statement))
        (add-jena-triple out-model "http://purl.obolibrary.org/obo/obi.owl" !rdf:type !owl:Ontology))
+    (when (and last (eq type :release))
+      (loop for source in (list !<http://purl.obolibrary.org/obo/iao/dev/iao.owl>
+				!<http://www.obofoundry.org/ro/ro.owl>
+				!<http://www.ifomis.org/bfo/1.1>
+				!<http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl>
+				!<http://purl.org/obo/owl/ro_bfo_bridge/1.1>)
+	   do (add-jena-triple out-model "http://purl.obolibrary.org/obo/obi.owl" !owl:imports source)))
     (if last
 	(write-jena-model out-model (namestring (translate-logical-pathname dest)))
 	(progn
 	  (write-jena-model out-model (namestring (translate-logical-pathname dest)))
-	  (create-bioportal-obi dest obi dest)
+	  (create-combined-obi dest obi type dest)
 	  ))))
