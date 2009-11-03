@@ -115,7 +115,7 @@ details of the study.
 (define-ontology investigation-use-case
     (:base (uri-full !obo:obi/investigation-use-case.owl) :about
 	   (uri-full !obo:obi/investigation-use-case.owl))
-  (ontology-annotation !owl:versionInfo "$Revision: 80 $")
+  (ontology-annotation !owl:versionInfo "$Revision$")
   (ontology-annotation !protegeowl:defaultLanguage "en")
   (let ((*default-uri-label-source* :obi)
 	(molecular-entity !chebi:23367))
@@ -177,7 +177,6 @@ details of the study.
 	      (mass-of-point75-grams (fcuri 25))
 	      (single-treatment-of-fucoidan-in-fucoidan-study (fcuri 26))
 	      (single-treatment-of-placebo-in-fucoidan-study (fcuri 27))
-	      (mass-measurement-datum (fcuri 28))
 	      (fucoidan-treatment-portion (fcuri 29))
 	      (fucoidan-hospital (fcuri 30))
 	      (fucoidan-sample-taking (fcuri 31))
@@ -191,7 +190,7 @@ details of the study.
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
 ;	      (informed-consent-process (fcobiuri 1))
 ;	      (informed-consent-document-agreement-by-patient (fcobiuri 2))
-	      (informing-subject-of-study-arm (fcobiuri 3))
+;	      (informing-subject-of-study-arm (fcobiuri 3))
 ;	      (informing-investigator-of-subject-study-arm (fcobiuri 3))
 ;	      (informing-investigator-of-subject-study-arm (fcobiuri 4))
 ;	      (single-blind-study-execution (fcobiuri 5))
@@ -223,13 +222,16 @@ details of the study.
 	      ;; using ids 30-42 for days.
 
 	      ;; the following should move into iao proper - here for now to be able to keep track of them
-	      (is-quality-measured-as (fciaouri 1))
-	      (time-measurement-datum (fciaouri 2))
-	      (is-temporal-measure-of (fciaouri 3))
-	      (conclusion (fciaouri 4))
-	      (hypothesis (fciaouri 5))
-	      (is-quality-specification-of (fciaouri 6))
-	      (quality-is-specified-as (fciaouri 7))
+
+	      (is-quality-measured-as !obo:IAO_0000417)
+;	      (time-measurement-datum !obo:IAO_0000416)
+;	      (is-temporal-measure-of !obo:IAO_0000413)
+	      (conclusion !obo:IAO_0000144)
+	      (hypothesis !obo:IAO_0000415)
+;	      (is-quality-specification-of !obo:IAO_0000418)
+;	      (quality-is-specified-as !obo:IAO_0000419)
+	      (mass-measurement-datum !obo:IAO_0000414)
+
 	      )
 	  (macrolet ((mass-measured-as-grams-def (n)
 		       `(manch (and mass
@@ -285,54 +287,55 @@ details of the study.
 ;	     (class anticoagulant-containing-test-tube :partial)
 ;	     (class anticoagulant-tube-storage-of-blood :partial)
 
-	     (object-property is-quality-measured-as
-	       (label "is quality measured as")
-	       (definition "inverse of the relation of is quality measurement of")
-	       (junk-relation)
-	       (4iao)
-	       (signedalan)
-	       (metadata-complete)
-	       (inverse-of !'is quality measurement of'@))
+	     (object-property is-quality-measured-as)
+;; 	     (object-property is-quality-measured-as
+;; 	       (label "is quality measured as")
+;; 	       (definition "inverse of the relation of is quality measurement of")
+;; 	       (junk-relation)
+;; 	       (4iao)
+;; 	       (signedalan)
+;; 	       (metadata-complete)
+;; 	       (inverse-of !'is quality measurement of'@))
 
-	     (object-property is-quality-specification-of
-	       (label "is quality specification of")
-	       (definition "a relation between a data item and a quality of a material entity where the material entity is the specified output of a material transformation which achieves an objective specification that indicates the intended value of the specified quality.")
-	       (4iao)
-	       (signedbjoern)
-	       (signedalan)
-	       (metadata-complete)
-	       )
+;; 	     (object-property is-quality-specification-of
+;; 	       (label "is quality specification of")
+;; 	       (definition "a relation between a data item and a quality of a material entity where the material entity is the specified output of a material transformation which achieves an objective specification that indicates the intended value of the specified quality.")
+;; 	       (4iao)
+;; 	       (signedbjoern)
+;; 	       (signedalan)
+;; 	       (metadata-complete)
+;; 	       )
 	       
-	     (object-property quality-is-specified-as
-	       (label "quality is specified as")
-	       (definition "inverse of the relation of is quality specification of")
-	       (editor-note "2009/10/19 Alan Ruttenberg. Named 'junk' relation useful in restrictions, but not a real instance relationship")
-	       (4iao)
-	       (signedbjoern)
-	       (signedalan)
-	       (metadata-complete)
-	       (inverse-of is-quality-specification-of))
+;; 	     (object-property quality-is-specified-as
+;; 	       (label "quality is specified as")
+;; 	       (definition "inverse of the relation of is quality specification of")
+;; 	       (junk-relation)
+;; 	       (4iao)
+;; 	       (signedbjoern)
+;; 	       (signedalan)
+;; 	       (metadata-complete)
+;; 	       (inverse-of is-quality-specification-of))
 
-	     (object-property is-temporal-measure-of
-	       (label "is duration of")
-	       (definition "relates a process to a time-measurement-datum that represents the duration of the process")
-	       (domain !span:Process)
-	       (range time-measurement-datum)
-	       (super !'is about'@)
-	       (metadata-complete)
-	       (4iao)
-	       (signedalan))
+;; 	     (object-property is-temporal-measure-of
+;; 	       (label "is duration of")
+;; 	       (definition "relates a process to a time-measurement-datum that represents the duration of the process")
+;; 	       (domain !span:Process)
+;; 	       (range time-measurement-datum)
+;; 	       (super !'is about'@)
+;; 	       (metadata-complete)
+;; 	       (4iao)
+;; 	       (signedalan))
 	     
-	     (class time-measurement-datum :partial
-		    (label "time measurement datum")
-		    (definition "A scalar measurement datum that is the result of measuring a temporal interval")
-		    (signedalan)
-		    (metadata-complete)
-		    (4iao)
-		    (fcusecase)
-		    (manch (and !'scalar measurement datum'@ 
-				(all is-temporal-measure-of  !span:Process)
-				(all !'has measurement unit label'@ time-unit))))
+;; 	     (class time-measurement-datum :partial
+;; 		    (label "time measurement datum")
+;; 		    (definition "A scalar measurement datum that is the result of measuring a temporal interval")
+;; 		    (signedalan)
+;; 		    (metadata-complete)
+;; 		    (4iao)
+;; 		    (fcusecase)
+;; 		    (manch (and !'scalar measurement datum'@ 
+;; 				(all is-temporal-measure-of  !span:Process)
+;; 				(all !'has measurement unit label'@ time-unit))))
 	     
 
 					;	       (object-property is-member-of)
@@ -578,16 +581,16 @@ details of the study.
 
 	     (class molecular-entity :partial)
 
-	     (class (fcusecase) mass-measurement-datum
-		    (4iao)
-		    (label "mass measurement datum")
-		    (signedalan)
-		    (definition "A scalar measurement datum that is the result of measurement of mass quality")
-		    (metadata-complete)
-		    :partial 
-		    (manch (and !'scalar measurement datum'@ 
-				(all !'has measurement unit label'@ mass-unit)
-				(all !'is quality measurement of'@ mass))))
+;; 	     (class (fcusecase) mass-measurement-datum
+;; 		    (4iao)
+;; 		    (label "mass measurement datum")
+;; 		    (signedalan)
+;; 		    (definition "A scalar measurement datum that is the result of measurement of mass quality")
+;; 		    (metadata-complete)
+;; 		    :partial 
+;; 		    (manch (and !'scalar measurement datum'@ 
+;; 				(all !'has measurement unit label'@ mass-unit)
+;; 				(all !'is quality measurement of'@ mass))))
 	     
 	     (class (fcusecase) mass-of-3-grams (label "mass measured to be 3 grams") :complete
 		    (mass-measured-as-grams-def 3.0)
@@ -799,6 +802,7 @@ details of the study.
 	     ;; 		      :partial (manch (and !'instrument'@
 	     ;; 					   (has !'is_manufactured_by'@ sysmex))))
 
+	     (class fucoidan-at-iii-berichrome-assay :partial !'antithrombin-III (AT-III) berichrome assay'@)
 	     (class fucoidan-at-iii-berichrome-assay
 	       (label "antithrombin assay in the fucoidan study")
 	       (definition "antithrombin assay in the fucoidan study, which used the Berichrom(r) Antithrombin III (A) Kit for reagents and the Sysmex CA-6000 Coagulation Analyzer for measurement")
@@ -807,8 +811,7 @@ details of the study.
 	       (signedalan)
 	       (metadata-complete)
 	       :partial
-	       (manch (and !'antithrombin-III (AT-III) berichrome assay'@
-			   (some !'has_specified_input'@ (some !'is_specified_output_of'@ fucoidan-sample-taking))
+	       (manch (and (some !'has_specified_input'@ (some !'is_specified_output_of'@ fucoidan-sample-taking))
 			   (exactly !'has_specified_input'@ 1)
 			   (some !'realizes'@
 				 (some !'function_of'@ !'Sysmex CA-6000 Coagulation Analyzer'@))
@@ -929,15 +932,15 @@ details of the study.
 	       (signedalan)
 	       (fcusecase))
 
-	      (class conclusion (label "conclusion textual entity")
- 		    :partial !'information content entity'@
- 		    (definition "A conclusion is a textual entity that expresses the results of reasoning about a problem")
-		    (example-of-usage "Conclusions are are typically found towards the end of scientific papers")
- 		    (signedalan)
- 		    (4iao)
- 		    (fcusecase)
-		    (metadata-complete)
- 		    (example-of-usage "The conclusion that fucoidan does not have a useful clinical effect as an in-vivo anticoagulant is in the text of a 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et.al.PMID:19696660 along with the results upon which the conclusion is based "))
+;; 	      (class conclusion (label "conclusion textual entity")
+;;  		    :partial !'information content entity'@
+;;  		    (definition "A conclusion is a textual entity that expresses the results of reasoning about a problem")
+;; 		    (example-of-usage "Conclusions are are typically found towards the end of scientific papers")
+;;  		    (signedalan)
+;;  		    (4iao)
+;;  		    (fcusecase)
+;; 		    (metadata-complete)
+;;  		    (example-of-usage "The conclusion that fucoidan does not have a useful clinical effect as an in-vivo anticoagulant is in the text of a 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et.al.PMID:19696660 along with the results upon which the conclusion is based "))
 
 ;; 	     (class conclusion (label "conclusion")
 ;; 		    :partial !'textual entity'@
@@ -947,15 +950,15 @@ details of the study.
 ;; 		    (fcusecase)
 ;; 		    (example-of-usage "that fucoidan has a small statistically significant effect on AT3 level but no useful clinical effect as in-vivo anticoagulant, a paraphrase of part of the last paragraph of the discussion section of the paper 'Pilot clinical study to evaluate the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
 
- 	     (class hypothesis (label "hypothesis textual entity")
- 		    :partial !'textual entity'@
-		    (definition "A textual entity that expresses an assertion that is intended to be tested.")
- 		    (signedalan)
-		    (4iao)
-		    (fcusecase)
- 		    (example-of-usage "The hypothesis that fucoidan has a useful clinical effect as
-an in-vivo anticoagulant and the test of that hypothesis is in the text of a 'Pilot clinical study to evaluate
-the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
+;;  	     (class hypothesis (label "hypothesis textual entity")
+;;  		    :partial !'textual entity'@
+;; 		    (definition "A textual entity that expresses an assertion that is intended to be tested.")
+;;  		    (signedalan)
+;; 		    (4iao)
+;; 		    (fcusecase)
+;;  		    (example-of-usage "The hypothesis that fucoidan has a useful clinical effect as
+;; an in-vivo anticoagulant and the test of that hypothesis is in the text of a 'Pilot clinical study to evaluate
+;; the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
      
 	     (individual statistical-test
  	       (type (manch (and !'statistical hypothesis test'@
