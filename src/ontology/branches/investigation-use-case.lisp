@@ -473,7 +473,7 @@ details of the study.
 			 (value !'is_realized_by'@ fucoidan-investigation-planning))
 
 	     (individual (fcusecase) fucoidan-investigation-planning
-			 (label "process of planning the fucoidan investigation")
+			 (label "process of planning the fucoidan study")
 			 (type !'planning'@)
 			 (signedhelen)
 			 (uncurated)
@@ -507,7 +507,7 @@ details of the study.
 			 )
 
 	     (individual (fcusecase) fucoidan-study-design
-			 (label "study design of fucoidan investigation")
+			 (label "Plan for pilot fucoidan study")
 			 (signedhelen)
 			 (uncurated)
 			 (type !'parallel group design'@obi)
@@ -927,6 +927,7 @@ details of the study.
 	       (type !'interpreting data'@)
 	       (value !'has_specified_input'@ p-value)
 	       (value !'has_specified_output'@ fucoidan-conclusion)
+	       (value !'has_participant'@ rm-lowenthal)
 	       (definition "The process of interpreting the results of the statistical analyses on the fucoidan study assays")
 	       (definition-source "PMID:19696660")
 	       (signedalan)
