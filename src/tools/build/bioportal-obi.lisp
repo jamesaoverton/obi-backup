@@ -22,15 +22,19 @@
 	  :kb kb :use-reasoner :none :flatten t)))
 
 (defun create-bioportal-obi (dest obi &optional last)
-  (create-combined-obi dest obi :bioportal last))
+  (create-combined-obi dest obi :include-all-imports last))
 
-(defun create-combined-obi (dest obi type &optional last)
+(defun create-combined-obi (dest obi type &key version pretty last)
   (let* ((kb (load-kb-jena obi))
 	 (imported (remove "http://" (imported kb) :test 'search))
 	 (out-model (create-empty-obi-model))
+	 (curation-note-uri (uri-full 
 	 (necessary-subclass-assertions (and last (necessary-subclass-assertions (load-kb-jena last))))
 	 (imported-ontology-names (remove "http://purl.obolibrary.org/obo/obi.owl" (ontology-names kb) :test 'equal)))
-    (loop for file in (if (or (not last) (eq type :bioportal))
+    (if last
+	(format t "~%Second pass~%")
+	(format t "~%First pass~%"))
+    (loop for file in (if (or (not last) (eq type :include-all-imports))
 			  imported
 			  (remove-if-not (lambda(e) (search "/src/ontology/branches/" e)) imported))
        for in-model = (#"createDefaultModel" 'modelfactory)
@@ -74,15 +78,47 @@
 	  do (#"add" out-model statement))
        (add-jena-triple out-model "http://purl.obolibrary.org/obo/obi.owl" !rdf:type !owl:Ontology))
     (when (and last (eq type :release))
-      (loop for source in (list !<http://purl.obolibrary.org/obo/iao/dev/iao.owl>
+      (loop for source in (list !<http://purl.obolibrary.org/obo/iao/iao.owl>
 				!<http://www.obofoundry.org/ro/ro.owl>
 				!<http://www.ifomis.org/bfo/1.1>
 				!<http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl>
 				!<http://purl.org/obo/owl/ro_bfo_bridge/1.1>)
 	   do (add-jena-triple out-model "http://purl.obolibrary.org/obo/obi.owl" !owl:imports source)))
+    (add-doap out-model version pretty)
+;    (add-preflabels out-model)
+;    (add-version-stuff out-model)
     (if last
 	(write-jena-model out-model (namestring (translate-logical-pathname dest)))
 	(progn
 	  (write-jena-model out-model (namestring (translate-logical-pathname dest)))
-	  (create-combined-obi dest obi type dest)
+	  (create-combined-obi dest obi type :last dest :pretty pretty :version version)
 	  ))))
+
+(defun add-doap (model version pretty-name &optional (doap "obi:branches;doap.owl"))
+  (with-open-file (newdoap "/tmp/doap.owl" :direction :output :if-exists :supersede :if-does-not-exist :create)
+    (with-open-file (f doap)
+      (loop for line = (read-line f nil :eof)
+	 until (eq line :eof)
+	 do (write-line (#"replaceFirst" (#"replaceFirst"  line "__VERSION_GOES_HERE__" version) "__PRETTY_NAME_GOES_HERE__" pretty-name)
+			newdoap))))
+  (let ((in-model (create-empty-obi-model)))
+    (#"read" in-model
+	     (new 'bufferedinputstream
+		  (#"getInputStream" (#"openConnection" (new 'java.net.url "file:///tmp/doap.owl" ))))
+	     "http://purl.obolibrary.org/obo/obi.owl")
+    (loop with iterator = (#"listStatements" in-model)
+       while (#"hasNext" iterator)
+       for statement = (#"next" iterator)
+       do (#"add" model statement))))
+
+(defun add-preflabels ()
+
+;; Do you think you will be able to:
+;; - save the editor notes to a file and remove from released file (actually that would be save the curator notes to a file and keep editor note)
+;; - check matching between labels and preferred terms
+;;        - if they match exit
+;;        - if they don't
+;;                - copy preferred term to alternative term property
+;;                - overwrite preferred term with rdfs:label
+)
+
