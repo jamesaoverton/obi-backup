@@ -290,3 +290,16 @@
 	       :use-reasoner :none :kb kb )
        do
        (format t "Multiline value for ~a(~a) on ~a(~a):~%-----~%~a~%-----~%" (rdfs-label ?prop kb) ?prop (rdfs-label ?what kb) ?what ?value)))
+
+(defun no-definition (kb)
+  (sparql '(:select (?term ?label) ()
+	    (?term !rdf:type !owl:Class)
+	    (?term !rdfs:label ?label)
+	    (:optional (?term !'definition'@obi ?def) (?term !rdfs:label ?label))
+	    (:filter (and (regex (str ?term) "OBI_") (not (regex (str ?label) "obsolete")) (not (isblank ?term)) (not (bound ?def))))
+	    )
+	  :kb kb
+	  :use-reasoner :none
+	  :trace "Terms without definitions"
+	  :flatten t
+	  :values nil))
