@@ -8,6 +8,7 @@
     (#"setNsPrefix" model "protege" "http://protege.stanford.edu/plugins/owl/protege#")
     (#"setNsPrefix" model "obo" "http://purl.obolibrary.org/obo/")
     (#"setNsPrefix" model "oboinowl" "http://www.geneontology.org/formats/oboInOwl#")
+    (#"setNsPrefix" model "doap" "http://usefulinc.com/ns/doap#")
     model))
 
 (defun write-jena-model (model to)
