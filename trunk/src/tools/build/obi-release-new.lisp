@@ -28,7 +28,7 @@
   (let* ((kb (load-kb-jena obi))
 	 (imported (remove "http://" (imported kb) :test 'search))
 	 (out-model (create-empty-obi-model))
-	 (curation-note-uri (uri-full 
+	 (curation-note-uri "http://purl.obolibrary.org/obo/IAO_0000232")
 	 (necessary-subclass-assertions (and last (necessary-subclass-assertions (load-kb-jena last))))
 	 (imported-ontology-names (remove "http://purl.obolibrary.org/obo/obi.owl" (ontology-names kb) :test 'equal)))
     (if last
@@ -58,7 +58,8 @@
 	  for subject = (#"getSubject" statement)
 	  for object = (#"getObject" statement)
 	  for predicate = (#"toString" (#"getURI" (#"getPredicate" statement)))
-	  unless (or (member predicate '("http://www.w3.org/2002/07/owl#imports" "http://www.w3.org/2000/01/rdf-schema#isDefinedBy")
+	  unless (or (member predicate `("http://www.w3.org/2002/07/owl#imports" "http://www.w3.org/2000/01/rdf-schema#isDefinedBy"
+					 ,curation-note-uri)
 			     :test 'equal)
 		     (and (equal predicate "http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
 			  (equal (#"toString" (#"getURI" object)) "http://www.w3.org/2002/07/owl#Ontology"))
