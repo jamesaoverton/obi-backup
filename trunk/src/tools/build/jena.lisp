@@ -15,7 +15,9 @@
   (let ((jfile (new 'java.io.file (namestring (translate-logical-pathname to)))))
     (when (not (#"exists" jfile))
       (#"createNewFile" jfile))
-    (#"write" model (new 'java.io.fileoutputstream jfile) "RDF/XML-ABBREV")))
+    (let ((stream (new 'java.io.fileoutputstream jfile)))
+      (#"write" stream (#"getBytes" (format nil "<?xml version=\"1.0\" encoding=\"UTF-8\"?>~%")))
+      (#"write" model stream "RDF/XML-ABBREV"))))
     
 (defun add-jena-triple (model s property value)
   (let ((subject 
