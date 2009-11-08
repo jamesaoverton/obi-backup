@@ -57,7 +57,7 @@
 	       (:file "generate-obo")
 	       (:file "new-newids")
 	       (:file "jena")
-	       (:file "bioportal-obi")
+	       (:file "obi-release-new")
 	       (:file "obsolete-report"))
 	      :depends-on (macros)))
      :depends-on (owl))
