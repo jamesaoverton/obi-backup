@@ -61,8 +61,10 @@
 						(:union
 						 ((?term !rdfs:label ?label)
 							 (:filter (regex (str ?label) "^_.*")))
-						,@(and remove-obsolete-classes
-						       (list '((?term !rdfs:subClassOf !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))))))
+						 ,@(and remove-obsolete-classes
+						       (list '((?term !rdfs:subClassOf !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))))
+						 ,@(and remove-obsolete-classes
+						       (list '((?term !rdfs:subPropertyOf !<http://www.geneontology.org/formats/oboInOwl#ObsoleteProperty>))))))
 					      :kb kb :use-reasoner :none :flatten t)))
        do
        (format t "reading ~a~%" file)
