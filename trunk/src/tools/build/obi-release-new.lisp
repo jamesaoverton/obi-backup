@@ -238,6 +238,55 @@
 	       (write-line line fout))
 	   )))))
       
+(defun entity-report (kb &optional (reasoner :none))
+  (let ((class-prefixes 
+	 (remove-duplicates 
+	  (mapcar (lambda(e) (#"replaceFirst" (uri-full e) "(.*)[#/_].*" "$1"))
+		  (sparql '(:select (?class) () 
+			    (?class !rdf:type !owl:Class)(:filter (not (isblank ?class))))
+			  :kb kb
+			  :use-reasoner reasoner :flatten t))
+	  :test #'equal))
+	(property-prefixes 
+	 (list*
+	  "http://purl.obolibrary.org/obo/OBI_"
+	  "http://purl.obolibrary.org/obo/IAO_"
+	  (remove "http://purl.obolibrary.org/obo"
+		  (remove-duplicates 
+		   (mapcar (lambda(e) (#"replaceFirst" (uri-full e) "(.*)?[#/].*" "$1"))
+			   (sparql '(:select (?prop) () 
+				     (:union
+				      ((?prop !rdf:type !owl:DatatypeProperty))
+				      ((?prop !rdf:type !owl:AnnotationProperty))
+				      ((?prop !rdf:type !owl:ObjectProperty)))
+				     )
+				   :kb kb
+				   :use-reasoner reasoner :flatten t))
+		   :test #'equal) :test 'equal)))
+	)
+    (loop for prefix in class-prefixes
+       for count = 
+       (sparql `(:select (?class) (:count t :distinct t) 
+			 (?class !rdf:type !owl:Class)
+			 (:filter (regex (str ?class) ,prefix)))
+	       :kb kb
+	       :use-reasoner reasoner)
+       do (format t "Class	~a ~a~%" prefix count)
+       sum count)
+    (loop for prefix in property-prefixes
+       for count = 
+       (sparql `(:select (?prop) (:count t :distinct t) 
+			 (:union
+			  ((?prop !rdf:type !owl:DatatypeProperty))
+			  ((?prop !rdf:type !owl:AnnotationProperty))
+			  ((?prop !rdf:type !owl:ObjectProperty)))
+			 (:filter (regex (str ?prop) ,prefix)))
+	       :kb kb
+	       :use-reasoner reasoner)
+       do (format t "Property	~a ~a~%" prefix count)
+       sum count)
+    ))
+
 (defparameter *obi-spelling-fixme*
   '(("ploymerization" "polymerization")
     ("decompostion" "decomposition ")
@@ -302,7 +351,7 @@
     ("flashlamp" "flash lamp ")
     ("assymetric" "asymmetric ")
     ("consituant" "constituent ")
-    ("detoxification,hemotapoeietic" "detoxification, hemotapoeietic ")
+    ("detoxification,hemotapoeietic" "detoxification, hematopoietic ")
     ("proceses" "processes ")
     ("widebore" "wide bore")
     ("ocurring" "occurring")
@@ -428,3 +477,4 @@
     ("implict" "implicit")
     ("anlysis" "analysis")
     ))
+
