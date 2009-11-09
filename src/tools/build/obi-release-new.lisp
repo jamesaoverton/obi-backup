@@ -240,17 +240,21 @@
       
 (defun entity-report (kb &optional (reasoner :none))
   (let ((class-prefixes 
-	 (remove-duplicates 
-	  (mapcar (lambda(e) (#"replaceFirst" (uri-full e) "(.*)[#/_].*" "$1"))
-		  (sparql '(:select (?class) () 
-			    (?class !rdf:type !owl:Class)(:filter (not (isblank ?class))))
-			  :kb kb
-			  :use-reasoner reasoner :flatten t))
-	  :test #'equal))
+	 (set-difference
+	  (remove-duplicates 
+	   (mapcar (lambda(e) (#"replaceFirst" (uri-full e) "(.*)[#/_].*" "$1"))
+		   (sparql '(:select (?class) () 
+			     (?class !rdf:type !owl:Class)(:filter (not (isblank ?class))))
+			   :kb kb
+			   :use-reasoner reasoner :flatten t))
+	   :test #'equal)
+	  '("http://www.ifomis.org/bfo/1.1/snap" "http://www.ifomis.org/bfo/1.1/span")
+	  :test 'equal)
+	  )
 	(property-prefixes 
 	 (list*
-	  "http://purl.obolibrary.org/obo/OBI_"
-	  "http://purl.obolibrary.org/obo/IAO_"
+	  "http://purl.obolibrary.org/obo/OBI"
+	  "http://purl.obolibrary.org/obo/IAO"
 	  (remove "http://purl.obolibrary.org/obo"
 		  (remove-duplicates 
 		   (mapcar (lambda(e) (#"replaceFirst" (uri-full e) "(.*)?[#/].*" "$1"))
@@ -271,7 +275,7 @@
 			 (:filter (regex (str ?class) ,prefix)))
 	       :kb kb
 	       :use-reasoner reasoner)
-       do (format t "Class	~a ~a~%" prefix count)
+       do (format t "Class	~a ~a~%" (#"replaceFirst"  (#"replaceFirst" prefix ".*[#/_]" "") "1.1" "BFO") count)
        sum count)
     (loop for prefix in property-prefixes
        for count = 
@@ -283,7 +287,7 @@
 			 (:filter (regex (str ?prop) ,prefix)))
 	       :kb kb
 	       :use-reasoner reasoner)
-       do (format t "Property	~a ~a~%" prefix count)
+       do (format t "Property	~a ~a~%" (#"replaceFirst"  (#"replaceFirst" prefix ".*[#/](.*?)(\\..*){0,1}$" "$1") "1" "dc") count)
        sum count)
     ))
 
