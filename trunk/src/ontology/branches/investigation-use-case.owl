@@ -24,12 +24,13 @@
 <!-- Ontology Information -->
   <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/obi/investigation-use-case.owl"
                 protege:defaultLanguage="en"
-                owl:versionInfo="$Revision: 2441 $">
+                owl:versionInfo="$Revision: 2443 $">
     <owl:imports><owl:Ontology rdf:about="&obo;obi.owl"/></owl:imports>
   </owl:Ontology>
 
 <!-- Classes -->
   <owl:Class rdf:about="&obo;IAO_0000003"/>
+  <owl:Class rdf:about="&obo;IAO_0000032"/>
   <owl:Class rdf:about="&obo;IAO_0000078"/>
   <owl:Class rdf:about="&obo;IAO_0000144"/>
   <owl:Class rdf:about="&obo;IAO_0000414"/>
@@ -116,7 +117,7 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
-    <rdfs:label rdf:datatype="&xsd;string">role of subject to be treated with fucoidan in the pilot study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">role of subject to be treated with fucoidan in the fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000813"/>
       <owl:Restriction>
@@ -156,7 +157,7 @@
     <obo:IAO_0000115 rdf:datatype="&xsd;string">fucoidan capsule for fucoidan study study cited as definition source</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
-    <rdfs:label rdf:datatype="&xsd;string">fucoidan capsule for fucoidan study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">fucoidan capsule used in fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000821"/>
       <owl:Restriction>
@@ -165,16 +166,16 @@
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
-                <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0024"/>
+                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
+                <owl:someValuesFrom rdf:resource="&obo;OBI_0000817"/>
               </owl:Restriction>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000316"/>
                 <owl:someValuesFrom rdf:resource="&obo;OBI_0000847"/>
               </owl:Restriction>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000643"/>
-                <owl:someValuesFrom rdf:resource="&obo;OBI_0000817"/>
+                <owl:onProperty rdf:resource="&obo;OBI_0000298"/>
+                <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0024"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -210,12 +211,12 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="&obo;IAO_0000414"/>
               <owl:Restriction>
-                <owl:hasValue rdf:datatype="&xsd;float">3.0</owl:hasValue>
-                <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
-              </owl:Restriction>
-              <owl:Restriction>
                 <owl:hasValue rdf:resource="&UO;UO_00000021"/>
                 <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:hasValue rdf:datatype="&xsd;float">3.0</owl:hasValue>
+                <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -266,12 +267,12 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="&obo;IAO_0000414"/>
               <owl:Restriction>
-                <owl:hasValue rdf:resource="&UO;UO_00000021"/>
-                <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
-              </owl:Restriction>
-              <owl:Restriction>
                 <owl:hasValue rdf:datatype="&xsd;float">0.75</owl:hasValue>
                 <owl:onProperty rdf:resource="&obo;IAO_0000004"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:hasValue rdf:resource="&UO;UO_00000021"/>
+                <owl:onProperty rdf:resource="&obo;IAO_0000039"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -303,12 +304,12 @@
         </owl:someValuesFrom>
       </owl:Restriction>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0022"/>
-      </owl:Restriction>
-      <owl:Restriction>
         <owl:hasValue rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
         <owl:onProperty rdf:resource="&ro;part_of"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0022"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -318,13 +319,9 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
-    <rdfs:label rdf:datatype="&xsd;string">single treatment of guar gum in fucoidan study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">single treatment of guar gum in fucoidan pilot study</rdfs:label>
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000837"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0021"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000308"/>
         <owl:someValuesFrom>
@@ -343,6 +340,10 @@
         <owl:hasValue rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
         <owl:onProperty rdf:resource="&ro;part_of"/>
       </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0021"/>
+      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
@@ -353,10 +354,6 @@
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0600005"/>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
-      </owl:Restriction>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
         <owl:someValuesFrom>
           <owl:Class>
@@ -366,6 +363,10 @@
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+        <owl:someValuesFrom rdf:resource="&obo;OBI_0100017"/>
       </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
@@ -391,10 +392,6 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:onProperty rdf:resource="&ro;has_participant"/>
             <owl:someValuesFrom rdf:resource="&obo;OBI_0000843"/>
           </owl:Restriction>
@@ -407,9 +404,28 @@
               </owl:Restriction>
             </owl:someValuesFrom>
           </owl:Restriction>
+          <owl:Restriction>
+            <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+          </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&obo;obi/example/fucoidan/fc_0039">
+    <obo:IAO_0000115 rdf:datatype="&xsd;string">The class of measurment datum that are those outputs of antithrombin assays on the subjects taken on day 1 or day 4 of the study</obo:IAO_0000115>
+    <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
+    <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
+    <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
+    <rdfs:label rdf:datatype="&xsd;string">measured AT3 levels of treated subjects on day 1 and day 4 in the fucoidan pilot study</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&obo;IAO_0000032"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&obo;OBI_0000312"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
   </owl:Class>
 
   <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
@@ -484,7 +500,7 @@
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
   <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/span#Process"/>
-  <owl:Class rdf:nodeID="b600">
+  <owl:Class rdf:nodeID="b605">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -498,7 +514,7 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b623">
+  <owl:Class rdf:nodeID="b616">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
       <owl:Restriction>
@@ -508,7 +524,7 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b629">
+  <owl:Class rdf:nodeID="b630">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000673"/>
       <owl:Restriction>
@@ -523,7 +539,7 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b592">
+  <owl:Class rdf:nodeID="b620">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000471"/>
       <owl:Restriction>
@@ -537,7 +553,7 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b605">
+  <owl:Class rdf:nodeID="b634">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
       <owl:Restriction>
@@ -547,17 +563,9 @@
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b616">
+  <owl:Class rdf:nodeID="b603">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0000826"/>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;OBI_0000819"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&ro;has_part"/>
-        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
-      </owl:Restriction>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
@@ -566,10 +574,18 @@
         </owl:allValuesFrom>
         <owl:onProperty rdf:resource="&ro;has_part"/>
       </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&obo;obi/example/fucoidan/fc_0031"/>
+      </owl:Restriction>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ro;has_part"/>
+        <owl:someValuesFrom rdf:resource="&obo;OBI_0000819"/>
+      </owl:Restriction>
     </owl:intersectionOf>
   </owl:Class>
 
-  <owl:Class rdf:nodeID="b607">
+  <owl:Class rdf:nodeID="b618">
     <owl:intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="&obo;OBI_0600015"/>
       <owl:Restriction>
@@ -658,8 +674,8 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
     <obo:OBI_0000846 rdf:resource="&obo;obi/example/fucoidan/fc_0030"/>
-    <rdf:type rdf:nodeID="b623"/>
-    <rdf:type rdf:nodeID="b605"/>
+    <rdf:type rdf:nodeID="b616"/>
+    <rdf:type rdf:nodeID="b634"/>
     <rdfs:label rdf:datatype="&xsd;string">RM Lowenthal</rdfs:label>
   </rdf:Description>
 
@@ -680,7 +696,7 @@
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
     <obo:OBI_0000299 rdf:resource="&obo;obi/example/fucoidan/fc_0009"/>
     <obo:OBI_0000308 rdf:resource="&obo;obi/example/fucoidan/fc_0004"/>
-    <rdfs:label rdf:datatype="&xsd;string">process of planning the fucoidan study</rdfs:label>
+    <rdfs:label rdf:datatype="&xsd;string">planning the fucoidan study</rdfs:label>
   </obo:OBI_0000339>
 
   <obo:OBI_0600004 rdf:about="&obo;obi/example/fucoidan/fc_0006">
@@ -695,8 +711,8 @@
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Helen Parkinson</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
-    <rdf:type rdf:nodeID="b600"/>
-    <rdf:type rdf:nodeID="b592"/>
+    <rdf:type rdf:nodeID="b605"/>
+    <rdf:type rdf:nodeID="b620"/>
     <rdfs:label rdf:datatype="&xsd;string">study design execution in fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -725,7 +741,7 @@
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:19696660</obo:IAO_0000119>
     <ro:part_of rdf:resource="&obo;obi/example/fucoidan/fc_0007"/>
-    <rdf:type rdf:nodeID="b616"/>
+    <rdf:type rdf:nodeID="b603"/>
     <rdfs:label rdf:datatype="&xsd;string">treatment portion of study design execution in fucoidan investigation</rdfs:label>
   </rdf:Description>
 
@@ -761,7 +777,7 @@
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="&xsd;string">PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days n = 10, P =  0.02; Table 2</obo:IAO_0000119>
     <obo:OBI_0000299 rdf:resource="&obo;obi/example/fucoidan/fc_0037"/>
-    <rdf:type rdf:nodeID="b629"/>
+    <rdf:type rdf:nodeID="b630"/>
     <rdfs:label rdf:datatype="&xsd;string">Test of significance of Antithrombin-III level change between day 1 and day 4</rdfs:label>
   </rdf:Description>
 
@@ -788,7 +804,7 @@
     <obo:IAO_0000115 rdf:datatype="&xsd;string">A group assignment process in which participants in the fucoidan study are assigned to either the control or treated arm of the study</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="&xsd;string">2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="&xsd;string">Person:Alan Ruttenberg</obo:IAO_0000117>
-    <rdf:type rdf:nodeID="b607"/>
+    <rdf:type rdf:nodeID="b618"/>
     <rdfs:label rdf:datatype="&xsd;string">group assignment for fucoidan study</rdfs:label>
   </rdf:Description>
 
