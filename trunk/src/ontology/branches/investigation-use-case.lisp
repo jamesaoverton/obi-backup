@@ -827,7 +827,7 @@ details of the study.
 	       (fcusecase)
 	       (signedalan)
 		    :complete
-		    (manch (some !'is_specified_output_of'@ fucoidan-sample-taking)))
+		    (manch (some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay)))
 									  
 		    
 	     ;; 	       (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
