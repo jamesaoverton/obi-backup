@@ -187,6 +187,7 @@ details of the study.
 	      (interpreting-fucoidan-study-data (fcuri 36))
 	      (p-value (fcuri 37))
 	      (fucoidan-cohort-assignment (fcuri 38))
+	      (measured-data (fcuri 39))
 	      ;; the following should move into obi proper - here for now to be able to keep track of them
 ;	      (informed-consent-process (fcobiuri 1))
 ;	      (informed-consent-document-agreement-by-patient (fcobiuri 2))
@@ -361,6 +362,7 @@ details of the study.
 			 (value !'is member of'@ fucoidan-hospital)
 			 (metadata-complete))
 
+
 	     ;; the investigation as process
 	
 	     ;; Probably should be generalized to IAO - communication
@@ -473,7 +475,7 @@ details of the study.
 			 (value !'is_realized_by'@ fucoidan-investigation-planning))
 
 	     (individual (fcusecase) fucoidan-investigation-planning
-			 (label "process of planning the fucoidan study")
+			 (label "planning the fucoidan study")
 			 (type !'planning'@)
 			 (signedhelen)
 			 (uncurated)
@@ -535,7 +537,7 @@ details of the study.
 		    (manch (and !'to be treated with active ingredient role'@
 				(some !'is_realized_by'@ single-treatment-of-fucoidan-in-fucoidan-study)
 				))
-		    (label "role of subject to be treated with fucoidan in the pilot study")
+		    (label "role of subject to be treated with fucoidan in the fucoidan pilot study")
 		    (definition "role of any subject in the fucoidan study who is to be treated with fucoidan pilot study as active ingredient")
 		    (metadata-complete)
 		    (source-fucoidan-paper)
@@ -622,7 +624,7 @@ details of the study.
 				      !'capsule shell'@))))
 
 	     (class (fcusecase) fucoidan-capsule-for-fucoidan-study :complete
-		    (label "fucoidan capsule for fucoidan study")
+		    (label "fucoidan capsule used in fucoidan pilot study")
 		    (definition "fucoidan capsule for fucoidan study study cited as definition source")
 		    (metadata-complete)
 		    (source-fucoidan-paper)
@@ -642,7 +644,7 @@ details of the study.
 					; http://www.vitacost.com/Doctors-Best-Best-Fucoidan-70#IngredientFacts
 
 	     (class (fcusecase) single-treatment-of-placebo-in-fucoidan-study 
-		    (label "single treatment of guar gum in fucoidan study")
+		    (label "single treatment of guar gum in fucoidan pilot study")
 		    (signedalan)
 		    (source-fucoidan-paper)
 		    (uncurated)
@@ -653,6 +655,7 @@ details of the study.
 							(some !'role_of'@ guar-gum-capsule-for-fucoidan-study)))
 				(has !'part_of'@ fucoidan-study-execution)
 				)))
+
 
 	     (class (fcusecase) single-treatment-of-fucoidan-in-fucoidan-study 
 		    (label "single treatment of fucoidan in fucoidan study")
@@ -816,6 +819,15 @@ details of the study.
 			   (some !'realizes'@
 				 (some !'function_of'@ !'Sysmex CA-6000 Coagulation Analyzer'@))
 			   (some !'has_participant'@ !'Sysmex CA-6000 Coagulation Analyzer'@ ))))
+
+	     (class measured-data :partial !'scalar measurement datum'@)
+	     (class measured-data (label "measured AT3 levels of treated subjects on day 1 and day 4 in the fucoidan pilot study") 
+		    (definition "The class of measurment datum that are those outputs of antithrombin assays on the subjects taken on day 1 or day 4 of the study")
+	       (source-fucoidan-paper)
+	       (fcusecase)
+	       (signedalan)
+		    :complete
+		    (manch (some !'is_specified_output_of'@ fucoidan-sample-taking)))
 									  
 		    
 	     ;; 	       (blood-assay thrombin-time "thrombin time assay" "The thrombin time was determined using thromboclotin assay kit."
