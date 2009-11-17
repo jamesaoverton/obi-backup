@@ -13,6 +13,7 @@ prefix:iao: <http://purl.obolibrary.org/obo/>
 
 alias:preferredTerm=iao:IAO_0000111
 alias:definition=iao:IAO_0000115
+alias:importedFrom=iao:IAO_0000412
 
 # give names to the top obi taxa 
 alias:bacteria=tax:_2
@@ -41,6 +42,7 @@ construct
    ?super rdfs:subClassOf ?parent.
    ?super alias:preferredTerm ?label.
    ?super rdfs:label ?label.
+   ?super alias:importedFrom <http://purl.org/obo/owl/NCBITaxon>
  }
 where  
 {
