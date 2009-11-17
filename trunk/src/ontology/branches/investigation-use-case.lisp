@@ -354,10 +354,13 @@ details of the study.
 
 	     ;; involved in running the study
 	     (individual (fcusecase) rm-lowenthal
+			 (type !taxon:9606))
+
+	     (individual (fcusecase) rm-lowenthal
 			 (label "RM Lowenthal")
 			 (metadata-complete)
-			 (type (manch (and !taxon:9606
-					   (some !'bearer_of'@ !'investigation agent role'@))))
+			 (type (manch 
+					   (some !'bearer_of'@ !'investigation agent role'@)))
 			 (definition-source "PMID:19696660")
 			 (value !'is member of'@ fucoidan-hospital)
 			 (metadata-complete))
@@ -973,14 +976,14 @@ details of the study.
 ;;  		    (example-of-usage "The hypothesis that fucoidan has a useful clinical effect as
 ;; an in-vivo anticoagulant and the test of that hypothesis is in the text of a 'Pilot clinical study to evaluate
 ;; the anticoagulant activity of fucoidan', by Lowenthal et. al.PMID:19696660"))
-     
+
+	     (individual statistical-test 
+ 	       (type !'statistical hypothesis test'@))
+
 	     (individual statistical-test
- 	       (type (manch (and !'statistical hypothesis test'@
- 				(all !'has_specified_input'@
-					(some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay))
- 				 )))
-				 
-		     
+ 	       (type (manch (all !'has_specified_input'@
+				 (some !'is_specified_output_of'@ fucoidan-at-iii-berichrome-assay))
+			    ))
 
 	       (label "Test of significance of Antithrombin-III level change between day 1 and day 4")
 	       (definition-source "PMID:1969666#AT-III increased significantly from 113.5% at baseline to 117% after 4 days n = 10, P =  0.02; Table 2")
