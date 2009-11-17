@@ -107,7 +107,7 @@
        do
        (loop for line in (butlast (cddr lines))
 	  do (format f "~a~%" line)))
-    (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000111\"/>")
+    (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000111\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000412\"/>")
     (format f "</rdf:RDF>~%")))
 
 (defun clean-rdf (path prefixmapping)
