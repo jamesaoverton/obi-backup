@@ -625,7 +625,8 @@ details of the study.
 
 	     (class (fcusecase) fucoidan-capsule-for-fucoidan-study :complete
 		    (label "fucoidan capsule used in fucoidan pilot study")
-		    (definition "fucoidan capsule for fucoidan study study cited as definition source")
+		    (definition "A single capsule with 75% by weight fucoidan. A total of 3 grams of this capsule is given to treated subjects.")
+		    (editor-note "2009-11-17 Alan Ruttenberg. It is unclear from the paper whether each capsule is 3 grams or whether multiple capsules weighing a total of 3 grams are administered")
 		    (metadata-complete)
 		    (source-fucoidan-paper)
 		    (manch (and !'filled capsule'@
