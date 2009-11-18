@@ -19,40 +19,55 @@
       (if (equal candidate "http://purl.obolibrary.org/obo")
 	  (format nil "~a/~a.owl" candidate (string-downcase (#"replaceAll" (localname uri) "_|\\d" "")))
 	  (if (#"matches" candidate "http://purl.org/obo/owl/.*")
-	      (format nil "~a.owl" candidate)
+	      (format nil "~a" candidate)
 	      (if (#"matches" candidate "http://www.ifomis.org/bfo/.*")
 		  (#"replaceAll" candidate "(snap)|(span)$" "")
 		  (if (#"matches" candidate "http://www.obofoundry.org/ro/ro.owl.*")
-		      "http://purl.org/obo/owl/OBO_REL.owl"
-		      (warn "don't know ontology of ~a uri" uri)
-		      )))))))
+		      "http://www.obofoundry.org/ro/ro.owl"
+		      (if (#"matches" candidate ".*OBO_REL.*")
+			  "http://purl.org/obo/owl/ro_proposed"
+			  (if (#"matches" candidate "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl.*")
+			      "http://purl.org/nif/ontology/BiomaterialEntities/NIF-GrossAnatomy.owl"
+			      (warn "don't know ontology of ~a uri" uri)
+			      )))))))))
 
 (defun localname-namespaced (uri)
   "Abbreviate a URI using the OBO conventions for namespaces."
   (let* ((full (uri-full uri))
 	 (local  (#"replaceFirst" full ".*/(.*)" "$1")))
-    (setq local (#"replaceFirst" local "([A-Za-z]{2,7})_" "$1:"))
-    (if (is-obi-uri uri)
-	local
-	(if (#"matches" local "^ro\\.owl#.*")
-	    ; Relation ontology
-	    (concatenate 'string "OBO_REL:" (#"replaceFirst" local ".*#(.*)" "$1"))
-	    (if (#"matches" local "^MGEDOntology\\.owl.*")
-		; MGED
-		(concatenate 'string "MGED:" (#"replaceFirst" local ".*#(.*)" "$1"))
-		(if (#"matches" local "[A-Z]+.owl#msi_.*")
-		    ; the MSI ontologies. These shouldn't actually be here, having been replaced by OBI ids before this stage.
-		    ; While debugging warn about them and give them a fake id.
-		    (progn
-		      ;(format *error-output* "Found (and replaced) MSI id ~a~%" local)
-		      (#"replaceFirst" local "[A-Z]+.owl#msi_(.*)" "OBI:X$1"))
-		    (let ((clean (#"replaceFirst" local "#" ":")))
-		      (#"replaceFirst" clean "(\\S+):\\S+?:(\\d+)" "$1:$2")))
-		    )))))
+					;    (print-db local)
+					;    (setq local (#"replaceFirst" local "([A-Za-z]{2,7})_" "$1:"))
+					;    (print-db local)
+    (if (equal full "http://www.ifomis.org/bfo/1.1#Entity")
+	"BFO:Entity"
+	(if (is-obi-uri uri)
+	    (#"replaceFirst" local "([A-Za-z]{2,7})_" "$1:")
+	    (if (#"matches" local "^OBO_REL.*")
+		(#"replaceAll" local "OBO_REL#" "ROP:")
+		(if (#"matches" local "^ro\\.owl#.*")
+					; Relation ontology
+		    (progn		;(print-db local)
+		      (concatenate 'string "RO:" (#"replaceFirst" local ".*#(.*)" "$1")))
+		    (if (#"matches" local "^NIF-GrossAnatomy.owl.*")
+			(concatenate 'string "birn_anat:" (#"replaceFirst" local ".*#(.*)" "$1"))
+			(if (#"matches" local "^MGEDOntology\\.owl.*")
+					; MGED
+			    (concatenate 'string "MGED:" (#"replaceFirst" local ".*#(.*)" "$1"))
+			    (if (#"matches" local "[A-Z]+.owl#msi_.*")
+					; the MSI ontologies. These shouldn't actually be here, having been replaced by OBI ids before this stage.
+					; While debugging warn about them and give them a fake id.
+				(progn
+					;(format *error-output* "Found (and replaced) MSI id ~a~%" local)
+				  (#"replaceFirst" local "[A-Z]+.owl#msi_(.*)" "OBI:X$1"))
+				(let ((clean (#"replaceFirst" (#"replaceFirst" local "([A-Za-z]{2,7})_" "$1:") "#" ":")))
+		      			  
+				  (#"replaceFirst" clean "(\\S+):\\S+?:(\\d+)" "$1:$2")))
+			    ))))))))
 	
 (defvar *all-prefixes* nil)
 
-(defun definition-source-dbxref (class kb)
+(defun definition-source-dbxref (class kb &key (relative-to "OBI")
+				       (default-definition-source " [OBI:sourced \"OBI Consortium http://purl.obolibrary.org/obo/obi\"]"))
   "Generate the dbxref for a definition. Involves various munging to map OBI's more broad range of definition sources. Return empty list since definitions need such even if there are no references"
   (let ((definition-source (sparql `(:select (?source) (:distinct t)
 					     (,class !definition-source ?source))
@@ -82,24 +97,36 @@
 				  (if has-isbn
 				      (format nil "ISBN:~a ~s" has-isbn defs)
 				      ;; otherwise, we are not a term and use OBO:sourced and the string for definition source
-				      (format nil "OBI:sourced ~s" (#"replaceFirst" defs "OBI_" "OBI:" )))))))))))
-	(loop for defs in definition-source
-	   for is-msi = (or (search "MSI.owl" defs) (search "NMR.owl" defs) (search "CHROM.owl" defs)) ; special case the MSI ontologies. Prototype.
-	   when is-msi
-	   collect (format nil "xref_analog: MSI:~a ~s~%" (caar (all-matches defs ".owl#msi_(.*)" 1)) defs))
-	)
-    ;; no definition source. Return empty list
-    (if (#"matches" (uri-full class)  ".*/OBI_.*")
-	" [OBI:sourced \"OBI Consortium http://purl.obolibrary.org/obo/obi\"]"
-	(progn 
-	  (format nil " [OBI:imported ~s]" (ontology-of class))
-	  ))))
+				      (format nil "OBO:sourced ~s" (#"replaceAll" (#"replaceFirst" defs "OBI_" "OBI:" ) "\\n" " "))))))))))
+	 (loop for defs in definition-source
+	    for is-msi = (or (search "MSI.owl" defs) (search "NMR.owl" defs) (search "CHROM.owl" defs)) ; special case the MSI ontologies. Prototype.
+	    when is-msi
+	    collect (format nil "xref_analog: MSI:~a ~s~%" (caar (all-matches defs ".owl#msi_(.*)" 1)) defs))
+	 )
+	;; no definition source. Return empty list
+	(if (and default-definition-source (#"matches" (uri-full class)  (format nil ".*/~a_.*" relative-to)))
+	    default-definition-source
+	    (progn 
+	      (format nil " [OBO:imported ~s]" (ontology-of class))
+	      )))))
 		     
 
+(defun quote-for-obo (string)
+  (#"replaceAll" 
+  (#"replaceAll" 
+   (#"replaceAll" (#"replaceAll" string "\\\\n" "\\n") "([,\\\\])" "\\\\$1" ) "\\n" "\\\\n")
+   "\"" "\\\""))
+  
 (defun generate-obo ( &key (kb (load-kb-jena "obi:branches;obil.owl"))
 		     (classes-matching ".*([A-Za-z]+)_\\d+") ; ignored atm
 		     (properties-matching ".*OBI_\\d+") ; ignored atm
-		     (path "obi:branches;obi.obo")) 
+		     (path "obi:branches;obi.obo")
+		     (saved-by "obi")
+		     (default-namespace "OBI")
+		     (ontology-name "OBI")
+		     (default-definition-source " [OBI:sourced \"OBI Consortium http://purl.obolibrary.org/obo/obi\"]")
+		     (ontology-uri "http://purl.obolibrary.org/obo/obi.owl")
+		     ) 
   (with-open-file (f  path :direction :output :if-does-not-exist :create :if-exists :supersede)
     (let ((*current-labels* (rdfs-labels kb)) ; speed optimization for labels and comments
           (*current-comments* (rdfs-comments kb)))
@@ -108,23 +135,42 @@
 					; write canned header
 	(format f "format-version: 1.2
 date: ~a
-saved-by: obi
+saved-by: ~a
 auto-generated-by: http://purl.obolibrary.org/obo/obi/repository/trunk/src/tools/build/generate-obo.lisp
-default-namespace: OBI
-idspace: OBO_REL http://www.obofoundry.org/ro/ro.owl# \"OBO Relation ontology official home on OBO Foundry\"
-idspace: PATO http://purl.org/obo/owl/PATO \"Phenotype Ontology\"
+default-namespace: ~a
+idspace: RO http://www.obofoundry.org/ro/ro.owl# \"OBO Relation ontology official home on OBO Foundry\"
+idspace: ROP http://purl.org/obo/owl/OBO_REL# \"Relation ontology proposed terms\"
+idspace: PATO http://purl.org/obo/owl/PATO# \"Phenotype Ontology\"
 idspace: snap http://www.ifomis.org/bfo/1.1/snap# \"BFO SNAP ontology (continuants)\"
 idspace: span http://www.ifomis.org/bfo/1.1/span# \"BFO SPAN ontology (occurrents)\"
 idspace: OBI http://purl.obolibrary.org/obo/OBI_ \"Ontology for Biomedical Investigations\"
 idspace: CHEBI http://purl.org/obo/owl/CHEBI# \"Chemical Entities of Biological Interest\"
 idspace: CL http://purl.org/obo/owl/CL# \"Cell Ontology\"
 idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
-remark: This file is a subset of OBI adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at http://purl.obolibrary.org/obo/obi.owl
+idspace: birn_anat http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl# \"NIF Standard Anatomy\"
+idspace: IAO http://purl.obolibrary.org/obo/IAO \"Information Artifact Ontology\"
+idspace: BFO http://www.ifomis.org/bfo/1.1/ \"Basic Formal Ontology\"
+idspace: GO http://purl.org/obo/owl/GO# \"Gene Ontology\"
+idspace: FMA http://purl.org/obo/owl/FMA# \"Foundational Model of Anatomy\"
+idspace: PRO http://purl.org/obo/owl/PRO# \"Protein Ontology\"
+idspace: UO http://purl.org/obo/owl/UO# \"Unit Ontology\"
+idspace: ENVO http://purl.org/obo/owl/ENVO# \"Environment Ontology\"
+idspace: VO http://purl.obolibrary.org/obo/VO \"Vaccine Ontology\"
+idspace: SO http://purl.org/obo/owl/SO# \"Sequence Ontology\"
+idspace: HPO http://purl.org/obo/owl/HP# \"Human Phenotype Ontology\"
+remark: This file is a subset of ~a adequate for indexing using the OLS service. It does not include all logical assertions present in the OWL file, which can be obtained at ~a
 
-" (obo-format-time))
+" saved-by default-namespace
+		(obo-format-time) ontology-name ontology-uri)
 	(loop for class in (set-difference (descendants !owl:Thing kb) (list !protegeowl:DIRECTED-BINARY-RELATION !protegeowl:PAL-CONSTRAINT))
-	   for obsolete = (member !obsolete-class (ancestors class kb))
-	   when t      ;(#"matches" (uri-full class) classes-matching)
+	   for obsolete = (and (not (eq class !<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
+			       (or 
+				(member !obsolete-class (ancestors class kb))
+				(or (#"matches" (or (rdfs-label class) "") "^obsol.*"))
+				(or (#"matches" (or (rdfs-comment class) "") "(?i)^obsol.*"))
+				(or (#"matches" (or (rdfs-label class) "") "^_.*"))
+				))
+	   unless obsolete ;(#"matches" (uri-full class) classes-matching)
 	   do 
 	   ;; write term ID and name
 	   (format f "[Term]~%id: ~a~%name: ~a~%"
@@ -134,16 +180,15 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	   ;; write definition and dbxref for them
 	   (let ((comment (rdfs-comment class)))
 	     (unless (or (null comment) (equal comment ""))
-	       (multiple-value-bind (dbxrefs analogs) (definition-source-dbxref class kb)
-		   (format f "def:~s~a~%"  (#"replaceAll" (#"replaceAll" comment "\\n" " " )
-							  "\\\\" "\\\\\\\\" )
-			   dbxrefs)
+	       (multiple-value-bind (dbxrefs analogs) (definition-source-dbxref class kb :relative-to ontology-name :default-definition-source default-definition-source)
+		 (format f "def:\"~a\"~a~%"  (quote-for-obo comment) dbxrefs)
 		 (loop for xra in analogs do (write-string xra f))
 		 )))
 	   ;; put obsolete marked for obsolete classes
 	   (if obsolete
 	       (format f "is_obsolete: true~%")
 	       (loop for super in (parents class kb)
+		    unless (#"matches" (rdfs-label super) "^_.*")
 		  do (format f "is_a: ~a ! ~a~%"  (localname-namespaced super) (rdfs-label super))))
 	   (terpri f))
 	;; now write out the list of properties we will use (we don't actually write their values out yet in the above)
@@ -151,7 +196,17 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 	   do
 	   (loop for prop in (sparql `(:select (?prop) (:distinct t) (?prop !rdf:type ,proptype))  :use-reasoner :jena :kb kb :flatten t)
 	      for name = (localname-namespaced prop)
-	      when t ;(#"matches" (uri-full prop) properties-matching)
+		for supers = (mapcar 'aterm-to-sexp
+			       (apply 'append (mapcar 'set-to-list 
+						      (set-to-list
+						       (#"getSuperProperties" (kb-kb kb) (get-entity prop kb))))))
+		
+	      for obsolete = (and (not (eq prop !<http://www.geneontology.org/formats/oboInOwl#ObsoleteProperty>))
+				  (or (member !oboinowl:ObsoleteProperty supers)
+				      (or (#"matches" (or (rdfs-label prop) "") "^obsol.*"))
+				      (or (#"matches" (or (rdfs-comment prop) "") "(?i)^obsol.*"))
+				      ))
+	      unless obsolete ;(#"matches" (uri-full prop) properties-matching)
 	      do
 	      (unless (or (#"matches" name ".*[A-Z]{4,}.*") ; protege noise is all upper case
 			  (#"matches" name "^protege.*")
@@ -165,10 +220,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 		  (unless (or (null comment) (equal comment ""))
 		    (if (#"matches" comment "(?s).*beta.*") (print comment))
 		    (multiple-value-bind (xrefs analogs) (definition-source-dbxref prop kb)
-		      (format f "def:\"~a\"~a~%"
-			      (#"replaceAll" (#"replaceAll" comment "\\n" " " ) "\\\\" "\\\\\\\\" )
-			      xrefs
-			      )
+		      (format f "def:\"~a\"~a~%" (quote-for-obo comment) xrefs)
 		      (loop for xra in analogs do (write-string xra f))
 		      )))
 		;; compute and write inverse relation
@@ -178,17 +230,22 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
 				(#"getInverses" (kb-kb kb) (get-entity prop kb)) ))))
 		  (loop for inverse in inverses do
 		       (format f "inverse_of: ~a ! ~a~%" (localname-namespaced inverse) (rdfs-label inverse))))
-		;; compute and write superproperties
-		(let ((supers
-		       (mapcar 'aterm-to-sexp
-			       (apply 'append (mapcar 'set-to-list 
-						      (set-to-list
-						       (#"getSuperProperties" (kb-kb kb) (get-entity prop kb))))))))
 		  (loop for super in supers 
 		     unless (eq super !ro:relationship)
-		     do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super)))))
+		     do (format f "is_a: ~a ! ~a~%" (localname-namespaced super) (or (rdfs-label super) (localname super))))
 		(terpri f))
 	      ))))))
+
+(defun generate-iao (&key (kb (load-kb-jena :iaol))
+		     (path "~/Desktop/iao.obo")
+		     (saved-by "iao")
+		     (default-namespace "IAO")
+		     (ontology-name "IAO")
+		     (ontology-uri "http://purl.obolibrary.org/obo/iao.owl")
+		     ) 
+  (generate-obo :kb kb :path path :saved-by saved-by :default-namespace default-namespace
+		:ontology-name ontology-name :ontology-uri ontology-uri :default-definition-source nil))
+    
 
 #|		      
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400082"><!-- photodetector -->
@@ -209,7 +266,7 @@ remark: This file is a subset of OBI adequate for indexing using the OLS service
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/><!-- has_function -->
         </owl:onProperty>
-        <owl:someValuesFrom>
+  p      <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000382"/><!-- measure function -->
         </owl:someValuesFrom>
       </owl:Restriction>
