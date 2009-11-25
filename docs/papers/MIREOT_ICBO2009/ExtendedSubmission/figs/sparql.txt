@@ -1,0 +1,19 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix obi: <http://purl.obofoundry.org/obo/>
+prefix obo: <http://www.geneontology.org/formats/oboInOwl#>
+
+construct
+{ 
+  _ID_GOES_HERE_ rdf:type owl:Class.
+  _ID_GOES_HERE_ alias:preferredTerm ?label.
+  _ID_GOES_HERE_ rdfs:label ?label.
+  _ID_GOES_HERE_ alias:definition ?definition.
+}
+where
+{
+  {   _ID_GOES_HERE_ rdfs:label ?label. }
+  UNION
+  {   _ID_GOES_HERE_ obo:hasDefinition ?blank.
+      ?blank rdfs:label ?definition}
+}
