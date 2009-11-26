@@ -23,6 +23,9 @@
 \usepackage{moreverb}
 \usepackage[nolist]{acronym}
 \usepackage{url}
+%\usepackage{pdftex} 
+\usepackage{graphicx} 
+
 \newcommand{\protege}{Prot\'{e}g\'{e}}
 %\usepackage{todonotes}
 
@@ -188,7 +191,25 @@ The queries are then executed against the Neurocommons SPARQL endpoint\cite{Neur
 This supplementary information, which is prone to change as the source ontologies evolve, is stored in a second file, \emph{externalDerived.owl}.
 This file can be removed on a regular basis, \emph{e.g.}, before release of the ontology.
 It can then be rebuilt via script based on \emph{external.owl}, allowing updating of the additional information (\emph{e.g.}, label update).
-The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the target ontology's proper classes.
+The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the target ontology's proper classes (see Figure \ref{fig:mechanism2}).
+
+ 
+\begin{figure}[t]
+\centering
+{
+\includegraphics[width=.9\linewidth]{./figs/mechanism2.pdf}
+}
+\caption{Diagram of the MIREOT mechanism.
+1. the minimal information is added into the external.owl file
+2. a script parses the external.owl file, and for each class uses the appropriate SPARQL template from external-templates.txt to generate a CONSTRUCT query
+3. the SPARQL queries are executed against a SPARQL EndPoint (e.g. Neurocommons)
+4. the results of the SPARQL queries are written in externalDerived.owl file
+5. the target ontology imports the external.owl and externalDerived.owl files.
+}
+\label{fig:mechanism2}
+\end{figure}
+
+
 
 In the following sections we present two different cases of application of the \ac{MIREOT} guidelines, implemented during the \ac{OBI} development.
 
