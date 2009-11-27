@@ -181,10 +181,9 @@ Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of t
 Finally, a script \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of the imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons OBO SPARQL endpoint \cite{NeurocommonsSparql,Neurocommons}. This supplementary information is stored in a second file, \emph{externalDerived.owl}.
-This file can be removed on an ad-hoc basis, \emph{e.g.}, for example before releasing new versions of the target ontology, so that it can then be rebuilt via script based on \emph{external.owl} in order to refresh the additional information (\emph{e.g.}, label).
-The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the target ontology's proprietary classes (see Figure \ref{fig:mechanism2}). 
-This introduces an additional level of modularity, separating the domain ontology of interest with the external ontologies.%sentence was added by JM above where it didn't match: it was after "To keep this additional information current, the imports are stored in a separate file that can be removed and rebuilt on a regular basis." 1. the minimal information is in a separate file but never removed 2. the additional information is in a removable file. I updated the sentence above to make it clearer which extra information we were talking about. Hope that helps.
+This file can be removed on an ad-hoc basis, \emph{e.g.}, for example before releasing new versions of the target ontology, so that it can then be rebuilt via script based on \emph{external.owl} in order to refresh the additional information (\emph{e.g.}, label).The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the target ontology's proprietary classes (see Figure \ref{fig:mechanism2}). This introduces an additional level of modularity, separating the domain ontology of interest with the external ontologies.%sentence was added by JM above where it didn't match: it was after "To keep this additional information current, the imports are stored in a separate file that can be removed and rebuilt on a regular basis." 1. the minimal information is in a separate file but never removed 2. the additional information is in a removable file. I updated the sentence above to make it clearer which extra information we were talking about. Hope that helps.
 
+In the following sections we present two different cases of application of the \ac{MIREOT} guidelines, implemented during the \ac{OBI} development.
 
 \begin{figure}[t]
 \centering
@@ -202,8 +201,6 @@ This introduces an additional level of modularity, separating the domain ontolog
 \end{figure}
 
 
-
-In the following sections we present two different cases of application of the \ac{MIREOT} guidelines, implemented during the \ac{OBI} development.
 
 
 \subsection*{Use Case One - Basophil and Cell classes}
@@ -223,19 +220,17 @@ will add the class $basophil$ (CL:0000767) as subclass of the class $cell$  (CL:
 Once imported, the $basophil$ and $cell$ classes can be used as would be any other OBI class. For example, the process $electroporation$ is defined as:
 
 % Do you want to make this more formally manchester syntax? If so, no is_a and you need to add ``and'' where appropriate.
+%is_a cell permeabilization
+%has_specified_input some cell
+%has_specified_output some 
+%   (cell and has_quality some electroporated))
+%utilizes_device some power supply
 \begin{footnotesize}
 \begin{verbatimtab}
-is_a cell permeabilization
-has_specified_input some cell
-has_specified_output some 
-   (cell and has_quality some electroporated))
-utilizes_device some power supply
-
-
 Class: Electroporation
     SubClassOf: CellPermeabilization
-		        and hasSpecifiedInput some cell
-			and hasSpecifiedOutput some (cell SubClassOf: hasQuality some electroporated)
+		        and hasSpecifiedInput some Cell
+			and hasSpecifiedOutput some (Cell SubClassOf: hasQuality some electroporated)
 			and utilizesDevice some powerSupply	
 \end{verbatimtab}
 \end{footnotesize}
@@ -254,9 +249,8 @@ We can easily imagine that somebody would want to have a query of the form ``giv
 experiments in mammals''. In this case, we would need to know that human and mouse are 
 subclasses (even indirect) of mammals in the NCBI taxonomy. Therefore, when mapping 
 towards an NCBI term, we decided to retrieve all its superclasses as well up to the root of the 
-NCBI taxonomy. As per the mechanism described above, the mapped class (\emph{e.g.}, human) is 
-defined in external.owl, whereas this additional information to the human class (\emph{i.e.}, its 
-superclasses) are stored in externalDerived.owl. 
+NCBI taxonomy.
+% As per the mechanism described above, the mapped class (\emph{e.g.}, human) is  defined in external.owl, whereas this additional information to the human class (\emph{i.e.}, its  superclasses) are stored in externalDerived.owl. 
 
 When the \emph{create-external-derived.lisp} script parses the \emph{external.owl} file and encounters an NCBI taxonomy ID, it will therefore invoke a specific SPARQL query (cf figure \ref{fig:sparql2}). 
 
@@ -266,20 +260,22 @@ When the \emph{create-external-derived.lisp} script parses the \emph{external.ow
 \caption{Template SPARQL query for import from the NCBI taxonomy. The \_ID\_GOES\_HERE\_ pattern will be replaced by the relevant NCBITax ID dynamically via script when building the CONSTRUCT query. This query allows retrieval of the class of interest and its parents up to a set of defined root classes. Note that the graph <http://purl.org/science/graph/obo/NCBITaxon> contains the source ontology, but the full store includes inferred subClassOf triples.}
 \label{fig:sparql2}
 \end{figure}
-As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.) is stored in \emph{ externalDerived.owl}.
+As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.- \emph{i.e.}, its  superclasses) is stored in \emph{ externalDerived.owl}.
+
+On the same model, any information that the importing ontology editors would require could be added in the \emph{externalDerived.owl} file: the only requirement is to write the corresponding SPARQL query.
 
 
 \section*{Discussion}
 
 The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development. The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO} \cite{IAO}, the \ac{VO} \cite{VO}, the \ac{IDO}\cite{IDO} and the \ac{InfluenzO} \cite{InfluenzO}.
-In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in turn led to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
+In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in turn leads to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
 
 A consideration for using this approach is the status of assertions made on imported terms.
 In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements, for instance those that the developers of the source ontology would agree with.
 If such additional restrictions are required those should be stored in the importing ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
 
-If additional annotations are added to the imported terms (for example, adding an example of usage for the \ac{GO} imported term \textit{protein complex}), a check is required to ensure that the annotation is removed if the imported term is deprecated or replaced by another (\emph{e.g.}, replacing  the \ac{GO} \textit{protein complex} term with the \ac{PRO} one).
+If additional annotations are added to the imported terms (for example, adding an example of usage for the \ac{GO} imported term \textit{protein complex}), a check is required to ensure that the annotation is removed if the imported term is deprecated or replaced by another (\emph{e.g.}, replacing  the \ac{GO} \textit{protein complex} term with the \ac{PRO} \cite{PRO} one).
 
 With broader use of the MIREOT mechanism by OBI and other resources, several minor issues arose.
 For example, consider the case of \ac{IAO} devlopers requiring import of the term $investigation$.  This class already exists in \ac{OBI}, and \ac{IAO} developers therefore chose to MIREOT it, effectively integrating the class \url{http://purl.obolibrary.org/obo/OBI_0000066} and distributing it as part of the \ac{IAO} releases.
@@ -307,17 +303,17 @@ Therefore, we expect that terms will be deprecated if there is a significant cha
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it difficult for some curators to use. 
 A webservice, OntoFox \cite{OntoFox}, has been developed at the University of Michigan to facilitate the process: ontology editors can use web forms to input their requirements, or submit specific OntoFox-formatted files for batch creation or update.
 A useful extention to this work would be in the form of a \protege\ \cite{Protege} plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology \cite{NCBOWidget}, and it is our hope that a future extension would fully support the MIREOT guidelines.
-It is also expected that an option in the OBI distribution would enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
+It is also expected that an option in the OBI distribution would enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. Users would then be able to import all of the external resources, therefore replacing the MIREOT selected terms.  As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source by source basis.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
 %Finally, we are also working on improving import of lower level terms under specific chosen root terms for 
-As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source by source basis.
 
-%rewrite, moved to discussion: The MIREOT guidelines are currently being implemented by other ontologies, like the Vaccine Ontology (VO)\cite{VO}, and we ultimately hope that combined feedback will allow us to perfect the mechanism.
+
+%rewrite,  moved to discussion: The MIREOT guidelines are currently being implemented by other ontologies, like the Vaccine Ontology (VO)\cite{VO}, and we ultimately hope that combined feedback will allow us to perfect the mechanism.
 
 \section*{Acknowledgments}
 
 In memory of our friend and colleague William Bug. 
 
-The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
+The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, Jessica Turner, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
 The author's work is partially supported by funding from the NIH(R01EB005034),  the Public Health Agency of Canada / Canadian Institutes of Health Research Influenza Research Network (PCIRN), the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1, BB/D524283/1, BB/E025080/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139), and the Michael Smith Foundation for Health Research.
 
 
@@ -364,6 +360,7 @@ biotechnology, 25(11):1251-1255, Nov 2007.
 \bibitem{IAO} The Information Artifact Ontology (IAO), \url{http://code.google.com/p/information- artifact- ontology/}.
 \bibitem{NeurocommonsSparql} Neurocommons OBO SPARQL endpoint - http://sparql.obo.neurocommons.org/. 
 \bibitem{Neurocommons} Ruttenberg A, Rees J, Samwald M, Marshall M. Life sciences on the Semantic Web: the Neurocommons and beyond Briefings in Bioinformatics 10 , 193-204 2009 available at \url{http://purl.org/science/publication/neurocommons2009.pdf}
+%I'll have to remove the hyperlink - doesn't comply with citation format required - sorry :)
 \bibitem{CL} J. Bard, S. Y. Rhee, and M. Ashburner. An ontology for cell types. Genome biology, 6(2):R21, 2005. 
 \bibitem{VO} The Vaccine Ontology - \url{http://www.violinet.org/vaccineontology/}
 \bibitem{Protege} The Prot\'{e}g\'{e} Ontology Editor and Knowledge Acquisition System, \url{http://protege.stanford.edu/}
@@ -372,7 +369,7 @@ biotechnology, 25(11):1251-1255, Nov 2007.
 \bibitem{PRO} Darren A. Natale, Cecilia N. Arighi, Winona Barker, Judith Blake, Ti-Cheng Chang, Zhangzhi Hu, Hongfang Liu, Barry Smith, and Cathy H. Wu, "Framework for a Protein Ontology", Proceedings of the First International Workshop on Text Mining in Bioinformatics, 2006, pp. 29-36.
 \bibitem{RDF} RDF/XML Syntax Specification - \url{http://www.w3.org/TR/rdf-syntax-grammar/}
 \bibitem{PATO} Phenotypic Quality Ontology - \url{http://obofoundry.org/wiki/index.php/PATO:Main_Page}
-\bibitem{ChEBI} Degtyarenko, K., de Matos, P., Ennis, M., Hastings, J., Zbinden, M., McNaught, A., AlcÃ¡ntara, R., Darsow, M., Guedj, M. and Ashburner, M. (2008) ChEBI: a database and ontology for chemical entities of biological interest. Nucleic Acids Res. 36, D344-D350.
+\bibitem{ChEBI} Degtyarenko, K., de Matos, P., Ennis, M., Hastings, J., Zbinden, M., McNaught, A., Alcantara, R., Darsow, M., Guedj, M. and Ashburner, M. (2008) ChEBI: a database and ontology for chemical entities of biological interest. Nucleic Acids Res. 36, D344-D350.
 \bibitem{NCBOWidget} BioPortal Reference Plugin - \url{http://protegewiki.stanford.edu/index.php/BioPortal_Reference_Plugin}.
 \bibitem{OntoFox} OntoFox - \url{http://ontofox.hegroup.org/}.
 \bibitem{OBIQueries} - SPARQL queries template file - \url{http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/external-templates.txt}
