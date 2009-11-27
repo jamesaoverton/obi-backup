@@ -96,7 +96,7 @@ Ontologies such as GO and PATO are built collaboratively by communities of exper
 Recapitulating this work instead of reusing it represents a duplication of development effort and results in duplicate ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error prone, identifier mapping systems to enable data integration. 
 While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with some difficulties when actually trying to do so.
 The easiest way to integrate an existing body of work is to rely on the \ac{OWL} \cite{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole. However current limitations in tools and reasoners can sometimes make this impractical.
-Popular OWL tools (\emph{e.g.}, Prot\'eg\'e, Pellet) can neither load nor reason over very large ontologies such as the NCBI Taxonomy \cite{NCBI} or the Foundational Model of Anatomy \cite{FMA}, making direct \ac{OWL} imports of such important resources impractical. 
+Popular OWL tools (\emph{e.g.}, Prot\'eg\'e\cite{Protege}, Pellet\cite{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy \cite{NCBI} or the Foundational Model of Anatomy \cite{FMA}, making direct \ac{OWL} imports of such important resources impractical. 
 Furthermore, external ontologies may have been constructed using design principles which may not align with the practice of the ontology wishing to import them.  In this instance, importing such ontologies as a whole could lead to inconsistencies or unintended inferences. %\todo such as what? this is a bold statement - is it backed up anywhere else?
 Other import options are possible, for instance using software that extracts a \emph{module} \cite{Grau} of the external ontology.
 A module can be seen as a fragment of an external ontology that, when imported by an other ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
@@ -267,7 +267,7 @@ On the same model, any information that the importing ontology editors would req
 
 \section*{Discussion}
 
-The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development. The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO} \cite{IAO}, the \ac{VO} \cite{VO}, the \ac{IDO}\cite{IDO} and the \ac{InfluenzO} \cite{InfluenzO}.
+The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development. The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO}, the \ac{VO} \cite{VO}, the \ac{IDO}\cite{IDO} and the \ac{InfluenzO} \cite{InfluenzO}.
 In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in turn leads to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
 
 A consideration for using this approach is the status of assertions made on imported terms.
@@ -302,7 +302,7 @@ Therefore, we expect that terms will be deprecated if there is a significant cha
 
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it difficult for some curators to use. 
 A webservice, OntoFox \cite{OntoFox}, has been developed at the University of Michigan to facilitate the process: ontology editors can use web forms to input their requirements, or submit specific OntoFox-formatted files for batch creation or update.
-A useful extention to this work would be in the form of a \protege\ \cite{Protege} plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology \cite{NCBOWidget}, and it is our hope that a future extension would fully support the MIREOT guidelines.
+A useful extention to this work would be in the form of a \protege\  plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology \cite{NCBOWidget}, and it is our hope that a future extension would fully support the MIREOT guidelines.
 It is also expected that an option in the OBI distribution would enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. Users would then be able to import all of the external resources, therefore replacing the MIREOT selected terms.  As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source by source basis.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
 %Finally, we are also working on improving import of lower level terms under specific chosen root terms for 
 
@@ -322,57 +322,48 @@ The author's work is partially supported by funding from the NIH(R01EB005034),  
 
 \begin{thebibliography}{}
 
-
-\bibitem{Grau}
-Grau BC, Horrocks I, Kazakov Y, and Sattler U. (2007) . Extracting Modules from Ontologies: A Logic-based Approach. Proc. of the Third OWL Experiences and Directions Workshop, number 258 in CEUR 
-\bibitem{Grau2}
- B. Cuenca Grau, I. Horrocks, Y. Kazakov and U. Sattler (2007) Just the right amount: Extracting modules from ontologies. In proc. of the 16th International World Wide Web Conference (WWW 2007) 
- \bibitem{Jimenez}
- E. Jimenez-Ruiz, B.Cuenca-Grau, U. Sattler, T. Schneider and R. Berlanga (2008) Safe and Economic Re-Use of Ontologies: A Logic-Based Methodology and Tool Support. 5th European Semantic Web Conference (ESWC 2008) 
- \bibitem{Seidenberg}
- J. Seidenberg, A. Rector (2006) Web ontology segmentation: analysis, classification and use. In proc. of the 15th International World Wide Web Conference (WWW 2006) 
- \bibitem{Sirin}
- Sirin, E., Parsia, B., Grau, B. C., Kalyanpur, A., and Katz, Y. (2007). Pellet: A practical OWL-DL reasoner. Web Semant. 5, 2 (Jun. 2007), 51-53. 
- 
- 
- 
+\bibitem{GO} Gene Ontology Consortium. The gene ontology (go) database and informatics resource. Nucleic acids research, 
+32(90001):D258-D261, 01/01/ 2004. 
+\bibitem{PATO} Phenotypic Quality Ontology - \url{http://obofoundry.org/wiki/index.php/PATO:Main_Page}
 \bibitem{OWL} Web Ontology Language (OWL), \url{http://www.w3.org/2007/OWL/}.
+\bibitem{Protege} The Prot\'{e}g\'{e} Ontology Editor and Knowledge Acquisition System, \url{http://protege.stanford.edu/}
+\bibitem{Sirin} Sirin, E., Parsia, B., Grau, B. C., Kalyanpur, A., and Katz, Y. (2007). Pellet: A practical OWL-DL reasoner. Web Semant. 5, 2 (Jun. 2007), 51-53. 
 \bibitem{NCBI} D. L. Wheeler, T. Barrett, D. A. Benson, S. H. Bryant, K. Canese, D. M. Church, M. DiCuccio, R. Edgar, S. Federhen, 
 W. Helmberg, D. L. Kenton, O. Khovayko, D. J. Lipman, T. L. Madden, D. R. Maglott, J. Ostell, J. U. Pontius, K. D. Pruitt, 
 G. D. Schuler, L. M. Schriml, E. Sequeira, S. T. Sherry, K. Sirotkin, G. Starchenko, T. O. Suzek, R. Tatusov, T. A. Tatusova, 
 L. Wagner, and E. Yaschenko. Database resources of the national center for biotechnology information. Nucleic acids 
-research, 33(Database issue):D39-45, Jan 1 2005.
+research, 33(Database issue):D39-45, Jan 1 2005. 
 \bibitem{FMA} C. Golbreich, S. Zhang, and O. Bodenreider. The foundational model of anatomy in owl: Experience and perspectives. Web 
 semantics (Online), 4(3):181-195, 2006. 
+\bibitem{Grau} Grau BC, Horrocks I, Kazakov Y, and Sattler U. (2007) . Extracting Modules from Ontologies: A Logic-based Approach. Proc. of the Third OWL Experiences and Directions Workshop, number 258 in CEUR 
 \bibitem{OBI} OBI Ontology, \url{http://purl.obolibrary.org/obo/obi}.
+\bibitem{CARO} Melissa A. Haendel, Fabian Neuhaus, David Osumi-Sutherland, Paula M. Mabee, Jose L.V. Mejino Jr., Chris J. Mungall, Barry Smith. CARO - The Common Anatomy Reference Ontology, in Anatomy Ontologies for Bioinformatics Principles and Practice, Series: Computational Biology , Vol. 6, ed. Burger, Albert; Davidson, Duncan; Baldock, Richard, 2008
+\bibitem{Grau2} B. Cuenca Grau, I. Horrocks, Y. Kazakov and U. Sattler (2007) Just the right amount: Extracting modules from ontologies. In proc. of the 16th International World Wide Web Conference (WWW 2007) 
+\bibitem{Jimenez} E. Jimenez-Ruiz, B.Cuenca-Grau, U. Sattler, T. Schneider and R. Berlanga (2008) Safe and Economic Re-Use of Ontologies: A Logic-Based Methodology and Tool Support. 5th European Semantic Web Conference (ESWC 2008) 
+\bibitem{Seidenberg} J. Seidenberg, A. Rector (2006) Web ontology segmentation: analysis, classification and use. In proc. of the 15th International World Wide Web Conference (WWW 2006) 
+\bibitem{ChEBI} Degtyarenko, K., de Matos, P., Ennis, M., Hastings, J., Zbinden, M., McNaught, A., Alcantara, R., Darsow, M., Guedj, M. and Ashburner, M. (2008) ChEBI: a database and ontology for chemical entities of biological interest. Nucleic Acids Res. 36, D344-D350.
 \bibitem{BFO} P. Grenon, B. Smith, and L. Goldberg. Biodynamic ontology: applying bfo in the biomedical domain. Studies in health 
 technology and informatics, 102:20-38, 2004. 
 \bibitem{OBOFoundry} B. Smith, M. Ashburner, C. Rosse, J. Bard, W. Bug, W. Ceusters, L. J. Goldberg, K. Eilbeck, A. Ireland, C. J. Mungall, 
-OBI Consortium, N. Leontis, P. Rocca-Serra, A. Ruttenberg, S. A. Sansone, R. H. Scheuermann, N. Shah, P. L. Whet- 
-zel, and S. Lewis. The obo foundry: coordinated evolution of ontologies to support biomedical data integration. Nature 
+OBI Consortium, N. Leontis, P. Rocca-Serra, A. Ruttenberg, S. A. Sansone, R. H. Scheuermann, N. Shah, P. L. Whetzel, and S. Lewis. The obo foundry: coordinated evolution of ontologies to support biomedical data integration. Nature 
 biotechnology, 25(11):1251-1255, Nov 2007. 
-\bibitem{CARO} Melissa A. Haendel, Fabian Neuhaus, David Osumi-Sutherland, Paula M. Mabee, Jose L.V. Mejino Jr., Chris J. Mungall, Barry Smith. CARO — The Common Anatomy Reference Ontology, in Anatomy Ontologies for Bioinformatics Principles and Practice, Series: Computational Biology , Vol. 6, ed. Burger, Albert; Davidson, Duncan; Baldock, Richard, 2008
-\bibitem{GO} Gene Ontology Consortium. The gene ontology (go) database and informatics resource. Nucleic acids research, 
-32(90001):D258-D261, 01/01/ 2004. 
 \bibitem{GOGuide} Go editorial style guide - \url{http://www.geneontology.org/GO.usage.shtml}.
 \bibitem{OBIScripts} OBI scripts -  \url{http://purl.obolibrary.org/obo/obi/repository/}.
 \bibitem{SPARQL} SPARQL Query Language for RDF - \url{http://www.w3.org/TR/rdf- sparql- query/}. 
+\bibitem{OBIQueries} SPARQL queries template file - \url{http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/external-templates.txt}
 \bibitem{IAO} The Information Artifact Ontology (IAO), \url{http://code.google.com/p/information- artifact- ontology/}.
 \bibitem{NeurocommonsSparql} Neurocommons OBO SPARQL endpoint - http://sparql.obo.neurocommons.org/. 
 \bibitem{Neurocommons} Ruttenberg A, Rees J, Samwald M, Marshall M. Life sciences on the Semantic Web: the Neurocommons and beyond Briefings in Bioinformatics 10 , 193-204 2009 available at \url{http://purl.org/science/publication/neurocommons2009.pdf}
 %I'll have to remove the hyperlink - doesn't comply with citation format required - sorry :)
+
 \bibitem{CL} J. Bard, S. Y. Rhee, and M. Ashburner. An ontology for cell types. Genome biology, 6(2):R21, 2005. 
 \bibitem{VO} The Vaccine Ontology - \url{http://www.violinet.org/vaccineontology/}
-\bibitem{Protege} The Prot\'{e}g\'{e} Ontology Editor and Knowledge Acquisition System, \url{http://protege.stanford.edu/}
 \bibitem{IDO} The Infectious Disease Ontology - \url{http://www.infectiousdiseaseontology.org/}
 \bibitem{InfluenzO} The Influenza Ontology - \url{https://sourceforge.net/projects/influenzo/}.
 \bibitem{PRO} Darren A. Natale, Cecilia N. Arighi, Winona Barker, Judith Blake, Ti-Cheng Chang, Zhangzhi Hu, Hongfang Liu, Barry Smith, and Cathy H. Wu, "Framework for a Protein Ontology", Proceedings of the First International Workshop on Text Mining in Bioinformatics, 2006, pp. 29-36.
 \bibitem{RDF} RDF/XML Syntax Specification - \url{http://www.w3.org/TR/rdf-syntax-grammar/}
-\bibitem{PATO} Phenotypic Quality Ontology - \url{http://obofoundry.org/wiki/index.php/PATO:Main_Page}
-\bibitem{ChEBI} Degtyarenko, K., de Matos, P., Ennis, M., Hastings, J., Zbinden, M., McNaught, A., Alcantara, R., Darsow, M., Guedj, M. and Ashburner, M. (2008) ChEBI: a database and ontology for chemical entities of biological interest. Nucleic Acids Res. 36, D344-D350.
-\bibitem{NCBOWidget} BioPortal Reference Plugin - \url{http://protegewiki.stanford.edu/index.php/BioPortal_Reference_Plugin}.
 \bibitem{OntoFox} OntoFox - \url{http://ontofox.hegroup.org/}.
-\bibitem{OBIQueries} - SPARQL queries template file - \url{http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/external-templates.txt}
+\bibitem{NCBOWidget} BioPortal Reference Plugin - \url{http://protegewiki.stanford.edu/index.php/BioPortal_Reference_Plugin}.
 
  
 \end{thebibliography}
