@@ -95,14 +95,15 @@ For example, when developing an ontology related to the biomedical domain, it ma
 Ontologies such as GO and PATO are built collaboratively by communities of experts and are the products of substantial effort.
 Recapitulating this work instead of reusing it represents a duplication of development effort and results in duplicate ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error prone, identifier mapping systems to enable data integration. 
 While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with some difficulties when actually trying to do so.
-The easiest way to integrate an existing body of work is to rely on the \ac{OWL} \cite{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole. However current limitations in tools and reasoners can sometimes make this impractical.
-Popular OWL tools (\emph{e.g.}, Prot\'eg\'e\cite{Protege}, Pellet\cite{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy \cite{NCBI} or the Foundational Model of Anatomy \cite{FMA}, making direct \ac{OWL} imports of such important resources impractical. 
+The easiest way to integrate an existing body of work is to rely on the \ac{OWL} \cite{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole and hence renders it accessible to reasoners. . However current limitations in tools and reasoners can sometimes make this impractical.
+Popular OWL tools (\emph{e.g.}, Prot\'eg\'e\cite{Protege} and Pellet\cite{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy \cite{NCBI} or the Foundational Model of Anatomy \cite{FMA}, making direct \ac{OWL} imports of such important resources impractical. 
 Furthermore, external ontologies may have been constructed using design principles which may not align with the practice of the ontology wishing to import them.  In this instance, importing such ontologies as a whole could lead to inconsistencies or unintended inferences. %\todo such as what? this is a bold statement - is it backed up anywhere else?
 Other import options are possible, for instance using software that extracts a \emph{module} \cite{Grau} of the external ontology.
 A module can be seen as a fragment of an external ontology that, when imported by an other ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
 However, if an extracted module is to be useful, the external ontology needs to be structured in a way that is compatible with the importing ontology (for example, using the same upper ontology and relationship types), and the logical axioms need to be accurate. 
 This is not always the case at the current stage of development of some ontologies.
 For example, during the development of the \ac{OBI}\cite{OBI}, importing the root class of the \ac{CARO}\cite{CARO} was not desired as its definition intersected multiple classes in \ac{OBI} that was not considered useful. %\todo JM: I don't understand this sentence so I haven't reworded it - when you say not considered useful do you actually mean, more strongly, it was incorrect?
+%DS: If space is available put the example to illustrate why its not useful.
 
 In addition, although software that extracts modules are available, most are only in early stages of development.
 
@@ -120,7 +121,7 @@ To address these issues we developed a set of guidelines for importing terms fro
 The \ac{MIREOT} guidelines were created to aid the development of the \ac{OBI}.
 \ac{OBI} uses the \ac{BFO} \cite{BFO} as an upper-level ontology and has been submitted for inclusion in the \ac{OBO} Foundry \cite{OBOFoundry}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where appropriate, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
-\ac{MIREOT} provides a mechnism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or even OWL DL.
+\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or even OWL DL, and hence contribute to realize the mentioned Foundry principles.
 
 \section{Policy}
 
@@ -176,7 +177,7 @@ alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0
 \end{figure}
 
 For example, in the current \ac{OWL} rendering of \ac{OBO} files, definitions are individuals and the rdfs:label of those individuals record the text of the definitions. 
-Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of the rdfs:label of the oboInOwl:Definition will be set to the value of iao:definition. Only annotation properties which map directly to the target ontology's own metadata are copied; new properties, if not specified in the source ontology, are not created (and therefore not imported). The external term's property values are copied exactly from the external resource.
+Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of the rdfs:label of the oboInOwl:Definition will be set to the value of \url{http://purl.obolibrary.org/IAO_0000115}, \emph{i.e.,} iao:definition. Only annotation properties which map directly to the target ontology's own metadata are copied; new properties, if not specified in the source ontology, are not created (and therefore not imported). The external term's property values are copied exactly from the external resource.
 
 Finally, a script \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of the imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
@@ -205,7 +206,7 @@ In the following sections we present two different cases of application of the \
 
 \subsection*{Use Case One - Basophil and Cell classes}
 
-We replaced the \ac{OBI} class $Cell$ with that from the \ac{CL} ontology \cite{CL}. 
+We replaced the \ac{OBI} $cell$ class with that from the \ac{CL} ontology \cite{CL}. 
 \ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating our own duplicated class.
 This class can then be used in turn to import other classes as needed.
 For example the following invocation of the \emph{add-to-external.pl} script:
@@ -273,7 +274,7 @@ In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in 
 A consideration for using this approach is the status of assertions made on imported terms.
 In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements, for instance those that the developers of the source ontology would agree with.
 If such additional restrictions are required those should be stored in the importing ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
-It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
+It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. %DS: Any ideas how to feed these back to the source editors automatically ? MC: We haven't discussed ways of doing so automatically, and I don't have any idea right now - so I think it would be safer to not shoot ourselves in the foot :)
 
 If additional annotations are added to the imported terms (for example, adding an example of usage for the \ac{GO} imported term \textit{protein complex}), a check is required to ensure that the annotation is removed if the imported term is deprecated or replaced by another (\emph{e.g.}, replacing  the \ac{GO} \textit{protein complex} term with the \ac{PRO} \cite{PRO} one).
 
