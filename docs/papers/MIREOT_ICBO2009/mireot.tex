@@ -88,7 +88,7 @@ For example, in the Gene Ontology (GO \cite{RefWorks:79}), the intended denotati
 Even when the ontology is repaired or reorganized, the effects of such changes do not change the intended meaning of individual terms.
 Rather the changes are towards more carefully expressing the logical relations between them.
 When a term's definition changes meaning, the term is deprecated \cite{RefWorks:1560}.
-We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (i.e. individual classes in isolation from the ontology) as basic unit of import.
+We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (\emph{i.e.}, individual classes in isolation from the ontology) as basic unit of import.
 The current implementation of \ac{MIREOT} has been limited to import of terms from other Foundry ontologies, which adhere to a similar deprecation policy.
 
 The minimum amount of information needed to \textit{reference} an external class is the source ontology URI and the external term's URI. 
@@ -116,7 +116,7 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 
-This set is stored in a file that we call \emph{external.owl}\footnote{http://tinyurl.com/b7vvlt}.
+This set is stored in a file that we call \emph{external.owl}\footnote{http://tinyurl.com/b7vvlt}. %FIXME {I've never seen manuscripts use tinyurl versus the actual site name, just put the full reference in the reference section}
 A Perl script, \emph{add-to-external.pl}\cite{obiscripts} is used to automatically append the minimum information set to the \emph{external.owl} file. 
 This script takes as arguments the identifiers of the external class to be imported and its parent class in the target hierarchy, in this case in the \ac{OBI} hierarchy. 
 
@@ -124,7 +124,7 @@ In addition, a mapping mechanism between the prefix used in the identifier and t
 Curators therefore need only specify the ID of the external class to import and the ID of the class it should be imported under, within the target ontology.
 
 
-Additional elements can be obtained programmatically via SPARQL\cite{RefWorks:1531} CONSTRUCT queries, as described in Figure \ref{fig:sparql}.
+Additional elements can be obtained programmatically via SPARQL\cite{RefWorks:1531} CONSTRUCT queries (Figure \ref{fig:sparql}).
 These queries\footnote{http://tinyurl.com/bss9mw} specify which extra information about the class to gather, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
 
 \begin{figure}[t]
@@ -183,22 +183,22 @@ More generally, additional axioms may be used to relate members of the class to 
 
 \subsection*{Use Case Two - taxonomic information}
 
-The \texttt{cell} use-case highlights what is likely to be the most common import scenario, i.e. a simple import of one external term, making it available for direct use in the target ontology.
+The \texttt{cell} use-case highlights what is likely to be the most common import scenario (\emph{i.e.}, a simple import of one external term, making it available for direct use in the target ontology.
 However, in some cases, we may require more, and to account for this \ac{MIREOT} has been devised to be flexible.
 
 OBI currently uses the NCBI taxonomy for its species terms.
-We can easily imagine that somebody would want to query a dataset asking the question ``give me all experiments in mammals".
+We can easily imagine that somebody would want to query a dataset asking the question ``give me all experiments in mammals''.
 In this case, we would need to know that human and mouse are subclasses (even indirect) of mammals in the NCBI taxonomy.
 Therefore, when mapping towards an NCBI term, it is needed to get the class itself and all its superclasses up to one of a set of top-level classes in the taxonomy.
 
-When the \emph{create-external-derived.lisp} script parses the \emph{external.owl} file and encounters an NCBI taxonomy ID, it will therefore invoke a specific SPARQL query (cf figure \ref{fig:sparql2}). 
+When the \emph{create-external-derived.lisp} script parses the \emph{external.owl} file and encounters an NCBI taxonomy ID, it will invoke a specific SPARQL query (cf figure \ref{fig:sparql2}). 
 \begin{figure}[t]
 \scriptsize
 \verbatiminput{./figs/sparql2.txt} 
 \caption{Template SPARQL query for import from the NCBI taxonomy.}
 \label{fig:sparql2}
 \end{figure}
-As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.) is stored in \emph{ externalDerived.owl}. 
+As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (\emph{e.g.}, rank information - genus, kingdom, phylum) is stored in \emph{ externalDerived.owl}. 
 
 \section*{Discussion}
 
@@ -229,7 +229,7 @@ The MIREOT guidelines are currently being implemented by other ontologies, like 
 In memory of our friend and colleague William Bug, Ontological Engineer. 
 
 The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
-The authorâ€™s work is partially supported by funding from the NIH(R01EB005034), the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1, BB/D524283/1, BB/E025080/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139), and the Michael Smith Foundation for Health Research.
+The authors' work was partially supported by funding from the NIH(R01EB005034), the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1, BB/D524283/1, BB/E025080/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139), the Public Health Agency of Canada / Canadian Institutes of Health Research Inßuenza Research Network (PCIRN), and the Michael Smith Foundation for Health Research.
 
 \bibliographystyle{unsrt}   
 \begin{small}
