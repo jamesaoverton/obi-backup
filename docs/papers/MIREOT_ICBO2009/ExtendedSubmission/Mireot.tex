@@ -170,11 +170,12 @@ This set is stored in a file called \emph{external.owl} (all scripts and files a
 In the current implementation, a Perl script, \emph{add-to-external.pl}, can be used to append the minimum information set for a given external term to the \emph{external.owl} file, or the information can be entered by directly editing the OWL file. %, or the information can be entered in an ontology editing tool. MC: I don't believe that to be true - how do you add a PATO class from Protege directly? Also it contradicts the next sentence.
 %In the future we anticipate this operation will have specific support within editing tools. %MC: I rmeoved this sentence which IMO belongs to the section future work where we describe that we would like tool support.
 The script takes as arguments the identifier of the external class to be imported and its parent class in the target hierarchy.
-In addition, a mapping between the prefix used in the identifier and the external source ontology URI is built into the script. For example, when requesting the term \textit{CL:0000767} (see below), the script maps the \textit{CL:} prefix to the URI \url{http://purl.org/obo/owl/CL}.
+In addition, a mapping between the prefix used in the identifier and the external source ontology URI is built into the script. For example, when requesting the term \textit{CL:0000767} (see below), the script maps the \textit{CL:} prefix to its source ontology URI \url{http://purl.org/obo/owl/CL}.
 Curators therefore need only specify the ID of the external class to import (rather than the full URI) and the ID of the class it should be imported under.
 
 In the current implementation, the additional information can be obtained programmatically via SPARQL~\cite{SPARQL} CONSTRUCT queries (Figure \ref{fig:sparql}).
-These queries~\cite{OBIQueries} specify, for each source ontology, which extra elements about the term is to be extracted, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. However as module extraction technology matures, and where appropriate, additional elements could be retrieved using such technology.
+These queries~\cite{OBIQueries} specify, for each source ontology, which extra elements about the term is to be extracted, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
+%MC: removed from here - sounds a bit like a digression: we already stated that modules have issues with annotations. However as module extraction technology matures, and where appropriate, additional elements could be retrieved using such technology.
 
 \begin{figure}[t]
 \scriptsize
@@ -185,7 +186,9 @@ alias:definition to reference our annotations properties IAO\_0000111 and IAO\_0
 \end{figure}
 
 For example, in the current \ac{OWL} rendering of \ac{OBO} files, definitions are individuals and the rdfs:label of those individuals record the text of the definitions. 
-Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of the rdfs:label of the oboInOwl:Definition will be set to the value of \url{http://purl.obolibrary.org/IAO_0000115} (\emph{i.e.,} iao:definition). Only annotation properties which map directly to the target ontology's own metadata are copied; new properties, if not specified in the source ontology, are not created (and therefore not imported). The external term's property values are copied exactly from the external resource.
+Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of the rdfs:label of the oboInOwl:Definition will be set to the value of \url{http://purl.obolibrary.org/IAO_0000115} (\emph{i.e.,} iao:definition). Only annotation properties which map directly to the target ontology's own metadata are copied; new properties, if not specified in the source ontology, are not created. 
+%MC: removed " (and therefore not imported)" I didn't get that change: if they don't exist in the source ontology they can't be imported anyway?
+%The external term's property values are copied exactly from the external resource.
 
 Finally, a script \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of the imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
