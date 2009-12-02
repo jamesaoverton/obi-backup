@@ -78,7 +78,8 @@ Current editing tools present challenges for working with large ontologies and d
 Furthermore, external ontologies often undergo continuous change which can introduce conflicts when integrated with multiple efforts.
 Finally, importing heterogeneous ontologies in their entirety may lead to inconsistencies or unintended inferences.
 In this paper we propose a set of guidelines for importing required terms from an external resource into a target ontology.
-We describe the methodology and a tool which implements the approach, present some examples of this application, and outline future work and extensions.
+We describe the methodology, its implementation, present some examples of this application, and outline future work and extensions.
+%MC: updated  "and a tool which implements the approach": we actually present the OBI lisp implementation and ontofox.
 \end{abstract}
 
 
@@ -94,9 +95,12 @@ The ability to share and reuse existing ontological resources is an important co
 For example, when developing an ontology related to the biomedical domain, it may be useful to include terms from the \ac{GO}~\cite{GO} to represent biological processes or from \ac{PATO}~\cite{PATO} to represent properties of entities.
 Ontologies such as GO and PATO are built collaboratively by communities of experts and are the products of substantial effort.
 Recapitulating this work instead of reusing it represents a duplication of development effort and results in multiple ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error-prone, identifier mapping systems to enable data integration. 
-While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with a number of practical challenges during the import process.
-The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\cite{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole and hence renders it accessible to reasoners. However, current limitations in tools and reasoners can sometimes make this impractical.
-Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\cite{Protege} and Pellet~\cite{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy~\cite{NCBI} or the Foundational Model of Anatomy~\cite{FMA}, making direct \ac{OWL} imports of such important resources impractical. 
+While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with a number of practical challenges when trying to do so.
+% MC: updated "during the import process." Sounded strange as we introduce imports in the next sentence.
+The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\cite{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole.
+% MC: updated " and hence renders it accessible to reasoners." Importing it as a whole makes it accessible to reasoners, editors, everything. Specifying here sounded strange to me, as next sentence reds "but cause issues with reasoners".
+However, current limitations in tools and reasoners can sometimes make this impractical.
+Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\cite{Protege} and Pellet~\cite{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy~\cite{NCBI} or the Foundational Model of Anatomy~\cite{FMA}, making direct \ac{OWL} imports of such resources impractical. 
 Furthermore, external ontologies may have been constructed using design principles which do not align with the practice of the ontology requiring their import.  In this instance, wholly importing such ontologies could lead to inconsistencies or unintended inferences. %\todo such as what? this is a bold statement - is it backed up anywhere else?
 Other import options are possible, for instance using software that extracts a \emph{module}~\cite{Grau} of the external ontology.
 A module can be seen as a fragment of an external ontology that, when imported by an other ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
@@ -105,10 +109,12 @@ This is not always the case at the current stage of development of some ontologi
 For example, during the development of the \ac{OBI}~\cite{OBI}, importing the root class of the \ac{CARO}~\cite{CARO} was not desired as its definition intersected multiple classes in \ac{OBI}, making it difficult to determine how the two ontologies aligned. %\todo JM: I don't understand this sentence so I haven't reworded it - when you say not considered useful do you actually mean, more strongly, it was incorrect?
 %DS: If space is available put the example to illustrate why its not useful.
 %AL: the ``was not considered useful'' was a bit vague, so I modified it. However, please feel free to modify mine!
+%MC: Ally's modification makes it less clear for me :) JM said he will update tomorrow, so I will let him go ahead.
 In addition, although software that extracts modules are available, most are only in early stages of development.
 
 We tried several modularization tools~\cite{Grau2, Jimenez,Seidenberg,Sirin}. 
 % AL: Changed to a single citation - not sure if this is how it should be, but this is standard practice in tex.
+%MC: looks good to me. I checked citations format and will have to reformat them though. I'll do that before final version.
 All of them discarded annotations, resulting in modules containing only the class declarations and no annotation properties, such as labels or definitions.
 We also experienced software crashes on large ontologies (the size of the ontologies capable of being loaded varied with the tool, for example we were able to load ChEBI~\cite{ChEBI} with SWOOP but not with Prot\'eg\'e 3.4).
 One tool~\cite{Seidenberg} %RB:\todo{which?} %MC: Seidenberg - but the tools have no name, so it is difficult to refer to them.
@@ -116,26 +122,28 @@ had undocumented assumptions about the form of URIs used as class names and ther
 The other tools described %RB:\todo{which?}%MC: the others :)
 were able to extract modules by automatically determining their size. This resulted in either a single term or a large number of terms being extracted, depending on the provided arguments, as the tools attempt to approximate a module without discarding potentially useful information. These large modules undermine the goal of having imports of a manageable size.
 % AL: Why didn't you just use the small, single-term modules then? It's important to say why they weren't suitable either. Sorry, I don't know the answer to this one :)
+% MC: the single term module discarded all annotations. It contained only: <owl:Class rdf:about="&PATO;PATO_0001237"/>. Using the module tool is not easier than using mireot, and less helpful wrt to our needs. We do say above that all discarded annotations - any idea how to make this clearer?
 Our conclusion was that the current ontology tool set is in the early stages of development and, though promising, do not address our current needs.
 
 To address these issues we developed a set of guidelines for importing terms from multiple ontology resources, avoiding the overhead of importing the complete ontology from which the terms derive. 
 The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}.
 \ac{OBI} uses the \ac{BFO}~\cite{BFO} as an upper-level ontology and has been submitted for inclusion in the \ac{OBO} Foundry~\cite{OBOFoundry}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where appropriate, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
-\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or even OWL DL, and hence contribute to the realization of OBO Foundry principles.
+\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or OWL DL, and hence contribute to the realization of OBO Foundry principles.
 
 \section{Policy}
 
 In deciding upon a minimum unit of import, our first step was to consider the practice of other ontology efforts.
-For example, in the \ac{GO}, the intended definition of classes remains stable such that even when the ontology is repaired or reorganized, the effects of such changes do not affect the intended meaning of individual terms.
+For example, in the \ac{GO}, the intended denotation of classes remains stable such that even when the ontology is repaired or reorganized, the effects of such changes do not affect the intended meaning of individual terms.
 Rather, the changes are towards more carefully expressing the logical relations between them.
 When a term's changes meaning, the term is deprecated~\cite{GOGuide}.
 We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (\emph{i.e.}, individual classes in isolation from the ontology) as basic unit of import.
 The current implementation of \ac{MIREOT} has been limited to import of terms from other ontologies that aspire to the OBO Foundry, and so adhere to a similar deprecation policy.
+%MC: nice update (Ally?) with the "aspire" - they are indeed no foundry ontologies for now - thanks.
 
-The minimum amount of information needed to reference an external term is its source ontology URI (\textit {i.e.}, where the term comes from) and its URI (\textit {i.e.}, the identifier for this term). 
-Generally, these items remain stable and can be used to unambiguously reference the external term from within the importing target ontology.
-The minimum amount of information to integrate this class is its desired position in the hierarchy, specifically the URI of its direct superclass in the target ontology (\textit {i.e.}, under which class the term is asserted)
+The minimum amount of information needed to reference an external term is its URI (\textit {i.e.}, the identifier for this term) and its source ontology URI (\textit {i.e.}, where the term comes from). 
+Generally, these items remain stable and can be used to unambiguously reference the external term.
+The minimum amount of information to then integrate this class in the importing target ontology is its desired position in the hierarchy, specifically the URI of its direct superclass (\textit {i.e.}, under which class the term is to be asserted).
 
 Taken together, the following minimal set is enough to consistently reference an external term:
 \begin{itemize}
@@ -220,19 +228,12 @@ perl add-to-external.pl CL:0000767 CL:0000000
 will add the class $basophil$ (CL:0000767) as subclass of the class $cell$  (CL:0000000), and set the source ontology URI as \url{http://purl.org/obo/owl/CL}.
 Once imported, the $basophil$ and $cell$ classes can be used like any other OBI class. For example, the process $electroporation$ is defined as:
 
-% Do you want to make this more formally manchester syntax? If so, no is_a and you need to add ``and'' where appropriate.
-%is_a cell permeabilization
-%has_specified_input some cell
-%has_specified_output some 
-%   (cell and has_quality some electroporated))
-%utilizes_device some power supply
 \begin{footnotesize}
 \begin{verbatimtab}
-Class: Electroporation
-    SubClassOf: CellPermeabilization
-		        and hasSpecifiedInput some Cell
-			and hasSpecifiedOutput some (Cell SubClassOf: hasQuality some electroporated)
-			and utilizesDevice some powerSupply	
+Class: electroporation
+      SubClassOf: 'cell permeabilization'
+                              and has_specified_input some cell
+                              and has_participant some 'power supply'
 \end{verbatimtab}
 \end{footnotesize}
 
@@ -290,7 +291,7 @@ When using the \ac{MIREOT} standard one must be cognizant of the trade-off betwe
 By copying only parts of an ontology there is the risk that inferences drawn may be incomplete or incorrect. 
 Correct inference using the external classes is only guaranteed if the full ontologies, or a module, are imported.
 
-Since only partial, reasoner-supported consistency checking is undertaken, we take extra care when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible.
+Since only partial, reasoner-supported consistency checking is undertaken, we take extra care when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible. %MC: agreed. RB also mentioned this point.
 We review the textual definition and, if needed, talk with the original term editor to ensure we understand the denotation.
 As we are importing from \ac{OBO} Foundry candidate ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
 Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
