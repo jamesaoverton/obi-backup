@@ -274,15 +274,10 @@ On the same model, any information that the importing ontology editors would req
 
 The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development.
 
- The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO}, the \ac{VO}~\citep{VO}, the \ac{IDO}~\citep{IDO} and the \ac{InfluenzO}~\citep{InfluenzO}.
-In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in turn leads to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
+\ac{MIREOT} is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO}, the \ac{VO}~\citep{VO}, the \ac{IDO}~\citep{IDO} and the \ac{InfluenzO}~\citep{InfluenzO}.
+In the context of \ac{OBI}, 472 terms are currently explicitly imported, which in turn leads to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
 
-A consideration for using this approach is the status of assertions made on imported terms.
-In adding axioms, such as the subclass axiom when importing the external term, the aim is to only assert true statements.
-In our experience with the better OBO ontologies, the denotation of the term, as explained in the definition or documentation, is clearer and more correct than the axiomitization. %MC: added following Jose's email
-If additional restrictions are required those should be stored in the importing ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
-It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. %DS: Any ideas how to feed these back to the source editors automatically ? MC: We haven't discussed ways of doing so automatically, and I don't have any idea right now - so I think it would be safer to not shoot ourselves in the foot :)
-If additional annotations are added to the imported terms (\emph{e.g.}, adding an example of usage for the \ac{GO} imported term \textit{protein complex}), a check is required to ensure that the annotation is removed if the imported term is deprecated or replaced by another (\emph{e.g.}, replacing  the \ac{GO} \textit{protein complex} term with the \ac{PRO}~\citep{PRO} one).
+
 
 With broader use of the MIREOT mechanism by OBI and other resources, several minor issues arose.
 For example, consider the case of \ac{IAO} developers requiring import of the term $investigation$.  This class already exists in \ac{OBI}, and \ac{IAO} developers therefore chose to MIREOT it, effectively integrating the class \url{http://purl.obolibrary.org/obo/OBI_0000066} and distributing it as part of the \ac{IAO} releases.
@@ -294,9 +289,16 @@ Such a solution also has consequences; when updating the information from Neuroc
 
 Finally, when updating MIREOTed information, the SPARQL endpoint where the information resides must be up-to-date. The implementation currently relies on the \ac{OBO} Foundry resources at the Neurocommons \ac{OBO} distribution. This is updated nightly with the latest information from the \ac{OBO} server, and can therefore be reasonably relied upon for accessing current resources. The timeliness of the information may not always be known if extending the mechanism to another SPARQL endpoint, or other sets of ontological resources.
 
-The \ac{MIREOT} standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that \ac{MIREOT} offers between praticality and full, axiomatic completeness. By importing only the desired parts of an external ontology and there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontologies and aximoatization is imported. This does present one important advantage which is that it overcomes the obstacle presented by ontologies which are not fully interoperability at present.
+The \ac{MIREOT} standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that \ac{MIREOT} offers between praticality and full, axiomatic completeness. By importing only the desired parts of an external ontology there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontology, or a module, is imported. It does present one important advantage which is that it overcomes the obstacle presented by ontologies which are not fully interoperable at present.
 
 Since only partial, reasoner-supported consistency checking is undertaken, extra care is taken when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible. %MC: agreed. RB also mentioned this point.
+
+In adding axioms, such as the subclass axiom when importing the external term, the aim is to only assert true statements.
+In our experience with the better OBO ontologies, the denotation of the term, as explained in the definition or documentation, is clearer and more correct than the axiomitization. %MC: added following Jose's email
+If additional restrictions are required those should be stored in the importing ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
+It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. %DS: Any ideas how to feed these back to the source editors automatically ? MC: We haven't discussed ways of doing so automatically, and I don't have any idea right now - so I think it would be safer to not shoot ourselves in the foot :)
+%If additional annotations are added to the imported terms (\emph{e.g.}, adding an example of usage for the \ac{GO} imported term \textit{protein complex}), a check is required to ensure that the annotation is removed if the imported term is deprecated or replaced by another (\emph{e.g.}, replacing  the \ac{GO} \textit{protein complex} term with the \ac{PRO}~\citep{PRO} one). %MC: removed that part - a bit flat and doesn't bring much IMO.
+
 When deciding to import an external term the textual definition is reviewed and, if required, discussion with the original editor is undertaken.
 As we are importing from \ac{OBO} Foundry candidate ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
 Therefore, it is expected that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
@@ -348,7 +350,7 @@ technology and informatics}, 102:20-38, 2004.
 
 \bibitem[\protect\citeauthoryear{Jimenez-Ruiz E., et al.}{2008}]{Jimenez} Jimenez-Ruiz E., Grau B.C., Sattler U., Schneider T. and Berlanga R. Safe and Economic Re-Use of Ontologies: A Logic-Based Methodology and Tool Support. \textit{5th European Semantic Web Conference (ESWC 2008)} 
 
-\bibitem[\protect\citeauthoryear{Natale D.A. et al.}{2006}]{PRO} Natale D.A., Arighi C.N., Barker W., Blake J., Chang T-C, Hu Z., Hongfang Liu H., Smith B., and Wu C.H., "Framework for a Protein Ontology", \textit{Proceedings of the First International Workshop on Text Mining in Bioinformatics}, 2006, pp. 29-36.
+%\bibitem[\protect\citeauthoryear{Natale D.A. et al.}{2006}]{PRO} Natale D.A., Arighi C.N., Barker W., Blake J., Chang T-C, Hu Z., Hongfang Liu H., Smith B., and Wu C.H., "Framework for a Protein Ontology", \textit{Proceedings of the First International Workshop on Text Mining in Bioinformatics}, 2006, pp. 29-36.
 
 \bibitem[\protect\citeauthoryear{Neurocommons OBO SPARQL endpoint}{}]{NeurocommonsSparql} Neurocommons OBO SPARQL endpoint. Retrieved December 2, 2009, from |url{http://sparql.obo.neurocommons.org/}.
 
@@ -379,7 +381,7 @@ technology and informatics}, 102:20-38, 2004.
  
  \bibitem[\protect\citeauthoryear{IDO website}{}]{IDO} The Infectious Disease Ontology. Retrieved December 2, 2009, from \url{http://www.infectiousdiseaseontology.org/}
  
- \bibitem[\protect\citeauthoryear{InfluenzO webste}{}]{InfluenzO} The Influenza Ontology. Retrieved December 2, 2009, from \url{https://sourceforge.net/projects/influenzo/}.
+ \bibitem[\protect\citeauthoryear{InfluenzO website}{}]{InfluenzO} The Influenza Ontology. Retrieved December 2, 2009, from \url{https://sourceforge.net/projects/influenzo/}.
  
  \bibitem[\protect\citeauthoryear{IAO website}{2008}]{IAO} The Information Artifact Ontology (IAO). Retrieved December 2, 2009, from \url{http://code.google.com/p/information- artifact- ontology/}.
  
