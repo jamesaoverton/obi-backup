@@ -272,11 +272,13 @@ On the same model, any information that the importing ontology editors would req
 
 \section*{Discussion}
 
-The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development. The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO}, the \ac{VO}~\citep{VO}, the \ac{IDO}~\citep{IDO} and the \ac{InfluenzO}~\citep{InfluenzO}.
+The MIREOT mechanism offers a lightweight mechanism for importing specific classes from external ontologies. The approach is decoupled from the importing ontology, allowing a computational update mechanism which does not interfere with the primary ontology under development.
+
+ The \ac{MIREOT} mechanism is currently implemented and used by several ontology efforts, including \ac{OBI}, the \ac{IAO}, the \ac{VO}~\citep{VO}, the \ac{IDO}~\citep{IDO} and the \ac{InfluenzO}~\citep{InfluenzO}.
 In the context of \ac{OBI}, it currently explicitly imports 472 terms, which in turn leads to actual integration of 1447 classes (due to the automatic retrieval of parents when using the NCBI taxonomy). 
 
 A consideration for using this approach is the status of assertions made on imported terms.
-In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements, for instance those that the developers of the source ontology would agree with. 
+In adding axioms, such as the subclass axiom when importing the external term, the aim is to only assert true statements.
 In our experience with the better OBO ontologies, the denotation of the term, as explained in the definition or documentation, is clearer and more correct than the axiomitization. %MC: added following Jose's email
 If additional restrictions are required those should be stored in the importing ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 It is anticipated that some of the statements added by the importing ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. %DS: Any ideas how to feed these back to the source editors automatically ? MC: We haven't discussed ways of doing so automatically, and I don't have any idea right now - so I think it would be safer to not shoot ourselves in the foot :)
@@ -292,14 +294,12 @@ Such a solution also has consequences; when updating the information from Neuroc
 
 Finally, when updating MIREOTed information, the SPARQL endpoint where the information resides must be up-to-date. The implementation currently relies on the \ac{OBO} Foundry resources at the Neurocommons \ac{OBO} distribution. This is updated nightly with the latest information from the \ac{OBO} server, and can therefore be reasonably relied upon for accessing current resources. The timeliness of the information may not always be known if extending the mechanism to another SPARQL endpoint, or other sets of ontological resources.
 
-When using the \ac{MIREOT} standard one must be cognizant of the trade-off between complete consistency checking and heavyweight importing versus lightweight importing but only partial consistency checking.
-By copying only parts of an ontology there is the risk that inferences drawn may be incomplete or incorrect. 
-Correct inference using the external classes is only guaranteed if the full ontologies, or a module, are imported.
+The \ac{MIREOT} standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that \ac{MIREOT} offers between praticality and full, axiomatic completeness. By importing only the desired parts of an external ontology and there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontologies and aximoatization is imported. This does present one important advantage which is that it overcomes the obstacle presented by ontologies which are not fully interoperability at present.
 
-Since only partial, reasoner-supported consistency checking is undertaken, we take extra care when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible. %MC: agreed. RB also mentioned this point.
-We review the textual definition and, if needed, talk with the original term editor to ensure we understand the denotation.
+Since only partial, reasoner-supported consistency checking is undertaken, extra care is taken when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible. %MC: agreed. RB also mentioned this point.
+When deciding to import an external term the textual definition is reviewed and, if required, discussion with the original editor is undertaken.
 As we are importing from \ac{OBO} Foundry candidate ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
-Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
+Therefore, it is expected that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
 \section*{Future work}
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it difficult for some curators to use. 
