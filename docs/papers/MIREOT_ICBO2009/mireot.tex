@@ -203,15 +203,14 @@ As per the mechanism described above, the minimum information about the imported
 \section*{Discussion}
 
 
-The MIREOT standard is a trade-off between complete consistency checking and heavyweight importing versus lightweight importing but partial consistency checking.
-We are aware of and accept that by copying only parts of an ontology there is the risk that inferences drawn may be incomplete or incorrect: correct inference using the external classes is only guaranteed if the full ontologies are imported.
+The MIREOT standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that MIREOT offers between praticality and full, axiomatic completeness. By importing only the desired parts of an external ontology and there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontologies and aximoatization is imported. This does present one important advantage which is that it overcomes the obstacle presented by ontologies which are not fully interoperability at present. In the future, efforts such as those endorsed by the OBO Foundry, may offer this complete level of integration by the use of a uniform framework, e.g. the same set of relations and a single upper ontology.
 
-When deciding to import an external term we review the textual definition and, if needed, talk with the original editor.
-As we are importing from OBO Foundry ontologies we have a community process for monitoring change, a shared understanding of the basics of our domain, and the intention to eventually share the same upper-level ontology. 
-Therefore, we expect that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
+When deciding to import an external term the textual definition is reviewed and, if required, discussion with the original editor is undertaken.
+For our use case, we are imported from OBO Foundry ontologies where a community process for monitoring change and a shared understanding of the scope of each ontolgoy is in place. 
+Therefore, it is expected that terms will be deprecated if there is a significant change in meaning, and are flexible enough to adjust and update our import of terms as the other ontologies start enhancing their logical definitions.
 
-Another consideration using this approach is the status of assertions made on external terms.
-In adding axioms such as the subclass axiom when importing the external term, the aim is to only assert true statements.
+Another consideration is the status of assertions made on external terms.
+In adding axioms, such as the subclass axiom when importing the external term, the aim is to only assert true statements.
 If additional restrictions are required (for example in OBI, $cell$ is the bearer of the role reagent role or specimen role), those should be stored in the target ontology: the \emph{external.owl} and \emph{externalDerived.owl} are meant to include only the imported information.
 We anticipate that some of the statements added by the target ontology may migrate to the source ontologies at some point in the future; a fruit of the collaborative nature of OBO Foundry ontology development. 
 
