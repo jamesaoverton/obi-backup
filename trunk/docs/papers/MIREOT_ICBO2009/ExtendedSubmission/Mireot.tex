@@ -93,9 +93,8 @@ ontology import\sep data integration\sep MIREOT
 \section{Introduction}
 
 The ability to share and reuse existing ontological resources is an important consideration when developing a new ontology.
-For example, when developing an ontology related to the biomedical domain, it may be useful to include terms from the \ac{GO}~\citep{GO} to represent biological processes or from \ac{PATO}~\citep{PATO} to represent properties of entities.
-Ontologies such as GO and PATO are built collaboratively by communities of experts and are the products of substantial effort.
-Recapitulating this work instead of reusing it represents a duplication of development effort and results in multiple ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error-prone, identifier mapping systems to enable data integration. 
+For example, when developing an ontology related to the biomedical domain, it may be useful to include terms from the \ac{GO}~\citep{GO} to represent biological processes or from the \ac{PATO}~\citep{PATO} to represent properties of entities.
+Ontologies such as GO and PATO are built collaboratively by communities of experts and are the products of substantial effort; recapitulating this work instead of reusing it represents a duplication of development effort and results in multiple ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error-prone, identifier mapping systems to enable data integration. 
 While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with a number of practical challenges when trying to do so.
 % MC: updated "during the import process." Sounded strange as we introduce imports in the next sentence.
 The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\citep{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole.
@@ -106,7 +105,7 @@ Furthermore, external ontologies may have been constructed using design principl
 Other import options are possible, for instance using software that extracts a \emph{module}~\citep{Grau} of the external ontology.
 A module can be seen as a fragment of an external ontology that, when imported by an other ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
 However, if an extracted module is to be useful, the external ontology needs to be structured in a way that is compatible with the importing ontology (\emph{e.g.}, using the same upper ontology and relationship types), and the logical axioms need to be accurate. 
-This is not always the case at the current stage of development of some ontologies.
+This is not always the case at the current stage of development of some resources.
 For example, during the development of the \ac{OBI}~\citep{OBI}, importing the root class of the \ac{CARO}~\citep{CARO} was not desired as its definition intersected multiple classes in \ac{OBI}, making it difficult to determine how the two ontologies aligned. %\todo JM: I don't understand this sentence so I haven't reworded it - when you say not considered useful do you actually mean, more strongly, it was incorrect?
 %DS: If space is available put the example to illustrate why its not useful.
 %AL: the ``was not considered useful'' was a bit vague, so I modified it. However, please feel free to modify mine!
@@ -117,20 +116,20 @@ We tried several modularization tools~\citep{Grau2, Jimenez,Seidenberg,Sirin}.
 % AL: Changed to a single citation - not sure if this is how it should be, but this is standard practice in tex.
 %MC: looks good to me. I checked citations format and will have to reformat them though. I'll do that before final version.
 All of them discarded annotations, resulting in modules containing only the class declarations and no annotation properties, such as labels or definitions.
-We also experienced software crashes on large ontologies (the size of the ontologies capable of being loaded varied with the tool, for example we were able to load ChEBI~\citep{ChEBI} with SWOOP but not with Prot\'eg\'e 3.4).
+We also experienced software crashes on large ontologies (the size of the ontologies capable of being loaded varying with the tool; for example we were able to load the \ac{ChEBI} Ontology~\citep{ChEBI} with SWOOP but not with Prot\'eg\'e 3.4).
 One tool~\citep{Seidenberg} %RB:\todo{which?} %MC: Seidenberg - but the tools have no name, so it is difficult to refer to them.
 had undocumented assumptions about the form of URIs used as class names and therefore extracted empty modules. 
 The other tools described %RB:\todo{which?}%MC: the others :)
 were able to extract modules by automatically determining their size. This resulted in either a single term or a large number of terms being extracted, depending on the provided arguments, as the tools attempt to approximate a module without discarding potentially useful information. These large modules undermine the goal of having imports of a manageable size.
 % AL: Why didn't you just use the small, single-term modules then? It's important to say why they weren't suitable either. Sorry, I don't know the answer to this one :)
 % MC: the single term module discarded all annotations. It contained only: <owl:Class rdf:about="&PATO;PATO_0001237"/>. Using the module tool is not easier than using mireot, and less helpful wrt to our needs. We do say above that all discarded annotations - any idea how to make this clearer?
-Our conclusion was that the current ontology tool set is in the early stages of development and, though promising, do not address our current needs.
+Our conclusion was that the current ontology modularization tool set is in the early stages of development and, though promising, does not address our current needs.
 
-To address these issues we developed a set of guidelines for importing terms from multiple ontology resources, avoiding the overhead of importing the complete ontology from which the terms derive. 
+To address these issues we developed a set of guidelines for importing terms from multiple resources, avoiding the overhead of importing the complete ontology from which the terms derive. 
 The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}.
-\ac{OBI} uses the \ac{BFO}~\cite{BFO} as an upper-level ontology and has been submitted for inclusion in the \ac{OBO} Foundry~\citep{OBOFoundry}. 
+\ac{OBI} uses the \ac{BFO}~\citep{BFO} as an upper-level ontology and has been submitted for inclusion in the \ac{OBO} Foundry~\citep{OBOFoundry}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where appropriate, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
-\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or OWL DL, and hence contribute to the realization of OBO Foundry principles.
+\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or OWL DL~\citep{OWLGuide}, and hence contribute to the realization of OBO Foundry principles.
 
 \section{Policy}
 
@@ -142,15 +141,15 @@ We can therefore consider a term as stable, in isolation from the rest of the on
 The current implementation of \ac{MIREOT} has been limited to import of terms from other ontologies that aspire to the OBO Foundry, and so adhere to a similar deprecation policy.
 %MC: nice update (Ally?) with the "aspire" - they are indeed no foundry ontologies for now - thanks.
 
-The minimum amount of information needed to reference an external term is its URI (\textit {i.e.}, the identifier for this term) and its source ontology URI (\textit {i.e.}, where the term comes from). 
+The minimum amount of information needed to reference an external term is its \ac{URI} (\textit {i.e.}, the identifier for this term) and its source ontology \ac{URI} (\textit {i.e.}, where the term comes from). 
 Generally, these items remain stable and can be used to unambiguously reference the external term.
 The minimum amount of information to then integrate this class in the importing target ontology is its desired position in the hierarchy, specifically the URI of its direct superclass (\textit {i.e.}, under which class the term is to be asserted).
 
 Taken together, the following minimal set is enough to consistently reference an external term:
 \begin{itemize}
- \item \textbf{source ontology URI} The logical URI of the ontology containing the external term to be imported. 
- \item \textbf{source term URI} The logical URI of the specific term to import. 
- \item \textbf{target direct superclass URI} The logical URI of the direct asserted superclass in the importing ontology.
+ \item \textbf{source ontology \ac{URI}} The logical \ac{URI} of the ontology containing the external term to be imported. 
+ \item \textbf{source term \ac{URI}} The logical \ac{URI} of the specific term to import. 
+ \item \textbf{target direct superclass \ac{URI}} The logical \ac{URI} of the direct asserted superclass in the importing ontology.
 \end{itemize} 
 
 To ease development of the importing ontology it is also recommended, although not required, that additional information about the external class be added, such as its label and textual definition, or any other kind of information that may be deemed useful by the ontology developers.
@@ -168,10 +167,10 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 This set is stored in a file called \emph{external.owl} (all scripts and files are available under the \ac{OBI} Subversion Repository~\citep{OBIScripts}).
-In the current implementation, a Perl script, \emph{add-to-external.pl}, can be used to append the minimum information set for a given external term to the \emph{external.owl} file, or the information can be entered by directly editing the OWL file. %, or the information can be entered in an ontology editing tool. MC: I don't believe that to be true - how do you add a PATO class from Protege directly? Also it contradicts the next sentence.
+In the current implementation, a Perl script, \emph{add-to-external.pl}, can be used to append the minimum information set for a given external term to the \emph{external.owl} file.%, or the information can be entered by directly editing the OWL file. %, or the information can be entered in an ontology editing tool. MC: I don't believe that to be true - how do you add a PATO class from Protege directly? Also it contradicts the next sentence.
 %In the future we anticipate this operation will have specific support within editing tools. %MC: I rmeoved this sentence which IMO belongs to the section future work where we describe that we would like tool support.
 The script takes as arguments the identifier of the external class to be imported and its parent class in the target hierarchy.
-In addition, a mapping between the prefix used in the identifier and the external source ontology URI is built into the script. For example, when requesting the term \textit{CL:0000767} (see below), the script maps the \textit{CL:} prefix to its source ontology URI \url{http://purl.org/obo/owl/CL}.
+In addition, a mapping between the prefix used in the identifier and the external source ontology \ac{URI} is built into the script. For example, when requesting the term \textit{CL:0000767} (see below), the script maps the \textit{CL:} prefix to its source ontology \ac{URI} \url{http://purl.org/obo/owl/CL}.
 Curators therefore need only specify the ID of the external class to import (rather than the full URI) and the ID of the class it should be imported under.
 
 In the current implementation, the additional information can be obtained programmatically via SPARQL~\citep{SPARQL} CONSTRUCT queries (Figure \ref{fig:sparql}).
@@ -306,8 +305,8 @@ Therefore, it is expected that terms will be deprecated if there is a significan
 \section*{Future work}
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it difficult for some curators to use. 
 A web service, OntoFox~\citep{OntoFox}, has been developed at the University of Michigan to facilitate the process: ontology editors can use web forms to input their requirements, or submit specific OntoFox-formatted files for batch creation or update.
-A useful extension to this work would be in the form of a \protege\  plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology%~\citep{NCBOWidget}
-, and it is our hope that a future extension would fully support the MIREOT guidelines.
+%A useful extension to this work would be in the form of a \protege\  plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology%~\citep{NCBOWidget}
+%, and it is our hope that a future extension would fully support the MIREOT guidelines.
 It is also expected that an option in the \ac{OBI} distribution would enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. Users would then be able to import all of the external resources, therefore replacing the MIREOT selected terms.  As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source-by-source basis.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
 %Finally, we are also working on improving import of lower level terms under specific chosen root terms for 
 
@@ -338,7 +337,7 @@ Gene Ontology Consortium. The gene ontology (go) database and informatics resour
 
 \bibitem[\protect\citeauthoryear{Go editorial style guide}{}]{GOGuide} Go editorial style guide. Retrieved December 2, 2009, from \url{http://www.geneontology.org/GO.usage.shtml}.
 
-\bibitem[\protect\citeauthoryear{Golbreich C. et al. }{2006}]{FMA} Golbreich C., Zhang S., and Bodenreider O.. The foundational model of anatomy in owl: Experience and perspectives. \textit{Web semantics (Online)}, 4(3):181-195, 2006. 
+\bibitem[\protect\citeauthoryear{Golbreich C. et al.}{2006}]{FMA} Golbreich C., Zhang S., and Bodenreider O.. The foundational model of anatomy in owl: Experience and perspectives. \textit{Web semantics (Online)}, 4(3):181-195, 2006. 
 
 \bibitem[\protect\citeauthoryear{Grau BC et al.}{2007}]{Grau} Grau B.C., Horrocks I., Kazakov Y., and Sattler U. Extracting Modules from Ontologies: A Logic-based Approach. \textit{Proc. of the Third OWL Experiences and Directions Workshop}, number 258 in CEUR
 
@@ -360,6 +359,8 @@ technology and informatics}, 102:20-38, 2004.
 \bibitem[\protect\citeauthoryear{OBI scripts}{2008}]{OBIScripts} OBI scripts. Retrieved December 2, 2009, from \url{http://purl.obolibrary.org/obo/obi/repository/}.
 
 \bibitem[\protect\citeauthoryear{OntoFox webserver}{2009}]{OntoFox} OntoFox. Retrieved December 2, 2009, from \url{http://ontofox.hegroup.org/}.
+
+\bibitem[\protect\citeauthoryear{OWL Web Ontology Language guide: OWL species}{2004}]{OWLGuide} OWL Web Ontology Language guide: OWL species. Retrieved December 3, 2009, from \url{http://www.w3.org/TR/2004/REC-owl-guide-20040210/#OwlVarieties}.
 
 \bibitem[\protect\citeauthoryear{Phenotypic Quality Ontology website}{}]{PATO} Phenotypic Quality Ontology. Retrieved December 2, 2009, from \url{http://obofoundry.org/wiki/index.php/PATO:Main_Page}
 
@@ -402,7 +403,7 @@ research, } 33(Database issue), D39-45.
     
 \begin{acronym}
 \acro{BFO}{Basic Formal Ontology}
-
+\acro{ChEBI}{Chemical Entities of Biological Interest}
 \acro{CL}{Cell Type}
 
 \acro{GO}{Gene Ontology}
@@ -421,7 +422,7 @@ research, } 33(Database issue), D39-45.
 \acro{RDF}{Resource Description Framework}
 \acro{FMA}{Foundational Model of Anatomy}
 \acro{PATO}{Phenotypic Quality Ontology}
-\acro{ChEBI}{Chemical Entities of Biological Interest}
+\acro{URI}{Uniform Resource Identifier}
 
 \end{acronym}
 
