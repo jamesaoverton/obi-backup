@@ -129,7 +129,7 @@ To address these issues we developed a set of guidelines for importing terms fro
 The \ac{MIREOT} guidelines were created to aid the development of \ac{OBI}.
 \ac{OBI} uses the \ac{BFO}~\citep{BFO} as an upper-level ontology and has been submitted for inclusion in the \ac{OBO} Foundry~\citep{OBOFoundry}. 
 One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where appropriate, existing ontology resources, therefore avoiding duplication of effort and ensuring orthogonality.
-\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or OWL DL~\citep{OWLGuide}, and hence contribute to the realization of OBO Foundry principles.
+\ac{MIREOT} provides a mechanism by which external ontology terms can be selectively imported, even if they do not use a particular upper ontology or OWL DL~\citep{Horrocks}, and hence contribute to the realization of OBO Foundry principles.
 
 \section{Policy}
 
@@ -190,7 +190,7 @@ Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of t
 %MC: removed " (and therefore not imported)" I didn't get that change: if they don't exist in the source ontology they can't be imported anyway?
 %The external term's property values are copied exactly from the external resource.
 
-Finally, a script \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
+Finally, a script, \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of the imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons OBO SPARQL endpoint~\citep{NeurocommonsSparql,Neurocommons}. This supplementary information is stored in a second file, \emph{externalDerived.owl}.
 This file can be removed on an ad-hoc basis (\emph{e.g.}, before releasing new versions of the importing ontology) so that it can then be rebuilt via script based on \emph{external.owl} in order to refresh the additional information (\emph{e.g.}, label). The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the importing ontology's proprietary classes (see Figure \ref{fig:mechanism2}). This introduces an additional level of modularity, separating the domain ontology of interest from the external ontologies.%sentence was added by JM above where it didn't match: it was after "To keep this additional information current, the imports are stored in a separate file that can be removed and rebuilt on a regular basis." 1. the minimal information is in a separate file but never removed 2. the additional information is in a removable file. I updated the sentence above to make it clearer which extra information we were talking about. Hope that helps.
@@ -204,7 +204,7 @@ In the following sections we present two different cases of application of the \
 }
 \caption{Diagram of the MIREOT mechanism.
 1. The ontology editor gathers the minimal information for the class to import and adds it into the external.owl file
-2. A script parses the external.owl file, and for each class a SPARQL template is selected from external-templates.txt by matching the URI to patterns specified for each template. It uses the URI and the appropriate SPARQL template to generate a CONSTRUCT query
+2. A script parses the external.owl file, and for each class selects the appropriate SPARQL CONSTRUCT template.
 3. The SPARQL query is executed against a SPARQL endpoint (\emph{e.g.}, Neurocommons)
 4. The results of the SPARQL queries are combined into the externalDerived.owl file
 5. The target ontology imports the external.owl and externalDerived.owl files.
@@ -245,13 +245,13 @@ More generally, additional axioms may be used to relate members of the class to 
 
 \subsection*{Use Case Two - taxonomic information}
 
-The \texttt{cell} use-case highlights what is likely to be the most common import scenario, \emph{i.e.}, a simple import of one external term, making it available for direct use in the target ontology.
+The \textit{cell} use-case highlights what is likely to be the most common import scenario, \emph{i.e.}, a simple import of one external term, making it available for direct use in the target ontology.
 However, in some cases, we may require more than that single external term, and to account for this \ac{MIREOT} has been devised to be flexible.
 
 Consider the scenario in which we have two experiments, one in human and one in mouse. 
 The files are annotated with the classes human and mouse from the ontology, which are in turn mapped from the NCBI taxonomy. 
-We can easily imagine that somebody would want to have a query of the form ``give me all 
-experiments in mammals''. In this case, we would need to know that human and mouse are 
+We can easily imagine that somebody would want to have a query for all 
+experiments in mammals, without specifying the exact species. In this case, we would need to know that human and mouse are 
 subclasses (even indirect) of mammals in the NCBI taxonomy. The root term of the NCBI taxonomy is an example of term we didn't want to include in the \ac{OBI}, as it includes \textit{viroids}, \textit{unclassified sequences} and \textit{others sequences}, which we didn't consider useful when defining organisms.  Therefore, when mapping 
 towards an NCBI term, we decided to retrieve all its superclasses as well up to specific levels (\textit{Archaea}, \textit{Bacteria}, \textit{Eukaryota} and \textit{Viruses}) of the 
 NCBI taxonomy. 
@@ -284,11 +284,11 @@ However, \ac{OBI} imports \ac{IAO}, and therefore re imports, \emph{via IAO}, it
 
 One solution to this problem would be to update the \ac{IAO} import - but this requires a release of \ac{OBI} with the updated $investigation$ definition, its upload on Neurocommons, and for the \ac{IAO} developers to update their information and produce a new release of \ac{IAO}. At best, this implies a delay of a few days, more realistically of a few weeks until the information in both files is again synchronized.
 A better solution would be for tools to recognize and prioritize the origin of a class based on its URI. Ontology editing tools would display only the information originating from the target ontology when editing the target ontology file.
-Such a solution also has consequences; when updating the information from Neurocommons, a specification of which \ac{RDF} graph~\citep{RDF} the term \emph{originally} belonged to is required. Taking again the example of the $investigation$ class, when querying based on its URI without specifying the RDF graph, the SPARQL endpoint would return the \ac{OBI} class, but also the one distributed by \ac{IAO}, which is not the desired behavior; in our example, the \ac{IAO} annotation property values are now out of date compared to the original and authoritative \ac{OBI} file. %MC: replace correct with authoritative: we don't know that OBI is correct, but we know that they control their term :)
+Such a solution also has consequences; when updating the information from the SPARQL endpoint, a specification of which \ac{RDF} graph~\citep{RDF} the term \emph{originally} belonged to is required. Taking again the example of the $investigation$ class, when querying based on its URI without specifying the RDF graph, the \ac{OBI} class, but also the one distributed by \ac{IAO}, will be returned, which is not the desired behavior; in our example, the \ac{IAO} annotation property values are now out of date compared to the original and authoritative \ac{OBI} file. %MC: replace correct with authoritative: we don't know that OBI is correct, but we know that they control their term :)
 
 Finally, when updating MIREOTed information, the SPARQL endpoint where the information resides must be up-to-date. The implementation currently relies on the \ac{OBO} Foundry resources at the Neurocommons \ac{OBO} distribution. This is updated nightly with the latest information from the \ac{OBO} server, and can therefore be reasonably relied upon for accessing current resources. The timeliness of the information may not always be known if extending the mechanism to another SPARQL endpoint, or other sets of ontological resources.
 
-The \ac{MIREOT} standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that \ac{MIREOT} offers between practicality and full, axiomatic completeness. By importing only the desired parts of an external ontology there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontology, or a module, is imported. It does present one important advantage which is that it overcomes the obstacle presented by ontologies which are not fully interoperable at present.
+The \ac{MIREOT} standard presents an approach to importing classes from external ontologies that removes the overhead of full ontology imports whilst maintaining a decoupled but usable reference to the external classes. There is a clear trade-off that \ac{MIREOT} offers between practicality and full, axiomatic completeness. By importing only the desired parts of an external ontology there is the risk that inferences drawn may be incomplete or incorrect; correct inference using the external classes is only guaranteed if the full ontology, or a module, is imported. It does however present the important advantage of overcoming the obstacle presented by ontologies which are not fully interoperable at present.
 
 Since only partial, reasoner-supported consistency checking is undertaken, extra care is taken when we need to make assertions about an imported term. %\todo who is "`we" here, do you mean in OBI development. I have removed as many "we"s as I can find but they should all be taken out; it should be as person neutral as possible. %MC: agreed. RB also mentioned this point.
 
@@ -304,10 +304,10 @@ Therefore, it is expected that terms will be deprecated if there is a significan
 
 \section*{Future work}
 The current implementation of the \ac{MIREOT} guidelines relies on command-line scripts, making it difficult for some curators to use. 
-A web service, OntoFox~\citep{OntoFox}, has been developed at the University of Michigan to facilitate the process: ontology editors can use web forms to input their requirements, or submit specific OntoFox-formatted files for batch creation or update.
+A web service, OntoFox~\citep{OntoFox}, has been developed by the He group at the University of Michigan to facilitate the process: ontology editors can use web forms to input their requirements, or submit specific OntoFox-formatted files for batch creation or update.
 %A useful extension to this work would be in the form of a \protege\  plugin to improve the interaction between the curators and the tool. NCBO developers have created a widget allowing the insertion of external references in an ontology%~\citep{NCBOWidget}
 %, and it is our hope that a future extension would fully support the MIREOT guidelines.
-It is also expected that an option in the \ac{OBI} distribution would enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. Users would then be able to import all of the external resources, therefore replacing the MIREOT selected terms.  As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source-by-source basis.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
+It is also expected that an option in the \ac{OBI} distribution will in the future enable the replacement of \emph{external.owl} with \emph{imports.owl}, a file of imports statements generated by extracting the ontology URIs mentioned in \emph{external.owl}. Users would then be able to import all of the external resources, therefore replacing the MIREOT selected terms.  As module extraction technology matures, we intend to include the ability to use such mechanisms for doing targeted imports, on a source-by-source basis.%\todo{include this in the diagram} MC: I don't see how to add this to the diagram
 %Finally, we are also working on improving import of lower level terms under specific chosen root terms for 
 
 
@@ -317,7 +317,7 @@ It is also expected that an option in the \ac{OBI} distribution would enable the
 
 In memory of our friend and colleague William Bug. 
 
-The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Christian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, Jessica Turner, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
+The OBI consortium is (in alphabetical order): Ryan Brinkman, Bill Bug, Helen Causton, Kevin Clancy, Cristian Cocos, M\'elanie Courtot, Dirk Derom, Eric Deutsch, Liju Fan, Dawn Field, Jennifer Fostel, Gilberto Fragoso, Frank Gibson, Tanya Gray, Jason Greenbaum, Pierre Grenon, Jeff Grethe, Yongqun He, Mervi Heiskanen, Tina Hernandez-Boussard, Lawrence Hunter, Philip Lord, Allyson Lister, James Malone, Elisabetta Manduchi, Monnie McGee, Luisa Montecchi, Norman Morrison, Chris Mungall, Helen Parkinson, Bjoern Peters, Matthew Pocock, Philippe Rocca-Serra, Daniel Rubin, Alan Ruttenberg, Susanna-Assunta Sansone, Richard Scheuermann, Daniel Schober, Barry Smith, Larisa Soldatova, Holger Stenzhorn, Chris Stoeckert, Chris Taylor, Jessica Turner, John Westbrook,  Joe White, Trish Whetzel, Stefan Wiemann, Jie Zheng. 
 The author's work is partially supported by funding from the NIH(R01EB005034),  the Public Health Agency of Canada / Canadian Institutes of Health Research Influenza Research Network (PCIRN), the EC EMERALD project (LSHG-CT-2006-037686), the BBSRC(BB/C008200/1, BB/D524283/1, BB/E025080/1), the EU FP7 DebugIT project (ICT-2007.5.2-217139), and the Michael Smith Foundation for Health Research.
 
 
@@ -348,6 +348,8 @@ technology and informatics}, 102:20-38, 2004.
 
 \bibitem[\protect\citeauthoryear{Haendel M.A. et al.}{2008}]{CARO} Haendel M.A., Neuhaus F., Osumi-Sutherland D., M. Mabee P., Mejino Jr. J.L.V., Mungall C.J., Smith B.. CARO - The Common Anatomy Reference Ontology, in \textit{Anatomy Ontologies for Bioinformatics Principles and Practice, Series: Computational Biology} , Vol. 6, ed. Burger, Albert; Davidson, Duncan; Baldock, Richard
 
+\bibitem[\protect\citeauthoryear{Horrocks I. et al.}{2006}]{Horrocks} Horrocks I., Kutz O., and Sattler U. The Even More Irresistible SROIQ. \textit{In Proc. of the 10th Int. Conf. on Principles of Knowledge Representation and Reasoning (KR 2006)}, pages 57-67. AAAI Press, 2006.
+
 \bibitem[\protect\citeauthoryear{Jimenez-Ruiz E., et al.}{2008}]{Jimenez} Jimenez-Ruiz E., Grau B.C., Sattler U., Schneider T. and Berlanga R. Safe and Economic Re-Use of Ontologies: A Logic-Based Methodology and Tool Support. \textit{5th European Semantic Web Conference (ESWC 2008)} 
 
 %\bibitem[\protect\citeauthoryear{Natale D.A. et al.}{2006}]{PRO} Natale D.A., Arighi C.N., Barker W., Blake J., Chang T-C, Hu Z., Hongfang Liu H., Smith B., and Wu C.H., "Framework for a Protein Ontology", \textit{Proceedings of the First International Workshop on Text Mining in Bioinformatics}, 2006, pp. 29-36.
@@ -360,7 +362,7 @@ technology and informatics}, 102:20-38, 2004.
 
 \bibitem[\protect\citeauthoryear{OntoFox webserver}{2009}]{OntoFox} OntoFox. Retrieved December 2, 2009, from \url{http://ontofox.hegroup.org/}.
 
-\bibitem[\protect\citeauthoryear{OWL Web Ontology Language guide: OWL species}{2004}]{OWLGuide} OWL Web Ontology Language guide: OWL species. Retrieved December 3, 2009, from \url{http://www.w3.org/TR/2004/REC-owl-guide-20040210/#OwlVarieties}.
+%\bibitem[\protect\citeauthoryear{OWL Web Ontology Language guide: OWL species}{2004}]{OWLGuide} OWL Web Ontology Language guide: OWL species. Retrieved December 3, 2009, from \url{http://www.w3.org/TR/2004/REC-owl-guide-20040210/#OwlVarieties}.
 
 \bibitem[\protect\citeauthoryear{Phenotypic Quality Ontology website}{}]{PATO} Phenotypic Quality Ontology. Retrieved December 2, 2009, from \url{http://obofoundry.org/wiki/index.php/PATO:Main_Page}
 
