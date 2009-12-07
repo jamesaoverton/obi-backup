@@ -51,7 +51,7 @@ elsif( $parent =~ /(.*?):(.*)$/)
 my $template =<<EOF
   <owl:Class rdf:about="_CHILD_">
     <rdfs:subClassOf rdf:resource="_PARENT_"/>
-    <OBI_0000283 rdf:resource="_ONT_"/>
+    <IAO_0000412 rdf:resource="_ONT_"/>
   </owl:Class>
 EOF
     ;
