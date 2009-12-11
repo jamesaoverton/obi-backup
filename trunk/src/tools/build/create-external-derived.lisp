@@ -112,7 +112,7 @@
 
 (defun clean-rdf (path prefixmapping)
   (let* ((file (maybe-url-filename path))
-	 (model (#"createOntologyModel" 'modelfactory (get-java-field 'OntModelSpec "OWL_MEM"))))
+	 (model (#"createOntologyModel" 'com.hp.hpl.jena.rdf.model.ModelFactory (get-java-field 'OntModelSpec "OWL_MEM"))))
     (let ((base "http://purl.obolibrary.org/obo/obi/externalDerived.owl"))
       (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) base)
       (loop for (prefix namespace) in prefixmapping
@@ -126,6 +126,15 @@
 
 (defparameter *smart-leftquote-pattern* (coerce (list #\. (code-char 196) (code-char 242)) 'string))
 (defparameter *smart-rightquote-pattern* (coerce (list #\. (code-char 196) (code-char 244)) 'string))
+
+(defun xml-encode-unicode-high (string)
+  (let ((matcher (#"matcher" (load-time-value (#"compile" 'java.util.regex.pattern "([\\u0080-\\uFFFF])")) string))
+	(sb (new 'stringbuffer)))
+    (loop while (#"find" matcher) 
+	  do
+	  (#"appendReplacement" matcher sb (format nil "&#x~4,'0x;" (#"codePointAt" (#0"group" matcher 0) 0))))
+    (#"appendTail" matcher sb)
+    (#"toString" sb)))
 
 (defun create-external-derived (&key
 				(kb (load-kb-jena "obi:branches;external.owl"))
@@ -172,7 +181,8 @@
 				       (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t))))
 
 			   ;; FIXME - Horrible workaround to compensate for abcl not understanding unicode and VO using smart quotes
-			   collect (setq foo (#"replaceAll" (#"replaceAll" (setq bar (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;"))))))))
+			   ;; Explain to me why the get URL produces different strings on a mac compared to a linux box. Byte order?
+			   collect (xml-encode-unicode-high (setq foo (#"replaceAll" (#"replaceAll" (setq bar (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;")))))))))
 	    (let ((basic-info
 		   (with-output-to-string (s)
 		     (loop for (class nil parent) in classes
@@ -182,11 +192,3 @@
 	    (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
 	    nil
 	    ))))))
-
-
-
-
-      
-
-
-
