@@ -29,7 +29,6 @@ my $externals_table =
      ["VO", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d+"],
      ["snap", "http://www.ifomis.org/bfo/1.1/snap#", "http://www.ifomis.org/bfo/1.1","\\S+"],
      ["span", "http://www.ifomis.org/bfo/1.1/span#", "http://www.ifomis.org/bfo/1.1","\\S+"],
-     ["span", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d+"],
      ["NIF-GrossAnatomy", "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#",
       "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl","birnlex_\\d+"]];
 
