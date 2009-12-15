@@ -15,7 +15,7 @@ my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO SO);
 # add another line for each new ontology
 
 my $externals_table = 
-    [["PATO", "http://purl.org/obo/owl/PATO#PATO_", "http://purl.org/obo/owl/PATO", "\\d{8}","PATO:0001879"],
+    [["PATO", "http://purl.org/obo/owl/PATO#PATO_", "http://purl.org/obo/owl/PATO", "\\d{7}","PATO:0001879"],
      ["PRO", "http://purl.org/obo/owl/PRO#PRO_", "http://purl.org/obo/owl/PRO","\\d{9}","PRO:000001958"],
      ["FMA", "http://purl.org/obo/owl/FMA#FMA_", "http://purl.org/obo/owl/FMA","\\d+","FMA:7203"],
      ["CHEBI", "http://purl.org/obo/owl/CHEBI#CHEBI_", "http://purl.org/obo/owl/CHEBI","\\d+","CHEBI:16714"],
@@ -77,8 +77,7 @@ elsif( $parent =~ /(.*?):(.*)$/)
 (($parent=~ /^OBI(_|:)/) || ($parent=~ /^(snap|span):/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
     or usage("$parenturi not present. Please use this script to add it then try again.\n");
 
-!`grep '<owl:Class rdf:about="$childuri">' $branchpath` 
-    or usage("$childuri already present, so not adding it again");
+`grep '<owl:Class rdf:about="$childuri">' $branchpath` and usage("$childuri already present, so not adding it again");
 
 my $template =<<EOF
   <owl:Class rdf:about="_CHILD_">
