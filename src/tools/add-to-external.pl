@@ -13,36 +13,59 @@ if (!$branchpath)
 }
 my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO SO);
 
-my $valid_child_pattern = "(http:\/\/purl.org\/obo\/owl\/"
-    ."(".join("",map "$_#$_\_|", @valid_externals).")(\\d+)\$)|"
-    ."(".join(":(\\d+)\$|", @valid_externals).")";
+;; format: id prefix, uri prefix, source ontology, id pattern
+;; add another line for each new ontology
 
-my $valid_parent_pattern = "(http:\/\/purl.org\/obo\/owl\/"
-    ."(".join("",map "$_#$_\_|", @valid_externals).")(\\d+)\$)|"
-    ."(".join(":(\\d+)\$|", @valid_externals).")|OBI_\\d+\$";
+my $externals_table = 
+    [["PATO", "http://purl.org/obo/owl/PATO#PATO_", "http://purl.org/obo/owl/PATO", "\\d+"],
+     ["PRO", "http://purl.org/obo/owl/PRO#PRO_", "http://purl.org/obo/owl/PRO","\\d+"],
+     ["FMA", "http://purl.org/obo/owl/FMA#FMA_", "http://purl.org/obo/owl/FMA","\\d+"],
+     ["CHEBI", "http://purl.org/obo/owl/CHEBI#CHEBI_", "http://purl.org/obo/owl/CHEBI","\\d+"],
+     ["GO", "http://purl.org/obo/owl/GO#GO_", "http://purl.org/obo/owl/GO","\\d+"],
+     ["CL", "http://purl.org/obo/owl/CL#CL_", "http://purl.org/obo/owl/CL","\\d+"],
+     ["NCBITaxon", "http://purl.org/obo/owl/NCBITaxon#NCBITaxon_", "http://purl.org/obo/owl/NCBITaxon","\\d+"],
+     ["ENVO", "http://purl.org/obo/owl/ENVO#ENVO_", "http://purl.org/obo/owl/ENVO","\\d+"],
+     ["SO", "http://purl.org/obo/owl/ENVO#SO_", "http://purl.org/obo/owl/ENVO","\\d+"],
+     ["VO", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d+"],
+     ["snap", "http://www.ifomis.org/bfo/1.1/snap#", "http://www.ifomis.org/bfo/1.1","\\S+"],
+     ["span", "http://www.ifomis.org/bfo/1.1/span#", "http://www.ifomis.org/bfo/1.1","\\S+"],
+     ["span", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d+"],
+     ["NIF-GrossAnatomy", "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#",
+      "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl","birnlex_\\d+"]];
 
-$child =~ /$valid_child_pattern/i or die "child term '$child' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
-$parent =~ /$valid_parent_pattern/i or die "parent term '$parent' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
+my @valid_externals = map {$_->[0]} @{$externals_table};
+
+sub findit 
+  { my $term = @_[0];
+    grep {my $re1=$_->[0].":".$_->[3];my $re2=$_->[1].$_->[3];($term=~/$re1/ || $term=~/$re2/)} @{$externals_table}
+  }
+
+findit($child) or die "child term '$child' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
+
+($parent =~ /OBI(:|_)\d+/ || findit($parent)) or die "parent term '$parent' doesn't look like a valid id. The term should be from one of the following ontologies: @valid_externals";
+
 -e $branchpath or die "$branchpath doesn't exist";
 
 my ($parenturi,$childuri);
 
 if ($child =~ /(.*?):(.*)$/)
 { my ($ont,$id) = ($1,$2); 
-  $childuri = "http://purl.org/obo/owl/".uc($ont)."#".uc($ont)."_".$id;
+  my @found = findit($child);
+  $childuri= @found[0]->[1].$id;
 }
 else { $childuri =~ $child; }
-
-if ($parent =~ /^(OBI_\d+)$/)
+$DB::single=1;
+if ($parent =~ /^(OBI(:|_)\d+)$/)
 { $parenturi = "http://purl.obofoundry.org/obo/$1" }
 elsif ($parent =~ /^http/)
 { $parenturi = $parent }
 elsif( $parent =~ /(.*?):(.*)$/)
 { my ($ont,$id) = ($1,$2);
-  $parenturi = "http://purl.org/obo/owl/".uc($ont)."#".uc($ont)."_".$id;
+  my @found = findit($parent);
+  $parenturi= @found[0]->[1].$id;
 }
 
-(($parent=~ /^OBI_/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
+(($parent=~ /^OBI(_|:)/) || ($parent=~ /^(snap|span):/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
     or die "$parenturi not present. Please use this script to add it then try again.\n";
 
 !`grep '<owl:Class rdf:about="$childuri">' $branchpath` 
@@ -56,8 +79,8 @@ my $template =<<EOF
 EOF
     ;
 
-my $onturi = $childuri;
-$onturi =~ s/#.*//;
+my @found = findit($child);
+my $onturi = @found[0]->[2];
 
 $template =~ s/_ONT_/$onturi/e;
 $template =~ s/_CHILD_/$childuri/e;
