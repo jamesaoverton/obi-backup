@@ -13,8 +13,8 @@ if (!$branchpath)
 }
 my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO SO);
 
-;; format: id prefix, uri prefix, source ontology, id pattern
-;; add another line for each new ontology
+# format: id prefix, uri prefix, source ontology, id pattern
+# add another line for each new ontology
 
 my $externals_table = 
     [["PATO", "http://purl.org/obo/owl/PATO#PATO_", "http://purl.org/obo/owl/PATO", "\\d+"],
