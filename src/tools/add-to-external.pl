@@ -35,6 +35,7 @@ sub usage
   print "Usage:\nperl add-to-external.pl child parent [path to external.owl]\ne.g. perl add-to-external.pl PRO:000000001 CHEBI:23091\n";
   print "The script recognizes the following prefixes:\n";
   map { print "  $_->[0] (e.g. $_->[4]) Ontology: $_->[2]\n" } @{$externals_table};
+  print "Additionally, OBI ids in the form OBI_0600065 or OBI:0600065 can be used for parent terms\n";
   exit;
 }
 
