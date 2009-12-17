@@ -1,15 +1,24 @@
 use strict;
 
+my $instance_p = 0;
+
 
 my $child = $ARGV[0];
 my $parent = $ARGV[1];
 my $branchpath = $ARGV[2];
+
+if ($ARGV[0] == "instance")
+  { $instance_p =1;
+    $child = $ARGV[1];
+    $parent = $ARGV[2];
+    $branchpath = $ARGV[3];
+  }
+
 if (!$branchpath)
 { $branchpath = `cd  \`dirname $0\`/../ontology/branches/; pwd` ;
   chomp $branchpath;
   $branchpath .= "/external.owl";
 }
-my @valid_externals = qw(PATO PRO FMA CHEBI GO CL NCBITaxon ENVO SO);
 
 # format: id prefix, uri prefix, source ontology, id pattern, example id (use a verified real one)
 # add another line for each new ontology
@@ -23,7 +32,8 @@ my $externals_table =
      ["CL", "http://purl.org/obo/owl/CL#CL_", "http://purl.org/obo/owl/CL","\\d{7}","CL:0000042"],
      ["NCBITaxon", "http://purl.org/obo/owl/NCBITaxon#NCBITaxon_", "http://purl.org/obo/owl/NCBITaxon","\\d+","NCBITaxon:2157"],
      ["ENVO", "http://purl.org/obo/owl/ENVO#ENVO_", "http://purl.org/obo/owl/ENVO","\\d{8}","ENVO:00000430"],
-     ["SO", "http://purl.org/obo/owl/ENVO#SO_", "http://purl.org/obo/owl/SO","\\{7}","SO:0000683"],
+     ["SO", "http://purl.org/obo/owl/SO#SO_", "http://purl.org/obo/owl/SO","\\d{7}","SO:0000683"],
+     ["UO", "http://purl.org/obo/owl/UO#UO_", "http://purl.org/obo/owl/UO","\\d{7}","UO:0000683"],
      ["VO", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d{7}","VO:0000867"],
      ["snap", "http://www.ifomis.org/bfo/1.1/snap#", "http://www.ifomis.org/bfo/1.1","\\S+","snap:MaterialEntity"],
      ["span", "http://www.ifomis.org/bfo/1.1/span#", "http://www.ifomis.org/bfo/1.1","\\S+","span:Process"],
@@ -32,16 +42,14 @@ my $externals_table =
 
 sub usage 
   { if (@_) {print "We're sorry, but there seems to be a problem: @_\n\n"};
-  print "Usage:\nperl add-to-external.pl child parent [path to external.owl]\ne.g. perl add-to-external.pl PRO:000000001 CHEBI:23091\n";
+  print "Usage:\nperl add-to-external.pl ["instance"] child parent [path to external.owl]\ne.g. perl add-to-external.pl PRO:000000001 CHEBI:23091\n";
   print "The script recognizes the following prefixes:\n";
   map { print "  $_->[0] (e.g. $_->[4]) Ontology: $_->[2]\n" } @{$externals_table};
-  print "Additionally, OBI ids in the form OBI_0600065 or OBI:0600065 can be used for parent terms\n";
+  print "Additionally, OBI ids in the form OBI_0600065 or OBI:0600065 or IAO ids of the form OBI_0000412 or IAO:0000412 can be used for parent terms\n";
   exit;
 }
 
 if (!@ARGV) {usage()};
-
-my @valid_externals = map {$_->[0]} @{$externals_table};
 
 
 sub findit 
@@ -51,7 +59,7 @@ sub findit
 
 findit($child) or usage("child term '$child' doesn't look like a valid id");
 
-($parent =~ /OBI(:|_)\d+/ || findit($parent)) or usage("parent term '$parent' doesn't look like a valid id.");
+($parent =~ /(OBI|IAO)(:|_)\d+/ || findit($parent)) or usage("parent term '$parent' doesn't look like a valid id.");
 
 -e $branchpath or usage("$branchpath doesn't exist");
 
@@ -64,8 +72,9 @@ if ($child =~ /(.*?):(.*)$/)
 }
 else { $childuri =~ $child; }
 $DB::single=1;
-if ($parent =~ /^(OBI(:|_)\d+)$/)
-{ $parenturi = "http://purl.obofoundry.org/obo/$1" }
+if ($parent =~ /^((OBI|IAO)(:|_)\d+)$/)
+{ my $id = $1; $id =~ s/:/_/;
+  $parenturi = "http://purl.obofoundry.org/obo/$id" }
 elsif ($parent =~ /^http/)
 { $parenturi = $parent }
 elsif( $parent =~ /(.*?):(.*)$/)
@@ -74,18 +83,30 @@ elsif( $parent =~ /(.*?):(.*)$/)
   $parenturi= @found[0]->[1].$id;
 }
 
-(($parent=~ /^OBI(_|:)/) || ($parent=~ /^(snap|span):/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
+(($parent=~ /^(OBI|IAO)(_|:)/) || ($parent=~ /^(snap|span):/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
     or usage("$parenturi not present. Please use this script to add it then try again.\n");
 
 `grep '<owl:Class rdf:about="$childuri">' $branchpath` and usage("$childuri already present, so not adding it again");
 
-my $template =<<EOF
+my $template;
+
+if ($instance_p) 
+  {  $template =<<EOF
+  <rdf:Description rdf:about="_CHILD_">
+    <rdf:type rdf:resource="_PARENT_"/>
+    <IAO_0000412 rdf:resource="_ONT_"/>
+  </rdf:Description>
+EOF
+   }
+else
+  {
+ $template =<<EOF
   <owl:Class rdf:about="_CHILD_">
     <rdfs:subClassOf rdf:resource="_PARENT_"/>
     <IAO_0000412 rdf:resource="_ONT_"/>
   </owl:Class>
 EOF
-    ;
+};
 
 my @found = findit($child);
 my $onturi = @found[0]->[2];
