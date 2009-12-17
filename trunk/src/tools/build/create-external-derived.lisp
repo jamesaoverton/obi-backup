@@ -148,12 +148,13 @@
   (let ((*sparql-always-trace* (or *sparql-always-trace* debug)))
     (declare (special *sparql-always-trace*))
     (let ((classes 
-	   (sparql '(:select (?class ?where ?parent) () 
-		     (?class !rdf:type !owl:Class)
-		     (?class !obi:IAO_0000412 ?where)
-		     (?class !rdfs:subClassOf ?parent))
+	   (sparql '(:select (?term ?where ?parent) () 
+		     ;(?term !rdf:type !owl:Class)
+		     (?term !obi:IAO_0000412 ?where)
+		     (:union ((?term !rdfs:subClassOf ?parent)) ((?term !rdf:type ?parent)))
+		     )
 		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
-		   :kb kb)))
+		   :kb kb :trace t)))
       (format t "There are ~a external classes~%" (length classes))
       (multiple-value-bind (params templates) (parse-templates templates-path)
 	(let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint))
