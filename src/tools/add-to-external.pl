@@ -7,7 +7,7 @@ my $child = $ARGV[0];
 my $parent = $ARGV[1];
 my $branchpath = $ARGV[2];
 
-if ($ARGV[0] == "instance")
+if ($ARGV[0] =~ /^instance$/)
   { $instance_p =1;
     $child = $ARGV[1];
     $parent = $ARGV[2];
@@ -83,7 +83,7 @@ elsif( $parent =~ /(.*?):(.*)$/)
   $parenturi= @found[0]->[1].$id;
 }
 
-(($parent=~ /^(OBI|IAO)(_|:)/) || ($parent=~ /^(snap|span):/) || `grep '<owl:Class rdf:about="$parenturi">' $branchpath`) 
+(($parent=~ /^(OBI|IAO)(_|:)/) || ($parent=~ /^(snap|span):/) || `grep 'rdf:about="$parenturi">' $branchpath`) 
     or usage("$parenturi not present. Please use this script to add it then try again.\n");
 
 `grep '<owl:Class rdf:about="$childuri">' $branchpath` and usage("$childuri already present, so not adding it again");
