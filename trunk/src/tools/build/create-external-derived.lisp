@@ -151,7 +151,7 @@
 	   (sparql '(:select (?term ?where ?parent) () 
 		     ;(?term !rdf:type !owl:Class)
 		     (?term !obi:IAO_0000412 ?where)
-		     (:union ((?term !rdfs:subClassOf ?parent)) ((?term !rdf:type ?parent)))
+		     (:union ((?term !rdfs:subClassOf ?parent)) ((?term !rdf:type ?parent) (:filter (not (equal ?parent !owl:Class)))))
 		     )
 		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
 		   :kb kb :trace t)))
