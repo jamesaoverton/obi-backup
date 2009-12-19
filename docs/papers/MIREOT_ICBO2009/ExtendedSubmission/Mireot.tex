@@ -153,10 +153,11 @@ An implementation of the \ac{MIREOT} guidelines was performed in the context of 
 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 This set is stored in a file called \emph{external.owl} (all scripts and files are available under the \ac{OBI} Subversion Repository~\citep{OBIScripts}).
-In the current implementation, a Perl script, \emph{add-to-external.pl}, can be used to append the minimum information set for a given external term to the \emph{external.owl} file
+In the current implementation, a Perl script, \emph{add-to-external.pl}, can be used to append the minimum information set for a given external term to the \emph{external.owl} file.
 The script takes as arguments the identifier of the external class to be imported and its parent class in the target hierarchy.
 In addition, a mapping between the prefix used in the identifier and the external source ontology \ac{URI} is built into the script. For example, when requesting the term \textit{CL:0000767} (see below), the script maps the \textit{CL:} prefix to its source ontology \ac{URI} \url{http://purl.org/obo/owl/CL}.
 Curators therefore need only specify the ID of the external class to import (rather than the full URI) and the ID of the class it should be imported under.
+Upon addition of an external class, a visual check can be performed as the perl scripts returns the \ac{OWL} excerpt added to the file to the user.
 
 In the current implementation, the additional information can be obtained programmatically via SPARQL~\citep{SPARQL} CONSTRUCT queries (Figure \ref{fig:sparql}).
 These queries~\citep{OBIQueries} specify, for each source ontology, which extra elements about the term is to be extracted, such as the definition and preferred label, and how to map these into the corresponding OBI annotation properties. 
@@ -243,12 +244,33 @@ When the \emph{create-external-derived.lisp} script parses the \emph{external.ow
 As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.- \emph{i.e.}, its  superclasses) is stored in \emph{ externalDerived.owl}.
 On the same model, any information that the importing ontology editors would require could be added in the \emph{externalDerived.owl} file: the only requirement is to write the corresponding SPARQL query.
 
+\subsection{Use Case Three - Unit instances}
+
+Finally, the most recent use case addresses the needs for \ac{OBI} to represent units. The \ac{UO}~\citep{PATO} tackles this effort, and currently encompasses more than 2000 classes. 
+However, the representation of units as classes doesn't comply with the design pattern chosen by \ac{OBI} and the \ac{IAO}, which take the stance that in the absence of a satisfactory unit representation theory, we should represent things we understand, \emph{i.e.}, unit labels. 
+We therefore decided on importing the \ac{UO} classes corresponding to specific units (such as \textit{gram} or \textit{meter}) as instances of the \ac{IAO} class \textit{measurement unit label}.
+The figure \ref{fig:protege} shows the result of this addition into the \ac{OBI} hierarchy.
+
+\begin{figure}[t]
+\centering
+{
+\includegraphics[width=.9\linewidth]{./figs/protege.png}
+}
+\caption{Screenshot of the Protege editor showing the class \textit{temperature unit} and its instance \textit{degree celsius}, as imported using the \ac{MIREOT} mechanism from the \ac{UO} ontology.
+}
+\label{fig:protege}
+\end{figure}
+
+We currently are in contact with the developers of the \ac{UO} to reach agreement on the best way to represent unit in a consistent manner, and we expect to align the different resources as part of the \ac{OBO} Foundry collaborative effort.
+
+
 \begin{figure}[t]
 \scriptsize
 \verbatiminput{./figs/sparql2.txt} 
 \caption{Template SPARQL query for import from the NCBI taxonomy. The \_ID\_GOES\_HERE\_ pattern will be replaced by the relevant NCBITax ID dynamically via script when building the CONSTRUCT query. This query allows retrieval of the class of interest and its parents up to a set of defined root classes. Note that the graph <http://purl.org/science/graph/obo/NCBITaxon> contains the source ontology, but the full store includes inferred subClassOf triples.}
 \label{fig:sparql2}
 \end{figure}
+
 
 
 
@@ -391,7 +413,7 @@ research, } 33(Database issue), D39-45.
 \acro{FMA}{Foundational Model of Anatomy}
 \acro{PATO}{Phenotypic Quality Ontology}
 \acro{URI}{Uniform Resource Identifier}
-
+\acro{UO}{Unit Ontology}
 \end{acronym}
 
 
