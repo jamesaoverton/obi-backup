@@ -74,7 +74,7 @@ else { $childuri =~ $child; }
 $DB::single=1;
 if ($parent =~ /^((OBI|IAO)(:|_)\d+)$/)
 { my $id = $1; $id =~ s/:/_/;
-  $parenturi = "http://purl.obofoundry.org/obo/$id" }
+  $parenturi = "http://purl.obolibrary.org/obo/$id" }
 elsif ($parent =~ /^http/)
 { $parenturi = $parent }
 elsif( $parent =~ /(.*?):(.*)$/)
