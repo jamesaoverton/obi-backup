@@ -147,15 +147,26 @@
 				(debug nil))
   (let ((*sparql-always-trace* (or *sparql-always-trace* debug)))
     (declare (special *sparql-always-trace*))
-    (let ((classes 
+    (let ((terms 
 	   (sparql '(:select (?term ?where ?parent) () 
-		     ;(?term !rdf:type !owl:Class)
+					;(?term !rdf:type !owl:Class)
 		     (?term !obi:IAO_0000412 ?where)
 		     (:union ((?term !rdfs:subClassOf ?parent)) ((?term !rdf:type ?parent) (:filter (not (equal ?parent !owl:Class)))))
 		     )
 		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
+		   :kb kb :trace t))
+	  (classes 
+      	   (sparql '(:select (?term) () 
+		     (?term !rdf:type !owl:Class))
+		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
+		   :kb kb :trace t))
+	  (instances 
+	   (sparql '(:select (?term ?type) () 
+		     (?term !rdf:type ?type)
+		     (:filter (and (not (regex (str ?type) "^http://www.w3.org/2002/07/owl#")))))
+		   :use-reasoner :none ;; turn the reasoner off, so that we don't get the obi superclasses
 		   :kb kb :trace t)))
-      (format t "There are ~a external classes~%" (length classes))
+      (format t "There are ~a external terms - ~a classes and ~a instances~%" (length terms) (- (length terms) (length instances)) (length instances))
       (multiple-value-bind (params templates) (parse-templates templates-path)
 	(let ((endpoint (or (second (assoc "default endpoint" params :test 'equal)) endpoint))
 	      (graph_base (second (assoc "default graph_base" params :test 'equal))))
@@ -165,7 +176,7 @@
 		 (append
 		  (loop for query in (cadr (assoc "Once Only" templates :test 'equalp))
 		     collect (get-url endpoint :post `(("query" ,query)) :persist nil :dont-cache t :force-refetch t))
-		  (loop for (class where) in classes
+		  (loop for (term where) in terms
 		     for graph = (#"replaceAll" (uri-full where) ".*[/#](.*?)(\.owl){0,1}" "$1")
 		     ;; when debug do (print-db graph)
 		     append
@@ -174,10 +185,10 @@
 			append
 			(loop for query in queries
 			   for filled-query = 
-			   (#"replaceAll" (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full class))) "_GRAPH_GOES_HERE_" (format nil "<~a~a>" graph_base (#"replaceAll" (string-upcase graph) ".OWL$" "")))
+			   (#"replaceAll" (#"replaceAll" query "_ID_GOES_HERE_" (format nil "<~a>" (uri-full term))) "_GRAPH_GOES_HERE_" (format nil "<~a~a>" graph_base (#"replaceAll" (string-upcase graph) ".OWL$" "")))
 			     do (when debug
 				     (progn
-				       (print-db (uri-full class))
+				       (print-db (uri-full term))
 				       (print-db filled-query)
 				       (print (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t))))
 
@@ -186,9 +197,18 @@
 			   collect (xml-encode-unicode-high (setq foo (#"replaceAll" (#"replaceAll" (setq bar (get-url endpoint :post `(("query" ,filled-query)) :persist nil :dont-cache t :force-refetch t)) *smart-leftquote-pattern* "&#8216;") *smart-rightquote-pattern* "&#8217;")))))))))
 	    (let ((basic-info
 		   (with-output-to-string (s)
-		     (loop for (class nil parent) in classes
+		     (write-string "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" s) (terpri s)
+		     (write-string "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\">" s) (terpri s)
+		     (loop for (class) in classes
 			do (format s "<owl:Class rdf:about=~s></owl:Class>~%"
-				   (uri-full class) )))))
+				   (uri-full class) ))
+		     (loop for (instance type) in instances
+			do (format s "<rdf:Description rdf:about=~s><rdf:type rdf:resource=~s/></rdf:Description>~%"
+				   (uri-full instance) (uri-full type) )
+			  (format t "<rdf:Description rdf:about=~s><rdf:type rdf:resource=~s/></rdf:Description>~%"
+				   (uri-full instance) (uri-full type) ))
+		     (write-string "</rdf:RDF>" s)
+		     )))
 	      (combine-template-query-results (cons basic-info rdfs) output-path))
 	    (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
 	    nil
