@@ -95,7 +95,7 @@
 	 do
 	 (flet ((add (uri)
 		  (setf (gethash uri all) t)
-		  (unless (or (#"matches" uri "http://purl.obolibrary.org/obo/(OBI|VO|IAO)_.*")
+		  (unless (or (#"matches" uri "http://purl.obolibrary.org/obo/(OBI|VO|IAO)_(\\d+)$")
 			      (#"matches" uri "http://purl.org/obo/owl/[a-zA-Z0-9_]*#.*")
 			      (#"matches" uri "http://(ontology.neuinfo.org|www.w3.org|www.geneontology.org|www.ifomis.org|protege.stanford.edu)/.*")
 			      (#"matches" uri "http://purl.org/dc/.*")
