@@ -2221,14 +2221,20 @@ We need to make this a defined class when the class software is in the ontology<
     <obo:IAO_0000117 xml:lang="en">James Malone</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000025">
-    <obo:IAO_0000115 xml:lang="en">a role inhering in a substance that is realized when  characteristics or responses elicited by the substance are used for comparison or reference.</obo:IAO_0000115>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <rdfs:label xml:lang="en">reference substance role</rdfs:label>
-    <obo:IAO_0000111 xml:lang="en">Reference substance</obo:IAO_0000111>
-    <obo:IAO_0000112 xml:lang="en">Calibration standard, positive control substance, vehicle   Good Laboratory Practices: Questions and Answers - Test Control and Reference Substance Characterization  http://www.epa.gov/enforcement/monitoring/programs/fifra/glpqanda-character.html</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <obo:IAO_0000112 xml:lang="en">Calibration standard, positive control substance, vehicle   Good Laboratory Practices: Questions and Answers - Test Control and Reference Substance Characterization  http://www.epa.gov/enforcement/monitoring/programs/fifra/glpqanda-character.html</obo:IAO_0000112>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
+    <obo:IAO_0000111 xml:lang="en">Reference substance</obo:IAO_0000111>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
+    <rdfs:label xml:lang="en">reference substance role</rdfs:label>
+    <obo:IAO_0000115 xml:lang="en">a role inhering in a material entity that is realized when  characteristics or responses elicited by the substance are used for comparison or reference.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000663">
     <obo:IAO_0000119 xml:lang="en">PERSON: James Malone</obo:IAO_0000119>
@@ -15288,20 +15294,12 @@ radioimmunoprecipitation assay.</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000409">
     <rdfs:label xml:lang="en">nucleic acid template role</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
-        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33696"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000025"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a model or standard for making comparisons; wordnet.princeton.edu/perl/webwn 19 feb 2009</obo:IAO_0000112>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >nucleic acid template role is a reference role which inheres in nucleic acid material entity and is realized in the process of using the nucleic acid bearing the template role as a reference during synthesis of a reverse copy.</obo:IAO_0000115>
-    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jennifer Fostel</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110037">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
