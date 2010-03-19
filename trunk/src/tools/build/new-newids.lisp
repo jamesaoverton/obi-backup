@@ -63,21 +63,22 @@
 	 (when (and (not replace) debug)
 	   (format t "no replacement ~a ~%" count)))
     (if with-header
-	(let ((sw (new 'StringWriter)))
-	  ;; http://jena.sourceforge.net/IO/iohowto.html#output
-	  (let ((writer (#"getWriter" out-model "RDF/XML-ABBREV")))
-	    (#"setProperty" writer "xmlbase" ontology-url)
-	    (#"setProperty" writer "relativeuris" "same-document")
-	    (#"setProperty" writer "showXmlDeclaration" "true")
-	    (#"write" writer out-model sw "http://purl.obolibrary.org/obo/"))
-	  (with-open-file (f out-file :direction :output :if-does-not-exist :create :if-exists :supersede)
-	    (write-string (#"toString" sw) f))
-	  t)
+	;; http://jena.sourceforge.net/IO/iohowto.html#output
+	(let ((writer (#"getWriter" out-model "RDF/XML-ABBREV")))
+	  (#"setProperty" writer "xmlbase" ontology-url)
+	  (#"setProperty" writer "relativeuris" "same-document")
+	  (#"setProperty" writer "showXmlDeclaration" "true")
+	  (let ((jfile (new 'java.io.file (namestring (translate-logical-pathname out-file)))))
+	    (when (not (#"exists" jfile))
+	      (#"createNewFile" jfile))
+	    (print 'ho)
+	    (#"write" writer out-model (new 'java.io.fileoutputstream jfile) "http://purl.obolibrary.org/obo/")))
 	(progn
 	  (let ((jfile (new 'java.io.file (namestring (translate-logical-pathname out-file)))))
 	    (when (not (#"exists" jfile))
 	      (#"createNewFile" jfile))
-	    (#"write" out-model (new 'java.io.fileoutputstream jfile) "RDF/XML-ABBREV"))))))
+	    (print 'yo)
+	    (#"write" out-model (new 'java.io.fileoutputstream jfile) "RDF/XML-ABBREV"  ontology-url))))))
 
 
 
@@ -137,11 +138,10 @@
       map)))
 	       
     
-
 ;(setq map (get-uri-rewrites '("~/obi/trunk/src/ontology/branches/obi.owl" "http://purl.obolibrary.org/obo/obi.owl") '("~/obi/trunk/src/ontology/branches/conferred-quality.owl" "http://purl.obolibrary.org/obo/obi/conferred-quality.owl")))
-;(rewrite-uris map "/Users/alanr/obi/ontology/obi.owl" "/Users/alanr/obi/ontology/obi-new.owl" (uri-full !obo:obi.owl))
-;(rewrite-uris map "/Users/alanr/obi/ontology/IEDB-use-case.owl" "/Users/alanr/obi/ontology/IEDB-use-case-new.owl" "http://purl.org/IEDB/IEDB.owl")
-;(rewrite-uris map "/Users/alanr/obi/ontology/conferred-quality.owl" "/Users/alanr/obi/ontology/conferrred-quality-new.owl" "http://purl.org/IEDB/IEDB.owl" "http://purl.obolibrary.org/obo/obi/conferred-quality.owl")
+;(rewrite-uris map "/Users/alanr/obi/ontology/obi.owl" "/Users/alanr/obi/ontology/obi-new.owl" (uri-full !obo:obi.owl) :with-header t)
+;(rewrite-uris map "/Users/alanr/obi/ontology/IEDB-use-case.owl" "/Users/alanr/obi/ontology/IEDB-use-case-new.owl" "http://purl.org/IEDB/IEDB.owl" :with-header t)
+;(rewrite-uris map "/Users/alanr/obi/ontology/conferred-quality.owl" "/Users/alanr/obi/ontology/conferrred-quality-new.owl" "http://purl.org/IEDB/IEDB.owl" "http://purl.obolibrary.org/obo/obi/conferred-quality.owl" :with-header t)
 		    
 		    
 		    
