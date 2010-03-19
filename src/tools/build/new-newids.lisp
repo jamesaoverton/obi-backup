@@ -71,13 +71,11 @@
 	  (let ((jfile (new 'java.io.file (namestring (translate-logical-pathname out-file)))))
 	    (when (not (#"exists" jfile))
 	      (#"createNewFile" jfile))
-	    (print 'ho)
 	    (#"write" writer out-model (new 'java.io.fileoutputstream jfile) "http://purl.obolibrary.org/obo/")))
 	(progn
 	  (let ((jfile (new 'java.io.file (namestring (translate-logical-pathname out-file)))))
 	    (when (not (#"exists" jfile))
 	      (#"createNewFile" jfile))
-	    (print 'yo)
 	    (#"write" out-model (new 'java.io.fileoutputstream jfile) "RDF/XML-ABBREV"  ontology-url))))))
 
 
