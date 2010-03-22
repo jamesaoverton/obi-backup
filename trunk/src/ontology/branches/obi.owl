@@ -5617,6 +5617,26 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <obo:IAO_0000115 xml:lang="en">A cloning vector role is a vector role played by a small, self-replicating DNA or RNA molecule - usually a plasmid or chromosome - and realized in a process whereby foreign DNA or RNA is inserted into the vector during the process of cloning.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:allValuesFrom>
+              <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_33696"/>
+            </owl:allValuesFrom>
+            <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600064"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000109"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">cloning vector role</rdfs:label>
@@ -5944,9 +5964,7 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000857"/>
               <owl:Restriction>
-                <owl:someValuesFrom>
-                  <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_33696"/>
-                </owl:someValuesFrom>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33696"/>
                 <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
               </owl:Restriction>
             </owl:intersectionOf>
