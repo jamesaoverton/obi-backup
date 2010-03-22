@@ -2393,6 +2393,12 @@ We need to make this a defined class when the class software is in the ontology<
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >removed axiom has_part some (assay or 'data transformation') per discussion on protocol application mailing list to improve reasoner performance. The axiom is still desired.</obo:IAO_0000116>
   </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000245"/>
+      <rdf:Description rdf:about="http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606"/>
+    </owl:unionOf>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100012">
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">MO_71</obo:IAO_0000119>
@@ -8256,13 +8262,19 @@ Its children should be defined classes constructed as output of a process.</obo:
     <rdfs:label xml:lang="en">randomized group participant role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000140">
+    <obo:IAO_0000115 xml:lang="en">Label role is a role which inheres in a material entity and which is realized in a detection of label assay</obo:IAO_0000115>
     <rdfs:label xml:lang="en">label role</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000116 xml:lang="en">need to add a restriction that the material entity has the disposition / quality that permits it to be detected, and one way to say this (BP) is that the entity is such that an assay exists that detects the presence of the material entity</obo:IAO_0000116>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">Label</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Role Branch</obo:IAO_0000117>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
-    <obo:IAO_0000115 xml:lang="en">Label role is a reagent role where the bearer is a material entity and which is realized in a detection of label assay</obo:IAO_0000115>
     <obo:IAO_0000116 xml:lang="en">Nucleotides synthesized with the incorporation of biotin were used to synthesize cDNA, which was then detected by adding fluorochrome-conjugated anti-biotin antibody.  the fluorochrome bears label role, the antibody bears detector role, the biotin bears reporter role. may need to change the terms following discussion</obo:IAO_0000116>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
@@ -14462,7 +14474,6 @@ something taken from study subject, leaves the study and becomes the specimen.</
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <obo:IAO_0000115 xml:lang="en">specimen role is a role which inheres in a material entity and is realized during the process of an investigation</obo:IAO_0000115>
     <obo:IAO_0000116 xml:lang="en">parasite example
 - when parasite in people we study people, people are subjects and parasites are specimen
 - when parasite extracted, they become subject in the following study
@@ -26742,9 +26753,18 @@ infection is blocked.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000118 xml:lang="en">Label_role</obo:IAO_0000118>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000201"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000140"/>
     <rdfs:label xml:lang="en">radiolabel role</rdfs:label>
-    <obo:IAO_0000115 xml:lang="en">Radiolabelrole is a label role which uses radiological decay as the signal</obo:IAO_0000115>
+    <obo:IAO_0000115 xml:lang="en">radiolabel role is a role which inheres in a material entity which is realized by the
+process of radioactivity detection</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000414">
     <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
@@ -30307,7 +30327,7 @@ FG: Or as function.</obo:IAO_0000232>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000140"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Label role is a reagent role where the bearer is a material entity and which is realized in the process of dyeing or imparting color to a target material</obo:IAO_0000115>
+    >Label role is a reagent role which inheres in a material entity and which is realized in the process of dyeing or imparting color to a target material</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
     <rdfs:label xml:lang="en">dye role</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -33055,6 +33075,10 @@ instance level relation [GOC:cjm]</obo:IAO_0000115>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GenePattern k-nearest neighbors</rdfs:label>
   </obo:OBI_0000727>
+  <owl:Restriction>
+    <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+    <owl:someValuesFrom rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+  </owl:Restriction>
   <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0032641">
     <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >TNF beta production</obo:IAO_0000118>
