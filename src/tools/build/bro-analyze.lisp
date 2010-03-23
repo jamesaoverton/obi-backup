@@ -35,3 +35,5 @@
 	   collect (list (#"replaceFirst" uri ".*?#" "")  count))
 	'> :key 'second)
        do (format t "~a: ~a~%" what howmany)))
+
+;; http://www.biositemaps.com/
