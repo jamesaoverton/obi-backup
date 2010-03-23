@@ -26,3 +26,12 @@
 	 (when (and (#"isResource" object) (not (#"isAnon" object)) (not (#"isLiteral" object)))
 	   (check (#"getURI" object)))))))
       
+(defun report-bro-usage ()
+  (analyze-biositemaps)
+  (loop for (what howmany) in
+       (sort
+	(loop for uri being the hash-keys of *bro-seen*
+	   using (hash-value count)
+	   collect (list (#"replaceFirst" uri ".*?#" "")  count))
+	'> :key 'second)
+       do (format t "~a: ~a~%" what howmany)))
