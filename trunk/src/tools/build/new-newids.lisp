@@ -136,10 +136,10 @@
       map)))
 	       
     
-;(setq map (get-uri-rewrites '("~/obi/trunk/src/ontology/branches/obi.owl" "http://purl.obolibrary.org/obo/obi.owl") '("~/obi/trunk/src/ontology/branches/conferred-quality.owl" "http://purl.obolibrary.org/obo/obi/conferred-quality.owl")))
+;(setq map (get-uri-rewrites '("~/obi/trunk/src/ontology/branches/obi.owl" "http://purl.obolibrary.org/obo/obi.owl") '("~/obi/trunk/src/ontology/branches/text-mining-experiment.owl" "http://purl.obolibrary.org/obo/obi/text-mining-experiment.owl")))
 ;(rewrite-uris map "/Users/alanr/obi/ontology/obi.owl" "/Users/alanr/obi/ontology/obi-new.owl" (uri-full !obo:obi.owl) :with-header t)
 ;(rewrite-uris map "/Users/alanr/obi/ontology/IEDB-use-case.owl" "/Users/alanr/obi/ontology/IEDB-use-case-new.owl" "http://purl.org/IEDB/IEDB.owl" :with-header t)
-;(rewrite-uris map "/Users/alanr/obi/ontology/conferred-quality.owl" "/Users/alanr/obi/ontology/conferrred-quality-new.owl" "http://purl.org/IEDB/IEDB.owl" "http://purl.obolibrary.org/obo/obi/conferred-quality.owl" :with-header t)
+;(rewrite-uris map "/Users/alanr/obi/ontology/text-mining-experiment.owl" "/Users/alanr/obi/ontology/conferrred-quality-new.owl" "http://purl.org/IEDB/IEDB.owl" "http://purl.obolibrary.org/obo/obi/text-mining-experiment.owl" :with-header t)
 		    
 		    
 		    
