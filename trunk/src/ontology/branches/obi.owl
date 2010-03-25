@@ -962,7 +962,7 @@ An individual or juridicial or other body authorized under applicable law to con
     </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A homogenizer is an instrument for the homogenization of various types of material, such as tissue, plant, food, soil, and many others.</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:ID="Class_42"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">homogenizer</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">mortar, blender</obo:IAO_0000112>
@@ -1041,16 +1041,26 @@ An individual or juridicial or other body authorized under applicable law to con
     <rdfs:label xml:lang="en">obsolete_epitope role</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000565">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000111 xml:lang="en">electrical conductivity detector</obo:IAO_0000111>
-    <obo:IAO_0000115 xml:lang="en">The electrical conductivity detector measures the conductivity of the mobile phase. There is usually background conductivity which must be backed-off by suitable electronic adjustments. If the mobile phase contains buffers, the detector gives a base signal that completely overwhelms that from any solute usually making detection impossible. Thus, the electrical conductivity detector a bulk property detector. and senses all ions whether they are from a solute or from the mobile phase. In order to prevent polarization of the sensing electrodes, AC voltages must be used and so it is the impedance not the resistance of the electrode system that is actually measured. From a physical chemistry stand point the conductivity of a solution is more important than its resistance. However, it is the resistance (impedance) of the electrode system that determines the current across it. The resistance of any conductor varies directly as its length and inversely as its cross sectional area.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01239</obo:IAO_0000119>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.chromatography-online.org/HPLC-Detectors/Electrical-Conductivity/rs83.html&gt;</obo:IAO_0000119>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000463"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
+    <obo:IAO_0000115 xml:lang="en">The electrical conductivity detector measures the conductivity of the mobile phase. There is usually background conductivity which must be backed-off by suitable electronic adjustments. If the mobile phase contains buffers, the detector gives a base signal that completely overwhelms that from any solute usually making detection impossible. Thus, the electrical conductivity detector a bulk property detector. and senses all ions whether they are from a solute or from the mobile phase. In order to prevent polarization of the sensing electrodes, AC voltages must be used and so it is the impedance not the resistance of the electrode system that is actually measured. From a physical chemistry stand point the conductivity of a solution is more important than its resistance. However, it is the resistance (impedance) of the electrode system that determines the current across it. The resistance of any conductor varies directly as its length and inversely as its cross sectional area.</obo:IAO_0000115>
+    <obo:IAO_0000111 xml:lang="en">electrical conductivity detector</obo:IAO_0000111>
     <rdfs:label xml:lang="en">electrical conductivity detector</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000720">
@@ -1372,16 +1382,8 @@ process' instead of role</obo:IAO_0000116>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Philippe Rocca-Serra</obo:IAO_0000117>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#derives_from"/>
-        </owl:onProperty>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
     <obo:IAO_0000119 xml:lang="en">GROUP:IEDB</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">transgenic organism</obo:IAO_0000111>
     <rdfs:label xml:lang="en">transgenic organism</rdfs:label>
@@ -2709,6 +2711,19 @@ We need to make this a defined class when the class software is in the ontology<
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000049">
     <obo:IAO_0000111 xml:lang="en">mass spectrometer</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Frank Gibson</obo:IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -2729,9 +2744,6 @@ We need to make this a defined class when the class software is in the ontology<
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Mass_spectrometry</obo:IAO_0000119>
     <rdfs:label xml:lang="en">mass spectrometer</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -3146,14 +3158,14 @@ J Proteome Res. 2009 Jan 5. PMID: 19123788</obo:IAO_0000112>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000523">
     <obo:IAO_0000111 xml:lang="en">magic angle spinning rotor</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A rotor device that holds the NMR sample and enables the adjustment of the orientation of the rotation axis for a sample in a NMR instrument in the magic angle.</obo:IAO_0000115>
     <obo:IAO_0000232 xml:lang="en">NMR instrument</obo:IAO_0000232>
     <rdfs:label xml:lang="en">magic angle spinning rotor</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.freepatentsonline.com/4352066.html&gt;</obo:IAO_0000119>
     <obo:IAO_0000118 xml:lang="en">MAS rotor</obo:IAO_0000118>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400130</obo:IAO_0000119>
@@ -3305,6 +3317,9 @@ population.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <rdfs:label xml:lang="en">photomultiplier tube</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000395"/>
@@ -3315,9 +3330,6 @@ population.</obo:IAO_0000115>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -3369,6 +3381,11 @@ population.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">OBI branch derived</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.org/obo/owl/SO#SO_0000988"/>
+  <owl:Class rdf:ID="Class_62">
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >material combination function</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200167">
     <obo:IAO_0000111 xml:lang="en">data normalization objective</obo:IAO_0000111>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -3623,23 +3640,37 @@ to create a common base for comparisons.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <owl:equivalentClass>
       <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
-            </owl:onProperty>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000401"/>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400110"/>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:TransitiveProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-            </owl:onProperty>
-          </owl:Restriction>
+        <owl:intersectionOf rdf:parseType="Resource">
+          <rdf:first>
+            <owl:Restriction>
+              <owl:onProperty>
+                <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+              </owl:onProperty>
+              <owl:someValuesFrom>
+                <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000401"/>
+              </owl:someValuesFrom>
+            </owl:Restriction>
+          </rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest>
+              <rdf:List>
+                <rdf:first>
+                  <owl:Class rdf:about="#Class_42"/>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+              </rdf:List>
+            </rdf:rest>
+            <rdf:first>
+              <owl:Restriction>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400110"/>
+                </owl:someValuesFrom>
+                <owl:onProperty>
+                  <owl:TransitiveProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                </owl:onProperty>
+              </owl:Restriction>
+            </rdf:first>
+          </rdf:rest>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
@@ -3977,12 +4008,12 @@ to create a common base for comparisons.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400108">
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">heating block</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">heating block</obo:IAO_0000111>
     <obo:IAO_0000112 xml:lang="en">An instrument used to heat and/or maintain material at a set temperature.</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000117 xml:lang="en">Daniel Schober</obo:IAO_0000117>
     <rdfs:subClassOf>
@@ -4528,13 +4559,13 @@ Funct Integr Genomics. 2007 Oct;7(4):335-45. Epub 2007 Jul 19. PMID: 17638031</o
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A centrifuge is an instrument, generally driven by a motor, that puts an object in rotation around a fixed axis, applying force perpendicular to the axis. The centrifuge works using the sedimentation principle, where the centripetal acceleration is used to separate substances of greater and lesser density.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Centrifuge</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <rdfs:label xml:lang="en">centrifuge</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200093">
     <rdfs:label xml:lang="en">polynomial transformation</rdfs:label>
@@ -5437,6 +5468,9 @@ where \beta_0 =  0 is the intercept ("constant" term), the \beta_i s  are the re
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">multispectral imaging flow cytometer</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">multispectral imaging flow cytometer</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A multispectral_imaging_flow_cytometer is an instrument which combines quantitative image analysis and flow cytometry in a single platform. It measures the amount, location and movement of molecules on, in, or between cells, and  the location and co-localization of multiple markers on or in cells. It can also quantitate morphologically distinct cell subpopulations.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">http://www.amnis.com/</obo:IAO_0000119>
@@ -5449,9 +5483,6 @@ where \beta_0 =  0 is the intercept ("constant" term), the \beta_i s  are the re
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -5641,7 +5672,7 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A device  that supports another device such as a precision instrument by isolating it from vibration that is transmitted from the floor.</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >vibration isolation table</rdfs:label>
@@ -5650,12 +5681,12 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400079">
     <obo:IAO_0000111 xml:lang="en">optical filter</obo:IAO_0000111>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">An optical filter is an optical subsystem that selectively transmits light having certain properties (often, a particular range of wavelengths, that is, range of colours of light), while blocking the remainder. They are commonly used in photography, in many optical instruments, and to colour stage lighting Optical filters can be arranged to segregate and collect light by wave length.</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">720 LP filter, 580/30 BP filter</obo:IAO_0000112>
     <rdfs:label xml:lang="en">optical filter</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Optical_filter</obo:IAO_0000119>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -6079,6 +6110,9 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     <obo:IAO_0000111 xml:lang="en">filter paper</obo:IAO_0000111>
     <obo:IAO_0000119 xml:lang="en">sep:00107</obo:IAO_0000119>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000378"/>
@@ -6087,9 +6121,6 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
   </owl:Class>
@@ -7516,6 +7547,9 @@ PMID: 18605936</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">An arrayer is an instrument which deposits biological material onto a substrate in a defined pattern.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">arrayer</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">BioRobotics Microgrid II TAS, Affymetrix GMS 417</obo:IAO_0000112>
@@ -7528,9 +7562,6 @@ PMID: 18605936</obo:IAO_0000112>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">arrayer</obo:IAO_0000111>
   </owl:Class>
@@ -7655,7 +7686,7 @@ PMID: 18605936</obo:IAO_0000112>
     <rdfs:label xml:lang="en">supernatant collection system harvesting frame</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -7875,10 +7906,10 @@ Its children should be defined classes constructed as output of a process.</obo:
     >A ribosome is a protein complex</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000517">
-    <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
+    <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">NMR magnet</obo:IAO_0000111>
@@ -8556,21 +8587,28 @@ Its children should be defined classes constructed as output of a process.</obo:
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000832">
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A ruler, a microarray scanner, a Geiger counter.</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a processed material created to have the function to measure</obo:IAO_0000115>
     <owl:equivalentClass>
       <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
-            </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
-          </owl:Restriction>
+        <owl:intersectionOf rdf:parseType="Resource">
+          <rdf:first>
+            <owl:Restriction>
+              <owl:onProperty>
+                <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+              </owl:onProperty>
+              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+            </owl:Restriction>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:List>
+              <rdf:first>
+                <owl:Class rdf:about="#Class_42"/>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:List>
+          </rdf:rest>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
@@ -8578,6 +8616,8 @@ Its children should be defined classes constructed as output of a process.</obo:
     >measurement device</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GROUP:OBI Philly workshop</obo:IAO_0000117>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A ruler, a microarray scanner, a Geiger counter.</obo:IAO_0000112>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI</obo:IAO_0000119>
   </owl:Class>
@@ -8756,9 +8796,6 @@ Its children should be defined classes constructed as output of a process.</obo:
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400140">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">CHEF gel box, slab gel box, capillary electrophoresis</obo:IAO_0000112>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
@@ -8789,6 +8826,9 @@ Its children should be defined classes constructed as output of a process.</obo:
     <obo:IAO_0000119 xml:lang="en">sep:00095</obo:IAO_0000119>
     <rdfs:label xml:lang="en">gel tank</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">gel_tank</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A gel tank is a device which holds a gel and running buffers to allow electrophoresis to be performed. A gel tank has the function to contain and to control the contained environment and transfer energy from an energy supply through the running buffers to the gel matrix and the material with charged molecules in an electric field across a porous matrix or medium with the objective to separate the charged molecules.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000154">
@@ -9088,9 +9128,6 @@ or more specific sequences in a DNA sample.</obo:IAO_0000115>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Chromatography</obo:IAO_0000119>
     <obo:IAO_0000118 xml:lang="en">chromatography instrument</obo:IAO_0000118>
@@ -9114,6 +9151,9 @@ or more specific sequences in a DNA sample.</obo:IAO_0000115>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
         </owl:someValuesFrom>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110057">
@@ -9405,9 +9445,6 @@ or more specific sequences in a DNA sample.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">temperature control bath</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OBI Instrument branch</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Alan Ruttenburg</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">VWR Signature Deep-Chamber Heated Water Bath. A water bath is used for temperatures up to 100 degrees C. An oil bath is employed for temperatures over 100 degrees C.</obo:IAO_0000112>
@@ -9425,6 +9462,9 @@ or more specific sequences in a DNA sample.</obo:IAO_0000115>
     >Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A temperature_control_bath is a device that has the function to regulate the temperature of a material, the function to contain fluid and the function to vary and maintain the temperature of the contained fluid. Heat exchange (energy transfer) between the material and the heating element is facilitated via the contained fluid. A temperature_control_bath is composed of a container, a heating element and/or a cooling element and a means to adjust the needed temperature. In most cases also a timer and a means to stir the fluid is provided as well.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000137">
     <obo:IAO_0000115 xml:lang="en">a state is a quality indicating the condition in which an entity exists, e.g. immortalized, frozen, cellular_state (in-vivo, in-vitro), macromolecular state, 'ectopic in-vivo', 'denatured or native for protein'.</obo:IAO_0000115>
@@ -9916,9 +9956,6 @@ Chang Gung Med J. 2009 May-Jun;32(3):283-9.</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000111 xml:lang="en">hybridization chamber</obo:IAO_0000111>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
@@ -9939,6 +9976,9 @@ Chang Gung Med J. 2009 May-Jun;32(3):283-9.</obo:IAO_0000112>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000370"/>
         </owl:someValuesFrom>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
   </owl:Class>
@@ -10377,17 +10417,20 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">LSR2 charge plate</obo:IAO_0000112>
     <rdfs:label xml:lang="en">charge plate</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">Practical Flow Cytometry 4th Edition, Howard Shapiro, ISBN-10: 0471411256, ISBN-13: 978-0471411253</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidics subsystem. Charge plates are used or sorters. They create an charged electric field when particles deemed to be desired for further analysis are shaken form the piexo electric crystal. The charged particles are drawn toward the charged plate, and the altered drop location causes the particles to fall into a collection tube. Charge plates enable sorting.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400170">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">a microscope slide is a device usually made of glass which is used as a solid matrix for (biological) material deposited on its surface and which is compatible for use with a microscope instrument</obo:IAO_0000115>
     <rdfs:label xml:lang="en">microscope slide</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -10406,9 +10449,6 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000001">
@@ -11015,14 +11055,14 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">DNA sequencer</obo:IAO_0000111>
     <rdfs:label xml:lang="en">DNA sequencer</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A DNA sequencer is an instrument that determines the order of deoxynucleotides in deoxyribonucleic acid sequences.</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">ABI 377 DNA Sequencer, ABI 310 DNA Sequencer</obo:IAO_0000112>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
   </owl:Class>
@@ -11141,6 +11181,9 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400043">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">Biofilm Flow Cell</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
@@ -11157,9 +11200,6 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
     <obo:IAO_0000119 xml:lang="en">http://www.flocyte.com/FRTP/Resources/flow_cytometry_glossary.htm</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">Aparatus in the fluidic subsystem where the sheath and sample meet. Can be one of several types; jet-in-air, quartz cuvette, or a hybrid of the two. The sample flows through the center of a fluid column of sheath fluid in the flow cell.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">flow cell</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">flow_cell</obo:IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000811">
@@ -11554,9 +11594,6 @@ Methods Mol Biol. 1996;58:27-9.</obo:IAO_0000112>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://medical.merriam-webster.com/medical/cytometer</obo:IAO_0000119>
     <rdfs:subClassOf>
@@ -11566,6 +11603,9 @@ Methods Mol Biol. 1996;58:27-9.</obo:IAO_0000112>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600041">
@@ -11652,7 +11692,7 @@ Methods Mol Biol. 1996;58:27-9.</obo:IAO_0000112>
     <rdfs:label xml:lang="en">syringe</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">a processed material which is used to introduce or draw fluids from a material entity. A syringe is made of a piston and body. the movement of the piston in the body determines the amount/volume of fluid to inject or draw</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -12060,9 +12100,6 @@ index of refraction</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">NE-1000 Single Syringe Pump</obo:IAO_0000112>
     <obo:IAO_0000119 xml:lang="en">http://www.answers.com/topic/syringe, 2007-05-11</obo:IAO_0000119>
     <rdfs:label xml:lang="en">syringe pump</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidics system. A syringe pump can be used to inject the sample fluid and cells into the sheath fluid in the flow chamber. Syringe pumps are useful for creating stable flow rates.</obo:IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -12073,6 +12110,9 @@ index of refraction</obo:IAO_0000115>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000370"/>
         </owl:someValuesFrom>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
   </owl:Class>
@@ -12265,6 +12305,9 @@ index of refraction</obo:IAO_0000115>
     >OBI Instrument branch</obo:IAO_0000117>
     <rdfs:label xml:lang="en">microarray platform</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:TransitiveProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -12273,9 +12316,6 @@ index of refraction</obo:IAO_0000115>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400147"/>
         </owl:someValuesFrom>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000247">
@@ -12372,15 +12412,15 @@ index of refraction</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Bjoern Peters</obo:IAO_0000117>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A measurement device that is used to calculate the heat flow of a chemical reaction or physical change.</obo:IAO_0000115>
@@ -12513,7 +12553,7 @@ THE DEFINITION OF THIS SUGGESTS WE COVER THIS ALREADY IN PEPTIDE/POLYPETIDE. DO 
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">image cytometer</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">An image_cytometer is an instrument for image-based study or measurement of cells.</obo:IAO_0000115>
@@ -13546,17 +13586,25 @@ appearance to the test substance</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">laser/detector in capillary electrophoresis apparatus, NanoDrop ND-3300</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000501">
-    <obo:IAO_0000111 xml:lang="en">variable wavelength detector</obo:IAO_0000111>
-    <obo:IAO_0000115 xml:lang="en">A chromatography detector, that can detect signals within a certain range at user-defined wavelengths.</obo:IAO_0000115>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <rdfs:label xml:lang="en">variable wavelength detector</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01079</obo:IAO_0000119>
-    <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <obo:IAO_0000111 xml:lang="en">variable wavelength detector</obo:IAO_0000111>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000463"/>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </rdfs:subClassOf>
+    <obo:IAO_0000115 xml:lang="en">A chromatography detector, that can detect signals within a certain range at user-defined wavelengths.</obo:IAO_0000115>
+    <rdfs:label xml:lang="en">variable wavelength detector</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200077">
     <obo:IAO_0000117 xml:lang="en">Josef Spidlen</obo:IAO_0000117>
@@ -14236,10 +14284,10 @@ When harvesting blood from a human, isolating T cells, and then limited dilution
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400115">
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">spectrophotometer</obo:IAO_0000111>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">spectrophotometer</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
@@ -14764,9 +14812,6 @@ An instrument is a device which provides a mechanical or electronic advantage as
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000059">
     <rdfs:label xml:lang="en">gamma counter</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">gamma counter</obo:IAO_0000111>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A processed material which measures gamma radiation</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Gamma_counter</obo:IAO_0000119>
@@ -14780,6 +14825,9 @@ An instrument is a device which provides a mechanical or electronic advantage as
         </owl:onProperty>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000078"/>
@@ -15148,7 +15196,7 @@ specimen can later be subject.</obo:IAO_0000116>
     >OBI Instrument</obo:IAO_0000119>
     <rdfs:label xml:lang="en">needle</rdfs:label>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">a needle is a sharp, hollow device used to penetrate tissue or soft material. When attached to a syringe. it allows delivery of a specific volume of liquid or gaseous mixture.</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">Ovarian carcinoma presenting with axillary lymph node metastasis: A case diagnosed by fine-needle aspiration and brief review of the literature.
@@ -15193,17 +15241,25 @@ Diagn Cytopathol. 2008 Oct 16. PMID: 18925569</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">The Principal Component Regression method is a regression analysis method that combines the Principal Component Analysis (PCA)spectral decomposition with an Inverse Least Squares (ILS) regression method to create a quantitative model for complex samples. Unlike quantitation methods based directly on Beer's Law which attempt to calculate the absorbtivity coefficients for the constituents of interest from a direct regression of the constituent concentrations onto the spectroscopic responses, the PCR method regresses the concentrations on the PCA scores.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000563">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">fluorescene detector</rdfs:label>
-    <obo:IAO_0000111 xml:lang="en">fluorescene detector</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01080</obo:IAO_0000119>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.chromatography-online.org/HPLC-Detectors/Fluorescence/Single-Wavelength-Excitation/rs57.html&gt;</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000463"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">A single wavelength detector, where the excitation light wavelength is normally a mercury lamp generated high intensity UV light at 253.7 nm. Many substances that fluoresce will be excited by light of this wavelength and hence be detected.</obo:IAO_0000115>
-    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <obo:IAO_0000111 xml:lang="en">fluorescene detector</obo:IAO_0000111>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400048">
     <obo:IAO_0000119 xml:lang="en">http://www.guavatechnologies.com/main/products/easyCyteMini.cfm</obo:IAO_0000119>
@@ -15688,7 +15744,7 @@ Diagn Cytopathol. 2008 Oct 16. PMID: 18925569</obo:IAO_0000112>
   <owl:Class rdf:ID="Class_7">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Bjoern Peters</obo:IAO_0000117>
@@ -16508,6 +16564,9 @@ cannot be achieved by the unaided human hand.</obo:IAO_0000115>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400079"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">http://www.flocyte.com/FRTP/Resources/flow_cytometry_glossary.htm</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">flow cytometer analyzer</obo:IAO_0000111>
     <rdfs:subClassOf>
@@ -16520,9 +16579,6 @@ cannot be achieved by the unaided human hand.</obo:IAO_0000115>
     </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">FACS Calibur, Luminex 100</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">An analyser is a flow_cytometer that is used to measure properties of particles (whole cells, nuclei, chromosomes, diatoms, plankton, bacteria, viruses) by moving these particles through a detection chamber. An analyser is used to collect data for analysis.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -16609,7 +16665,7 @@ cannot be achieved by the unaided human hand.</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Bjoern Peters</obo:IAO_0000117>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Faraday shield</obo:IAO_0000118>
@@ -16660,12 +16716,12 @@ cannot be achieved by the unaided human hand.</obo:IAO_0000115>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A measurement device with the function to measure and record the level/amount of glucose in a blood sample</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Glucose_meter</obo:IAO_0000119>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -16844,12 +16900,20 @@ cannot be achieved by the unaided human hand.</obo:IAO_0000115>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000566">
     <obo:IAO_0000232 xml:lang="en">NMR instrument</obo:IAO_0000232>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400059</obo:IAO_0000119>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 xml:lang="en">An Instrument which is used to carry out a NMR analysis of some sample.</obo:IAO_0000115>
     <obo:IAO_0000111 xml:lang="en">NMR instrument</obo:IAO_0000111>
     <rdfs:label xml:lang="en">NMR instrument</rdfs:label>
@@ -17489,7 +17553,14 @@ J Nutr. 2010 Feb;140(2):382-91. Epub 2009 Dec 23.</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400099">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -17523,6 +17594,9 @@ J Nutr. 2010 Feb;140(2):382-91. Epub 2009 Dec 23.</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">flow cytometer sorter</obo:IAO_0000111>
     <obo:IAO_0000112 xml:lang="en">BioSorter2000, LSR2</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A flow_cytometer_sorter is a flow_cytometer that analyzes and separates or sorts particles passing through (based on properties measured during analysis) to collect cells of interest.</obo:IAO_0000115>
@@ -17773,6 +17847,9 @@ J Neurooncol. 1994;22(3):209-20. PMID: 7760097</obo:IAO_0000112>
     >Oliver + PPP branch</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000404">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sep:00094</obo:IAO_0000119>
     <rdfs:subClassOf>
@@ -17798,9 +17875,6 @@ J Neurooncol. 1994;22(3):209-20. PMID: 7760097</obo:IAO_0000112>
     >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">A gel dryer is a device which has the function to contain and to control the contained environment to facilitate the drying of gels</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">gel dryer</obo:IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110023">
@@ -17912,6 +17986,9 @@ J Neurooncol. 1994;22(3):209-20. PMID: 7760097</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">differential pressure gauge</obo:IAO_0000111>
     <rdfs:label xml:lang="en">differential pressure gauge</rdfs:label>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
         <owl:onProperty>
@@ -17920,9 +17997,6 @@ J Neurooncol. 1994;22(3):209-20. PMID: 7760097</obo:IAO_0000112>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">LSR2 differential pressure gauge</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000673">
@@ -17964,7 +18038,7 @@ J Neurooncol. 1994;22(3):209-20. PMID: 7760097</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:ID="Class_5">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -18708,6 +18782,9 @@ in contrast to the in-vivo data AT-III increased significantly from
     <obo:IAO_0000232 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >2009/09/28 Alan Ruttenberg. Fucoidan-use-case</obo:IAO_0000232>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000304"/>
@@ -18733,9 +18810,6 @@ in contrast to the in-vivo data AT-III increased significantly from
           </obo:OBI_0000245>
         </owl:hasValue>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Person:Alan Ruttenberg</obo:IAO_0000117>
@@ -18773,14 +18847,14 @@ in contrast to the in-vivo data AT-III increased significantly from
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400082">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">photodetector</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">photodetector</obo:IAO_0000111>
     <obo:IAO_0000119 xml:lang="en">http://einstein.stanford.edu/content/glossary/glossary.html</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A photodetector is a device used to detect and measure the intensity of radiant energy through photoelectric action. In a cytometer, photodetectors measure either the number of photons of laser light scattered on impact with a cell (for example), or the flourescence emitted by excitation of a fluorescent dye.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000112 xml:lang="en">A photomultiplier tube, a photo diode</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -18899,6 +18973,9 @@ in contrast to the in-vivo data AT-III increased significantly from
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000383"/>
@@ -18907,9 +18984,6 @@ in contrast to the in-vivo data AT-III increased significantly from
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">blot module</rdfs:label>
   </owl:Class>
@@ -19185,12 +19259,12 @@ in contrast to the in-vivo data AT-III increased significantly from
     <obo:IAO_0000115 xml:lang="en">Finding is an assessment of data, observations or evaluations from a clinical study which can be used to form a diagnosis</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000484">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000232 xml:lang="en">NMR device</obo:IAO_0000232>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">An NMR sample holder is the part of an NMR instrument, which carries the NMR probe,sample tube and the nmr sample.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400212</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">NMR sample holder</obo:IAO_0000111>
@@ -19344,13 +19418,13 @@ Changes in ultrastructure and endogenous ionic channels activity during culture 
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     <obo:IAO_0000111 xml:lang="en">NMR console</obo:IAO_0000111>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400015</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A component of an NMR instrument that controls the activities of the other components.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">NMR console</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000318">
@@ -20182,13 +20256,13 @@ need to add mobile phase as role</obo:IAO_0000116>
     >CT scanner</obo:IAO_0000118>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON:Bjoern Peters</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An image acquisition device that generates a
 three-dimensional image of the inside of an object from a large series of
 two-dimensional X-ray images taken around a single axis of rotation.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -20882,15 +20956,15 @@ http://en.wikipedia.org/wiki/Survival_rate</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000498">
     <obo:IAO_0000111 xml:lang="en">NMR tube washing system</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000232 xml:lang="en">NMR instrument</obo:IAO_0000232>
     <rdfs:label xml:lang="en">NMR tube washing system</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400204</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">An automatic cleaning system for NMR tubes that removes previous probe and sample residues in order to allow for tube recycling.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
   </owl:Class>
@@ -20960,11 +21034,11 @@ Nat Protoc. 2008;3(11):1736-50. PMID: 18927559</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Vortex_mixer</obo:IAO_0000119>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000118 xml:lang="en">vortex_mixer</obo:IAO_0000118>
     <obo:IAO_0000111 xml:lang="en">vortexer</obo:IAO_0000111>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -21367,7 +21441,7 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Flow Cytometry: First Principles, by Alice Longobardi Givan, ISBN-10: 0471382248, ISBN-13: 978-0471382249</obo:IAO_0000119>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Class_14">
@@ -21376,6 +21450,9 @@ illiterate subject. PharmPK Discussion, http://www.boomer.org/pkin/PK06/PK200625
 through tissue.</obo:IAO_0000115>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >vibrotome</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -21392,9 +21469,6 @@ through tissue.</obo:IAO_0000115>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000922">
@@ -21450,8 +21524,10 @@ through tissue.</obo:IAO_0000115>
     ></obo:IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000463">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000232 xml:lang="en">chromatography detector, defined class/xps</obo:IAO_0000232>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000481"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">column chromatography detector</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.chromatography-online.org/Principles/Basic-Chromatograph/Detector/rs56.html&gt;</obo:IAO_0000119>
@@ -21849,7 +21925,7 @@ through tissue.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">incubator</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000072">
@@ -22122,7 +22198,7 @@ TCCG/CCTG at the ADH1B</obo:IAO_0000112>
     <rdfs:label xml:lang="en">oligonucleotide synthesizer</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">An instrument used to chemically synthesize oligonucleotides.</obo:IAO_0000115>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
     </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">oligonucleotide synthesizer</obo:IAO_0000111>
@@ -22557,6 +22633,9 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</obo:IAO_0000232>
     </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:ID="Class_3">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A device that can be used to restrict the location of material entities over time</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -22564,17 +22643,12 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</obo:IAO_0000232>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >container</rdfs:label>
     <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
-            </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000370"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000370"/>
+      </owl:Restriction>
     </owl:equivalentClass>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -22965,6 +23039,9 @@ Documentation: "The group of eligible participants that agreed to participate in
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Computer</obo:IAO_0000119>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
@@ -22977,9 +23054,6 @@ Documentation: "The group of eligible participants that agreed to participate in
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">computer</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">A computer is an instrument which manipulates (stores, retrieves, and processes) data according to a list of instructions.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">computer</rdfs:label>
     <obo:IAO_0000112 xml:lang="en">Apple PowerBook, Dell OptiPlex</obo:IAO_0000112>
   </owl:Class>
@@ -23025,9 +23099,19 @@ Documentation: "The group of eligible participants that agreed to participate in
     <obo:IAO_0000117 xml:lang="en">Daniel Schober</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000595">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000463"/>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A chromatography detector as used by high-performance anion exchange chromatography that provides sensitive and specific detection of carbohydrates. Pulsed Electrochemical Detection (PED) allows simple, sensitive, and direct detection of numerous polar aliphatic compounds, especially carbohydrates. This technique exploits the electrocatalytic activity of noble metal electrode surfaces to oxidize various polar functional groups. In PED, multi-step potential-time waveforms at Au and Pt electrodes realize amperometric/coulometric detection while maintaining uniform and reproducible electrode activity. The response mechanisms in PED are dominated by the surface properties of the electrode, and, as a consequence, members of each chemical class of compounds produce virtually identical voltammetric responses. Thus, the full potential is realized when combined with high performance liquid chromatography (HPLC).</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:label xml:lang="en">pulsed amperometric detector</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">pulsed amperometric detector</obo:IAO_0000111>
@@ -23363,15 +23447,15 @@ change biomaterial to material in definition</obo:IAO_0000116>
   <owl:Class rdf:ID="Class_10">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Oscilloscope</obo:IAO_0000119>
@@ -23468,7 +23552,25 @@ change biomaterial to material in definition</obo:IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000051">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+      <owl:Class rdf:about="#Class_42"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -23762,7 +23864,7 @@ change biomaterial to material in definition</obo:IAO_0000116>
     >Is_a PCR real time preceded by a reverse transcription step (reverse transcription step = an RNA strand is reverse transcribed into its DNA complement using the enzyme reverse transcriptase)</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
-  <owl:Class rdf:ID="Class_42">
+  <owl:Class rdf:about="#Class_42">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >device</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -23773,9 +23875,7 @@ change biomaterial to material in definition</obo:IAO_0000116>
     >food should not classify as a device - counter example for using manufacturer and not device. macroscopic only</obo:IAO_0000116>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >if we keep this exploratory term we could reinstate the old device class which is obsolete_device. didn't work before as we had manufacturing as part of  the definition. device was needed, but couldn't define in Philadelphia. If we decide  that in addition to function there are also capabilities for which a device is created we will include these in the definition.</obo:IAO_0000116>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000569">
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000637"/>
@@ -24437,10 +24537,8 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">plate loader</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">http://www.beckmancoulter.com/literature/Bioresearch/P-10202A.pdf</obo:IAO_0000119>
     <obo:IAO_0000112 xml:lang="en">FC 500 plate loader</obo:IAO_0000112>
   </owl:Class>
@@ -24449,11 +24547,9 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
     <obo:IAO_0000111 xml:lang="en">analog-to-digital converter</obo:IAO_0000111>
     <obo:IAO_0000112 xml:lang="en">The analog to digital converter transformed the analog output from the photomultiplier tube to a digital signal for collection.</obo:IAO_0000112>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000118 xml:lang="en">A2D</obo:IAO_0000118>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000118 xml:lang="en">A-D</obo:IAO_0000118>
     <obo:IAO_0000115 xml:lang="en">An analog-to-digital_converter is an instrument that converts an infinite resolution analog signal to a finite resolution digital signal.</obo:IAO_0000115>
     <rdfs:label xml:lang="en">analog-to-digital converter</rdfs:label>
@@ -24488,6 +24584,7 @@ Arch Oral Biol. 2008 Nov;53(11):1091-100. Epub 2008 Aug 21. PMID: 1872191</obo:I
     <obo:IAO_0000119 xml:lang="en">GROUP: OBI Biomaterial Branch</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400153">
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -24497,9 +24594,6 @@ Arch Oral Biol. 2008 Nov;53(11):1091-100. Epub 2008 Aug 21. PMID: 1872191</obo:I
           <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
         </owl:onProperty>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">droplet sorter</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
@@ -24610,9 +24704,6 @@ sample for particles of interest based on qualities determined by gating) or dis
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">thermal cycler</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <obo:IAO_0000118 xml:lang="en">PCR_machine</obo:IAO_0000118>
     <obo:IAO_0000118 xml:lang="en">thermocycler</obo:IAO_0000118>
     <rdfs:subClassOf>
@@ -24624,6 +24715,7 @@ sample for particles of interest based on qualities determined by gating) or dis
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000118 xml:lang="en">Polymerase_Chain_Reaction_ machine</obo:IAO_0000118>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -24647,15 +24739,23 @@ sample for particles of interest based on qualities determined by gating) or dis
     <rdfs:label xml:lang="en">obsolete_device function</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000583">
-    <obo:IAO_0000111 xml:lang="en">refractive index detector</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">For analyzing non-UV absorbing substances, such as carbohydrates, lipids and polymers. This is also the detector of choice for gel permeation chromatography. The refractive index detector is one of the least sensitive LC detectors. It is very sensitive to changes in ambient temperature, pressure changes, flow-rate changes and can not be used for gradient elution. Despite these many disadvantages, this detector is extremely useful for detecting those compounds that are nonionic, do not adsorb in the UV, and do not fluoresce. There are many optical systems used in refractive index detectors but one of the most common is the differential refractive index detector.</obo:IAO_0000115>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.chromatography-online.org/HPLC/Refractive-Index/rs33.html&gt;</obo:IAO_0000119>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <rdfs:label xml:lang="en">refractive index detector</rdfs:label>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01081</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000463"/>
-    <rdfs:label xml:lang="en">refractive index detector</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
+    <obo:IAO_0000111 xml:lang="en">refractive index detector</obo:IAO_0000111>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200145">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
@@ -24826,11 +24926,19 @@ GROUP:OBI Planned process branch</obo:IAO_0000119>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01262</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">Any instrument that is used to carry out a chromatography experiment.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    </rdfs:subClassOf>
     <rdfs:label xml:lang="en">chromatography instrument</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">chromatography instrument</obo:IAO_0000111>
   </owl:Class>
@@ -25297,6 +25405,7 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
     <obo:IAO_0000117 xml:lang="en">Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An affymetrix U133 array is a microarray. Microarrays include 1 and 2-color arrays, custom and commercial arrays (e.g, Affymetrix, Agilent, Nimblegen, Illumina, etc.) for expression profiling, DNA variant detection, protein binding, and other genomic and functional genomic assays.</obo:IAO_0000112>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000111 xml:lang="en">microarray</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">A processed material that is made to be used in an analyte assay. It consists of a physical immobilisation matrix in which substances that bind the analyte are placed in regular spatial position.</obo:IAO_0000115>
     <rdfs:subClassOf>
@@ -25307,7 +25416,6 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Chris Stoeckert</obo:IAO_0000119>
     <rdfs:label xml:lang="en">microarray</rdfs:label>
@@ -25511,35 +25619,19 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
     <obo:IAO_0000115 xml:lang="en">Investigation_design is a plan for an investigation. definition_source: OBI.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000403">
-    <obo:IAO_0000111 xml:lang="en">sort function</obo:IAO_0000111>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:TransitiveProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
     </rdfs:subClassOf>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <rdfs:label xml:lang="en">sort function</rdfs:label>
+    <obo:IAO_0000111 xml:lang="en">sort function</obo:IAO_0000111>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Frank Gibson</obo:IAO_0000117>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
-        <owl:onProperty>
-          <owl:TransitiveProperty rdf:about="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    >Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Melanie Courtot</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+    >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A sort function is a function to distinguish material components based on some associated physical quality or entity and to partition the separate components into distinct fractions according to a defined order.</obo:IAO_0000115>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000198">
     <obo:IAO_0000111 xml:lang="en">Biological replicate</obo:IAO_0000111>
@@ -25683,7 +25775,7 @@ exudate and epithelial debris for microbiological or cellular examination.</obo:
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400114">
     <obo:IAO_0000111 xml:lang="en">sonicator</obo:IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">Sonicator 3000</obo:IAO_0000112>
     <rdfs:subClassOf>
@@ -25737,7 +25829,7 @@ exudate and epithelial debris for microbiological or cellular examination.</obo:
     <obo:IAO_0000232 xml:lang="en">NMR instrument</obo:IAO_0000232>
     <rdfs:label xml:lang="en">autosampler</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">An optional part of an NMR instrument used to hold samples prior to NMR analysis and that sequentially loads these samples into the analytical part of the NMR instrument. \n   alt The autosampler is an automatic sample changer device.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400002</obo:IAO_0000119>
@@ -25999,9 +26091,9 @@ PMID: 14680949</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400065">
     <obo:IAO_0000117 xml:lang="en">Elizabeth M. Goralczyk</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000111 xml:lang="en">light source</obo:IAO_0000111>
     <obo:IAO_0000119 xml:lang="en">Practical Flow Cytometry 4th Edition, Howard Shapiro, ISBN-10: 0471411256, ISBN-13: 978-0471411253</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:label xml:lang="en">light source</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A light source is an optical subsystem that provides light for use in a distant area using a delivery system (e.g., fiber optics). Light sources may include one of a variety of lamps (e.g., xenon, halogen, mercury). Most light sources are operated from line power, but some may be powered from batteries. They are mostly used in endoscopic, microscopic, and other examination and/or in surgical procedures. The light source is part of the optical subsystem. In a flow cytometer the light source directs high intensity light at particles at the interrogation point. The light source in a flow cytometer is usually a laser.</obo:IAO_0000115>
@@ -26153,7 +26245,6 @@ aspiration.</obo:IAO_0000115>
     >primary structure of sequence macromolecule</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400101">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000111 xml:lang="en">voltage amplifier</obo:IAO_0000111>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000115 xml:lang="en">A voltage amplifier is a device that amplifies the voltage signal.</obo:IAO_0000115>
@@ -26168,6 +26259,7 @@ aspiration.</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">http://en.wiktionary.org/wiki/amplifier</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000112 xml:lang="en">Linear amplifier, log amplifier, microwave amplifier</obo:IAO_0000112>
     <rdfs:label xml:lang="en">voltage amplifier</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
@@ -26545,6 +26637,7 @@ aspiration.</obo:IAO_0000115>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000370"/>
@@ -26580,7 +26673,6 @@ aspiration.</obo:IAO_0000115>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sep:00097</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">An isoelectric focusing device is a device in which isoelectric focusing can be performed. An isoelectric focussing device had the function to contain and control the contained environment and transfer electrical energy from a power supply to a separation medium and the charged material to be separated.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110116">
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
@@ -26809,7 +26901,7 @@ aspiration.</obo:IAO_0000115>
     >PERSON: Daniel Schober</obo:IAO_0000119>
     <rdfs:label xml:lang="en">microtome</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000112 xml:lang="en">PMID: 9974145.Serial sectioning of thick tissue with a novel vibrating blade microtome. Brain Res Brain Res Protoc. 1999 Jan;3(3):302-7.</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">microtome</obo:IAO_0000111>
     <rdfs:subClassOf>
@@ -26911,6 +27003,7 @@ aspiration.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400119">
     <obo:IAO_0000112 xml:lang="en">ArrayIt(r) Microarray Wash Station</obo:IAO_0000112>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
     <rdfs:label xml:lang="en">microarray wash station</rdfs:label>
     <rdfs:subClassOf>
@@ -26923,7 +27016,6 @@ aspiration.</obo:IAO_0000115>
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">microarray wash station</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000115 xml:lang="en">A microarray wash station is an instrument used to wash Affymetrix-type arrays.</obo:IAO_0000115>
   </owl:Class>
@@ -26945,15 +27037,23 @@ aspiration.</obo:IAO_0000115>
     <obo:IAO_0000111 xml:lang="en">Cyan</obo:IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000547">
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000111 xml:lang="en">evaporative light scattering detector</obo:IAO_0000111>
+    <rdfs:label xml:lang="en">evaporative light scattering detector</rdfs:label>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <obo:IAO_0000115 xml:lang="en">The evaporative light scattering detector, as its name implies, utilizes a spray that continuously atomizes the column eluent into small droplets. These droplets are allowed to evaporate, leaving the solutes as fine particulate matter suspended in the atomizing gas.</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">WEB:&lt;http://www.chromatography-online.org/HPLC-Detectors/Evaporative-Light-Scattering/rs73.html&gt;</obo:IAO_0000119>
+    <obo:IAO_0000115 xml:lang="en">The evaporative light scattering detector, as its name implies, utilizes a spray that continuously atomizes the column eluent into small droplets. These droplets are allowed to evaporate, leaving the solutes as fine particulate matter suspended in the atomizing gas.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01082</obo:IAO_0000119>
-    <rdfs:label xml:lang="en">evaporative light scattering detector</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000463"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000725">
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -26996,7 +27096,7 @@ aspiration.</obo:IAO_0000115>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000393"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A digital-to-analog_converter is an instrument that converts a finite resolution digital signal into an infinite resolution analog signal.</obo:IAO_0000115>
@@ -27053,9 +27153,9 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://en.wikipedia.org/wiki/Mass_spectrometry#Detector</obo:IAO_0000119>
     <obo:IAO_0000112 xml:lang="en">The ion detector of the Voyager-DE(tm) STR Biospectrometry Workstation</obo:IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000111 xml:lang="en">ion detector</obo:IAO_0000111>
     <rdfs:label xml:lang="en">ion detector</rdfs:label>
@@ -27153,7 +27253,6 @@ function of m/Q.</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000038">
     <obo:IAO_0000117 xml:lang="en">Frank Gibson</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Class_3"/>
@@ -27162,6 +27261,7 @@ function of m/Q.</obo:IAO_0000115>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000111 xml:lang="en">chromatography column</obo:IAO_0000111>
     <rdfs:label xml:lang="en">chromatography column</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
@@ -27792,7 +27892,7 @@ The content of that report on the IEDB website is here: http://iedb.org/refId/10
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidic subsystem. The fluid pressure regulator maintains constant pressure within the sheath and or sample lines by filling the lines with enough gas to push the fluid at the desired rate. The gas is usually air, and less frequently nitrogen. In the sheath line, the gas is pushed into the sheath tank. In the sample line the gas is pushed into the collection tube. Fluid pressure regulators maintain great enough pressure to push sample fluid out of the tube and sheath fluid out of the sheath tank.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
     <obo:IAO_0000111 xml:lang="en">fluid_pressure_regulator</obo:IAO_0000111>
@@ -28161,15 +28261,23 @@ It has both components, an Image cytometer and a flow cytometer.</obo:IAO_000011
     <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000505">
-    <obo:IAO_0000115 xml:lang="en">A chromatography detector, that can detect many discrete wavelengths in parallel and produces a multiple wavelength chromatographic profile.</obo:IAO_0000115>
-    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <rdfs:label xml:lang="en">multiple wavelength detector</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01078</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <obo:IAO_0000115 xml:lang="en">A chromatography detector, that can detect many discrete wavelengths in parallel and produces a multiple wavelength chromatographic profile.</obo:IAO_0000115>
     <obo:IAO_0000111 xml:lang="en">multiple wavelength detector</obo:IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000463"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000453"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">multiple wavelength detector</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_1110122">
     <obo:IAO_0000115 xml:lang="en">abnormal, harmful processes caused by or associated with a disease</obo:IAO_0000115>
@@ -28205,6 +28313,7 @@ It has both components, an Image cytometer and a flow cytometer.</obo:IAO_000011
     <obo:IAO_0000111 xml:lang="en">cation trap column</obo:IAO_0000111>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000192">
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000118 xml:lang="en">microplate</obo:IAO_0000118>
     <rdfs:label xml:lang="en">microtiter plate</rdfs:label>
@@ -28219,7 +28328,6 @@ It has both components, an Image cytometer and a flow cytometer.</obo:IAO_000011
     <obo:IAO_0000119 xml:lang="en">http://en.wikipedia.org/wiki/Microtiter_plate</obo:IAO_0000119>
     <obo:IAO_0000115 xml:lang="en">A microtiter_plate is a flat plate with multiple wells used as small test tubes.</obo:IAO_0000115>
     <obo:IAO_0000117 xml:lang="en">Melanie Courtot</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000112 xml:lang="en">A microtiter plate with 6, 24, 96, 384 or 1536 sample wells used in the enzyme-linked immunosorbent assay (ELISA)</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">microtiter plate</obo:IAO_0000111>
   </owl:Class>
@@ -28286,7 +28394,7 @@ It has both components, an Image cytometer and a flow cytometer.</obo:IAO_000011
     >http://msi-ontology.sourceforge.net/ontology/NMR.owl#msi_400207</obo:IAO_0000119>
     <obo:IAO_0000111 xml:lang="en">Bruker SampleRail system</obo:IAO_0000111>
     <obo:IAO_0000232 xml:lang="en">NMR instrument</obo:IAO_0000232>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200091">
     <obo:IAO_0000111 xml:lang="en">inter-rater agreement</obo:IAO_0000111>
@@ -28389,12 +28497,12 @@ objectives is a planned process.</obo:IAO_0000116>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000115 xml:lang="en">A thermostatic circulator is a device which cools or heats a circulating liquid. It has the function to contain control the contained environment and transfer energy from or to the circulating liquid</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sep:00098</obo:IAO_0000119>
     <rdfs:label xml:lang="en">thermostatic circulator</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000111 xml:lang="en">thermostatic circulator</obo:IAO_0000111>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -28443,7 +28551,6 @@ objectives is a planned process.</obo:IAO_0000116>
     <rdfs:label xml:lang="en">vacuum dryer</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">An instrument which removes liquid by the application of negative pressure,  i.e. vacuum.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -28453,6 +28560,7 @@ objectives is a planned process.</obo:IAO_0000116>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000111 xml:lang="en">vacuum dryer</obo:IAO_0000111>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
   </owl:Class>
@@ -29228,6 +29336,7 @@ Short-term outcome of neuropsychiatric events in systemic lupus erythematosus up
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A device that produces a three-dimensional image or picture of functional processes in the body. It detects pairs of gamma rays emitted indirectly by a positron-emitting
 radionuclide (tracer), which is introduced into the body on a biologically active molecule.</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000397"/>
@@ -29236,7 +29345,6 @@ radionuclide (tracer), which is introduced into the body on a biologically activ
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >positron emission tomography scanner</rdfs:label>
     <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -29249,7 +29357,7 @@ radionuclide (tracer), which is introduced into the body on a biologically activ
   <owl:Class rdf:ID="Class_44">
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a processed material created to have a function and which requires electrical power to execute</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >electrically powered device</rdfs:label>
   </owl:Class>
@@ -29649,6 +29757,7 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
     <rdfs:subClassOf rdf:resource="#Class_36"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400104">
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000112 xml:lang="en">GenePix 4200A, GenePix4000B</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">array scanner</obo:IAO_0000111>
     <rdfs:subClassOf>
@@ -29659,7 +29768,6 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:label xml:lang="en">array scanner</rdfs:label>
     <obo:IAO_0000117 xml:lang="en">Trish Whetzel</obo:IAO_0000117>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
@@ -29698,8 +29806,8 @@ Isolation of proliferation factor of immature T-cell clone in concanavalin A-sti
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400169">
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000112 xml:lang="en">PMID:18466942. A light and transmission electron microscope study of hepatic portal tracts in the rhesus monkey (Macacus rhesus). Tissue Cell. 2008 May 6</obo:IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:label xml:lang="en">microscope</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000111 xml:lang="en">microscope</obo:IAO_0000111>
@@ -30092,9 +30200,9 @@ Proteome Sci. 2008 Dec 10;6(1):34.PMID: 19077203</obo:IAO_0000112>
     <obo:IAO_0000112 xml:lang="en">LSR2 sheath tank</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">sheath tank</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidics system. The sheath tank is the vessel that holds the sheath fluid at a constant pressure, allowing for it to be pushed into the flow chamber at a constant rate. The sheath tank holds the pressurized sheath fluid.</obo:IAO_0000115>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:label xml:lang="en">sheath tank</rdfs:label>
     <obo:IAO_0000119 xml:lang="en">Practical Flow Cytometry 4th Edition, Howard Shapiro, ISBN-10: 0471411256, ISBN-13: 978-0471411253</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -30140,6 +30248,7 @@ Proteome Sci. 2008 Dec 10;6(1):34.PMID: 19077203</obo:IAO_0000112>
     >sample tube</obo:IAO_0000118>
     <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >collection tube</obo:IAO_0000118>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000370"/>
@@ -30148,7 +30257,6 @@ Proteome Sci. 2008 Dec 10;6(1):34.PMID: 19077203</obo:IAO_0000112>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bjoern Peters</obo:IAO_0000117>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -30609,6 +30717,7 @@ Genome Res. 2009 Jul 6.</obo:IAO_0000112>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400171">
     <rdfs:label xml:lang="en">animal cage</rdfs:label>
     <obo:IAO_0000118 xml:lang="en">laboratory cage</obo:IAO_0000118>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000115 xml:lang="en">a processed material which has the function to define a bounded habitat which is amenable to keeping animals.</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PERSON: Phillippe Rocca-Serra</obo:IAO_0000117>
@@ -30617,7 +30726,6 @@ Genome Res. 2009 Jul 6.</obo:IAO_0000112>
     >OBI biomaterial branch</obo:IAO_0000119>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
     <obo:IAO_0000112 xml:lang="en">PMID: 18246864.Barthold SW.Effects of cage density on behavior in young adult mice.</obo:IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -30831,9 +30939,9 @@ addition of has_role restriction</obo:IAO_0000232>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Jessica Turner, Dirk Derom</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An electrode of very fine caliber consisting usually of a fine wire or a glass tube of capillary diameter drawn to a fine point and filled with saline or a metal used in physiological experiments to stimulate or record action currents of extracellular or intracellular origin in the nervous system.</obo:IAO_0000115>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >micro electrode</rdfs:label>
     <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -30904,7 +31012,6 @@ addition of has_role restriction</obo:IAO_0000232>
     <rdfs:subClassOf rdf:resource="#Class_16"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400112">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000119 xml:lang="en">MO</obo:IAO_0000119>
     <obo:IAO_0000112 xml:lang="en">Beckman BioMek 2000</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">liquid handler</obo:IAO_0000111>
@@ -30913,6 +31020,7 @@ TW: This is required by MO.
 FG &amp; DS: Capture as function.
 All: Needs to be reviewed, according to query use case. If we keep it its kept as unnamed owl class.
 The liquid handling class remains but as an undefined class with are unlikely to have children. It is expected that the reasoner would classifiy appropriate classes under this class that meet the have the liquid_handling function relation.</obo:IAO_0000232>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <rdfs:label xml:lang="en">liquid handler</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000115 xml:lang="en">A liquid_handler is an instrument used for automated liquid transfer and handling.</obo:IAO_0000115>
@@ -31185,6 +31293,7 @@ FG: Or as function.</obo:IAO_0000232>
     <obo:IAO_0000118 xml:lang="en">PSU</obo:IAO_0000118>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >sep:00093</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
@@ -31192,7 +31301,6 @@ FG: Or as function.</obo:IAO_0000232>
     <obo:IAO_0000119 xml:lang="en">PERSON: Daniel Schober</obo:IAO_0000119>
     <obo:IAO_0000118 xml:lang="en">power supply unit</obo:IAO_0000118>
     <obo:IAO_0000112 xml:lang="en">A AC/DC transformer that generates the reqired power for an electrophoresis apparatus</obo:IAO_0000112>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000111 xml:lang="en">power supply</obo:IAO_0000111>
     <obo:IAO_0000118 xml:lang="en">electrical power supply</obo:IAO_0000118>
     <rdfs:label xml:lang="en">power supply</rdfs:label>
@@ -31211,7 +31319,7 @@ FG: Or as function.</obo:IAO_0000232>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000119 xml:lang="en">OBI</obo:IAO_0000119>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000115 xml:lang="en">A pump valve switch is a cardinal part of a liquid chromatography instrument that controls the flow.</obo:IAO_0000115>
     <obo:IAO_0000116 xml:lang="en">FG:I would assume this should be a pump valve control switch and it would not be specific to a liquid chromatography instrument</obo:IAO_0000116>
     <rdfs:label xml:lang="en">pump valve switch</rdfs:label>
@@ -31486,11 +31594,11 @@ FG: Or as function.</obo:IAO_0000232>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000345">
     <rdfs:label xml:lang="en">mass analyzer</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
     <obo:IAO_0000112 xml:lang="en">The mass analyzer of the Voyager-DE(tm) STR Biospectrometry Workstation</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">mass analyzer</obo:IAO_0000111>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000115 xml:lang="en">A Mass analyzer is a device that separates ions according to their mass-to-charge ratio. All mass spectrometers are based on dynamics of charged particles in electric and magnetic fields in vacuum where the two laws of Lorentz force law and Newton's second law of motion apply.</obo:IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -32002,22 +32110,29 @@ Sanger F, Nicklen S, Coulson AR. Proc Natl Acad Sci U S A. 1977 Dec;74(12):5463-
     >PERSON: Bjoern peters</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000398">
-    <rdfs:label xml:lang="en">image acquisition device</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">An image acquisition device is a device which captures a digitized image of an object</obo:IAO_0000115>
     <obo:IAO_0000111 xml:lang="en">image acquisition device</obo:IAO_0000111>
     <owl:equivalentClass>
       <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000397"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
-            </owl:onProperty>
-          </owl:Restriction>
+        <owl:intersectionOf rdf:parseType="Resource">
+          <rdf:first>
+            <owl:Restriction>
+              <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000397"/>
+              <owl:onProperty>
+                <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+              </owl:onProperty>
+            </owl:Restriction>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:List>
+              <rdf:first rdf:resource="#Class_42"/>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:List>
+          </rdf:rest>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:label xml:lang="en">image acquisition device</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
@@ -32611,15 +32726,25 @@ A novel multivalent human CTL peptide construct elicits robust cellular immune r
 placeholder</obo:IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000493">
-    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
-    <rdfs:label xml:lang="en">rapid resolution column</rdfs:label>
-    <obo:IAO_0000111 xml:lang="en">rapid resolution column</obo:IAO_0000111>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000115 xml:lang="en">A rapid resolution column is a chromatography column as marketed by Agilent, which is used with a rapid resolution cartridge to ensure a fast chromatography process with good separation resolution.</obo:IAO_0000115>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01102</obo:IAO_0000119>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000119 xml:lang="en">GROUP:&lt;http://msi-ontology.sourceforge.net&gt;</obo:IAO_0000119>
+    <obo:IAO_0000111 xml:lang="en">rapid resolution column</obo:IAO_0000111>
+    <obo:IAO_0000115 xml:lang="en">A rapid resolution column is a chromatography column as marketed by Agilent, which is used with a rapid resolution cartridge to ensure a fast chromatography process with good separation resolution.</obo:IAO_0000115>
+    <rdfs:label xml:lang="en">rapid resolution column</rdfs:label>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000342">
     <rdfs:label xml:lang="en">obsolete_investigation planning</rdfs:label>
@@ -33141,7 +33266,6 @@ placeholder</obo:IAO_0000116>
     <obo:IAO_0000119 xml:lang="en">Practical Flow Cytometry 4th Edition, Howard Shapiro, ISBN-10: 0471411256, ISBN-13: 978-0471411253</obo:IAO_0000119>
     <rdfs:label xml:lang="en">waste tank</rdfs:label>
     <obo:IAO_0000111 xml:lang="en">waste_tank</obo:IAO_0000111>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
     <obo:IAO_0000115 xml:lang="en">Part of the fluidics systems. In analyzers the sheath and sample fluid, once analyzed is dumped into a waste tank. The waste tank is where the fluids passing through the cytometer end up after the analysis is finished.</obo:IAO_0000115>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -33152,6 +33276,7 @@ placeholder</obo:IAO_0000116>
       </owl:Restriction>
     </rdfs:subClassOf>
     <obo:IAO_0000117 xml:lang="en">John Quinn</obo:IAO_0000117>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000794">
@@ -33164,19 +33289,19 @@ placeholder</obo:IAO_0000116>
     >PLace_holder for sequence ontology term</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372">
-    <obo:IAO_0000115 xml:lang="en">A separation function is a function that increases the resolution between two or more material entities. The  to distinction between the entities is usually based on some associated physical quality.</obo:IAO_0000115>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Function"/>
+    <obo:IAO_0000111 xml:lang="en">material separation function</obo:IAO_0000111>
+    <obo:IAO_0000115 xml:lang="en">A material separation function is a function that increases the resolution between two or more material entities. The  to distinction between the entities is usually based on some associated physical quality.</obo:IAO_0000115>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bill Bug</obo:IAO_0000117>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melanie Courtot</obo:IAO_0000117>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
-    <rdfs:label xml:lang="en">separation function</rdfs:label>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Daniel Schober</obo:IAO_0000117>
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Frank Gibson</obo:IAO_0000117>
-    <obo:IAO_0000111 xml:lang="en">separation function</obo:IAO_0000111>
+    <rdfs:label xml:lang="en">material separation function</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100080">
     <obo:IAO_0000115 xml:lang="en">All classes yet to be suitably placed in a hierarchy</obo:IAO_0000115>
