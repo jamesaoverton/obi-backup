@@ -22291,8 +22291,8 @@ TO BE DEALT WITH STILL BY RICHARD.  JAMES</obo:IAO_0000232>
     <obo:IAO_0000232 xml:lang="en">chromatography device</obo:IAO_0000232>
     <rdfs:label xml:lang="en">Liquid chromatography valve</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000048"/>
-    <obo:IAO_0000111 xml:lang="en">Liquid chromatography valve</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
+    <obo:IAO_0000111 xml:lang="en">liquid chromatography valve</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">A sample valve that must be able to sustain pressures up to 10,000 p.s.i., although it is most likely to operate on a continuous basis, at pressures of 3,000 p.s.i. or less. The higher the operating pressure the tighter the valve seating surfaces must be forced together to eliminate any leak. It follows that any abrasive material, however fine, that passes into the valve can cause the valve seating to become scored each time it is rotated which will ultimately lead to leaks. This will cause the sample size to vary between samples and eventually affect the accuracy of the analysis. It follows that any solid material must be carefully removed from any sample before filling the valve. The sample volume of an internal loop valve is situated in the connecting slot of the valve rotor and can be used only for relatively small sample volumes. Internal sample loop valves provide samples with volumes ranging from 0.1 ml to about 0.5 ml. Valve operation is shown in figure 6. The left-hand side diagram shows the load position. The sample occupies the rotor slot and has been filled by passing the sample from an appropriate syringe through the rotor slot to waste. While loading the sample, the mobile phase supply is passed through the valve directly to the column. To place the sample onto the column, the valve is then rotated and the valve slot containing the sample is now placed between the solvent supply and the column. As a result, the sample is passed into the column by the flow of solvent.</obo:IAO_0000115>
     <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >http://msi-ontology.sourceforge.net/ontology/CHROM.owl#msi_01110</obo:IAO_0000119>
@@ -23768,9 +23768,11 @@ change biomaterial to material in definition</obo:IAO_0000116>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >would include reagents</rdfs:comment>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a processed material created with a physical structure or composition to have a function</obo:IAO_0000115>
+    >a processed material created with a macroscopic physical structure or composition to have a function.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >if we keep this we could reinstate the old device class which is obsolete_device. didn't work before as we had manufacturing as part of  the definition. device was needed, but couldn't define in Philadelphia.</obo:IAO_0000116>
+    >food should not classify as a device - counter example for using manufacturer and not device. macroscopic only</obo:IAO_0000116>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >if we keep this exploratory term we could reinstate the old device class which is obsolete_device. didn't work before as we had manufacturing as part of  the definition. device was needed, but couldn't define in Philadelphia. If we decide  that in addition to function there are also capabilities for which a device is created we will include these in the definition.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
@@ -27123,6 +27125,21 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A data transformation which has the objective of spectrum analysis.</obo:IAO_0000115>
   </owl:Class>
+  <owl:Class rdf:ID="Class_60">
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></obo:IAO_0000112>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >an objective which aims to create a device with a specified function</obo:IAO_0000115>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</obo:IAO_0000119>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >device creation objective</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000456"/>
+    </rdfs:subClassOf>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON: Helen Parkinson</obo:IAO_0000117>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200188">
     <obo:IAO_0000115 xml:lang="en">A cross validation objective is a data transformation objective in which the aim is to partition a sample of data into subsets such that the analysis is initially performed on a single subset, while the other subset(s) are retained for subsequent use in confirming and validating the initial analysis.</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
@@ -27226,6 +27243,14 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >todo Reagents from Berichrom(r) Antithrombin III (A) and standard human plasma</obo:IAO_0000116>
   </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000193">
+    <rdfs:label xml:lang="en">obsolete_study committee role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
+    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000111 xml:lang="en">Study committee</obo:IAO_0000111>
+    <obo:IAO_0000115 xml:lang="en">Coordinating committee is a responsible party role overseeing the progress of a multicenter trial</obo:IAO_0000115>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600058">
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -27285,14 +27310,6 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000115 xml:lang="en">the use of enzymes to increase the number of molecules of a biomaterial</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">the use of a polymerase chain reaction to amplify a fragment of DNA</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000193">
-    <rdfs:label xml:lang="en">obsolete_study committee role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
-    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000111 xml:lang="en">Study committee</obo:IAO_0000111>
-    <obo:IAO_0000115 xml:lang="en">Coordinating committee is a responsible party role overseeing the progress of a multicenter trial</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000872">
     <obo:IAO_0000232 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -28980,6 +28997,25 @@ Short-term outcome of neuropsychiatric events in systemic lupus erythematosus up
       </owl:Class>
     </owl:equivalentClass>
     <obo:IAO_0000117 xml:lang="en">IEDB</obo:IAO_0000117>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_61">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >material separation device</rdfs:label>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A device with a separation function realized in a planed process</obo:IAO_0000115>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >flow cytometer</obo:IAO_0000112>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000372"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000306"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Class_42"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000705">
     <rdfs:subClassOf>
