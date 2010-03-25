@@ -1793,17 +1793,6 @@ We need to make this a defined class when the class software is in the ontology<
     <rdfs:label xml:lang="en">platform</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">A platform is an object_aggregate that is the set of instruments and software needed to perform a process. definition_source: OBI.</obo:IAO_0000115>
   </owl:Class>
-  <owl:Class rdf:ID="Class_43">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >reagent</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Class_42"/>
-    </rdfs:subClassOf>
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a device that realizes its function through a chemical reaction that occurs when it is added to a material in an appropriate environment</obo:IAO_0000115>
-    <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >chemical device</obo:IAO_0000118>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200164">
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -5580,13 +5569,6 @@ In this equation b0 is the regression coefficient for the intercept and the bi v
     </rdfs:subClassOf>
     <obo:IAO_0000111 xml:lang="en">Acclimating subject</obo:IAO_0000111>
     <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
-  </owl:Class>
-  <owl:Class rdf:ID="Class_45">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Class_42"/>
-    </rdfs:subClassOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >device requring mechanical work</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200084">
     <obo:IAO_0000116 xml:lang="en">Remove from data transformation in order to avoid multiple inheritance. A time series analysis is a generic term to encompass analyses whose input are time series, but the analysis could be one of many different types, e.g. differential expression (e.g. EDGE algorithm), or forecasting etc. On the other hand an analysis of a given type (e.g. differential expression) is not necessarily taking in time series data, i.e. is not necessarily a time series analysis. The different data types should be dealt by DENRIE (see Comment), but in DT we should have only concepts describing specific types of algorithms and their description could specify whether or not the input can be a time series.</obo:IAO_0000116>
@@ -23780,13 +23762,15 @@ change biomaterial to material in definition</obo:IAO_0000116>
     >Is_a PCR real time preceded by a reverse transcription step (reverse transcription step = an RNA strand is reverse transcribed into its DNA complement using the enzyme reverse transcriptase)</obo:IAO_0000115>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
   </owl:Class>
-  <owl:Class rdf:about="#Class_42">
+  <owl:Class rdf:ID="Class_42">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >device</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >would include reagents</rdfs:comment>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a processed material created with a physical structure or composition to have a function</obo:IAO_0000115>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >if we keep this we could reinstate the old device class which is obsolete_device. didn't work before as we had manufacturing as part of  the definition. device was needed, but couldn't define in Philadelphia.</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
     </rdfs:subClassOf>
@@ -27242,14 +27226,6 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >todo Reagents from Berichrom(r) Antithrombin III (A) and standard human plasma</obo:IAO_0000116>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000193">
-    <rdfs:label xml:lang="en">obsolete_study committee role</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
-    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <obo:IAO_0000111 xml:lang="en">Study committee</obo:IAO_0000111>
-    <obo:IAO_0000115 xml:lang="en">Coordinating committee is a responsible party role overseeing the progress of a multicenter trial</obo:IAO_0000115>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600058">
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -27309,6 +27285,14 @@ function of m/Q.</obo:IAO_0000115>
     <obo:IAO_0000115 xml:lang="en">the use of enzymes to increase the number of molecules of a biomaterial</obo:IAO_0000115>
     <obo:IAO_0000112 xml:lang="en">the use of a polymerase chain reaction to amplify a fragment of DNA</obo:IAO_0000112>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000193">
+    <rdfs:label xml:lang="en">obsolete_study committee role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
+    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000111 xml:lang="en">Study committee</obo:IAO_0000111>
+    <obo:IAO_0000115 xml:lang="en">Coordinating committee is a responsible party role overseeing the progress of a multicenter trial</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000872">
     <obo:IAO_0000232 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
