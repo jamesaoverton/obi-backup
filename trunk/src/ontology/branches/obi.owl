@@ -5137,30 +5137,6 @@ for now.</obo:IAO_0000116>
     <obo:IAO_0000111 xml:lang="en">homogenous substance</obo:IAO_0000111>
     <obo:IAO_0000115 xml:lang="en">Any form of matter (material) that is homogeneous throughout, i.e. solid, liquid, gas</obo:IAO_0000115>
   </owl:Class>
-  <owl:Class rdf:ID="Class_55">
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a planned process executed by a service provider with the objective to enable a service consumer to receive training.</obo:IAO_0000115>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >providing a training service</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:ID="Class_22"/>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
-            </owl:onProperty>
-            <owl:someValuesFrom>
-              <owl:Class rdf:ID="Class_16"/>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Class_15"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200003">
     <obo:IAO_0000117 xml:lang="en">James Malone</obo:IAO_0000117>
     <obo:IAO_0000115 xml:lang="en">A logit-log curve fitting is a curve fitting where first the limits y_0 an y_infty of y when x-&gt;0 and x-&gt;infinity, respectively, are estimated from the input data points (x_1, y_1), (x_2,y_2), ..., (x_n, y_n). Then a curve with equation log((y-y_0)/(y_infty-y))=a+b log(x) is obtained, where a and b are determined to optimize its fit to the input data points.</obo:IAO_0000115>
@@ -7596,7 +7572,7 @@ PMID: 18605936</obo:IAO_0000112>
     <obo:IAO_0000115 xml:lang="en">is the transplantation of tissue from one part of \nthe body to another in the same individual. )</obo:IAO_0000115>
     <obo:IAO_0000119 xml:lang="en">OBI branch derived</obo:IAO_0000119>
   </owl:Class>
-  <owl:Class rdf:about="#Class_22">
+  <owl:Class rdf:ID="Class_22">
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
     <owl:equivalentClass>
       <owl:Restriction>
@@ -8458,9 +8434,7 @@ Its children should be defined classes constructed as output of a process.</obo:
     <rdfs:label xml:lang="en">chromatography detector</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000003"/>
-  <owl:Class rdf:about="#Class_16">
-    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This overlaps with supplier if biobank roles are included. BP wants to subclass the processes and not the roles. AR wants roles subclasses. proposal to add service role, with child supplier from MH</obo:IAO_0000116>
+  <owl:Class rdf:ID="Class_16">
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -8487,8 +8461,13 @@ Its children should be defined classes constructed as output of a process.</obo:
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >service provider role</rdfs:label>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Helen Parkinson</obo:IAO_0000117>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jackson Lab provides experimental animals, EBI provides training on databases, a core facility provides access to a DNA sequencer.</obo:IAO_0000112>
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is a role which inheres in a person or organization and is realized by some providing a service.</obo:IAO_0000115>
+    >is a role which inheres in a person or organization and is realized in in a planned process which provides access to training, materials or execution of protocols for an organization or person</obo:IAO_0000115>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000085">
     <rdfs:subClassOf>
@@ -10567,33 +10546,6 @@ stained with fecal material and is then placed in transport medium.</obo:IAO_000
     <rdfs:label xml:lang="en">molecular crosslinker</rdfs:label>
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000124"/>
     <obo:IAO_0000116 xml:lang="en">AL: if we intend that other ontologies can be used in conjunction with OBI, we shouldn't have such a general term used specifically for chemically joining two or more molecules. I'm sure there are other "crosslinkers" that are on a much different scale in engineering etc. I have moved the original label to be an alternative term, and have renamed the main label accordingly.</obo:IAO_0000116>
-  </owl:Class>
-  <owl:Class rdf:about="#Class_15">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >providing a service</rdfs:label>
-    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >a planned process executed by a service provider with the objective to enable a service consumer to achieve an objective.</obo:IAO_0000115>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Class_16"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Class_17"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >To provide training in use of an instrument, or a mouse, or a data analysis service, or other reagent, or access to these.</obo:IAO_0000112>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0500016">
     <obo:IAO_0000119 xml:lang="en">http://www.itl.nist.gov/div898/handbook/pri/section3/pri334.htm From ASQC (1983) Glossary &amp; Tables for Statistical Quality Control</obo:IAO_0000119>
@@ -27589,6 +27541,40 @@ infection is blocked.</obo:IAO_0000115>
     <obo:IAO_0000115 xml:lang="en">radiolabel role is a role which inheres in a material entity which is realized by the
 process of radioactivity detection</obo:IAO_0000115>
   </owl:Class>
+  <owl:Class rdf:ID="Class_59">
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a service provider role which is realized by a servicer provider organization performing access to some material</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Helen Parkinson</obo:IAO_0000117>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >material access provider role</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000011"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="#Class_19"/>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000308"/>
+                </owl:onProperty>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Class_16"/>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A person or organization who provides access to a DNA sequencer.</obo:IAO_0000112>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</obo:IAO_0000119>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000414">
     <rdfs:subClassOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
     <rdfs:label xml:lang="en">obsolete_instrument by virtue of part</rdfs:label>
@@ -27665,17 +27651,16 @@ desorption/ionization (MALDI, due to M. Karas and F. Hillenkamp
     <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000018">
+    <rdfs:label xml:lang="en">material supplier role</rdfs:label>
     <obo:IAO_0000115 xml:lang="en">Supplier role is a role realized through the process of supplying materials such as animal subjects, reagents or other materials used in an investigation.</obo:IAO_0000115>
-    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-    <rdfs:label xml:lang="en">supplier role</rdfs:label>
-    <obo:IAO_0000117 xml:lang="en">Jennifer Fostel</obo:IAO_0000117>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jackson Labs is an organization which provide mice as experimental material</obo:IAO_0000112>
     <obo:IAO_0000111 xml:lang="en">Supplier</obo:IAO_0000111>
     <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Supplier role is a special kind of service, e.g. biobank</obo:IAO_0000116>
-    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Experimental animals supplied by Jackson Labs.</obo:IAO_0000112>
-    <obo:IAO_0000232 xml:lang="en">CDISC definition: Supplier. An organization that enters into a contract with the acquirer for the supply of a system, software product, or software service under the terms of a contract.</obo:IAO_0000232>
     <rdfs:subClassOf rdf:resource="#Class_16"/>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000117 xml:lang="en">PERSON:Jennifer Fostel</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0200029">
     <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -29245,7 +29230,7 @@ radionuclide (tracer), which is introduced into the body on a biologically activ
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >electrically powered device</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="#Class_17">
+  <owl:Class rdf:ID="Class_17">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >service consumer role</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Role"/>
@@ -30880,6 +30865,20 @@ addition of has_role restriction</obo:IAO_0000232>
     >PERSON: Frank Gibson</obo:IAO_0000119>
     <obo:IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >extracellular electrophysiology recording</obo:IAO_0000111>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_57">
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Helen Parkinson</obo:IAO_0000117>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a service provider role which is realized by a servicer provider organization performing a protocol execution</obo:IAO_0000115>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DNA sequencing of a sample by a core lab which returns data to the consumer</obo:IAO_0000112>
+    <obo:IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></obo:IAO_0000111>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >protocol service provider role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_16"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0400112">
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
@@ -33288,6 +33287,20 @@ Thyroidectomy during laryngectomy for advanced laryngeal carcinoma--whole organ 
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >right handedness</rdfs:label>
     <rdfs:subClassOf rdf:resource="#Class_24"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Class_58">
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >EBI provides training on databases and tools and has a training service provider role</obo:IAO_0000112>
+    <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBI</obo:IAO_0000119>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >training service provider role</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Class_16"/>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a service provider role which is realized by a servicer provider organization performing some training</obo:IAO_0000115>
+    <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >PERSON:Helen Parkinson</obo:IAO_0000117>
+    <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0600006">
     <obo:IAO_0000118 xml:lang="en">euthanisia</obo:IAO_0000118>
