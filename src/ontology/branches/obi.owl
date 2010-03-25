@@ -881,11 +881,17 @@ An individual or juridicial or other body authorized under applicable law to con
     >PERSON: Philippe Rocca-Serra</obo:IAO_0000117>
   </owl:Class>
   <owl:Class rdf:ID="Class_19">
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is realized in a planned process where the bearer participates</obo:IAO_0000115>
+    <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >the role of the  DNA sequencer to which someone gets access to a period of time, e.g. by payment, or other mechanism</obo:IAO_0000112>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.ifomis.org/bfo/1.1/snap#Role"/>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >service provided material role</rdfs:label>
+    >accessed material role</rdfs:label>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AR: rent a DNA sequencer for a period of time. two realizations, payment for the service and also when the person who pays for the service uses it</obo:IAO_0000116>
   </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000740">
     <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -8457,6 +8463,16 @@ Its children should be defined classes constructed as output of a process.</obo:
     >This overlaps with supplier if biobank roles are included. BP wants to subclass the processes and not the roles. AR wants roles subclasses. proposal to add service role, with child supplier from MH</obo:IAO_0000116>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
         <owl:someValuesFrom>
           <owl:Class>
@@ -8465,16 +8481,6 @@ Its children should be defined classes constructed as output of a process.</obo:
               <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000245"/>
             </owl:unionOf>
           </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000300"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Class_15"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -30044,6 +30050,10 @@ Proteome Sci. 2008 Dec 10;6(1):34.PMID: 19077203</obo:IAO_0000112>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eagle-i will supply better English definition</obo:IAO_0000116>
+    <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is a DNA sequencing  process provided as a service - which is the realization of some DNA sequencing in which the service provider role is realized.</obo:IAO_0000115>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >DNA sequencing service</rdfs:label>
   </owl:Class>
