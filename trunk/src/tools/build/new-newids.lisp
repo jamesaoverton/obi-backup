@@ -1,3 +1,5 @@
+(defvar *no-new-obi-ids-below-this* 900)
+
 (defun rewrite-instance-file (uri-rewrites in-file out-file ontology-url &rest prefixes)
   (let ((table (make-hash-table :test 'equal)))
     (with-open-file (f uri-rewrites)
@@ -82,7 +84,7 @@
 
 
 (defun get-uri-rewrites (&rest inputs)
-  (let ((count 750)
+  (let ((count *no-new-obi-ids-below-this*)
 	(need (make-hash-table :test 'equalp))
 	(all (make-hash-table :test 'equalp))
 	(map (make-hash-table :test 'equalp)))
