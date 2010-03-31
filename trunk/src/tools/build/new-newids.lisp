@@ -18,6 +18,7 @@
     (#"setNsPrefix" out-model "roproposed" "http://purl.org/obo/owl/OBO_REL#")
     (#"setNsPrefix" out-model "protege" "http://protege.stanford.edu/plugins/owl/protege#")
     (#"setNsPrefix" out-model "obo" "http://purl.obolibrary.org/obo/")
+    (#"setNsPrefix" out-model "oboInOwl" "http://www.geneontology.org/formats/oboInOwl#")
     (#"read" in-model
 	     (new 'bufferedinputstream
 		  (#"getInputStream" (#"openConnection" (new 'java.net.url (format nil "file://~a" (namestring (truename in-file)))))))
