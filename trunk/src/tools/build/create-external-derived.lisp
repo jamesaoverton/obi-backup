@@ -38,18 +38,17 @@
     ("obi_quality" "http://purl.obolibrary.org/obo/obi/Quality.owl#")
     ("obi_owlfull" "http://purl.obolibrary.org/obo/obi/obi-owl-full.owl#")))
 
-(defparameter *external-derived-header*
-  "<?xml version=\"1.0\"?>
+(defun external-derived-header (ont-uri)
+  (#"replaceFirst"
+   "<?xml version=\"1.0\"?>
 <rdf:RDF
   xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
   xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"
   xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
-  xml:base=\"http://purl.obolibrary.org/obo/obi/externalDerived.owl#\">
+  xml:base=\"__ONT__\">
   <owl:Ontology rdf:about=\"\">
-    <owl:versionInfo rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"
-    >$Revision: 80 $</owl:versionInfo>
   </owl:Ontology>
-")
+" "__ONT__" ont-uri))
 
 (defun parse-templates (templates-path)
   (with-open-file (f templates-path)
@@ -99,9 +98,9 @@
 		  "_GRAPH_GOES_HERE_ used but 'default graph_base' not asserted in file")
       (values params templates))))
 
-(defun combine-template-query-results (results output-path)
+(defun combine-template-query-results (results output-path ont)
   (with-open-file (f output-path :direction :output :if-does-not-exist :create :if-exists :supersede)
-    (write-string *external-derived-header* f)
+    (write-string (external-derived-header ont) f)
     (loop for rdf in results
        for lines = (split-at-char rdf #\linefeed)
        do
@@ -110,19 +109,18 @@
     (format f "<owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000115\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000111\"/><owl:AnnotationProperty rdf:about=\"http://purl.obolibrary.org/obo/IAO_0000412\"/>")
     (format f "</rdf:RDF>~%")))
 
-(defun clean-rdf (path prefixmapping)
+(defun clean-rdf (path prefixmapping base)
   (let* ((file (maybe-url-filename path))
 	 (model (#"createOntologyModel" 'com.hp.hpl.jena.rdf.model.ModelFactory (get-java-field 'OntModelSpec "OWL_MEM"))))
-    (let ((base "http://purl.obolibrary.org/obo/obi/externalDerived.owl"))
-      (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) base)
-      (loop for (prefix namespace) in prefixmapping
-	 do (#"setNsPrefix" (#"getPrefixMapping" (#"getGraph" model)) prefix namespace))
-      (let ((writer (#"getWriter" model "RDF/XML-ABBREV")))
-	(#"setProperty" writer "showXmlDeclaration" "true")
-	(#"setProperty" writer "xmlbase" base)
-	(#"setProperty" writer "relativeURIs" "")
-	(#"write" writer model (new '|FileOutputStream| path) base)
-	))))
+    (#"read" model (new 'io.bufferedinputstream (#"getInputStream" (#"openConnection" (new 'java.net.url file)))) base)
+    (loop for (prefix namespace) in prefixmapping
+       do (#"setNsPrefix" (#"getPrefixMapping" (#"getGraph" model)) prefix namespace))
+    (let ((writer (#"getWriter" model "RDF/XML-ABBREV")))
+      (#"setProperty" writer "showXmlDeclaration" "true")
+      (#"setProperty" writer "xmlbase" base)
+      (#"setProperty" writer "relativeURIs" "")
+      (#"write" writer model (new '|FileOutputStream| path) base)
+      )))
 
 (defparameter *smart-leftquote-pattern* (coerce (list #\. (code-char 196) (code-char 242)) 'string))
 (defparameter *smart-rightquote-pattern* (coerce (list #\. (code-char 196) (code-char 244)) 'string))
@@ -144,7 +142,8 @@
 					      (truename "obi:branches;")))
 
 				(endpoint nil)
-				(debug nil))
+				(debug nil)
+				(ontology-uri "http://purl.obolibrary.org/obo/obi/externalDerived.owl"))
   (let ((*sparql-always-trace* (or *sparql-always-trace* debug)))
     (declare (special *sparql-always-trace*))
     (let ((terms 
@@ -209,7 +208,7 @@
 				   (uri-full instance) (uri-full type) ))
 		     (write-string "</rdf:RDF>" s)
 		     )))
-	      (combine-template-query-results (cons basic-info rdfs) output-path))
-	    (clean-rdf (namestring (truename output-path)) *obi-prefixes*)
+	      (combine-template-query-results (cons basic-info rdfs) output-path ontology-uri))
+	    (clean-rdf (namestring (truename output-path)) *obi-prefixes* ontology-uri)
 	    nil
 	    ))))))
