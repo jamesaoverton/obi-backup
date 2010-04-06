@@ -198,14 +198,13 @@
 		   (with-output-to-string (s)
 		     (write-string "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" s) (terpri s)
 		     (write-string "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\">" s) (terpri s)
-		     (loop for (class) in classes
+		     (loop for (class) in (intersection classes terms)
 			do (format s "<owl:Class rdf:about=~s></owl:Class>~%"
 				   (uri-full class) ))
-		     (loop for (instance type) in instances
+		     (loop for (instance type) in (intersection instances terms)
 			do (format s "<rdf:Description rdf:about=~s><rdf:type rdf:resource=~s/></rdf:Description>~%"
 				   (uri-full instance) (uri-full type) )
-			  (format t "<rdf:Description rdf:about=~s><rdf:type rdf:resource=~s/></rdf:Description>~%"
-				   (uri-full instance) (uri-full type) ))
+			  )
 		     (write-string "</rdf:RDF>" s)
 		     )))
 	      (combine-template-query-results (cons basic-info rdfs) output-path ontology-uri))
