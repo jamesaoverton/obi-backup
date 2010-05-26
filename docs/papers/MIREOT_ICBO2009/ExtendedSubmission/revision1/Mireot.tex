@@ -94,13 +94,15 @@ ontology import\sep data integration\sep MIREOT
 The ability to share and reuse existing ontological resources is an important consideration when developing a new ontology.
 For example, when developing an ontology related to the biomedical domain, it may be useful to include terms from the \ac{GO}~\citep{GO} to represent biological processes or from the \ac{PATO}~\citep{PATO} to represent properties of entities.
 Ontologies such as GO and PATO are built collaboratively by communities of experts and are the products of substantial effort; recapitulating this work instead of reusing it represents a duplication of development effort and results in multiple ontologies covering the same domain. It could also result in projects having different unique identifiers to denote the same entity, which would require post-hoc, potentially error-prone, identifier mapping systems to enable data integration. 
+
 While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with a number of practical challenges when trying to do so.
-The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\citep{OWL} mechanism \emph{owl:imports}, which imports the external resource as a whole.
+The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\citep{OWL} mechanism, which imports the external resource as a whole.
 However, current limitations in tools and reasoners can sometimes make this impractical.
-Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\citep{Protege} and Pellet~\citep{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy~\citep{NCBI} or the Foundational Model of Anatomy~\citep{FMA}, making direct \ac{OWL} imports of such resources impractical. 
+Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\citep{Protege} and Pellet~\citep{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy~\citep{NCBI} or the Foundational Model of Anatomy~\citep{FMA}.
+%, making direct \ac{OWL} imports of such resources impractical. 
 Furthermore, external ontologies may have been constructed using design principles which do not align with the practice of the ontology requiring their import.  In this instance, wholly importing such ontologies could lead to inconsistencies or unintended inferences. 
 Other import options are possible, for instance using software that extracts a \emph{module}~\citep{Grau} of the external ontology.
-A module can be seen as a fragment of an external ontology that, when imported by an other ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
+A module can be seen as a fragment of an external ontology that, when imported by another ontology, allows the same inferences to be drawn with respect to the classes of interest as if the whole ontology had been imported. This solution allows developers to pick only pieces of the source ontology (and thus overcome size issues) without losing any reasoning power.
 However, if an extracted module is to be useful, the external ontology needs to be structured in a way that is compatible with the importing ontology (\emph{e.g.}, using the same upper ontology and relationship types), and the logical axioms need to be accurate. 
 This is not always the case at the current stage of development of some resources.
 For example, during the development of the \ac{OBI}~\citep{OBI}, importing the root class of the \ac{CARO}~\citep{CARO} was not desired as its definition intersected multiple classes in \ac{OBI}, making it difficult to determine how the two ontologies aligned.
@@ -124,7 +126,7 @@ One of the fundamental principles of the \ac{OBO} Foundry is to reuse, where app
 In deciding upon a minimum unit of import, our first step was to consider the practice of other ontology efforts.
 For example, in the \ac{GO}, the intended denotation of classes remains stable such that even when the ontology is repaired or reorganized, the effects of such changes do not affect the intended meaning of individual terms.
 Rather, the changes are towards more carefully expressing the logical relations between them.
-When a term's changes meaning, the term is deprecated~\citep{GOGuide}.
+When a term's meaning changes, the term is deprecated~\citep{GOGuide}.
 We can therefore consider a term as stable, in isolation from the rest of the ontology, and use terms (\emph{i.e.}, individual classes in isolation from the ontology) as basic unit of import.
 The current implementation of \ac{MIREOT} has been limited to import of terms from other ontologies that aspire to the OBO Foundry, and so adhere to a similar deprecation policy.
 The minimum amount of information needed to reference an external term is its \ac{URI} (\textit {i.e.}, the identifier for this term) and its source ontology \ac{URI} (\textit {i.e.}, where the term comes from). 
@@ -202,7 +204,7 @@ In the following sections we present two different cases of application of the \
 \subsection{Use Case One - Basophil and Cell classes}
 
 We replaced the \ac{OBI} $cell$ class with that from the \ac{CL} ontology~\citep{CL}. 
-\ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating an other class denoting the same entity.
+\ac{CL} is part of the \ac{OBO} Foundry effort, and we would like to use the $cell$ class as defined by this resource, instead of creating another class denoting the same entity.
 This class can then be used in turn to import other classes as needed.
 For example the following invocation of the \emph{add-to-external.pl} script:
 
@@ -236,7 +238,7 @@ Consider the scenario in which we have two experiments, one in human and one in 
 The files are annotated with the classes human and mouse from the ontology, which are in turn mapped from the NCBI taxonomy. 
 We can easily imagine that somebody would want to have a query for all 
 experiments in mammals, without specifying the exact species. In this case, we would need to know that human and mouse are 
-subclasses (even indirect) of mammals in the NCBI taxonomy. The root term of the NCBI taxonomy is an example of term we didn't want to include in the \ac{OBI}, as it includes \textit{viroids}, \textit{unclassified sequences} and \textit{others sequences}, which we didn't consider useful when defining organisms.  Therefore, when mapping 
+subclasses (even indirect) of mammals in the NCBI taxonomy. The root term of the NCBI taxonomy is an example of term we did not want to include in the \ac{OBI}, as it includes \textit{viroids}, \textit{unclassified sequences} and \textit{others sequences}, which we did not consider useful when defining organisms.  Therefore, when mapping 
 towards an NCBI term, we decided to retrieve all its superclasses as well up to specific levels (\textit{Archaea}, \textit{Bacteria}, \textit{Eukaryota} and \textit{Viruses}) of the 
 NCBI taxonomy. 
 
