@@ -34,6 +34,7 @@ my $externals_table =
      ["ENVO", "http://purl.org/obo/owl/ENVO#ENVO_", "http://purl.org/obo/owl/ENVO","\\d{8}","ENVO:00000430"],
      ["SO", "http://purl.org/obo/owl/SO#SO_", "http://purl.org/obo/owl/SO","\\d{7}","SO:0000683"],
      ["UO", "http://purl.org/obo/owl/UO#UO_", "http://purl.org/obo/owl/UO","\\d{7}","UO:0000683"],
+     ["UBERON", "http://purl.org/obo/owl/UBERON#UBERON_", "http://purl.org/obo/owl/UBERON","\\d{7}","UBERON:0000105"],
      ["VO", "http://purl.obolibrary.org/obo/VO_", "http://purl.obolibrary.org/obo/vo.owl","\\d{7}","VO:0000867"],
      ["snap", "http://www.ifomis.org/bfo/1.1/snap#", "http://www.ifomis.org/bfo/1.1","\\S+","snap:MaterialEntity"],
      ["span", "http://www.ifomis.org/bfo/1.1/span#", "http://www.ifomis.org/bfo/1.1","\\S+","span:Process"],
