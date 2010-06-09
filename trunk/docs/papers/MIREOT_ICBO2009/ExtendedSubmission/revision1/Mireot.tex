@@ -98,7 +98,7 @@ Ontologies such as GO and PATO are built collaboratively by communities of exper
 While it appears that building upon existing vocabularies is the best way to proceed, ontology developers are faced with a number of practical challenges when trying to do so.
 The easiest way to integrate an existing body of work is to rely on the \ac{OWL}~\citep{OWL} mechanism, which imports the external resource as a whole.
 However, current limitations in tools and reasoners can sometimes make this impractical.
-Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\citep{Protege} and Pellet~\citep{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy~\citep{NCBI} or the Foundational Model of Anatomy~\citep{FMA}.
+Popular OWL tools (\emph{e.g.}, Prot\'eg\'e~\citep{Protege} and Pellet~\citep{Sirin}) can neither load nor reason over very large ontologies such as the NCBI Taxonomy Database ~\citep{NCBI} or the Foundational Model of Anatomy~\citep{FMA}.
 %, making direct \ac{OWL} imports of such resources impractical. 
 Furthermore, external ontologies may have been constructed using design principles which do not align with the practice of the ontology requiring their import.  In this instance, wholly importing such ontologies could lead to inconsistencies or unintended inferences. 
 Other import options are possible, for instance using software that extracts a \emph{module}~\citep{Grau} of the external ontology.
@@ -146,12 +146,28 @@ This additional information, when appropriate, is mapped into the importing onto
 
 \section{Implementation}
 
-An implementation of the \ac{MIREOT} guidelines was performed in the context of the \ac{OBI} project, and can be decomposed into a two-step process:
+An implementation of the \ac{MIREOT} guidelines was performed in the context of the \ac{OBI} project (see Figure \ref{fig:mechanism2}), and can be decomposed into a two-step process:
 
 \begin{enumerate}
 \item Gather the minimum information for the external class.
 \item Use this minimum information to fetch additional elements, like labels and definitions.
 \end{enumerate}
+
+\begin{figure}[t]
+\centering
+{
+\includegraphics[width=.9\linewidth]{./figs/mechanism2.pdf}
+}
+\caption{Diagram of the MIREOT mechanism as implemented by OBI.
+1. The ontology editor gathers the minimal information for the class to import and adds it into the external.owl file
+2. A script parses the external.owl file, and for each class selects the appropriate SPARQL CONSTRUCT template.
+3. The SPARQL query is executed against a SPARQL endpoint (\emph{e.g.}, Neurocommons)
+4. The results of the SPARQL queries are combined into the externalDerived.owl file
+5. The target ontology imports the external.owl and externalDerived.owl files.
+}
+\label{fig:mechanism2}
+\end{figure}
+
 
 Once the external term is identified for import, the first step is to gather the corresponding minimum information set.
 This set is stored in a file called \emph{external.owl} (all scripts and files are available under the \ac{OBI} Subversion Repository~\citep{OBIScripts}).
@@ -179,24 +195,10 @@ Within the \ac{OBI} implementation of the \ac{MIREOT} guidelines, the value of t
 Finally, a script, \emph{create-external-derived.lisp}, iterates through the minimum information stored in \emph{external.owl}.
 Depending on the source ontology URI of each of the imported terms, it then selects the correct SPARQL template and substitutes the relevant ID.
 The queries are then executed against the Neurocommons OBO SPARQL endpoint~\citep{NeurocommonsSparql,Neurocommons}. This supplementary information is stored in a second file, \emph{externalDerived.owl}.
-This file can be removed on an ad-hoc basis (\emph{e.g.}, before releasing new versions of the importing ontology) so that it can then be rebuilt via script based on \emph{external.owl} in order to refresh the additional information (\emph{e.g.}, label). The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the importing ontology's proprietary classes (see Figure \ref{fig:mechanism2}). This introduces an additional level of modularity, separating the domain ontology of interest from the external ontologies.
+This file can be removed on an ad-hoc basis (\emph{e.g.}, before releasing new versions of the importing ontology) so that it can then be rebuilt via script based on \emph{external.owl} in order to refresh the additional information (\emph{e.g.}, label). The two files, \emph{external.owl} and \emph{externalDerived.owl}, are then imported by the target ontology, providing the necessary information to the editors while at the same time keeping it independent from the importing ontology's proprietary classes. This introduces an additional level of modularity, separating the domain ontology of interest from the external ontologies.
 
 In the following sections we present two different cases of application of the \ac{MIREOT} guidelines, implemented during the \ac{OBI} development.
 
-\begin{figure}[t]
-\centering
-{
-\includegraphics[width=.9\linewidth]{./figs/mechanism2.pdf}
-}
-\caption{Diagram of the MIREOT mechanism.
-1. The ontology editor gathers the minimal information for the class to import and adds it into the external.owl file
-2. A script parses the external.owl file, and for each class selects the appropriate SPARQL CONSTRUCT template.
-3. The SPARQL query is executed against a SPARQL endpoint (\emph{e.g.}, Neurocommons)
-4. The results of the SPARQL queries are combined into the externalDerived.owl file
-5. The target ontology imports the external.owl and externalDerived.owl files.
-}
-\label{fig:mechanism2}
-\end{figure}
 
 
 
@@ -219,13 +221,20 @@ Once imported, the $basophil$ and $cell$ classes can be used like any other OBI 
 
 \begin{footnotesize}
 \begin{verbatimtab}
-Class: electroporation
-      SubClassOf: 'cell permeabilization'
-                              and has_specified_input some cell
-                              and has_participant some 'power supply'
+Class: CD3+ T cell culture
+	SubClassOf:' cell culture'
+			  and 'has grain' some (cell 
+			  	and (has_part some 'CD3 subunit with immunoglobulin domain'))
+
+
 \end{verbatimtab}
 \end{footnotesize}
 
+%Class: electroporation
+    %  SubClassOf: 'cell permeabilization'
+        %                      and has_specified_input some cell
+           %                   and has_participant some 'power supply'
+           
 More generally, additional axioms may be used to relate members of the class to other entities in the ontology.
 
 
@@ -235,12 +244,12 @@ The \textit{cell} use-case highlights what is likely to be the most common impor
 However, in some cases, we may require more than that single external term, and to account for this \ac{MIREOT} has been devised to be flexible.
 
 Consider the scenario in which we have two experiments, one in human and one in mouse. 
-The files are annotated with the classes human and mouse from the ontology, which are in turn mapped from the NCBI taxonomy. 
+The files are annotated with the classes human and mouse from the ontology, which are in turn mapped from the NCBI taxonomy database. 
 We can easily imagine that somebody would want to have a query for all 
 experiments in mammals, without specifying the exact species. In this case, we would need to know that human and mouse are 
-subclasses (even indirect) of mammals in the NCBI taxonomy. The root term of the NCBI taxonomy is an example of term we did not want to include in the \ac{OBI}, as it includes \textit{viroids}, \textit{unclassified sequences} and \textit{others sequences}, which we did not consider useful when defining organisms.  Therefore, when mapping 
+subclasses (even indirect) of mammals in the NCBI taxonomy. The root term of the NCBI taxonomy database is an example of term we did not want to include in the \ac{OBI}, as it includes \textit{viroids}, \textit{unclassified sequences} and \textit{others sequences}, which we did not consider useful when defining organisms.  Therefore, when mapping 
 towards an NCBI term, we decided to retrieve all its superclasses as well up to specific levels (\textit{Archaea}, \textit{Bacteria}, \textit{Eukaryota} and \textit{Viruses}) of the 
-NCBI taxonomy. 
+NCBI taxonomy database. 
 
 When the \emph{create-external-derived.lisp} script parses the \emph{external.owl} file and encounters an NCBI taxonomy ID, it will therefore invoke a specific SPARQL query (cf figure \ref{fig:sparql2}). 
 As per the mechanism described above, the minimum information about the imported external class (\emph{e.g.}, \emph{Mus musculus}) is defined in \emph{external.owl}, whereas the additional information (rank information - genus, kingdom, phylum, etc.- \emph{i.e.}, its  superclasses) is stored in \emph{ externalDerived.owl}.
@@ -269,7 +278,7 @@ We currently are in contact with the developers of the \ac{UO} to reach agreemen
 \begin{figure}[t]
 \scriptsize
 \verbatiminput{./figs/sparql2.txt} 
-\caption{Template SPARQL query for import from the NCBI taxonomy. The \_ID\_GOES\_HERE\_ pattern will be replaced by the relevant NCBITax ID dynamically via script when building the CONSTRUCT query. This query allows retrieval of the class of interest and its parents up to a set of defined root classes. Note that the graph <http://purl.org/science/graph/obo/NCBITaxon> contains the source ontology, but the full store includes inferred subClassOf triples.}
+\caption{Template SPARQL query for import from the NCBI taxonomy database. The \_ID\_GOES\_HERE\_ pattern will be replaced by the relevant NCBITax ID dynamically via script when building the CONSTRUCT query. This query allows retrieval of the class of interest and its parents up to a set of defined root classes. Note that the graph <http://purl.org/science/graph/obo/NCBITaxon> contains the source ontology, but the full store includes inferred subClassOf triples.}
 \label{fig:sparql2}
 \end{figure}
 
@@ -383,12 +392,22 @@ technology and informatics}, 102:20-38, 2004.
  
  \bibitem[\protect\citeauthoryear{VO website}{}]{VO} The Vaccine Ontology. Retrieved December 2, 2009, from \url{http://www.violinet.org/vaccineontology/}
 
- \bibitem[\protect\citeauthoryear{Wheeler et al.}{2005}]{NCBI}
-Wheeler D. L. , Barrett T., Benson D. A. , Bryant S. H., Canese K., Church D. M., DiCuccio M., Edgar R., Federhen S., 
- Helmberg W., Kenton D. L., Khovayko O., Lipman D. J., Madden T. L., Maglott D. R., Ostell J., Pontius J. U., Pruitt K. D., 
- SchulerG. D., Schriml L. M., Sequeira E., Sherry S. T., Sirotkin K., Starchenko G., Suzek T. O., Tatusov R., Tatusova T. A., 
- Wagner L., and Yaschenko E.. Database resources of the national center for biotechnology information. \textit{Nucleic acids 
-research, } 33(Database issue), D39-45.
+ \bibitem[\protect\citeauthoryear{Sayers et al.}{2005}]{NCBI}
+ Sayers EW, Barrett T, Benson DA, Bryant SH, Canese K, Chetvernin V,
+   Church DM, DiCuccio M, Edgar R, Federhen S, Feolo M, Geer LY,
+   Helmberg W, Kapustin Y, Landsman D, Lipman DJ, Madden TL, Maglott DR,
+   Miller V, Mizrachi I, Ostell J, Pruitt KD, Schuler GD, Sequeira E,
+   Sherry ST, Shumway M, Sirotkin K, Souvorov A, Starchenko G,
+   Tatusova TA, Wagner L, Yaschenko E, Ye J (2009). Database resources
+   of the National Center for Biotechnology Information. Nucleic Acids
+   Res. 2009 Jan;37(Database issue):D5-15. Epub 2008 Oct 21.
+
+
+%Wheeler D. L. , Barrett T., Benson D. A. , Bryant S. H., Canese K., Church D. M., DiCuccio M., Edgar R., Federhen S., 
+% Helmberg W., Kenton D. L., Khovayko O., Lipman D. J., Madden T. L., Maglott D. R., Ostell J., Pontius J. U., Pruitt K. D., 
+ %SchulerG. D., Schriml L. M., Sequeira E., Sherry S. T., Sirotkin K., Starchenko G., Suzek T. O., Tatusov R., Tatusova T. A., 
+ %Wagner L., and Yaschenko E.. Database resources of the national center for biotechnology information. \textit{Nucleic acids 
+%research, } 33(Database issue), D39-45.
 
  
 \end{thebibliography}
