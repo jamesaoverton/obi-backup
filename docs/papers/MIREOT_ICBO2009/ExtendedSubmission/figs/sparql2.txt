@@ -5,16 +5,17 @@ alias:archaea=tax:_2157
 alias:viruses=tax:_10239
 alias:cellularOrganism=tax:_131567
 
-
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix obi: <http://purl.obofoundry.org/obo/>
 prefix tax: <http://purl.org/obo/owl/NCBITaxon#NCBITaxon>
+prefix iao: <http://purl.obolibrary.org/obo/>
 
 construct
  { ?super rdf:type owl:Class.
    ?super rdfs:subClassOf ?parent.
-   ?super alias:preferredTerm ?label.
+   ?super iao:IAO_0000111 ?label.
    ?super rdfs:label ?label.
    ?super alias:importedFrom <http://purl.org/obo/owl/NCBITaxon>
  }
