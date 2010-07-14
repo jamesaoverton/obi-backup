@@ -32,6 +32,7 @@ my $externals_table =
      ["CL", "http://purl.org/obo/owl/CL#CL_", "http://purl.org/obo/owl/CL","\\d{7}","CL:0000042"],
      ["NCBITaxon", "http://purl.org/obo/owl/NCBITaxon#NCBITaxon_", "http://purl.org/obo/owl/NCBITaxon","\\d+","NCBITaxon:2157"],
      ["ENVO", "http://purl.org/obo/owl/ENVO#ENVO_", "http://purl.org/obo/owl/ENVO","\\d{8}","ENVO:00000430"],
+     ["RNAO", "http://purl.org/obo/owl/RNAO#RNAO_", "http://purl.org/obo/owl/RNAO","\\d{7}","RNAO:0000001"],
      ["SO", "http://purl.org/obo/owl/SO#SO_", "http://purl.org/obo/owl/SO","\\d{7}","SO:0000683"],
      ["UO", "http://purl.org/obo/owl/UO#UO_", "http://purl.org/obo/owl/UO","\\d{7}","UO:0000683"],
      ["UBERON", "http://purl.org/obo/owl/UBERON#UBERON_", "http://purl.org/obo/owl/UBERON","\\d{7}","UBERON:0000105"],
