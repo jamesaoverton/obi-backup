@@ -148,7 +148,7 @@ idspace: CHEBI http://purl.org/obo/owl/CHEBI# \"Chemical Entities of Biological 
 idspace: CL http://purl.org/obo/owl/CL# \"Cell Ontology\"
 idspace: NCBITaxon http://purl.org/obo/owl/NCBITaxon# \"NCBI Taxonomy\"
 idspace: birn_anat http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl# \"NIF Standard Anatomy\"
-idspace: IAO http://purl.obolibrary.org/obo/IAO \"Information Artifact Ontology\"
+idspace: IAO http://purl.obolibrary.org/obo/IAO_ \"Information Artifact Ontology\"
 idspace: BFO http://www.ifomis.org/bfo/1.1/ \"Basic Formal Ontology\"
 idspace: GO http://purl.org/obo/owl/GO# \"Gene Ontology\"
 idspace: FMA http://purl.org/obo/owl/FMA# \"Foundational Model of Anatomy\"
