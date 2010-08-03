@@ -38,6 +38,19 @@
     ("obi_quality" "http://purl.obolibrary.org/obo/obi/Quality.owl#")
     ("obi_owlfull" "http://purl.obolibrary.org/obo/obi/obi-owl-full.owl#")))
 
+(defun maybe-url-filename (thing)
+  (if (keywordp thing)
+      (uri-of-standard-ontology thing)
+      (if (or (pathnamep thing)
+	      (not (or 
+		    (eql 0 (search "file://" thing))
+		    (eql 0 (search "http://" thing)))))
+	  (concatenate 'string "file://" 
+		       (#"replaceAll" 
+			(#"replace" (namestring (truename thing)) "C:" "")
+			"\\\\" "/"))
+	  thing)))
+
 (defun external-derived-header (ont-uri)
   (#"replaceFirst"
    "<?xml version=\"1.0\"?>
