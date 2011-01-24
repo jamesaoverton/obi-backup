@@ -1634,8 +1634,27 @@ OR (my favorite)
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033">
         <rdfs:label xml:lang="en">genetic characteristics information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-        <obo:IAO_0000115>The genotype of the individual organism from which the biomaterial was derived. Individual genetic characteristics include polymorphisms, disease alleles, and haplotypes.</obo:IAO_0000115>
-        <obo:IAO_0000119>MO_66 IndividualGeneticCharacteristics</obo:IAO_0000119>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_032"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">MO definition:
+The genotype of the individual organism from which the biomaterial was derived. Individual genetic characteristics include polymorphisms, disease alleles, and haplotypes.
+
+examples in ArrayExpress
+wild_type
+MutaMouse (CD2F1 mice with lambda-gt10LacZ integration)
+AlfpCre; SNF5 flox/knockout
+p53 knock out
+C57Bl/6 gp130lox/lox MLC2vCRE/+
+fer-15; fem-1
+df/df
+pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
+</rdfs:comment>
+        <obo:IAO_0000119 xml:lang="en">MO_66 IndividualGeneticCharacteristics</obo:IAO_0000119>
+        <obo:IAO_0000115 xml:lang="en">a data item that is about genetic material</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1678,10 +1697,24 @@ OR (my favorite)
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <obo:IAO_0000119>MO_51 genotype</obo:IAO_0000119>
-        <obo:IAO_0000117>MO definition:
+        <obo:IAO_0000117 xml:lang="en">MO definition:
 The total sum of the genetic information of an organism that is known and relevant to the experiment being performed, including chromosomal, plasmid, viral or other genetic material which has been introduced into the organism either prior to or during the experiment.</obo:IAO_0000117>
-        <obo:IAO_0000115>an information content entity (individual genetic characteristics information) that is about biological sequence inheres in
+        <obo:IAO_0000115>a data item (individual genetic characteristics information) that is about biological sequence inheres in
 genetic material which is part of an organism.</obo:IAO_0000115>
     </owl:Class>
     
@@ -1692,8 +1725,26 @@ genetic material which is part of an organism.</obo:IAO_0000115>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035">
         <rdfs:label xml:lang="en">allele information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
-        <obo:IAO_0000115>One of two or more alternative forms of a gene or marker sequence and differing from other alleles at one or more mutational sites based on phenotype or sequence. Polymorphisms are included in this definition.</obo:IAO_0000115>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/SO#SO_0000001"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <obo:IAO_0000119>MO_58 Allele</obo:IAO_0000119>
+        <obo:IAO_0000115 xml:lang="en">One of two or more alternative forms of a gene or marker sequence and differing from other alleles at one or more mutational sites based on phenotype or sequence. Polymorphisms are included in this definition.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">SO: definition
+An allele is one of a set of coexisting sequence variants of a gene.</rdfs:comment>
+        <rdfs:comment xml:lang="en">subclass of &#39;genotype information&#39;??
+using label: allele genotype information?</rdfs:comment>
     </owl:Class>
     
 
@@ -1704,6 +1755,7 @@ genetic material which is part of an organism.</obo:IAO_0000115>
         <rdfs:label xml:lang="en">haplotype information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
         <obo:IAO_0000119>MO_146 Haplotype</obo:IAO_0000119>
+        <rdfs:comment>can it be subclass of &#39;genotype information&#39;?</rdfs:comment>
         <obo:IAO_0000115>The genotype of a single chromosome (i.e., the haploid genotype) that is known and relevant to the experiment being performed. </obo:IAO_0000115>
     </owl:Class>
     
@@ -1713,17 +1765,7 @@ genetic material which is part of an organism.</obo:IAO_0000115>
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_037">
         <rdfs:label xml:lang="en">ploidy information</rdfs:label>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                        <owl:allValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001374"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
         <obo:IAO_0000119>MO_220 Ploidy</obo:IAO_0000119>
         <obo:IAO_0000115>The number of single sets of chromosomes in the cell or an organism e.g., haploid, diploid, triploid, etc.</obo:IAO_0000115>
     </owl:Class>
@@ -1735,9 +1777,9 @@ genetic material which is part of an organism.</obo:IAO_0000115>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_038">
         <rdfs:label xml:lang="en">wild type allele</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
-        <obo:IAO_0000115>the allele found most frequently in natural populations, or in standard laboratory stocks for a given organism.</obo:IAO_0000115>
-        <obo:IAO_0000119>MO_605 genotype</obo:IAO_0000119>
-        <obo:IAO_0000116>instance??</obo:IAO_0000116>
+        <obo:IAO_0000119 xml:lang="en">MO_605 genotype</obo:IAO_0000119>
+        <rdfs:comment xml:lang="en">instance?</rdfs:comment>
+        <obo:IAO_0000115 xml:lang="en">the allele found most frequently in natural populations, or in standard laboratory stocks for a given organism.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1750,6 +1792,18 @@ genetic material which is part of an organism.</obo:IAO_0000115>
         <obo:IAO_0000115>genotype found in nature and/or standard laboratory stock</obo:IAO_0000115>
         <obo:IAO_0000119>MO_605 genotype</obo:IAO_0000119>
         <obo:IAO_0000116>instance??</obo:IAO_0000116>
+        <rdfs:comment>instance?</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040">
+        <rdfs:label xml:lang="en">genetic background information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
+        <obo:IAO_0000117 xml:lang="en">PERSON: Bjoern Peter</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genetic characteristics information which is a part of genotype information that identifies the organism that is thought to have the makeup of the genetic material exclude that specified in allele information</obo:IAO_0000115>
     </owl:Class>
     
 
