@@ -90,6 +90,44 @@
         <obo:IAO_0000116>Chris comments: ChIP-Seq is commonly used to identify regions of histone modifications and transcription factor binding sites.</obo:IAO_0000116>
         <obo:IAO_0000118 xml:lang="en">ChIP-Sequencing assay</obo:IAO_0000118>
         <rdfs:comment xml:lang="en">ChIP-Sequencing, also known as ChIP-Seq, is used to analyze protein interactions with DNA. ChIP-Seq combines chromatin immunoprecipitation (ChIP) with massively parallel DNA sequencing to identify the cistrome of DNA-associated proteins. Massively parallel sequence analyses are used in conjunction with whole-genome sequence databases to analyze the interaction pattern of any protein with DNA, or the pattern of any epigenetic chromatin modifications.</rdfs:comment>
+        <rdfs:comment>EFO definition: 
+ChIP-seq is an assay in which chromatin immunoprecipitation with high throughput sequencing is used to identify the cistrome of DNA-associated proteins.
+
+some of EFO axiom:
+realizes some (analyte and (role_of some DNA)) 
+
+Jie: 
+Q1: Is library preparation part of ChIP-Seq assay?
+Q2: what are evaluant and analyte in the assay?
+
+has_specified_input some 
+    ((&#39;deoxyribonucleic acids&#39;
+     and &#39;protein complex&#39;)
+     and (has_role some &#39;evaluant role&#39;))
+
+Don&#39;t think it is corret, since it means the intersection of DNA and protein has evaluant role
+
+what is difference between protein and protein complex?
+What should we use here?
+
+As the exmaple Chris gave, the histon modification.
+The eveluant is chromosome
+The analyte is histon modification? </rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0400103 -->
+
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0400103">
+        <rdfs:comment>JZ: Do we need high throughput DNA sequencer?
+So far, all its subclass are high throughput sequencer. However, OBI should cover traditional DNA sequencer.
+
+In EFO, it has both, one OBI and one its own, no relation between them
+
+EFO: high throughput DNA sequencer is an instrument is which supports massively parallel sequencing of nucleic acids
+Is there RNA sequencer???
+</rdfs:comment>
     </rdf:Description>
     
 
@@ -265,16 +303,28 @@ A sequence feature identification objective that aims to  characterize the inter
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0008">
         <rdfs:label xml:lang="en">genotyping design</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
         <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0500000"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000113"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000113"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000272"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/SO#SO_0001027"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
@@ -1010,9 +1060,9 @@ need to check the use cases</rdfs:comment>
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018">
-        <rdfs:label xml:lang="en">transcript identification objective</rdfs:label>
+        <rdfs:label xml:lang="en">transcription profiling identification objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
-        <obo:IAO_0000115>A molecular feature identification objective that aims to characterize length and position of transcripts in the genome.</obo:IAO_0000115>
+        <obo:IAO_0000115>A molecular feature identification objective that aims to characterize length, position and abundance of transcripts in the genome.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1666,6 +1716,20 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1694,20 +1758,6 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040"/>
-                    </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
@@ -1808,6 +1858,53 @@ using label: allele genotype information?</rdfs:comment>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_041 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_041">
+        <rdfs:label xml:lang="en">SNP microarray</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
+        <obo:IAO_0000119>EFO_0002703 SNP array</obo:IAO_0000119>
+        <obo:IAO_0000115>a DNA microarray used to detect polymorphisms in DNA samples</obo:IAO_0000115>
+        <obo:IAO_0000117>Person: Helen Parkinson</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_042 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_042">
+        <rdfs:label xml:lang="en">tiling microarray</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
+        <obo:IAO_0000118>genome tiling array</obo:IAO_0000118>
+        <obo:IAO_0000119>EFO_0002704: tiling array</obo:IAO_0000119>
+        <obo:IAO_0000119>http://en.wikipedia.org/wiki/Tiling_array</obo:IAO_0000119>
+        <obo:IAO_0000115>a DNA microarray which has short fragments of nucleic acid immobilized on a substrate. These are designed to cover the whole genome of the target species. Tiling arrays are used to determine genome binding in ChIP assays or to identify transcribed regions.</obo:IAO_0000115>
+        <obo:IAO_0000117>Person: Helen Parkinson</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_045 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_045">
+        <rdfs:label xml:lang="en">transcription profiling assay</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_018 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_018">
@@ -1860,6 +1957,19 @@ using label: allele genotype information?</rdfs:comment>
         <obo:IAO_0000115 xml:lang="en">The progression of biochemical and morphological phases and events that occur in a cell during successive cell replication or nuclear replication events. Canonically, the cell cycle comprises the replication and segregation of genetic material followed by the division of the cell, but in endocycles or syncytial cells nuclear replication or nuclear division may not be followed by cell division.</obo:IAO_0000115>
         <obo:IAO_0000412 rdf:resource="http://purl.org/obo/owl/GO"/>
     </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/GO#GO_0043234 -->
+
+    <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0043234">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PRO#PRO_000000001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
     
 
 
