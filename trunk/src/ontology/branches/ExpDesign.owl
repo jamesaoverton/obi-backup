@@ -51,8 +51,8 @@
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000232"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000117"/>
@@ -187,8 +187,8 @@ Is there RNA sequencer???
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A study design that aims to study the processes that are carried out at the cellular level, but are not necessarily restricted to a single cell. For example, cell communication occurs among more than one cell, but occurs at the cellular level.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_810 cellular_process_design</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">a study design that aims to study  the processes that are carried out at the cellular level, but are not necessarily restricted to a single cell. For example, cell communication occurs among more than one cell, but occurs at the cellular level.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -285,7 +285,7 @@ Is there RNA sequencer???
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that examines the relationship between the size of the administered dose and the extent of the response. </obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that examines the relationship between the size of the administered dose and the extent of the response.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_485 dose_response_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -304,6 +304,8 @@ Is there RNA sequencer???
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
         <obo:IAO_0000115 xml:lang="en">A study design that investigates protein binding sites on nucleic acids.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_933 binding_site_identification_design</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -313,13 +315,10 @@ Is there RNA sequencer???
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005">
         <rdfs:label xml:lang="en">protein and DNA interaction identification objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000113"/>
-        <obo:IAO_0000116>protein binding site of DNA (Gene Regulation Ontology term) identification objective
-or 
-nucleotide to protein binding site (SO term) identification objective
-?</obo:IAO_0000116>
-        <obo:IAO_0000115 xml:lang="en">A sequence feature identification objective that aims to identify protein binding sites on nucleic acids.
-
-A sequence feature identification objective that aims to  characterize the interactions between protein and DNA which include identification of transcription factor binding sites and epigenetic chromatin modifications, such as histone modifications.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A sequence feature identification objective that aims to characterize the interactions between protein and DNA which includes identification of transcription factor binding sites.</obo:IAO_0000115>
+        <obo:IAO_0000119 xml:lang="en">MO_933 binding_site_identification_design</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -329,6 +328,18 @@ A sequence feature identification objective that aims to  characterize the inter
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0006">
         <rdfs:label xml:lang="en">comparative genomic hybridization by array assay</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
@@ -345,18 +356,6 @@ A sequence feature identification objective that aims to  characterize the inter
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which changes in DNA sequence copy number are analysed using a microarray. For example the analysis of LOH in tumor cells vs a non diseased sample or the comparison of clinical isolated of disease causing bacteria.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">EFO_0000749: comparative genomic hybridization by array</obo:IAO_0000119>
         <obo:IAO_0000117 xml:lang="en">Person: James Malone</obo:IAO_0000117>
@@ -370,6 +369,22 @@ A sequence feature identification objective that aims to  characterize the inter
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0007">
         <rdfs:label xml:lang="en">comparative genome hybridization by array design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000113"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_16991"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -396,23 +411,7 @@ A sequence feature identification objective that aims to  characterize the inter
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000113"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_16991"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that detects genomic copy number variations.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that detects genomic copy number variations using microarray technology.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_856 comparative_genome_hybridization_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -445,7 +444,7 @@ A sequence feature identification objective that aims to  characterize the inter
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNP&#39;s.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNPs.</obo:IAO_0000115>
         <obo:IAO_0000115 xml:lang="en">MO_560 genotyping_design</obo:IAO_0000115>
     </owl:Class>
     
@@ -462,7 +461,7 @@ A sequence feature identification objective that aims to  characterize the inter
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000268"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that the organism&#39;s clinical history of diagnosis,  treatments, e.g. vaccinations, surgery etc. is studied.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that the organism&#39;s clinical history of diagnosis, treatments, e.g. vaccinations, surgery etc. is studied.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_832 clinical_history_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -533,7 +532,7 @@ A sequence feature identification objective that aims to  characterize the inter
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">An intervention design type in which a modification of the transcriptome, proteome (not genome) is made, for example RNAi, antibody targeting. </obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which a modification of the transcriptome, proteome (not genome) is made, for example RNAi, antibody targeting.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_392 cellular_modification_design</obo:IAO_0000119>
         <rdfs:comment xml:lang="en">post transcription modification design?
 or more clear RNAi design / antibody targeting design?
@@ -553,10 +552,10 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000268"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0050896"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000931"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -569,10 +568,10 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000268"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000931"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0050896"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -646,7 +645,7 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0019">
         <rdfs:label xml:lang="en">all pairs design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <obo:IAO_0000115 xml:lang="en">A study design in whcih all specimens are compared to every other specimen. </obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which all specimens are compared to every other specimen.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_565 all_pairs</obo:IAO_0000119>
     </owl:Class>
     
@@ -657,7 +656,7 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0020">
         <rdfs:label xml:lang="en">ex vivo design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <obo:IAO_0000115 xml:lang="en">A study design where all or part of an organism is removed and studied in vitro, e.g. part of a mouse is removed and cultured in vitro. Acell culture with an established cell line is an in vitro experiment.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design where all or part of an organism is removed and studied in vitro, e.g. part of a mouse is removed and cultured in vitro. A cell culture with an established cell line is an in vitro experiment.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_808 ex_vivo_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -668,7 +667,7 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0021">
         <rdfs:label xml:lang="en">quality control testing design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <obo:IAO_0000115 xml:lang="en">A  study design in which some aspects of the experiment is quality controlled for the purposes of quality assurance.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which some aspects of the experiment is quality controlled for the purposes of quality assurance.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_981 quality_control_testing_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -685,7 +684,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000208"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000052"/>
@@ -701,7 +700,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000208"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000052"/>
@@ -728,7 +727,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000242"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0200169"/>
@@ -744,7 +743,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000242"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0200169"/>
@@ -849,12 +848,6 @@ need to check the use cases</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -876,6 +869,12 @@ need to check the use cases</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A study design in which gene expression on a genome-wide basis is evaluated, without bias toward coding or noncoding regions, using arrays containing oligonucleotides that are either overlapping or spaced at regular intervals.</obo:IAO_0000115>
@@ -977,7 +976,7 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNP&#39;s using microarray technology.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNPs using microarray technology.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1013,7 +1012,7 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNP&#39;s using high througput sequencing techniques.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design that classifies an individual or group of individuals on the basis of alleles, haplotypes, SNPs using high througput sequencing techniques.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1029,7 +1028,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000186"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design where different protocols or protocol parameters are compared aims to find an optimized protocol </obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design where different protocols or protocol parameters are compared aims to find an optimized protocol</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_934 optimization_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -1075,42 +1074,6 @@ need to check the use cases</rdfs:comment>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0035 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0035">
-        <rdfs:label xml:lang="en">ChIP-chip by array design</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_024"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000272"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_044"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">a study design which aims to identify protein binding sites in genomic DNA by a combination of chromatin immunoprecipitation and DNA microarray (chip) assays.</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0036 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0036">
@@ -1142,7 +1105,7 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">a study design which aims to identify protein binding sites in genomic DNA by a combination of chromatin immunoprecipitation and tiling microarray (chip) assays.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design which aims to identify protein binding sites in genomic DNA by a combination of chromatin immunoprecipitation and tiling microarray (chip) assays.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1150,9 +1113,12 @@ need to check the use cases</rdfs:comment>
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037">
-        <rdfs:label xml:lang="en">methylation identification objective</rdfs:label>
+        <rdfs:label xml:lang="en">epigenetic modification identification objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
-        <obo:IAO_0000115 xml:lang="en">A molecular feature identification objective that aims to detect molecular methylation, such as DNA methylation, histon methylation.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A molecular feature identification objective that aims to detect epigenetic modifications, such as DNA methylation, histone modifications.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000119 xml:lang="en">Person: Chris Stoeckert</obo:IAO_0000119>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -1198,12 +1164,6 @@ need to check the use cases</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1225,6 +1185,12 @@ need to check the use cases</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A study design in which the methylation state of DNA is determined and is compared between samples using array technology.</obo:IAO_0000115>
@@ -1313,6 +1279,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A study design that identifies forms and abundance of transcripts in the genome using microarray technology.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1324,8 +1291,20 @@ need to check the use cases</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_042"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1346,18 +1325,6 @@ need to check the use cases</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
             </owl:Restriction>
@@ -1373,12 +1340,6 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0044">
         <rdfs:label xml:lang="en">transcription profiling by tiling array design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1405,7 +1366,13 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design aims to examine the transcriptome of a biological sample using a tiling path array.</obo:IAO_0000115>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A study designwhich aims to examine the transcriptome of a biological sample using a tiling path array.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">GROUP: EFO</obo:IAO_0000119>
     </owl:Class>
     
@@ -1448,7 +1415,7 @@ need to check the use cases</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design aims to examine the transcriptome of a biological sample by reverse transcription PCR (RT-PCR).</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design which aims to examine the transcriptome of a biological sample by reverse transcription PCR (RT-PCR).</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">GROUP: EFO</obo:IAO_0000119>
     </owl:Class>
     
@@ -1467,6 +1434,12 @@ need to check the use cases</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1479,12 +1452,6 @@ need to check the use cases</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which a microRNA array is used to analyse the microRNA component of the transcriptome.</obo:IAO_0000115>
@@ -1541,6 +1508,12 @@ need to check the use cases</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1555,12 +1528,6 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which surface-bound, translationally competent ribosome complexes are used to generate a translation profile for mRNA, which mRNA may be a single molecular species, or a combination of species, including complex mixtures such as those found in the set of mRNAs isolated from a cell or tissue. One or more components of the surface-bound ribosome complex may be labeled at specific positions to permit analysis of multiple or single molecules for determination of ribosomal conformational changes and translation kinetics. Translation profiles are used as the basis for comparison of an mRNA or set of mRNA species. The translation profile can be used to determine such characteristics as kinetics of initiation, kinetic of elongation, identity of the polypeptide product, and the like. Analysis of translation profiles may be used to determine differential gene expression, optimization of mRNA sequences for expression, screening drug candidates for an effect on translation.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">EFO_0001033 translation profiling</obo:IAO_0000119>
         <obo:IAO_0000117 xml:lang="en">PERSON: James Malone</obo:IAO_0000117>
@@ -1573,12 +1540,6 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0049">
         <rdfs:label xml:lang="en">proteomic profiling by array assay</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
@@ -1601,6 +1562,12 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An experiment where proteins in a sample are detected, quantified or otherwise analysed, e.g. antibody profiling using an array based technology</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">EFO_0002765 proteomic profiling by array</obo:IAO_0000119>
     </owl:Class>
@@ -1612,12 +1579,6 @@ need to check the use cases</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0050">
         <rdfs:label xml:lang="en">RNAi profiling by array design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1644,8 +1605,14 @@ need to check the use cases</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A study design in which experiment double stranded RNA is synthesized with a sequence complementary to a gene(s) of interest and introduced into a cell or organism, where it is recognized as exogenous genetic material and activates the RNAi pathway resulting in knockdown of the transcripts and providing a means to study downstream changes in gene expression.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">GROUP: EFO</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">RNAi profiling by array design in which experiment double stranded RNA is synthesized with a sequence complementary to a gene(s) of interest and introduced into a cell or organism, where it is recognized as exogenous genetic material and activates the RNAi pathway resulting in knockdown of the transcripts and providing a means to study downstream changes in gene expression.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1722,7 +1689,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design  in which surface-bound, translationally competent ribosome complexes are used to generate a translation profile for mRNA, which mRNA may be a single molecular species, or a combination of species, including complex mixtures such as those found in the set of mRNAs isolated from a cell or tissue. One or more components of the surface-bound ribosome complex may be labeled at specific positions to permit analysis of multiple or single molecules for determination of ribosomal conformational changes and translation kinetics. Translation profiles are used as the basis for comparison of an mRNA or set of mRNA species. The translation profile can be used to determine such characteristics as kinetics of initiation, kinetic of elongation, identity of the polypeptide product, and the like. Analysis of translation profiles may be used to determine differential gene expression, optimization of mRNA sequences for expression, screening drug candidates for an effect on translation.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which surface-bound, translationally competent ribosome complexes are used to generate a translation profile for mRNA, where mRNA may be a single molecular species, or a combination of species, including complex mixtures such as those found in the set of mRNAs isolated from a cell or tissue. One or more components of the surface-bound ribosome complex may be labeled at specific positions to permit analysis of multiple or single molecules for determination of ribosomal conformational changes and translation kinetics. Translation profiles are used as the basis for comparison of an mRNA or set of mRNA species. The translation profile can be used to determine such characteristics as kinetics of initiation, kinetic of elongation, identity of the polypeptide product, and the like. Analysis of translation profiles may be used to determine differential gene expression, optimization of mRNA sequences for expression, screening drug candidates for an effect on translation.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">GROUP: EFO</obo:IAO_0000119>
     </owl:Class>
     
@@ -1782,7 +1749,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000268"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110055"/>
@@ -1798,7 +1765,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000268"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110055"/>
@@ -1808,7 +1775,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A study design in which the pathological condition of a part, organ, or system of an organism is studied. The etiology  may be from infection, genetic defect, or environmental stress.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which the pathological condition of a part, organ, or system of an organism is studied. The etiology may be from infection, genetic defect, or environmental stress.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_902 disease_state_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -1819,12 +1786,6 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_012">
         <rdfs:label xml:lang="en">cell type comparison design</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000219"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
@@ -1839,6 +1800,12 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000219"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A study design that compares cells of different type, for example different cell lines.</obo:IAO_0000115>
@@ -1991,7 +1958,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
-        <obo:IAO_0000115>A study design that characterizes length and position of transcripts in order to identify forms of transcripts in the genome.</obo:IAO_0000115>
+        <obo:IAO_0000115>A study design that identifies forms and abundance of transcripts in the genome.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2001,7 +1968,10 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018">
         <rdfs:label xml:lang="en">transcription profiling identification objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000131"/>
-        <obo:IAO_0000115>A molecular feature identification objective that aims to characterize length, position and abundance of transcripts in the genome.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A molecular feature identification objective that aims to characterize the abundance of transcripts</obo:IAO_0000115>
+        <obo:IAO_0000119 xml:lang="en">Group: Penn Group</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2043,6 +2013,20 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_020 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_020">
+        <rdfs:label xml:lang="en">genetic alteration information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
+        <obo:IAO_0000119 xml:lang="en">Group: OBI group</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Group: OBI group</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genetic characteristics information that is about known changes or the lack thereof from the genetic background, including allele information, duplication, insertion, deletion, etc.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">proposed and discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_022 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_022">
@@ -2080,8 +2064,8 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A study design in which sequencing technology (e.g. Solexa/454) is used to generate RNA sequence, analyse the transcibed regions of the genome, and/or to quantitate transcript abundance</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">GROUP: EFO</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">a study design iin which sequencing technology (e.g. Solexa/454) is used to generate RNA sequence, analyse the transcibed regions of the genome, and or to quantitate transcript abundance</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2094,7 +2078,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2126,10 +2110,10 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0037"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">a study design which aims to identify protein and DNA interactions using a combination of chromatin immunoprecipitation and high throughput sequencing. Massively parallel sequence analyses are used in conjunction with whole-genome sequence databases to analyze the interaction pattern of any protein with DNA, or the pattern of any epigenetic chromatin modifications.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design which aims to identify protein and DNA interactions using a combination of chromatin immunoprecipitation and high throughput sequencing. Massively parallel sequence analyses are used in conjunction with whole-genome sequence databases to analyze the interaction pattern of any protein with DNA, or the pattern of any epigenetic chromatin modifications.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2141,8 +2125,21 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0500000"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_030"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2151,29 +2148,26 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000272"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_030"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400147"/>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
+                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0042571"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000118>ChIP-on-chip design</obo:IAO_0000118>
+        <obo:IAO_0000115 xml:lang="en">A study design which aims to identify protein binding sites in genomic DNA by a combination of chromatin immunoprecipitation and DNA microarray (chip) assays.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_933 binding_site_identification_design</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">a study design which aims to identify protein binding sites in genomic DNA by a combination of chromatin immunoprecipitation and microarray (chip) assays.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2219,7 +2213,7 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/obi.owl#Class_011"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001185"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -2325,21 +2319,16 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000272"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0600043"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000300"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0600043"/>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">An intervention design in which an organism(s) is studied that has had genetic material removed, rearranged, mutagenized or added, such as in a knock out.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A study design in which an organism(s) is studied that has had genetic material removed, rearranged, mutagenized or added, such as in a knock out.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">MO_447 genetic_modification_design</obo:IAO_0000119>
     </owl:Class>
     
@@ -2353,7 +2342,13 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000690"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2366,27 +2361,6 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#role_of"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_16991"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_16991"/>
-                                    <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0043234"/>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000067"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -2411,20 +2385,35 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400147"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_0005"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000690"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_16991"/>
+                                    <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0043234"/>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000316"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000067"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000118>ChIP-on-chip assay</obo:IAO_0000118>
@@ -2441,8 +2430,8 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000973"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2453,8 +2442,8 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_047"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2491,8 +2480,8 @@ so it is not correct in logical defintion, DNA microarray</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_047"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000973"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which sequencing technology (e.g. Solexa/454) is used to generate RNA sequence, analyse the transcibed regions of the genome, and or to quantitate transcript abundance</obo:IAO_0000115>
@@ -2559,56 +2548,10 @@ OR (my favorite)
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_032"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">MO definition:
-The genotype of the individual organism from which the biomaterial was derived. Individual genetic characteristics include polymorphisms, disease alleles, and haplotypes.
-
-examples in ArrayExpress
-wild_type
-MutaMouse (CD2F1 mice with lambda-gt10LacZ integration)
-AlfpCre; SNF5 flox/knockout
-p53 knock out
-C57Bl/6 gp130lox/lox MLC2vCRE/+
-fer-15; fem-1
-df/df
-pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
-</rdfs:comment>
-        <obo:IAO_0000119 xml:lang="en">MO_66 IndividualGeneticCharacteristics</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">a data item that is about genetic material</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034">
-        <rdfs:label xml:lang="en">genotype information</rdfs:label>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
+                <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/SO#SO_0000001"/>
-                            </owl:Restriction>
+                            <rdf:Description rdf:about="http://purl.org/obo/owl/SO#SO_0000001"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000297"/>
                                 <owl:someValuesFrom>
@@ -2617,7 +2560,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                                         <owl:someValuesFrom>
                                             <owl:Class>
                                                 <owl:intersectionOf rdf:parseType="Collection">
-                                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_032"/>
+                                                    <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_33696"/>
                                                     <owl:Restriction>
                                                         <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
                                                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
@@ -2630,13 +2573,56 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000232 xml:lang="en">MO definition:
+The genotype of the individual organism from which the biomaterial was derived. Individual genetic characteristics include polymorphisms, disease alleles, and haplotypes.
+
+examples in ArrayExpress
+wild_type
+MutaMouse (CD2F1 mice with lambda-gt10LacZ integration)
+AlfpCre; SNF5 flox/knockout
+p53 knock out
+C57Bl/6 gp130lox/lox MLC2vCRE/+
+fer-15; fem-1
+df/df
+pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
+</obo:IAO_0000232>
+        <obo:IAO_0000119 xml:lang="en">MO_66 IndividualGeneticCharacteristics</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a data item that is about genetic material including polymorphisms, disease alleles, and haplotypes.</obo:IAO_0000115>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034">
+        <rdfs:label xml:lang="en">genotype information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_020"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040"/>
+                    </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <obo:IAO_0000115>a data item (individual genetic characteristics information) that is about the genetic material of an organism and minimally includes information about the genetic background and can in addition contain information about specific alleles, genetic modifications, etc. </obo:IAO_0000115>
+        <obo:IAO_0000112 xml:lang="en">Genotype information can be: Mus musculus wild type (in this case the genetic population background information is Mus musculus), C57BL/6J  Hnf1a+/- (in this case, C57BL/6J is the genetic population background information and Hnf1a+/- is the allele information</obo:IAO_0000112>
         <obo:IAO_0000119>MO_51 genotype</obo:IAO_0000119>
-        <obo:IAO_0000117 xml:lang="en">MO definition:
-The total sum of the genetic information of an organism that is known and relevant to the experiment being performed, including chromosomal, plasmid, viral or other genetic material which has been introduced into the organism either prior to or during the experiment.</obo:IAO_0000117>
+        <obo:IAO_0000119 xml:lang="en">Group: OBI group</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Group: OBI group</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genetic characteristics information that is about the genetic material of an organism and minimally includes information about the genetic background and can in addition contain information about specific alleles, genetic modifications, etc.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2645,7 +2631,7 @@ The total sum of the genetic information of an organism that is known and releva
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035">
         <rdfs:label xml:lang="en">allele information</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_020"/>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -2661,34 +2647,11 @@ The total sum of the genetic information of an organism that is known and releva
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000119>MO_58 Allele</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">One of two or more alternative forms of a gene or marker sequence and differing from other alleles at one or more mutational sites based on phenotype or sequence. Polymorphisms are included in this definition.</obo:IAO_0000115>
-        <rdfs:comment xml:lang="en">SO: definition
-An allele is one of a set of coexisting sequence variants of a gene.</rdfs:comment>
-        <rdfs:comment xml:lang="en">subclass of &#39;genotype information&#39;??
-using label: allele genotype information?</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_036 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_036">
-        <rdfs:label xml:lang="en">haplotype information</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
-        <obo:IAO_0000119>MO_146 Haplotype</obo:IAO_0000119>
-        <rdfs:comment>can it be subclass of &#39;genotype information&#39;?</rdfs:comment>
-        <obo:IAO_0000115>The genotype of a single chromosome (i.e., the haploid genotype) that is known and relevant to the experiment being performed. </obo:IAO_0000115>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_037 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_037">
-        <rdfs:label xml:lang="en">ploidy information</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
-        <obo:IAO_0000119>MO_220 Ploidy</obo:IAO_0000119>
-        <obo:IAO_0000115>The number of single sets of chromosomes in the cell or an organism e.g., haploid, diploid, triploid, etc.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genetic alteration information that about one of two or more alternative forms of a gene or marker sequence and differing from other alleles at one or more mutational sites based on sequence. Polymorphisms are included in this definition.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000112 xml:lang="en">genotype information &#39;C57BL/6J  Hnf1a+/-&#39; in this case, Hnf1a+/- is the allele information</obo:IAO_0000112>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2696,11 +2659,13 @@ using label: allele genotype information?</rdfs:comment>
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_038 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_038">
-        <rdfs:label xml:lang="en">wild type allele</rdfs:label>
+        <rdfs:label xml:lang="en">wild type allele information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_035"/>
         <obo:IAO_0000119 xml:lang="en">MO_605 genotype</obo:IAO_0000119>
-        <rdfs:comment xml:lang="en">instance?</rdfs:comment>
-        <obo:IAO_0000115 xml:lang="en">the allele found most frequently in natural populations, or in standard laboratory stocks for a given organism.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Person: Chris Stoeckert, Jie Zheng</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">an allele information that is about the allele found most frequently in natural populations, or in standard laboratory stocks for a given organism.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2708,12 +2673,15 @@ using label: allele genotype information?</rdfs:comment>
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_039 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_039">
-        <rdfs:label xml:lang="en">wild type genotype</rdfs:label>
+        <rdfs:label xml:lang="en">wild type organism genotype information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034"/>
-        <obo:IAO_0000115>genotype found in nature and/or standard laboratory stock</obo:IAO_0000115>
+        <obo:IAO_0000112 xml:lang="en">C57BL/6J wild type</obo:IAO_0000112>
         <obo:IAO_0000119>MO_605 genotype</obo:IAO_0000119>
-        <obo:IAO_0000116>instance??</obo:IAO_0000116>
-        <rdfs:comment>instance?</rdfs:comment>
+        <obo:IAO_0000119 xml:lang="en">Group: OBI group</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Group: OBI group</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genotype information about an organism and includes information that there are no known modifications to the genetic background. Generally it is the genotype information of a representative individual from a class of organisms.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">proposed and discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2721,10 +2689,20 @@ using label: allele genotype information?</rdfs:comment>
     <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_040">
-        <rdfs:label xml:lang="en">genetic background information</rdfs:label>
+        <rdfs:label xml:lang="en">genetic population background information</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_033"/>
-        <obo:IAO_0000117 xml:lang="en">PERSON: Bjoern Peter</obo:IAO_0000117>
-        <obo:IAO_0000115 xml:lang="en">a genetic characteristics information which is a part of genotype information that identifies the organism that is thought to have the makeup of the genetic material exclude that specified in allele information</obo:IAO_0000115>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#part_of"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_034"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000119 xml:lang="en">Group: OBI group</obo:IAO_0000119>
+        <obo:IAO_0000117 xml:lang="en">Group: OBI group</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">a genetic characteristics information which is a part of genotype information that identifies the population of organisms</obo:IAO_0000115>
+        <obo:IAO_0000112 xml:lang="en">genotype information &#39;C57BL/6J  Hnf1a+/-&#39; in this case, C57BL/6J is the genetic population background information</obo:IAO_0000112>
+        <obo:IAO_0000116 xml:lang="en">proposed and discussed on San Diego OBI workshop, March 2011</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2737,6 +2715,7 @@ using label: allele genotype information?</rdfs:comment>
         <obo:IAO_0000119>EFO_0002703 SNP array</obo:IAO_0000119>
         <obo:IAO_0000115>a DNA microarray used to detect polymorphisms in DNA samples</obo:IAO_0000115>
         <obo:IAO_0000117>Person: Helen Parkinson</obo:IAO_0000117>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2751,6 +2730,7 @@ using label: allele genotype information?</rdfs:comment>
         <obo:IAO_0000119>http://en.wikipedia.org/wiki/Tiling_array</obo:IAO_0000119>
         <obo:IAO_0000115>a DNA microarray which has short fragments of nucleic acid immobilized on a substrate. These are designed to cover the whole genome of the target species. Tiling arrays are used to determine genome binding in ChIP assays or to identify transcribed regions.</obo:IAO_0000115>
         <obo:IAO_0000117>Person: Helen Parkinson</obo:IAO_0000117>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2805,8 +2785,8 @@ EFO terms have same textual definition</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2833,8 +2813,8 @@ EFO terms have same textual definition</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which the transcriptome of a biological sample is analysed.</obo:IAO_0000115>
@@ -2872,6 +2852,8 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
         <obo:IAO_0000112 xml:lang="en">Illumina genome analyzer II</obo:IAO_0000112>
         <obo:IAO_0000117 xml:lang="en">PERSON: Helen Parkinson</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">a DNA sequencer which supports massively parallel sequencing of nucleic acids</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">won&#39;t add into OBI. techniques change with time. High throughput sequencing is compared to traditional sequencing technique. Might not be considered as high throughput in the future</obo:IAO_0000116>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
     
 
@@ -2881,30 +2863,6 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_048">
         <rdfs:label xml:lang="en">transcription profiling by RT-PCR assay</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000552"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
@@ -2927,6 +2885,30 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000989"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000552"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000441"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which the transcriptome of a biological sample is analysed by reverse transcription PCR (RT-PCR)</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">EFO_0002943: transcription profiling by RT-PCR</obo:IAO_0000119>
         <obo:IAO_0000117 xml:lang="en">Person: Anna Farne</obo:IAO_0000117>
@@ -2947,18 +2929,6 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000308"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2975,8 +2945,20 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_018"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_33697"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>An assay in which  the transcriptome of a biological sample is analysed using array technology.</obo:IAO_0000115>
@@ -3009,62 +2991,18 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000435"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000973"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_participant"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#Class_047"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000973"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">An assay in which high througput sequencer is used to detect polymorphisms in DNA samples</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">EFO_0002771: genotyping by high throughput sequencing</obo:IAO_0000119>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_018 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_018">
-        <rdfs:label xml:lang="en">strain establishing objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
-        <obo:IAO_0000115>an objective specification to generate a population or type of organism with uniform morphological, physiological, or genetic characteristics.</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_019 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_019">
-        <rdfs:label xml:lang="en">organism strain</rdfs:label>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000011"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ExpDesign.owl#MO_Class_018"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <obo:IAO_0000116>can the logical definition cover isolate?</obo:IAO_0000116>
-        <obo:IAO_0000118>cultivar</obo:IAO_0000118>
-        <obo:IAO_0000118>ecotype</obo:IAO_0000118>
-        <obo:IAO_0000118>strain</obo:IAO_0000118>
-        <obo:IAO_0000115>A population or type of organisms that has uniform morphological, physiological, or genetic characteristics.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3088,19 +3026,6 @@ Does RNA bear both analyte and evaluant role?</rdfs:comment>
         <obo:IAO_0000115 xml:lang="en">Any process that is carried out at the cellular level, but not necessarily restricted to a single cell. For example, cell communication occurs among more than one cell, but occurs at the cellular level.</obo:IAO_0000115>
         <obo:IAO_0000412 rdf:resource="http://purl.org/obo/owl/GO"/>
     </owl:Class>
-    
-
-
-    <!-- http://purl.org/obo/owl/GO#GO_0043234 -->
-
-    <rdf:Description rdf:about="http://purl.org/obo/owl/GO#GO_0043234">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PRO#PRO_000000001"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </rdf:Description>
     
 
 
