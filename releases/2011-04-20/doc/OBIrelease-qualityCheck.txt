@@ -1,0 +1,152 @@
+# OBI should not have rdfs:class, all issues have been fixed. Current the owl file is edited using Protege. 
+# We don't need to check this now, might need to run after merge the owl files (eg. external.owl, externalDerived.owl, etc.)
+--------------------------------
+
+# rdfs-class-report
+# 	 term which type is rdfs:class
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?si ?label ?type
+WHERE {
+	?si rdfs:label ?label.
+	?si a ?type.
+	FILTER (?type = rdfs:class).
+}
+--------------------------------
+--------------------------------
+
+
+# Curation status should be set and with meta-data imcomplete at least for release
+--------------------------------
+
+# Check curation status of all OBI terms (ignore deprecated terms)
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label ?status
+WHERE {
+	?class a owl:Class.
+	?class rdfs:label ?label.
+	optional {
+		?class obo:IAO_0000114 ?status.
+	}
+	FILTER (regex(str(?class),"OBI_") && !(regex(str(?label),"^obsolete"))).
+}
+ORDER BY ?status ?label
+--------------------------------
+
+
+# Only work on Twinkle SPARQL tools, all queries with OPTIONAL do not work well on Protege 3.x SPARQL tool some time (worked fine before)
+# List all OBI terms which do not have 'has curation status' property
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label ?status
+WHERE {
+	?class a owl:Class.
+	?class rdfs:label ?label.
+	optional {
+		?class obo:IAO_0000114 ?status.
+	}
+	FILTER (regex(str(?class),"OBI_") && !(regex(str(?label),"^obsolete")) && !bound(?status)).
+}
+ORDER BY ?label
+--------------------------------
+
+
+# Only work on Twinkle SPARQL tools, all queries with OPTIONAL do not work on Protege 3.x SPARQL tool (worked well before)
+# List all OBI terms which do not have 'has curation status' property and has 'definition editor' property
+# Note: will miss the terms which don't have 'definition editor' property
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label ?editor ?status
+WHERE {
+	?class a owl:Class.
+	?class rdfs:label ?label.
+	?class obo:IAO_0000117 ?editor .
+	optional {
+		?class obo:IAO_0000114 ?status.
+	}
+	FILTER (regex(str(?class),"OBI_") && !(regex(str(?label),"^obsolete")) && !bound(?status)).
+}
+ORDER BY ?label
+--------------------------------
+
+
+# List all OBI terms which 'has curation status' property is uncurated
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?term ?label ?status
+WHERE {
+	?term rdfs:label ?label.
+	?term obo:IAO_0000114 ?status.
+	FILTER (regex(str(?class),"OBI_") && !(regex(str(?label),"^obsolete")) && ?status = obo:IAO_0000124).
+}
+--------------------------------
+
+# List all OBI terms which 'has curation status' properties do not have value
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?label ?status
+WHERE {
+	?term rdfs:label ?label.
+	?term obo:IAO_0000114 ?status.
+	FILTER (regex(str(?class),"OBI_") && !(regex(str(?label),"^obsolete")) && ?status = '').
+}
+--------------------------------
+--------------------------------
+
+
+# The label and editor preferred term of all OBI terms should be same
+# Find terms with inconsistent label and editor preferred term
+
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?term ?label ?preferred ?editor
+WHERE {
+?term rdfs:label ?label .
+?term obo:IAO_0000111 ?preferred .
+?term rdfs:subClassOf ?parent .
+optional {
+	?term obo:IAO_0000117 ?editor .
+}
+FILTER ((!((str(?label) = str(?preferred)))) &&
+(!(regex(str(?label),"(?s)^obsolete.*"))) && (!((str(?preferred) =""))) && (!((?parent =<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> ))))}
+--------------------------------
+--------------------------------
+
+
+# Should not have duplicated label
+# list all OBI terms and manullly check whether there are duplicate terms
+
+SELECT distinct ?term ?label
+WHERE {
+	?term rdfs:label ?label.
+	FILTER (regex(str(?term),"OBI_") && !(regex(str(?label),"^obsolete"))).
+}
+ORDER BY ?label
+
+--------------------------------
+--------------------------------
+
+# Check any obsoleted classes not the subclasses of 'Obsolete Class'
+
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?term ?label ?super ?reason
+WHERE {
+	?term rdfs:label ?label .
+	?term rdfs:subClassOf ?parent .
+	?term obo:IAO_0000231 ?reason
+}
+ORDER BY ?super
