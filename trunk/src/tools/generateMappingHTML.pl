@@ -49,7 +49,7 @@ sub writeFile {
 	STDERR->print("Write HTML file: $outFile\n");
 
 	$fh->print("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">\n");
-	$fh->print("<title>New Classes in this Release</title>\n");
+	$fh->print("<title>Newly Added Classes in This Release</title>\n");
 	$fh->print("<style type=\"text/css\">\n");
 	$fh->print("tr.d0 td {\nbackground-color: #EEEEEE; color: black;\n}\n</style>\n");
 	$fh->print("<h2>$title</h2>\n");
