@@ -58,7 +58,8 @@
 	       (:file "new-newids")
 	       (:file "jena")
 	       (:file "obi-release-new")
-	       (:file "obsolete-report"))
+	       (:file "obsolete-report")
+	       (:file "clean-subclass-relations"))
 	      :depends-on (macros)))
      :depends-on (owl))
 
