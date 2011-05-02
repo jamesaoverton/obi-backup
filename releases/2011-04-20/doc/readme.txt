@@ -109,10 +109,114 @@ Create merged owl file
 	  (For duplicated name of imported ontologies, pick the second one.)
 Hermit 1.3.3 Reasoning took 194 sec.
 
+Modifiy the meta-data of merged owl file based on previous released OBI owl one - can be done after clean up subclasses
 
-Missing two steps
+
+
+Modification need to make on the merged owl file
 -------------------------------------------------------------------------
+# Check out files to the Linux server:
+svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-04-20/ ~/obi/releases/ 
 
-1. script that remove the duplicated defined classes
 
-2. script to add comments
+12. Clean subclasses: Inferred parent classes of some classes are the subclass of their asserted ones. In this case, the classes need to be removed from their asserted parents
+
+# Run Lisp script, current this command does not work, some functions are missing
+
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+
+(clean-subclasses
+"/home/jiezheng/obi/releases/merged/merged-obi.owl"
+"/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses2.owl")
+
+
+13. Summary counts of classes or properties in obi.owl
+
+# Start lisp
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+
+# Run script
+(entity-report (load-kb-jena "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl")) 
+
+Results
+===============================
+Class   oboInOwl 6
+Class   IAO 112
+Class   GAZ 1
+Class   UO 9
+Class   OBI 1764
+Class   PATO 49
+Class   BFO 39
+Class   owl 2
+Class   NCBITaxon 1170
+Class   FMA 12
+Class   CHEBI 53
+Class   SO 3
+Class   UBERON 4
+Class   CARO 3
+Class   PR 15
+Class   GO 95
+Class   doap 3
+Class   ENVO 2
+Class   CL 19
+Class   OGMS 3
+Class   birnlex 1
+Class   HP 1
+Class   VO 2
+Property        OBI 36
+Property        IAO 36
+Property        dc 15
+Property        owl 1
+Property        rdf-schema 4
+Property        protege 1
+Property        doap 9
+Property        oboInOwl 23
+Property        ro 18
+Property        OBO_REL 7
+===============================
+
+
+14. Header modification
+	- add the doap instance (check doap.owl, need add the header in the merged obi file)
+	- add release name in the as rdfs:lable property of <doap:Version >
+    - add following elements in the header too
+    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/obi/2011-04-20/obi.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011-04-20</owl:versionInfo> (2011-04-20 is the date of release, required by IIRC Bioportal)
+
+
+15. Consult with IAO people. We typically release a fixed IAO with OBI release.
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/2010-10-26/iao.owl"/> (should put the date: 2010-10-26 of iao.owl release)
+
+
+16. Add comments to the merged owl file
+
+# Start lisp in linux system
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+
+# add comment lisp
+(comment-ids-in-owl-file "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl" "/home/jiezheng/obi/releases/merged/merged-obi-comments.owl" (load-kb-jena "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl")) 
+
+
+
+
+Finalize release
+-------------------------------------------------------------------------
+- Send email for developers to review
+
+- Prepare release notes, use previous release notes as template, contain following information
+	a. New to this release - collected from OBI developers
+	b. Count of terms in and used by OBI
+	c. get new classes for this release, compare current merged obi file to last release by running 		
+		("Bubastis" can be downloaded from EFO sourceforge.net website)
+
+		Run commands:
+			java -jar bubastis.jar -1 "file:C://JavaDev/compareOnt/obi_released.owl" -2 "file:C://JavaDev/compareOnt/merged_obi.owl" -t "C://JavaDev/compareOnt/diff.txt" -s
+			java -jar bubastis.jar -1 "file:C://JavaDev/compareOnt/obi_released.owl" -2 "file:C://JavaDev/compareOnt/merged_obi.owl" -t "C://JavaDev/compareOnt/diff-long.txt"
+	d. Generate a list of new classes with links in HTML format using perl script: generateMappingHTML.pl under obi\trunk\src\tools\
+
+	Link to Release notes page: http://obi-ontology.org/page/Releases/2011-04-20 
+
+- upload merged with comment obi owl file to purl and bioportal
+
+- send email to inform the potential users
+
