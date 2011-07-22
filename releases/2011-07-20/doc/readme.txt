@@ -110,7 +110,8 @@ Create merged owl file
 12. Open merged-obi.owl and reasoning using Hermit 1.3.4, reasoning took 185 sec. The merge owl is consistent.
 
 
-
+STOP HERE, NEED TO FINISH FOLLOWING STEPS
+-----------------------------------------
 
 
 
@@ -140,6 +141,9 @@ svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/rel
 
 Results
 ===============================
+
+Previous release (2011-04-20)
+---------------
 Class   oboInOwl 6
 Class   IAO 112
 Class   GAZ 1
@@ -173,6 +177,42 @@ Property        doap 9
 Property        oboInOwl 23
 Property        ro 18
 Property        OBO_REL 7
+
+
+Current release summary
+------
+Class   oboInOwl 6
+Class   IAO 124
+Class   GAZ 1
+Class   UO 11
+Class   OBI 1810
+Class   PATO 49
+Class   BFO 39
+Class   NCBITaxon 1170
+Class   FMA 12
+Class   CHEBI 53
+Class   SO 3
+Class   GO 100
+Class   UBERON 4
+Class   CARO 3
+Class   PR 15
+Class   owl 2
+Class   ENVO 2
+Class   CL 19
+Class   OGMS 3
+Class   birnlex 1
+Class   HP 1
+Class   VO 2
+Property        OBI 37
+Property        IAO 39
+Property        dc 15
+Property        owl 1
+Property        rdf-schema 3
+Property        protege 1
+Property        oboInOwl 23
+Property        ro 18
+Property        OBO_REL 7
+
 ===============================
 
 
