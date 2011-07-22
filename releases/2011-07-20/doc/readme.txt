@@ -63,7 +63,7 @@ Commands used in the Linux system:
 cd release
 ./OBIrelease-SVN-disjoint.sh
 
-6. Create directories '2011-07-20' under obi/releases, check previous release version to copy the files needed und the directory
+6. Create directory '2011-07-20' under obi/releases, check previous release version to copy the files needed und the directory
 
 7. Check consistency after adding disjoint axioms
 
@@ -85,9 +85,13 @@ cd release
 - change path in Java code to fit your installation
 - The owl file contains only inferred superclass axioms is named as new_inferred-superclasses.owl 
 
+10. Commit directory '2011-07-20' (including all files) under obi/releases
+
+
+
 Create merged owl file
 -------------------------------------------------------------------------
-10. merge the owl files 
+11. merge the owl files 
 	- open obi.owl using Protege 4.1
 	- manually import disjoint.owl and new_inferred-superclasses-p4.owl
 	- delete '_defined_material', '_defined processes' and '_defined_output', choose delete the class only option
@@ -99,23 +103,23 @@ Create merged owl file
 		externalDerived.owl
 		inferred-superclasses.owl
 		obi.owl
-	  The URL is http://purl.obolibrary.org/obo/obi/merged-obi.owl. Saving format is RDF/XML. Need save twice, and removed those ontologies you don't want to change although they will be modified anyway. In this case, delete the files and check out from SVN again to avoid conflict.
-	  (For duplicated name of imported ontologies, pick the second one.)
-Hermit 1.3.3 Reasoning took 194 sec.
+	    (For duplicated name of imported ontologies, pick the second one.)
 
-Modifiy the meta-data of merged owl file based on previous released OBI owl one - can be done after clean up subclasses
+	  The URL is http://purl.obolibrary.org/obo/obi/merged-obi.owl. Saving format is RDF/XML. Need save twice, and removed those ontologies you don't want to change although they will be modified anyway. In this case, delete the files and check out from SVN again.
+	  
+12. Open merged-obi.owl and reasoning using Hermit 1.3.4, reasoning took 185 sec. The merge owl is consistent.
 
 
 
-Modification need to make on the merged owl file
+
+
+
+Some modifications need to make on the merged owl file
 -------------------------------------------------------------------------
 # Check out files to the Linux server:
-svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-04-20/ ~/obi/releases/ 
+svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/releases/ 
 
-
-
-
-12. Clean subclasses: Inferred parent classes of some classes are the subclass of their asserted ones. In this case, the classes need to be removed from their asserted parents
+13. Clean subclasses: Inferred parent classes of some classes are the subclass of their asserted ones. In this case, the classes need to be removed from their asserted parents
 
 # Run Lisp script, current this command does not work, some functions are missing
 
@@ -126,7 +130,7 @@ svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-04-20/ ~/obi/rel
 "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses2.owl")
 
 
-13. Summary counts of classes or properties in obi.owl
+14. Summary counts of classes or properties in obi.owl
 
 # Start lisp
 ~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
@@ -172,7 +176,8 @@ Property        OBO_REL 7
 ===============================
 
 
-14. Header modification
+15. Header modification
+	- modifiy the meta-data of merged owl file based on previous released OBI owl one - can be done after clean up subclasses
 	- add the doap instance (check doap.owl, need add the header in the merged obi file)
 	- add release name in the as rdfs:lable property of <doap:Version >
     - add following elements in the header too
@@ -180,11 +185,11 @@ Property        OBO_REL 7
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011-04-20</owl:versionInfo> (2011-04-20 is the date of release, required by IIRC Bioportal)
 
 
-15. Consult with IAO people. We typically release a fixed IAO with OBI release.
+16. Consult with IAO people. We typically release a fixed IAO with OBI release.
 	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/2010-10-26/iao.owl"/> (should put the date: 2010-10-26 of iao.owl release)
 
 
-16. Add comments to the merged owl file
+17. Add comments to the merged owl file
 
 # Start lisp in linux system
 ~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
