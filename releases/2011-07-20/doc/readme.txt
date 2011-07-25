@@ -142,45 +142,6 @@ svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/rel
 Results
 ===============================
 
-Previous release (2011-04-20)
----------------
-Class   oboInOwl 6
-Class   IAO 112
-Class   GAZ 1
-Class   UO 9
-Class   OBI 1764
-Class   PATO 49
-Class   BFO 39
-Class   owl 2
-Class   NCBITaxon 1170
-Class   FMA 12
-Class   CHEBI 53
-Class   SO 3
-Class   UBERON 4
-Class   CARO 3
-Class   PR 15
-Class   GO 95
-Class   doap 3
-Class   ENVO 2
-Class   CL 19
-Class   OGMS 3
-Class   birnlex 1
-Class   HP 1
-Class   VO 2
-Property        OBI 36
-Property        IAO 36
-Property        dc 15
-Property        owl 1
-Property        rdf-schema 4
-Property        protege 1
-Property        doap 9
-Property        oboInOwl 23
-Property        ro 18
-Property        OBO_REL 7
-
-
-Current release summary
-------
 Class   oboInOwl 6
 Class   IAO 124
 Class   GAZ 1
