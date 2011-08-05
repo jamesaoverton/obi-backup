@@ -110,11 +110,6 @@ Create merged owl file
 12. Open merged-obi.owl and reasoning using Hermit 1.3.4, reasoning took 185 sec. The merge owl is consistent.
 
 
-STOP HERE, NEED TO FINISH FOLLOWING STEPS
------------------------------------------
-
-
-
 Some modifications need to make on the merged owl file
 -------------------------------------------------------------------------
 # Check out files to the Linux server:
@@ -130,6 +125,10 @@ svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/rel
 "/home/jiezheng/obi/releases/merged/merged-obi.owl"
 "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses2.owl")
 
+
+# The script ran by Alan. Got following error message in my computer:
+# Debugger invoked on condition of type UNDEFINED-FUNCTION:
+#  The function LOAD-ONTOLOGY is undefined.
 
 14. Summary counts of classes or properties in obi.owl
 
@@ -182,13 +181,12 @@ Property        OBO_REL 7
 	- add the doap instance (check doap.owl, need add the header in the merged obi file)
 	- add release name in the as rdfs:lable property of <doap:Version >
     - add following elements in the header too
-    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/obi/2011-04-20/obi.owl"/>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011-04-20</owl:versionInfo> (2011-04-20 is the date of release, required by IIRC Bioportal)
+    <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/obi/2011-07-20/obi.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2011-07-20</owl:versionInfo> (2011-07-20 is the date of release, required by IIRC Bioportal)
 
 
 16. Consult with IAO people. We typically release a fixed IAO with OBI release.
-	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/2010-10-26/iao.owl"/> (should put the date: 2010-10-26 of iao.owl release)
-
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/2011-08-04/iao.owl"/> (should put the date: 2011-08-04 of iao.owl release)
 
 17. Add comments to the merged owl file
 
