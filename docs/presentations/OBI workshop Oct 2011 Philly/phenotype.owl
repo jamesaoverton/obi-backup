@@ -10,9 +10,10 @@
      xmlns:GO="http://purl.org/obo/owl/GO#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:CHEBI="http://purl.org/obo/owl/CHEBI#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:CHEBI="http://purl.org/obo/owl/CHEBI#"
      xmlns:OBO_REL="http://purl.org/obo/owl/OBO_REL#"
+     xmlns:CL="http://purl.org/obo/owl/CL#"
      xmlns:span="http://www.ifomis.org/bfo/1.1/span#">
     <owl:Ontology rdf:about="http://www.obolibrary.org/obo/phenotype.owl">
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/iao-main.owl"/>
@@ -131,6 +132,59 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OBI_0100026 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0100026">
+        <rdfs:label xml:lang="en">organism</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10/21/09: This is a placeholder term, that should ideally be imported from the NCBI taxonomy, but the high level hierarchy there does not suit our needs (includes plasmids and &#39;other organisms&#39;)</obo:IAO_0000116>
+        <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">13-02-2009:
+		OBI doesn&#39;t take position as to  when an organism starts or ends being an organism - e.g. sperm, foetus.
+		This issue is outside the scope of OBI.</obo:IAO_0000116>
+        <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GROUP: OBI Biomaterial Branch</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.</obo:IAO_0000115>
+        <obo:IAO_0000119 xml:lang="en">WEB: http://en.wikipedia.org/wiki/Organism</obo:IAO_0000119>
+        <obo:IAO_0000112 xml:lang="en">animal</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">fungus</obo:IAO_0000112>
+        <obo:IAO_0000111 xml:lang="en">organism</obo:IAO_0000111>
+        <obo:IAO_0000112 xml:lang="en">plant</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">virus</obo:IAO_0000112>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000121"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000023 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000023">
+        <rdfs:label>phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0100015"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
+                            <rdf:Description rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+                            <rdf:Description rdf:about="http://purl.org/obo/owl/CL#CL_0000000"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000111>phenotype</obo:IAO_0000111>
+        <obo:IAO_0000116>Gene extend ontology (GEO)
+-----------------------------------
+Any observed quality of an organism, such as its morphology, development, or behavior, as opposed to its genotype - the inherited instructions it carries, which may or may not be expressed. [http://en.wikipedia.org/wiki/Phenotype]
+- subclass of a non-physical continuant</obo:IAO_0000116>
+        <obo:IAO_0000115 xml:lang="en">A (combination of) quality(ies) of an organism determined by the interaction of its genetic make-up and environment that differentiates specific instances of a species from other instances of the same species.</obo:IAO_0000115>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/OGMS"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/obo/owl/CHEBI#CHEBI_16991 -->
 
     <owl:Class rdf:about="http://purl.org/obo/owl/CHEBI#CHEBI_16991">
@@ -177,6 +231,19 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
         <obo:IAO_0000111 xml:lang="en">macromolecule</obo:IAO_0000111>
         <obo:IAO_0000118 xml:lang="en">polymer</obo:IAO_0000118>
         <obo:IAO_0000412 rdf:resource="http://purl.org/obo/owl/CHEBI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/obo/owl/CL#CL_0000000 -->
+
+    <owl:Class rdf:about="http://purl.org/obo/owl/CL#CL_0000000">
+        <rdfs:label xml:lang="en">cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/snap#MaterialEntity"/>
+        <obo:IAO_0000115 xml:lang="en">Anatomical structure that has as its parts a maximally connected cell compartment surrounded by a plasma membrane.</obo:IAO_0000115>
+        <obo:IAO_0000112 xml:lang="en">PMID:18089833.Cancer Res. 2007 Dec 15;67(24):12018-25. &quot;...Epithelial cells were harvested from histologically confirmed adenocarcinomas ..&quot;</obo:IAO_0000112>
+        <obo:IAO_0000111 xml:lang="en">cell</obo:IAO_0000111>
+        <obo:IAO_0000412 rdf:resource="http://purl.org/obo/owl/CL"/>
     </owl:Class>
     
 
@@ -305,7 +372,7 @@ fetus is_a macroscopic part (but this is up for discussion)</obo:IAO_0000116>
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0001 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0001">
-        <rdfs:label xml:lang="en">phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">phenotype_ind</rdfs:label>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -336,15 +403,6 @@ Any observed quality of an organism, such as its morphology, development, or beh
 - subclass of a non-physical continuant
 According to this definition, Phenotype is a Quality
 
-Ontology for General Medical Science (OGMS)
------------------------------------
-A (combination of) quality(ies) of an organism determined by the 
-interaction of its genetic make-up and environment that differentiates specific instances of a species from other instances of the same species.
-- subclass of quality
-Current, OBI import this one
-Missing, phenotype of cell
-This definition similar to the one provided by Marcus
-
 However, when we say behaviour, what its quality is?
 Example, 
 ant: building hill behavior, large hill, small hill
@@ -374,18 +432,18 @@ how to link phenotype to genotype?</obo:IAO_0000116>
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0005 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0005">
-        <rdfs:label xml:lang="en">cell motility phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">cell motility phenotype_ind</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0001"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0048870"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#bearer_of"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/PATO#PATO_0001236"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0048870"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -395,14 +453,8 @@ how to link phenotype to genotype?</obo:IAO_0000116>
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0007 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0007">
-        <rdfs:label xml:lang="en">eye color phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">eye color phenotype_ind</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0001"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0001654"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -414,6 +466,12 @@ how to link phenotype to genotype?</obo:IAO_0000116>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/GO#GO_0001654"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000116 xml:lang="en">phenotype is the combination of eye and its color and it is the output of the eye development</obo:IAO_0000116>
     </owl:Class>
     
@@ -422,7 +480,7 @@ how to link phenotype to genotype?</obo:IAO_0000116>
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0008 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0008">
-        <rdfs:label xml:lang="en">skin color phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">skin color phenotype_ind</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0001"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -449,7 +507,7 @@ how to link phenotype to genotype?</obo:IAO_0000116>
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0009 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0009">
-        <rdfs:label xml:lang="en">decreased cell motility phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">decreased cell motility phenotype_ind</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0005"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -461,12 +519,117 @@ how to link phenotype to genotype?</obo:IAO_0000116>
     
 
 
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_001 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_001">
+        <rdfs:label xml:lang="en">eye color phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/obo/owl/PATO#PATO_0000014"/>
+        <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_002"/>
+        <obo:IAO_0000116>If we think Phenotype is Quality and color is a quality too, and color phenotype can think it is the intersection of two qualities, which will assert color phenotype to be two super classes -&gt; multiple inheritance
+
+eye color phenotype = intersection of eye phenotype and color quality?</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
     <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_0010 -->
 
     <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_0010">
-        <rdfs:label xml:lang="en">no mobility phenotype</rdfs:label>
+        <rdfs:label xml:lang="en">no mobility phenotype_ind</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0005"/>
         <obo:IAO_0000116 xml:lang="en">Do not think it is correct to put here. Since it is not output of cell motility</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_002 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_002">
+        <rdfs:label xml:lang="en">eye phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/UBERON#UBERON_0000970"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000116>eye phenotype = quality of eye</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_003 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_003">
+        <rdfs:label xml:lang="en">enzyme activity phenotype_ind</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_0001"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
+                <owl:someValuesFrom rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_005"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000116>How to link phenotype to function (GO term)? </obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_004 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_004">
+        <rdfs:label xml:lang="en">abnormal enzyme activity phenotype_ind</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_003"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_005 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_005">
+        <rdfs:label xml:lang="en">catalyze</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.ifomis.org/bfo/1.1/span#ProcessualEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_006 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_006">
+        <rdfs:label xml:lang="en">enzyme activity phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CHEBI#CHEBI_23367"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000116>how to link to GO:molecular function - enzyme activity?</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_007 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_007">
+        <rdfs:label xml:lang="en">abnormal enzyme activity phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.obolibrary.org/obo/phenotype.owl#Class_006"/>
+        <obo:IAO_0000116>how to link to quality &#39;abnormal&#39;?</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://www.obolibrary.org/obo/phenotype.owl#Class_008 -->
+
+    <owl:Class rdf:about="http://www.obolibrary.org/obo/phenotype.owl#Class_008">
+        <rdfs:label xml:lang="en">cell motility phenotype</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/obo/owl/OBO_REL#inheres_in"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/obo/owl/CL#CL_0000000"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000116>how to link to GO:biological_process?</obo:IAO_0000116>
     </owl:Class>
 </rdf:RDF>
 
