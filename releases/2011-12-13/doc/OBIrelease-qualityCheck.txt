@@ -105,6 +105,39 @@ optional {
 }
 FILTER ((!((str(?label) = str(?preferred)))) &&
 (!(regex(str(?label),"(?s)^obsolete.*"))) && (!((str(?preferred) =""))) && (!((?parent =<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> ))))}
+--------------------------------
+
+
+# List OBI classes without editor preferred term property
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?term ?label ?preferred
+WHERE {
+	?term a owl:Class.
+	?term rdfs:label ?label .
+	optional {
+		?term obo:IAO_0000111 ?preferred .
+	}
+	FILTER (regex(str(?term),"OBI_") && !bound(?preferred))
+}
+--------------------------------
+
+
+# List OBI classes which editor preferred term property with empty value
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?term ?label ?preferred
+WHERE {
+	?term a owl:Class.
+	?term rdfs:label ?label .
+	?term obo:IAO_0000111 ?preferred .
+	FILTER (regex(str(?term),"OBI_") && ?preferred="")
+}
+
 ==================================================================================
 
 
