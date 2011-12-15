@@ -1,4 +1,4 @@
-(defvar *no-new-obi-ids-below-this* 100)
+(defvar *no-new-obi-ids-below-this* 1000)
 
 (defun rewrite-instance-file (uri-rewrites in-file out-file ontology-url &rest prefixes)
   (let ((table (make-hash-table :test 'equal)))
