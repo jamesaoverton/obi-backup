@@ -91,53 +91,58 @@ cd release
 
 Some modifications need to make on the merged owl file
 -------------------------------------------------------------------------
-# Check out files to the Linux server:
-svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-12-13/ ~/obi/releases/ 
-
 12. Summary counts of classes or properties in obi.owl
+
+copy file cleaned_merged_obi.owl to /home/jiezheng/release/
 
 # Start lisp
 ~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
 
 # Run script
-(entity-report (load-kb-jena "/home/jiezheng/obi/releases/merged/cleaned_merged_obi.owl")) 
+(entity-report (load-kb-jena "/home/jiezheng/release/cleaned_merged_obi.owl")) 
 
 Results
 ===============================
-
 Class   oboInOwl 6
 Class   IAO 124
 Class   GAZ 1
 Class   UO 11
-Class   OBI 1810
+Class   OBI 1910
 Class   PATO 49
 Class   BFO 39
 Class   NCBITaxon 1170
-Class   FMA 12
+Class   CL 19
 Class   CHEBI 53
 Class   SO 3
-Class   GO 100
-Class   UBERON 4
-Class   CARO 3
+Class   UBERON 19
+Class   GO 102
 Class   PR 15
 Class   owl 2
 Class   ENVO 2
-Class   CL 19
 Class   OGMS 3
-Class   birnlex 1
+Class   CARO 5
 Class   HP 1
 Class   VO 2
-Property        OBI 37
-Property        IAO 39
+Property        OBI 39
+Property        IAO 42
 Property        dc 15
 Property        owl 1
 Property        rdf-schema 3
 Property        protege 1
+Property        iao 1
 Property        oboInOwl 23
 Property        ro 18
 Property        OBO_REL 7
-
 ===============================
+
+13. Create IEDB view 
+
+Run ExtractAnnotProp.java
+
+
+
+
+
 
 
 
