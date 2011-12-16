@@ -92,7 +92,7 @@ cd release
 Some modifications need to make on the merged owl file
 -------------------------------------------------------------------------
 # Check out files to the Linux server:
-svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/releases/ 
+svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-12-13/ ~/obi/releases/ 
 
 12. Summary counts of classes or properties in obi.owl
 
@@ -100,7 +100,7 @@ svn co http://obi.svn.sourceforge.net/svnroot/obi/releases/2011-07-20/ ~/obi/rel
 ~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
 
 # Run script
-(entity-report (load-kb-jena "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl")) 
+(entity-report (load-kb-jena "/home/jiezheng/obi/releases/merged/cleaned_merged_obi.owl")) 
 
 Results
 ===============================
