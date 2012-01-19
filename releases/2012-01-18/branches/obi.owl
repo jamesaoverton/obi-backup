@@ -2,18 +2,13 @@
 <rdf:RDF xmlns="http://purl.obolibrary.org/obo/obi.owl#"
      xml:base="http://purl.obolibrary.org/obo/obi.owl"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
      xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-     xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
-     xmlns:bfo="http://www.ifomis.org/bfo/1.1#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:obo="http://purl.obolibrary.org/obo/"
-     xmlns:roproposed="http://purl.org/obo/owl/OBO_REL#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
-     xmlns:span="http://www.ifomis.org/bfo/1.1/span#">
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/obi.owl">
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2009-07-31</dc:date>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This file is based on checkout of our SVN repository revision $Revision: 3419 $</rdfs:comment>
@@ -78,13 +73,11 @@
         <dc:creator xml:lang="en">Yongqun He</dc:creator>
         <dc:rights xml:lang="en">free, no license required.</dc:rights>
         <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/iao.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/obi/external-byhand.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/obi/external.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/obi/externalDerived.owl"/>
-        <owl:imports rdf:resource="http://purl.org/obo/owl/ro_bfo_bridge1_1"/>
-        <owl:imports rdf:resource="http://www.ifomis.org/bfo/1.1"/>
-        <owl:imports rdf:resource="http://www.obofoundry.org/ro/ro.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/iao.owl"/>
     </owl:Ontology>
     
 
@@ -235,7 +228,7 @@
         <obo:IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000112 xml:lang="en">see is_input_of example_of_usage</obo:IAO_0000112>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
     </owl:ObjectProperty>
     
 
@@ -314,7 +307,7 @@ For instances: e has_quality q at t iff q inheres_in e at t and q instance-of Qu
         <obo:IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
         <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
     </owl:ObjectProperty>
     
 
@@ -764,13 +757,7 @@ level of radioactivity is_proxy_for level of toxicity</obo:IAO_0000112>
     <!-- http://purl.obolibrary.org/obo/BFO_0000081 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000081"/>
-    
-
-
-    <!-- http://purl.org/obo/owl/OBO_REL#towards -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/obo/owl/OBO_REL#towards"/>
-    
+        
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000066 -->
@@ -817,9 +804,9 @@ level of radioactivity is_proxy_for level of toxicity</obo:IAO_0000112>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/BFO_0000051icipant -->
+    <!-- http://purl.obolibrary.org/obo/BFO_0000057 -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000057"/>
     
 
 
@@ -5041,7 +5028,7 @@ need to add mobile phase as role</obo:IAO_0000116>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -5102,7 +5089,7 @@ need to add mobile phase as role</obo:IAO_0000116>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400168"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5389,7 +5376,7 @@ function of m/Q.</obo:IAO_0000115>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11577,7 +11564,7 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -11635,7 +11622,7 @@ Sanger F, Nicklen S, Coulson AR. Proc Natl Acad Sci U S A. 1977 Dec;74(12):5463-
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000717"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -11919,7 +11906,7 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000696"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -12240,7 +12227,7 @@ controlled by a computer subsystem. The fluidics subsystem ensures accurate reag
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -12585,7 +12572,7 @@ Clouser C, Dunkan C, Ichikawa J, Lee C, Zhang Z, Sheridan A, Fu H, Ranade S, Dim
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000734"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000703"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -12794,7 +12781,7 @@ Accurate whole human genome sequencing using reversible terminator chemistry. Be
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000734"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -13076,7 +13063,7 @@ ssDNA template is hybridized to a sequencing primer and incubated with the enzym
                                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/CHEBI_33696"/>
                                     </owl:Restriction>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000732"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
@@ -13814,7 +13801,7 @@ http://en.wikipedia.org/wiki/Survival_rate</obo:IAO_0000119>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
@@ -13848,7 +13835,7 @@ http://en.wikipedia.org/wiki/Survival_rate</obo:IAO_0000119>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000032"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000815"/>
                     </owl:Restriction>
                     <owl:Restriction>
@@ -13888,7 +13875,7 @@ http://en.wikipedia.org/wiki/Survival_rate</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -13991,7 +13978,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
@@ -14000,7 +13987,7 @@ The principle inhibitor of Thrombin, Factor Xa and other coagulation serine prot
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
@@ -14711,7 +14698,7 @@ placeholder</obo:IAO_0000116>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
@@ -17885,7 +17872,7 @@ through tissue.</obo:IAO_0000115>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000070"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000082"/>
@@ -23790,7 +23777,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001393"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -23879,7 +23866,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001247"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -24472,7 +24459,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0001248"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001204"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -24910,7 +24897,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001307"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -25059,7 +25046,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001271"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -25335,7 +25322,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000435"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -25391,7 +25378,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -25737,7 +25724,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000716"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -25977,7 +25964,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000634"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -26160,7 +26147,7 @@ http://en.wikipedia.org/wiki/Strain_%28biology%29</obo:IAO_0000119>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -26278,7 +26265,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000435"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -26404,7 +26391,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001332"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -26679,7 +26666,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001304"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -26784,7 +26771,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001463"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -27278,7 +27265,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -27532,7 +27519,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001361"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000989"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -27684,7 +27671,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000070"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400149"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -27823,7 +27810,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001335"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -28019,7 +28006,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
                                         <owl:intersectionOf rdf:parseType="Collection">
                                             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/UBERON_0000105"/>
                                             <owl:Restriction>
-                                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
                                             </owl:Restriction>
                                         </owl:intersectionOf>
@@ -28117,7 +28104,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000634"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -28226,7 +28213,7 @@ WEB: http://en.wikipedia.org/wiki/RNA-Seq</obo:IAO_0000232>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -29020,7 +29007,7 @@ need to check the use cases</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000989"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -29412,7 +29399,7 @@ need to check the use cases</rdfs:comment>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                         <owl:someValuesFrom>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:unionOf rdf:parseType="Collection">
@@ -29761,7 +29748,7 @@ need to check the use cases</rdfs:comment>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001274"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -29987,7 +29974,7 @@ need to check the use cases</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -30329,7 +30316,7 @@ need to check the use cases</rdfs:comment>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001248"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -30815,7 +30802,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001419"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001307"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -30908,7 +30895,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0001248"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001307"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -31121,7 +31108,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001235"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001307"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -31273,7 +31260,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001266"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400103"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -31459,7 +31446,7 @@ pat1-114/pat1-114 ade6-M210/ade6-M216 h+/h+ (cells are diploid)
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001318"/>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400149"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -32142,7 +32129,7 @@ http://svitsrv25.epfl.ch/R-doc/library/qvalue.html</obo:IAO_0000119>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400148"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -33269,7 +33256,7 @@ http://svitsrv25.epfl.ch/R-doc/library/qvalue.html</obo:IAO_0000119>
                         <owl:intersectionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0600046"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001057"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
@@ -33610,7 +33597,7 @@ http://svitsrv25.epfl.ch/R-doc/library/qvalue.html</obo:IAO_0000119>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001485"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43412,7 +43399,7 @@ determinations of compounds.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400140"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43424,7 +43411,7 @@ determinations of compounds.</obo:IAO_0000115>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400142"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43465,7 +43452,7 @@ determinations of compounds.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000070"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000432"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43833,7 +43820,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</obo:IAO_0000112>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000151"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43866,7 +43853,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</obo:IAO_0000112>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400106"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -43947,7 +43934,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</obo:IAO_0000112>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400065"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -44116,7 +44103,7 @@ Nat Protoc. 2008;3(10):1550-8. PMID: 18802436</obo:IAO_0000112>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000919"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400142"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -44321,7 +44308,7 @@ https://sourceforge.net/tracker/index.php?func=detail&amp;aid=3302925&amp;group_
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000038"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -44433,7 +44420,7 @@ Manual editing of automatically recorded data in an anesthesia information manag
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0600033"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400142"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -48215,7 +48202,7 @@ sample for particles of interest based on qualities determined by gating) or dis
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -48833,13 +48820,13 @@ When harvesting blood from a human, isolating T cells, and then limited dilution
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000048"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000038"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -49035,13 +49022,13 @@ When harvesting blood from a human, isolating T cells, and then limited dilution
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400140"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0400142"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -49697,7 +49684,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -49728,7 +49715,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -49742,7 +49729,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -49989,7 +49976,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_1110094"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -50188,7 +50175,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/GO_0008150"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -51208,7 +51195,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:intersectionOf rdf:parseType="Collection">
@@ -51222,7 +51209,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
                                 </owl:someValuesFrom>
                             </owl:Restriction>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:intersectionOf rdf:parseType="Collection">
@@ -51246,7 +51233,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110014"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -52706,7 +52693,7 @@ Possible ecological risks of transgenic organism release when transgenes affect 
             <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051icipant"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_1110106"/>
                     </owl:Restriction>
                 </owl:complementOf>
