@@ -53,22 +53,18 @@ Fixed issues:
 
 5. updated the the source ontology IRIs of imported terms
 
-6. replace the terms by BFO and RO 2.0
+6. Create directory '2012-01-18' under obi/releases, copy the obi files from the development directory
+   Add folder check out IAO from 'releases/2012-01-05' directory, which is bfo 2.0 version
+
+7. replace the terms by BFO 2.0 and RO 2.0 in OBI files
 
 using perl script committed under doc dirctory
 (all changes made on obi files can be find in the SVN commit message)
 
-All the files made in the new directory
+8. commit the OBI bfo 2 version in the development directory
+   link IAO to bfo2 version
 
-
-
-
-
-
-
-
-
-5. Generate disjoints.owl using lisp script written by Alan
+9. Generate disjoints.owl using lisp script written by Alan
 	disjoint axioms will be added to all asserted classes but not defined classes. The disjoint axioms will be written in disjoints.owl file.
 	SVN log will be written in SVNlogs.txt
 
@@ -77,25 +73,29 @@ All the files made in the new directory
 
 Commands used in the Linux system:
 cd release
-./OBIrelease-SVN-disjoint.sh
+./OBIrelease-SVN-disjoint-bfo2.sh
+(current disjoints generation has some issues)
 
-6. Create directory '2011-12-13' under obi/releases, check previous release version to copy the files needed und the directory
-
-7. Check consistency after adding disjoint axioms
+10. Check consistency after adding disjoint axioms
 
 - open obi.owl using Protege 4.1
 - manually import disjoints.owl
 - reasoning using Hermit 1.3.4
-    classified using Hermit, no conflicts were found and reasoning took 187 sec
+    classified using Hermit, no conflicts were found and reasoning took 104 sec
 
-8. create inferred-superclasses.owl using Java program (OBIrelease.java)
+Need to work on this tomorrow
+----------------------------
+11. create inferred-superclasses.owl using Java program (OBIrelease.java)
 	merge disjoint.owl to obi.owl and then create inferred version of OBI with super classes cleaned
-
-9. merge files using Java program (OBIrelease.java)
     merge following files to inferred_obi.owl
 		external.owl
 		external-byhand.owl
 		externalDerived.owl
+
+
+
+
+
 
 10. clean the merged file using Protege 4.1
 	- open merged_obi.owl using Protege 4.1
