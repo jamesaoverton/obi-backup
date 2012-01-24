@@ -16,6 +16,8 @@
 
 - related papers of previous works (shared by Melissa)
 
+Notes: proposed relations (phenotype_of, has_phenotype) in RO 2.0 (unoffical release)
+
 3. Parasite phenotype examples (Chris and Jie provided have been shared with some people who are interested in this topic)
 
 - ParasiteExamples.doc
