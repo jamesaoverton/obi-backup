@@ -83,7 +83,7 @@ public class OWLReasonerRunner {
         	if (ont.containsAxiom(ax, true)) {
         		manager.applyChange(new RemoveAxiom(infOnt, ax));
         	}
-        }	
+        }
 
 		return infOnt;
 	}
@@ -198,12 +198,12 @@ public class OWLReasonerRunner {
 			// is really just a convenience method for obtaining the classes that are equivalent
 			// to owl:Nothing.
 			Node<OWLClass> unsatisfiableClasses = reasoner.getUnsatisfiableClasses();
-			if (unsatisfiableClasses.getSize() > 0) {
-				System.out.println("There are some unsatisfiable classes in the ontology: ");
+			if (unsatisfiableClasses.getSize() > 1) {
+				System.out.println("There are " + unsatisfiableClasses.getSize() + " unsatisfiable classes in the ontology: ");
 				for(OWLClass cls : unsatisfiableClasses) {
-					if (cls.toString().equals("owl:Nothing"))
-						continue;
-					System.out.println("    unsatisfiable: " + OBIentity.getLabel(cls,ont,df));
+					if (!cls.toString().equals("owl:Nothing")) {
+						System.out.println("    unsatisfiable: " + OBIentity.getLabel(cls,ont,df));
+					}
 				}
 			} 
 		} else {
@@ -213,100 +213,7 @@ public class OWLReasonerRunner {
 		
 		return reasoner;
 	}
-	
-	public static OWLOntology runReasonnnner (OWLOntologyManager manager, OWLOntology ont, String inferOntStr, String reasonerName, boolean showUnsatisfied) {
-		OWLDataFactory df = manager.getOWLDataFactory();
-        
-		// create inferred ontology
-		OWLOntology infOnt = OntologyManipulator.create(manager, inferOntStr);
-       
-		showMemory();
-		
-		OWLReasoner reasoner = createReasoner(manager, ont, reasonerName);
-
-		if (reasoner.isConsistent()) {
-			System.out.println("Ontology is consistent. Start generating inferred hierarchy.");
-				
-			//run reasoner and give total running time in ms
-			long initTime = System.nanoTime();
-			reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-			long totalTime = System.nanoTime() - initTime;				
-			System.out.println("   Total reasoner time = "	+ (totalTime / 1000000d) + " ms");
-							
-            // To generate an inferred ontology we use implementations of inferred axiom generators
-            // to generate the parts of the ontology we want (e.g. subclass axioms, equivalent classes
-            // axioms, class assertion axiom etc. - see the org.semanticweb.owlapi.util package for more
-            // implementations).  
-            // Set up our list of inferred axiom generators
-            List<InferredAxiomGenerator<? extends OWLAxiom>> gens = new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
-            gens.add(new InferredSubClassAxiomGenerator());	
-            // Now get the inferred ontology generator to generate some inferred axioms
-            InferredOntologyGenerator iog = new InferredOntologyGenerator(reasoner, gens);
-
-            // Put the inferred axioms into a fresh empty ontology - note that there
-	        iog.fillOntology(manager, infOnt);
-	        
-	        // clean up inferred ontology only contains subclass axioms, for OBI, the CLass declaration is not removed
-	        Set<OWLAxiom> axs = infOnt.getAxioms();
-	        for(OWLAxiom ax : axs) {
-	        	if (ont.containsAxiom(ax, true)) {
-	        		manager.applyChange(new RemoveAxiom(infOnt, ax));
-	        	}
-	        }	
-
-	        /*
-	        Set<String> assertSubs = new HashSet<String>();
-
-	        for (OWLClass cls: ont.getClassesInSignature()) {
-	        	Set<OWLSubClassOfAxiom> subAxs = ont.getSubClassAxiomsForSubClass(cls);
-	        	
-	        	for(OWLSubClassOfAxiom sAx: subAxs) {
-	        		OWLClassExpression ex = sAx.getSuperClass();
-	        		if (ex.getClassExpressionType() == ClassExpressionType.OWL_CLASS) {
-	        			assertSubs.add(sAx.getSuperClass().toString() + " " + sAx.getSubClass().toString());
-	        		}	        		
-	        	}
-	        }
-	        
-	        for (OWLClass cls: ont.getClassesInSignature()) {
-	        	NodeSet<OWLClass> infSubs = reasoner.getSuperClasses(cls, true);
-	        	for (Node<OWLClass> infSet : infSubs) {
-					for (OWLClass sc : infSet) {
-						if (!sc.toString().equals("Thing")) {
-							// check whether it is the inferred subClass axioms
-							if (!assertSubs.contains(sc.toString() + " " + cls.toString())) {
-								OWLAxiom axiom = df.getOWLSubClassOfAxiom(cls, sc);
-								manager.applyChange(new AddAxiom(infOnt, axiom));
-							}
-						}
-					}
-	        	}
-	        }
-	        */
-		} else {
-			logger.error("Ontology is not consistent, stop generating inferred hierarchy!");
-		}
-		
-		// show unsatisfied classes
-		if (showUnsatisfied) {				
-			// We can easily get a list of unsatisfiable classes.  (A class is unsatisfiable if it
-			// can't possibly have any instances).  Note that the getunsatisfiableClasses method
-			// is really just a convenience method for obtaining the classes that are equivalent
-			// to owl:Nothing.
-			Node<OWLClass> unsatisfiableClasses = reasoner.getUnsatisfiableClasses();
-			if (unsatisfiableClasses.getSize() > 0) {
-				System.out.println("The following classes are unsatisfiable: ");
-				for(OWLClass cls : unsatisfiableClasses) {
-					if (cls.toString().equals("Nothing"))
-						continue;
-					System.out.println("    unsatisfiable: " + OBIentity.getLabel(cls,ont,df));
-				}
-			}				
-		}
-		
-		return infOnt;
-	}
-		
+			
 	private static OWLReasoner createReasoner(OWLOntologyManager manager, OWLOntology ont, String reasonerName) {
 		OWLReasonerFactory reasonerFactory = null;
 		if (reasonerName == null || reasonerName.equals("hermit"))

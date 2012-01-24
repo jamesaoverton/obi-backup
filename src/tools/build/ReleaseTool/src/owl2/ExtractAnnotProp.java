@@ -1,5 +1,7 @@
 package owl2;
 
+import java.io.File;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
@@ -12,6 +14,7 @@ import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.RemoveAxiom;
+import org.semanticweb.owlapi.util.AutoIRIMapper;
 
 public class ExtractAnnotProp {
 	
@@ -19,12 +22,22 @@ public class ExtractAnnotProp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+		
 		// Get hold of an ontology manager
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	
     	
     	// load ontology
-    	OWLOntology ont = OntologyManipulator.loadFromFile("C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-13/merged/cleaned_merged_obi.owl", manager);
-
+    	OWLOntology ont = OntologyManipulator.load(path + "merged/obi_merged_iao.owl", manager);
+    	/*
+    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "merged/"), false);
+       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
+       	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
+       	manager.addIRIMapper(mapper);
+    	manager.addIRIMapper(mapper2);
+    	manager.addIRIMapper(mapper3);
+    	*/
+        
     	// Create factory to obtain a reference to a class
         OWLDataFactory df = manager.getOWLDataFactory();   	 
         //Set the annotation properties
@@ -64,14 +77,14 @@ public class ExtractAnnotProp {
             } 
         } 
         
-		OntologyManipulator.saveToFile(manager, ont, "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-15/merged/merged_obi_woIEDB.owl");
+		OntologyManipulator.saveToFile(manager, ont, path + "merged/obi_woIEDB.owl");
 
-		OntologyManipulator.saveToFile(manager, annotOnt, "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-15/merged/IEDB_annot.owl");
+		OntologyManipulator.saveToFile(manager, annotOnt, path + "merged/IEDB_annot.owl");
 		
-		OntologyManipulator.saveToFile(manager, subsetOnt, "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-15/merged/IEDB_inSubset.owl");
+		OntologyManipulator.saveToFile(manager, subsetOnt, path + "merged/IEDB_inSubset.owl");
 		
 		OWLOntology viewOnt = OntologyManipulator.mergeToTargetOnt(manager, ont, subsetOnt);
 		viewOnt = OntologyManipulator.mergeToTargetOnt(manager, viewOnt, annotOnt);
-		OntologyManipulator.saveToFile(manager, viewOnt, "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-15/merged/obi_IEDBview.owl");		
+		OntologyManipulator.saveToFile(manager, viewOnt, path + "merged/obi_IEDBview.owl");		
 	}
 }
