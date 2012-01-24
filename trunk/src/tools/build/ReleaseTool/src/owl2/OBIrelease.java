@@ -1,6 +1,6 @@
 package owl2;
 
-import java.util.Iterator;
+import java.io.File;
 import java.util.Set;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -10,6 +10,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.RemoveImport;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.util.AutoIRIMapper;
 
 public class OBIrelease {
 	
@@ -38,94 +39,15 @@ public class OBIrelease {
 	 * remove branches, _defined_material, _defined_process, 
 	 */
 	public static void main(String[] args) {
-		/*
-		 *This part to merge disjoint.owl to obi.owl and generate inferred version of obi with superclasses cleaned
-		 
-		 
-		String disjointFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/trunk/src/ontology/branches/disjoints.owl";
-		String targetFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/trunk/src/ontology/branches/obi.owl";
-		String saveFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/trunk/src/ontology/branches/inferred_obi.owl";
-		String reasonerName = "hermit";
-		// Get hold of an ontology manager
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	
-    	
-    	// load ontology
-     	OWLOntology targetOnt = OntologyManipulator.loadFromFile(targetFilename, manager);
-     	OWLOntology ont = OntologyManipulator.loadFromFile(disjointFilename, manager);
-     	// merge disjoint.owl to the obi.owl
-     	targetOnt = OntologyManipulator.mergeToTargetOnt(manager, targetOnt, ont);
+		// mergeDisjoints();
+		
+		// mergeExternals ();
+		
+		// inferSuperClasses ();
+		
+		mergeIAO ();
      	
-     	// generate the inferred hierarchy and clean the super classes
-     	OWLReasoner reasoner = OWLReasonerRunner.runReasoner(manager, targetOnt, reasonerName);
-    	String mergeURIstr = "http://purl.obolibrary.org/obi_merged.owl";
-    	targetOnt = OWLReasonerRunner.getCleanedOntologyWithInferredSuperClasses(manager, targetOnt, mergeURIstr, reasoner);
-		*/   
-		
-		
-		/* 
-		 * This part is used to merge the MIREOT terms
-		 */
-		
-		/*
-		String targetFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/trunk/src/ontology/branches/inferred_obi.owl";
-        String externalByHand = "http://purl.obolibrary.org/obo/obi/external-byhand.owl";
-        String external = "http://purl.obolibrary.org/obo/obi/external.owl";
-        String externalDerived = "http://purl.obolibrary.org/obo/obi/externalDerived.owl";
-		String saveFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/trunk/src/ontology/branches/merged_obi2.owl";		
-		
-		// Get hold of an ontology manager
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	     
-    	
-    	// load ontology
-     	OWLOntology targetOnt = OntologyManipulator.loadFromFile(targetFilename, manager);
- 
-     	// get all directly imported ontologies
-     	Set<OWLOntology> importOnts = targetOnt.getDirectImports();
- 
-     	// remove import declarations from loaded target ontology
-		OWLDataFactory df = manager.getOWLDataFactory();
-        RemoveImport ri = new RemoveImport(targetOnt, df.getOWLImportsDeclaration(IRI.create(external)));
-        manager.applyChange(ri);
-        ri = new RemoveImport(targetOnt, df.getOWLImportsDeclaration(IRI.create(externalByHand)));
-        manager.applyChange(ri);
-        ri = new RemoveImport(targetOnt, df.getOWLImportsDeclaration(IRI.create(externalDerived)));
-        manager.applyChange(ri);
-     	
-        // merge directly imported ontologies into the target ontology
-     	for(OWLOntology importOnt: importOnts) {
-     		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
-     		if (importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) {
-     			targetOnt = OntologyManipulator.mergeToTargetOnt(manager, targetOnt, importOnt);
-     		}
-     	}
-     	*/
-		
-		
-		// merge iao-main before merge IAO to OBI
-	    String iaoFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-13/external/iao/IAO.owl";
-	    String saveIaoFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-13/merged/merged_iao.owl";	
-	    
-	    // Get hold of an ontology manager
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	     
-    	OWLOntology iaoOnt = OntologyManipulator.loadFromFile(iaoFilename, manager);
- 		OWLDataFactory df = manager.getOWLDataFactory();
-
-	    // get all directly imported ontologies
-     	Set<OWLOntology> importOnts = iaoOnt.getDirectImports();
-
-     	for(OWLOntology importOnt: importOnts) {
-     		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
-     		RemoveImport ri = new RemoveImport(iaoOnt, df.getOWLImportsDeclaration(importOntIRI));
-     		manager.applyChange(ri);
-     	}
-
-     	for(OWLOntology importOnt: importOnts) {
-     		iaoOnt = OntologyManipulator.mergeToTargetOnt(manager, iaoOnt, importOnt);
-     	}
-     	
-     	OntologyManipulator.saveToFile(manager, iaoOnt, saveIaoFilename);
-     	
-     	
+     	/*
 		// merge obi with merged iao.owl
 		String targetFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-13/merged/Copy of cleaned_merged_obi.owl";
   		String saveFilename = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2011-12-13/merged/merged_obi_iao2.owl";		
@@ -135,6 +57,186 @@ public class OBIrelease {
       	targetOnt = OntologyManipulator.mergeToTargetOnt(manager, targetOnt, iaoOnt);
 		
      	// targetOnt = OntologyManipulator.setOntologyID(manager, targetOnt, "http://purl.obolibrary.org/obo/obi_merged.owl");
-    	OntologyManipulator.saveToFile(manager, targetOnt, saveFilename);		
+    	OntologyManipulator.saveToFile(manager, targetOnt, saveFilename);
+    	*/		
+	}
+
+	static void mergeDisjoints () {
+		System.out.println("--- merge disjoints ---");
+		
+ 		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+ 		String ontFilename = path + "branches/obi.owl";
+		String disjointFilename = path + "branches/disjoints.owl";
+	    String saveFilename = path + "merged/obi_disjoints.owl";	
+		
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	 
+        
+        // load imported ontologies locally
+    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "branches/"), false);
+       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
+       	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
+       	manager.addIRIMapper(mapper);
+    	manager.addIRIMapper(mapper2);
+    	manager.addIRIMapper(mapper3);
+                         
+    	// load obi ontology
+        OWLOntology ont = OntologyManipulator.load(ontFilename, manager);
+        // check prefix defined in the ontology and where the ontology loaded from
+    	//OntologyManipulator.printPrefixNSs(manager, ont);
+
+        // load disjoint ontology
+     	OWLOntology disjointOnt = OntologyManipulator.loadFromFile(disjointFilename, manager);
+     	// merge disjoint.owl to the obi.owl
+     	ont = OntologyManipulator.mergeToTargetOnt(manager, ont, disjointOnt);
+     	OntologyManipulator.saveToFile(manager, ont, saveFilename);
+     	System.gc();
+	}
+	
+	static void mergeExternals () {
+		System.out.println("--- merge external ---");
+
+		String external = "http://purl.obolibrary.org/obo/obi/external.owl";
+        String externalDerived = "http://purl.obolibrary.org/obo/obi/externalDerived.owl";
+        String externalByHand = "http://purl.obolibrary.org/obo/obi/external-byhand.owl";
+ 
+		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+ 		String ontFilename = path + "merged/obi_disjoints.owl";
+	    String saveFilename = path + "merged/obi_merged.owl";	
+
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        
+        // load imported ontologies locally
+    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "branches/"), false);
+       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
+       	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
+       	manager.addIRIMapper(mapper);
+    	manager.addIRIMapper(mapper2);
+    	manager.addIRIMapper(mapper3);
+                         
+    	// load obi_disjoints ontology
+        OWLOntology ont = OntologyManipulator.load(ontFilename, manager);
+        // check prefix defined in the ontology and where the ontology loaded from
+        //OntologyManipulator.printPrefixNSs(manager, ont);
+
+    	OWLDataFactory df = manager.getOWLDataFactory();
+
+	    // get all imported ontologies
+      	Set<OWLOntology> importOnts = ont.getImports();
+
+      	// remove imports statements from the loaded ontology
+     	for(OWLOntology importOnt: importOnts) {    		
+			// OntologyManipulator.printPrefixNSs(manager, importOnt);
+			IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
+    		if (importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) { 
+    			RemoveImport ri = new RemoveImport(ont, df.getOWLImportsDeclaration(importOntIRI));
+    			manager.applyChange(ri);
+    		}
+     	}
+    	
+     	// merge the removed imported ontologies to the loaded one
+     	for(OWLOntology importOnt: importOnts) {
+     		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
+    		if (importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) {
+    			// OntologyManipulator.printPrefixNSs(manager, importOnt);
+    			ont = OntologyManipulator.mergeToTargetOnt(manager, ont, importOnt);
+    		}
+     	} 
+     	
+     	OntologyManipulator.saveToFile(manager, ont, saveFilename);
+
+    	System.gc();
+	}
+	
+	static void inferSuperClasses () {
+		System.out.println("--- reasoning on merged file ---");
+
+		String reasonerName = "hermit";
+
+		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+		String ontFilename = path + "merged/obi_merged.owl";
+	    String saveFilename = path + "merged/obi_merged_inferred.owl";	
+		String inferOntURIStr = "http://purl.obolibrary.org/obo/obi/obi_inferredSuperClasses.owl";
+	    String saveInferFilename = path + "branches/obi_inferredSuperClasses.owl";	
+		
+	    // Get hold of an ontology manager
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        
+        // load imported ontologies locally
+    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "branches/"), false);
+       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
+       	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
+       	manager.addIRIMapper(mapper);
+    	manager.addIRIMapper(mapper2);
+    	manager.addIRIMapper(mapper3);
+                         
+    	// load merged obi ontology
+        OWLOntology ont = OntologyManipulator.load(ontFilename, manager);
+    	//OntologyManipulator.printPrefixNSs(manager, ont);
+    	
+      	// generate the inferred hierarchy and clean the super classes
+     	OWLReasoner reasoner = OWLReasonerRunner.runReasoner(manager, ont, reasonerName);
+    	
+		ont = OWLReasonerRunner.getCleanedOntologyWithInferredSuperClasses(manager, ont, inferOntURIStr, reasoner);
+		OntologyManipulator.saveToFile(manager, ont, saveFilename);
+		
+     	//ont = OWLReasonerRunner.getOntologyWithInferredSuperClasses(manager, ont, inferOntURIStr, reasoner);
+     	//OntologyManipulator.saveToFile(manager, ont, saveFilename);
+     	
+		if (manager.contains(IRI.create(inferOntURIStr))) {
+			OWLOntology inferOnt = manager.getOntology(IRI.create(inferOntURIStr));
+			OntologyManipulator.saveToFile(manager, inferOnt, saveInferFilename);
+		}
+ 	}
+	
+	static void mergeIAO () {
+		System.out.println("--- merge IAO BFO 2.0 version ---");
+
+        String iao = "http://purl.obolibrary.org/obo/iao/dev/iao.owl";
+		String iao_main = "http://purl.obolibrary.org/obo/iao/dev/iao-main.owl";
+        String ont_meta = "http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl";
+ 
+		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+ 		String ontFilename = path + "merged/obi_merged_inferred.owl";
+	    String saveFilename = path + "merged/obi_merged_iao.owl";	
+
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        
+        // load imported ontologies locally
+    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "merged/"), false);
+       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "merged/iao-merged/"), false);
+       	manager.addIRIMapper(mapper);
+    	manager.addIRIMapper(mapper2);
+                         
+    	// load obi_disjoints ontology
+        OWLOntology ont = OntologyManipulator.load(ontFilename, manager);
+        // check prefix defined in the ontology and where the ontology loaded from
+        // OntologyManipulator.printPrefixNSs(manager, ont);
+
+    	OWLDataFactory df = manager.getOWLDataFactory();
+
+	    // get all imported ontologies
+      	Set<OWLOntology> importOnts = ont.getImports();
+
+      	// remove imports statements from the loaded ontology
+     	for(OWLOntology importOnt: importOnts) {    		
+			// OntologyManipulator.printPrefixNSs(manager, importOnt);
+			IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
+    		if (importOntIRI.equals(IRI.create(iao)) || importOntIRI.equals(IRI.create(iao_main)) || importOntIRI.equals(IRI.create(ont_meta))) { 
+    			RemoveImport ri = new RemoveImport(ont, df.getOWLImportsDeclaration(importOntIRI));
+    			manager.applyChange(ri);
+    		}
+     	}
+    	
+     	// merge the removed imported ontologies to the loaded one
+     	for(OWLOntology importOnt: importOnts) {
+     		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
+    		if (importOntIRI.equals(IRI.create(iao_main)) || importOntIRI.equals(IRI.create(ont_meta))) {
+    			OntologyManipulator.printPrefixNSs(manager, importOnt);
+    			ont = OntologyManipulator.mergeToTargetOnt(manager, ont, importOnt);
+    		}
+     	} 
+     	
+     	OntologyManipulator.saveToFile(manager, ont, saveFilename);
+		
 	}
 }

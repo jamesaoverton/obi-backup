@@ -96,7 +96,7 @@ public class OntologyManipulator {
 
             // Now load the local copy
             ont = manager.loadOntologyFromOntologyDocument(file);
-            System.out.println("Loaded ontology: " + ont + " from a file");
+            System.out.println("Loaded ontology: " + ont + " from a file: " + filename);
         }
         catch (OWLOntologyCreationIOException e) {
             // IOExceptions during loading get wrapped in an OWLOntologyCreationIOException
@@ -172,6 +172,15 @@ public class OntologyManipulator {
 		}
 		
 		return ont;
+	}
+	
+	public static OWLOntologyManager addDocIRIMapper(OWLOntologyManager manager, String iri, String filePath) {
+    	IRI ontIRI = IRI.create(iri);
+    	IRI docIRI = IRI.create(filePath);
+    	SimpleIRIMapper mapper = new SimpleIRIMapper(ontIRI, docIRI);
+    	manager.addIRIMapper(mapper);	
+		
+    	return manager;
 	}
 	
 	public static OWLOntology createFromOWLontologies (OWLOntologyManager manager, String iri, Set<OWLOntology> onts) {
@@ -272,6 +281,7 @@ public class OntologyManipulator {
 			SetOntologyID setID = new SetOntologyID(ont, newID);
 			manager.applyChange(setID);
 			
+			// still need to work on this part
 			// change the namespace if it is same as the ontologyIRI
 			OWLOntologyXMLNamespaceManager nsManager = new OWLOntologyXMLNamespaceManager(manager, ont);
 			Map<String, String> prefixNSs = nsManager.getPrefixNamespaceMap();
@@ -294,5 +304,33 @@ public class OntologyManipulator {
 		}
 		
 		return ont;
+	}
+	
+	public static void printPrefixNSs (OWLOntologyManager manager, OWLOntology ont) {
+		OWLOntologyID id = ont.getOntologyID();
+		System.out.println("Ontology: " + id.getOntologyIRI().toString());
+
+ 		IRI documentIRI = manager.getOntologyDocumentIRI(ont);
+ 		System.out.println(" from: " + documentIRI + "\n");
+		
+		OWLOntologyXMLNamespaceManager nsManager = new OWLOntologyXMLNamespaceManager(manager, ont);
+		Map<String, String> prefixNSs = nsManager.getPrefixNamespaceMap();
+		Set s = prefixNSs.entrySet();
+		Iterator it = s.iterator();
+
+	    while(it.hasNext()) {
+	    	// key=value separator this by Map.Entry to get key and value
+	        Map.Entry m =(Map.Entry)it.next();
+
+	        // getKey is used to get key of Map
+	        String prefix = (String) m.getKey();
+
+	        // getValue is used to get value of key in Map
+	        String namespace = (String) m.getValue();
+
+	        System.out.println("Prefix:"+ prefix +"  Namespace:" + namespace);
+	    }
+	    
+	    System.out.println("\n");
 	}
 }
