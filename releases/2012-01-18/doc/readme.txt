@@ -29,8 +29,6 @@ in the Linux system:
 "/home/jiezheng/obi/src/ontology/branches/obi-new.owl" (uri-full !obo:obi.owl)
 :with-header t)
 
-NOTE: After assign IDs, the OWL files has problem to be opened using Protege 3.x.
-
 2. update external.owl, externalDerived.owl and external-byhand.owl,
 
 Remove duplicated definition 
@@ -106,17 +104,31 @@ Need to work on this tomorrow
 11. Open cleaned_merged_obi.owl and reasoning using Hermit 1.3.4, reasoning took 174 sec. The merge owl is consistent. Can be opened in both 4.1 and 3.4.7 version
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Some modifications need to make on the merged owl file
 -------------------------------------------------------------------------
 12. Summary counts of classes or properties in obi.owl
 
-copy file cleaned_merged_obi.owl to /home/jiezheng/release/
+copy file obi_woIEDB.owl to /home/jiezheng/release/
 
 # Start lisp
 ~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
 
 # Run script
-(entity-report (load-kb-jena "/home/jiezheng/release/cleaned_merged_obi.owl")) 
+(entity-report (load-kb-jena "/home/jiezheng/release/obi_woIEDB.owl")) 
+
+Add two lines for counting number of RO and BFO properties (obi-release-new.lisp)
 
 Results
 ===============================
@@ -152,6 +164,60 @@ Property        ro 18
 Property        OBO_REL 7
 ===============================
 
+// switched to BFO 2.0
+===============================
+Class   BFO 27
+Class   OBI 1910
+Class   NCBITaxon 1170
+Class   GO 102
+Class   CHEBI 53
+Class   CL 19
+Class   UBERON 19
+Class   HP 1
+Class   PR 15
+Class   oboInOwl 6
+Class   owl 2
+Class   ENVO 2
+Class   PATO 49
+Class   OGMS 3
+Class   SO 3
+Class   CARO 5
+Class   IAO 109
+Class   VO 2
+Class   UO 11
+Class   GAZ 1
+Property        OBI 38
+Property        IAO 39
+Property        BFO 38
+Property        RO 4
+Property        owl 1
+Property        protege 1
+Property        iao 1
+Property        rdf-schema 3
+Property        dc 15
+Property        oboInOwl 2
+142
+
+* Need to check where property iao come from and why one OBI property is missing
+
+15. Add comments to the merged owl file
+
+# Start lisp in linux system
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+
+# add comment lisp
+(comment-ids-in-owl-file "/home/jiezheng/release/obi_woIEDB.owl" "/home/jiezheng/release/obi_woIEDB_comments.owl" (load-kb-jena "/home/jiezheng/release/obi_woIEDB.owl")) 
+
+
+16. edit meta-data
+	- add doap 
+	- ontology IRI version
+
+
+
+
+
+
 13. Create IEDB view 
 
 Run ExtractAnnotProp.java
@@ -177,14 +243,6 @@ Run ExtractAnnotProp.java
 
 14. Consult with IAO people. We typically release a fixed IAO with OBI release.
 	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/2011-08-04/iao.owl"/> (should put the date: 2011-08-04 of iao.owl release)
-
-15. Add comments to the merged owl file
-
-# Start lisp in linux system
-~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
-
-# add comment lisp
-(comment-ids-in-owl-file "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl" "/home/jiezheng/obi/releases/merged/merged-obi-comments.owl" (load-kb-jena "/home/jiezheng/obi/releases/merged/merged-obi-cleaned-subclasses.owl")) 
 
 
 
