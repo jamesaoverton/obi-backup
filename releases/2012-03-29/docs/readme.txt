@@ -101,6 +101,7 @@ Run ExtractAnnotProp.java
 
 cleaned_merged_obi_woIEDB.owl and other IEDB view related files
 
+need to edit metadata of obi_IEDBview.owl, add version information and change obi.owl -> obi/obi_IEDBview.owl
 
 12. Header modification
 	- modifiy the meta-data of merged owl file based on previous released OBI owl one - can be done after clean up subclasses
