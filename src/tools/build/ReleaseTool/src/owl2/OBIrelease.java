@@ -39,12 +39,13 @@ public class OBIrelease {
 	 * remove branches, _defined_material, _defined_process, 
 	 */
 	public static void main(String[] args) {
-		// mergeDisjoints();
 		
 		// mergeExternals ();
 		
 		// inferSuperClasses ();
-		
+
+		mergeDisjoints();
+
 		mergeIAO ();
      	
      	/*
@@ -64,18 +65,18 @@ public class OBIrelease {
 	static void mergeDisjoints () {
 		System.out.println("--- merge disjoints ---");
 		
- 		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
- 		String ontFilename = path + "branches/obi.owl";
+ 		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2012-03-29/";
+ 		String ontFilename = path + "merged/obi_merged_inferred.owl";
 		String disjointFilename = path + "branches/disjoints.owl";
 	    String saveFilename = path + "merged/obi_disjoints.owl";	
 		
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	 
         
         // load imported ontologies locally
-    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "branches/"), false);
+    	// AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "branches/"), false);
        	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
        	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
-       	manager.addIRIMapper(mapper);
+       	// manager.addIRIMapper(mapper);
     	manager.addIRIMapper(mapper2);
     	manager.addIRIMapper(mapper3);
                          
@@ -99,8 +100,8 @@ public class OBIrelease {
         String externalDerived = "http://purl.obolibrary.org/obo/obi/externalDerived.owl";
         String externalByHand = "http://purl.obolibrary.org/obo/obi/external-byhand.owl";
  
-		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
- 		String ontFilename = path + "merged/obi_disjoints.owl";
+		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2012-03-29/";
+ 		String ontFilename = path + "merged/obi.owl";
 	    String saveFilename = path + "merged/obi_merged.owl";	
 
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
@@ -152,7 +153,7 @@ public class OBIrelease {
 
 		String reasonerName = "hermit";
 
-		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2012-03-29/";
 		String ontFilename = path + "merged/obi_merged.owl";
 	    String saveFilename = path + "merged/obi_merged_inferred.owl";	
 		String inferOntURIStr = "http://purl.obolibrary.org/obo/obi/obi_inferredSuperClasses.owl";
@@ -195,8 +196,8 @@ public class OBIrelease {
 		String iao_main = "http://purl.obolibrary.org/obo/iao/dev/iao-main.owl";
         String ont_meta = "http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl";
  
-		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
- 		String ontFilename = path + "merged/obi_merged_inferred.owl";
+		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2012-03-29/";
+ 		String ontFilename = path + "merged/obi_disjoints.owl";
 	    String saveFilename = path + "merged/obi_merged_iao.owl";	
 
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();

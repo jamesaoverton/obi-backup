@@ -7,6 +7,7 @@ import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
@@ -30,7 +31,7 @@ public class OBIentity {
 	}
 	*/
 	
-	public static ArrayList<String> getOWLLiteralAnnotProps (OWLDataFactory df, OWLOntology ont, OWLClass cls, OWLAnnotationProperty annotProp){
+	public static ArrayList<String> getOWLLiteralAnnotProps (OWLEntity cls, OWLDataFactory df, OWLOntology ont, OWLAnnotationProperty annotProp){
 		ArrayList<String> propVals = new ArrayList<String>();
 		
 		for (OWLAnnotation annotation : cls.getAnnotations(ont, annotProp)) {
@@ -43,7 +44,7 @@ public class OBIentity {
 		return propVals;
 	}
 	
-	public static ArrayList<IRI> getIRIAnnotProps (OWLDataFactory df, OWLOntology ont, OWLClass cls, OWLAnnotationProperty  annotProp){
+	public static ArrayList<IRI> getIRIAnnotProps (OWLEntity cls, OWLDataFactory df, OWLOntology ont, OWLAnnotationProperty  annotProp){
 		ArrayList<IRI> propVals = new ArrayList<IRI>();
 		
 		for (OWLAnnotation annotation : cls.getAnnotations(ont, annotProp)) {
@@ -56,17 +57,17 @@ public class OBIentity {
 		return propVals;
 	}
 	
-	public static String getLabel (OWLClass cls, OWLOntology ont, OWLDataFactory df) {
+	public static String getLabel (OWLEntity cls, OWLOntology ont, OWLDataFactory df) {
 		String label = cls.toString();
 
 		OWLAnnotationProperty ap = df.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 		for (OWLAnnotation annotation : cls.getAnnotations(ont, ap)) {
-			label = annotation.getValue().toString();
+			label = ((OWLLiteral) annotation.getValue()).getLiteral();
 		}
 		return label;
 	}
 	
-	public static OWLLiteral getLabelOWLLiteral (OWLClass cls, OWLOntology ont, OWLDataFactory df) {
+	public static OWLLiteral getLabelOWLLiteral (OWLEntity cls, OWLOntology ont, OWLDataFactory df) {
 		OWLLiteral labelOWLLiteral = null;
 
 		OWLAnnotationProperty ap = df.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());

@@ -22,22 +22,20 @@ public class ExtractAnnotProp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String path = "E:/Jie/Ontology/obi/releases/2012-01-18/";
+		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/obi/releases/2012-03-29/";
 		
 		// Get hold of an ontology manager
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();	
     	
     	// load ontology
-    	OWLOntology ont = OntologyManipulator.load(path + "merged/obi_merged_iao.owl", manager);
-    	/*
-    	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "merged/"), false);
-       	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
-       	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
-       	manager.addIRIMapper(mapper);
-    	manager.addIRIMapper(mapper2);
-    	manager.addIRIMapper(mapper3);
-    	*/
-        
+    	OWLOntology ont = OntologyManipulator.load(path + "merged/cleaned_merged_obi.owl", manager);
+ //   	AutoIRIMapper mapper = new AutoIRIMapper(new File(path + "merged/"), false);
+ //      	AutoIRIMapper mapper2 = new AutoIRIMapper(new File(path + "external/"), false);
+ //      	AutoIRIMapper mapper3 = new AutoIRIMapper(new File(path + "external/iao/"), false);
+ //      	manager.addIRIMapper(mapper);
+ //   	manager.addIRIMapper(mapper2);
+ //   	manager.addIRIMapper(mapper3);
+    	
     	// Create factory to obtain a reference to a class
         OWLDataFactory df = manager.getOWLDataFactory();   	 
         //Set the annotation properties
@@ -77,7 +75,7 @@ public class ExtractAnnotProp {
             } 
         } 
         
-		OntologyManipulator.saveToFile(manager, ont, path + "merged/obi_woIEDB.owl");
+		OntologyManipulator.saveToFile(manager, ont, path + "merged/cleaned_merged_obi_woIEDB.owl");
 
 		OntologyManipulator.saveToFile(manager, annotOnt, path + "merged/IEDB_annot.owl");
 		
