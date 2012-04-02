@@ -1,3 +1,10 @@
+All related Java code committed under the directory:
+https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/ReleaseTool/src/owl2
+
+The path of files are hard coded need to be set according to the files where they are located in your machine. Will be changed when I have time to work on it.
+
+
+
 1. Assign IDs
 
 Run AssignOBIIDs.java
