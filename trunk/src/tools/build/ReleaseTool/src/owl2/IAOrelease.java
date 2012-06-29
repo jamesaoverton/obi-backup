@@ -11,18 +11,20 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.RemoveImport;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
+import org.semanticweb.owlapi.util.CommonBaseIRIMapper;
+import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 public class IAOrelease {
 
 	/**
-	 * merge imported and obsolete terms with iao-main.owl
 	 * @param args
 	 */
 	public static void main(String[] args) {
         String external = "http://purl.obolibrary.org/obo/iao/dev/external.owl";
         String externalDerived = "http://purl.obolibrary.org/obo/iao/dev/externalDerived.owl";
         String externalByHand = "http://purl.obolibrary.org/obo/iao/dev/externalByHand.owl";
-    	
+        String metaData = "http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl";
+   	
         String reasonerName = "hermit";
         
 		String path = "C:/Documents and Settings/Jie/My Documents/Ontology/iao/releases/2012-01-05/";
@@ -46,7 +48,7 @@ public class IAOrelease {
       	// remove imports statements from the loaded ontology
      	for(OWLOntology importOnt: importOnts) {    		
      		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
-    		if (importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) { 
+    		if (importOntIRI.equals(IRI.create(metaData)) || importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) { 
     			RemoveImport ri = new RemoveImport(iaoOnt, df.getOWLImportsDeclaration(importOntIRI));
     			manager.applyChange(ri);
     		}
@@ -55,7 +57,7 @@ public class IAOrelease {
      	// merge the removed imported ontologies to the loaded one
      	for(OWLOntology importOnt: importOnts) {
      		IRI importOntIRI = importOnt.getOntologyID().getOntologyIRI();
-    		if (importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) {
+    		if (importOntIRI.equals(IRI.create(metaData)) || importOntIRI.equals(IRI.create(external)) || importOntIRI.equals(IRI.create(externalByHand)) || importOntIRI.equals(IRI.create(externalDerived))) {
     			// OntologyManipulator.printPrefixNSs(manager, importOnt);
     			iaoOnt = OntologyManipulator.mergeToTargetOnt(manager, iaoOnt, importOnt);
     		}
@@ -71,5 +73,9 @@ public class IAOrelease {
 			OWLOntology inferOnt = manager.getOntology(IRI.create(inferOntURIStr));
 			OntologyManipulator.saveToFile(manager, inferOnt, saveInferFilename);
 		}
+		
+		// mergeOntoMetaData
+		
+		
 	}
 }
