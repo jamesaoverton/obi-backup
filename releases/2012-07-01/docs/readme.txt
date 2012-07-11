@@ -40,3 +40,64 @@ flow cytometer sorter disjoint from cytometer7. Merged all the files into one fi
 Run ExtractAnnotProp.java with /releases/2012-07-01/merged/
 - changed the IRI of the obi_IEDBview.owlto http://purl.obolibrary.org/obo/obi/obi_IEDBview.owl
 and changed the versionIRI tohttp://purl.obolibrary.org/obo/obi/2012-07-01/obi_IEDBview.owl
+
+
+
+
+Changes made by Jie
+-------------------
+Change SVN revision from 3619 -> 3641
+add doap information to cleaned_merged_obi_woIEDB.owl
+
+
+
+Add comments to the merged owl file
+copy file cleaned_merged_obi.owl to /home/jiezheng/release/
+# Start lisp in linux system
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+# add comment lisp
+(comment-ids-in-owl-file "/home/jiezheng/release/cleaned_merged_obi_woIEDB.owl" "/home/jiezheng/release/merged-obi-comments.owl" (load-kb-jena "/home/jiezheng/release/cleaned_merged_obi_woIEDB.owl")) 
+(comment-ids-in-owl-file "/home/jiezheng/release/obi_IEDBview.owl" "/home/jiezheng/release/obi_IEDBview-comments.owl" (load-kb-jena "/home/jiezheng/release/obi_IEDBview.owl")) 
+
+
+
+Summary counts of classes or properties in the ontology
+copy file cleaned_merged_obi.owl to /home/jiezheng/release/
+# Start lisp
+~/obi/svn-lsw/trunk/bin/lsw --load ~/obi/load-obi.lisp
+# Run script
+(entity-report (load-kb-jena "/home/jiezheng/release/cleaned_merged_obi_woIEDB.owl")) 
+
+--------------------
+Class   OBI 2042
+Class   NCBITaxon 1170
+Class   GO 129
+Class   CHEBI 54
+Class   CL 19
+Class   UBERON 20
+Class   HP 1
+Class   PR 15
+Class   oboInOwl 6
+Class   doap 3
+Class   ENVO 3
+Class   owl 2
+Class   PATO 49
+Class   OGMS 4
+Class   SO 3
+Class   CARO 5
+Class   IAO 125
+Class   VO 2
+Class   UO 11
+Class   BFO 27
+Class   GAZ 1
+Property        OBI 40
+Property        IAO 43
+Property        BFO 38
+Property        RO 7
+Property        owl 1
+Property        iao 1
+Property        dc 15
+Property        protege 1
+Property        rdf-schema 4
+Property        oboInOwl 1
+Property        doap 9
