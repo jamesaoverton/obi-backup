@@ -1,0 +1,298 @@
+SPARQL queries
+
+#####################################################################################
+# Find all patients
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient
+WHERE { 
+	?patient rdf:type obo:OBIlims_0000010 . 
+	?patient rdfs:label ?label .
+}
+ORDER BY ASC(?label)
+
+= thing which type is patient (OBIlims_0000010)
+and patient label    
+order by patient label
+
+
+#####################################################################################
+# List all patients with their birthday and living information
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient ?birthday ?curr_zipcode ?pre_zipcode
+WHERE { 
+	?patient rdf:type obo:OBIlims_0000010 .
+	?patient rdfs:label ?label .
+	?patient obo:OBIlims_0000016 ?birthday .
+OPTIONAL 
+	 {?patient obo:OBIlims_0000009 ?curr_zipcode }
+OPTIONAL
+	 {?patient obo:OBIlims_0000040 ?pre_zipcode }
+}
+ORDER BY ASC(?label)
+
+=   thing which type is patient (OBIlims_0000010)
+and patient born_on (OBIlims_0000016)
+and patient current_living_in_by_zipcode (OBIlims_0000009) if there is any
+and patient previous_living_in_by_zipcode (OBIlims_0000040) if there is any
+
+
+#####################################################################################
+# Find patients who are current/previous living in zipcode 19127 with their birthday and living information
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+
+SELECT ?patient ?birthday ?curr_zipcode ?pre_zipcode
+WHERE { 
+	?patient rdf:type obo:OBIlims_0000010 .
+	?patient obo:OBIlims_0000016 ?birthday .
+OPTIONAL {
+	?patient obo:OBIlims_0000009 ?curr_zipcode .
+	?curr_zipcode rdfs:label ?clabel .
+	}
+OPTIONAL {	
+	?patient obo:OBIlims_0000040 ?pre_zipcode .
+	?pre_zipcode rdfs:label ?plabel .
+	}
+	FILTER(?clabel="19127"@en || ?plabel="19127"@en) 
+}
+
+=   thing which type is patient (OBIlims_0000010)
+and patient born_on (OBIlims_0000016)
+and patient current_living_in_by_zipcode (OBIlims_0000009) if there is any
+and patient previous_living_in_by_zipcode (OBIlims_0000040) if there is any
+and only zipcod is 19127 (either previous or current living in)
+
+
+#####################################################################################
+# list patients and their living information
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient ?birthday ?p ?zipcode
+WHERE { 
+	?patient rdf:type obo:OBIlims_0000010 .
+	?patient rdfs:label ?label .
+	?patient obo:OBIlims_0000016 ?birthday .
+	?patient ?p ?zipcode .
+	?p rdfs:subPropertyOf obo:OBIlims_0000045 .
+}
+ORDER BY ASC(?patient)
+
+=   thing which type is patient (OBIlims_0000010)
+and patient born_on (OBIlims_0000016)
+and patient with relation which is subPropertyOf living_in (OBIlims_0000045)
+
+
+#####################################################################################
+# List all female patients
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient ?sex ?id
+WHERE
+{
+	?patient rdf:type obo:OBIlims_0000010 .
+	?patient rdfs:label ?label .
+	?patient rdf:type _:x .
+	_:x rdf:type owl:Restriction .
+	_:x owl:onProperty obo:OBIlims_0000011 . #has_sex
+	_:x owl:someValuesFrom ?sex .
+	?sex rdfs:label ?l .
+	?patient obo:OBIlims_0000052 ?id .
+	FILTER(str(?l)="female") .
+}
+ORDER BY ASC(?label)
+
+=   thing which type is patient (OBIlims_0000010)
+and thing which type has_sex (obo:OBIlims_0000011) which is 'female'
+and patient has_organism_identifier (obo:OBIlims_0000052) some id
+
+
+
+#####################################################################################
+# Find all information of patient whose identifier is 5
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient ?id  ?birthday ?sex ?race ?ethnicity ?curr_zipcode ?pre_zipcode
+WHERE { 
+	?patient rdf:type obo:OBIlims_0000010 . 
+	?patient obo:OBIlims_0000052 ?id .
+	?id rdfs:label ?idLabel .
+OPTIONAL {?patient rdf:type _:x .
+	_:x rdf:type owl:Restriction .
+	_:x owl:onProperty obo:OBIlims_0000011 .
+	_:x owl:someValuesFrom ?sex .}
+OPTIONAL {?patient rdf:type _:y .
+	_:y rdf:type owl:Restriction .
+	_:y owl:onProperty obo:OBIlims_0000013 .
+	_:y owl:someValuesFrom ?race .}
+OPTIONAL {?patient rdf:type _:z .
+	_:z rdf:type owl:Restriction .
+	_:z owl:onProperty obo:OBIlims_0000034 .
+	_:z owl:someValuesFrom ?ethnicity .}
+	?patient obo:OBIlims_0000016 ?birthday .
+OPTIONAL {
+	?patient obo:OBIlims_0000009 ?curr_zipcode .
+	}
+OPTIONAL {	
+	?patient obo:OBIlims_0000040 ?pre_zipcode .
+	}
+	FILTER (str(?idLabel) = "5")
+}
+
+= thing which type is patient (OBIlims_0000010)  
+and patient has_organism_identifier (obo:OBIlims_0000052) some id 
+and id has label which is idLabel
+and patient which is also some type has_sex (obo:OBIlims_0000011)
+and patient which is also some type has_race (obo:OBIlims_0000013)
+and patient which is also some type has_ethnicity (obo:OBIlims_0000034)
+and patient born_on (obo:OBIlims_0000016) some birthday 
+and patient current_living_in_by_zipcode (OBIlims_0000009) if there is any
+and patient previous_living_in_by_zipcode (OBIlims_0000040) if there is any
+and patient id is "5"
+
+
+
+#####################################################################################
+DL queries
+#####################################################################################
+# Find patients who are female 
+
+patient and 'has sex' some female
+
+
+#####################################################################################
+# Find patients who are white female and non hispanic
+
+patient and 'has race' some White and 'has sex' some female and 'has ethnicity' some 'not hispanic'
+
+
+
+
+
+
+
+
+
+
+#####################################################################################
+# Find quality that associated with human being
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT distinct ?quality
+WHERE
+{
+?p rdf:type _:x .
+_:x rdf:type owl:Restriction .
+_:x owl:onProperty ?prop .
+?prop rdfs:subPropertyOf obo:BFO_0000086 .	# has_quality
+?prop rdfs:range ?quality
+}
+
+#####################################################################################
+# Find annotations used in quality
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT distinct ?prop ?quality ?value
+WHERE
+{
+?p rdf:type _:x .
+_:x rdf:type owl:Restriction .
+_:x owl:onProperty ?prop .
+?prop rdfs:subPropertyOf obo:BFO_0000086 .	# has_quality
+?prop rdfs:range ?quality .
+_:x owl:someValuesFrom ?value 
+FILTER (?p rdf:type obo:OBIlims_0000010)  	# only quality that patient can have
+}
+order by ASC(?prop)
+
+
+
+#####################################################################################
+# List patients' who are White female
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?patient ?sex ?race
+WHERE
+{
+{?patient rdf:type _:x .
+_:x rdf:type owl:Restriction .
+_:x owl:onProperty obo:OBIlims_0000011 .
+_:x owl:someValuesFrom ?sex .
+?sex rdfs:label ?ls .
+}
+OPTIONAL
+{?patient rdf:type _:y .
+_:y rdf:type owl:Restriction .
+_:y owl:onProperty obo:OBIlims_0000013 .
+_:y owl:someValuesFrom ?race .
+?race rdfs:label ?lr .
+}
+FILTER (str(?ls)="female" && str(?lr)="White")
+}
+
+
+#####################################################################################
+# Find all available ObjectProperties patients have
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT distinct ?x ?p ?y
+WHERE { 
+   ?x rdf:type obo:OBIlims_0000010.
+   ?x ?p ?y.
+   ?p rdf:type owl:ObjectProperty
+}
+order by ?x ?p
+
+
+
+
