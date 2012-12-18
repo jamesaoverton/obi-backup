@@ -18393,18 +18393,29 @@ through tissue.</obo:IAO_0000115>
                 <owl:someValuesFrom rdf:resource="&obo;BFO_0000034"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 rdf:datatype="&xsd;string">A device is a processed material which is designed to perform some function or functions</obo:IAO_0000115>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;BFO_0000040"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OBI_0000086"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:disjointWith>
+        <obo:IAO_0000116 rdf:datatype="&xsd;string">2012-12-17 JAO: In common lab usage, there is a distinction made between devices and reagents that is difficult to model. Therefore we have chosen to specifically exclude reagents from the definition of &quot;device&quot;, and are enumerating the types of roles that a reagent can perform.</obo:IAO_0000116>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A material entity that is designed to perform a function in a scientific investigation, but is not a reagent.</obo:IAO_0000115>
         <obo:IAO_0000112 rdf:datatype="&xsd;string">A voltmeter is a measurement device which is intended to perform some measure function.</obo:IAO_0000112>
-        <obo:IAO_0000119 rdf:datatype="&xsd;string">OBI Vancouver workshop 2010</obo:IAO_0000119>
+        <obo:IAO_0000112 rdf:datatype="&xsd;string">An autoclave is a device that sterlizes instruments or contaminated waste by applying high temperature and pressure.</obo:IAO_0000112>
+        <obo:IAO_0000119 rdf:datatype="&xsd;string">OBI development call 2012-12-17.</obo:IAO_0000119>
         <obo:IAO_0000117 rdf:datatype="&xsd;string">PERSON: Helen Parkinson</obo:IAO_0000117>
-        <rdfs:comment rdf:datatype="&xsd;string">The present definition would include reagents</rdfs:comment>
         <obo:IAO_0000111 rdf:datatype="&xsd;string">device</obo:IAO_0000111>
-        <obo:IAO_0000116 rdf:datatype="&xsd;string">food should not classify as a device - counter example for using manufacturer and not device. macroscopic only</obo:IAO_0000116>
-        <obo:IAO_0000116 rdf:datatype="&xsd;string">if we keep this exploratory term we could reinstate the old device class which is obsolete_device. didn&apos;t work before as we had manufacturing as part of  the definition. device was needed, but couldn&apos;t define in Philadelphia. If we decide  that in addition to function there are also capabilities for which a device is created we will include these in the definition.</obo:IAO_0000116>
         <obo:IAO_0000118 rdf:datatype="&xsd;string">instrument</obo:IAO_0000118>
-        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000123"/>
+        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000122"/>
     </owl:Class>
     
+
 
 
     <!-- http://purl.obolibrary.org/obo/OBI_0000969 -->
@@ -53603,12 +53614,24 @@ sample for particles of interest based on qualities determined by gating) or dis
     </owl:Class>
     
 
-
     <!-- http://purl.obolibrary.org/obo/OBI_0600008 -->
 
     <owl:Class rdf:about="&obo;OBI_0600008">
         <rdfs:label xml:lang="en">acquisition</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OBI_0000011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&obo;BFO_0000040"/>
+                            <rdf:Description rdf:about="&obo;IAO_0000030"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
@@ -53621,7 +53644,6 @@ sample for particles of interest based on qualities determined by gating) or dis
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116 rdf:datatype="&xsd;string">5/31/2012 - OBI workshop: This process is not implying ownership of the material / information. </obo:IAO_0000116>
-        <obo:IAO_0000232 rdf:datatype="&xsd;string">Alan Ruttenberg: 2009/11/01 - probably a duplicate for object acquisition. https://sourceforge.net/tracker/?func=detail&amp;aid=2890523&amp;group_id=177891&amp;atid=886178</obo:IAO_0000232>
         <obo:IAO_0000112 rdf:datatype="&xsd;string">Downloading a 3D structure from the PDB. Purchasing antibodies from sigma. </obo:IAO_0000112>
         <obo:IAO_0000117 xml:lang="en">Bjoern Peters</obo:IAO_0000117>
         <obo:IAO_0000116 xml:lang="en">Following OBI call November 2012,5th:
@@ -53630,10 +53652,9 @@ Relates to the creation of a class &apos;selection rule&apos;</obo:IAO_0000116>
         <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
         <obo:IAO_0000232 xml:lang="en">This needs to be fleshed out and logical definitions added that will allow to place the children terms automatically under acquisition</obo:IAO_0000232>
         <obo:IAO_0000111 xml:lang="en">acquisition</obo:IAO_0000111>
-        <obo:IAO_0000115 xml:lang="en">the process of gaining possession of a continuant </obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">the planned process of gaining possession of a continuant </obo:IAO_0000115>
         <obo:IAO_0000114 rdf:resource="&obo;IAO_0000120"/>
     </owl:Class>
-    
 
 
     <!-- http://purl.obolibrary.org/obo/OBI_0600009 -->
@@ -53663,16 +53684,16 @@ Relates to the creation of a class &apos;selection rule&apos;</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="&obo;BFO_0000040"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&obo;OBI_0000094"/>        
         <obo:IAO_0000116 rdf:datatype="&xsd;string">The assumption is that the object already exists in its current state, e.g, an available mouse strain purchased from the Jackson Lab, this is the differentia from specimen creation</obo:IAO_0000116>
         <obo:IAO_0000118 rdf:datatype="&xsd;string">material acquisition</obo:IAO_0000118>
-        <obo:IAO_0000112 xml:lang="en">Acquiring 50 C57BL/6 mice in the investigators animal facilities. Purchasing 1 mg of peptides synthesized by Mimotopes at 80% purity. Getting a gift of purified CD4+ specific antibodies presented by Stephen Schoenberger at LIAI.</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">Acquiring 50 C57BL/6 mice bred in the animal facility of the institute as a service to investigators. Purchasing 1 mg of peptides synthesized by Mimotopes at 80% purity. Getting a gift of purified CD4+ specific antibodies presented by Stephen Schoenberger at LIAI.</obo:IAO_0000112>
         <obo:IAO_0000117 xml:lang="en">Bjoern Peters, Alan Ruttenberg, Helen Parkinson</obo:IAO_0000117>
         <obo:IAO_0000119 xml:lang="en">IEDB</obo:IAO_0000119>
         <obo:IAO_0000111 xml:lang="en">material acquisition</obo:IAO_0000111>
         <obo:IAO_0000115 xml:lang="en">the process of gaining possession of a material entity</obo:IAO_0000115>
         <obo:IAO_0000114 rdf:resource="&obo;IAO_0000125"/>
     </owl:Class>
-    
 
 
     <!-- http://purl.obolibrary.org/obo/OBI_0600011 -->
@@ -53729,6 +53750,7 @@ Relates to the creation of a class &apos;selection rule&apos;</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="&obo;IAO_0000030"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&obo;OBI_0200000"/>        
         <obo:IAO_0000118 rdf:datatype="&xsd;string">data collection</obo:IAO_0000118>
         <obo:IAO_0000117 xml:lang="en">Bjoern Peters</obo:IAO_0000117>
         <obo:IAO_0000112 xml:lang="en">Gathering all influenza HA sequences from GenBank, Retrieveing HLA allele frequencies in the North American populations from dbMHC</obo:IAO_0000112>
