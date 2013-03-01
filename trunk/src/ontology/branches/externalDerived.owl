@@ -13241,7 +13241,7 @@
     </rdf:Description>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CL_0000001">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">primary cultured cell</rdfs:label>
-        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cultured cell that is freshly isolated from some source organism and not yet passaged.</obo:IAO_0000115>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cultured cell that is freshly isolated from some source organism and not been passaged in culture.</obo:IAO_0000115>
         <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BTO:0002290</oboInOwl:hasDbXref>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Covers cells actively being cultured or stored in a quiescent state for future use.</rdfs:comment>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unpassaged cultured cell</obo:IAO_0000118>
@@ -13308,11 +13308,6 @@
         <obo:IAO_0000115 xml:lang="en">A ploidy quality inhering in a bearer by virtue of the bearer&apos;s containing a single set of homologous chromosomes.</obo:IAO_0000115>
         <obo:IAO_0000111 xml:lang="en">haploid</obo:IAO_0000111>
     </rdf:Description>
-    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CL_0000010">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cultured cell</rdfs:label>
-        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cell in vitro that is or has been maintained or propagated as part of a cell culture.</obo:IAO_0000115>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Covers cells actively being cultured or stored in a quiescent state for future use. The class has been re-labeled to &apos;cultured cell&apos; instead of &apos;cell line cell&apos;, as this class intends to cover cultured cells of multicellular and unicellular organisms, and both immortal and mortal cultured cells. &apos;Cell line&apos; has different meanings to different people, in some cases referring to a culture that has been passaged, and in others referring to cultures that are immortal. &apos;Cell line cell&apos; is included, however, as a narrow synonym.</rdfs:comment>
-    </rdf:Description>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/PATO_0001374">
         <rdfs:label xml:lang="en">ploidy</rdfs:label>
         <obo:IAO_0000115 xml:lang="en">A cellular quality inhering in a bearer by virtue of the bearer&apos;s number of homologous sets of chromosomes in the nucleus or primary chromosome-containing compartment of the cell, each set essentially coding for all the biological traits of the organism.</obo:IAO_0000115>
@@ -13321,6 +13316,11 @@
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CHEBI_37989">
         <rdfs:label xml:lang="en">Cy5 dye</rdfs:label>
         <obo:IAO_0000111 xml:lang="en">Cy5 dye</obo:IAO_0000111>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CL_0000010">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cultured cell</rdfs:label>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cell in vitro that is or has been maintained or propagated as part of a cell culture.</obo:IAO_0000115>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Covers cells actively being cultured or cells that have been cultured but are stored in a quiescent state for future use. This can include cultured unicellular organisms, or cultured cells derived from multicellular organisms.</rdfs:comment>
     </rdf:Description>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/GO_0009987">
         <rdfs:label xml:lang="en">cellular process</rdfs:label>
@@ -13558,8 +13558,12 @@
     </rdf:Description>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CL_0007014">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cell line cell</rdfs:label>
-        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cultured cell that has been passaged at least one time in culture.</obo:IAO_0000115>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Covers cells actively being cultured or stored in a quiescent state for future use.</rdfs:comment>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cultured cell that has been passaged at least one time in culture so as to be part of a cell line</obo:IAO_0000115>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell line cells can be in active culture, stored in a quiescent state for future use (e.g. frozen in liquid nitrogen), or applied in experimental procedures. 
+
+The term &apos;line&apos; indicates that the cell has undergone at least one passage in culture.  In being passaged a &apos;line&apos; is initiated, whereby some level of homogeneity is attained with respect to cell type composition.  Such homogeneity is often absent in primary cultures. Because of their relative homogeneity, ‘lines’ are capable of being characterized and stably propagated over a period of time. Of course the achievement of a truly stable and uniform line is a process that occurs gradually over multiple passages, but for classification purposes the first passage is the clearest point to define the beginning of a line, and a &apos;cell line cell&apos;
+
+Notably, the term &apos;line&apos; is alternately used by some to indicate immortalization - ie that a cell culture has attained the capacity for indefinite propagation in vitro.  In this ontology, we refer to such cells and lines as &apos;immortal cell lines&apos; / &apos;immortal cell line cells&apos;, and use the term &apos;cell line&apos; to indicate any culture that has been passaged.</rdfs:comment>
         <obo:IAO_0000118 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">passaged cultured cell</obo:IAO_0000118>
     </rdf:Description>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CL_0007015">
