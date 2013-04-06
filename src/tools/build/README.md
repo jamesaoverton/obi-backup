@@ -60,7 +60,7 @@ Use Ant to build a self-contained OWL file for OBI:
 
     ant build
 
-Look in `results` for the new OWL files. More Ant build tasks are available, see:
+Look in `dist` for the new OWL files. More Ant build tasks are available, see:
 
     ant help
 
