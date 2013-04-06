@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build" default="help" basedir="."
+  xmlns:ivy="antlib:org.apache.ivy.ant">
+  <tstamp>
+    <format property="date" pattern="yyyy-MM-dd"/>
+  </tstamp>
+
+  <loadproperties srcFile="config.properties" />
+  <property name="src" value="src/main/java" />
+  <property name="dist" value="dist" />
+  <property name="test" value="src/test/java" />
+  <property name="target" value="target" />
+  <property name="classes" value="${target}/classes" />
+  <property name="javadoc" value="${target}/javadoc" />
+  <property name="test-classes" value="${target}/test-classes" />
+  <property name="test-results" value="${target}/test-results" />
+  <property name="test-reports" value="${target}/test-reports" />
+  <property name="lib" value="lib" />
+  <property name="doap_file" value="${dist}/doap.xml" />
+
+  <!-- HELP -->
+  <target name="help" description="Print project help">
+    <java classname="org.apache.tools.ant.Main">
+      <arg value="-projecthelp" />
+      <arg value="-buildfile" />
+      <arg value="${ant.file}" />
+    </java>
+  </target>
+
+  <!-- INIT -->
+  <target name="init" depends="" description="Prepare for build">
+    <path id="classpath">
+      <fileset dir="${lib}">
+        <include name="*.jar" />
+      </fileset>
+    </path>
+    <pathconvert property="mf.classpath" pathsep=" ">
+      <path refid="classpath"/>
+      <mapper>
+        <chainedmapper>
+          <flattenmapper/>
+          <globmapper from="*.jar" to="lib/*.jar"/>
+        </chainedmapper>
+      </mapper>
+    </pathconvert>
+  </target>
+
+  <!-- CLEAN -->
+  <target name="clean" depends="" description="Clean all non-source files">
+    <echo message="Cleaning non-source directories in ${basedir}" />
+    <delete dir="${dist}" />
+    <delete dir="${target}" />
+  </target>
+
+  <!-- DEPS -->
+  <!-- Requires Apache Ivy to be installed for Ant. -->
+  <target name="deps" description="Retrieve dependencies with Apache Ivy">
+    <ivy:retrieve />
+  </target>
+
+  <!-- COMPILE -->
+  <target name="compile" depends="init" description="Compile the project">
+    <mkdir dir="${target}" />
+    <mkdir dir="${classes}" />
+    <javac destdir="${classes}" classpathref="classpath" optimize="false" debug="true" includeantruntime="false">
+      <src path="${src}" />
+    </javac>
+  </target>
+
+  <!-- DOAP -->
+  <target name="doap" depends="" description="Updated Description of a Project File">
+    <copy file="${ontology_path}/${doap_path}" tofile="${doap_file}"/>
+    <replace file="${doap_file}" token="__VERSION_GOES_HERE__" value="${date}"/>
+    <replace file="${doap_file}" token="__PRETTY_NAME_GOES_HERE__" value="${release_name}"/>
+  </target>
+
+  <!-- BUILD -->
+  <target name="build" depends="compile, doap" description="Merge OBI into a single OWL file">
+    <java classname="obi.Builder" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${ontology_path}/${obi_path}"/>
+      <arg value="${dist}/${obi_merged}"/>
+    </java>
+    <java classname="obi.Metadator" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${ontology_path}/${obi_path}"/>
+      <arg value="${doap_file}"/>
+      <arg value="${date}"/>
+      <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi.owl"/>
+      <arg value="${dist}/${obi_merged}"/>
+    </java>
+  </target>
+
+  <!-- CORE -->
+  <target name="core" depends="build" description="Extract the Core">
+    <java classname="obi.Extractor" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/${obi_merged}"/>
+      <arg value="${core_iris}"/>
+      <arg value="${dist}/${obi_core}"/>
+      <arg value="${base_iri}/${obi_core}"/>
+    </java>
+    <java classname="obi.Metadator" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${ontology_path}/${obi_path}"/>
+      <arg value="${doap_file}"/>
+      <arg value="${date}"/>
+      <arg value="http://purl.obolibrary.org/obo/obi/${date}/core.owl"/>
+      <arg value="${dist}/${obi_core}"/>
+    </java>
+    <java classname="obi.Reporter" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/${obi_core}"/>
+      <arg value="${dist}/core.csv"/>
+    </java>
+  </target>
+
+  <!-- ALL -->
+  <target name="all" depends="clean, init, compile, build" description="Run the complete workflow">
+    <echo message="OBI built!" />
+  </target>
+
+
+</project>
