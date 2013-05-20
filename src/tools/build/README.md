@@ -56,6 +56,8 @@ TODO: Should be parallel to the Unix instructions.
 
 ## Usage
 
+From the `tools/build` directory you can run various Ant "tasks". Here are some examples.
+
 Update the main obi.owl file to assign new IDs:
 
     ant assign-ids
