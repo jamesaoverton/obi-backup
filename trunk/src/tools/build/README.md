@@ -56,13 +56,22 @@ TODO: Should be parallel to the Unix instructions.
 
 ## Usage
 
+Update the main obi.owl file to assign new IDs:
+
+    ant assign-ids
+
 Use Ant to build a self-contained OWL file for OBI:
 
     ant build
 
+Generate a report on all the OBI terms as a CSV file (currently just IRIs and labels, but more columns can be added on request):
+
+    ant report
+
 Look in `dist` for the new OWL files. More Ant build tasks are available, see:
 
     ant help
+
 
 ### OBI Core
 

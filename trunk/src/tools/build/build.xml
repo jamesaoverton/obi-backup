@@ -74,8 +74,19 @@
     <replace file="${doap_file}" token="__PRETTY_NAME_GOES_HERE__" value="${release_name}"/>
   </target>
 
+  <!-- ASSIGN -->
+  <target name="assign-ids" depends="compile" description="Assign OBI IDs">
+    <java classname="obi.Assigner" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${ontology_path}/${obi_path}"/>
+    </java>
+  </target>
+
   <!-- BUILD -->
-  <target name="build" depends="compile, doap" description="Merge OBI into a single OWL file">
+  <target name="build" depends="assign-ids, doap" description="Merge OBI into a single OWL file">
     <java classname="obi.Builder" fork="false">
       <classpath>
           <path refid="classpath"/>
@@ -94,6 +105,18 @@
       <arg value="${date}"/>
       <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi.owl"/>
       <arg value="${dist}/${obi_merged}"/>
+    </java>
+  </target>
+
+  <!-- REPORT -->
+  <target name="report" depends="build" description="Report on OBI">
+    <java classname="obi.Reporter" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/${obi_merged}"/>
+      <arg value="${dist}/obi.csv"/>
     </java>
   </target>
 
