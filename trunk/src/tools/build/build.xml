@@ -7,6 +7,7 @@
 
   <loadproperties srcFile="config.properties" />
   <property name="src" value="src/main/java" />
+  <property name="resources" value="src/main/resources" />
   <property name="dist" value="dist" />
   <property name="test" value="src/test/java" />
   <property name="target" value="target" />
@@ -152,6 +153,21 @@
       <arg value="${dist}/core.csv"/>
     </java>
   </target>
+
+  <!-- TEST -->
+  <target name="test" depends="compile" description="Run all OBI tests">
+    <mkdir dir="${target}/tests" />
+    <java classname="obi.Tester" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${resources}"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="../../tests"/>
+      <arg value="${target}/tests"/>
+    </java>
+  </target>
+
 
   <!-- ALL -->
   <target name="all" depends="clean, init, compile, build" description="Run the complete workflow">

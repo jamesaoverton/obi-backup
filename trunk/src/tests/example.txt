@@ -1,0 +1,158 @@
+% OBI Test Examples
+% James A. Overton <james@overton.ca>
+% 2013-05-25
+
+This document shows you by example how to write automated tests for OBI. The code for the new tool can be found at: http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/
+
+Tests can be very good documentation because they show you by example what sorts of operations you can successfully perform. So this test system is designed to take a single document, consisting mostly of commentary, with formal definitions mixed in. The testing tool then goes through the document, line by line, separating it into three parts:
+
+- documentation, which includes all the content
+- ontology data, written in [Manchester Syntax](http://www.w3.org/TR/owl2-manchester-syntax/)
+- test data, written using [DL Query](http://protegewiki.stanford.edu/wiki/DLQueryTab)
+
+All of the ontology data is put into a single ontology file, which is then loaded using [OWLAPI](http://owlapi.sourceforge.net/). Then each of the tests is run against the loaded ontology. The test definitions specify the expected results, and so a program can easily tell whether the test has passed or failed.
+
+The goal is to have a large number of tests that can be run quickly and automatically. Development should start from a known-good state where all the tests are passing. Then, if you make a change, run the tests again, and some of them fail, you can be pretty sure that your change was the cause. Perhaps the test failed because of an intended effect of your change.
+
+If the tests pass, and you make a change that cousome of the tests fail, you can be sure that something you did broke the tests. If the failed test was an intended effect of your change, then the tests should be updated. The main value of automated tests is that they catch many *unintended* changes.
+
+[Automated testing](http://en.wikipedia.org/wiki/Test_automation) and [test-driven development](http://en.wikipedia.org/wiki/Test-driven_development) lead to better software. Although it takes time to write tests, and to maintain tests as things change, the goal of having a thorough automated test suite is to make development *faster*. Tests catch bugs early, and when a developer makes a change that doesn't break the test suite, she can be fairly confident that the change didn't have unintended side-effects.
+
+
+# Define the Ontology
+
+Manchester syntax is the most readable of the many difference syntaxes that have been defined for OWL, and that's what we'll use. Lines or blocks of Manchester code begin with a keyword followed by a colon (":"). The keywords include:
+
+- Prefix: define short prefixes to make writing IRIs easier
+- Ontology: the IRI for the current ontology (only one allowed)
+- Import: the IRI of an OWL ontology to import
+- Class: the definition of an OWLClass
+- ObjectProperty: the defintion of an OWLObjectProperty
+- AnnotationProperty: the defintion of an OWLAnnotationProperty
+- Individual: the definition of an OWLIndividual
+- Datatype: the definition of an OWLDatatype
+
+Definitions usually come in "blocks", starting with a keyword and followed by lines that are indented with at least two spaces, or by blank lines. 
+
+Order is important for some things. You should start the ontology definition with a "header" such as this one. Here we define a default (empty) prefix, the IRI of this ontology, and import OBI Core.
+
+Prefix: : <http://purl.obolibrary.org/obo/>
+Ontology: <http://purl.obolibrary.org/obo/obi/test.owl>
+Import: <http://purl.obolibrary.org/obo/obi/core.owl>
+
+Next we define a class, asserting that it is a subclass of BFO 'entity', and that it has the rdfs:label "test class 1":
+
+Class: test-class-1
+  SubClassOf: 'entity'
+  Annotations: rdfs:label "test class 1"
+
+This example demonstrates most of the syntax needed to work with Manchester code:
+
+- rdfs:label is a short-form for a full IRI: <http://www.w3.org/2000/01/rdf-schema#label>. When full IRIs are used in Manchester syntax, they are surrounded by angle brackets. The "rdfs" prefix is included by default in Manchester syntax. The rdfs:label property is used to give the primary name for an entity.
+- "test class 1" (with double quotation marks) is a literal string that says what the rdfs:label's value is for this class.
+- test-class-1 (without spaces or quotation marks) is a short-form of a full IRI for this class. You get the full IRI by appending this short form to the default prefix: <http://purl.obolibrary.org/obo/test-class-1>. 
+- 'entity' (with single quotation marks) refers to the class <http://purl.obolibrary.org/obo/BFO_0000001>. Since that class was given the rdfs:label "entity", the testing tool can translate 'entity' to the IRI of the class.
+
+We can define another two classes that are subClassOf the first class:
+
+Class: test-class-2
+  SubClassOf: test-class-1
+  Annotations: rdfs:label "test class 2"
+
+Class: test-class-3
+  SubClassOf: test-class-2
+  Annotations: rdfs:label "test class 3", rdfs:comment "Comment", 
+    'alternative term' "test class C"
+
+Class definitions can include these keywords:
+
+- Annotations
+- SubClassOf
+- EquivalentTo
+- DisjointWith
+- DisjointUnionOf
+- HasKey
+
+You can use a keyword multiple times in a block, say for multiple SubClassOf statements. With "Annotations:" you can include multiple annotations spanning several indented lines.
+
+You can also define OWL individuals, like this:
+
+Individual: test-individual-1
+  Types: test-class-3
+  Annotations: rdfs:label "test individual 1"
+
+The definition block for an individual can include the following keywords:
+
+- Annotations
+- Types
+- Facts
+- SameAs
+- DifferentFrom
+
+
+# Define the Tests
+
+Once the test ontology is defined, we can start to define the automated tests. The testing tool will first load the ontology, then run each test that it can find. The tests work like the DL Query tab of the [OWL Protégé editor](http://protege.stanford.edu/overview/protege-owl.html). The key difference is that these test definitions provide *both* the query *and* the expected results. This allows a program to run all the tests in turn, check that all the results match, and tell us if any of the tests fail.
+
+Here's our first test:
+
+Fact: 'test class 2' is a subclass of 'test class 1'
+Query: 'test class 1'
+Subclasses: exactly 'test class 2'
+
+Test blocks start with the keyword "Fact". The fact is really just a free-text name for the test (a single line), but thinking of it in terms of an assertion of a fact in informal language will help readers to understand the intent of the test.
+
+The next line in the test block should start with the "Query" keyword and provide a class expression. The tool will parse the query and find the corresponding OWLClassExpression in the ontology. In this case the class expression is just the name of a class ('test class 1'), but the expressions can be much more complicated.
+
+After the query we have one or more "checks" that say what results the query should have. Here we say that the query should result in exactly one subclass, which is 'test class 2'.
+
+A test can have many checks, of the same type of different types:
+
+Fact: 'test class 2' and 'test class 3' are descendants of 'test class 1'
+Query: 'test class 1'
+Subclasses: exactly 'test class 2'
+Subclasses: exclude 'test class 1'
+Descendants: include 'test class 2',
+  'test class 3'
+Individuals: include 'test individual 1'
+Descendants: number 2
+Descendants: anything
+
+There are six types of check:
+
+- Subclasses: direct descendant classes
+- Descendants: indirect descendant classes
+- Superclasses: direct ancestor classes
+- Ancestors: indirect ancestor classes
+- Equivalents: equivalent classes
+- Individuals: individuals that instantiate the query class or one of its descendants
+
+The checks can be combined with these "comparison operators":
+
+- exactly: the results must exactly match the given list
+- include: the results must include all the members of the given list
+- exclude: the results must not include any the members of the given list
+- anything: the must be at least one result
+- nothing: there must be no results
+- number X: there must be exactly X results
+
+Order is never important when comparing results. Note that the owl:Thing and owl:Nothing classes are removed from the sets of results before comparisons are made.
+
+Fact: 'entity' has no parents
+Query: 'entity'
+Superclasses: nothing
+Superclasses: number 0
+Ancestors: nothing
+Ancestors: number 0
+
+Fact: 'test class 2' has one parent and one child
+Query: 'test class 2'
+Superclasses: exactly 'test class 1'
+Subclasses: exactly 'test class 3'
+Ancestors: include 'test class 1'
+Descendants: include 'test class 3'
+Equivalents: exactly 'test class 2'
+
+
+
+

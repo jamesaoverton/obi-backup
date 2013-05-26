@@ -1,6 +1,6 @@
 # OBI Build Tool README
 
-This is a tool for building a self-contained OBI file from the development files. It's a work in progress -- help is welcome.
+This is a tool for building and testing a self-contained OBI file from the development files. It's a work in progress -- help is welcome.
 
 
 ## Requirements
@@ -26,24 +26,17 @@ The tool will work on Windows, Linux, Unix, and Mac OS X. A few steps are requir
 1. Create a working directory for OBI (if you haven't already):
 
     mkdir obi
-    cd obi
 
-2. Use Subversion to download the latest OBI (if you haven't already):
+2. Use Subversion to download the latest OBI files (if you haven't already). There are simpler ways to do this, but this way gets you just the files you need:
 
-    mkdir ontology
-    cd ontology
-    svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/branches/
-    svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/ontology/external/
-    cd ..
+    svn checkout --depth immediates https://obi.svn.sourceforge.net/svnroot/obi/trunk/src
+    svn update --set-depth infinity src/ontology/branches
+    svn update --set-depth infinity src/ontology/external
+    svn update --set-depth infinity src/tests
+    svn update --set-depth infinity src/tools/build
+    cd src/tools/build
 
-3. Use Subversion to download the latest build tool:
-
-    mkdir tools
-    cd tools
-    svn co https://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/
-    cd build
-
-4. Use Ant and Ivy to download the dependencies (if you didn't download them yourself, see "Dependencies" below):
+3. Use Ant and Ivy to download the dependencies (if you didn't download them yourself, see "Dependencies" below):
 
     ant deps
 
@@ -84,6 +77,15 @@ You can also extract a new version of OBI Core from the OBI OWL file you just bu
 The program uses the IRIs in `core.txt` to extract the core. If you want to extract a different subset of OBI, you can modify the `core.txt` file.
 
 
+### Tests
+
+You can also run a suite of automated tests using:
+
+    ant test
+
+Test source files are read from `../../tests/` and results are stored in `target/tests/`, including `*.log` files with details on any test failures.
+
+
 ## Configuration
 
 You can change details of the build process by editing `config.properties`.
@@ -91,7 +93,10 @@ You can change details of the build process by editing `config.properties`.
 
 ## Dependencies
 
-Right now the only dependency is OWLAPI. Download the latest distribution Jar file from [http://owlapi.sourceforge.net/]() (e.g. `owlapi-distribution-3.4.3-bin.jar`) and copy it to `lib`.
+It should be possible to download the dependencies yourself and copy them to `build/lib`:
+- The latest OWLAPI: [http://owlapi.sourceforge.net/]() (e.g. `owlapi-distribution-3.4.3-bin.jar`)
+- Berkeley Bioinformatics Open-source Projects (BBOP)'s version of HermiT: [http://code.berkeleybop.org/maven/repository/org/semanticweb/HermiT/1.3.6-BBOP/HermiT-1.3.6-BBOP.jar]()
+- A recent copy of `log4j`: [http://search.maven.org/remotecontent?filepath=log4j/log4j/1.2.17/log4j-1.2.17.jar]()
 
 
 
