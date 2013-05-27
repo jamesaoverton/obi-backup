@@ -27,10 +27,27 @@ import org.semanticweb.owlapi.expression.ParserException;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
+import org.semanticweb.owlapi.reasoner.InferenceType;
+import org.semanticweb.owlapi.util.InferredOntologyGenerator;
+import org.semanticweb.owlapi.util.InferredAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredEquivalentClassAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
 
 import org.obolibrary.macro.ManchesterSyntaxTool;
 
-import obi.Test;
+import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.QuerySolution;
+
+import obi.DLTest;
+import obi.SPARQLTest;
+import obi.Builder;
 
 /**
  * A test harness for reading and running automated ontology tests.
@@ -39,18 +56,12 @@ import obi.Test;
  */
 public class Tester {
 
+  protected static String baseIRI = "http://purl.obolibrary.org/obo/obi/test.owl";
+
   /**
    * The list of Manchester keywords that mark the start of a line.
    */
   private static List<String> manchesterPrefixes = getManchesterPrefixes();
-
-  /**
-   * These lines are added to the head of all Manchester files.
-   */
-  private static String manchesterBase =
-    "Prefix: obo: <http://purl.obolibrary.org/obo/>\n" +
-    "Prefix: : <http://purl.obolibrary.org/obo/obi/test.owl#>\n" +
-    "Ontology: <http://purl.obolibrary.org/obo/obi/test.owl>\n";
   
   /**
    */
@@ -66,6 +77,14 @@ public class Tester {
     list.add("Individual:");
     return list;
   };
+
+  /**
+   * These lines are added to the head of all Manchester files.
+   */
+  private static String manchesterBase =
+    "Prefix: obo: <http://purl.obolibrary.org/obo/>\n" +
+    "Prefix: : <" + baseIRI + "#>\n" +
+    "Ontology: <" + baseIRI + ">\n";
 
   /**
    * The list of keywords for DL Query facts.
@@ -86,6 +105,49 @@ public class Tester {
     list.add("Individuals:");
     return list;
   };
+
+  /**
+   * These lines are added to the head of all Turtle files.
+   */
+  private static String turtleBase =
+    "@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n" +
+    "@prefix owl:  <http://www.w3.org/2002/07/owl#> .\n" +
+    "@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .\n" +
+    "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n" +
+    "@prefix obo:  <http://purl.obolibrary.org/obo/> .\n" +
+    "@prefix : <" + baseIRI + "#> .\n" +
+    "@base     <" + baseIRI + "#> .\n";
+
+
+  /**
+   * The list of keywords for DL Query facts.
+   */
+  private static List<String> sparqlPrefixes = getSPARQLPrefixes();
+  
+  /**
+   */
+  private static List<String> getSPARQLPrefixes() {
+    List<String> list = new ArrayList<String>();
+    list.add("FACT");
+    list.add("PREFIX");
+    list.add("SELECT");
+    list.add("WHERE");
+    list.add("ORDER");
+    list.add("LIMIT");
+    list.addAll(SPARQLTest.sparqlChecks);
+    return list;
+  };
+
+  /**
+   * These are added to all SPARQL queries.
+   */
+  protected static String sparqlBase =
+    "PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+    "PREFIX owl:  <http://www.w3.org/2002/07/owl#>\n" +
+    "PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>\n" +
+    "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+    "PREFIX obo:  <http://purl.obolibrary.org/obo/>\n" +
+    "PREFIX :     <" + baseIRI + "#>\n";
 
   /**
    * Pattern for matching rdfs:label annotations in Manchester blocks.
@@ -180,19 +242,22 @@ public class Tester {
 
     String name = sourceFile.getName().replaceAll(".txt$", "");
     String base = new File(outputPath, name).toString();
-    String logPath      = base + ".log";
+    String logPath        = base + ".log";
     String manchesterPath = base + ".omn";
-    String queriesPath  = base + ".test";
-    String namesPath = base + "-names.omn";
-    String owlPath = base + ".owl";
+    String turtlePath     = base + ".ttl";
+    String queriesPath    = base + ".dl.txt";
+    String sparqlPath     = base + ".rq.txt";
+    String namesPath      = base + ".names.omn";
+    String owlPath        = base + ".owl";
+    String reasonedPath   = base + ".reasoned.owl";
 
-    FileWriter logWriter = new FileWriter(new File(logPath));
+    FileWriter logWriter      = new FileWriter(new File(logPath));
     logWriter.write("Test log for " + sourceFile.getPath() + "\n");
     Date myDate = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     logWriter.write(sdf.format(myDate) + "\n\n");
 
-    parseSourceFile(logWriter, sourceFile, manchesterPath, queriesPath);
+    parseSourceFile(logWriter, sourceFile, manchesterPath, turtlePath, queriesPath, sparqlPath);
     buildNamesFile(logWriter, manchesterPath, namesPath);
     OWLReasoner reasoner = loadOntologies(logWriter, manchesterPath, namesPath, owlPath);
 
@@ -215,7 +280,12 @@ public class Tester {
 
     // Parse and run the tests.
     if (allPassed) {
-      allPassed = loadTests(logWriter, reasoner, queriesPath);
+      allPassed = loadDLQueries(logWriter, reasoner, queriesPath);
+    }
+
+    // Reason and save
+    if (allPassed) {
+      allPassed = loadSPARQLQueries(logWriter, reasoner, turtlePath, sparqlPath, reasonedPath);
     }
 
     if(allPassed) {
@@ -237,39 +307,56 @@ public class Tester {
    * @param logWriter a FileWriter for logging
    * @param sourceFile the test file
    * @param manchesterPath the path to the Manchester file
+   * @param turtlePath the path to the Turtle file
    * @param queriesPath the path to the DL Queries file
+   * @param sparqlPath the path to the SPARQL file
    */
   private static void parseSourceFile(FileWriter logWriter, File sourceFile,
-      String manchesterPath, String queriesPath)
-      throws IOException {
+      String manchesterPath, String turtlePath, String queriesPath,
+      String sparqlPath)
+        throws IOException {
     // Break the file into parts.
     FileWriter manchesterWriter = new FileWriter(new File(manchesterPath));
-    FileWriter queriesWriter  = new FileWriter(new File(queriesPath));
+    FileWriter turtleWriter     = new FileWriter(new File(turtlePath));
+    FileWriter queriesWriter    = new FileWriter(new File(queriesPath));
+    FileWriter sparqlWriter     = new FileWriter(new File(sparqlPath));
 
     manchesterWriter.write(manchesterBase + "\n");
+    turtleWriter.write(turtleBase + "\n");
 
     Scanner scanner = new Scanner(sourceFile);
-    int status = 0; // 0=doc, 1=manchester, 2=query
+    int status = 0;
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
       line = line.replaceAll("\t", "    "); // replace tabs with four spaces
-      if(line.startsWith("      ")) { } // don't change status for indented lines
-      else if(line.trim().isEmpty()) { } // don't change status for blank lines
-      else if(isManchesterLine(line)) { status = 1; } // manchester
-      else if(isQueryLine(line)) { status = 2; } // query
+      if(line.startsWith("      ")) {} // don't change status for indented lines
+      else if(line.trim().isEmpty()) {} // don't change status for blank lines
+      else if(isManchesterLine(line)) { status = 1; } // Manchester
+      else if(isTurtleLine(line))     { status = 2; } // Turtle
+      else if(isQueryLine(line))      { status = 3; } // DLQuery
+      else if(isSPARQLLine(line))     { status = 4; } // SPARQL
       else { status = 0; } // documentation
 
+      // Write code
       line = line.replaceFirst("    ", "");
       if(status == 1) {
         manchesterWriter.write(line + "\n");
       }
       else if(status == 2) {
+        turtleWriter.write(line + "\n");
+      }
+      else if(status == 3) {
         queriesWriter.write(line + "\n");
+      }
+      else if(status == 4) {
+        sparqlWriter.write(line + "\n");
       }
     }
 
     manchesterWriter.close();
+    turtleWriter.close();
     queriesWriter.close();
+    sparqlWriter.close();
   }
 
 
@@ -353,35 +440,72 @@ public class Tester {
    * @param queriesPath the path to the queries file
    * @return true if all tests pass, false otherwise
    */
-  private static boolean loadTests(FileWriter logWriter, 
+  private static boolean loadDLQueries(FileWriter logWriter, 
       OWLReasoner reasoner, String queriesPath)
         throws FileNotFoundException, IOException {
     boolean allPassed = true;
-    Scanner scanner = new Scanner(new File(queriesPath));
-    Test test;
-    String block = "";
-    while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      if(line.startsWith("Fact:")) {
-        if(!block.trim().isEmpty()) {
-          test = new Test(block);
-          boolean pass = test.run(logWriter, reasoner);
-          if(!pass) { allPassed = false; }
-        }
-        block = line.substring(5, line.length());
+    DLTest test;
+    String text = new Scanner(new File(queriesPath)).useDelimiter("\\A").next();
+    String[] blocks = text.split("Fact:");
+    for(String block: blocks) {
+      if(!block.trim().isEmpty()) {
+        test = new DLTest(block);
+        boolean pass = test.run(logWriter, reasoner);
+        if(!pass) { allPassed = false; }
       }
-      else if (line.trim().isEmpty()) { } // remove blank lines
-      else if (line.startsWith("  ")) {
-        block += " " + line.trim(); // merge indented lines
-      }
-      else { block += "\n" + line; }
     }
-    test = new Test(block);
-    boolean pass = test.run(logWriter, reasoner);
-    if(!pass) { allPassed = false; }
 
     return allPassed;
   }
+
+  /**
+   * Given a log writer, q reasoner, and the queries path
+   * parse the queries file to create tests, then run the tests.
+   * 
+   * @param logWriter a FileWriter for the log
+   * @param reasoner the OWL reasoner for the ontology
+   * @param turtlePath the path to the Turtle file
+   * @param sparqlPath the path to the SPARQL queries file
+   * @param reasonedPath the path to the output OWL file
+   * @return true if all tests pass, false otherwise
+   */
+  private static boolean loadSPARQLQueries(FileWriter logWriter, 
+      OWLReasoner reasoner,
+      String turtlePath, String sparqlPath, String reasonedPath)
+        throws FileNotFoundException, IOException,
+          OWLOntologyCreationException, OWLOntologyStorageException {
+
+    OWLOntology ontology = Builder.mergeOntology(reasoner.getRootOntology(), IRI.create("http://purl.obolibrary.org/obo/obi/test-merged.owl")); // TODO: Is this right?
+    OWLOntologyManager manager = ontology.getOWLOntologyManager();
+    reasoner.flush();
+    reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+    InferredOntologyGenerator generator = new InferredOntologyGenerator(reasoner);
+    generator.addGenerator(new InferredSubClassAxiomGenerator());
+    generator.addGenerator(new InferredEquivalentClassAxiomGenerator());
+    generator.fillOntology(manager, ontology);
+    manager.saveOntology(ontology, IRI.create(new File(reasonedPath)));
+
+    Model model = FileManager.get().loadModel(reasonedPath);
+    FileManager.get().readModel(model, turtlePath);
+    OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+
+    boolean allPassed = true;
+    SPARQLTest test;
+    String text = new Scanner(new File(sparqlPath)).useDelimiter("\\A").next();
+    String[] blocks = text.split("FACT");
+    for(String block: blocks) {
+      if(!block.trim().isEmpty()) {
+        test = new SPARQLTest(block);
+        boolean pass = test.run(logWriter, reasoner, ontModel);
+        if(!pass) { allPassed = false; }
+      }
+    }
+    //boolean pass = test.run(logWriter, reasoner, ontModel);
+    //if(!pass) { allPassed = false; }
+
+    return allPassed;
+  }
+
 
   /**
    * Check whether the given line starts with a Manchester keyword.
@@ -397,6 +521,39 @@ public class Tester {
     }
     return false;
   }
+
+  /**
+   * Check whether the given line starts with a Turtle statement.
+   *
+   * @param line the string to check
+   * @return true if the line starts with a keyword, false otherwise
+   */
+  private static boolean isTurtleLine(String line) {
+    if(!line.startsWith("    "))       { return false; }
+    line = line.replaceFirst("    ", "");
+    if(line.startsWith("@prefix"))     { return true; }
+    if(line.startsWith("@base"))       { return true; }
+    if(line.matches("^:\\S+"))         { return true; } // :foo
+    if(line.matches("^[^\\s:]+:\\S+")) { return true; } // foo:bar
+    if(line.matches("^<\\S+>"))        { return true; } // <foo>
+    return false;
+  }
+
+  /**
+   * Check whether the given line starts with a SPARQL keyword
+   *
+   * @param line the string to check
+   * @return true if the line starts with a keyword, false otherwise
+   */
+  private static boolean isSPARQLLine(String line) {
+    for(String prefix: sparqlPrefixes) {
+      if(line.startsWith("    " + prefix)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
   /**
    * Check whether the given line starts with a DL Query test keyword.

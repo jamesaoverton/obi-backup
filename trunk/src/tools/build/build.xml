@@ -168,6 +168,19 @@
     </java>
   </target>
 
+  <!-- EXPERIMENT -->
+  <target name="experiment" depends="compile" description="Test files in the 'experiments' dir">
+    <mkdir dir="${target}/tests" />
+    <java classname="obi.Tester" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${resources}"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="experiments"/>
+      <arg value="experiments/results"/>
+    </java>
+  </target>
 
   <!-- ALL -->
   <target name="all" depends="clean, init, compile, build" description="Run the complete workflow">

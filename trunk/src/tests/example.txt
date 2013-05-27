@@ -2,14 +2,16 @@
 % James A. Overton <james@overton.ca>
 % 2013-05-25
 
-This document shows you by example how to write automated tests for OBI. The code for the new tool can be found at: http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/
+This document shows you by example how to write automated tests for OBI. The code for the new tool can be found at <http://obi.svn.sourceforge.net/svnroot/obi/trunk/src/tools/build/>.
 
-Tests can be very good documentation because they show you by example what sorts of operations you can successfully perform. So this test system is designed to take a single document, consisting mostly of commentary, with formal definitions mixed in. The testing tool then goes through the document, line by line, looking for two types of code:
+Tests can be very good documentation because they show you by example what sorts of operations you can successfully perform. So this test system is designed to take a single document, consisting mostly of commentary, with formal definitions mixed in. The testing tool then goes through the document, line by line, looking for four types of code:
 
-- ontology code, written in [Manchester Syntax](http://www.w3.org/TR/owl2-manchester-syntax/)
-- test code, written using [DL Query](http://protegewiki.stanford.edu/wiki/DLQueryTab)
+- ontology code, written using [Manchester Syntax](http://www.w3.org/TR/owl2-manchester-syntax/)
+- ontology test code, written using [DL Query](http://protegewiki.stanford.edu/wiki/DLQueryTab)
+- RDF code, written using [Turtle syntax](http://en.wikipedia.org/wiki/CURIE)
+- RDF test code, written using [SPARQL](http://en.wikipedia.org/wiki/SPARQL)
 
-Important: Blocks of code should be indented by four spaces to distinguish them from documentation.
+Important: Blocks of code should be indented by *four spaces* or *one tab* to distinguish them from documentation.
 
 While you're at it, why not use [Markdown syntax](http://daringfireball.net/projects/markdown/) to format the documentation? Markdown is a simple syntax for marking headings, lists, and links in a plain text file. There are lots of great tools for editing Markdown, but you can always just use your favourite text editor. The amazing [pandoc](http://johnmacfarlane.net/pandoc/index.html) utility can Markdown to many other formats, including MediaWiki, HTML, LaTeX, Word, and PDF.
 
@@ -27,9 +29,9 @@ If the tests pass, and you make a change, and then some of the tests fail, you c
 Manchester syntax is the most readable of the many difference syntaxes that have been defined for OWL, and that's what we'll use. Lines or blocks of Manchester code begin with a keyword followed by a colon (":"). The keywords include:
 
 - Prefix: define short prefixes to make writing IRIs easier -- the following prefixes are automatically defined:
-  - rdf, rdfs, xsd, owl (built in to OWL)
-  - obo: <http://purl.obolibrary.org/obo/>
-  - the default prefix ":" is <http://purl.obolibrary.org/obo/obi/test.owl#>
+    - rdf, rdfs, xsd, owl (built in to OWL)
+    - obo: <http://purl.obolibrary.org/obo/>
+    - the default prefix ":" is [http://purl.obolibrary.org/obo/obi/test.owl#](http://purl.obolibrary.org/obo/obi/test.owl#)
 - Ontology: the IRI for the current ontology (only one allowed) -- this is automatically set to <http://purl.obolibrary.org/obo/obi/test.owl>.
 - Import: the IRI of an OWL ontology to import
 - Class: the definition of an OWLClass
@@ -40,7 +42,7 @@ Manchester syntax is the most readable of the many difference syntaxes that have
 
 Definitions usually come in "blocks", starting with a keyword and followed by lines that are indented with at least two spaces, or by blank lines. 
 
-Order is important for some things. You should start the ontology definition with a "header" such as this one. Here we import OBI Core.
+Order is important for some things. You should start the ontology definition with a "header" such as this one. Here we import OBI Core -- it will be loaded from the OBI build tool's local copy:
 
     Import: <http://purl.obolibrary.org/obo/obi/core.owl>
 
@@ -156,5 +158,78 @@ Order is never important when comparing results. Note that the owl:Thing and owl
     Ancestors: include 'test class 1'
     Descendants: include 'test class 3'
     Equivalents: exactly 'test class 2'
+
+
+# Building an RDF Graph
+
+Ontologies are often used as part of an [RDF](http://en.wikipedia.org/wiki/Resource_Description_Framework) graph. The nicest language for writing RDF is [Turtle syntax](http://en.wikipedia.org/wiki/CURIE), so that's what we use for this task:
+
+    :foo
+      rdfs:label "foo" .
+    obo:OBI_0000070
+      rdfs:comment "Test comment" .
+    <http://purl.obolibrary.org/obo/obi/test.owl#foo>
+      rdfs:label "FOO" .
+
+The parser expects Turtle blocks to begin with:
+
+- a [CURIE](http://en.wikipedia.org/wiki/CURIE) (Compact URI), which can
+    - use a prefix: "obo:OBI_0000070"
+    - use the default (empty) prefix: ":foo"
+- a full IRI within angle brackets: "<http://purl.obolibrary.org/obo/test.owl#foo>"
+
+The same prefixes are defined for Turtle as for Manchester (see above).
+
+NOTE: There is no magic replacement of single-quoted labels within Turtle blocks.
+
+The RDF graph is built after the ontology has been built and tested with the DL Query tests. The testing tool first loads the ontology into a [Apache Jena](http://jena.apache.org/) [OntModel](http://jena.apache.org/documentation/javadoc/jena/com/hp/hpl/jena/ontology/OntModel.html), and then loads the Turtle into the OntModel.
+
+This allows you to try out RDF modelling strategies that make use of OBI. In order to check your modelling, use SPARQL Tests.
+
+
+# SPARQL Tests
+
+We can run [SPARQL](http://en.wikipedia.org/wiki/SPARQL) queries against the RDF graph and check whether the results meet our expectations. This test is equivalent to the first DL Query test above:
+
+    FACT 'test class 2' is a subclass of 'test class 1'
+    SELECT ?object
+    WHERE { :test-class-2 rdfs:subClassOf ?object }
+    EXACTLY 'test class 1'
+
+Note that SPARQL tests start with "FACT". There is no "QUERY" keyword, just the normal SPARQL query keywords: SELECT, WHERE, ORDER BY, LIMIT. The comparison operators are the same as above, except that the keywords are capitalized. The same set of prefixes is used for SPARQL queries as for Manchester and Turtle files. The SPARQL tests are run after the DL tests.
+
+NOTE: There is no magic replacement of single-quoted labels within the SPARQL *query*, only in the expected results class. 
+
+When comparing sets of results, the testing tool expects you to provide a table of your expectations. The columns of the table should correspond to your SELECT variables. The order of the rows is ignored. This test has two columns "?select" and "?object", and one row :foo and "foo":
+
+    FACT :foo has an rdfs:label in the results
+    SELECT ?subject ?object
+    WHERE { ?subject rdfs:label ?object }
+    ANYTHING
+    INCLUDE
+      :foo "foo"
+      :foo "FOO"
+
+All literals are compared as strings in the current version -- data types and languages are ignored. Here are a few more examples showing some variations:
+
+    FACT :foo is not subClassOf anything
+    SELECT ?object
+    WHERE { :foo rdfs:subClassOf ?object }
+    NOTHING
+    NUMBER 0
+    EXCLUDE 'test class 3'
+
+    FACT :foo has two rdfs:labels
+    SELECT ?object
+    WHERE { <http://purl.obolibrary.org/obo/obi/test.owl#foo> rdfs:label ?object }
+    ANYTHING
+    NUMBER 2
+    EXACTLY "foo" "FOO"
+
+    FACT 'assay' has a new rdfs:comment
+    SELECT ?object
+    WHERE { obo:OBI_0000070 rdfs:comment ?object }
+    EXACTLY "Test comment"
+
 
 
