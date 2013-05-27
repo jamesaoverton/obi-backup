@@ -94,8 +94,11 @@ You can change details of the build process by editing `config.properties`.
 ## Dependencies
 
 It should be possible to download the dependencies yourself and copy them to `build/lib`:
+
 - The latest OWLAPI: [http://owlapi.sourceforge.net/]() (e.g. `owlapi-distribution-3.4.3-bin.jar`)
 - Berkeley Bioinformatics Open-source Projects (BBOP)'s version of HermiT: [http://code.berkeleybop.org/maven/repository/org/semanticweb/HermiT/1.3.6-BBOP/HermiT-1.3.6-BBOP.jar]()
+- A recent copy of `jena-core`: [http://search.maven.org/remotecontent?filepath=org/apache/jena/jena-core/2.10.1/jena-core-2.10.1.jar]()
+- A recent copy of `jena-arq`: [http://search.maven.org/remotecontent?filepath=org/apache/jena/jena-arq/2.10.1/jena-arq-2.10.1.jar]()
 - A recent copy of `log4j`: [http://search.maven.org/remotecontent?filepath=log4j/log4j/1.2.17/log4j-1.2.17.jar]()
 
 
