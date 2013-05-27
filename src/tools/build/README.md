@@ -85,6 +85,12 @@ You can also run a suite of automated tests using:
 
 Test source files are read from `../../tests/` and results are stored in `target/tests/`, including `*.log` files with details on any test failures.
 
+If you're experimenting with OBI, you can run tests on your experiments without committing code to SVN. Put your experiment test files in `build/experiments` and then run to run the test tool against them:
+
+    ant experiment
+
+Results will appear in `target/experiments`.
+
 
 ## Configuration
 
