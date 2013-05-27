@@ -49,14 +49,14 @@ import obi.Tester;
 import obi.Test;
 
 /**
- * Represent a single DL Query test.
+ * Represent a single SPARQL test.
  *  
  * @author <a href="mailto:james@overton.ca">James A. Overton</a>
  */
 public class SPARQLTest extends Test {
 
   /**
-   * The list of keywords for DL Query facts.
+   * The list of keywords for SPARQL facts.
    */
   protected static List<String> sparqlChecks = getSPARQLChecks();
   
@@ -124,6 +124,7 @@ public class SPARQLTest extends Test {
    *
    * @param writer a FileWriter for the log
    * @param reasoner the initalized reasoner for the ontology
+   * @param ontMode the Jena Ontology Model
    * @return true if all tests pass, false otherwise
    */
   public boolean run(FileWriter writer, OWLReasoner reasoner, OntModel ontModel)
@@ -170,19 +171,21 @@ public class SPARQLTest extends Test {
   }
 
   /**
-   * Given a log writer, reasoner, parser, query object, and a check string,
-   * run the check against the query object.
+   * Given a log writer, reasoner, parser, query results and rows,
+   * and a check string, run the check against the results.
    *
    * @param writer a FileWriter for the log
    * @param reasoner the initalized reasoner for the ontology
    * @param parser used to resolve tokens
-   * @param queryObject the class expression to check against
+   * @param resultSet the set of query results
+   * @param got a set of rows with IRIs and literals
+   * @param gotNames a set of rows with labels and literals
    * @param check the check string
    * @return true if the check passes, false otherwise
    */
   protected boolean checkOne(FileWriter writer, ManchesterSyntaxTool parser,
-      ResultSet results,
-      Set<String> got, Set<String> gotNames, String check) throws IOException {
+      ResultSet results, Set<String> got, Set<String> gotNames, String check)
+        throws IOException {
 
     // Get the method, comparison, and tokens.
     List<String> tokens = getTokens(check);
@@ -278,6 +281,12 @@ public class SPARQLTest extends Test {
     }
   }
 
+  /**
+   * Write a sorted set of rows.
+   *
+   * @param writer a FileWriter for the log
+   * @param got a set of row string to write
+   */
   private void writeRows(FileWriter writer, Set<String> got)
       throws IOException {
     List<String> rows = new ArrayList<String>(got);
@@ -287,6 +296,16 @@ public class SPARQLTest extends Test {
     }
   }
 
+  /**
+   * Given a parser and tokens, translate the tokens into IRIs and literals
+   * and return a set of "rows" (string representations).
+   *
+   * @param writer a FileWriter for the log
+   * @param parser the parser to find the IRIs
+   * @param cols the number of columns
+   * @param tokens the string tokens to get
+   * @return a set of strings, where each string represents a row of results
+   */
   private Set<String> getExpectedIRIs(FileWriter writer, 
       ManchesterSyntaxTool parser, int cols, List<String> tokens)
         throws IllegalArgumentException {
@@ -330,6 +349,13 @@ public class SPARQLTest extends Test {
     return rows;
   }
 
+  /**
+   * Divide tokens into rows and return a set of strings.
+   *
+   * @param cols the number of columns
+   * @param tokens the tokens to divide
+   * @return a set of strings, where each string represents a row of results
+   */
   private Set<String> getExpectedNames(int cols, List<String> tokens) {
     Set<String> rows = new HashSet<String>();
     int counter = 0;
@@ -346,6 +372,14 @@ public class SPARQLTest extends Test {
     return rows;
   }
 
+  /**
+   * Given a list of variables and a SPARQL solution,
+   * return a string "row" representing the results.
+   *
+   * @param vars a list of the names of the columns
+   * @param solution one SPARQL solution
+   * @return a string representing the results.
+   */
   private String getIRIs(List<String> vars, QuerySolution solution) {
     String result = "";
     for(String var: vars) {
@@ -365,6 +399,15 @@ public class SPARQLTest extends Test {
     return result.trim();
   }
 
+  /**
+   * Given an ontology, list of variables and a SPARQL solution,
+   * return a string "row" representing the results, using labels when possible.
+   *
+   * @param ontology the ontology to search for labels
+   * @param vars a list of the names of the columns
+   * @param solution one SPARQL solution
+   * @return a string representing the results.
+   */
   private String getNames(OWLOntology ontology, List<String> vars, QuerySolution solution) {
     OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
     String result = "";

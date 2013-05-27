@@ -270,4 +270,32 @@ public class DLTest extends Test {
     }
   }
 
+  /**
+   * Given a parser and a list of token strings, 
+   * return a list of the resolved OWL objects.
+   *
+   * @param parser the Manchester parser for resolving references
+   * @param tokens the list of string tokens to resolve
+   * @throws IllegalArgumentException if a token cannot be resolved
+   * @return a list of OWL objects
+   */
+  protected Set<OWLObject> getObjects(ManchesterSyntaxTool parser,
+      List<String> tokens)
+      throws IllegalArgumentException {
+    Set<OWLObject> objects = new HashSet<OWLObject>();
+    for (String token: tokens) {
+      try {
+        OWLClassExpression c = parser.parseManchesterExpression(token);
+        objects.add((OWLObject) c);
+      } catch(ParserException e) {
+        try {
+          OWLIndividual i = parser.parseManchesterIndividualExpression(token);
+          objects.add((OWLObject) i);
+        } catch(ParserException e2) {
+          throw new IllegalArgumentException("ERROR unknown entity: " + token + "\n");
+        }
+      }
+    }
+    return objects;
+  }
 }

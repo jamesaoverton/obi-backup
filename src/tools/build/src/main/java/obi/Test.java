@@ -32,7 +32,7 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.obolibrary.macro.ManchesterSyntaxTool;
 
 /**
- * Represent a single DL Query test.
+ * Parent class for representing a single test.
  *  
  * @author <a href="mailto:james@overton.ca">James A. Overton</a>
  */
@@ -69,39 +69,6 @@ public class Test {
   }
 
   /**
-   * Given a log writer and a reasoner, run all tests.
-   *
-   * @param writer a FileWriter for the log
-   * @param reasoner the initalized reasoner for the ontology
-   * @return true if all tests pass, false otherwise
-   */
-  public boolean run(FileWriter writer, OWLReasoner reasoner)
-      throws IOException {
-    System.out.println("Test.run is not implemented");
-    return true;
-  }
-
-  /**
-   * Given a writer, an ontology, and a set of OWL objects,
-   * write the names of the objects to the writer.
-   *
-   * @param writer a FileWriter for the log
-   * @param ontology the ontology to get names from
-   * @param objects the list of objects to get names for
-   */
-  protected void writeNames(FileWriter writer, OWLOntology ontology,
-      Set<? extends OWLObject> objects) throws IOException {
-    List<String> names = new ArrayList<String>();
-    for(OWLObject o: objects) {
-      names.add(getName(ontology, o));
-    }
-    java.util.Collections.sort(names);
-    for(String name: names) {
-      writer.write("        " + name + "\n");
-    }
-  }
-
-  /**
    * Given an ontology and an OWL object, try to find an rdfs:label.
    * This should be easier, but we have to search all imports.
    *
@@ -131,35 +98,5 @@ public class Test {
     }
     return object.toString();
   }
-
-  /**
-   * Given a parser and a list of token strings, 
-   * return a list of the resolved OWL objects.
-   *
-   * @param parser the Manchester parser for resolving references
-   * @param tokens the list of string tokens to resolve
-   * @throws IllegalArgumentException if a token cannot be resolved
-   * @return a list of OWL objects
-   */
-  protected Set<OWLObject> getObjects(ManchesterSyntaxTool parser,
-      List<String> tokens)
-      throws IllegalArgumentException {
-    Set<OWLObject> objects = new HashSet<OWLObject>();
-    for (String token: tokens) {
-      try {
-        OWLClassExpression c = parser.parseManchesterExpression(token);
-        objects.add((OWLObject) c);
-      } catch(ParserException e) {
-        try {
-          OWLIndividual i = parser.parseManchesterIndividualExpression(token);
-          objects.add((OWLObject) i);
-        } catch(ParserException e2) {
-          throw new IllegalArgumentException("ERROR unknown entity: " + token + "\n");
-        }
-      }
-    }
-    return objects;
-  }
-
 
 }
