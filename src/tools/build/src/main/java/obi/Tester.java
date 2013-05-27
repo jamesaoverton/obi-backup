@@ -43,6 +43,14 @@ public class Tester {
    * The list of Manchester keywords that mark the start of a line.
    */
   private static List<String> manchesterPrefixes = getManchesterPrefixes();
+
+  /**
+   * These lines are added to the head of all Manchester files.
+   */
+  private static String manchesterBase =
+    "Prefix: obo: <http://purl.obolibrary.org/obo/>\n" +
+    "Prefix: : <http://purl.obolibrary.org/obo/obi/test.owl#>\n" +
+    "Ontology: <http://purl.obolibrary.org/obo/obi/test.owl>\n";
   
   /**
    */
@@ -173,19 +181,18 @@ public class Tester {
     String name = sourceFile.getName().replaceAll(".txt$", "");
     String base = new File(outputPath, name).toString();
     String logPath      = base + ".log";
-    String markdownPath = base + ".md";
     String manchesterPath = base + ".omn";
     String queriesPath  = base + ".test";
     String namesPath = base + "-names.omn";
     String owlPath = base + ".owl";
 
-    FileWriter logWriter      = new FileWriter(new File(logPath));
+    FileWriter logWriter = new FileWriter(new File(logPath));
     logWriter.write("Test log for " + sourceFile.getPath() + "\n");
     Date myDate = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     logWriter.write(sdf.format(myDate) + "\n\n");
 
-    parseSourceFile(logWriter, sourceFile, markdownPath, manchesterPath, queriesPath);
+    parseSourceFile(logWriter, sourceFile, manchesterPath, queriesPath);
     buildNamesFile(logWriter, manchesterPath, namesPath);
     OWLReasoner reasoner = loadOntologies(logWriter, manchesterPath, namesPath, owlPath);
 
@@ -229,51 +236,39 @@ public class Tester {
    *
    * @param logWriter a FileWriter for logging
    * @param sourceFile the test file
-   * @param markdownPath the path to the Markdown file
    * @param manchesterPath the path to the Manchester file
    * @param queriesPath the path to the DL Queries file
    */
   private static void parseSourceFile(FileWriter logWriter, File sourceFile,
-      String markdownPath, String manchesterPath, String queriesPath)
+      String manchesterPath, String queriesPath)
       throws IOException {
     // Break the file into parts.
-    FileWriter markdownWriter = new FileWriter(new File(markdownPath));
-    FileWriter ontologyWriter = new FileWriter(new File(manchesterPath));
+    FileWriter manchesterWriter = new FileWriter(new File(manchesterPath));
     FileWriter queriesWriter  = new FileWriter(new File(queriesPath));
+
+    manchesterWriter.write(manchesterBase + "\n");
 
     Scanner scanner = new Scanner(sourceFile);
     int status = 0; // 0=doc, 1=manchester, 2=query
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      if(line.startsWith("  ")) {} // don't change status for indented lines
-      else if(line.trim().isEmpty()) {} // don't change status for blank lines
+      line = line.replaceAll("\t", "    "); // replace tabs with four spaces
+      if(line.startsWith("      ")) { } // don't change status for indented lines
+      else if(line.trim().isEmpty()) { } // don't change status for blank lines
       else if(isManchesterLine(line)) { status = 1; } // manchester
       else if(isQueryLine(line)) { status = 2; } // query
       else { status = 0; } // documentation
 
-      if(status == 0) {
-        markdownWriter.write(line + "\n");
-      }
-      else if(status == 1) {
-        ontologyWriter.write(line + "\n");
-        if(line.trim().isEmpty()) {
-          markdownWriter.write(line + "\n");
-        } else {
-          markdownWriter.write("    " + line + "\n"); // indent code blocks
-        }
+      line = line.replaceFirst("    ", "");
+      if(status == 1) {
+        manchesterWriter.write(line + "\n");
       }
       else if(status == 2) {
         queriesWriter.write(line + "\n");
-        if(line.trim().isEmpty()) {
-          markdownWriter.write(line + "\n");
-        } else {
-          markdownWriter.write("    " + line + "\n"); // indent code blocks
-        }
       }
     }
 
-    markdownWriter.close();
-    ontologyWriter.close();
+    manchesterWriter.close();
     queriesWriter.close();
   }
 
@@ -396,7 +391,7 @@ public class Tester {
    */
   private static boolean isManchesterLine(String line) {
     for(String prefix: manchesterPrefixes) {
-      if(line.startsWith(prefix)) {
+      if(line.startsWith("    " + prefix)) {
         return true;
       }
     }
@@ -411,7 +406,7 @@ public class Tester {
    */
   private static boolean isQueryLine(String line) {
     for(String prefix: queryPrefixes) {
-      if(line.startsWith(prefix)) {
+      if(line.startsWith("    " + prefix)) {
         return true;
       }
     }
