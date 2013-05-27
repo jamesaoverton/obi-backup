@@ -120,7 +120,7 @@ public class Tester {
 
 
   /**
-   * The list of keywords for DL Query facts.
+   * The list of keywords for SPARQL facts.
    */
   private static List<String> sparqlPrefixes = getSPARQLPrefixes();
   
