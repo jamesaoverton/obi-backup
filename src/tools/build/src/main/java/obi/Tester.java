@@ -35,11 +35,8 @@ import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
 
 import org.obolibrary.macro.ManchesterSyntaxTool;
 
-import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.query.Dataset;
+import org.apache.jena.riot.RDFDataMgr;
 
 import obi.DLTest;
 import obi.SPARQLTest;
@@ -127,6 +124,7 @@ public class Tester {
     list.add("FACT");
     list.add("PREFIX");
     list.add("SELECT");
+    list.add("FROM");
     list.add("WHERE");
     list.add("ORDER");
     list.add("LIMIT");
@@ -182,7 +180,7 @@ public class Tester {
       System.out.println("ERROR: Could not test with arguments:");
       for (String arg: args) System.out.println ("  " + arg);
       System.out.println(e.getMessage());
-      throw e;
+      //throw e;
     }
   }
 
@@ -240,7 +238,7 @@ public class Tester {
     String base = new File(outputPath, name).toString();
     String logPath        = base + ".log";
     String manchesterPath = base + ".omn";
-    String turtlePath     = base + ".ttl";
+    String turtlePath     = base + ".ttl"; // INFO: change this to '.trig'
     String queriesPath    = base + ".dl.txt";
     String sparqlPath     = base + ".rq.txt";
     String namesPath      = base + ".names.omn";
@@ -439,9 +437,16 @@ public class Tester {
   private static boolean loadDLQueries(FileWriter logWriter, 
       OWLReasoner reasoner, String queriesPath)
         throws FileNotFoundException, IOException {
+    String text;
+    try {
+      text = new Scanner(new File(queriesPath)).useDelimiter("\\A").next();
+    } catch(Exception e) {
+      logWriter.write("NO DL Query tests found.\n");
+      return true;
+    }
+
     boolean allPassed = true;
     DLTest test;
-    String text = new Scanner(new File(queriesPath)).useDelimiter("\\A").next();
     String[] blocks = text.split("Fact:");
     for(String block: blocks) {
       if(!block.trim().isEmpty()) {
@@ -470,6 +475,13 @@ public class Tester {
       String turtlePath, String sparqlPath, String reasonedPath)
         throws FileNotFoundException, IOException,
           OWLOntologyCreationException, OWLOntologyStorageException {
+    String text;
+    try {
+      text = new Scanner(new File(sparqlPath)).useDelimiter("\\A").next();
+    } catch(Exception e) {
+      logWriter.write("No SPARQL tests found.\n");
+      return true;
+    }
 
     OWLOntology ontology = Builder.mergeOntology(reasoner.getRootOntology(), IRI.create("http://purl.obolibrary.org/obo/obi/test-merged.owl")); // TODO: Is this right?
     OWLOntologyManager manager = ontology.getOWLOntologyManager();
@@ -481,18 +493,16 @@ public class Tester {
     generator.fillOntology(manager, ontology);
     manager.saveOntology(ontology, IRI.create(new File(reasonedPath)));
 
-    Model model = FileManager.get().loadModel(reasonedPath);
-    FileManager.get().readModel(model, turtlePath);
-    OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+    Dataset dataset = RDFDataMgr.loadDataset(reasonedPath);
+    RDFDataMgr.read(dataset, turtlePath);
 
     boolean allPassed = true;
     SPARQLTest test;
-    String text = new Scanner(new File(sparqlPath)).useDelimiter("\\A").next();
     String[] blocks = text.split("FACT");
     for(String block: blocks) {
       if(!block.trim().isEmpty()) {
         test = new SPARQLTest(block);
-        boolean pass = test.run(logWriter, reasoner, ontModel);
+        boolean pass = test.run(logWriter, reasoner, dataset);
         if(!pass) { allPassed = false; }
       }
     }
@@ -529,9 +539,9 @@ public class Tester {
     line = line.replaceFirst("    ", "");
     if(line.startsWith("@prefix"))     { return true; }
     if(line.startsWith("@base"))       { return true; }
-    if(line.matches("^:\\S+"))         { return true; } // :foo
-    if(line.matches("^[^\\s:]+:\\S+")) { return true; } // foo:bar
-    if(line.matches("^<\\S+>"))        { return true; } // <foo>
+    if(line.matches("^:\\S+.*"))         { return true; } // :foo
+    if(line.matches("^[^\\s:]+:\\S+.*")) { return true; } // foo:bar
+    if(line.matches("^<\\S+>.*"))        { return true; } // <foo>
     return false;
   }
 
