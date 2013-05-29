@@ -25,11 +25,11 @@ import org.obolibrary.macro.ManchesterSyntaxTool;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.Dataset;
 
 import obi.Tester;
 import obi.Test;
@@ -110,10 +110,10 @@ public class SPARQLTest extends Test {
    *
    * @param writer a FileWriter for the log
    * @param reasoner the initalized reasoner for the ontology
-   * @param ontMode the Jena Ontology Model
+   * @param dataset the Jena Dataset
    * @return true if all tests pass, false otherwise
    */
-  public boolean run(FileWriter writer, OWLReasoner reasoner, OntModel ontModel)
+  public boolean run(FileWriter writer, OWLReasoner reasoner, Dataset dataset)
       throws IOException {
     writer.write("\nFACT " + fact +"\n");
 
@@ -123,7 +123,7 @@ public class SPARQLTest extends Test {
     try {
       parser = new ManchesterSyntaxTool(ontology);
       QueryExecution qexec = QueryExecutionFactory.create(
-          Tester.sparqlBase + query, ontModel);
+          Tester.sparqlBase + query, dataset);
       results = qexec.execSelect();
       String[] lines = query.split("\n");
       for(String line: lines) {

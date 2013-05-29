@@ -182,7 +182,7 @@ The same prefixes are defined for Turtle as for Manchester (see above).
 
 NOTE: There is no magic replacement of single-quoted labels within Turtle blocks.
 
-The RDF graph is built after the ontology has been built and tested with the DL Query tests. The testing tool first loads the ontology into a [Apache Jena](http://jena.apache.org/) [OntModel](http://jena.apache.org/documentation/javadoc/jena/com/hp/hpl/jena/ontology/OntModel.html), and then loads the Turtle into the OntModel.
+The RDF graph is built after the ontology has been built and tested with the DL Query tests. The testing tool first loads the ontology into a [Apache Jena](http://jena.apache.org/) [Dataset](http://jena.apache.org/documentation/javadoc/arq/com/hp/hpl/jena/query/Dataset.html), and then reads the Turtle into the Dataset.
 
 This allows you to try out RDF modelling strategies that make use of OBI. In order to check your modelling, use SPARQL Tests.
 
@@ -196,7 +196,7 @@ We can run [SPARQL](http://en.wikipedia.org/wiki/SPARQL) queries against the RDF
     WHERE { :test-class-2 rdfs:subClassOf ?object }
     EXACTLY 'test class 1'
 
-Note that SPARQL tests start with "FACT". There is no "QUERY" keyword, just the normal SPARQL query keywords: SELECT, WHERE, ORDER BY, LIMIT. The comparison operators are the same as above, except that the keywords are capitalized. The same set of prefixes is used for SPARQL queries as for Manchester and Turtle files. The SPARQL tests are run after the DL tests.
+Note that SPARQL tests start with "FACT". There is no "QUERY" keyword, just the normal SPARQL query keywords: SELECT, FROM, WHERE, ORDER BY, LIMIT. The comparison operators are the same as above, except that the keywords are capitalized. The same set of prefixes is used for SPARQL queries as for Manchester and Turtle files. The SPARQL tests are run after the DL tests.
 
 NOTE: There is no magic replacement of single-quoted labels within the SPARQL *query*, only in the expected results class. 
 
