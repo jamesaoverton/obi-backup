@@ -279,7 +279,14 @@ public class ManchesterSyntaxTool {
 		}
 
 		public OWLDataProperty getOWLDataProperty(String name) {
-			return defaultInstance.getOWLDataProperty(name);
+			OWLDataProperty owlDataProperty = defaultInstance.getOWLDataProperty(name);
+			if (owlDataProperty == null) {
+				IRI iri = getIRI(name);
+				if (iri != null) {
+					owlDataProperty = getOWLDataProperty(iri);
+				}
+			}
+			return owlDataProperty;
 		}
 
 		public OWLNamedIndividual getOWLIndividual(String name) {
@@ -426,6 +433,19 @@ public class ManchesterSyntaxTool {
 			}
 			return null;
 		}
+
+		OWLDataProperty getOWLDataProperty(IRI iri) {
+			for (OWLOntology o : ontologies) {
+				OWLDataFactory dataFactory = o.getOWLOntologyManager().getOWLDataFactory();
+				OWLDataProperty p = dataFactory.getOWLDataProperty(iri);
+                                // HACK: There seems to be a bug, where DataProperties don't get declaration axioms, so we try this instead.
+				if (o.getAxioms(p).size() > 0) {
+					return p;
+				}
+			}
+			return null;
+		}
+
 	}
 
 	/**
