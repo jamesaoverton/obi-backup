@@ -65,6 +65,7 @@ public class Tester {
     list.add("Import:");
     list.add("ObjectProperty:");
     list.add("AnnotationProperty:");
+    list.add("DataProperty:");
     list.add("Datatype:");
     list.add("Class:");
     list.add("Individual:");
@@ -272,6 +273,8 @@ public class Tester {
       allPassed = false;
     }
 
+    //reasoner.precomputeInferences(reasoner.getPrecomputableInferenceTypes().toArray(new InferenceType[0]));
+
     // Parse and run the tests.
     if (allPassed) {
       allPassed = loadDLQueries(logWriter, reasoner, queriesPath);
@@ -378,6 +381,10 @@ public class Tester {
           String label = m.group(1);
           namesWriter.write("  Annotations: rdfs:label \"" + label + "\"\n");
         }
+      } else if (line.startsWith("DataProperty:")) {
+        // HACK: OWLAPI isn't making a declaration axiom if the DataProperty
+        // only has annotations. This forces a declaration in the .named.omn file.
+        namesWriter.write(line + "\n  Characteristics: Functional\n"); 
       } else if (line.startsWith("Ontology:")) {
         namesWriter.write("Ontology: <http://example.com/" +
             System.currentTimeMillis() + ">\n"); // Make a unique temporary IRI.
