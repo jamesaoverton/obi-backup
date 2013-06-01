@@ -87,7 +87,7 @@
   </target>
 
   <!-- BUILD -->
-  <target name="build" depends="assign-ids, doap" description="Merge OBI into a single OWL file">
+  <target name="build" depends="compile, doap" description="Merge OBI into a single OWL file">
     <java classname="obi.Builder" fork="false">
       <classpath>
           <path refid="classpath"/>
@@ -107,6 +107,10 @@
       <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi.owl"/>
       <arg value="${dist}/${obi_merged}"/>
     </java>
+  </target>
+
+  <!-- RELEASE -->
+  <target name="release" depends="assign-ids, doap, build" description="Build a merged OBI file for release">
   </target>
 
   <!-- REPORT -->

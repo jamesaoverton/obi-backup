@@ -59,6 +59,10 @@ Use Ant to build a self-contained OWL file for OBI:
 
     ant build
 
+Use Ant to assign-ids, run checks, then build an OBI OWL file that's ready for release. NOTE: the build tool does not yet implement all the metadata and other checks required for the OBI release process, but we're working toward that goal.
+
+    ant release
+
 Generate a report on all the OBI terms as a CSV file (currently just IRIs and labels, but more columns can be added on request):
 
     ant report
