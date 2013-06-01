@@ -26,7 +26,7 @@ import org.semanticweb.owlapi.expression.ParserException;
 
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
-import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
+import org.semanticweb.HermiT.Reasoner.ReasonerFactory;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
@@ -425,7 +425,7 @@ public class Tester {
     logWriter.write("PASS Loaded ontology file\n");
     manager.saveOntology(ontology, IRI.create(new File(owlPath)));
 
-    OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
+    OWLReasonerFactory reasonerFactory = new ReasonerFactory();
     OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
     logWriter.write("PASS Initialized the reasoner\n");
 
