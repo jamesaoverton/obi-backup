@@ -108,6 +108,18 @@
       <arg value="${dist}/${obi_merged}"/>
     </java>
   </target>
+  
+  <!-- REASON -->
+  <target name="reason" depends="compile" description="Reason over the built OBI and save the results">
+    <java classname="obi.Reasoner" fork="false">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/${obi_merged}"/>
+      <arg value="${dist}/obi-axioms.txt"/>
+    </java>
+  </target>
 
   <!-- RELEASE -->
   <target name="release" depends="assign-ids, doap, build" description="Build a merged OBI file for release">
