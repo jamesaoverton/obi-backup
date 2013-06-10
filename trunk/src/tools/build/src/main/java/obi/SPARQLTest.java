@@ -301,25 +301,33 @@ public class SPARQLTest extends Test {
     for(String token: tokens) {
       counter++;
       String value = token;
+      // Try to match a class name, then an individual name.
       if(value.startsWith("'")) {
+        String iri = null;
         try {
-          String iri = null;
           OWLClassExpression ce = parser.parseManchesterExpression(token);
           if(ce instanceof OWLClass) {
             OWLClass c = (OWLClass) ce;
             iri = c.getIRI().toString();
-          } else {
+          }
+        } catch(ParserException e) {
+          //System.out.println("CLASS ERROR: " + e.getMessage());
+        }
+        if(iri == null) {
+          try {
             OWLIndividual ind = parser.parseManchesterIndividualExpression(token);
             if(ind instanceof OWLNamedIndividual) {
               OWLNamedIndividual named = (OWLNamedIndividual) ind;
               iri = named.getIRI().toString();
             }
+          } catch(ParserException e) {
+            //System.out.println("IND ERROR: " + e.getMessage());
           }
-          if(iri != null) {
-            value = "<" + iri + ">";
-          }
-        } catch(ParserException e) {
+        }
+        if(iri == null) {
           throw new IllegalArgumentException("ERROR unknown entity: " + token + "\n");
+        } else {
+          value = "<" + iri + ">";
         }
       } else if (token.startsWith(":")) {
         value = "<" + Tester.baseIRI + "#" + token.substring(1, token.length()) + ">";

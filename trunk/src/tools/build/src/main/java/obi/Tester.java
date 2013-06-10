@@ -559,6 +559,7 @@ public class Tester {
    * @return true if the line starts with a keyword, false otherwise
    */
   private static boolean isSPARQLLine(String line) {
+    if(line.startsWith("    }")) { return true; }
     for(String prefix: sparqlPrefixes) {
       if(line.startsWith("    " + prefix)) {
         return true;
