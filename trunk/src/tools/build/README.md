@@ -78,7 +78,7 @@ You can also extract a new version of OBI Core from the OBI OWL file you just bu
 
     ant core
 
-The program uses the IRIs in `core.txt` to extract the core. If you want to extract a different subset of OBI, you can modify the `core.txt` file.
+The program uses the IRIs in `core.txt` to extract the core. If you want to extract a different subset of OBI, you can modify the `core.txt` file. The resulting OWL file is in `dist/obi_core.owl`.
 
 
 ### Tests
