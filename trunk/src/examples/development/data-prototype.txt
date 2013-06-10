@@ -1,0 +1,285 @@
+% OBI Data Modelling Prototype
+% James A. Overton <james@overton.ca>
+% 2013-05-30
+
+This is a prototype of the "value specification" approach to modelling data in OBI/IAO. It is based on discussing during the Philly2013 workshop and on the mailing list, but it does not (yet) reflect a consensus.
+
+I used the new OBI build tool to convert this document into OWL and test it. See: http://obi.svn.sourceforge.net/viewvc/obi/trunk/src/tools/build/
+
+
+# Motivation
+
+OBI is about biomedical investigations and must be able to describe the data generated in investigations. Some of the oldest terms in OBI and IAO were designed to describe measurement. More recently, we have recognized the need to describe predictions, simulations, and setting information. Superficially these are very similar. "20g" could occur as:
+
+1. a measurement of the mass of a particular mouse
+2. a predicted average mass of some future mouse after a treatment
+3. an output of a simulation of mouse growth
+4. a rule for selecting mice of a certain mass
+
+Despite the superficial similarity, 1-4 are *about* very different things (if they're about anything at all). OBI is a realist ontology, where we try to build consensus by being as precise as we can about what is going on in the world. *Aboutness* is our primary way of distinguishing information content entities, and so we need to be clear in distinguishing measurements from predictions and settings, etc. This pushes our modelling toward greater complexity.
+
+But we also want our modelling to be as simple as possible. We would like to *factor out* the similarities between 1-4, in order to reuse as much of our modelling as possible, and in order to reduce the number of asserted hierarchies we're dealing with.
+
+In the proposal laid out here we distinguish the *structure* from the *content* of an information content entity. We assert a new hierarchy under "information structural entity" that contains "value specifications" such as the "20g" structure, which are not clearly *about* anything. Under "information content entity" we include entities that are clearly about things (in different ways), such a measurement data.
+
+The proposal is designed to add just enough complexity to allow us to model measurements, predictions, and simulations in a similar way, by factoring out the shared structure of a "value specification".
+
+Here are some notes on previous discussions:
+
+- Bjoern's summary and proposal: https://groups.google.com/forum/#!msg/information-ontology/c6IlIE9n9qE/XqxlWKE6jlkJ
+- ICBO 2012 working session: https://code.google.com/p/information-artifact-ontology/wiki/WorkingSessionICBO2012
+- Christian's summary and proposal https://docs.google.com/document/d/1zL0nW9RVqoC9sg6iajNZHex03JDnYUG4Q5F-e2rlZYg/edit#
+- Philippe and Alejandra's modelling tests: https://docs.google.com/document/d/11G4EkYvGJSJfcgW98weOyo5iVr7TdmrWEhm_q2IeGrA/edit
+
+
+# Upper Ontology
+
+For clarity, we start from scratch rather than importing an existing ontology. Wherever possible, terms here have the same ID as in their source ontologies.
+
+These are BFO classes and relations that we will need. NOTE: I don't include "dependent continuant", because it's not in BFO2 Graz and doesn't serve a purpose here.
+
+    Class: obo:BFO_0000001
+      Annotations: rdfs:label "entity"
+
+    Class: obo:BFO_0000002
+      Annotations: rdfs:label "continuant"
+      SubClassOf: 'entity'
+
+    Class: obo:BFO_0000031
+      Annotations: rdfs:label "generically dependent continuant"
+      SubClassOf: 'continuant'
+
+    Class: obo:BFO_0000020
+      Annotations: rdfs:label "specifically dependent continuant"
+      SubClassOf: 'continuant'
+
+    Class: obo:BFO_0000004
+      Annotations: rdfs:label "independent continuant"
+      SubClassOf: 'continuant'
+
+    Class: obo:BFO_0000019
+      Annotations: rdfs:label "quality"
+      SubClassOf: 'specifically dependent continuant'
+
+    ObjectProperty: obo:BFO_0000086
+      Annotations: rdfs:label "has quality"
+
+
+# Running Example
+
+Our running example will involve measurements of a particular mouse named "Mickey" as part of a fictional investigation. Here we describe two universals and two particulars:
+
+    Class: obo:PATO_0000125
+      Annotations: rdfs:label "mass"
+      SubClassOf: 'quality'
+
+    Class: determinate-mass
+      Annotations: rdfs:label "determinate mass (20g)",
+        rdfs:comment "Because qualities such as 'mass' can change over time we model a 'determinable' parent class with many 'determinate' child classes."
+      SubClassOf: 'mass'
+
+    Individual: mickey
+      Annotations: rdfs:label "Mickey",
+        rdfs:comment "Mickey is a mouse."
+      Facts: 'has quality' 'determinate mass of Mickey'
+
+    Individual: mickey-mass
+      Types: 'determinate mass (20g)'
+      Annotations: rdfs:label "determinate mass of Mickey"
+
+NOTE: We haven't yet discussed determinable/determinate qualities in this context. They are part of BFO2, related to process profiles, but the details have not yet been settled. I (James) think that it's important to include them here, and this is my best attempt.
+
+- Barry's slides: http://ontology.buffalo.edu/bfo/2013/BFO-2-Smith.ppt
+- Bare BFO2 issue: https://code.google.com/p/bfo/issues/detail?id=42
+
+NOTE: I also haven't tried modelling time in this prototype.
+
+We'll focus first on scalar measurements of Mickey's mass. In later versions of this document we'll consider some other cases.
+
+
+# Information Entities
+
+Under "generically dependent continuant" we distinguish between information content entities (ICEs) that are *about* something, and information entities that are purely structural (ISEs) and not about anything. This is a new distinction put forward by Alan based on ongoing discussions with Barry and Werner. 
+
+    ObjectProperty: obo:IAO_0000136
+      Annotations: rdfs:label "is about"
+
+    Class: obo:IAO_0000030
+      Annotations: rdfs:label "information content entity"
+      SubClassOf: 'generically dependent continuant'
+      SubClassOf: 'is about' some 'entity'
+
+    Class: information-structural-entity
+      Annotations: rdfs:label "information structural entity"
+      SubClassOf: 'generically dependent continuant'
+
+In order to connect ISEs to ICEs we define a new relation. The label is just temporary.
+
+    ObjectProperty: has-information-structure
+      Annotations: rdfs:label "has information structure"
+      Domain: 'information content entity'
+      Range: 'information structural entity'
+
+## Units of Measurement
+
+Under ISE we include "unit labels" to connect to the Units of Measurement Ontology, and we have an ObjectProperty and a DataProperty to use with them:
+
+    Class: obo:IAO_0000003
+      Annotations: rdfs:label "unit label",
+        rdfs:comment "was 'measurement unit label'"
+      SubClassOf: 'information structural entity'
+
+    ObjectProperty: obo:IAO_0000039
+      Annotations: rdfs:label "has unit label",
+        rdfs:comment "was 'has measurement unit label'"
+
+In OBI we have been modelling specific measurement units as OWL individuals. For our purposes we'll just need the SI unit "gram".
+
+    Class: obo:UO_0000002
+      Annotations: rdfs:label "mass unit label"
+      SubClassOf: 'unit label'
+
+    Individual: obo:UO_0000021
+      Types: 'mass unit label'
+      Annotations: rdfs:label "gram"
+
+## Value Specifications
+
+Also under ISE we have "value specification". The most important of these is "scalar value specification", which is the pair of a number and a unit.
+
+    Class: obo:IAO_0000601
+      Annotations: rdfs:label "value specification" 
+      SubClassOf: 'information structural entity'
+
+    DataProperty: obo:IAO_0000004
+      Annotations: rdfs:label "has value",
+        rdfs:comment "was 'has measurement value'"
+      Range: xsd:float
+
+TODO: explain this relation
+
+    ObjectProperty: obo:IAO_0000605
+      Annotations: rdfs:label "specifies value of"
+      SubPropertyOf: 'is about'
+
+Given the "unit label" asserted hierarchy, we can create a hierarchy of *defined classes* as needed:
+    
+    Class: obo:IAO_0000602
+      Annotations: rdfs:label "scalar value specification"
+      EquivalentTo: 'value specification' and
+        'has unit label' some 'unit label'
+
+    Class: scalar-mass-value-specification
+      Annotations: rdfs:label "scalar mass value specification"
+      EquivalentTo: 'value specification' and
+        'has unit label' some 'mass unit label'
+
+Here is an example of a particular scalar mass value specification, "20g":
+
+    Individual: mass-20g-structure
+      Types: 'value specification'
+      Annotations: rdfs:label "mass 20g structure"
+      Facts: 'has unit label' 'gram',
+        'has value' "20"
+
+Notice that we only assert that this is a 'value specification', and not that it is specifically a 'scalar mass value specification'. The reasoner will classify it correctly:
+
+    Fact: mass 20g structure is a scalar mass value specification
+    Query: 'scalar mass value specification'
+    Individuals: include 'mass 20g structure'
+
+
+
+# Measurement Data
+
+Our primary goal is to model measurement data well. We assert this class in OBI:
+
+    Class: obo:IAO_0000109
+      Annotations: rdfs:label "measurement datum",
+        rdfs:comment "We will also model the following:
+          is_specified_output_of some
+            ('data transformation' or prediction or 'information acquisition')"
+      SubClassOf: 'information content entity'
+
+Given the asserted hierarchy of value specifications, we can create a *defined hierarchy* of measurement classes.
+
+    Class: value-measurement-datum
+      Annotations: rdfs:label "value measurement datum"
+      EquivalentTo: 'measurement datum' and
+        'has information structure' some 'value specification'
+
+    Class: scalar-measurement-datum
+      Annotations: rdfs:label "scalar measurement datum"
+      EquivalentTo: 'measurement datum' and
+        'has information structure' some 'scalar value specification'
+
+    Class: scalar-mass-measurement-datum
+      Annotations: rdfs:label "scalar mass measurement datum"
+      EquivalentTo: 'measurement datum' and
+        'has information structure' some 'scalar mass value specification'
+
+We define an instance of a measurement datum about Mickey's mass by linking the information structural entity "20g" (using 'has information structure') to the particular mass quality being measured (using 'specifies value of'):
+
+    Individual: mass-20g-measurement
+      Types: 'measurement datum'
+      Annotations: rdfs:label "scalar measurement of mass of Mickey"
+      Facts: 'has information structure' 'mass 20g structure',
+        'specifies value of' 'determinate mass of Mickey'
+
+We just assert that this is a 'measurement datum', but the reasoner classifies it correctly as a 'scalar mass measurement datum' and a 'mass measurement datum':
+
+    Fact: mass measurement of Mickey is a scalar mass measurement datum
+    Query: 'scalar mass measurement datum'
+    Individuals: include 'scalar measurement of mass of Mickey'
+
+
+# Queries
+
+Modelling the data correctly is important, but we also need to query the data and get useful answers. First of all, we can query for all mass measurements:
+
+    Fact: mass measurement of Mickey is a mass measurement datum
+    Query: 'measurement datum' and ('specifies value of' some 'mass')
+    Individuals: include 'scalar measurement of mass of Mickey'
+
+We can create this defined class to capture all mass measurements:
+
+    Class: mass-measurement-datum
+      Annotations: rdfs:label "mass measurement datum"
+      EquivalentTo: 'measurement datum' and
+        'specifies value of' some 'mass'
+
+    Fact: mass measurement of Mickey is a 'mass measurement datum'
+    Query: 'mass measurement datum'
+    Individuals: include 'scalar measurement of mass of Mickey'
+
+Using SPARQL we can get the subject, value, and units for mass measurements:
+
+    FACT get subject, value, and units for mass of Mickey measurement
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?subject ?value ?unit
+    WHERE {
+      ?mass_class rdfs:subClassOf+ obo:PATO_0000125 . # PATO mass
+      ?mass_instance rdf:type ?mass_class .
+      ?subject obo:BFO_0000086 ?mass_instance . # BFO has quality
+      ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
+      ?measurement obo:IAO_0000605 ?mass_instance . # IAO specifies value of
+      ?measurement :has-information-structure ?spec .
+      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000004 ?value . # IAO has value
+    }
+    INCLUDE 'Mickey' "20" 'gram'
+
+This query looks fairly complicated. Once source of added complexity is the determinable/determinate distinction, which requires us to use ?mass_class and ?mass_instance -- this may be dispensable. The only *added* complexity from using "value specification" is the 'has information structure' link:
+
+      ?measurement :has-information-structure ?spec .
+
+TODO: Add a Turtle example. Because Turtle has a nicer syntax for specifying anonymous entities, I expect it to look cleaner than have OWL individuals for the measurement datum and the value specification.
+
+
+# Other Cases
+
+TODO: Provide examples of categorical measurements and unstructured measurements.
+TODO: Provide examples of settings.
+
+
