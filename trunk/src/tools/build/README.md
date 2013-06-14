@@ -29,7 +29,7 @@ The tool will work on Windows, Linux, Unix, and Mac OS X. A few steps are requir
 
 2. Use Subversion to download the latest OBI files (if you haven't already). There are simpler ways to do this, but this way gets you just the files you need:
 
-    svn checkout --depth immediates https://obi.svn.sourceforge.net/svnroot/obi/trunk/src
+    svn checkout --depth immediates svn://svn.code.sf.net/p/obi/code/trunk/src
     svn update --set-depth infinity src/ontology/branches
     svn update --set-depth infinity src/ontology/external
     svn update --set-depth infinity src/tests
