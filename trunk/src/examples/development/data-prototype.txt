@@ -1,6 +1,6 @@
 % OBI Data Modelling Prototype
 % James A. Overton <james@overton.ca>
-% 2013-05-30
+% 2013-06-17
 
 This is a prototype of the "value specification" approach to modelling data in OBI/IAO. It is based on discussing during the Philly2013 workshop and on the mailing list, but it does not (yet) reflect a consensus.
 
@@ -9,14 +9,21 @@ I used the new OBI build tool to convert this document into OWL and test it. See
 
 # Motivation
 
-OBI is about biomedical investigations and must be able to describe the data generated in investigations. Some of the oldest terms in OBI and IAO were designed to describe measurement. More recently, we have recognized the need to describe predictions, simulations, and setting information. Superficially these are very similar. "20g" could occur as:
+OBI's scope is biomedical investigations, and it must be able to describe the data generated in investigations. Some of the oldest terms in OBI and IAO were designed to describe measurement. More recently, we have recognized the need to describe predictions, simulations, and setting information. Superficially these are very similar to each other. "20g" could occur as:
 
 1. a measurement of the mass of a particular mouse
-2. a predicted average mass of some future mouse after a treatment
+2. a predicted mass of some future mouse after a treatment
 3. an output of a simulation of mouse growth
 4. a rule for selecting mice of a certain mass
 
-Despite the superficial similarity, 1-4 are *about* very different things (if they're about anything at all). OBI is a realist ontology, where we try to build consensus by being as precise as we can about what is going on in the world. *Aboutness* is our primary way of distinguishing information content entities, and so we need to be clear in distinguishing measurements from predictions and settings, etc. This pushes our modelling toward greater complexity.
+Despite the superficial similarity, 1-4 are *about* very different things (if they're about anything at all):
+
+1. a particular quality of a particular mouse at a particular time -- something that clearly existed
+2. a calculated value that does not correspond to any existing particular quality, but may be compared with a particular quality of a particular mouse in the future if the treatment is carried out
+3. a calculated value, perhaps about what the mass of mice in general would be like under certain conditions
+4. a directive, perhaps about part of a particular plan (now) to select mice in the future
+
+OBI is a realist ontology, where we try to build consensus by being as precise as we can be about what is going on in the world. *Aboutness* is our primary way of distinguishing information content entities, and so we need to be clear in distinguishing measurements from predictions and settings, etc. This pushes our modelling toward greater complexity.
 
 But we also want our modelling to be as simple as possible. We would like to *factor out* the similarities between 1-4, in order to reuse as much of our modelling as possible, and in order to reduce the number of asserted hierarchies we're dealing with.
 
@@ -64,6 +71,17 @@ These are BFO classes and relations that we will need. NOTE: I don't include "de
     ObjectProperty: obo:BFO_0000086
       Annotations: rdfs:label "has quality"
 
+    Class: obo:BFO_0000003
+      Annotations: rdfs:label "occurrent"
+      SubClassOf: 'entity'
+
+    Class: obo:BFO_0000015
+      Annotations: rdfs:label "process"
+      SubClassOf: 'occurrent'
+
+    ObjectProperty: obo:BFO_0000057
+      Annotations: rdfs:label "participates in"
+
 
 # Running Example
 
@@ -73,21 +91,16 @@ Our running example will involve measurements of a particular mouse named "Micke
       Annotations: rdfs:label "mass"
       SubClassOf: 'quality'
 
-    Class: determinate-mass
-      Annotations: rdfs:label "determinate mass (20g)",
-        rdfs:comment "Because qualities such as 'mass' can change over time we model a 'determinable' parent class with many 'determinate' child classes."
-      SubClassOf: 'mass'
-
     Individual: mickey
       Annotations: rdfs:label "Mickey",
         rdfs:comment "Mickey is a mouse."
-      Facts: 'has quality' 'determinate mass of Mickey'
+      Facts: 'has quality' 'mass of Mickey'
 
     Individual: mickey-mass
-      Types: 'determinate mass (20g)'
-      Annotations: rdfs:label "determinate mass of Mickey"
+      Types: 'mass'
+      Annotations: rdfs:label "mass of Mickey"
 
-NOTE: We haven't yet discussed determinable/determinate qualities in this context. They are part of BFO2, related to process profiles, but the details have not yet been settled. I (James) think that it's important to include them here, and this is my best attempt.
+NOTE: In a previous draft of this document we used the determinable/determinate distinction to sub-class 'mass'. This made the modelling more complicated. Since a BFO OWL representation of determinable/determinate classes have not yet been discussed in detail, we decided to remove them from the current prototype.
 
 - Barry's slides: http://ontology.buffalo.edu/bfo/2013/BFO-2-Smith.ppt
 - Bare BFO2 issue: https://code.google.com/p/bfo/issues/detail?id=42
@@ -216,7 +229,9 @@ Given the asserted hierarchy of value specifications, we can create a *defined h
     Class: scalar-mass-measurement-datum
       Annotations: rdfs:label "scalar mass measurement datum"
       EquivalentTo: 'measurement datum' and
-        'has information structure' some 'scalar mass value specification'
+        ('has information structure' some 'scalar mass value specification') and
+        ('specifies value of' some 'mass')
+
 
 We define an instance of a measurement datum about Mickey's mass by linking the information structural entity "20g" (using 'has information structure') to the particular mass quality being measured (using 'specifies value of'):
 
@@ -224,7 +239,7 @@ We define an instance of a measurement datum about Mickey's mass by linking the 
       Types: 'measurement datum'
       Annotations: rdfs:label "scalar measurement of mass of Mickey"
       Facts: 'has information structure' 'mass 20g structure',
-        'specifies value of' 'determinate mass of Mickey'
+        'specifies value of' 'mass of Mickey'
 
 We just assert that this is a 'measurement datum', but the reasoner classifies it correctly as a 'scalar mass measurement datum' and a 'mass measurement datum':
 
@@ -240,6 +255,7 @@ Modelling the data correctly is important, but we also need to query the data an
     Fact: mass measurement of Mickey is a mass measurement datum
     Query: 'measurement datum' and ('specifies value of' some 'mass')
     Individuals: include 'scalar measurement of mass of Mickey'
+    Subclasses: include 'scalar mass measurement datum'
 
 We can create this defined class to capture all mass measurements:
 
@@ -251,6 +267,8 @@ We can create this defined class to capture all mass measurements:
     Fact: mass measurement of Mickey is a 'mass measurement datum'
     Query: 'mass measurement datum'
     Individuals: include 'scalar measurement of mass of Mickey'
+    Subclasses: include 'scalar mass measurement datum'
+
 
 Using SPARQL we can get the subject, value, and units for mass measurements:
 
@@ -259,8 +277,7 @@ Using SPARQL we can get the subject, value, and units for mass measurements:
     PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
     SELECT ?subject ?value ?unit
     WHERE {
-      ?mass_class rdfs:subClassOf+ obo:PATO_0000125 . # PATO mass
-      ?mass_instance rdf:type ?mass_class .
+      ?mass rdf:type obo:PATO_0000125 . # PATO mass
       ?subject obo:BFO_0000086 ?mass_instance . # BFO has quality
       ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
       ?measurement obo:IAO_0000605 ?mass_instance . # IAO specifies value of
@@ -270,11 +287,99 @@ Using SPARQL we can get the subject, value, and units for mass measurements:
     }
     INCLUDE 'Mickey' "20" 'gram'
 
-This query looks fairly complicated. Once source of added complexity is the determinable/determinate distinction, which requires us to use ?mass_class and ?mass_instance -- this may be dispensable. The only *added* complexity from using "value specification" is the 'has information structure' link:
+This query looks fairly complicated. However the only *added* complexity from using "value specification" is the 'has information structure' link:
 
       ?measurement :has-information-structure ?spec .
 
 TODO: Add a Turtle example. Because Turtle has a nicer syntax for specifying anonymous entities, I expect it to look cleaner than have OWL individuals for the measurement datum and the value specification.
+
+# Measurement Processes
+
+When modelling measurements, it's also important to be able to trace which processes produced which results. We'll extend the current model to include an assay that measures Mickey.
+
+    Class: obo:OBI_0000011
+      Annotations: rdfs:label "planned process"
+      SubClassOf: 'process'
+
+    Class: obo:OBI_0000070
+      Annotations: rdfs:label "assay"
+      SubClassOf: 'planned process'
+
+    ObjectProperty: obo:OBI_0000293
+      Annotations: rdfs:label "has specified input"
+      SubPropertyOf: 'participates in'
+
+    ObjectProperty: obo:OBI_0000299
+      Annotations: rdfs:label "has specified output"
+      SubPropertyOf: 'participates in'
+
+    Individual: assay-of-mass-of-mickey
+      Types: 'assay'
+      Annotations: rdfs:label "assay of mass of Mickey"
+      Facts: 'has specified input' 'Mickey',
+        'has specified output' 'scalar measurement of mass of Mickey'
+
+Now we extend the query above to include the assay that generated the measurement datum.
+
+    FACT get the assay that measured the mass of Mickey
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?assay ?subject ?value ?unit
+    WHERE {
+      ?mass rdf:type obo:PATO_0000125 . # PATO mass
+      ?subject obo:BFO_0000086 ?mass_instance . # BFO has quality
+      ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
+      ?measurement obo:IAO_0000605 ?mass_instance . # IAO specifies value of
+      ?measurement :has-information-structure ?spec .
+      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000004 ?value . # IAO has value
+      ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
+    }
+    INCLUDE 'assay of mass of Mickey' 'Mickey' "20" 'gram'
+
+We can query forward from Mickey to the results about him:
+
+    FACT get the results of assays with Mickey as input
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?value ?unit
+    WHERE {
+      ?assay obo:OBI_0000293 :mickey . # OBI has specified input
+      ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
+      ?measurement :has-information-structure ?spec .
+      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000004 ?value . # IAO has value
+    }
+    INCLUDE "20" 'gram'
+    
+We can query backward from a given measurement datum to the assay and its input:
+
+    FACT get the input of the assay that generated a particular measurement
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?assay ?input
+    WHERE {
+      ?assay obo:OBI_0000299 :mass-20g-measurement . # OBI has specified output
+      ?assay obo:OBI_0000293 ?input . # OBI has specified input
+    }
+    INCLUDE 'assay of mass of Mickey' 'Mickey'
+
+If a value specification is unique, then we can query back from it to the assay and inputs:
+
+    FACT get the input of the assay that generated a particular value specification
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?assay ?input
+    WHERE {
+      ?measurement :has-information-structure :mass-20g-structure .
+      ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
+      ?assay obo:OBI_0000293 ?input . # OBI has specified input
+    }
+    INCLUDE 'assay of mass of Mickey' 'Mickey'
+
+However, we might want to reuse the same value specification for all our "20g" measurements, in which case this query will not return a unique assay and input.
+
+    
 
 
 # Other Cases
