@@ -4,7 +4,7 @@
 
 This is a prototype of the "value specification" approach to modelling data in OBI/IAO. It is based on discussing during the Philly2013 workshop and on the mailing list, but it does not (yet) reflect a consensus.
 
-I used the new OBI build tool to convert this document into OWL and test it. See: http://obi.svn.sourceforge.net/viewvc/obi/trunk/src/tools/build/
+James used the new OBI build tool to convert this document into OWL and test it. See: http://obi.svn.sourceforge.net/viewvc/obi/trunk/src/tools/build/
 
 
 # Motivation
@@ -43,7 +43,7 @@ Here are some notes on previous discussions:
 
 For clarity, we start from scratch rather than importing an existing ontology. Wherever possible, terms here have the same ID as in their source ontologies.
 
-These are BFO classes and relations that we will need. NOTE: I don't include "dependent continuant", because it's not in BFO2 Graz and doesn't serve a purpose here.
+These are BFO classes and relations that we will need. NOTE: We don't include "dependent continuant", because it's not in BFO2 Graz and doesn't serve a purpose here.
 
     Class: obo:BFO_0000001
       Annotations: rdfs:label "entity"
@@ -63,6 +63,10 @@ These are BFO classes and relations that we will need. NOTE: I don't include "de
     Class: obo:BFO_0000004
       Annotations: rdfs:label "independent continuant"
       SubClassOf: 'continuant'
+
+    Class: obo:BFO_0000040
+      Annotations: rdfs:label "material entity"
+      SubClassOf: 'independent continuant'
 
     Class: obo:BFO_0000019
       Annotations: rdfs:label "quality"
@@ -92,6 +96,7 @@ Our running example will involve measurements of a particular mouse named "Micke
       SubClassOf: 'quality'
 
     Individual: mickey
+      Types: 'material entity'
       Annotations: rdfs:label "Mickey",
         rdfs:comment "Mickey is a mouse."
       Facts: 'has quality' 'mass of Mickey'
@@ -105,7 +110,7 @@ NOTE: In a previous draft of this document we used the determinable/determinate 
 - Barry's slides: http://ontology.buffalo.edu/bfo/2013/BFO-2-Smith.ppt
 - Bare BFO2 issue: https://code.google.com/p/bfo/issues/detail?id=42
 
-NOTE: I also haven't tried modelling time in this prototype.
+NOTE: We aren't modelling time in this prototype.
 
 We'll focus first on scalar measurements of Mickey's mass. In later versions of this document we'll consider some other cases.
 
@@ -130,8 +135,9 @@ In order to connect ISEs to ICEs we define a new relation. The label is just tem
 
     ObjectProperty: has-information-structure
       Annotations: rdfs:label "has information structure"
-      Domain: 'information content entity'
+      Domain: 'generically dependent continuant'
       Range: 'information structural entity'
+
 
 ## Units of Measurement
 
@@ -189,17 +195,17 @@ Given the "unit label" asserted hierarchy, we can create a hierarchy of *defined
 
 Here is an example of a particular scalar mass value specification, "20g":
 
-    Individual: mass-20g-structure
+    Individual: 20g-specification
       Types: 'value specification'
-      Annotations: rdfs:label "mass 20g structure"
+      Annotations: rdfs:label "20g specification"
       Facts: 'has unit label' 'gram',
         'has value' "20"
 
 Notice that we only assert that this is a 'value specification', and not that it is specifically a 'scalar mass value specification'. The reasoner will classify it correctly:
 
-    Fact: mass 20g structure is a scalar mass value specification
+    Fact: 20g specification is a scalar mass value specification
     Query: 'scalar mass value specification'
-    Individuals: include 'mass 20g structure'
+    Individuals: include '20g specification'
 
 
 
@@ -219,12 +225,12 @@ Given the asserted hierarchy of value specifications, we can create a *defined h
     Class: value-measurement-datum
       Annotations: rdfs:label "value measurement datum"
       EquivalentTo: 'measurement datum' and
-        'has information structure' some 'value specification'
+        ('has information structure' some 'value specification')
 
     Class: scalar-measurement-datum
       Annotations: rdfs:label "scalar measurement datum"
       EquivalentTo: 'measurement datum' and
-        'has information structure' some 'scalar value specification'
+        ('has information structure' some 'scalar value specification')
 
     Class: scalar-mass-measurement-datum
       Annotations: rdfs:label "scalar mass measurement datum"
@@ -238,10 +244,10 @@ We define an instance of a measurement datum about Mickey's mass by linking the 
     Individual: mass-20g-measurement
       Types: 'measurement datum'
       Annotations: rdfs:label "scalar measurement of mass of Mickey"
-      Facts: 'has information structure' 'mass 20g structure',
+      Facts: 'has information structure' '20g specification',
         'specifies value of' 'mass of Mickey'
 
-We just assert that this is a 'measurement datum', but the reasoner classifies it correctly as a 'scalar mass measurement datum' and a 'mass measurement datum':
+We just assert that this is a 'measurement datum', but the reasoner classifies it correctly as a 'scalar mass measurement datum':
 
     Fact: mass measurement of Mickey is a scalar mass measurement datum
     Query: 'scalar mass measurement datum'
@@ -291,7 +297,7 @@ This query looks fairly complicated. However the only *added* complexity from us
 
       ?measurement :has-information-structure ?spec .
 
-TODO: Add a Turtle example. Because Turtle has a nicer syntax for specifying anonymous entities, I expect it to look cleaner than have OWL individuals for the measurement datum and the value specification.
+TODO: Add a Turtle example. Because Turtle has a nicer syntax for specifying anonymous entities, it might look cleaner than have OWL individuals for the measurement datum and the value specification.
 
 # Measurement Processes
 
@@ -319,7 +325,9 @@ When modelling measurements, it's also important to be able to trace which proce
       Facts: 'has specified input' 'Mickey',
         'has specified output' 'scalar measurement of mass of Mickey'
 
-Now we extend the query above to include the assay that generated the measurement datum.
+Of course, this could be more complicated. The assay will involve some protocol, that we have not specified here. It might involve a device with a measurement function, and an investigation agent, etc. Here we show that it is simple to query for the assay, and then it should be straightforward to extend the query to other aspects of the assay.
+
+Now we extend the query above to include the assay that generated the measurement datum:
 
     FACT get the assay that measured the mass of Mickey
     PREFIX obo: <http://purl.obolibrary.org/obo/>
@@ -371,21 +379,170 @@ If a value specification is unique, then we can query back from it to the assay 
     PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
     SELECT ?assay ?input
     WHERE {
-      ?measurement :has-information-structure :mass-20g-structure .
+      ?measurement :has-information-structure :20g-specification .
       ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
       ?assay obo:OBI_0000293 ?input . # OBI has specified input
     }
     INCLUDE 'assay of mass of Mickey' 'Mickey'
 
-However, we might want to reuse the same value specification for all our "20g" measurements, in which case this query will not return a unique assay and input.
+However, we might want to reuse the same value specification for all our "20g" measurements (which is the approach used in this prototype), in which case this query might not return a unique assay and input. Or we might want to use an anonymous individual (i.e. blank node) for the value specification, which could also make the reverse query difficult. The best idea may be to focus on the measurement datum, then query back to the assay or investigation, and forward to the value specification.
 
-    
+
+# Predictions
+
+If value specifications were only used for measurement data, then we could simplify this modelling by collapsing the distinction between them. But there are several cases other than measurement where we want to use a value specification. One such case is prediction. 
+
+We have just begun to include predictions in OBI, and the details are not yet settled. The goal here is to show one approach that works with value specifications. OBI has a term 'prediction' (OBI_0302910), but for the current purpose we define a more specific term. (For simplicity, we do not specify the input.) we also use a new term for the result of the process, and place it as a child of GDC, because the aboutness of the prediction is not clear. The labels are admitted ugly, but hopefully clear. The modelling parallels the assay above.
+
+    Class: testable-prediction-generation
+      Annotations: rdfs:label "testable prediction generation"
+      SubClassOf: 'planned process'
+      SubClassOf: 'has specified output' some 'predicted measurement result'
+
+    Class: predicted-measurement-result
+      Annotations: rdfs:label "predicted measurement result"
+      SubClassOf: 'generically dependent continuant'
+
+Once we assert 'predicted measurement result' we can define child classes just as we did with 'measurement datum':
+
+    Class: predicted-measurement-value
+      Annotations: rdfs:label "predicted measurement value"
+      EquivalentTo: 'predicted measurement result' and
+        ('has information structure' some 'value specification')
+
+    Class: predicted-scalar-measurement-value
+      Annotations: rdfs:label "predicted scalar measurement value"
+      EquivalentTo: 'predicted measurement result' and
+        ('has information structure' some 'scalar value specification')
+
+    Class: predicted-scalar-mass-measurement-value
+      Annotations: rdfs:label "predicted scalar mass measurement value"
+      EquivalentTo: 'predicted measurement result' and
+        ('has information structure' some 'scalar mass value specification')
+
+NOTE: Perhaps we could specify "and ('specifies value of' only 'mass')" for this class.
+
+Then we can instantiate a prediction process and its result. We'll say that the prediction result is "20g", and reuse the same value specification:
+
+    Individual: prediction-of-mass-of-mice
+      Types: 'testable prediction generation'
+      Annotations: rdfs:label "testable prediction generation of mass of mice"
+      Facts: 'has specified output' 'predicted mass of mice'
+
+    Individual: mass-20g-prediction
+      Types: 'predicted measurement result'
+      Annotations: rdfs:label "predicted mass of mice"
+      Facts: 'has information structure' '20g specification'
+
+We just assert that this is a 'predicted measurement result', but the reasoner classifies it correctly as a 'predicted scalar mass measurement value':
+
+    Fact: mass measurement of Mickey is a scalar mass measurement datum
+    Query: 'scalar mass measurement datum'
+    Individuals: include 'scalar measurement of mass of Mickey'
+
+Using SPARQL we can get the value and units for the prediction. Instead of querying for measurements of mass, here we query for predictions that use mass units:
+
+    FACT get value and units for predictions of mass
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?prediction ?value ?unit
+    WHERE {
+      ?unit rdf:type obo:UO_0000002 . # UO mass unit
+      ?prediction rdf:type :predicted-measurement-result .
+      ?prediction :has-information-structure ?spec .
+      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000004 ?value . # IAO has value
+    }
+    INCLUDE 'predicted mass of mice' "20" 'gram'
+
+
+# Settings
+
+Settings are another case distinct from measurements where we want to use value specifications. For our current purpose, a setting is part of the instructions for performing an investigation.
+
+Our example will be a material acquisition process involving a selection rule for picking mice for the investigation. We'll assert that the selected mice must weigh less than 20g. First we need to include terms for plans and rules.
+
+    Class: obo:BFO_0000017
+      Annotations: rdfs:label "realizable entity"
+      SubClassOf: 'specifically dependent continuant'
+
+    ObjectProperty: obo:BFO_0000055
+      Annotations: rdfs:label "realizes"
+      Domain: 'process'
+      Range: 'realizable entity'
+
+    ObjectProperty: obo:BFO_0000059
+      Annotations: rdfs:label "concretizes"
+      Domain: 'specifically dependent continuant'
+      Range: 'generically dependent continuant'
+
+    Class: obo:OBI_0000260
+      Annotations: rdfs:label "plan"
+      SubClassOf: 'realizable entity'
+
+    Class: obo:IAO_0000033
+      Annotations: rdfs:label "directive information entity"
+      SubClassOf: 'information content entity'
+
+NOTE: Directive information entity might be better as a direct child of GDC, but here we leave it under ICE.
+
+    Class: obo:OBI_0001755
+      Annotations: rdfs:label "selection rule"
+      SubClassOf: 'directive information entity'
+
+    Class: obo:OBI_0600008
+      Annotations: rdfs:label "acquisition"
+      SubClassOf: 'planned process'
+      SubClassOf: 'realizes' some ('concretizes' some 'selection rule')
+
+    Class: obo:OBI_0600010
+      Annotations: rdfs:label "material acquisition"
+      SubClassOf: 'acquisition'
+      SubClassOf: 'has specified output' some 'material entity'
+
+Now we instantiate the material acquisition and the selection rule.
+The modelling of the rule is very basic, and will need to be improved, but serves the current purpose of connecting the rule to the value specification.
+
+    Individual: select-small-mice-rule
+      Types: 'selection rule'
+      Annotations: rdfs:label "select small mice rule",
+        rdfs:comment "Select mice with mass less than 20g."
+      Facts: 'has information structure' '20g specification'
+
+NOTE: We have not provided axioms to constrain the rule to just mice. We have not provided axioms for the "less than" part of the rule. It might be better to say that the rule has a part that has the information structure, but the current modelling is simpler.
+
+    Individual: select-small-mice-plan
+      Types: 'plan'
+      Annotations: rdfs:label "select small mice plan"
+      Facts: 'concretizes' 'select small mice rule'
+
+    Individual: acquisition-of-mice
+      Types: 'material acquisition'
+      Annotations: rdfs:label "acquisition of mice"
+      Facts: 'realizes' 'select small mice plan'
+
+Now we can query for processes that realize some concretization of a mass setting, and the value and units:
+
+    FACT get value and units for predictions of mass
+    PREFIX obo: <http://purl.obolibrary.org/obo/>
+    PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
+    SELECT ?process ?value ?unit
+    WHERE {
+      ?unit rdf:type obo:UO_0000002 . # UO mass unit
+      ?process obo:BFO_0000055 ?plan . # BFO realizes
+      ?plan obo:BFO_0000059 ?setting . # BFO concretizes
+      ?setting :has-information-structure ?spec .
+      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000004 ?value . # IAO has value
+    }
+    INCLUDE 'acquisition of mice' "20" 'gram'
+
+
+TODO: It will be important to model ranges of values, including the signficant figures in scientific notation.
 
 
 # Other Cases
 
 TODO: Provide examples of categorical measurements and unstructured measurements.
-
-TODO: Provide examples of settings.
 
 
