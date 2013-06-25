@@ -236,7 +236,7 @@ Given the asserted hierarchy of value specifications, we can create a *defined h
 
 We define an instance of a measurement datum about Mickey's mass by linking the information structural entity "20g" (using 'has information structure') to the particular mass quality being measured (using 'is quality measurement of'):
 
-    Individual: mass-20g-measurement
+    Individual: scalar-measurement-of-mass-of-mickey
       Types: 'measurement datum'
       Annotations: rdfs:label "scalar measurement of mass of Mickey"
       Facts: 'has information structure' '20g specification',
@@ -362,7 +362,7 @@ We can query backward from a given measurement datum to the assay and its input:
     PREFIX : <http://purl.obolibrary.org/obo/obi/test.owl#>
     SELECT ?assay ?input
     WHERE {
-      ?assay obo:OBI_0000299 :mass-20g-measurement . # OBI has specified output
+      ?assay obo:OBI_0000299 :scalar-measurement-of-mass-of-mickey . # OBI has specified output
       ?assay obo:OBI_0000293 ?input . # OBI has specified input
     }
     INCLUDE 'assay of mass of Mickey' 'Mickey'
@@ -424,7 +424,7 @@ Then we can instantiate a prediction process and its result. We'll say that the 
       Annotations: rdfs:label "testable prediction generation of mass of mice"
       Facts: 'has specified output' 'predicted mass of mice'
 
-    Individual: mass-20g-prediction
+    Individual: predicted-mass-of-mice
       Types: 'predicted measurement result'
       Annotations: rdfs:label "predicted mass of mice"
       Facts: 'has information structure' '20g specification'
