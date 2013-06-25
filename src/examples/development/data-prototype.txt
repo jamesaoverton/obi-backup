@@ -175,10 +175,8 @@ Also under ISE we have "value specification". The most important of these is "sc
         rdfs:comment "was 'has measurement value'"
       Range: xsd:float
 
-TODO: explain this relation
-
-    ObjectProperty: obo:IAO_0000605
-      Annotations: rdfs:label "specifies value of"
+    ObjectProperty: obo:IAO_0000221
+      Annotations: rdfs:label "is quality measurement of"
       SubPropertyOf: 'is about'
 
 Given the "unit label" asserted hierarchy, we can create a hierarchy of *defined classes* as needed:
@@ -214,10 +212,7 @@ Notice that we only assert that this is a 'value specification', and not that it
 Our primary goal is to model measurement data well. We assert this class in OBI:
 
     Class: obo:IAO_0000109
-      Annotations: rdfs:label "measurement datum",
-        rdfs:comment "We will also model the following:
-          is_specified_output_of some
-            ('data transformation' or prediction or 'information acquisition')"
+      Annotations: rdfs:label "measurement datum"
       SubClassOf: 'information content entity'
 
 Given the asserted hierarchy of value specifications, we can create a *defined hierarchy* of measurement classes.
@@ -236,16 +231,16 @@ Given the asserted hierarchy of value specifications, we can create a *defined h
       Annotations: rdfs:label "scalar mass measurement datum"
       EquivalentTo: 'measurement datum' and
         ('has information structure' some 'scalar mass value specification') and
-        ('specifies value of' some 'mass')
+        ('is quality measurement of' some 'mass')
 
 
-We define an instance of a measurement datum about Mickey's mass by linking the information structural entity "20g" (using 'has information structure') to the particular mass quality being measured (using 'specifies value of'):
+We define an instance of a measurement datum about Mickey's mass by linking the information structural entity "20g" (using 'has information structure') to the particular mass quality being measured (using 'is quality measurement of'):
 
     Individual: mass-20g-measurement
       Types: 'measurement datum'
       Annotations: rdfs:label "scalar measurement of mass of Mickey"
       Facts: 'has information structure' '20g specification',
-        'specifies value of' 'mass of Mickey'
+        'is quality measurement of' 'mass of Mickey'
 
 We just assert that this is a 'measurement datum', but the reasoner classifies it correctly as a 'scalar mass measurement datum':
 
@@ -259,7 +254,7 @@ We just assert that this is a 'measurement datum', but the reasoner classifies i
 Modelling the data correctly is important, but we also need to query the data and get useful answers. First of all, we can query for all mass measurements:
 
     Fact: mass measurement of Mickey is a mass measurement datum
-    Query: 'measurement datum' and ('specifies value of' some 'mass')
+    Query: 'measurement datum' and ('is quality measurement of' some 'mass')
     Individuals: include 'scalar measurement of mass of Mickey'
     Subclasses: include 'scalar mass measurement datum'
 
@@ -268,7 +263,7 @@ We can create this defined class to capture all mass measurements:
     Class: mass-measurement-datum
       Annotations: rdfs:label "mass measurement datum"
       EquivalentTo: 'measurement datum' and
-        'specifies value of' some 'mass'
+        'is quality measurement of' some 'mass'
 
     Fact: mass measurement of Mickey is a 'mass measurement datum'
     Query: 'mass measurement datum'
@@ -286,7 +281,7 @@ Using SPARQL we can get the subject, value, and units for mass measurements:
       ?mass rdf:type obo:PATO_0000125 . # PATO mass
       ?subject obo:BFO_0000086 ?mass_instance . # BFO has quality
       ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
-      ?measurement obo:IAO_0000605 ?mass_instance . # IAO specifies value of
+      ?measurement obo:IAO_0000221 ?mass_instance . # IAO is quality measurement of
       ?measurement :has-information-structure ?spec .
       ?spec obo:IAO_0000039 ?unit . # IAO has unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
@@ -337,7 +332,7 @@ Now we extend the query above to include the assay that generated the measuremen
       ?mass rdf:type obo:PATO_0000125 . # PATO mass
       ?subject obo:BFO_0000086 ?mass_instance . # BFO has quality
       ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
-      ?measurement obo:IAO_0000605 ?mass_instance . # IAO specifies value of
+      ?measurement obo:IAO_0000221 ?mass_instance . # IAO is quality measurement of
       ?measurement :has-information-structure ?spec .
       ?spec obo:IAO_0000039 ?unit . # IAO has unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
@@ -420,7 +415,7 @@ Once we assert 'predicted measurement result' we can define child classes just a
       EquivalentTo: 'predicted measurement result' and
         ('has information structure' some 'scalar mass value specification')
 
-NOTE: Perhaps we could specify "and ('specifies value of' only 'mass')" for this class.
+NOTE: Perhaps we could specify "and ('is quality measurement of' only 'mass')" for this class.
 
 Then we can instantiate a prediction process and its result. We'll say that the prediction result is "20g", and reuse the same value specification:
 
@@ -538,11 +533,95 @@ Now we can query for processes that realize some concretization of a mass settin
     INCLUDE 'acquisition of mice' "20" 'gram'
 
 
-TODO: It will be important to model ranges of values, including the signficant figures in scientific notation.
+TODO: It will be important to model ranges of values, including the significant figures in scientific notation.
 
 
-# Other Cases
+# Other Sorts of Measurement
 
-TODO: Provide examples of categorical measurements and unstructured measurements.
+The main use of value specifications is to handle scalar measurements with units. But we can also handle categorical classifications as another sort of value specification, and measurements that don't use value specifications.
+
+## Categorical Measurements
+
+Here is an example of a 'categorical value specification' that is used to classify a mouse in the "mouse with average mass" category:
+
+    Class: obo:IAO_0000603
+      Annotations: rdfs:label "categorical value specification" 
+      SubClassOf: 'value specification'
+
+    Individual: mouse-with-average-mass-specification
+      Types: 'categorical value specification'
+      Annotations: rdfs:label "mouse with average mass value specification",
+        rdfs:comment "Applies to mice with a mass of ~20g."
+
+    Individual: average-mass-measurement
+      Types: 'measurement datum'
+      Annotations: rdfs:label "categorical measurement of mass of Mickey"
+      Facts: 'has information structure' 'mouse with average mass value specification',
+        'is quality measurement of' 'mass of Mickey'
+
+We can define subclasses of 'measurement datum' to demonstrate the correct classifications:
+
+    Class: categorical-measurement-datum
+      Annotations: rdfs:label "categorical measurement datum"
+      EquivalentTo: 'measurement datum' and
+        ('has information structure' some 'categorical value specification')
+
+    Class: categorical-mass-measurement-datum
+      Annotations: rdfs:label "categorical mass measurement datum"
+      EquivalentTo: 'measurement datum' and
+        ('has information structure' some 'categorical value specification') and
+        ('is quality measurement of' some 'mass')
+
+    Fact: average mass measurement is a categorical mass measurement datum
+    Query: 'categorical mass measurement datum'
+    Individuals: include 'categorical measurement of mass of Mickey'
+
+    Fact: average mass measurement is a mass measurement datum
+    Query: 'mass measurement datum'
+    Individuals: include 'categorical measurement of mass of Mickey'
+
+Note: We defined 'scalar mass value specification' by means of 'mass unit label' above, but we don't currently have a way to define a parallel "categorical mass value specification".
+
+## Unstructured Measurements
+
+There can also be measurements that do not make use of 'value specification'. As an example, we can have a "free text" description of the mass of Mickey, which I model here as both a textual entity and an measurement datum.
+
+    Class: IAO_0000300
+      Annotations: rdfs:label "textual entity"
+      SubClassOf: 'information content entity'
+
+    Individual: free-text-mass-measurement
+      Types: 'textual entity', 'measurement datum'
+      Annotations: rdfs:label "free text description of mass of Mickey",
+        rdfs:comment "Mickey's mass seems to be about average for a mouse."
+      Facts: 'is quality measurement of' 'mass of Mickey'
+
+Now we have a 'measurement datum' that is not a 'value measurement datum':
+
+    Fact: the description is a 'measurement datum'
+    Query: 'measurement datum'
+    Individuals: include 'free text description of mass of Mickey'
+
+    Fact: the description is not a 'value measurement datum'
+    Query: 'value measurement datum'
+    Individuals: exclude 'free text description of mass of Mickey'
+
+    Fact: the description is a 'mass measurement datum'
+    Query: 'mass measurement datum'
+    Individuals: include 'free text description of mass of Mickey'
+
+    Class: textual-mass-measurement-datum
+      Annotations: rdfs:label "textual mass measurement datum"
+      EquivalentTo: 'measurement datum' and
+        'textual entity' and
+        ('is quality measurement of' some 'mass')
+
+    Fact: the description is a 'textual mass measurement datum'
+    Query: 'textual mass measurement datum'
+    Individuals: include 'free text description of mass of Mickey'
+
+    
+
+
 
 

@@ -98,10 +98,10 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000605 -->
+    <!-- http://purl.obolibrary.org/obo/IAO_0000221 -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000605">
-        <rdfs:label>specifies value of</rdfs:label>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000221">
+        <rdfs:label>is quality measurement of</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
     </owl:ObjectProperty>
     
@@ -295,9 +295,6 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109">
         <rdfs:label>measurement datum</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-        <rdfs:comment>We will also model the following:
-      is_specified_output_of some
-        (&#39;data transformation&#39; or prediction or &#39;information acquisition&#39;)</rdfs:comment>
     </owl:Class>
     
 
@@ -326,6 +323,15 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000603 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000603">
+        <rdfs:label>categorical value specification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
     </owl:Class>
     
 
@@ -419,6 +425,57 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#IAO_0000300 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#IAO_0000300">
+        <rdfs:label>textual entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#categorical-mass-measurement-datum -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#categorical-mass-measurement-datum">
+        <rdfs:label>categorical mass measurement datum</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000221"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0000125"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-information-structure"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#categorical-measurement-datum -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#categorical-measurement-datum">
+        <rdfs:label>categorical measurement datum</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-information-structure"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/obi/test.owl#information-structural-entity -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#information-structural-entity">
@@ -437,7 +494,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000605"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000221"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0000125"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -522,7 +579,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000605"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000221"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0000125"/>
                     </owl:Restriction>
                     <owl:Restriction>
@@ -585,6 +642,26 @@
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#predicted-measurement-result"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#textual-mass-measurement-datum -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#textual-mass-measurement-datum">
+        <rdfs:label>textual mass measurement datum</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#IAO_0000300"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000221"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0000125"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
     
 
@@ -660,13 +737,36 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#average-mass-measurement -->
+
+    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#average-mass-measurement">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <rdfs:label>categorical measurement of mass of Mickey</rdfs:label>
+        <obo:IAO_0000221 rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#mickey-mass"/>
+        <has-information-structure rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#mouse-with-average-mass-specification"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#free-text-mass-measurement -->
+
+    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#free-text-mass-measurement">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#IAO_0000300"/>
+        <rdfs:label>free text description of mass of Mickey</rdfs:label>
+        <rdfs:comment>Mickey&#39;s mass seems to be about average for a mouse.</rdfs:comment>
+        <obo:IAO_0000221 rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#mickey-mass"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/obi/test.owl#mass-20g-measurement -->
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#mass-20g-measurement">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
         <rdfs:label>scalar measurement of mass of Mickey</rdfs:label>
         <has-information-structure rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#20g-specification"/>
-        <obo:IAO_0000605 rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#mickey-mass"/>
+        <obo:IAO_0000221 rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#mickey-mass"/>
     </owl:NamedIndividual>
     
 
@@ -697,6 +797,16 @@
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#mickey-mass">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000125"/>
         <rdfs:label>mass of Mickey</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/obi/test.owl#mouse-with-average-mass-specification -->
+
+    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#mouse-with-average-mass-specification">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+        <rdfs:label>mouse with average mass value specification</rdfs:label>
+        <rdfs:comment>Applies to mice with a mass of ~20g.</rdfs:comment>
     </owl:NamedIndividual>
     
 
