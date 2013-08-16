@@ -1,6 +1,6 @@
 % OBI Data Prototype
-% James A. Overton <james@overton.ca>
-% 2013-07-29
+% James A. Overton, <james@overton.ca>
+% 2013-08-16
 
 This is a prototype of the "value specification" approach to modelling data in OBI/IAO: the Ontology for Biomedical Investigations and the Information Artifact Ontology. It is based on discussing during the Philly2013 workshop and on the mailing list, but it does not (yet) reflect a consensus.
 
@@ -13,11 +13,12 @@ This document has gone through several revisions -- see SVN for details. Major c
 - 2013-06-10: first draft
 - 2013-06-17: removed determinable/determinate distinction
 - 2013-07-29: removed "information structural entity" and removed "has information structure" in favour of "has value specification"
+- 2013-08-12: more conservative approach making fewer changes to the current OBI
 
 
 # Motivation
 
-OBI's scope is biomedical investigations, and it must be able to describe the data generated in investigations. Some of the oldest terms in OBI and IAO were designed to describe measurement. More recently, we have recognized the need to describe predictions, simulations, and setting information. Superficially these are very similar to each other. "20g" could occur as:
+OBI's scope is biomedical investigations and it must be able to describe the data generated in investigations. Some of the oldest terms in OBI and IAO were designed to describe measurement. More recently we have recognized the need to describe predictions, simulations, and setting information. Superficially these are very similar to each other. "20g" could occur as:
 
 1. a measurement of the mass of a particular mouse
 2. a predicted mass of some future mouse after a treatment
@@ -45,6 +46,7 @@ Here are some notes on previous discussions:
 - [ICBO 2012 working session](https://code.google.com/p/information-artifact-ontology/wiki/WorkingSessionICBO2012)
 - [Christian's summary and proposal](https://docs.google.com/document/d/1zL0nW9RVqoC9sg6iajNZHex03JDnYUG4Q5F-e2rlZYg/edit#)
 - [Philippe and Alejandra's modelling tests](https://docs.google.com/document/d/11G4EkYvGJSJfcgW98weOyo5iVr7TdmrWEhm_q2IeGrA/edit)
+- [Philly2013 data document](https://docs.google.com/document/d/1Iv5VS8kbOnoQbBTt-FaJU37gK9MXkENm7pHGSk_q4d0/edit?usp=sharing)
 
 
 # Upper Ontology
@@ -140,65 +142,77 @@ Under "generically dependent continuant" we distinguish between information cont
 
 ## Units of Measurement
 
-Under ICE we include "unit labels" to connect to the Units of Measurement Ontology, and we have an ObjectProperty use with them:
+Under ICE we include "measurement unit labels" to connect to the Units of Measurement Ontology, and we have an ObjectProperty use with them:
 
-    Class: obo:IAO_0000003
-      Annotations: rdfs:label "unit label",
-        rdfs:comment "was 'measurement unit label', was a child of 'datum label'"
+    Class: obo:IAO_0000009
+      Annotations: rdfs:label "datum label"
       SubClassOf: 'information content entity'
 
+    Class: obo:IAO_0000003
+      Annotations: rdfs:label "measurement unit label"
+      SubClassOf: 'datum label'
+
     ObjectProperty: obo:IAO_0000039
-      Annotations: rdfs:label "has unit label",
-        rdfs:comment "was 'has measurement unit label'"
+      Annotations: rdfs:label "has measurement unit label"
 
 In OBI we have been modelling specific measurement units as OWL individuals. For our purposes we'll just need the SI unit "gram".
 
     Class: obo:UO_0000002
       Annotations: rdfs:label "mass unit label"
-      SubClassOf: 'unit label'
+      SubClassOf: 'measurement unit label'
 
     Individual: obo:UO_0000021
       Types: 'mass unit label'
       Annotations: rdfs:label "gram"
 
+
 ## Value Specifications
 
-A "value specification" is not necessarily about anything, and so cannot be an ICE. Instead we assert only that it is a child of GDC. We also define an ObjectProperty to link ICEs to value specifications and a DataProperty to link value specification to values (i.e. numbers).
+A "value specification" is a structure such as a number and a measurement unit, or a categorical classification. They are used for measurement data, predictions, settings, simulations, etc. Rather than having duplicates classes for each of these different uses, instead we have one "value specification" hierarchy that gets reused for measurement, prediction, etc.
+
+A "value specification" is not necessarily about anything. However, "information content entity" has been used for years as the ancestor class of all OBI and IAO's information entities, and an ICE must be about something. In previous drafts of this prototype and in the OBI Core review process we tried to pull OBI and IAO terms that are not clearly about anything out from under ICE and place the directly under GDC. We were unable to do this in a way that did not disrupt or break large parts of the existing hierarchy. We have therefore left the task of making these distinctions to future versions of IAO. 
+
+We will update OBI Core when those distinctions are made. For now we leave "value specification" under ICE.
 
     Class: obo:IAO_0000601
       Annotations: rdfs:label "value specification" 
-      SubClassOf: 'generically dependent continuant'
+      SubClassOf: 'information content entity'
 
     ObjectProperty: has-value-specification
       Annotations: rdfs:label "has value specification"
-      SubPropertyOf: 'is about'
-      Domain: 'information content entity'
       Range: 'value specification'
 
     DataProperty: obo:IAO_0000004
-      Annotations: rdfs:label "has value",
+      Annotations: rdfs:label "has specified value",
         rdfs:comment "was 'has measurement value'"
-      Range: xsd:float
+      Domain: 'value specification'
 
-The most important of these is "scalar value specification", which is the pair of a number and a unit. Given the "unit label" asserted hierarchy, we can create a hierarchy of *defined classes* as needed:
+If a value specification is about something, we use the "specifies value of" object property to state the relationship. But not all value specifications are about something in a way that OBI/IAO can currently model, and so this object property is not required.
+
+    ObjectProperty: obo:IAO_0000605
+      Annotations: rdfs:label "specifies value of"
+      Domain: 'value specification'
+
+The most important of these is "scalar value specification", which is the pair of a number and a unit. Given the "measurement unit label" asserted hierarchy, we can create a hierarchy of *defined classes* as needed:
     
     Class: obo:IAO_0000602
       Annotations: rdfs:label "scalar value specification"
       EquivalentTo: 'value specification' and
-        'has unit label' some 'unit label'
+        'has measurement unit label' some 'measurement unit label' and
+        'has specified value' min 1 xsd:float
 
     Class: scalar-mass-value-specification
       Annotations: rdfs:label "scalar mass value specification"
-      EquivalentTo: 'value specification' and
-        'has unit label' some 'mass unit label'
+      EquivalentTo: 'scalar value specification' and
+        'has measurement unit label' some 'mass unit label'
 
 Here is an example of a particular scalar mass value specification, "20g":
 
     Individual: 20g-specification
       Types: 'value specification'
       Annotations: rdfs:label "20g specification"
-      Facts: 'has unit label' 'gram',
-        'has value' "20"
+      Facts: 'has measurement unit label' 'gram',
+        'has specified value' "20"^^xsd:float
 
 Notice that we only assert that this is a 'value specification', and not that it is specifically a 'scalar mass value specification'. The reasoner will classify it correctly:
 
@@ -284,7 +298,7 @@ Using SPARQL we can get the subject, value, and units for mass measurements:
       ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
       ?measurement obo:IAO_0000221 ?mass_instance . # IAO is quality measurement of
       ?measurement :has-value-specification ?spec .
-      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000039 ?unit . # IAO has measurement unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
     }
     INCLUDE 'Mickey' "20" 'gram'
@@ -335,7 +349,7 @@ Now we extend the query above to include the assay that generated the measuremen
       ?measurement rdf:type obo:IAO_0000109 . # IAO measurement datum
       ?measurement obo:IAO_0000221 ?mass_instance . # IAO is quality measurement of
       ?measurement :has-value-specification ?spec .
-      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000039 ?unit . # IAO has measurement unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
       ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
     }
@@ -351,7 +365,7 @@ We can query forward from Mickey to the results about him:
       ?assay obo:OBI_0000293 :mickey . # OBI has specified input
       ?assay obo:OBI_0000299 ?measurement . # OBI has specified output
       ?measurement :has-value-specification ?spec .
-      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000039 ?unit . # IAO has measurement unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
     }
     INCLUDE "20" 'gram'
@@ -446,7 +460,7 @@ Using SPARQL we can get the value and units for the prediction. Instead of query
       ?unit rdf:type obo:UO_0000002 . # UO mass unit
       ?prediction rdf:type :predicted-measurement-result .
       ?prediction :has-value-specification ?spec .
-      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000039 ?unit . # IAO has measurement unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
     }
     INCLUDE 'predicted mass of mice' "20" 'gram'
@@ -528,7 +542,7 @@ Now we can query for processes that realize some concretization of a mass settin
       ?process obo:BFO_0000055 ?plan . # BFO realizes
       ?plan obo:BFO_0000059 ?setting . # BFO concretizes
       ?setting :has-value-specification ?spec .
-      ?spec obo:IAO_0000039 ?unit . # IAO has unit label
+      ?spec obo:IAO_0000039 ?unit . # IAO has measurement unit label
       ?spec obo:IAO_0000004 ?value . # IAO has value
     }
     INCLUDE 'acquisition of mice' "20" 'gram'
