@@ -106,15 +106,6 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000605 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000605">
-        <rdfs:label>specifies value of</rdfs:label>
-        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OBI_0000293 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000293">
@@ -133,11 +124,20 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OBI_0001927 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0001927">
+        <rdfs:label>specifies value of</rdfs:label>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification">
         <rdfs:label>has value specification</rdfs:label>
-        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+        <rdfs:range rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
     </owl:ObjectProperty>
     
 
@@ -158,7 +158,7 @@
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000004">
         <rdfs:label>has specified value</rdfs:label>
         <rdfs:comment>was &#39;has measurement value&#39;</rdfs:comment>
-        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
     </owl:DatatypeProperty>
     
 
@@ -314,48 +314,6 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000601 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000601">
-        <rdfs:label>value specification</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/IAO_0000602 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000602">
-        <rdfs:label>scalar value specification</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000601"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000003"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000004"/>
-                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/IAO_0000603 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000603">
-        <rdfs:label>categorical value specification</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OBI_0000011 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000011">
@@ -388,6 +346,48 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001755">
         <rdfs:label>selection rule</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0001930 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001930">
+        <rdfs:label>categorical value specification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0001931 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001931">
+        <rdfs:label>scalar value specification</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0001933"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000003"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000004"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0001933 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001933">
+        <rdfs:label>value specification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
     </owl:Class>
     
 
@@ -468,7 +468,7 @@
                     </owl:Restriction>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001930"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -487,7 +487,7 @@
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001930"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -534,7 +534,7 @@
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#predicted-measurement-result"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -572,7 +572,7 @@
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#predicted-measurement-result"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001931"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -611,7 +611,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000602"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0001931"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UO_0000002"/>
@@ -633,7 +633,7 @@
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001931"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -687,7 +687,7 @@
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/obi/test.owl#has-value-specification"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -719,7 +719,7 @@
     <!-- http://purl.obolibrary.org/obo/obi/test.owl#20g-specification -->
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#20g-specification">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
         <rdfs:label>20g specification</rdfs:label>
         <obo:IAO_0000004 rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</obo:IAO_0000004>
         <obo:IAO_0000039 rdf:resource="http://purl.obolibrary.org/obo/UO_0000021"/>
@@ -794,7 +794,7 @@
     <!-- http://purl.obolibrary.org/obo/obi/test.owl#mouse-with-average-mass-specification -->
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/obi/test.owl#mouse-with-average-mass-specification">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000603"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0001930"/>
         <rdfs:label>mouse with average mass value specification</rdfs:label>
         <rdfs:comment>Applies to mice with a mass of ~20g.</rdfs:comment>
     </owl:NamedIndividual>

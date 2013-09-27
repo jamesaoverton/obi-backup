@@ -174,7 +174,7 @@ A "value specification" is not necessarily about anything. However, "information
 
 We will update OBI Core when those distinctions are made. For now we leave "value specification" under ICE.
 
-    Class: obo:IAO_0000601
+    Class: obo:OBI_0001933
       Annotations: rdfs:label "value specification" 
       SubClassOf: 'information content entity'
 
@@ -189,13 +189,13 @@ We will update OBI Core when those distinctions are made. For now we leave "valu
 
 If a value specification is about something, we use the "specifies value of" object property to state the relationship. But not all value specifications are about something in a way that OBI/IAO can currently model, and so this object property is not required.
 
-    ObjectProperty: obo:IAO_0000605
+    ObjectProperty: obo:OBI_0001927
       Annotations: rdfs:label "specifies value of"
       Domain: 'value specification'
 
 The most important of these is "scalar value specification", which is the pair of a number and a unit. Given the "measurement unit label" asserted hierarchy, we can create a hierarchy of *defined classes* as needed:
     
-    Class: obo:IAO_0000602
+    Class: obo:OBI_0001931
       Annotations: rdfs:label "scalar value specification"
       EquivalentTo: 'value specification' and
         'has measurement unit label' some 'measurement unit label' and
@@ -559,7 +559,7 @@ The main use of value specifications is to handle scalar measurements with units
 
 Here is an example of a 'categorical value specification' that is used to classify a mouse in the "mouse with average mass" category:
 
-    Class: obo:IAO_0000603
+    Class: obo:OBI_0001930
       Annotations: rdfs:label "categorical value specification" 
       SubClassOf: 'value specification'
 
