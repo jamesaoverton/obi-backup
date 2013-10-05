@@ -51,34 +51,31 @@ TODO: Should be parallel to the Unix instructions.
 
 From the `tools/build` directory you can run various Ant "tasks". Here are some examples.
 
-Update the main obi.owl file to assign new IDs:
+Update the main `branches/obi.owl` file to assign new IDs:
 
     ant assign-ids
 
-Use Ant to build a self-contained OWL file for OBI:
+Use Ant to assign-ids, run checks, then build a `release` directory of files:
+
+    ant release
+    
+The `release` task can be broken down into four steps, as follows.
+
+1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file, and then save a `dist/obi.owl` file:
 
     ant build
 
-Use Ant to assign-ids, run checks, then build an OBI OWL file that's ready for release. NOTE: the build tool does not yet implement all the metadata and other checks required for the OBI release process, but we're working toward that goal.
-
-    ant release
-
-Generate a report on all the OBI terms as a CSV file (currently just IRIs and labels, but more columns can be added on request):
+2. Generate a report on all the OBI terms as a tab-separated `dist/obi.tsv` file (currently just IRIs and labels, but more columns can be added on request):
 
     ant report
 
-Look in `dist` for the new OWL files. More Ant build tasks are available, see:
-
-    ant help
-
-
-### OBI Core
-
-You can also extract a new version of OBI Core from the OBI OWL file you just built:
+3. Use the list of IRIs in `core.txt` to extract a new version of OBI Core file and report (`dist/obi_core.owl` and `dist/obi_core.tsv`) from the OBI OWL file you just built:
 
     ant core
 
-The program uses the IRIs in `core.txt` to extract the core. If you want to extract a different subset of OBI, you can modify the `core.txt` file. The resulting OWL file is in `dist/obi_core.owl`.
+4. Use the 'IEDB alternative term' annotations to create the IEDB view file `dist/obi_iedb.owl`:
+
+    ant iedb
 
 
 ### Tests

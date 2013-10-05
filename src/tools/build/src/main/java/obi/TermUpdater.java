@@ -138,21 +138,44 @@ public class TermUpdater {
   }
 
   /**
+   * Given an OWLEntity and an Annotation Property, get the first textual value.
+   *
+   * @param entity the OWLEntity to use
+   * @param prop the OWLAnnotationProperty to use
+   * @return a String, may be empty
+   */
+  public static String getText(OWLEntity entity, OWLAnnotationProperty prop) {
+    Set<OWLAnnotation> anns = entity.getAnnotations(ontology, prop);
+    if(anns.iterator().hasNext()) {
+      return getText(anns.iterator().next());
+    } else {
+      return "";
+    }
+  }
+
+  /**
+   * Given an OWLAnnotation, return a textual value.
+   *
+   * @param ann the OWLAnnotation to check;
+   * @return a String, may be empty
+   */
+  public static String getText(OWLAnnotation ann) {
+    OWLAnnotationValue value = ann.getValue();
+    String text = "";
+    if(value instanceof OWLLiteral) {
+      text = ((OWLLiteral) value).getLiteral();
+    }
+    return text;
+  }
+
+  /**
    * Given an OWLEntity, get the first RDFS label.
    *
    * @param entity the OWLEntity to use
    * @return a String, may be empty
    */
   public static String getLabel(OWLEntity entity) {
-    Set<OWLAnnotation> rdfsLabels = entity.getAnnotations(ontology, dataFactory.getRDFSLabel());
-    String label = "";
-    if(rdfsLabels.iterator().hasNext()) {
-      OWLAnnotationValue value = rdfsLabels.iterator().next().getValue();
-      if(value instanceof OWLLiteral) {
-        label = ((OWLLiteral) value).getLiteral();
-      }
-    }
-    return label;
+    return getText(entity, dataFactory.getRDFSLabel());
   }
 
   /**
@@ -164,15 +187,7 @@ public class TermUpdater {
   public static String getPreferred(OWLEntity entity) {
     OWLAnnotationProperty preferred = dataFactory.getOWLAnnotationProperty(
         IRI.create("http://purl.obolibrary.org/obo/IAO_0000111"));
-    Set<OWLAnnotation> labels = entity.getAnnotations(ontology, preferred);
-    String label = "";
-    if(labels.iterator().hasNext()) {
-      OWLAnnotationValue value = labels.iterator().next().getValue();
-      if(value instanceof OWLLiteral) {
-        label = ((OWLLiteral) value).getLiteral();
-      }
-    }
-    return label;
+    return getText(entity, preferred);
   }
 
   /**
@@ -324,13 +339,7 @@ public class TermUpdater {
     } else if (rdfsLabels.size() > 1) {
       Boolean allEqual = true;
       for(OWLAnnotation rdfsLabel: rdfsLabels) {
-        OWLAnnotationValue value = rdfsLabel.getValue();
-        if(value instanceof OWLLiteral) {
-          String label = ((OWLLiteral) value).getLiteral();
-          if(!firstLabel.equals(label)) {
-            allEqual = false;
-          }
-        } else {
+        if(!firstLabel.equals(getText(rdfsLabel))) {
           allEqual = false;
         }
       }
@@ -399,8 +408,29 @@ public class TermUpdater {
     } else if(definitions.size() == 1) {
       return true;
     } else {
-      log(entity, "Multiple textual definitions");
-      return false;
+      String firstDef = getText(entity, definition);
+      Boolean allEqual = true;
+      for(OWLAnnotation def: definitions) {
+        if(!firstDef.equals(getText(def))) {
+          allEqual = false;
+        }
+      }
+
+      if(!allEqual) {
+        log(entity, "Multiple different textual definitions");
+        return false;
+      } else {
+        log(entity, "Multiple identical textual definitions merged into one");
+        definitions = entity.getAnnotations(ontology, definition);
+        for(OWLAnnotation ann: definitions) {
+          manager.removeAxiom(ontology, dataFactory.getOWLAnnotationAssertionAxiom(
+            definition, entity.getIRI(), ann.getValue()));
+        }
+        OWLAnnotationAssertionAxiom axiom = dataFactory.getOWLAnnotationAssertionAxiom(
+          definition, entity.getIRI(), dataFactory.getOWLLiteral(firstDef, "en"));
+        manager.addAxiom(ontology, axiom);
+        return false;
+      }
     }
   }
 
