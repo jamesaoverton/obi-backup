@@ -35,12 +35,10 @@ public class Reporter {
     try {
       File ontologyFile = new File(args[0]);
       FileWriter reportWriter = new FileWriter(args[1]);
-      reportWriter.write("IRI,Label\n");
       OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
       OWLOntology ontology = manager.loadOntologyFromOntologyDocument(ontologyFile);
       reportClasses(ontology, reportWriter);
       reportWriter.close();
-      manager.removeOntology(ontology);
     } catch (Exception e) {
       System.out.println("ERROR: Could not build OBI with arguments:");
       for (String arg: args) System.out.println ("  " + arg);
@@ -65,7 +63,7 @@ public class Reporter {
         String label = annotations.iterator().next().getValue().toString();
         String name = label.replaceAll("@en", "").replaceAll("\"", "")
           .replaceAll("\\^\\^xsd:string", "");
-        writer.write(iri + ",\"" + name + "\"\n");
+        writer.write(iri + "\t" + name + "\n");
       } catch (Exception e) {
         //System.out.println("ERROR: reporting on " + owlClass);
       }
