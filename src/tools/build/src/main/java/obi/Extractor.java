@@ -46,9 +46,11 @@ public class Extractor {
     try {
       File sourceFile = new File(args[0]);
       OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+      System.out.println("Loading ontology from "+ args[0]);
       OWLOntology source = manager.loadOntologyFromOntologyDocument(sourceFile);
       cleanOntology(source);
 
+      System.out.println("Extracting terms from "+ args[1]);
       File iriFile = new File(args[1]);
       Set<IRI> iris = getIRIs(iriFile);
       Set<OWLEntity> entities = getEntities(source, iris);
@@ -56,6 +58,7 @@ public class Extractor {
       File extractedFile = new File(args[2]);
       IRI extractedIRI = IRI.create(args[3]);
       OWLOntology extracted = extractModule(source, entities, extractedIRI);
+      System.out.println("Saving extracted ontology to "+ args[2]);
       manager.saveOntology(extracted, IRI.create(extractedFile.toURI()));
     } catch (Exception e) {
       System.out.println("ERROR: Could not extract module with arguments:");

@@ -11,6 +11,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.util.OWLOntologyMerger;
 
 import owltools.io.CatalogXmlIRIMapper;
+import obi.TermUpdater;
 
 
 /**
@@ -23,20 +24,28 @@ public class Builder {
   /**
    * First obi.owl is loaded, using the import paths in catalog-v001.xml.
    * Then all the imported ontologies are merged into a single file and saved.
+   * Then all terms are updated using the TermUpdater, and the result is saved.
    *
    * @param args Two strings:
    *   1. the name of the obi.owl development file
-   *   2. the name of the obi.owl output file
+   *   2. the name of the obi_merged.owl output file
+   *   3. the name of the obi.owl output file
    */
   public static void main(String[] args) {
     try {
-      File obiFile = new File(args[0]);
+      File devFile = new File(args[0]);
       File mergedFile = new File(args[1]);
-      OWLOntology obi = loadLocalOntology(obiFile);
+      File obiFile = new File(args[2]);
+      OWLOntology dev = loadLocalOntology(devFile);
       IRI iri = IRI.create("http://temporary.org");
-      OWLOntology merged = mergeOntology(obi, iri);
+      System.out.println("Merging ontology files for " + args[0]);
+      OWLOntology merged = mergeOntology(dev, iri);
       OWLOntologyManager manager = merged.getOWLOntologyManager();
+      System.out.println("Saving merged file to " + args[1]);
       manager.saveOntology(merged, IRI.create(mergedFile.toURI()));
+      TermUpdater.updateTerms(merged, args[3]);
+      System.out.println("Saving final file to " + args[2]);
+      manager.saveOntology(merged, IRI.create(obiFile.toURI()));
     } catch (Exception e) {
       System.out.println("ERROR: Could not build OBI with arguments:");
       for (String arg: args) System.out.println ("  " + arg);
