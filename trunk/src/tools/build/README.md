@@ -55,25 +55,29 @@ Update the main `branches/obi.owl` file to assign new IDs:
 
     ant assign-ids
 
-Use Ant to assign-ids, run checks, then build a `release` directory of files:
+Then build a `release` directory of files:
 
     ant release
     
-The `release` task can be broken down into four steps, as follows.
+The `release` task takes a few minutes to run. It be broken down into five steps.
 
-1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file, and then save a `dist/obi.owl` file:
+1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file. Finally save a `dist/obi.owl` file:
 
     ant build
 
-2. Generate a report on all the OBI terms as a tab-separated `dist/obi.tsv` file (currently just IRIs and labels, but more columns can be added on request):
+2. Add inferred subClassOf axioms to `dist/obi.owl` -- this uses the reasoner, so it takes a few minutes:
+
+    ant reason
+
+3. Generate a report on all the OBI terms as a tab-separated `dist/obi.tsv` file, and a summary report in `dist/obi.txt`:
 
     ant report
 
-3. Use the list of IRIs in `core.txt` to extract a new version of OBI Core file and report (`dist/obi_core.owl` and `dist/obi_core.tsv`) from the OBI OWL file you just built:
+4. Use the list of IRIs in `core.txt` to extract a new version of OBI Core file and report (`dist/obi_core.owl`, `dist/obi_core.tsv`, and `dist/obi_core.txt`) using the `dist/obi.owl` file you just built:
 
     ant core
 
-4. Use the 'IEDB alternative term' annotations to create the IEDB view file `dist/obi_iedb.owl`:
+5. Use the 'IEDB alternative term' annotations to create the IEDB view file `dist/obi_iedb.owl`:
 
     ant iedb
 
