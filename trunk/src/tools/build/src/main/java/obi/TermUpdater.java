@@ -138,6 +138,23 @@ public class TermUpdater {
   }
 
   /**
+   * Given an OWLOntology, and OWLEntity and an Annotation Property, get the first textual value.
+   *
+   * @param ont the OWLOntology to use
+   * @param entity the OWLEntity to use
+   * @param prop the OWLAnnotationProperty to use
+   * @return a String, may be empty
+   */
+  public static String getText(OWLOntology ont, OWLEntity entity, OWLAnnotationProperty prop) {
+    Set<OWLAnnotation> anns = entity.getAnnotations(ont, prop);
+    if(anns.iterator().hasNext()) {
+      return getText(anns.iterator().next());
+    } else {
+      return "";
+    }
+  }
+
+  /**
    * Given an OWLEntity and an Annotation Property, get the first textual value.
    *
    * @param entity the OWLEntity to use
@@ -145,12 +162,7 @@ public class TermUpdater {
    * @return a String, may be empty
    */
   public static String getText(OWLEntity entity, OWLAnnotationProperty prop) {
-    Set<OWLAnnotation> anns = entity.getAnnotations(ontology, prop);
-    if(anns.iterator().hasNext()) {
-      return getText(anns.iterator().next());
-    } else {
-      return "";
-    }
+    return getText(ontology, entity, prop);
   }
 
   /**
