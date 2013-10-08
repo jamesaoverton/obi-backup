@@ -79,7 +79,7 @@
 
   <!-- ASSIGN -->
   <target name="assign-ids" depends="compile" description="Assign OBI IDs">
-    <java classname="obi.Assigner" fork="false">
+    <java classname="obi.Assigner">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -90,7 +90,7 @@
 
   <!-- BUILD -->
   <target name="build" depends="compile, doap" description="Merge OBI into a single OWL file">
-    <java classname="obi.Builder" fork="false">
+    <java classname="obi.Builder">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -100,7 +100,7 @@
       <arg value="${dist}/obi.owl"/>
       <arg value="${dist}/warnings.tsv"/>
     </java>
-    <java classname="obi.Metadator" fork="false">
+    <java classname="obi.Metadator">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -115,7 +115,7 @@
 
   <!-- UPDATE -->
   <target name="update-terms" depends="build" description="Check and update all terms">
-    <java classname="obi.TermUpdater" fork="false">
+    <java classname="obi.TermUpdater">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -126,21 +126,34 @@
     </java>
   </target>
 
+  <!-- REASON -->
+  <target name="reason" depends="build" description="Reason over the built OBI and save the results">
+    <java classname="obi.Reasoner">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/obi.owl"/>
+      <arg value="${dist}/obi.owl"/>
+    </java>
+  </target>
+
   <!-- REPORT -->
-  <target name="report" depends="" description="Report on OBI">
-    <java classname="obi.Reporter" fork="false">
+  <target name="report" depends="compile" description="Report on OBI">
+    <java classname="obi.Reporter">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
       </classpath>
       <arg value="${dist}/obi.owl"/>
       <arg value="${dist}/obi.tsv"/>
+      <arg value="${dist}/obi.txt"/>
     </java>
   </target>
 
   <!-- CORE -->
   <target name="core" depends="build" description="Extract the Core">
-    <java classname="obi.Extractor" fork="false">
+    <java classname="obi.Extractor">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -150,7 +163,7 @@
       <arg value="${dist}/obi_core.owl"/>
       <arg value="${base_iri}/obi_core.owl"/>
     </java>
-    <java classname="obi.Metadator" fork="false">
+    <java classname="obi.Metadator">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -161,19 +174,20 @@
       <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_core.owl"/>
       <arg value="${dist}/obi_core.owl"/>
     </java>
-    <java classname="obi.Reporter" fork="false">
+    <java classname="obi.Reporter">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
       </classpath>
       <arg value="${dist}/obi_core.owl"/>
       <arg value="${dist}/obi_core.tsv"/>
+      <arg value="${dist}/obi_core.txt"/>
     </java>
   </target>
 
   <!-- IEDB -->
   <target name="iedb" depends="build" description="Build the IEDB view of OBI">
-    <java classname="obi.ViewMaker" fork="false">
+    <java classname="obi.ViewMaker">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -182,7 +196,7 @@
       <arg value="${dist}/obi_iedb.owl"/>
       <arg value="http://purl.obolibrary.org/obo/OBI_9991118"/>
     </java>
-    <java classname="obi.Metadator" fork="false">
+    <java classname="obi.Metadator">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
@@ -193,19 +207,21 @@
       <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_iedb.owl"/>
       <arg value="${dist}/obi_iedb.owl"/>
     </java>
-    <java classname="obi.Reporter" fork="false">
+    <java classname="obi.Reporter">
       <classpath>
           <path refid="classpath"/>
           <path location="${classes}"/>
       </classpath>
       <arg value="${dist}/obi_iedb.owl"/>
       <arg value="${dist}/obi_iedb.tsv"/>
+      <arg value="${dist}/obi_iedb.txt"/>
     </java>
   </target>
 
 
   <!-- RELEASE -->
-  <target name="release" depends="build, report, core, iedb" description="Build all OBI files for release">
+  <target name="release" depends="build, reason, report, core, iedb"
+    description="Build all OBI files for release">
     <delete dir="${release}"/>
     <mkdir  dir="${release}"/>
     <copy todir="${release}">
@@ -231,10 +247,10 @@
       <fileset dir="${ontology_path}/branches">
         <include name="catalog-v001.xml"/>
         <include name="doap.template"/>
-        <include name="external.owl"/>
         <include name="external-byhand.owl"/>
-        <include name="externalDerived.owl"/>
         <include name="obi.owl"/>
+        <include name="OntoFox_inputs/*.txt"/>
+        <include name="OntoFox_outputs/*.owl"/>
       </fileset>
     </copy>
 
@@ -258,22 +274,10 @@
     <echo message="You may want to copy lists of new terms to '${release}/docs'"/>
   </target>
 
-  <!-- REASON -->
-  <target name="reason" depends="compile" description="Reason over the built OBI and save the results">
-    <java classname="obi.Reasoner" fork="false">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi.owl"/>
-      <arg value="${dist}/obi-axioms.txt"/>
-    </java>
-  </target>
-
   <!-- TEST -->
   <target name="test" depends="compile" description="Run all OBI tests">
     <mkdir dir="${target}/tests" />
-    <java classname="obi.Tester" fork="false">
+    <java classname="obi.Tester">
       <classpath>
           <path refid="classpath"/>
           <path location="${resources}"/>
@@ -287,7 +291,7 @@
   <!-- EXPERIMENT -->
   <target name="experiment" depends="compile" description="Test files in the 'experiments' dir">
     <mkdir dir="${target}/tests" />
-    <java classname="obi.Tester" fork="false">
+    <java classname="obi.Tester">
       <classpath>
           <path refid="classpath"/>
           <path location="${resources}"/>

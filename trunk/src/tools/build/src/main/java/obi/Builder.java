@@ -44,7 +44,7 @@ public class Builder {
       System.out.println("Saving merged file to " + args[1]);
       manager.saveOntology(merged, IRI.create(mergedFile.toURI()));
       TermUpdater.updateTerms(merged, args[3]);
-      System.out.println("Saving final file to " + args[2]);
+      System.out.println("Saving updated file to " + args[2]);
       manager.saveOntology(merged, IRI.create(obiFile.toURI()));
     } catch (Exception e) {
       System.out.println("ERROR: Could not build OBI with arguments:");
