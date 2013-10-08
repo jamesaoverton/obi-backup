@@ -9,20 +9,23 @@ import java.io.BufferedWriter;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLAxiom;
 
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.HermiT.Reasoner.ReasonerFactory;
 import org.semanticweb.owlapi.reasoner.InferenceType;
+import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentClassAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
 
 /**
@@ -34,7 +37,7 @@ public class Reasoner {
   /**
    * Given an input path and an output path,
    * load the input ontology, reason it, 
-   * and save a sorted list of axioms to the output path.
+   * and save it to the output path.
    *
    * @param args 1. the input path, 2. the output path
    */
@@ -42,11 +45,14 @@ public class Reasoner {
     String inputPath = args[0];
     String outputPath = args[1];
     try {
+      System.out.println("Loading ontology: " + inputPath);
       OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
       OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new File(inputPath));
-      System.out.println("Loaded ontology: " + inputPath);
-      reason(ontology);
-      printAxioms(ontology, outputPath);
+      if(reason(ontology)) {
+        System.out.println("Saving inferred ontology to: " + inputPath);
+        manager.saveOntology(ontology, IRI.create(new File(outputPath).toURI()));
+        //printAxioms(ontology, outputPath);
+      }
     } catch (Exception e) {
       System.out.println("ERROR: Could not reason with arguments:");
       for (String arg: args) System.out.println ("  " + arg);
@@ -60,7 +66,7 @@ public class Reasoner {
    *
    * @param ontology the OWLOntology to reason over
    */
-  public static void reason(OWLOntology ontology) {
+  public static boolean reason(OWLOntology ontology) {
     System.out.println("Ontology has " + ontology.getAxioms().size() + " axioms.");
     System.out.println("Starting reasoning...");
     int seconds;
@@ -70,23 +76,45 @@ public class Reasoner {
     OWLOntologyManager manager = ontology.getOWLOntologyManager();
     OWLReasonerFactory reasonerFactory = new ReasonerFactory();
     OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
+    if(!reasoner.isConsistent()) {
+      System.out.println("Ontology is not consistent!");
+      return false;
+    }
+
     reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-    InferredOntologyGenerator generator = new InferredOntologyGenerator(reasoner);
-    generator.addGenerator(new InferredSubClassAxiomGenerator());
-    generator.addGenerator(new InferredEquivalentClassAxiomGenerator());
+    Node<OWLClass> unsatisfiableClasses = reasoner.getUnsatisfiableClasses();
+    if (unsatisfiableClasses.getSize() > 1) {
+      System.out.println("There are " + unsatisfiableClasses.getSize() +
+          " unsatisfiable classes in the ontology: ");
+      for(OWLClass cls : unsatisfiableClasses) {
+        if (!cls.isOWLNothing()) {
+          System.out.println("    unsatisfiable: " + cls.getIRI());
+        }
+      }
+    } 
+
+    // Make sure to add the axiom generators in this way!!!
+    List<InferredAxiomGenerator<? extends OWLAxiom>> gens =
+        new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
+    gens.add(new InferredSubClassAxiomGenerator());
+    InferredOntologyGenerator generator = new InferredOntologyGenerator(reasoner, gens);
+    System.out.println("Using these axiom generators:");
+    for(InferredAxiomGenerator inf: generator.getAxiomGenerators()) {
+      System.out.println("    "+ inf);
+    }
 
     elapsedTime = System.currentTimeMillis() - startTime;
     seconds = (int) Math.ceil(elapsedTime / 1000);
     System.out.println("Reasoning took " + seconds + " seconds.");
 
-    System.out.println("Storing results...");
     startTime = System.currentTimeMillis();
     generator.fillOntology(manager, ontology);
+    System.out.println("Ontology now has " + ontology.getAxioms().size() + " axioms.");
 
     elapsedTime = System.currentTimeMillis() - startTime;
     seconds = (int) Math.ceil(elapsedTime / 1000);
     System.out.println("Storage took " + seconds + " seconds.");
-    System.out.println("Ontology has " + ontology.getAxioms().size() + " axioms.");
+    return true;
   }
 
   /**

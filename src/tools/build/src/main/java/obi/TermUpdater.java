@@ -263,18 +263,31 @@ public class TermUpdater {
     logWriter.close();
   }
 
+
+  /**
+   * Given an OWL Entity, return true if we should ignore this entity
+   * and false if we should consider it.
+   *
+   * @param entity the entity to check
+   * @return true if the entity should be filtered out, false otherwise
+   */
+  public static boolean filterTerm(OWLEntity entity) {
+    // Ignore certain IRIs.
+    String iri = entity.getIRI().toString();
+    if(ignoreExact.contains(iri)) { return true; }
+    for(String prefix: ignorePrefix) {
+      if(iri.startsWith(prefix)) { return true; }
+    }
+    return false;
+  }
+
   /**
    * Given an OWLEntity, check it for OBI's minimal metadata and update it.
    *
    * @param entity the OWLEntity to check and update
    */
   public static void updateTerm(OWLEntity entity) throws IOException {
-    // Ignore certain IRIs.
-    String iri = entity.getIRI().toString();
-    if(ignoreExact.contains(iri)) { return; }
-    for(String prefix: ignorePrefix) {
-      if(iri.startsWith(prefix)) { return; }
-    }
+    if(filterTerm(entity)) return;
 
     Set<Boolean> results = new HashSet<Boolean>();
     results.add(checkOBOID(entity));
@@ -361,9 +374,15 @@ public class TermUpdater {
     }
 
     // Check editor preferred terms
-    if(prefLabels.size() > 1) {
-      log(entity, "Multiple editor preferred terms, replaced with one from RDFS Label");
+    if(prefLabels.size() == 1) {
+      if(!getLabel(entity).equals(getPreferred(entity))) {
+        log(entity, "RDFS Label and editor preferred term do not match; using RDFS label");
+      }
     }
+    if(prefLabels.size() > 1) {
+      log(entity, "Multiple editor preferred terms; replaced with one from RDFS Label");
+    }
+
 
     // Remove editor preferred terms
     for(OWLAnnotation prefLabel: prefLabels) {
@@ -623,6 +642,7 @@ public class TermUpdater {
 
   /**
    * Given an OWLEntity, check for exactly one curation status annotation.
+   * Add a "metadata complete" or "metadata incomplete" annotation as required.
    *
    * @param entity the OWLEntity to check
    * @param complete true if the minimal metadata criteria have been met
@@ -634,6 +654,10 @@ public class TermUpdater {
     Set<OWLAnnotation> statuses = entity.getAnnotations(ontology, status);
     OWLNamedIndividual metadataComplete = dataFactory.getOWLNamedIndividual(
         IRI.create("http://purl.obolibrary.org/obo/IAO_0000120"));
+    OWLNamedIndividual metadataIncomplete = dataFactory.getOWLNamedIndividual(
+        IRI.create("http://purl.obolibrary.org/obo/IAO_0000123"));
+    OWLNamedIndividual uncurated = dataFactory.getOWLNamedIndividual(
+        IRI.create("http://purl.obolibrary.org/obo/IAO_0000124"));
 
     if(statuses.size() == 0) {
       if(complete) {
@@ -643,13 +667,19 @@ public class TermUpdater {
         return true;
       } else {
         log(entity, "No curation status given, metadata is not complete");
+        manager.addAxiom(ontology, dataFactory.getOWLAnnotationAssertionAxiom(
+            status, entity.getIRI(), metadataIncomplete.getIRI()));
         return false;
       }
     } else if(statuses.size() == 1) {
-      // TODO: make sure status is OK
+      OWLAnnotationValue value = statuses.iterator().next().getValue();
+      if(value instanceof IRI && value.compareTo(uncurated.getIRI()) == 0) {
+        log(entity, "Curation status is 'uncurated'");
+        return false;
+      }
       return true;
     } else {
-      log(entity, "Multiple curation statuses");
+      log(entity, "Multiple curation status annotations");
       return false;
     }
   }
