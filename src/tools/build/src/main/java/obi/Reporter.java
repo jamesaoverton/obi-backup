@@ -14,6 +14,7 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
@@ -80,6 +81,28 @@ public class Reporter {
   }
 
   /**
+   * Given an ontology and an entity, return the curation status of the
+   * entity or blank.
+   *
+   * @param ontology the ontology to use
+   * @param entity the entity to check
+   * @return a string of the curation status, may be empty
+   */
+  public static String getStatus(OWLOntology ontology, OWLEntity entity) {
+    OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
+    OWLAnnotationProperty curationStatus = df.getOWLAnnotationProperty(
+        IRI.create("http://purl.obolibrary.org/obo/IAO_0000114"));
+    Set<OWLAnnotation> anns = entity.getAnnotations(ontology, curationStatus);
+    if(anns.iterator().hasNext()) {
+      OWLAnnotationValue value = anns.iterator().next().getValue();
+      if(value instanceof IRI) {
+        return TermUpdater.getText(ontology, df.getOWLNamedIndividual((IRI) value), df.getRDFSLabel());
+      }
+    }
+    return "";
+  }
+
+  /**
    * For each entity in the ontology, write its IRI and label to the writer.
    *
    * @param ontology the ontology to search
@@ -88,20 +111,14 @@ public class Reporter {
   public static void reportEntities(OWLOntology ontology, String path)
       throws IOException {
     FileWriter writer = new FileWriter(path);
-    writer.write("Type\tIRI\tLabel\n");
-    OWLAnnotationProperty rdfsLabel = ontology.getOWLOntologyManager().getOWLDataFactory().getRDFSLabel();
+    writer.write("Type\tIRI\tStatus\tLabel\n");
+    OWLDataFactory df = ontology.getOWLOntologyManager().getOWLDataFactory();
     for (OWLEntity entity: ontology.getSignature()) {
       if(TermUpdater.filterTerm(entity)) { continue; }
       String iri = entity.getIRI().toString();
-      String label = ""; 
-      Set<OWLAnnotation> annotations = entity.getAnnotations(ontology, rdfsLabel);
-      if(annotations.iterator().hasNext()) {
-        OWLAnnotationValue value = annotations.iterator().next().getValue();
-        if(value instanceof OWLLiteral) {
-          label = ((OWLLiteral) value).getLiteral();
-        }
-      }
-      writer.write(entity.getEntityType() +"\t"+ iri + "\t" + label + "\n");
+      String status = getStatus(ontology, entity);
+      String label = TermUpdater.getText(ontology, entity, df.getRDFSLabel());
+      writer.write(entity.getEntityType() +"\t"+ iri +"\t"+ status +"\t"+ label + "\n");
     }
     writer.close();
   }
