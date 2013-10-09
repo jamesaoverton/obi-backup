@@ -73,8 +73,24 @@
   <!-- DOAP -->
   <target name="doap" depends="" description="Updated Description of a Project File">
     <copy file="${ontology_path}/${doap_path}" tofile="${doap_file}" overwrite="yes"/>
+
+    <!-- This should get the current SVN revision number. -->
+    <exec outputproperty="revision" executable="svnversion">
+      <arg line="../.."/>
+      <arg line="-n"/>
+      <redirector>
+        <outputfilterchain>
+          <tokenfilter>
+            <replaceregex pattern="\D" replace="" flags="g"/>
+          </tokenfilter>
+        </outputfilterchain>
+      </redirector>
+    </exec>
+    <echo message="${release_name} ${date}"/>
+    <echo message="SVN Revision: ${revision}"/>
+    <replace file="${doap_file}" token="__SVN_REVISION_GOES_HERE__" value="${revision}"/>
     <replace file="${doap_file}" token="__VERSION_GOES_HERE__" value="${date}"/>
-    <replace file="${doap_file}" token="__PRETTY_NAME_GOES_HERE__" value="${release_name}"/>
+    <replace file="${doap_file}" token="__PRETTY_NAME_GOES_HERE__" value="${release_name} ${date}"/>
   </target>
 
   <!-- ASSIGN -->
