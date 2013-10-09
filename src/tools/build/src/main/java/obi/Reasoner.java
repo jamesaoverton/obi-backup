@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,8 +17,12 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.ClassExpressionType;
+import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
@@ -63,6 +68,7 @@ public class Reasoner {
 
   /**
    * Given an ontology, reason and add the reasoned axioms to the ontology.
+   * Unnecessary asserted subClassOf axioms will be removed.
    *
    * @param ontology the OWLOntology to reason over
    */
@@ -74,6 +80,7 @@ public class Reasoner {
     long startTime = System.currentTimeMillis();
 
     OWLOntologyManager manager = ontology.getOWLOntologyManager();
+    OWLDataFactory dataFactory = manager.getOWLDataFactory();
     OWLReasonerFactory reasonerFactory = new ReasonerFactory();
     OWLReasoner reasoner = reasonerFactory.createReasoner(ontology);
     if(!reasoner.isConsistent()) {
@@ -109,6 +116,39 @@ public class Reasoner {
 
     startTime = System.currentTimeMillis();
     generator.fillOntology(manager, ontology);
+    //System.out.println("Ontology now has " + ontology.getAxioms().size() + " axioms.");
+    
+    // Remove asserted subClassAxioms where there is a more direct inferred axiom.
+    // Example: genotyping assay
+    // - asserted in dev: assay
+    // - inferred by reasoner: analyte assay
+    // - asserted after fill: assay, analyte assay
+    // - asserted after cleaning: analyte assay
+    for (OWLClass thisClass: ontology.getClassesInSignature()) {
+      if(thisClass.isOWLNothing() || thisClass.isOWLThing()) { continue; }
+
+      // Use the reasoner to get all the direct superclasses of this class.
+      Set<OWLClass> inferredSuperClasses = new HashSet<OWLClass>();
+      for (Node<OWLClass> node : reasoner.getSuperClasses(thisClass, true)) {
+        for (OWLClass inferredSuperClass : node) {
+          inferredSuperClasses.add(inferredSuperClass);
+        }
+      }
+
+      // For each subClassAxiom, if the super class is not in the set
+      // of inferred super classes, remove that axiom.
+      for(OWLSubClassOfAxiom subClassAxiom:
+          ontology.getSubClassAxiomsForSubClass(thisClass)) {
+        if (!subClassAxiom.getSuperClass().isAnonymous()) {
+          OWLClass assertedSuperClass = subClassAxiom.getSuperClass().asOWLClass();
+          if(!inferredSuperClasses.contains(assertedSuperClass)) {
+            manager.removeAxiom(ontology,
+                dataFactory.getOWLSubClassOfAxiom(thisClass, assertedSuperClass));
+          }
+        }
+      }
+    }
+
     System.out.println("Ontology now has " + ontology.getAxioms().size() + " axioms.");
 
     elapsedTime = System.currentTimeMillis() - startTime;
