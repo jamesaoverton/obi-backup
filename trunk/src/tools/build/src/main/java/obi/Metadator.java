@@ -103,8 +103,8 @@ public class Metadator {
     }
 
     // Ensure that the required xmlns attributes are present
-    targetDoc.getDocumentElement().setAttribute("xmlns", "http://purl.obolibrary.org/obo/obi.owl");
-    targetDoc.getDocumentElement().setAttribute("xml:base", "http://purl.obolibrary.org/obo/obi.owl#");
+    targetDoc.getDocumentElement().setAttribute("xmlns", "http://purl.obolibrary.org/obo/obi.owl#");
+    targetDoc.getDocumentElement().setAttribute("xml:base", "http://purl.obolibrary.org/obo/obi.owl");
     targetDoc.getDocumentElement().setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
     targetDoc.getDocumentElement().setAttribute("xmlns:protege", "http://protege.stanford.edu/plugins/owl/protege#");
 
