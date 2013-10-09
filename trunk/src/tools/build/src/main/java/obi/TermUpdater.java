@@ -525,7 +525,7 @@ public class TermUpdater {
    */
   public static boolean checkDefinitionSource(OWLEntity entity) throws IOException {
     OWLAnnotationProperty source = dataFactory.getOWLAnnotationProperty(
-        IRI.create("http://purl.obolibrary.org/obo/IAO_0000117"));
+        IRI.create("http://purl.obolibrary.org/obo/IAO_0000119"));
     Set<OWLAnnotation> sources = entity.getAnnotations(ontology, source);
 
     if(sources.size() == 0) {

@@ -67,17 +67,18 @@ public class Metadator {
    * @param date the date string to set for the target ontology
    * @param iri the version IRI string to set for the target ontology
    */
-  public static void updateMetadata(File sourceFile, File doapFile, File targetFile, String date, String iri) throws ParserConfigurationException, SAXException, IOException,
-         TransformerException {
-      DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-      Document sourceDoc = builder.parse(sourceFile);
-      Document doapDoc   = builder.parse(doapFile);
-      Document targetDoc = builder.parse(targetFile);
+  public static void updateMetadata(File sourceFile, File doapFile, File targetFile,
+      String date, String iri)
+      throws ParserConfigurationException, SAXException, IOException, TransformerException {
+    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    Document sourceDoc = builder.parse(sourceFile);
+    Document doapDoc   = builder.parse(doapFile);
+    Document targetDoc = builder.parse(targetFile);
 
-      updateOntology(sourceDoc, targetDoc, date, iri);
-      removeImports(targetDoc);
-      updateDOAP(doapDoc, targetDoc);
-      writeDocument(targetDoc, targetFile);
+    updateOntology(sourceDoc, targetDoc, date, iri);
+    removeImports(targetDoc);
+    updateDOAP(doapDoc, targetDoc);
+    writeDocument(targetDoc, targetFile);
   }
 
   /**
@@ -102,6 +103,8 @@ public class Metadator {
     }
 
     // Ensure that the required xmlns attributes are present
+    targetDoc.getDocumentElement().setAttribute("xmlns", "http://purl.obolibrary.org/obo/obi.owl");
+    targetDoc.getDocumentElement().setAttribute("xml:base", "http://purl.obolibrary.org/obo/obi.owl#");
     targetDoc.getDocumentElement().setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
     targetDoc.getDocumentElement().setAttribute("xmlns:protege", "http://protege.stanford.edu/plugins/owl/protege#");
 
