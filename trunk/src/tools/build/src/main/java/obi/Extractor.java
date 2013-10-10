@@ -77,10 +77,11 @@ public class Extractor {
     Set<IRI> iris = new HashSet<IRI>();
     Scanner scanner = new Scanner(file);
     while (scanner.hasNextLine()) {
-      String iri = scanner.nextLine().trim();
-      if(iri.startsWith("http")) {
-        iris.add(IRI.create(iri));
-      }
+      String line = scanner.nextLine().trim();
+      if(!line.startsWith("http")) { continue; }
+      String iri = line.substring(0, line.indexOf(" "));
+      System.out.println("<"+ iri +">");
+      iris.add(IRI.create(iri));
     }
     return iris;
   }
