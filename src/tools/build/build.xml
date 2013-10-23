@@ -245,6 +245,40 @@
   </target>
 
 
+   <!-- ISA -->
+   <target name="isa" depends="build" description="Build the ISA view of OBI">
+       <java classname="obi.ViewMaker">
+           <classpath>
+               <path refid="classpath"/>
+               <path location="${classes}"/>
+           </classpath>
+           <arg value="${dist}/obi.owl"/>
+           <arg value="${dist}/obi_isa.owl"/>
+           <arg value="http://purl.obolibrary.org/obo/OBI_0001847"/>
+       </java>
+       <java classname="obi.Metadator">
+           <classpath>
+               <path refid="classpath"/>
+               <path location="${classes}"/>
+           </classpath>
+           <arg value="${ontology_path}/${obi_path}"/>
+           <arg value="${doap_file}"/>
+           <arg value="${date}"/>
+           <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_isa.owl"/>
+           <arg value="${dist}/obi_isa.owl"/>
+       </java>
+       <java classname="obi.Reporter">
+           <classpath>
+                <path refid="classpath"/>
+                <path location="${classes}"/>
+            </classpath>
+            <arg value="${dist}/obi_isa.owl"/>
+            <arg value="${dist}/obi_isa.tsv"/>
+            <arg value="${dist}/obi_isa.txt"/>
+        </java>
+    </target>
+
+
   <!-- RELEASE -->
   <target name="release" depends="build, reason, report, core, iedb"
     description="Build all OBI files for release">
