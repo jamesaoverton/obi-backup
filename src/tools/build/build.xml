@@ -36,15 +36,6 @@
         <include name="*.jar" />
       </fileset>
     </path>
-    <pathconvert property="mf.classpath" pathsep=" ">
-      <path refid="classpath"/>
-      <mapper>
-        <chainedmapper>
-          <flattenmapper/>
-          <globmapper from="*.jar" to="lib/*.jar"/>
-        </chainedmapper>
-      </mapper>
-    </pathconvert>
   </target>
 
   <!-- CLEAN -->
@@ -65,13 +56,16 @@
   <target name="compile" depends="init" description="Compile the project">
     <mkdir dir="${target}" />
     <mkdir dir="${classes}" />
-    <javac destdir="${classes}" classpathref="classpath" optimize="false" debug="true" includeantruntime="false">
+    <javac destdir="${classes}" classpathref="classpath"
+      optimize="false" debug="true"
+      includeantruntime="false">
       <src path="${src}" />
     </javac>
   </target>
 
   <!-- DOAP -->
-  <target name="doap" depends="" description="Updated Description of a Project File">
+  <target name="doap" depends=""
+    description="Generate 'Description of a Project' File">
     <copy file="${ontology_path}/${doap_path}" tofile="${doap_file}" overwrite="yes"/>
 
     <!-- This should get the current SVN revision number. -->
@@ -93,7 +87,8 @@
   </target>
 
   <!-- ASSIGN -->
-  <target name="assign-ids" depends="compile" description="Assign OBI IDs">
+  <target name="assign-ids" depends="compile"
+    description="Assign OBI IDs in the development file">
     <java classname="obi.Assigner">
       <classpath>
           <path refid="classpath"/>
@@ -103,33 +98,72 @@
     </java>
   </target>
 
+  <!-- PIPELINE MACRO -->
+  <!-- This macro performs various common steps for working with the OWL files:
+       updating metadata, generating a report spreadsheet, and adding comments.
+       Task-specific work is done before anything else. -->
+  <macrodef name="pipeline">
+    <attribute name="name"/>
+    <element name="first-jobs" implicit="yes"/>
+    <sequential>
+      <echo message="Building ${dist}/@{name}.owl"/>
+      <first-jobs/>
+      <java classname="obi.Metadator">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${ontology_path}/${obi_path}"/>
+        <arg value="${doap_file}"/>
+        <arg value="${date}"/>
+        <arg value="http://purl.obolibrary.org/obo/obi/${date}/@{name}.owl"/>
+        <arg value="${dist}/@{name}.owl"/>
+      </java>
+      <java classname="obi.Reporter">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/@{name}.owl"/>
+        <arg value="${dist}/@{name}.tsv"/>
+        <arg value="${dist}/@{name}.txt"/>
+      </java>
+      <copy file="${dist}/@{name}.owl" tofile="${dist}/@{name}_temp.owl"
+        verbose="false"/>
+      <java classname="obi.Commenter">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/@{name}_temp.owl"/>
+        <arg value="${dist}/@{name}.tsv"/>
+        <arg value="${dist}/@{name}.owl"/>
+      </java>
+      <delete file="${dist}/@{name}_temp.owl" verbose="false"/>
+      <echo message="Built ${dist}/@{name}.owl"/>
+    </sequential>
+  </macrodef>
+
   <!-- BUILD -->
-  <target name="build" depends="compile, doap" description="Merge OBI into a single OWL file">
-    <java classname="obi.Builder">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${ontology_path}/${obi_path}"/>
-      <arg value="${dist}/obi_merged.owl"/>
-      <arg value="${dist}/obi.owl"/>
-      <arg value="${dist}/warnings.tsv"/>
-    </java>
-    <java classname="obi.Metadator">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${ontology_path}/${obi_path}"/>
-      <arg value="${doap_file}"/>
-      <arg value="${date}"/>
-      <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi.owl"/>
-      <arg value="${dist}/obi.owl"/>
-    </java>
+  <target name="build" depends="compile, doap"
+    description="Merge OBI into a single OWL file and run checks">
+    <pipeline name="obi">
+      <java classname="obi.Builder">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${ontology_path}/${obi_path}"/>
+        <arg value="${dist}/obi_merged.owl"/>
+        <arg value="${dist}/obi.owl"/>
+        <arg value="${dist}/obi_warnings.tsv"/>
+      </java>
+    </pipeline>
   </target>
 
   <!-- UPDATE -->
-  <target name="update-terms" depends="build" description="Check and update all terms">
+  <target name="update-terms" depends="build"
+    description="Check and update all terms">
     <java classname="obi.TermUpdater">
       <classpath>
           <path refid="classpath"/>
@@ -142,26 +176,18 @@
   </target>
 
   <!-- REASON -->
-  <target name="reason" depends="build" description="Reason over the built OBI and save the results">
-    <java classname="obi.Reasoner">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi.owl"/>
-      <arg value="${dist}/obi.owl"/>
-    </java>
-    <java classname="obi.Metadator">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${ontology_path}/${obi_path}"/>
-      <arg value="${doap_file}"/>
-      <arg value="${date}"/>
-      <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi.owl"/>
-      <arg value="${dist}/obi.owl"/>
-    </java>
+  <target name="reason" depends="build"
+    description="Reason over the built OBI and save the results">
+    <pipeline name="obi">
+      <java classname="obi.Reasoner">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/obi.owl"/>
+        <arg value="${dist}/obi.owl"/>
+      </java>
+    </pipeline>
   </target>
 
   <!-- REPORT -->
@@ -179,108 +205,52 @@
 
   <!-- CORE -->
   <target name="core" depends="build" description="Extract the Core">
-    <java classname="obi.Extractor">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi.owl"/> <!-- TODO: Check this!! -->
-      <arg value="${core_iris}"/>
-      <arg value="${dist}/obi_core.owl"/>
-      <arg value="${base_iri}/obi_core.owl"/>
-    </java>
-    <java classname="obi.Metadator">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${ontology_path}/${obi_path}"/>
-      <arg value="${doap_file}"/>
-      <arg value="${date}"/>
-      <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_core.owl"/>
-      <arg value="${dist}/obi_core.owl"/>
-    </java>
-    <java classname="obi.Reporter">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi_core.owl"/>
-      <arg value="${dist}/obi_core.tsv"/>
-      <arg value="${dist}/obi_core.txt"/>
-    </java>
+    <pipeline name="obi_core">
+      <java classname="obi.Extractor">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/obi.owl"/> <!-- TODO: Check this!! -->
+        <arg value="${core_iris}"/>
+        <arg value="${dist}/obi_core.owl"/>
+        <arg value="${base_iri}/obi_core.owl"/>
+      </java>
+    </pipeline>
   </target>
 
   <!-- IEDB -->
   <target name="iedb" depends="build" description="Build the IEDB view of OBI">
-    <java classname="obi.ViewMaker">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi.owl"/>
-      <arg value="${dist}/obi_iedb.owl"/>
-      <arg value="http://purl.obolibrary.org/obo/OBI_9991118"/>
-    </java>
-    <java classname="obi.Metadator">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${ontology_path}/${obi_path}"/>
-      <arg value="${doap_file}"/>
-      <arg value="${date}"/>
-      <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_iedb.owl"/>
-      <arg value="${dist}/obi_iedb.owl"/>
-    </java>
-    <java classname="obi.Reporter">
-      <classpath>
-          <path refid="classpath"/>
-          <path location="${classes}"/>
-      </classpath>
-      <arg value="${dist}/obi_iedb.owl"/>
-      <arg value="${dist}/obi_iedb.tsv"/>
-      <arg value="${dist}/obi_iedb.txt"/>
-    </java>
+    <pipeline name="obi_iedb">
+      <java classname="obi.ViewMaker">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/obi.owl"/>
+        <arg value="${dist}/obi_iedb.owl"/>
+        <arg value="http://purl.obolibrary.org/obo/OBI_9991118"/>
+      </java>
+    </pipeline>
   </target>
 
-
-   <!-- ISA -->
-   <target name="isa" depends="build" description="Build the ISA view of OBI">
-       <java classname="obi.ViewMaker">
-           <classpath>
-               <path refid="classpath"/>
-               <path location="${classes}"/>
-           </classpath>
-           <arg value="${dist}/obi.owl"/>
-           <arg value="${dist}/obi_isa.owl"/>
-           <arg value="http://purl.obolibrary.org/obo/OBI_0001847"/>
-       </java>
-       <java classname="obi.Metadator">
-           <classpath>
-               <path refid="classpath"/>
-               <path location="${classes}"/>
-           </classpath>
-           <arg value="${ontology_path}/${obi_path}"/>
-           <arg value="${doap_file}"/>
-           <arg value="${date}"/>
-           <arg value="http://purl.obolibrary.org/obo/obi/${date}/obi_isa.owl"/>
-           <arg value="${dist}/obi_isa.owl"/>
-       </java>
-       <java classname="obi.Reporter">
-           <classpath>
-                <path refid="classpath"/>
-                <path location="${classes}"/>
-            </classpath>
-            <arg value="${dist}/obi_isa.owl"/>
-            <arg value="${dist}/obi_isa.tsv"/>
-            <arg value="${dist}/obi_isa.txt"/>
-        </java>
-    </target>
-
+  <!-- ISA -->
+  <target name="isa" depends="build" description="Build the ISA view of OBI">
+    <pipeline name="obi_isa">
+      <java classname="obi.ViewMaker">
+        <classpath>
+            <path refid="classpath"/>
+            <path location="${classes}"/>
+        </classpath>
+        <arg value="${dist}/obi.owl"/>
+        <arg value="${dist}/obi_isa.owl"/>
+        <arg value="http://purl.obolibrary.org/obo/OBI_0001847"/>
+      </java>
+    </pipeline>
+  </target>
 
   <!-- RELEASE -->
-  <target name="release" depends="build, reason, report, core, iedb"
+  <target name="release" depends="reason, core, iedb, isa"
     description="Build all OBI files for release">
     <delete dir="${release}"/>
     <mkdir  dir="${release}"/>
@@ -289,6 +259,7 @@
         <include name="obi.owl"/>
         <include name="obi_core.owl"/>
         <include name="obi_iedb.owl"/>
+        <include name="obi_isa.owl"/>
       </fileset>
     </copy>
 
@@ -301,6 +272,8 @@
         <include name="obi_core.txt"/>
         <include name="obi_iedb.tsv"/>
         <include name="obi_iedb.txt"/>
+        <include name="obi_isa.tsv"/>
+        <include name="obi_isa.txt"/>
         <include name="warnings.tsv"/>
       </fileset>
     </copy>
@@ -369,6 +342,5 @@
   <target name="all" depends="clean, init, compile, build" description="Run the complete workflow">
     <echo message="OBI built!" />
   </target>
-
 
 </project>
