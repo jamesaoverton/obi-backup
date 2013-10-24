@@ -63,6 +63,29 @@
     </javac>
   </target>
 
+  <!-- DIFF -->
+  <!-- This will use SVN to get a copy of the last committed version
+       of obi.owl, save it to obi_last_commit.owl, then diff it
+       against the current obi.owl and print a report. -->
+  <target name="diff" depends="compile"
+    description="List the changes to obi.owl since last commit">
+    <exec executable="svn" dir="${ontology_path}/branches"
+      output="${ontology_path}/branches/obi_last_commit.owl">
+      <arg value="cat"/>
+      <arg value="obi.owl"/>
+    </exec>
+    <java classname="obi.Differ">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${ontology_path}/branches/obi_last_commit.owl"/>
+      <arg value="${ontology_path}/branches/obi.owl"/>
+      <arg value="${dist}/obi.diff"/>
+    </java>
+    <delete file="${ontology_path}/branches/obi_last_commit.owl"/>
+  </target>
+
   <!-- DOAP -->
   <target name="doap" depends=""
     description="Generate 'Description of a Project' File">
