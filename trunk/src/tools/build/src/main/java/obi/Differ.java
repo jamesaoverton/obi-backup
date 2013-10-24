@@ -24,6 +24,7 @@ public class Differ {
   /**
    * Given the paths to two ontologies and a report path,
    * write a report on the differences between them.
+   * Use the Builder.loadLocalOntology() method to resolve local imports.
    *
    * @param args 1. the path to the first ontology
    *             2. the path to the second ontology
@@ -89,7 +90,8 @@ public class Differ {
   }
 
   /**
-   * Given an ontology, reurn a list of all the strings for that ontology.
+   * Given an ontology, return a list of strings for 
+   * all the axioms of that ontology.
    *
    * @param ontology the ontology to use
    * @return a set of strings, one for each axiom in the ontology
