@@ -1,7 +1,11 @@
 package obi;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -13,7 +17,6 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -182,12 +185,14 @@ public class Metadator {
    * @param file the file to write to
    */
   public static void writeDocument(Document doc, File file) throws
-      TransformerException {
+      TransformerException, UnsupportedEncodingException, FileNotFoundException {
     TransformerFactory transformerFactory = TransformerFactory.newInstance();
     Transformer transformer = transformerFactory.newTransformer();
+    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
     DOMSource source = new DOMSource(doc);
-    StreamResult result = new StreamResult(file);
+    StreamResult result = new StreamResult(
+        new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
     transformer.transform(source, result);
   }
-  
+
 }
