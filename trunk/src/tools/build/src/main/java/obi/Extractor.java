@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -12,13 +13,18 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLSubAnnotationPropertyOfAxiom;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLIndividualAxiom;
+
+import org.semanticweb.owlapi.util.OWLEntityRemover;
 
 import uk.ac.manchester.cs.owlapi.modularity.SyntacticLocalityModuleExtractor;
 import uk.ac.manchester.cs.owlapi.modularity.ModuleType;
@@ -52,12 +58,19 @@ public class Extractor {
 
       System.out.println("Extracting terms from "+ args[1]);
       File iriFile = new File(args[1]);
-      Set<IRI> iris = getIRIs(iriFile);
-      Set<OWLEntity> entities = getEntities(source, iris);
+      Set<IRI> strippedIRIs = getIRIs(iriFile, "strip ");
+      stripAxioms(source, strippedIRIs);
+
+      Set<IRI> includedIRIs = getIRIs(iriFile);
+      Set<OWLEntity> entities = getEntities(source, includedIRIs);
 
       File extractedFile = new File(args[2]);
       IRI extractedIRI = IRI.create(args[3]);
       OWLOntology extracted = extractModule(source, entities, extractedIRI);
+
+      Set<IRI> removedIRIs = getIRIs(iriFile, "remove ");
+      removeClasses(extracted, removedIRIs);
+
       System.out.println("Saving extracted ontology to "+ args[2]);
       manager.saveOntology(extracted, IRI.create(extractedFile.toURI()));
     } catch (Exception e) {
@@ -74,13 +87,25 @@ public class Extractor {
    * @return the list of the IRIs found
    */
   public static Set<IRI> getIRIs(File file) throws FileNotFoundException {
+    return getIRIs(file, "");
+  }
+
+  /**
+   * Given a file, extract just the IRIs and return a list of IRI objects.
+   *
+   * @param file a file containing a line-separated list of IRIs
+   * @param prefix a prefix string to match each line with
+   * @return the list of the IRIs found
+   */
+  public static Set<IRI> getIRIs(File file, String prefix) throws FileNotFoundException {
     Set<IRI> iris = new HashSet<IRI>();
     Scanner scanner = new Scanner(file);
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine().trim();
-      if(!line.startsWith("http")) { continue; }
-      String iri = line.substring(0, line.indexOf(" "));
-      System.out.println("<"+ iri +">");
+      if(!line.startsWith(prefix + "http")) { continue; }
+      String suffix = line.substring(prefix.length());
+      String iri = suffix.substring(0, Math.min(suffix.length(), suffix.indexOf(" ")));
+      //System.out.println("<"+ iri +">");
       iris.add(IRI.create(iri));
     }
     return iris;
@@ -135,7 +160,49 @@ public class Extractor {
       Set<OWLEntity> entities, IRI iri) throws OWLOntologyCreationException {
     SyntacticLocalityModuleExtractor extractor =
       new SyntacticLocalityModuleExtractor(
-          ontology.getOWLOntologyManager(), ontology, ModuleType.STAR);
+        ontology.getOWLOntologyManager(), ontology, ModuleType.STAR);
     return extractor.extractAsOntology(entities, iri);
   }
+
+  /**
+   * Given an ontology and a set of class IRIs, for each IRI get its
+   * super class expressions and remove any that are anonymous
+   * (leaving only named classes as super classes).
+   *
+   * @param ontology the ontology to modify
+   * @param iris the set or IRIs to modify
+   */
+  public static void stripAxioms(OWLOntology ontology, Set<IRI> iris) {
+    OWLOntologyManager manager = ontology.getOWLOntologyManager();
+    OWLDataFactory df = manager.getOWLDataFactory();
+    for(IRI iri: iris) {
+      OWLClass cls = df.getOWLClass(iri);
+      Set<OWLClassExpression> supers = cls.getSuperClasses(ontology);
+      for(OWLClassExpression sup: supers) {
+        if(sup.isAnonymous()) {
+          manager.removeAxiom(ontology, df.getOWLSubClassOfAxiom(cls, sup));
+        }
+      }
+    }
+  }
+
+  /**
+   * Given an ontology and a set of class IRIs, remove all those classes
+   * from the ontology.
+   *
+   * @param ontology the ontology to modify
+   * @param iris the set or IRIs to remove
+   */
+  public static void removeClasses(OWLOntology ontology, Set<IRI> iris) {
+    OWLOntologyManager manager = ontology.getOWLOntologyManager();
+    OWLDataFactory df = manager.getOWLDataFactory();
+    OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(ontology));
+    for(IRI iri: iris) {
+      OWLClass cls = df.getOWLClass(iri);
+      //System.out.println("Remove: " + cls);
+      cls.accept(remover);
+    }
+    manager.applyChanges(remover.getChanges());
+  }
+
 }
