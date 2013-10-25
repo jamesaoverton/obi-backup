@@ -5,6 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -12,6 +16,11 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLEntity;
+import org.semanticweb.owlapi.model.OWLAnnotation;
+import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAnnotationValue;
+import org.semanticweb.owlapi.model.OWLLiteral;
 
 import obi.Builder;
 
@@ -21,6 +30,15 @@ import obi.Builder;
  * @author <a href="mailto:james@overton.ca">James A. Overton</a>
  */
 public class Differ {
+  /**
+   * The base IRI for OBO terms.
+   */
+  public static String oboBase = "http://purl.obolibrary.org/obo/";
+  /**
+   * A pattern for matching IRI strings.
+   */
+  public static Pattern iriPattern = Pattern.compile("<(http\\S+)>");
+
   /**
    * Given the paths to two ontologies and a report path,
    * write a report on the differences between them.
@@ -61,6 +79,9 @@ public class Differ {
       OWLOntology ontology2, FileWriter writer)
       throws IOException {
 
+    Map<String,String> labels = getLabels(ontology1);
+    labels.putAll(getLabels(ontology2));
+
     Set<String> strings1 = getAxiomStrings(ontology1);
     Set<String> strings2 = getAxiomStrings(ontology2);
 
@@ -77,7 +98,7 @@ public class Differ {
     writer.write(strings1minus2.size() +
         " axioms in Ontology 1 but not in Ontology 2:\n");
     for(String axiom: strings1minus2) {
-      writer.write("- " + axiom + "\n");
+      writer.write("- " + addLabels(labels, axiom) + "\n");
     }
 
     writer.write("\n");
@@ -85,8 +106,62 @@ public class Differ {
     writer.write(strings2minus1.size() +
         " axioms in Ontology 2 but not in Ontology 1:\n");
     for(String axiom: strings2minus1) {
-      writer.write("+ " + axiom + "\n");
+      writer.write("+ " + addLabels(labels, axiom) + "\n");
     }
+  }
+
+  /**
+   * Given an ontology, return a map from IRIs to rdfs:labels.
+   *
+   * @param ontology the ontology to use
+   * @return a map from IRI strings to label strings
+   */
+  public static Map<String,String> getLabels(OWLOntology ontology) {
+    Map<String,String> results = new HashMap<String,String>();
+    OWLAnnotationProperty rdfsLabel =
+      ontology.getOWLOntologyManager().getOWLDataFactory().getRDFSLabel();
+    for(OWLEntity entity: ontology.getSignature(true)) {
+      for(OWLOntology ont: ontology.getImportsClosure()) {
+        Set<OWLAnnotation> labels = entity.getAnnotations(ont, rdfsLabel);
+        if(labels.isEmpty()) { continue; }
+        OWLAnnotation label = labels.iterator().next();
+        OWLAnnotationValue value = label.getValue();
+        if(value instanceof OWLLiteral) {
+          results.put(entity.getIRI().toString(),
+                      ((OWLLiteral) value).getLiteral());
+        }
+      }
+    }
+    return results;
+  }
+
+  /**
+   * Given a map from IRIs to labels and an axiom string,
+   * add labels next to any IRIs in the string,
+   * shorten OBO IRIs, and return the updated string.
+   *
+   * @param labels a map from IRI strings to label strings
+   * @param axiom a string representation of an OWLAxiom
+   * @return a string with labels inserted next to IRIs
+   */
+  public static String addLabels(Map<String,String> labels, String axiom) {
+    Matcher matcher = iriPattern.matcher(axiom);
+    StringBuffer sb = new StringBuffer();
+    while (matcher.find()) {
+      String iri = matcher.group(1);
+      String id = iri;
+      if(id.startsWith(oboBase)) {
+        id = id.substring(oboBase.length());
+      }
+      String replacement = "<" + iri + ">";
+      if(labels.containsKey(iri)) {
+        replacement = "<" + id + ">[" + labels.get(iri) + "]";
+      }
+      matcher.appendReplacement(sb, replacement);
+    }
+    matcher.appendTail(sb);
+    System.out.println(sb.toString());
+    return sb.toString();
   }
 
   /**
