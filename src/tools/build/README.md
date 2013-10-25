@@ -51,6 +51,10 @@ TODO: Should be parallel to the Unix instructions.
 
 From the `tools/build` directory you can run various Ant "tasks". Here are some examples.
 
+Check the differences between the last committed version of `branches/obi.owl` and the current version in your working copy -- see the results in `dist/obi.diff`:
+
+    ant diff
+
 Update the main `branches/obi.owl` file to assign new IDs:
 
     ant assign-ids
@@ -59,9 +63,9 @@ Then build a `release` directory of files:
 
     ant release
     
-The `release` task takes a few minutes to run. It be broken down into five steps.
+The `release` task takes a few minutes to run. It be broken down into several steps that can be executed separately:
 
-1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file. Finally save a `dist/obi.owl` file:
+1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file. Then add comments to the OWL XML. Finally save a `dist/obi.owl` file:
 
     ant build
 
@@ -80,6 +84,10 @@ The `release` task takes a few minutes to run. It be broken down into five steps
 5. Use the 'IEDB alternative term' annotations to create the IEDB view file `dist/obi_iedb.owl`:
 
     ant iedb
+
+6. Use the 'ISA alternative term' annotations to create the ISA view file `dist/obi_isa.owl`:
+
+    ant isa
 
 
 ### Tests
