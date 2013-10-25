@@ -41,7 +41,7 @@ public class Assigner {
   /**
    * The ID number at which to begin searching for new IRIs.
    */
-  private static int currentID = 1900;
+  private static int currentID = 1938;
 
   /**
    * Given an ontology path, load the ontology and assign new OBI IRIs to
