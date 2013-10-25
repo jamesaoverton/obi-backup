@@ -175,7 +175,7 @@ public class Differ {
     Set<OWLAxiom> axioms = ontology.getAxioms();
     Set<String> strings = new HashSet<String>();
     for(OWLAxiom axiom: axioms) {
-      strings.add(axiom.toString());
+      strings.add(axiom.toString().replaceAll("\\n", "\\n"));
     }
     return strings;
   }
