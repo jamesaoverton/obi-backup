@@ -34,6 +34,7 @@ public class Differ {
    * The base IRI for OBO terms.
    */
   public static String oboBase = "http://purl.obolibrary.org/obo/";
+
   /**
    * A pattern for matching IRI strings.
    */
