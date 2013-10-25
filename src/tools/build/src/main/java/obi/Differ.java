@@ -161,7 +161,6 @@ public class Differ {
       matcher.appendReplacement(sb, replacement);
     }
     matcher.appendTail(sb);
-    System.out.println(sb.toString());
     return sb.toString();
   }
 
