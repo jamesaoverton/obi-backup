@@ -146,31 +146,31 @@ You must go through all of these steps in the correct order to release a new ver
 9. Check that the release is visible on SourceForge: https://sourceforge.net/p/obi/code/HEAD/tree/releases/
 10. Update PURLs on http://purl.obolibrary.org -- you must have an account with the PURL service and be logged in
   - Create a new PURL
-    - this version of obi.owl
+    - http://purl.obolibrary.org/obo/obi/YYYY-MM-DD/obi.owl
       - Path: /obo/obi/YYYY-MM-DD/obi.owl
-      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi.owl?format=raw
+      - Target URL: http://svn.code.sf.net/p/obi/code/releases/YYYY-MM-DD/obi.owl
       - Maintainer IDs: OBI
-    - this version of obi_core.owl
+    - http://purl.obolibrary.org/obo/obi/YYYY-MM-DD/obi_core.owl
       - Path: /obo/obi/YYYY-MM-DD/obi_core.owl
-      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_core.owl?format=raw
+      - Target URL: http://svn.code.sf.net/p/obi/code/releases/YYYY-MM-DD/obi_core.owl
       - Maintainer IDs: OBI
   - Modify an existing PURL
-    - latest version of obi.owl
+    - http://purl.obolibrary.org/obo/obi.owl
       - Path: /obo/obi.owl
       - Type: Simple redirection to a target URL (302)
       - Maintainer IDs: OBI
-      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi.owl?format=raw
-    - latest version of obi_core.owl
+      - Target URL: http://svn.code.sf.net/p/obi/code/releases/YYYY-MM-DD/obi.owl
+    - http://purl.obolibrary.org/obo/obi/obi_core.owl
       - Path: /obo/obi/obi_core.owl
       - Type: Simple redirection to a target URL (302)
       - Maintainer IDs: OBI
-      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_core.owl?format=raw
-    - latest version of obi_iedb.owl
+      - Target URL: http://svn.code.sf.net/p/obi/code/releases/YYYY-MM-DD/obi_core.owl
+    - http://purl.obolibrary.org/obo/obi/obi_IEDBview.owl
       - Path: /obo/obi/obi_IEDBview.owl
       - Type: Simple redirection to a target URL (302)
       - Maintainer IDs: OBI
-      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_iedb.owl?format=raw
-    - latest release notes
+      - Target URL: http://svn.code.sf.net/p/obi/code/releases/YYYY-MM-DD/obi_iedb.owl
+    - http://purl.obolibrary.org/obo/obi/release-notes.html
       - Path: /obo/obi/release-notes.html
       - Type: Simple redirection to a target URL (302)
       - Maintainer IDs: OBI
