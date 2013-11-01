@@ -3,6 +3,11 @@
 This is a tool for building and testing a self-contained OBI file from the development files. It's a work in progress -- help is welcome.
 
 
+## Known Issues
+
+The build tool does not yet create OBO files.
+
+
 ## Requirements
 
 - [Subversion](http://subversion.tigris.org/)
@@ -108,6 +113,71 @@ Results will appear in `target/experiments`.
 ## Configuration
 
 You can change details of the build process by editing `config.properties`.
+
+
+## Release Checklist
+
+You must go through all of these steps in the correct order to release a new version of OBI. We suggest that you copy this text to a new file, find-and-replace "YYYY-MM-DD" with the release date, and check off the items as you go.
+
+1. Build the release
+
+    cd tools/build
+    ant clean release
+
+2. Check for differences with the previous release: `dist/obi_previous_release.diff`
+3. Manually check OWL files in the `release` directory using Protege
+4. Create a `release/doc/newIDs.tab` file containing a list of all the new terms since the last release
+5. Copy the `trunk/src/tools/build/release` directory to `releases/YYYY-MM-DD`
+6. Copy `README.txt` file from the previous release directory
+7. Update the `README.txt` file:
+  - replace the old release date with the new release date throughout
+  - replace the old Subversion revision number with the new revision number
+  - edit the "New in this Release" section
+  - edit the "Known Issues" section
+  - edit the "Release notes author" at the bottom of the file
+8. Commit the release directory to OBI SVN -- you must have a SoureForge account with sufficient privileges
+
+    cd releases/YYYY-MM-DD
+    svn update
+    svn status
+    svn add YYYY-MM-DD
+    svn checkin YYYY-MM-DD --messsage "Committing OBI release YYYY-MM-DD"
+
+9. Check that the release is visible on SourceForge: https://sourceforge.net/p/obi/code/HEAD/tree/releases/
+10. Update PURLs on http://purl.obolibrary.org -- you must have an account with the PURL service and be logged in
+  - Create a new PURL
+    - this version of obi.owl
+      - Path: /obo/obi/YYYY-MM-DD/obi.owl
+      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi.owl?format=raw
+      - Maintainer IDs: OBI
+    - this version of obi_core.owl
+      - Path: /obo/obi/YYYY-MM-DD/obi_core.owl
+      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_core.owl?format=raw
+      - Maintainer IDs: OBI
+  - Modify an existing PURL
+    - latest version of obi.owl
+      - Path: /obo/obi.owl
+      - Type: Simple redirection to a target URL (302)
+      - Maintainer IDs: OBI
+      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi.owl?format=raw
+    - latest version of obi_core.owl
+      - Path: /obo/obi/obi_core.owl
+      - Type: Simple redirection to a target URL (302)
+      - Maintainer IDs: OBI
+      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_core.owl?format=raw
+    - latest version of obi_iedb.owl
+      - Path: /obo/obi/obi_IEDBview.owl
+      - Type: Simple redirection to a target URL (302)
+      - Maintainer IDs: OBI
+      - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_iedb.owl?format=raw
+11. Check that the main PURL is functioning: http://purl.obolibrary.org/obo/obi.owl
+12. Update the OBI wiki -- you must have an account on the wiki and be logged in
+  - create a new page: http://obi-ontology.org/page/Releases/YYYY-MM-DD
+    - copy the contents of `releases/YYYY-MM-DD/README.txt` to the new page
+  - edit http://obi-ontology.org/page/Releases
+    - add a link to the new release page
+13. Send an email to the obi-devel and obi-users mailing lists
+  - include links to the new release wiki page: http://obi-ontology.org/page/Releases/YYYY-MM-DD
 
 
 ## Dependencies
