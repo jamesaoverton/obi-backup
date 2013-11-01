@@ -4,19 +4,17 @@ Date of Release: 2013-10-25
 
 Subversion Revision: 3886
 
-
 == Access ==
 
 * This version in OWL format: http://purl.obolibrary.org/obo/obi/2013-10-25/obi.owl
-* This version in OBO format: http://purl.obolibrary.org/obo/obi/2013-10-25/obi.obo
+* This release directory in Subversion: https://sourceforge.net/p/obi/code/HEAD/tree/releases/2013-10-25/
 * Latest Version in OWL format: http://purl.obolibrary.org/obo/obi.owl
 * Latest Version in OBO format: http://purl.obolibrary.org/obo/obi/obi.obo
 * Browse Latest Version: http://purl.obolibrary.org/obo/obi/browse
-* Issue Tracker: http://purl.obolibrary.org/obo/obi/tracker
 * All Releases: http://obi-ontology.org/page/Releases
+* Issue Tracker: http://purl.obolibrary.org/obo/obi/tracker
 
-Please see the Tutorials for instructions on downloading and viewing. http://obi-ontology.org/page/Tutorials 
-
+Please see the Tutorials for instructions on downloading and viewing: http://obi-ontology.org/page/Tutorials 
 
 == Release Files ==
 
@@ -28,14 +26,13 @@ Please see the Tutorials for instructions on downloading and viewing. http://obi
 * branches: OBI development files used to build the release
 * external: IAO and BFO files used to build the release
 * docs: reports on the release files, for example:
-  * newIDs.tab: a list of terms added since the last release
-  * obi.txt: report on term types and source ontologies
-  * obi.tsv: a list of all the terms in obi.owl
+** newIDs.tab: a list of terms added since the last release
+** obi.txt: report on term types and source ontologies
+** obi.tsv: a list of all the terms in obi.owl
 
 This release candidate was built using revision 3883 of the new OBI build tools:
 
 http://sourceforge.net/p/obi/code/HEAD/tree/trunk/src/tools/build/
-
 
 == New in this Release ==
 
@@ -51,13 +48,11 @@ In October we switched to a new import system using OntoFox. See the branches/On
 
 See docs/newIDs.tab for a list of new terms.
 
-
 == Known Issues ==
 
 In the course of preparing OBI Core we have made significant changes to many of OBI's upper-level terms. However we have not yet had time to revise all the children of the changed node. In particular, many of the descendants of "measurement data item" have not yet been revised to use the new "value specification" approach.
 
-If you have any questions, please ask on the obi-devel@lists.sourceforge.net mailing list.
-
+If you have any questions, please ask on the developer mailing list at http://groups.google.com/group/obi-developer
 
 == About the Ontology for Biomedical Investigations ==
  
@@ -74,17 +69,15 @@ More details at: http://purl.obolibrary.org/obo/obi
 
 Further reading: You can find the OBI manuscript which this version supports at http://purl.obolibrary.org/obo/obi/repository/trunk/docs/papers/release/Manuscript.doc
  
-
 == Ontology Development ==
 
-OBI Ontology Development is collaborative, term suggestions and new community representatives are welcome. Single term can be suggested via the OBI tracker http://purl.obolibrary.org/obo/obi/tracker. 
+OBI Ontology Development is collaborative, term suggestions and new community representatives are welcome. Single term can be suggested via the OBI tracker http://purl.obolibrary.org/obo/obi/tracker
 
 If you represent a community and/or have many terms to suggest please email OBI Developers <obi-devel@lists.sourceforge.net> with details. If you would like to see the latest development version please check out the development copy of OBI from sourceforge. 
 
 Tutorials on how to do this can be found here: http://obi-ontology.org/page/Tutorials
 
-The OBI wiki can be found at: http://obi-ontology.org/
-
+The OBI wiki can be found at: http://obi-ontology.org
 
 == How to Contact Us ==
 
