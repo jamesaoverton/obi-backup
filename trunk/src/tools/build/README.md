@@ -170,6 +170,11 @@ You must go through all of these steps in the correct order to release a new ver
       - Type: Simple redirection to a target URL (302)
       - Maintainer IDs: OBI
       - Target URL: https://sourceforge.net/p/obi/code/HEAD/tree/releases/YYYY-MM-DD/obi_iedb.owl?format=raw
+    - latest release notes
+      - Path: /obo/obi/release-notes.html
+      - Type: Simple redirection to a target URL (302)
+      - Maintainer IDs: OBI
+      - Target URL: http://obi-ontology.org/page/Releases/YYYY-MM-DD
 11. Check that the main PURL is functioning: http://purl.obolibrary.org/obo/obi.owl
 12. Update the OBI wiki -- you must have an account on the wiki and be logged in
   - create a new page: http://obi-ontology.org/page/Releases/YYYY-MM-DD
