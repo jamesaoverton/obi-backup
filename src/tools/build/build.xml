@@ -65,12 +65,12 @@
 
   <!-- DIFF -->
   <!-- This will use SVN to get a copy of the last committed version
-       of obi.owl, save it to obi_last_commit.owl, then diff it
+       of obi.owl, save it to obi_previous_commit.owl, then diff it
        against the current obi.owl and print a report. -->
   <target name="diff" depends="compile"
     description="List the changes to obi.owl since last commit">
     <exec executable="svn" dir="${ontology_path}/branches"
-      output="${ontology_path}/branches/obi_last_commit.owl">
+      output="${ontology_path}/branches/obi_previous_commit.owl">
       <arg value="cat"/>
       <arg value="obi.owl"/>
     </exec>
@@ -79,11 +79,11 @@
           <path refid="classpath"/>
           <path location="${classes}"/>
       </classpath>
-      <arg value="${ontology_path}/branches/obi_last_commit.owl"/>
+      <arg value="${ontology_path}/branches/obi_previous_commit.owl"/>
       <arg value="${ontology_path}/branches/obi.owl"/>
       <arg value="${dist}/obi.diff"/>
     </java>
-    <delete file="${ontology_path}/branches/obi_last_commit.owl"/>
+    <delete file="${ontology_path}/branches/obi_previous_commit.owl"/>
   </target>
 
   <!-- DOAP -->
@@ -329,8 +329,23 @@
       </fileset>
     </copy>
 
+    <!-- Compare this release file to the last release file. -->
+    <get src="http://purl.obolibrary.org/obo/obi.owl"
+      dest="${dist}/obi_previous_release.owl"
+      usetimestamp="true"/>
+    <java classname="obi.Differ">
+      <classpath>
+          <path refid="classpath"/>
+          <path location="${classes}"/>
+      </classpath>
+      <arg value="${dist}/obi_previous_release.owl"/>
+      <arg value="${release}/obi.owl"/>
+      <arg value="${dist}/obi_previous_release.diff"/>
+    </java>
+
     <echo message="Release directory created in '${release}'"/>
-    <echo message="You may want to copy lists of new terms to '${release}/docs'"/>
+    <echo message="See ${dist}/obi_previous_release.diff for changes"/>
+    <echo message="See the 'Release Checklist' section of the build README for instructions on releasing OBI"/>
   </target>
 
   <!-- TEST -->
