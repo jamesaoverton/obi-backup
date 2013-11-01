@@ -65,7 +65,9 @@ public class Builder {
     String path = file.getParent();
     String catalogPath = path + "/catalog-v001.xml";
     OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-    manager.addIRIMapper(new CatalogXmlIRIMapper(catalogPath));
+    try {
+      manager.addIRIMapper(new CatalogXmlIRIMapper(catalogPath));
+    } catch (Exception e) { }
     OWLOntology ontology = manager.loadOntologyFromOntologyDocument(file);
     return ontology;
   }
