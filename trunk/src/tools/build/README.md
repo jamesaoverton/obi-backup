@@ -181,7 +181,7 @@ You must go through all of these steps in the correct order to release a new ver
     - copy the contents of `releases/YYYY-MM-DD/README.txt` to the new page
   - edit http://obi-ontology.org/page/Releases
     - add a link to the new release page
-13. Send an email to the obi-devel and obi-users mailing lists
+13. Send an email to the obi-developer@lists.sourceforge.net and obi-users@googlegroups.com mailing lists
   - include links to the new release wiki page: http://obi-ontology.org/page/Releases/YYYY-MM-DD
 
 
