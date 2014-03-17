@@ -16,10 +16,12 @@ import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.util.OWLEntityRenamer;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 
+import obi.Builder;
+
 /**
  * This class searches for terms in the OBO namespace that are not valid
  * OBO IRIs, and assigns them new OBI IRIs.
- *  
+ *
  * @author <a href="mailto:james@overton.ca">James A. Overton</a>
  */
 public class Assigner {
@@ -32,7 +34,7 @@ public class Assigner {
    * The regular expression pattern for an OBO term ID.
    */
   private static Pattern idPattern = Pattern.compile("^([A-Za-z]{2,10})(_)([0-9]{1,9})$");
-  
+
   /**
    * A format string for generating new OBI IRIs.
    */
@@ -54,8 +56,8 @@ public class Assigner {
     try {
       File ontologyFile = new File(args[0]);
       System.out.println("Loading ontology: " + args[0]);
-      OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-      OWLOntology ontology = manager.loadOntologyFromOntologyDocument(ontologyFile);
+      OWLOntology ontology = Builder.loadLocalOntology(ontologyFile);
+      OWLOntologyManager manager = ontology.getOWLOntologyManager();
       boolean changed = assignIDs(ontology);
       if(changed) {
         System.out.println("Saving ontology to: " + args[0]);
