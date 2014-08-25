@@ -137,11 +137,11 @@ You must go through all of these steps in the correct order to release a new ver
   - edit the "Release notes author" at the bottom of the file
 8. Commit the release directory to OBI SVN -- you must have a SoureForge account with sufficient privileges
 
-    cd releases/YYYY-MM-DD
+    cd releases
     svn update
     svn status
     svn add YYYY-MM-DD
-    svn checkin YYYY-MM-DD --messsage "Committing OBI release YYYY-MM-DD"
+    svn commit YYYY-MM-DD --message "Committing OBI release YYYY-MM-DD"
 
 9. Check that the release is visible on SourceForge: https://sourceforge.net/p/obi/code/HEAD/tree/releases/
 10. Update PURLs on http://purl.obolibrary.org -- you must have an account with the PURL service and be logged in
