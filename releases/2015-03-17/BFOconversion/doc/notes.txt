@@ -1,0 +1,16 @@
+1. Update term URIs of BFO:process class and BFO/RO relations using doc/mapping.txt file
+
+2. Update URI of BFO:process class in OntoFox_inputs GO_input.txt and rerun GO import
+
+3. Remove import of IAO development version by latest IAO release file
+	http://purl.obolibrary.org/obo/iao/2015-02-23/iao.owl
+
+4. Clean up ontology headers including removing unused xmlns and owl:import of BFO 1.1 and RO and add import of BFO2.0 class only and RO core relations
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo/2014-05-03/classes-only.owl"/>
+	<owl:imports rdf:resource="http://purl.obolibrary.org/obo/ro/releases/2015-02-11/core.owl"/>
+
+5. Import used RO relations not in RO core file in the external-byhand.owl file
+	http://purl.obolibrary.org/obo/BFO_0000062	is preceded by
+	http://purl.obolibrary.org/obo/BFO_0000063	precedes
+	http://purl.obolibrary.org/obo/RO_0002087	immediately_preceded_by
+	http://purl.obolibrary.org/obo/RO_0002090	immediately_precedes
