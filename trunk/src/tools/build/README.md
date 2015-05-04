@@ -67,7 +67,7 @@ Update the main `branches/obi.owl` file to assign new IDs:
 Then build a `release` directory of files:
 
     ant release
-    
+
 The `release` task takes a few minutes to run. It be broken down into several steps that can be executed separately:
 
 1. Start with the `branches/obi.owl` file and merge it into a single `dist/obi_merged.owl` file. Then check and update all the terms, generate a `warnings.tsv` file. Then add comments to the OWL XML. Finally save a `dist/obi.owl` file:
